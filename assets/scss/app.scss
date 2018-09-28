@@ -1,0 +1,5 @@
+@import "$$theme";
+
+.phase-banner {
+  @include phase-banner(beta);
+}

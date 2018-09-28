@@ -1,0 +1,9 @@
+{
+  "theme": "govuk",
+  "routes": [
+    "./apps/modern-slavery"
+  ],
+  "session": {
+    "name": "modern-slavery.hof.sid"
+  }
+}
