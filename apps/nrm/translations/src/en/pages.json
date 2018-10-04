@@ -1,0 +1,9 @@
+{
+  "user-email": {
+    "header": "What is your email address?"
+  },
+  "check-inbox": {
+    "header": "Check your email",
+    "link-text": "Resubmit"
+  }
+}
