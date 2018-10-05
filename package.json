@@ -13,7 +13,9 @@
     "hof-behaviour-summary-page": "^2.0.0",
     "hof-build": "^1.6.0",
     "hof-theme-govuk": "^4.1.1",
-    "notifications-node-client": "^4.5.1"
+    "ioredis": "^4.0.0",
+    "notifications-node-client": "^4.5.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^3.14.0",

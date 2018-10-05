@@ -5,16 +5,19 @@ const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.templateId;
-const appLink = config.govukNotify.appLink;
+const appPath = require('../../nrm/index').baseUrl;
+const firstStep = '/start/';
+const tokenGenerator = require('../models/save-token');
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     super.saveValues(req, res, err => {
       const host = req.get('host');
       const emailAddress = req.form.values['user-email'];
+      const token = tokenGenerator.save();
       notifyClient
         .sendEmail(templateId, emailAddress, {
-            personalisation: this.getPersonalisation()
+            personalisation: this.getPersonalisation(host, token)
           })
           .then(response => console.log(response))
           .catch(error => console.error(error));
@@ -22,9 +25,9 @@ module.exports = superclass => class extends superclass {
     });
   }
 
-  getPersonalisation() {
+  getPersonalisation(host, token) {
     return {
-      'link': appLink
+      'link': `http://${host + appPath + firstStep + token}`
     };
   }
 };
