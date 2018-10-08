@@ -1,6 +1,8 @@
 {
   "user-email": {
-    "label": "Email",
-    "hint": "Use your work address so we can confirm who you work for"
+    "label": "Email"
+  },
+  "confirm-email": {
+    "label": "Email"
   }
 }

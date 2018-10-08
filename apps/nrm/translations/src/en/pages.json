@@ -1,9 +1,5 @@
 {
-  "user-email": {
-    "header": "What is your email address?"
-  },
-  "check-inbox": {
-    "header": "Check your email",
-    "link-text": "Resubmit"
+  "token-invalid": {
+    "request-another": "Request a new link"
   }
 }

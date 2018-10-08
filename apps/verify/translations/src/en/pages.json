@@ -2,8 +2,15 @@
   "user-email": {
     "header": "What is your email address?"
   },
+  "confirm-email": {
+    "header": "Make sure this is right",
+    "helper": "If your email is wrong just change it"
+  },
   "check-inbox": {
     "header": "Check your email",
     "link-text": "Resubmit"
+  },
+  "email-not-recognised": {
+    "header": "Email not recognised"
   }
 }
