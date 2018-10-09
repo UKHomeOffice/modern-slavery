@@ -9,7 +9,7 @@ pipeline:
       event: [push, pull_request]
 
   build_app:
-    image: docker:17.09.1
+    image: docker:18.03
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
@@ -18,7 +18,7 @@ pipeline:
       event: pull_request
 
   build_app:
-    image: docker:17.09.1
+    image: docker:18.03
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
