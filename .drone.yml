@@ -1,0 +1,24 @@
+pipeline:
+
+  build_8:
+    image: node:8
+    commands:
+      - npm --loglevel warn install
+      - npm run test
+    when:
+      event: [push, pull_request]
+
+  build_app:
+    image: quay.io/ukhomeofficedigital/drone-docker
+    commands:
+      - docker build -t app-$${DRONE_COMMIT_SHA} .
+    when:
+      event: pull_request
+
+  build_app:
+    image: quay.io/ukhomeofficedigital/drone-docker
+    commands:
+      - docker build -t app-$${DRONE_COMMIT_SHA} .
+    when:
+      branch: master
+      event: push
