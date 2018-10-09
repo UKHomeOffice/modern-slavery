@@ -9,18 +9,14 @@ pipeline:
       event: [push, pull_request]
 
   build_app:
-    image: docker:18.03
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+    image: quay.io/ukhomeofficedigital/drone-docker
     commands:
       - docker build -t app-$${DRONE_COMMIT_SHA} .
     when:
       event: pull_request
 
   build_app:
-    image: docker:18.03
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+    image: quay.io/ukhomeofficedigital/drone-docker
     commands:
       - docker build -t app-$${DRONE_COMMIT_SHA} .
     when:
