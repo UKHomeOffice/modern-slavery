@@ -2,3 +2,4 @@ public
 apps/*/translations/*
 !apps/*/translations/src
 node_modules/
+.env
