@@ -1,6 +1,7 @@
 'use strict';
 const emailLookup = require('./behaviours/email-lookup');
 const emailSender = require('./behaviours/email-sender');
+const emailPasser = require('./behaviours/email-passer');
 
 module.exports = {
   name: 'verify',
@@ -13,7 +14,8 @@ module.exports = {
       next: '/confirm-email'
     },
     '/confirm-email': {
-      behaviours: [emailLookup],
+      fields: ['confirm-email'],
+      behaviours: [emailPasser, emailLookup, emailSender],
       next: '/check-inbox'
     },
     '/check-inbox': {

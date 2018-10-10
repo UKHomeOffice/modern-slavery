@@ -13,10 +13,10 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     super.saveValues(req, res, err => {
       const host = req.get('host');
-      const emailAddress = req.form.values['user-email'];
+      const email = req.form.values['confirm-email'];
       const token = tokenGenerator.save();
       notifyClient
-        .sendEmail(templateId, emailAddress, {
+        .sendEmail(templateId, email, {
             personalisation: this.getPersonalisation(host, token)
           })
           .then(response => console.log(response))
