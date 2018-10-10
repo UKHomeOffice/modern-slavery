@@ -1,5 +1,14 @@
 'use strict';
 const emailDomainList = require('../../../ms-email-domains.js');
+const config = require('../../../config');
+const notifyApiKey = config.govukNotify.notifyApiKey;
+const NotifyClient = require('notifications-node-client').NotifyClient;
+const notifyClient = new NotifyClient(notifyApiKey);
+const templateId = config.govukNotify.templateId;
+const appPath = require('../../nrm/index').baseUrl;
+const firstStep = '/start/';
+const tokenGenerator = require('../models/save-token');
+
 const checkDomain = (userEmailDomain) => {
     let flag = false;
 
@@ -10,6 +19,23 @@ const checkDomain = (userEmailDomain) => {
     });
     return flag;
 };
+
+const getPersonalisation = (host, token) => {
+  return {
+    'link': `http://${host + appPath + firstStep + token}`
+  };
+};
+
+// const sendEmail = (email, host, token) => {
+//   notifyClient
+//     .sendEmail(templateId, email, {
+//       personalisation: getPersonalisation(host, token)
+//     })
+//     .then(response => console.log(response))
+//     .catch(error => {
+//       console.error(error);
+//     });
+// };
 
 // fork to error page when an email domain is not recognised
 module.exports = superclass => class extends superclass {
@@ -22,8 +48,24 @@ module.exports = superclass => class extends superclass {
 
       if (isRecognisedDomain === false) {
         req.sessionModel.set('recognised-email', false);
+        return callback(err);
       }
-      callback(err);
+
+      const host = req.get('host');
+      const token = tokenGenerator.save();
+      notifyClient
+        .sendEmail(templateId, email, {
+          personalisation: getPersonalisation(host, token)
+        })
+        .then(response => {
+          // eslint-disable-next-line no-console
+          console.log('Good >>>>', response);
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.error('Ugly >>>>', error);
+        });
+      return callback(err);
     });
   }
 
