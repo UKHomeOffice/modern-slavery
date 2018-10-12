@@ -29,6 +29,7 @@ pipeline:
     environment:
       - DOCKER_USERNAME=ukhomeofficedigital+modern_slavery_bot
     registry: quay.io
+    branch: master
     repo: quay.io/ukhomeofficedigital/modern-slavery
     tags:
       - ${DRONE_COMMIT_SHA}
@@ -48,3 +49,29 @@ pipeline:
       - ${DRONE_TAG}
     when:
       event: tag
+
+  trigger_deploy_to_modern_slavery_dev:
+      image: quay.io/ukhomeofficedigital/drone-trigger:v0.3.0
+      secrets:
+        - docker_password
+      drone_server: https://drone.acp.homeoffice.gov.uk
+      repo: UKHomeOffice/modern-slavery
+      branch: master
+      deploy_to: dev
+      params: APP_IMAGE_TAG=${DRONE_TAG},KUBE_NAMESPACE=ms-dev
+      when:
+        branch: master
+        event: push
+
+    trigger_deploy_to_modern_slavery_preprod:
+      image: quay.io/ukhomeofficedigital/drone-trigger:v0.3.0
+      secrets:
+        - docker_password
+      drone_server: https://drone.acp.homeoffice.gov.uk
+      repo: UKHomeOffice/modern-slavery
+      branch: master
+      deploy_to: preprod
+      params: APP_IMAGE_TAG=${DRONE_TAG},KUBE_NAMESPACE=ms-dev-preprod
+      when:
+        event: deployment
+        environment: preprod
