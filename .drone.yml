@@ -1,5 +1,6 @@
 pipeline:
 
+# Runs unit tests & eslint only
   build_8:
     image: node:8
     commands:
