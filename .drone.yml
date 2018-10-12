@@ -28,9 +28,9 @@ pipeline:
       - DOCKER_USERNAME=ukhomeofficedigital+modern_slavery_bot
     image: quay.io/ukhomeofficedigital/drone-docker
     registry: quay.io
-    repo: quay.io/ukhomeofficedigital/modern_slavery
-    secrets: docker_username
+    repo: quay.io/ukhomeofficedigital/modern-slavery
+    secrets: docker_password
     tags:
       - ${DRONE_TAG}
     when:
-      event: tag
+      event: tag      
