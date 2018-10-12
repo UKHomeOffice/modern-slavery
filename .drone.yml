@@ -20,17 +20,31 @@ pipeline:
     commands:
       - docker build -t app-$${DRONE_COMMIT_SHA} .
     when:
-      branch: master
       event: push
 
-  build_tag:
+  image_to_quay:
+    image: quay.io/ukhomeofficedigital/drone-docker
+    secrets:
+      - docker_password
+    environment:
+      - DOCKER_USERNAME=ukhomeofficedigital+modern_slavery_bot
+    registry: quay.io
+    repo: quay.io/ukhomeofficedigital/modern-slavery
+    tags:
+      - ${DRONE_COMMIT_SHA}
+      - latest
+    when:
+      event: push
+
+  tag_to_quay:
     environment:
       - DOCKER_USERNAME=ukhomeofficedigital+modern_slavery_bot
     image: quay.io/ukhomeofficedigital/drone-docker
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/modern-slavery
-    secrets: docker_password
+    secrets: 
+      - docker_password
     tags:
       - ${DRONE_TAG}
     when:
-      event: tag      
+      event: tag
