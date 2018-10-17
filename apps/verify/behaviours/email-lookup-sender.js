@@ -22,22 +22,23 @@ const checkDomain = (userEmailDomain) => {
 
 const getPersonalisation = (host, token) => {
   return {
-    'link': `http://${host + appPath + firstStep + token}`
+    'link': `http://${host + appPath + firstStep}?token=${token}`
   };
 };
 
-// const sendEmail = (email, host, token) => {
-//   notifyClient
-//     .sendEmail(templateId, email, {
-//       personalisation: getPersonalisation(host, token)
-//     })
-//     .then(response => console.log(response))
-//     .catch(error => {
-//       console.error(error);
-//     });
-// };
+const sendEmail = (email, host, token) => {
+  notifyClient
+    .sendEmail(templateId, email, {
+      personalisation: getPersonalisation(host, token)
+    })
+    // eslint-disable-next-line no-console
+    .then(response => console.log(response))
+    .catch(error => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    });
+};
 
-// fork to error page when an email domain is not recognised
 module.exports = superclass => class extends superclass {
 
   saveValues(req, res, callback) {
@@ -53,22 +54,12 @@ module.exports = superclass => class extends superclass {
 
       const host = req.get('host');
       const token = tokenGenerator.save();
-      notifyClient
-        .sendEmail(templateId, email, {
-          personalisation: getPersonalisation(host, token)
-        })
-        .then(response => {
-          // eslint-disable-next-line no-console
-          console.log('Good >>>>', response);
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.error('Ugly >>>>', error);
-        });
+      sendEmail(email, host, token);
       return callback(err);
     });
   }
 
+  // fork to error page when an email domain is not recognised
   getNextStep(req, res) {
     if (req.sessionModel.get('recognised-email') === false) {
       req.sessionModel.unset('recognised-email');

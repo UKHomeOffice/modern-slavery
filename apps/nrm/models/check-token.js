@@ -14,8 +14,13 @@ module.exports = {
         return resolve(false);
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.log('error reading Redis token', err);
         return reject(err);
       });
+  },
+
+  delete(token) {
+    redis.del(`token:${token}`);
   }
 };

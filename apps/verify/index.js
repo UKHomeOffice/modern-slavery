@@ -1,6 +1,5 @@
 'use strict';
-const emailLookupAndSend = require('./behaviours/email-lookup');
-const emailSender = require('./behaviours/email-sender');
+const emailLookupAndSend = require('./behaviours/email-lookup-sender');
 const emailPasser = require('./behaviours/email-passer');
 
 module.exports = {
