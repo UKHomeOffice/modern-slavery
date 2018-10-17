@@ -31,8 +31,9 @@ const sendEmail = (email, host, token) => {
     .sendEmail(templateId, email, {
       personalisation: getPersonalisation(host, token)
     })
+    // we will need to log out the response to a proper logger
     // eslint-disable-next-line no-console
-    .then(response => console.log(response))
+    .then(console.log(`email sent to ${email}`))
     .catch(error => {
       // eslint-disable-next-line no-console
       console.error(error);

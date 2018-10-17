@@ -16,9 +16,12 @@ module.exports = superclass => class extends superclass {
 
     // async issues with reading from the database so promisify function
     new Promise((resolve, reject) => {
+        console.log('come into the Promise');
+        console.log('hello token', token);
        return checkToken.read(token, resolve, reject);
     })
     .then(isValidToken => {
+      console.log('hello come into then', isValidToken);
       if (isValidToken) {
         // delete the token once it's been used
         checkToken.delete(token);
