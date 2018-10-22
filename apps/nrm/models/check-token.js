@@ -5,9 +5,10 @@ const redis = new Redis();
 
 module.exports = {
  // check the token is in redis
- read(token, resolve) {
+ // catch is dealt with later by whatever calls this promise
+ read(token) {
    return redis.get(`token:${token}`)
-     .then((result) => result ? resolve(true) : resolve(false));
+     .then((result) => result ? (true) : (false));
  },
 
  delete(token) {
