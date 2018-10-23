@@ -2,7 +2,6 @@
 
 const Model = require('../../../../apps/nrm/models/check-token');
 const redis = require('ioredis');
-// const redis = new Redis();
 
 describe('apps/nrm/models/check-token', () => {
   describe('read()', ()=> {
