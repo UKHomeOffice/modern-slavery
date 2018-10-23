@@ -33,6 +33,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
   describe('getValues()', () => {
     beforeEach(() => {
       sinon.stub(Base.prototype, 'getValues');
+      // sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
       sinon.stub(checkToken, 'delete');
       sinon.stub(checkToken, 'read');
     });
