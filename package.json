@@ -4,7 +4,7 @@
     "start": "node app.js",
     "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm run test:unit && npm run lint",
-    "test:unit": "_mocha",
+    "test:unit": "npx mocha",
     "lint": "eslint .",
     "build": "hof-build",
     "postinstall": "npm run build"
