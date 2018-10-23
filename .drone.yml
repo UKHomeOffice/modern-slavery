@@ -8,6 +8,10 @@ pipeline:
     when:
       event: [push, pull_request]
 
+services:
+  cache:
+    image: redis
+
   build_app_pr:
     image: quay.io/ukhomeofficedigital/drone-docker
     commands:
@@ -51,3 +55,4 @@ pipeline:
       - ${DRONE_TAG}
     when:
       event: tag
+
