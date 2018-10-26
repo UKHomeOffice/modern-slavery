@@ -1,46 +1,19 @@
 pipeline:
 
   build_8:
-    image: quay.io/ukhomeofficedigital/nodejs-base:v6.9.1
-    environment:
-      - REDIS_HOST=redis
+    image: node:8
     commands:
       - npm --loglevel warn install
-      - sleep 5
       - npm run test
     when:
       event: [push, pull_request]
 
-  # unit_tests:
-  #   image: docker:18.03.1-ce
-  #   environment:
-  #     - DOCKER_HOST=tcp://172.17.0.1:2375
-  #   commands:
-  #     - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
-  #     - docker build -f Dockerfile-unit -t unit-tests-$${DRONE_COMMIT_SHA} .
-  #     - docker ps -a
-  #     - docker run -d -e NODE_ENV=test -e  --net=container:redis-$${DRONE_COMMIT_SHA} unit-tests-$${DRONE_COMMIT_SHA}
-  #     - sleep 5
-  #     - npm run test
-  #     - docker rm "redis-$${DRONE_COMMIT_SHA}" "unit-tests-$${DRONE_COMMIT_SHA}"
-  #   when:
-  #     event: [push, pull_request]
-
-# services:
-#   database:
-#     image: redis
-#     environment:
-#       - DOCKER_HOST=tcp://172.17.0.1:2375
-
-#   cache:
-#     image: quay.io/ukhomeofficedigital/redis:v0.1.2
-
-  # build_app_pr:
-  #   image: quay.io/ukhomeofficedigital/drone-docker
-  #   commands:
-  #     - docker build -t app-$${DRONE_COMMIT_SHA} .
-  #   when:
-  #     event: pull_request
+  build_app_pr:
+    image: quay.io/ukhomeofficedigital/drone-docker
+    commands:
+      - docker build -t app-$${DRONE_COMMIT_SHA} .
+    when:
+      event: pull_request
 
   build_app:
     image: quay.io/ukhomeofficedigital/drone-docker
@@ -78,8 +51,3 @@ pipeline:
       - ${DRONE_TAG}
     when:
       event: tag
-
-services:
-
-  redis:
-    image: redis:3.0
