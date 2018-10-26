@@ -3,8 +3,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "NODE_ENV=development hof-build watch",
-    "test": "npm run test:lint",
-    "test:lint": "eslint .",
+    "test": "NODE_ENV=test npm run test:unit && npm run lint",
+    "test:unit": "_mocha",
+    "lint": "eslint .",
     "build": "hof-build",
     "postinstall": "npm run build"
   },
@@ -12,11 +13,21 @@
     "hof": "^13.3.0",
     "hof-behaviour-summary-page": "^2.0.0",
     "hof-build": "^1.6.0",
-    "hof-theme-govuk": "^4.1.1"
+    "hof-theme-govuk": "^4.1.1",
+    "ioredis": "^4.0.0",
+    "notifications-node-client": "^4.5.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^3.14.0",
-    "eslint-config-homeoffice": "^2.1.0"
+    "eslint-config-homeoffice": "^2.1.0",
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0",
+    "reqres": "^2.1.0",
+    "sinon": "^7.0.0",
+    "sinon-chai": "^3.2.0"
   },
   "name": "modern-slavery",
   "description": "app for modern slavery",

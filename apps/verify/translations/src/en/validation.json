@@ -1,0 +1,10 @@
+{
+  "user-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "confirm-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  }
+}

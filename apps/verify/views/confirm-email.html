@@ -1,0 +1,32 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div id="confirm-email-group" class="form-group{{#compound}} form-group-compound{{/compound}}{{#formGroupClassName}} {{formGroupClassName}}{{/formGroupClassName}}{{^date}}{{#error}} validation-error{{/error}}{{/date}}">
+    <label for="confirm-email" class="{{labelClassName}}">
+        {{{label}}}
+        {{#hint}}<span {{$hintId}}id="{{hintId}}" {{/hintId}}class="form-hint">{{hint}}</span>{{/hint}}
+        {{^date}}{{#error}}<span class="error-message">{{error.message}}</span>{{/error}}{{/date}}
+    </label>
+    {{#renderChild}}{{/renderChild}}
+    <input
+        type="text"
+        name="confirm-email"
+        id="confirm-email"
+        class="form-control{{#className}} {{className}}{{/className}}{{#error}} invalid-input{{/error}}"
+        aria-required="{{required}}"
+        value={{userEmail}}
+        {{#min}} min="{{min}}"{{/min}}
+        {{#max}} max="{{max}}"{{/max}}
+        {{#maxlength}} maxlength="{{maxlength}}"{{/maxlength}}
+        {{#pattern}} pattern="{{pattern}}"{{/pattern}}
+        {{#hintId}} aria-describedby="{{hintId}}"{{/hintId}}
+        {{#error}} aria-invalid="true"{{/error}}
+        {{#autocomplete}} autocomplete="{{autocomplete}}"{{/autocomplete}}
+        {{#attributes}}
+            {{attribute}}={{userEmail}}
+        {{/attributes}}
+    >
+  </div>
+    {{#input-submit}}correct-email{{/input-submit}}
+    <br><br><p>{{#t}}pages.confirm-email.helper{{/t}}</p>
+  {{/page-content}}
+{{/partials-page}}

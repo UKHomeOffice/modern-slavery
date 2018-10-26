@@ -1,7 +1,13 @@
 {
+  "build": {
+    "translate": {
+      "shared": "./apps/common/translations/src"
+    }
+  },
   "theme": "govuk",
   "routes": [
-    "./apps/modern-slavery"
+    "./apps/verify",
+    "./apps/nrm"
   ],
   "session": {
     "name": "modern-slavery.hof.sid"
