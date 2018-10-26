@@ -1,9 +1,21 @@
 'use strict';
 
 const reqres = require('reqres');
-const Behaviour = require('../../../../apps/verify/behaviours/email-lookup-sender');
-const tokenGenerator = require('../../../../apps/verify/models/save-token');
+const proxyquire = require('proxyquire').noCallThru();
 const NotifyClient = require('notifications-node-client').NotifyClient;
+
+const tokenGenerator = {
+  save: sinon.stub()
+};
+
+// we need to proxyquire for multiple dependencies
+// As soon as you require one of these it tries to create a Redis
+// connection. We do not want Redis as a dependency of our unit tests.
+// Therefore stub it before it gets to that
+const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-sender',
+  { '../models/save-token': tokenGenerator,
+    '../../nrm/index': sinon.stub()
+  });
 
 describe('apps/verify/behaviours/email-lookup-sender', () => {
   it('exports a function', () => {
@@ -71,12 +83,10 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
   describe('saveValues()', () => {
     beforeEach(() => {
       sinon.stub(Base.prototype, 'saveValues').yields();
-      sinon.stub(tokenGenerator, 'save');
       sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
     });
     afterEach(() => {
       Base.prototype.saveValues.restore();
-      tokenGenerator.save.restore();
       NotifyClient.prototype.sendEmail.restore();
     });
 

@@ -1,8 +1,18 @@
 'use strict';
 
 const reqres = require('reqres');
-const Behaviour = require('../../../../apps/nrm/behaviours/check-email-token');
-const checkToken = require('../../../../apps/nrm/models/check-token');
+const proxyquire = require('proxyquire').noCallThru();
+
+const checkTokenStub = {
+  read: sinon.stub(),
+  delete: sinon.stub()
+};
+
+// we need to proxyquire checkToken model rather than requiring and then using sinon.
+// As soon as you require the checkToken it tries to create a Redis connection. We do not
+// want Redis as a dependency of our unit tests. Therefore stub it before it gets to that
+const Behaviour = proxyquire('../../../../apps/nrm/behaviours/check-email-token',
+  { '../models/check-token': checkTokenStub});
 
 describe('apps/nrm/behaviours/check-email-token', () => {
   it('exports a function', () => {
@@ -33,13 +43,9 @@ describe('apps/nrm/behaviours/check-email-token', () => {
   describe('getValues()', () => {
     beforeEach(() => {
       sinon.stub(Base.prototype, 'getValues');
-      sinon.stub(checkToken, 'delete');
-      sinon.stub(checkToken, 'read');
     });
     afterEach(() => {
       Base.prototype.getValues.restore();
-      checkToken.read.restore();
-      checkToken.delete.restore();
     });
 
     it('calls the parent when we provide a skip token in the development environment', () => {
@@ -62,16 +68,16 @@ describe('apps/nrm/behaviours/check-email-token', () => {
 
     describe('we get the token from the url & we look it up in our DB', () => {
       it('deletes the new token if we find it in our db', (done) => {
+        checkTokenStub.read.withArgs('match').resolves(true);
         req.query = {
           token: 'match'
         };
-        checkToken.read.withArgs('match').resolves(true);
 
         instance.getValues(req, res)
           // wrapped in a promise because this function has a promise
           // can't use eventually should have been called
           .then(() => {
-            checkToken.delete.should.have.been.calledWith('match');
+            checkTokenStub.delete.should.have.been.calledWith('match');
             done();
           })
           .catch(err=> console.log(err));
@@ -81,7 +87,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
         req.query = {
             token: 'match'
           };
-          checkToken.read.withArgs('match').resolves(true);
+          checkTokenStub.read.withArgs('match').resolves(true);
 
           instance.getValues(req, res)
             // wrapped in a promise because this function has a promise
@@ -96,7 +102,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
         req.query = {
             token: 'match'
           };
-          checkToken.read.withArgs('match').resolves(true);
+          checkTokenStub.read.withArgs('match').resolves(true);
 
           instance.getValues(req, res)
             // wrapped in a promise because this function has a promise
@@ -111,7 +117,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
         req.query = {
             token: 'fail'
           };
-          checkToken.read.withArgs('fail').resolves(false);
+          checkTokenStub.read.withArgs('fail').resolves(false);
 
           instance.getValues(req, res)
             // wrapped in a promise because this function has a promise

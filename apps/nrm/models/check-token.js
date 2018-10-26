@@ -6,12 +6,12 @@ const redis = new Redis();
 module.exports = {
  // check the token is in redis
  // catch is dealt with later by whatever calls this promise
- read(token) {
-   return redis.get(`token:${token}`)
-     .then((result) => result ? (true) : (false));
+  read(token) {
+    return redis.get(`token:${token}`)
+      .then((result) => result ? (true) : (false));
  },
 
- delete(token) {
-   redis.del(`token:${token}`);
+  delete(token) {
+    redis.del(`token:${token}`);
  }
 };

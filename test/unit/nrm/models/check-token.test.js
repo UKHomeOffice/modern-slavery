@@ -1,7 +1,9 @@
 'use strict';
 
-const Model = require('../../../../apps/nrm/models/check-token');
-const redis = require('ioredis');
+const redis = sinon.stub();
+const proxyquire = require('proxyquire');
+const Model = proxyquire('../../../../apps/nrm/models/check-token',
+  {'ioredis': redis});
 
 describe('apps/nrm/models/check-token', () => {
   describe('read()', ()=> {
