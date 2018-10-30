@@ -34,6 +34,7 @@ pipeline:
     repo: quay.io/ukhomeofficedigital/modern-slavery
     tags:
       - ${DRONE_COMMIT_SHA}
+      - build-${DRONE_BUILD_NUMBER}
       - latest
     when:
       branch: master
