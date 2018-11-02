@@ -22,7 +22,9 @@ const checkDomain = (userEmailDomain) => {
 
 const getPersonalisation = (host, token) => {
   return {
-    'link': `http://${host + appPath + firstStep}?token=${token}`
+    // pass in `&` at the end in case there is another
+    // query e.g. ?hof-cookie-check
+    'link': `http://${host + appPath + firstStep}?token=${token}&`
   };
 };
 
