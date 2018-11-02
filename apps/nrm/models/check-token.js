@@ -1,7 +1,11 @@
 'use strict';
 
 const Redis = require('ioredis');
-const redis = new Redis();
+const config = require('../../../config');
+const redis = new Redis({
+  port: config.redis.port,
+  host: config.redis.host
+});
 
 module.exports = {
  // check the token is in redis
