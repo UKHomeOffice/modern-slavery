@@ -17,3 +17,9 @@ $ npm run dev
 ```
 
 Then go to http://localhost:8080
+
+## Skip email verify step
+
+On dev, preprod and locally you can skip the email verify step by going to the following url
+
+http://localhost:8081/nrm/start?token=skip
