@@ -16,7 +16,7 @@ Start the server in development mode
 $ npm run dev
 ```
 
-Then go to http://localhost:8080
+Then go to http://localhost:8081
 
 ## Skip email verify step
 
