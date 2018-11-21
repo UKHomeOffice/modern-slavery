@@ -11,5 +11,6 @@
   ],
   "session": {
     "name": "modern-slavery.hof.sid"
-  }
+  },
+  "port": 8081
 }
