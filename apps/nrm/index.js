@@ -28,6 +28,11 @@ module.exports = {
       next: '/confirm'
     },
     '/supporting-documents': {
+      fields: [
+      'supporting-document-upload',
+      'supporting-document-description'
+      ],
+      continueOnEdit: true,
       next: '/confirm'
     },
     '/confirm': {

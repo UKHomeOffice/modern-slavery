@@ -11,5 +11,12 @@ module.exports = {
       'yes',
       'no'
     ]
+  },
+  'supporting-document-upload': {
+    mixin: 'input-file',
+    validate: 'required'
+  },
+  'supporting-document-description': {
+    mixin: 'textarea'
   }
 };
