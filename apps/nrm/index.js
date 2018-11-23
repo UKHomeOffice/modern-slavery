@@ -1,6 +1,7 @@
 'use strict';
 
 const checkEmailToken = require('./behaviours/check-email-token');
+const summary = require('hof-behaviour-summary-page');
 
 module.exports = {
   name: 'nrm',
@@ -30,7 +31,7 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-       behaviours: ['complete'],
+       behaviours: ['complete', summary],
     }
   }
 };
