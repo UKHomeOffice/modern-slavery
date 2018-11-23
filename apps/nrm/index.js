@@ -11,9 +11,26 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: [checkEmailToken],
-      next: '/victim-age'
+      next: '/supporting-documents-add'
     },
-    '/victim-age': {
+    '/supporting-documents-add': {
+      fields: [
+        'supporting-documents-add'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-documents-add',
+          value: 'yes'
+        }
+      }],
+      next: '/confirm'
+    },
+    '/supporting-documents': {
+      next: '/confirm'
+    },
+    '/confirm': {
+       behaviours: ['complete'],
     }
   }
 };

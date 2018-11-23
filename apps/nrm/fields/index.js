@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'victim-age': {
+  'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
     legend: {
