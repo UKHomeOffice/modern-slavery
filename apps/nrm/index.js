@@ -2,6 +2,7 @@
 
 const checkEmailToken = require('./behaviours/check-email-token');
 const summary = require('hof-behaviour-summary-page');
+const supportingDocuments = require('./behaviours/supporting-documents');
 
 module.exports = {
   name: 'nrm',
@@ -28,6 +29,7 @@ module.exports = {
       next: '/confirm'
     },
     '/supporting-documents': {
+      behaviours: supportingDocuments,
       fields: [
       'supporting-document-upload',
       'supporting-document-description'
