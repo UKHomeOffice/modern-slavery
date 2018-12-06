@@ -35,6 +35,20 @@ module.exports = {
       'supporting-document-description'
       ],
       continueOnEdit: true,
+      next: '/supporting-documents-add-another'
+    },
+    '/supporting-documents-add-another': {
+      fields: [
+        'supporting-documents-add-another'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-document-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
       next: '/confirm'
     },
     '/confirm': {

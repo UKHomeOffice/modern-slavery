@@ -18,5 +18,16 @@ module.exports = {
   },
   'supporting-document-description': {
     mixin: 'textarea'
-  }
+  },
+  'supporting-documents-add-another': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
 };

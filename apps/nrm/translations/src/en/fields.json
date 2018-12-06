@@ -19,5 +19,16 @@
         "label": "No"
       }
     }
+  },
+  "supporting-documents-add-another": {
+    "legend": "Do you want to upload any additional documents to support your application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

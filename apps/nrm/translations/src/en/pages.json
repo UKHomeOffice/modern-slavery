@@ -4,5 +4,8 @@
   },
   "supporting-documents": {
     "header": "Upload supporting documents"
+  },
+  "supporting-documents-add-another": {
+    "list-header": "Documents added"
   }
 }

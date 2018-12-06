@@ -3,6 +3,7 @@
     "wrongEmail": "this is not a first responder email we recognise"
   },
   "supporting-document-upload": {
-    "filesize": "That file is too big. We only accept files smaller than 100mb"
+    "filesize": "That file is too big. We only accept files smaller than 100mb",
+    "required": "Upload a document"
   }
 }
