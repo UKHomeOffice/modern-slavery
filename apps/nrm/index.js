@@ -3,6 +3,7 @@
 const checkEmailToken = require('./behaviours/check-email-token');
 const summary = require('hof-behaviour-summary-page');
 const supportingDocuments = require('./behaviours/supporting-documents');
+const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
 
 module.exports = {
   name: 'nrm',
@@ -12,7 +13,7 @@ module.exports = {
   },
   steps: {
     '/start': {
-      behaviours: [checkEmailToken],
+      behaviours: checkEmailToken,
       next: '/supporting-documents-add'
     },
     '/supporting-documents-add': {
@@ -41,10 +42,11 @@ module.exports = {
       fields: [
         'supporting-documents-add-another'
       ],
+      behaviours: supportingDocumentsAddAnother,
       forks: [{
         target: '/supporting-documents',
         condition: {
-          field: 'supporting-document-add-another',
+          field: 'supporting-documents-add-another',
           value: 'yes'
         }
       }],
