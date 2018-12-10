@@ -1,6 +1,6 @@
 'use strict';
 const config = require('../../../config');
-const model = require('../models/file-upload');
+const UploadModel = require('../models/file-upload');
 const uuid = require('uuid');
 
 module.exports = superclass => class extends superclass {
@@ -22,6 +22,7 @@ module.exports = superclass => class extends superclass {
       req.form.values['supporting-document-type'] = file.mimtype;
       // generates a fake url
       // model not coded properly yet
+      const model = new UploadModel(file);
       model.save()
       .then((url) => {
       // N:B validation controller gets values from req.form.values

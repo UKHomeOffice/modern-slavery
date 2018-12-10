@@ -11,7 +11,7 @@ router.post('/', (req, res, next) => {
   if (req.files.document) {
     const s3mock = `http://s3.com/foo/${Math.random()}`;
     // eslint-disable-next-line no-console
-    console.log(`returning s3 mock ${s3mock}`);
+    console.log(`using s3 mock, url: ${s3mock}`);
     res.json({'url': s3mock});
   } else {
     next(new Error('No file uploaded'));
