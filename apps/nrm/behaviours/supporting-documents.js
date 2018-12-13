@@ -11,7 +11,7 @@ module.exports = superclass => class extends superclass {
     if (file && file.truncated) {
       const err = new this.ValidationError('supporting-document-upload', {
         type: 'filesize',
-        arguments: [config.upload.maxfilesize]
+        arguments: [config.upload.maxFileSize]
       }, req, res);
       return next({
         'supporting-document-upload': err
@@ -19,16 +19,15 @@ module.exports = superclass => class extends superclass {
     }
     if (file && file.data && file.data.length) {
       req.form.values['supporting-document-filename'] = file.name;
-      req.form.values['supporting-document-type'] = file.mimtype;
-      // generates a fake url
-      // model not coded properly yet
+      req.form.values['supporting-document-type'] = file.mimetype;
+      // generates an object with a url
       const model = new UploadModel(file);
       model.save()
-      .then((url) => {
+      .then((result) => {
       // N:B validation controller gets values from req.form.values
       // and not on req.files so you have to pass a value to the filename
       // otherwise the required validation appears
-        req.form.values['supporting-document-upload'] = url;
+        req.form.values['supporting-document-upload'] = result.url;
       })
       .then(()=> next())
       .catch(e => {
