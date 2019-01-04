@@ -1,0 +1,15 @@
+{{#values.supporting-documents.length}}
+  <div id="supporting-documents-list">
+    <h2>{{#t}}pages.supporting-documents-add-another.list-header{{/t}}</h2>
+    <table>
+      <tbody>
+        {{#values.supporting-documents}}
+          <tr class="supporting-documents-list">
+            <td>{{description}}</td>
+            <td><a href="?delete={{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a>
+          </tr>
+        {{/values.supporting-documents}}
+      </tbody>
+    </table>
+  </div>
+{{/values.supporting-documents.length}}

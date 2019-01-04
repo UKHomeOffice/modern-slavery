@@ -1,5 +1,14 @@
 {
   "token-invalid": {
     "request-another": "Request a new link"
+  },
+  "supporting-documents": {
+    "header": "Upload supporting documents"
+  },
+  "supporting-documents-add-another": {
+    "list-header": "Documents added"
+  },
+  "confirm": {
+    "header": "Placeholder page"
   }
 }
