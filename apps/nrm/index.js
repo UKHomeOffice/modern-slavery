@@ -1,7 +1,6 @@
 'use strict';
 
 const checkEmailToken = require('./behaviours/check-email-token');
-const summary = require('hof-behaviour-summary-page');
 const supportingDocuments = require('./behaviours/supporting-documents');
 const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
 
@@ -54,7 +53,11 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-       behaviours: ['complete', summary],
+       behaviours: ['complete'],
+       next: '/confirmation'
+    },
+    '/confirmation': {
+      backLink: false
     }
   }
 };
