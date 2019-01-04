@@ -11,7 +11,6 @@ const deleteItem = (req, res) => {
 module.exports = superclass => class extends superclass {
   get(req, res, callback) {
     if (req.query.delete) {
-      console.log('in delete');
       return deleteItem(req, res);
     }
     return super.get(req, res, callback);
