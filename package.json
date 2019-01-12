@@ -19,6 +19,9 @@
     "hof-theme-govuk": "^4.1.1",
     "ioredis": "^4.0.0",
     "notifications-node-client": "^4.5.1",
+    "puppeteer": "^1.11.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "url": "^0.11.0",
     "uuid": "^3.3.2"
   },
