@@ -13,8 +13,19 @@ services:
       - "8080:8080"
     volumes:
       - "/app/public"
+    depends_on:
+      - chrome
+
   redis:
     image: redis
+
+  chrome:
+    build: ./puppeteer
+    shm_size: '1gb'
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - '9222:9222'
 
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy:v1.5.1
