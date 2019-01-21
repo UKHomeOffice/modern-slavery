@@ -11,7 +11,7 @@ An app for a first responder to submit a form for a possible victim of modern sl
 3. [Skip email verify step](#skip-email-verify-step)
 
 4. [Acceptance Tests](#acceptance-tests)
-    - `Running acceptance tests`(#running-acceptance-tests)
+    - [Running acceptance tests](#running-acceptance-tests)
 
 ## Install & Run  <a name="install-and-run"></a>
 
@@ -59,7 +59,7 @@ scripts for the application. It is a Node library which provides a high-level AP
 
 ### Running Acceptance Tests  <a name="running-acceptance-tests"></a>
 
-[Install & Run](#install-and-run) Application then you can run the acceptance tests using the command below:
+[Install & Run](#install-and-run)  the application then you can run the acceptance tests using the command below:
 
 ```bash
 $ npm run start:local-acceptance
