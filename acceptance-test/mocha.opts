@@ -1,0 +1,4 @@
+--require test/common.js
+--recursive
+--reporter spec
+--timeout 0
