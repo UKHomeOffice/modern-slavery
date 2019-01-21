@@ -7,7 +7,9 @@
     "test:unit": "_mocha",
     "lint": "eslint .",
     "build": "hof-build",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "test:local-acceptance": "_mocha acceptance-test/user-pathways/upload-file-local.test.js",
+    "test:docker-acceptance": "_mocha acceptance-test/user-pathways/upload-file-docker.test.js"
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.2",
