@@ -9,6 +9,9 @@
     "build": "hof-build",
     "postinstall": "npm run build"
   },
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {
     "busboy-body-parser": "^0.3.2",
     "express": "^4.16.4",
