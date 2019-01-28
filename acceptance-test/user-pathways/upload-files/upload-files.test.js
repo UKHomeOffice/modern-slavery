@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
 const selectors = require('../selectors');
