@@ -16,6 +16,7 @@ services:
     volumes:
       - "/app/public"
     user: root
+    container_name: modern-slavery-app
 
   chrome-browser:
     build: ./browsers/chrome
@@ -26,9 +27,11 @@ services:
       - '9222:9222'
     volumes:
       - ./public/images:/app/public/images
+    container_name: modern-slavery-chrome-browser
 
   redis:
     image: redis
+    container_name: modern-slavery-redis
 
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy:v1.5.1
