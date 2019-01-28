@@ -8,15 +8,6 @@ pipeline:
     when:
       event: [push, pull_request]
 
-  build_docker_compose_acceptance test:
-    image: docker/compose
-    commands:
-      - docker-compose up -d --build chrome-browser app redis
-      - docker exec -i -t modern-slavery_app_1 /bin/bash
-      - npm run test:docker-acceptance
-    when:
-      event: [push, pull_request]
-
   build_app_pr:
     image: quay.io/ukhomeofficedigital/drone-docker
     commands:
