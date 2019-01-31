@@ -3,3 +3,4 @@ apps/*/translations/*
 !apps/*/translations/src
 node_modules/
 .env
+.vscode/settings.json
