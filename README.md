@@ -61,7 +61,7 @@ http://localhost:8081/nrm/start?token=skip
 
 [Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is our automated browser testing. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
 
-You can run acceptance tests either on your local machine via the [Chrome](#https://www.google.com/chrome/) browser
+You can run acceptance tests on your local machine via the [Chrome](#https://www.google.com/chrome/) browser
 
 ### Running local acceptance tests  <a name="running-local-acceptance-tests"></a>
 [Install & Run](#install-and-run-on-local-machine)  the application locally then you can run the acceptance tests using the command below:
