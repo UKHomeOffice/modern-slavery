@@ -19,7 +19,7 @@ const {
 describe('Upload File(s)', () => {
 
     it('upload 1 document', async() => {
-        const { browser, page, hostIP: APP_CONTAINER_HOST } = await bootstrap.buildBrowser();
+        const { page, hostIP: APP_CONTAINER_HOST } = await bootstrap.buildBrowser();
 
         const { env: { PORT } } = process;
         const APP_CONTAINER_PORT = PORT || 8081;
@@ -52,7 +52,5 @@ describe('Upload File(s)', () => {
 
         await page.waitForSelector(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
         await page.click(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
-
-        browser.close();
-      });
+    });
 });
