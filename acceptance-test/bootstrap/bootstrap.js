@@ -24,7 +24,7 @@ const getTestEnvironmentOptions = () => {
  * @return {Object} - with the browser object, page object and localhost IP
  *
  */
-const buildBrowser = async () => {
+const buildBrowser = async() => {
     const { isLocalTest, isDemo } = getTestEnvironmentOptions();
 
     const browser = await BrowserHandler.getBrowser(isLocalTest, isDemo);

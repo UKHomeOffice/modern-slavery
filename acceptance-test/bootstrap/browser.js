@@ -31,7 +31,7 @@ const getBrowserRunSpeed = (isDemo) => {
  *
  * @returns {Object} - browser options
  */
-const getBrowserOptions = async (isLocalBrowser, isDemo) => {
+const getBrowserOptions = async(isLocalBrowser, isDemo) => {
     let browserOptions = {
         headless: !isDemo,
         slowMo: getBrowserRunSpeed(isDemo),
@@ -50,7 +50,7 @@ const getBrowserOptions = async (isLocalBrowser, isDemo) => {
  *
  * @returns {Promise<Browser>} browser instance
  */
-const getBrowser = async (localBrowser, demoMode) => {
+const getBrowser = async(localBrowser, demoMode) => {
     let browser = null;
 
     const options = await getBrowserOptions(localBrowser, demoMode);
@@ -72,7 +72,7 @@ const getBrowser = async (localBrowser, demoMode) => {
  *
  * @returns {Promise<Page>} page instance
  */
-const getBrowserPage = async (browser) => {
+const getBrowserPage = async(browser) => {
     const page = await browser.newPage();
     await page.setViewport(VIEWPORT);
 

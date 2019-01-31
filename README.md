@@ -59,10 +59,9 @@ http://localhost:8081/nrm/start?token=skip
 
 ## Acceptance tests  <a name="acceptance-tests"></a>
 
-[Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is used to run our end-to end test
-scripts for the application. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
+[Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is our automated browser testing. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
 
-You can run acceptance tests either on your local machine via the [Chrome](#https://www.google.com/chrome/) browser or within a docker container
+You can run acceptance tests either on your local machine via the [Chrome](#https://www.google.com/chrome/) browser
 
 ### Running local acceptance tests  <a name="running-local-acceptance-tests"></a>
 [Install & Run](#install-and-run-on-local-machine)  the application locally then you can run the acceptance tests using the command below:
@@ -78,11 +77,7 @@ Acceptance scripts
 - test:local-acceptance
 - test:local-acceptance-demo
 
-The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the file `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` uses as its browser and whether the browser runs slower for demonstration purposes.
-
-In order to run the test successfully ensure you have a test image `e.g.test.png` in the directory `/modern-slavery/public/images/`
-
-`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing.
+The test scripts utilise the environment variable `BROWSER_DEMO` to determine whether the browser runs the file `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` slower for demonstration purposes.
 
 `BROWSER_DEMO`can be left blank so the tests run at normal speed or can be set so the test runs at a slower speed.
 

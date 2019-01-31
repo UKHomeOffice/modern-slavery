@@ -18,7 +18,7 @@ const {
 
 describe('Upload File(s)', () => {
 
-    it('upload 1 document', async () => {
+    it('upload 1 document', async() => {
         const { browser, page, hostIP: APP_CONTAINER_HOST } = await bootstrap.buildBrowser();
 
         const { env: { PORT } } = process;
