@@ -1,5 +1,6 @@
 version: "2"
 services:
+
   app:
     build: .
     environment:
@@ -9,18 +10,34 @@ services:
       - REDIS_PORT=6379
     links:
       - redis
+      - chrome-browser:chrome
     ports:
-      - "8080:8080"
+      - "8081:8081"
     volumes:
       - "/app/public"
+    user: root
+    container_name: modern-slavery-app
+
+  chrome-browser:
+    build: ./browsers/chrome
+    shm_size: '1gb'
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - '9222:9222'
+    volumes:
+      - ./acceptance-test/user-pathways/upload-file/images:/app/public/images
+    container_name: modern-slavery-chrome-browser
+
   redis:
     image: redis
+    container_name: modern-slavery-redis
 
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy:v1.5.1
     environment:
       - PROXY_SERVICE_HOST=app
-      - PROXY_SERVICE_PORT=8080
+      - PROXY_SERVICE_PORT=8081
       - NAXSI_USE_DEFAULT_RULES=FALSE
       - ADD_NGINX_SERVER_CFG=add_header Cache-Control private;add_header X-Frame-Options "SAMEORIGIN" always;add_header X-Content-Type-Options "nosniff" always;add_header X-XSS-Protection "1; mode=block" always;location /public {add_header Cache-Control max-age=86400;add_header X-Frame-Options "SAMEORIGIN" always;add_header X-Content-Type-Options "nosniff" always;add_header X-XSS-Protection "1; mode=block" always;alias /app/public;}
       - ERROR_REDIRECT_CODES=599
@@ -28,6 +45,4 @@ services:
       - "443:443"
       - "80:80"
     links:
-      - app
-    volumes_from:
       - app
