@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "build": "hof-build",
     "postinstall": "npm run build",
+    "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js"
   },
@@ -30,13 +31,15 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^3.14.0",
+    "eslint": "^5.12.1",
     "eslint-config-homeoffice": "^2.1.0",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.1.0",
     "puppeteer": "^1.11.0",
     "reqres": "^2.1.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "sinon": "^7.0.0",
     "sinon-chai": "^3.2.0"
   },

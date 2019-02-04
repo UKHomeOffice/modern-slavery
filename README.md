@@ -6,6 +6,7 @@ An app for a first responder to submit a form for a possible victim of modern sl
 
 1. [Install & Run](#install-and-run)
     - [Install & Run on local machine](#install-and-run-on-local-machine)
+    - [Install & Run on docker container](#install-and-run-on-docker-container)
 
 2. [Email functionality](#email-functionality)
 
@@ -13,10 +14,11 @@ An app for a first responder to submit a form for a possible victim of modern sl
 
 4. [Acceptance tests](#acceptance-tests)
     - [Running local acceptance tests](#running-local-acceptance-tests)
+    - [Running acceptance tests inside a docker container ](#running-acceptance-tests-inside-a-docker-container)
 
 
 ## Install & Run <a name="install-and-run"></a>
-The application can be run on your local machine
+The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
 
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
@@ -36,6 +38,13 @@ $ npm run dev
 ```
 
 Then go to http://localhost:8081
+
+### Install & Run on docker container <a name="install-and-run-on-docker-container"></a>
+
+Build the docker containers containing an instance of the Chrome browser `chrome-browser` the Node JS application `app` and an instance of Redis `redis`
+```bash
+$ docker-compose up -d --build chrome-browser app redis
+```
 
 
 ## Email functionality  <a name="email-functionality"></a>
@@ -61,7 +70,7 @@ http://localhost:8081/nrm/start?token=skip
 
 [Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is our automated browser testing. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
 
-You can run acceptance tests on your local machine via the [Chrome](#https://www.google.com/chrome/) browser
+You can run acceptance tests either on your local machine via the [Chrome](#https://www.google.com/chrome/) browser or within a docker container
 
 ### Running local acceptance tests  <a name="running-local-acceptance-tests"></a>
 [Install & Run](#install-and-run-on-local-machine)  the application locally then you can run the acceptance tests using the command below:
@@ -72,12 +81,31 @@ $ npm run test:local-acceptance
 
 This will open up an instance of [Google Chrome](#https://www.google.com/chrome/) on your local machine for each test.
 
+
+### Running acceptance tests inside a docker container  <a name="running-acceptance-tests-inside-a-docker-container"></a>
+
+[Install & Run](#install-and-run-on-docker-container)  the application within a docker conatiner then you can run the acceptance tests using the commands below:
+
+
+Enter into the docker container with the Node JS application running
+```bash
+$ docker exec -i -t modern-slavery-app /bin/bash
+```
+
+Run acceptance tests
+```bash
+$ npm run test:docker-acceptance
+```
+
 #### Acceptance test scripts
 Acceptance scripts
+- test:docker-acceptance
 - test:local-acceptance
 - test:local-acceptance-demo
 
-The test scripts utilise the environment variable `BROWSER_DEMO` to determine whether the browser runs the file `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` slower for demonstration purposes.
+The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the file `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` uses as its browser and whether the browser runs slower for demonstration purposes.
+
+`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing
 
 `BROWSER_DEMO`can be left blank so the tests run at normal speed or can be set so the test runs at a slower speed.
 
