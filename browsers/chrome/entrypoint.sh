@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Start Google Chrome with the sepcified options and be able to close the
+# terminal without destroying the running Chrome session
+
 nohup google-chrome \
 	--no-sandbox \
 	--disable-background-networking \

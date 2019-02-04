@@ -14,12 +14,18 @@ const VIEWPORT = { width: 1920, height: 1080 };
  * This is needed so we can extract the browser websocket endpoint from the body
  * of the request
  *
+ * @const chrome - This is a workaround for the Error: `Host header is specified
+ * and is not an IP address or localhost.` We wait for the script to determine
+ * the host URL by looking up the DNS address for the container in which the
+ * browser exists in order to formulate a URL that Puppeteer can use to create
+ * a connection to the related browser.
+ * See https://github.com/GoogleChrome/puppeteer/issues/2242 for more info
+ *
  * @see getBrowserWebSocketEndpoint
  *
  * @returns {Object} - the response from the browser container
  */
 const getBrowserContainerResponse = async() => {
-    // Workaround for https://github.com/GoogleChrome/puppeteer/issues/2242
     const chrome = await getContainerIP('chrome-browser');
     const chromeBrowserPort = 9222;
 

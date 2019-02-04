@@ -13,6 +13,7 @@ RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &
   apt-get update && \
   apt-get install -y google-chrome-unstable --no-install-recommends && \
   rm -fr /var/lib/apt/lists/* && \
+  # Uninstall Curl, it's configuration files and the installation file from Ubuntu
   apt-get purge --auto-remove -y curl && \
   rm -fr /src/*.deb
 
