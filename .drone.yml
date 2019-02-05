@@ -1,11 +1,21 @@
 pipeline:
-
-# Runs unit tests & eslint only
+  # Runs unit tests & eslint only
   build_8:
     image: node:8
     commands:
       - npm --loglevel warn install
       - npm run test
+    when:
+      event: [push, pull_request]
+
+  # Run acceptance tests using docker-compose only
+  acceptance_test:
+    image: docker/compose:1.23.2
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker-compose --verbose up -d --build chrome-browser app redis
+      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
     when:
       event: [push, pull_request]
 
@@ -47,7 +57,7 @@ pipeline:
     image: quay.io/ukhomeofficedigital/drone-docker
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/modern-slavery
-    secrets: 
+    secrets:
       - docker_password
     tags:
       - ${DRONE_TAG}

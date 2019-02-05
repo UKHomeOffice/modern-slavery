@@ -8,9 +8,9 @@
     "lint": "eslint .",
     "build": "hof-build",
     "postinstall": "npm run build",
-    "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js",
-    "test:local-acceptance": "env BROWSER_TYPE=local _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js",
-    "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha acceptance-test/user-pathways/upload-file/upload-file.test.js"
+    "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
+    "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
+    "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
   },
   "pre-commit": [
     "test"

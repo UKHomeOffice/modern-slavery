@@ -6,7 +6,8 @@
     "implicit-dependencies/no-implicit": [
       "error",
       { "peer": true, "dev": true, "optional": true }
-    ]
+    ],
+    "no-process-env": "off"
   },
   "env": {
     "es6": true,
