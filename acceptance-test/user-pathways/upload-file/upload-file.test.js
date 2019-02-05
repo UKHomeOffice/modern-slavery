@@ -27,7 +27,7 @@ describe('Upload File(s)', () => {
         browser = testBrowser;
         page = initialPage;
 
-        const { env: { PORT } } = process;
+        const { PORT } = process.env;
         const APP_CONTAINER_PORT = PORT || 8081;
 
         url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;

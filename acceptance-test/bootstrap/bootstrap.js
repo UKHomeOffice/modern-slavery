@@ -14,7 +14,7 @@ const getContainerIP = require('../user-pathways/util/get-container-ip');
  * @returns {object} - object containing the test environment options
  */
 const getTestEnvironmentOptions = () => {
-    const { env: { BROWSER_TYPE, BROWSER_DEMO } } = process;
+    const { BROWSER_TYPE, BROWSER_DEMO } = process.env;
 
     let isLocalTest = true;
     let isDemo = BROWSER_DEMO ? true : false;
