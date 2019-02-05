@@ -15,7 +15,7 @@ const UPLOAD_DOCUMENT_PAGE_4_CONTINUE_BUTTON = '#content > div > form > input.bu
 const CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON = '#content > div > form > input.button';
 const TEST_FILE_PATH = () => {
     return !bootstrap.getTestEnvironmentOptions().isLocalTest ?
-    path.resolve('/app/public/images/test.png')
+    path.resolve('/test.png')
     : path.resolve(__dirname, '../upload-file/images/test.png');
 };
 

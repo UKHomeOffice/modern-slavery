@@ -16,41 +16,62 @@ const {
     TEST_FILE_PATH,
 } = selectors;
 
-describe('Upload File(s)', () => {
+let browser;
+let page;
+let url;
 
-    it('upload 1 document', async() => {
-        const { page, hostIP: APP_CONTAINER_HOST } = await bootstrap.buildBrowser();
+describe('Upload File(s)', () => {
+    beforeEach(async() => {
+        let { browser: testBrowser, page: initialPage, hostIP: APP_CONTAINER_HOST } = await bootstrap.buildBrowser();
+
+        browser = testBrowser;
+        page = initialPage;
 
         const { env: { PORT } } = process;
         const APP_CONTAINER_PORT = PORT || 8081;
 
-        const url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
+        url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
 
         await page.goto(url);
-        // Hit the url a second time since the first page resolves to an error
-        await page.goto(url);
-        await page.setViewport(VIEWPORT);
-        await page.waitForSelector(START_BUTTON_SELECTOR);
-        await page.click(START_BUTTON_SELECTOR);
+    });
 
-        await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-        await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-        await page.click(UPLOAD_DOCUMENT_PAGE_2_CONTINUE_BUTTON);
+    afterEach(async() => {
+        await page.close();
+    });
 
-        await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
-        const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
-        await input.uploadFile(TEST_FILE_PATH());
+    after(async() => {
+        await browser.close();
+    });
 
-        await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR, (element) => {
-            element.value = 'NRM Test File example';
-        });
-        await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+    it('upload 1 document', async() => {
+        try {
+            // Hit the url a second time since the first page resolves to an error
+            await page.goto(url);
+            await page.setViewport(VIEWPORT);
+            await page.waitForSelector(START_BUTTON_SELECTOR);
+            await page.click(START_BUTTON_SELECTOR);
 
-        await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-        await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-        await page.click(UPLOAD_DOCUMENT_PAGE_4_CONTINUE_BUTTON);
+            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
+            await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
+            await page.click(UPLOAD_DOCUMENT_PAGE_2_CONTINUE_BUTTON);
 
-        await page.waitForSelector(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
-        await page.click(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
+            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
+            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
+            await input.uploadFile(TEST_FILE_PATH());
+
+            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR, (element) => {
+                element.value = 'NRM Test File example';
+            });
+            await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+
+            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+            await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+            await page.click(UPLOAD_DOCUMENT_PAGE_4_CONTINUE_BUTTON);
+
+            await page.waitForSelector(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
+            await page.click(CONFIRM_SUBMISSION_PAGE_CONFIRM_BUTTON);
+        } catch (err) {
+            throw new Error(err);
+        }
     });
 });

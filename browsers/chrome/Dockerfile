@@ -18,6 +18,7 @@ RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &
   rm -fr /src/*.deb
 
 COPY entrypoint.sh .
+COPY test.png .
 
 RUN chmod +x ./entrypoint.sh
 
