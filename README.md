@@ -14,7 +14,10 @@ An app for a first responder to submit a form for a possible victim of modern sl
 
 4. [Acceptance tests](#acceptance-tests)
     - [Running local acceptance tests](#running-local-acceptance-tests)
-    - [Running acceptance tests inside a docker container ](#running-acceptance-tests-inside-a-docker-container)
+    - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
+        - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
+    - [Acceptance test scripts](#acceptance-test-scripts)
+        - [Uploading files](#uploading-files)
 
 
 ## Install & Run <a name="install-and-run"></a>
@@ -97,20 +100,28 @@ Run acceptance tests
 $ npm run test:docker-acceptance
 ```
 
-#### Acceptance test scripts
+#### Running acceptance tests as part of Drone CI  <a name="running-acceptance-tests-as-part-of-drone-ci"></a>
+
+We use [Drone CI](#https://drone.io/) for our continious integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file
+
+### Acceptance test scripts   <a name="acceptance-test-scripts"></a>
 Acceptance scripts
 - test:docker-acceptance
 - test:local-acceptance
 - test:local-acceptance-demo
 
-The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the file `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` uses as its browser and whether the browser runs slower for demonstration purposes.
+The location of the user pathway tests are in the directory: `/modern-slavery/acceptance-test/user-pathways/`
+
+The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the test files within the directory `/modern-slavery/acceptance-test/user-pathways/` uses as its browser and whether the browser runs slower for demonstration purposes.
 
 `BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing
 
 `BROWSER_DEMO`can be left blank so the tests run at normal speed or can be set so the test runs at a slower speed.
 
-These acceptance scripts currently test 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
+#### Uploading files   <a name="uploading-files"></a>
 
-The test uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user.
+The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
 
-The location of the user pathway tests are currently be in the directory: `/modern-slavery/acceptance-test/user-pathways/`
+This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests
+
+
