@@ -5,13 +5,8 @@ const selectors = require('../util/selectors');
 const {
     VIEWPORT,
     PAGE_TRANSITION_BUTTON_SELECTOR,
-    UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
-    UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
+    UPLOAD_DOCUMENT_PAGE_2_NO_OPTION,
     USER_EMAIL_EMAIL_INPUT,
-    TEST_FILE_PATH,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -36,13 +31,12 @@ const clickTransitionButton = async(loopCount) => {
     }
 };
 
-describe('Upload File(s)', () => {
+describe('Critical user path(s)', () => {
     beforeEach(async() => {
         let { browser: testBrowser, page: initialPage, hostIP } = await bootstrap.buildBrowser();
 
         browser = testBrowser;
         page = initialPage;
-
         APP_CONTAINER_HOST = hostIP;
 
         url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
@@ -58,7 +52,7 @@ describe('Upload File(s)', () => {
         await browser.close();
     });
 
-    it('upload 1 document', async() => {
+    it('Happy path - Adult', async() => {
         try {
             await clickTransitionButton(1);
             await page.$eval(USER_EMAIL_EMAIL_INPUT, (element) => {
@@ -77,21 +71,8 @@ describe('Upload File(s)', () => {
             // Run through the skeleton until we reach the upload page
             await clickTransitionButton(24);
 
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(PAGE_TRANSITION_BUTTON_SELECTOR);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
-            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
-            await input.uploadFile(TEST_FILE_PATH());
-
-            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR, (element) => {
-                element.value = 'NRM Test File example';
-            });
-            await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
+            await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
 
             // Run through the skeleton until we reach the end
             await clickTransitionButton(4);
