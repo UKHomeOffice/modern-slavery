@@ -2,11 +2,86 @@
   "token-invalid": {
     "request-another": "Request a new link"
   },
+  "select-location": {
+    "header": "Placeholder page"
+  },
+  "pv-under-age": {
+    "header": "Placeholder page"
+  },
+  "pv-under-age-at-time-of-exploitation": {
+    "header": "Placeholder page"
+  },
+  "what-happened": {
+    "header": "Placeholder page"
+  },
+  "where-exploitation-happened": {
+    "header": "Placeholder page"
+  },
+  "current-pv-location": {
+    "header": "Placeholder page"
+  },
+  "who-exploited-pv": {
+    "header": "Placeholder page"
+  },
+  "types-of-exploitation": {
+    "header": "Placeholder page"
+  },
+  "any-other-pvs": {
+    "header": "Placeholder page"
+  },
+  "reported-to-police": {
+    "header": "Placeholder page"
+  },
+  "pv-want-to-submit-nrm": {
+    "header": "Placeholder page"
+  },
+  "does-pv-need-support": {
+    "header": "Placeholder page"
+  },
+  "pv-name-that-requires-support": {
+    "header": "Placeholder page"
+  },
+  "pv-dob": {
+    "header": "Placeholder page"
+  },
+  "pv-gender": {
+    "header": "Placeholder page"
+  },
+  "does-pv-have-children": {
+    "header": "Placeholder page"
+  },
+  "pv-nationality": {
+    "header": "Placeholder page"
+  },
+  "pv-interpreter-requirements": {
+    "header": "Placeholder page"
+  },
+  "pv-other-help-with-communication": {
+    "header": "Placeholder page"
+  },
+  "pv-ho-reference": {
+    "header": "Placeholder page"
+  },
+  "pv-contact-details": {
+    "header": "Placeholder page"
+  },
+  "pv-phone-number": {
+    "header": "Placeholder page"
+  },
+  "co-operate-with-police": {
+    "header": "Placeholder page"
+  },
   "supporting-documents": {
     "header": "Upload supporting documents"
   },
   "supporting-documents-add-another": {
     "list-header": "Documents added"
+  },
+  "fr-details": {
+    "header": "Placeholder page"
+  },
+  "fr-alternative-contact": {
+    "header": "Placeholder page"
   },
   "confirm": {
     "header": "Placeholder page"
