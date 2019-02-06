@@ -1,4 +1,7 @@
 {
+  "start": {
+    "header": "Placeholder page"
+  },
   "user-email": {
     "header": "What is your email address?"
   },
