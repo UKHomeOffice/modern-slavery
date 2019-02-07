@@ -4,13 +4,13 @@ const selectors = require('../util/selectors');
 
 const {
     VIEWPORT,
-    PAGE_TRANSITION_BUTTON_SELECTOR,
+    CONTINUE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
-    USER_EMAIL_EMAIL_INPUT,
+    EMAIL_INPUT,
     TEST_FILE_PATH,
 } = selectors;
 
@@ -29,10 +29,10 @@ let url;
  *
  * @returns {void}
  */
-const clickTransitionButton = async(loopCount) => {
+const clickContinueButton = async(loopCount) => {
     for (let i = 0; i < loopCount; i++) {
-            await page.waitForSelector(PAGE_TRANSITION_BUTTON_SELECTOR);
-            await page.click(PAGE_TRANSITION_BUTTON_SELECTOR);
+            await page.waitForSelector(CONTINUE_BUTTON);
+            await page.click(CONTINUE_BUTTON);
     }
 };
 
@@ -60,11 +60,11 @@ describe('Upload File(s)', () => {
 
     it('upload 1 document', async() => {
         try {
-            await clickTransitionButton(1);
-            await page.$eval(USER_EMAIL_EMAIL_INPUT, (element) => {
+            await clickContinueButton(1);
+            await page.$eval(EMAIL_INPUT, (element) => {
                 element.value = 'test.user@homeoffice.gov.uk';
             });
-            await clickTransitionButton(1);
+            await clickContinueButton(1);
 
             // Bypass user clicking email link - Notify Key will not be set during test runs
             url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
@@ -75,11 +75,11 @@ describe('Upload File(s)', () => {
             await page.setViewport(VIEWPORT);
 
             // Run through the skeleton until we reach the upload page
-            await clickTransitionButton(24);
+            await clickContinueButton(24);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(PAGE_TRANSITION_BUTTON_SELECTOR);
+            await page.click(CONTINUE_BUTTON);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
             const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
@@ -94,7 +94,7 @@ describe('Upload File(s)', () => {
             await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
 
             // Run through the skeleton until we reach the end
-            await clickTransitionButton(4);
+            await clickContinueButton(4);
 
         } catch (err) {
             throw new Error(err);
