@@ -1,6 +1,19 @@
 'use strict';
 
 module.exports = {
+  'select-location': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'england',
+      'wales',
+      'scotland',
+      'northernireland'
+    ]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

@@ -2,6 +2,9 @@
   "user-email": {
     "wrongEmail": "this is not a first responder email we recognise"
   },
+  "select-location" : {
+    "required": "You must enter a region"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

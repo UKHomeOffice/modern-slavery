@@ -1,6 +1,8 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
 const selectors = require('../util/selectors');
+const nrmFields = require('../../../apps/nrm/fields/index');
+const firstResponderLocations = nrmFields['select-location'].options;
 
 const {
     VIEWPORT,
@@ -12,7 +14,11 @@ const {
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
+    SELECT_LOCATION,
 } = selectors;
+
+// Use 'England' as the default test location
+const testLocationSelector = SELECT_LOCATION(firstResponderLocations[0]);
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -74,8 +80,14 @@ describe('Upload File(s)', () => {
             await page.goto(url);
             await page.setViewport(VIEWPORT);
 
+            // Run through the skeleton until we reach the Where are you making this report? page
+            await clickContinueButton(1);
+
+            await page.waitForSelector(testLocationSelector);
+            await page.click(testLocationSelector);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(24);
+            await clickContinueButton(23);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
