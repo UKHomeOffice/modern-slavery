@@ -3,6 +3,22 @@
     "label": "Email",
     "hint": "Use your work address so we can confirm who you work for"
   },
+  "select-location": {
+    "options": {
+      "England": {
+        "label": "England"
+      },
+      "Wales": {
+        "label": "Wales"
+      },
+      "Scotland": {
+        "label": "Scotland"
+      },
+      "Northern Ireland": {
+        "label": "Northern Ireland"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

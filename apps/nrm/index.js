@@ -16,6 +16,7 @@ module.exports = {
       next: '/select-location'
     },
     '/select-location': {
+      fields: ['select-location'],
       next: '/pv-under-age'
     },
     '/pv-under-age': {
