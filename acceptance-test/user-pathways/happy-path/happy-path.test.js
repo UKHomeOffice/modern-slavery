@@ -12,7 +12,6 @@ const {
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
 
-let browser;
 let page;
 let url;
 
@@ -33,23 +32,14 @@ const clickTransitionButton = async(loopCount) => {
 
 describe('Critical user path(s)', () => {
     beforeEach(async() => {
-        let { browser: testBrowser, page: initialPage, hostIP } = await bootstrap.buildBrowser();
+        let { page: initialPage, hostIP } = await bootstrap.buildBrowser();
 
-        browser = testBrowser;
         page = initialPage;
         APP_CONTAINER_HOST = hostIP;
 
         url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
 
         await page.goto(url);
-    });
-
-    afterEach(async() => {
-        await page.close();
-    });
-
-    after(async() => {
-        await browser.close();
     });
 
     it('Happy path - Adult', async() => {
