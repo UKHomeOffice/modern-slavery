@@ -8,6 +8,9 @@ module.exports = {
     '/email-not-recognised': 'email-not-recognised'
   },
   steps: {
+    '/start': {
+      next: '/user-email'
+    },
     '/user-email': {
       fields: ['user-email'],
       next: '/confirm-email'
