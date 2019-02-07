@@ -5,16 +5,16 @@
   },
   "select-location": {
     "options": {
-      "England": {
+      "england": {
         "label": "England"
       },
-      "Wales": {
+      "wales": {
         "label": "Wales"
       },
-      "Scotland": {
+      "scotland": {
         "label": "Scotland"
       },
-      "Northern Ireland": {
+      "northernIreland": {
         "label": "Northern Ireland"
       }
     }
