@@ -8,10 +8,10 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [
-      'England',
-      'Wales',
-      'Scotland',
-      'Northern Ireland'
+      'england',
+      'wales',
+      'scotland',
+      'northernireland'
     ]
   },
   'supporting-documents-add': {
