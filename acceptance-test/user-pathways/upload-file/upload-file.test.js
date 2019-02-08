@@ -1,24 +1,24 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
 const selectors = require('../util/selectors');
-const nrmFields = require('../../../apps/nrm/fields/index');
-const firstResponderLocations = nrmFields['select-location'].options;
 
 const {
     VIEWPORT,
     CONTINUE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR,
+    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT,
+    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    SELECT_LOCATION,
+    getOptionSelectorWithIndex,
 } = selectors;
 
 // Use 'England' as the default test location
-const testLocationSelector = SELECT_LOCATION(firstResponderLocations[0]);
+const testLocationSelector = getOptionSelectorWithIndex('select-location', 0);
+// Use No as the default
+const testPvAgeSelector = getOptionSelectorWithIndex('pv-under-age', 1);
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -83,21 +83,28 @@ describe('Upload File(s)', () => {
             // Run through the skeleton until we reach the Where are you making this report? page
             await clickContinueButton(1);
 
+            // select-location
             await page.waitForSelector(testLocationSelector);
             await page.click(testLocationSelector);
+            await clickContinueButton(1);
+
+            // pv-under-age
+            await page.waitForSelector(testPvAgeSelector);
+            await page.click(testPvAgeSelector);
+            await clickContinueButton(1);
 
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(23);
+            await clickContinueButton(21);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(CONTINUE_BUTTON);
 
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
-            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR);
+            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
+            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
             await input.uploadFile(TEST_FILE_PATH());
 
-            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR, (element) => {
+            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
                 element.value = 'NRM Test File example';
             });
             await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
