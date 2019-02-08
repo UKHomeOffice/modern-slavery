@@ -20,7 +20,27 @@ module.exports = {
       next: '/pv-under-age'
     },
     '/pv-under-age': {
-      next: '/pv-under-age-at-time-of-exploitation'
+      fields: ['pv-under-age'],
+      forks: [
+       {
+        target: '/local-authority-contacted-about-child',
+        condition: {
+          field: 'pv-under-age',
+          value: 'yes'
+        }
+       },
+       {
+        target: '/local-authority-contacted-about-child',
+        condition: {
+          field: 'pv-under-age',
+          value: 'notsure'
+        }
+       }
+      ],
+      next: '/pv-under-age-at-time-of-exploitation',
+    },
+    '/local-authority-contacted-about-child': {
+      next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {
       next: '/what-happened'

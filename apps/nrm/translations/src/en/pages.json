@@ -6,6 +6,9 @@
     "header": "Where are you making this report?"
   },
   "pv-under-age": {
+    "header": "Is the potential victim under 18?"
+  },
+  "local-authority-contacted-about-child": {
     "header": "Placeholder page"
   },
   "pv-under-age-at-time-of-exploitation": {
