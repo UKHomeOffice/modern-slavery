@@ -45,15 +45,25 @@ const getOptionSelectorWithName = (page, optionName) => {
 /**
  * Get selector for option on specified page using the option's index number
  *
- * If the option returned by 'getOptions' is not a string then use the value
- * attribute of the object as the option value
+ * If the 'option' constant is not a string then assume the value to be an
+ * object.
+ *
+ * The 'value' attribute of the object will be used within the 2nd parameter of
+ * the function;
+ * @see getOptionSelectorWithName
+ *
+ * Example of returned values:
+ * Array of String(s):
+ * option = [ 'england', 'wales', 'scotland', 'northernireland' ]
+ * Array of Object(s):
+ * option = [{ value: 'yes', toggle: 'yes-toggle-content', child: 'partials/panel' }]
  *
  * @param {string} page - the page url (e.g 'select-location')
  * @param {number} index -  index position of option on page
  *
  * @returns {string} - the selector for the page option required
  */
-const getOptionSelectorWithIndex = (page, index) => {
+const getDefaultOption = (page, index) => {
     const option = getOptions(page)[index];
 
     if (typeof option !== 'string') {
@@ -75,5 +85,5 @@ module.exports = {
     UPLOAD_DOCUMENT_PAGE_4_YES_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    getOptionSelectorWithIndex,
+    getDefaultOption,
 };

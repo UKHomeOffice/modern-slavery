@@ -12,13 +12,13 @@ const {
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    getOptionSelectorWithIndex,
+    getDefaultOption,
 } = selectors;
 
 // Use 'England' as the default test location
-const testLocationSelector = getOptionSelectorWithIndex('select-location', 0);
+const testLocationSelector = getDefaultOption('select-location', 0);
 // Use No as the default
-const testPvAgeSelector = getOptionSelectorWithIndex('pv-under-age', 1);
+const testPvAgeSelector = getDefaultOption('pv-under-age', 1);
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
