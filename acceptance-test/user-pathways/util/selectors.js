@@ -2,13 +2,14 @@
 'use strict';
 const path = require('path');
 const bootstrap = require('../../bootstrap/bootstrap');
+const getOptions = require('../util/options');
 
 const VIEWPORT = { width: 1920, height: 1080 };
 const CONTINUE_BUTTON = '#content > div > form > input.button';
 const UPLOAD_DOCUMENT_PAGE_2_YES_OPTION = '#supporting-documents-add-yes';
 const UPLOAD_DOCUMENT_PAGE_2_NO_OPTION = '#supporting-documents-add-no';
-const UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR = '#supporting-document-upload';
-const UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR = '#supporting-document-description';
+const UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT = '#supporting-document-upload';
+const UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION = '#supporting-document-description';
 const UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON = '#content > div > form > p > input';
 const UPLOAD_DOCUMENT_PAGE_4_NO_OPTION = '#supporting-documents-add-another-no';
 const UPLOAD_DOCUMENT_PAGE_4_YES_OPTION = '#supporting-documents-add-another-yes';
@@ -30,14 +31,46 @@ const TEST_FILE_PATH = () => {
 };
 
 /**
- * Select the location of the First responder
+ * Select the option on the specified page using the option's name
  *
- * @param {string} location - the location of the first responder
+ * @param {string} page - the page url (e.g 'select-location')
+ * @param {string} optionName - the option selected
  *
- * @returns {string} - the selector for the location
+ * @returns {string} - the selector for the page option specified
  */
-const SELECT_LOCATION = (location) => {
-    return `#select-location-${location}`;
+const getOptionSelectorWithName = (page, optionName) => {
+    return `#${page}-${optionName}`;
+};
+
+/**
+ * Get selector for option on specified page using the option's index number
+ *
+ * If the 'option' constant is not a string then assume the value to be an
+ * object.
+ *
+ * The 'value' attribute of the object will be used within the 2nd parameter of
+ * the function;
+ * @see getOptionSelectorWithName
+ *
+ * Example of returned values:
+ * Array of String(s):
+ * option = [ 'england', 'wales', 'scotland', 'northernireland' ]
+ * Array of Object(s):
+ * option = [{ value: 'yes', toggle: 'yes-toggle-content', child: 'partials/panel' }]
+ *
+ * @param {string} page - the page url (e.g 'select-location')
+ * @param {number} index -  index position of option on page
+ *
+ * @returns {string} - the selector for the page option required
+ */
+const getDefaultOption = (page, index) => {
+    const option = getOptions(page)[index];
+
+    if (typeof option !== 'string') {
+        return getOptionSelectorWithName(page, option.value);
+    }
+
+    return getOptionSelectorWithName(page, option);
 };
 
 module.exports = {
@@ -45,12 +78,12 @@ module.exports = {
     CONTINUE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
     UPLOAD_DOCUMENT_PAGE_2_NO_OPTION,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_SELECTOR,
-    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION_SELECTOR,
+    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT,
+    UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     UPLOAD_DOCUMENT_PAGE_4_YES_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    SELECT_LOCATION,
+    getDefaultOption,
 };

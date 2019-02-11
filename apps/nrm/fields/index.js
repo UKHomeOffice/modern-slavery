@@ -11,8 +11,28 @@ module.exports = {
       'england',
       'wales',
       'scotland',
-      'northernireland'
+      'northern-ireland'
     ]
+  },
+  'pv-under-age': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'yes-toggle-content',
+      child: 'partials/panel'
+    }, {
+      value: 'no',
+      toggle: 'no-toggle-content',
+      child: 'partials/panel'
+    }, {
+      value: 'not-sure',
+      toggle: 'not-sure-toggle-content',
+      child: 'partials/panel'
+    }]
   },
   'supporting-documents-add': {
     mixin: 'radio-group',

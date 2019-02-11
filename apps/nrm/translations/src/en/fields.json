@@ -4,6 +4,7 @@
     "hint": "Use your work address so we can confirm who you work for"
   },
   "select-location": {
+    "legend": "Where are you making this report?",
     "options": {
       "england": {
         "label": "England"
@@ -14,8 +15,25 @@
       "scotland": {
         "label": "Scotland"
       },
-      "northernireland": {
+      "northern-ireland": {
         "label": "Northern Ireland"
+      }
+    }
+  },
+  "pv-under-age": {
+    "legend": "Is the potential victim under 18?",
+    "options": {
+      "yes": {
+        "label": "Yes",
+        "toggle-content": "They will be treated as a child during the process."
+      },
+      "no": {
+        "label": "No",
+        "toggle-content": "They will be treated as an adult during the process."
+      },
+      "not-sure": {
+        "label": "Not Sure",
+        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made."
       }
     }
   },
@@ -26,7 +44,7 @@
     "label": "Description (optional)"
   },
   "supporting-documents-add": {
-    "legend": "Do you want to upload supporting documents",
+    "legend": "Do you want to upload supporting documents?",
     "options": {
       "yes": {
         "label": "Yes"
