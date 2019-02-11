@@ -13,6 +13,7 @@ const {
     EMAIL_INPUT,
     TEST_FILE_PATH,
     getDefaultOption,
+    ORGANISATION_INPUT,
 } = selectors;
 
 // Use 'England' as the default test location
@@ -66,7 +67,14 @@ describe('Upload File(s)', () => {
 
     it('upload 1 document', async() => {
         try {
+            // start
             await clickContinueButton(1);
+
+            // who-do-you-work-for
+            await page.waitForSelector(ORGANISATION_INPUT);
+            await page.$eval(ORGANISATION_INPUT, (element) => {
+                element.value = 'Barnardos';
+            });
             await page.$eval(EMAIL_INPUT, (element) => {
                 element.value = 'test.user@homeoffice.gov.uk';
             });
