@@ -33,7 +33,7 @@ module.exports = {
         target: '/local-authority-contacted-about-child',
         condition: {
           field: 'pv-under-age',
-          value: 'notsure'
+          value: 'not-sure'
         }
        }
       ],

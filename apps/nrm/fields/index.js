@@ -30,7 +30,7 @@ module.exports = {
       child: 'partials/panel'
     }, {
       value: 'not-sure',
-      toggle: 'notsure-toggle-content',
+      toggle: 'not-sure-toggle-content',
       child: 'partials/panel'
     }]
   },
