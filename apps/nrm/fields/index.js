@@ -11,7 +11,7 @@ module.exports = {
       'england',
       'wales',
       'scotland',
-      'northernireland'
+      'northern-ireland'
     ]
   },
   'pv-under-age': {
@@ -29,7 +29,7 @@ module.exports = {
       toggle: 'no-toggle-content',
       child: 'partials/panel'
     }, {
-      value: 'notsure',
+      value: 'not-sure',
       toggle: 'notsure-toggle-content',
       child: 'partials/panel'
     }]
