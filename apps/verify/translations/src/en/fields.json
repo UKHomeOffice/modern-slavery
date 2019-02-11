@@ -1,6 +1,13 @@
 {
+  "user-organisation": {
+    "label": "Organisation",
+    "options": {
+      "null": "Select..."
+    }
+  },
   "user-email": {
-    "label": "Email"
+    "label": "Enter work email address",
+    "hint": "We need this to confirm who you work for"
   },
   "confirm-email": {
     "label": "Email"

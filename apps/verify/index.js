@@ -9,10 +9,10 @@ module.exports = {
   },
   steps: {
     '/start': {
-      next: '/user-email'
+      next: '/who-do-you-work-for'
     },
-    '/user-email': {
-      fields: ['user-email'],
+    '/who-do-you-work-for': {
+      fields: ['user-organisation', 'user-email'],
       next: '/confirm-email'
     },
     '/confirm-email': {
