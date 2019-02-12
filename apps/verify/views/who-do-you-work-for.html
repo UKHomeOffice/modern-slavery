@@ -1,0 +1,8 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renderField}}user-organisation{{/renderField}}
+    {{> partials-find-organisation}}
+    {{#renderField}}user-email{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

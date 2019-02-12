@@ -12,13 +12,10 @@ const {
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    getDefaultOption,
+    ORGANISATION_INPUT,
+    LOCATION_ENGLAND_OPTION,
+    PV_UNDER_AGE_NO_OPTION,
 } = selectors;
-
-// Use 'England' as the default test location
-const testLocationSelector = getDefaultOption('select-location', 0);
-// Use No as the default
-const testPvAgeSelector = getDefaultOption('pv-under-age', 1);
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -66,7 +63,14 @@ describe('Upload File(s)', () => {
 
     it('upload 1 document', async() => {
         try {
+            // start
             await clickContinueButton(1);
+
+            // who-do-you-work-for
+            await page.waitForSelector(ORGANISATION_INPUT);
+            await page.$eval(ORGANISATION_INPUT, (element) => {
+                element.value = 'Barnardos';
+            });
             await page.$eval(EMAIL_INPUT, (element) => {
                 element.value = 'test.user@homeoffice.gov.uk';
             });
@@ -84,13 +88,13 @@ describe('Upload File(s)', () => {
             await clickContinueButton(1);
 
             // select-location
-            await page.waitForSelector(testLocationSelector);
-            await page.click(testLocationSelector);
+            await page.waitForSelector(LOCATION_ENGLAND_OPTION);
+            await page.click(LOCATION_ENGLAND_OPTION);
             await clickContinueButton(1);
 
             // pv-under-age
-            await page.waitForSelector(testPvAgeSelector);
-            await page.click(testPvAgeSelector);
+            await page.waitForSelector(PV_UNDER_AGE_NO_OPTION);
+            await page.click(PV_UNDER_AGE_NO_OPTION);
             await clickContinueButton(1);
 
             // Run through the skeleton until we reach the upload page

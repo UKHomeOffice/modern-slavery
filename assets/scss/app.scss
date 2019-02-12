@@ -4,6 +4,31 @@
   @include phase-banner(beta);
 }
 
+.twitter-typeahead {
+  width: 100%;
+}
+
+// autocomplete styling
+.tt-menu {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 65%;
+}
+
+.tt-suggestion {
+  padding: 0.5em;
+
+  &:hover,
+  &.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 #supporting-documents-list {
   border: 5px solid #dee0e2;
   margin-top: 30px;
