@@ -14,6 +14,7 @@ const {
     TEST_FILE_PATH,
     getDefaultOption,
     ORGANISATION_INPUT,
+    WHAT_HAPPENED_INPUT,
 } = selectors;
 
 // Use 'England' as the default test location
@@ -108,8 +109,15 @@ describe('Upload File(s)', () => {
             await page.click(testPvUnderAgeAtTimeOfExploitationSelector);
             await clickContinueButton(1);
 
+            // what-happened
+            await page.waitForSelector(WHAT_HAPPENED_INPUT);
+            await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
+                element.value = 'Test input regarding details of exploitation';
+            });
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(20);
+            await clickContinueButton(19);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);

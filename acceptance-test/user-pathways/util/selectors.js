@@ -15,6 +15,7 @@ const UPLOAD_DOCUMENT_PAGE_4_NO_OPTION = '#supporting-documents-add-another-no';
 const UPLOAD_DOCUMENT_PAGE_4_YES_OPTION = '#supporting-documents-add-another-yes';
 const EMAIL_INPUT = '#user-email';
 const ORGANISATION_INPUT = '#user-organisation';
+const WHAT_HAPPENED_INPUT = '#what-happened';
 
 /**
  * Get the test file path
@@ -78,6 +79,7 @@ module.exports = {
     VIEWPORT,
     CONTINUE_BUTTON,
     ORGANISATION_INPUT,
+    WHAT_HAPPENED_INPUT,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
     UPLOAD_DOCUMENT_PAGE_2_NO_OPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT,
