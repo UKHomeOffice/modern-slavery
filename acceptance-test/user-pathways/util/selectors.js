@@ -2,7 +2,6 @@
 'use strict';
 const path = require('path');
 const bootstrap = require('../../bootstrap/bootstrap');
-const getOptions = require('../util/options');
 
 const VIEWPORT = { width: 1920, height: 1080 };
 const CONTINUE_BUTTON = '#content > div > form > input.button';
@@ -15,6 +14,9 @@ const UPLOAD_DOCUMENT_PAGE_4_NO_OPTION = '#supporting-documents-add-another-no';
 const UPLOAD_DOCUMENT_PAGE_4_YES_OPTION = '#supporting-documents-add-another-yes';
 const EMAIL_INPUT = '#user-email';
 const ORGANISATION_INPUT = '#user-organisation';
+const LOCATION_ENGLAND_OPTION = '#select-location-england';
+const PV_UNDER_AGE_NO_OPTION = '#pv-under-age-no';
+
 
 /**
  * Get the test file path
@@ -31,49 +33,6 @@ const TEST_FILE_PATH = () => {
     : path.resolve(__dirname, '../upload-file/images/test.png');
 };
 
-/**
- * Select the option on the specified page using the option's name
- *
- * @param {string} page - the page url (e.g 'select-location')
- * @param {string} optionName - the option selected
- *
- * @returns {string} - the selector for the page option specified
- */
-const getOptionSelectorWithName = (page, optionName) => {
-    return `#${page}-${optionName}`;
-};
-
-/**
- * Get selector for option on specified page using the option's index number
- *
- * If the 'option' constant is not a string then assume the value to be an
- * object.
- *
- * The 'value' attribute of the object will be used within the 2nd parameter of
- * the function;
- * @see getOptionSelectorWithName
- *
- * Example of returned values:
- * Array of String(s):
- * option = [ 'england', 'wales', 'scotland', 'northernireland' ]
- * Array of Object(s):
- * option = [{ value: 'yes', toggle: 'yes-toggle-content', child: 'partials/panel' }]
- *
- * @param {string} page - the page url (e.g 'select-location')
- * @param {number} index -  index position of option on page
- *
- * @returns {string} - the selector for the page option required
- */
-const getDefaultOption = (page, index) => {
-    const option = getOptions(page)[index];
-
-    if (typeof option !== 'string') {
-        return getOptionSelectorWithName(page, option.value);
-    }
-
-    return getOptionSelectorWithName(page, option);
-};
-
 module.exports = {
     VIEWPORT,
     CONTINUE_BUTTON,
@@ -87,5 +46,6 @@ module.exports = {
     UPLOAD_DOCUMENT_PAGE_4_YES_OPTION,
     EMAIL_INPUT,
     TEST_FILE_PATH,
-    getDefaultOption,
+    LOCATION_ENGLAND_OPTION,
+    PV_UNDER_AGE_NO_OPTION,
 };
