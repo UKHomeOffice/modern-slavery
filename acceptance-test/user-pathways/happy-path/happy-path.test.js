@@ -15,6 +15,8 @@ const {
 const testLocationSelector = getDefaultOption('select-location', 0);
 // Use No as the default option
 const testPvAgeSelector = getDefaultOption('pv-under-age', 1);
+// Use No as the default option
+const testPvUnderAgeAtTimeOfExploitationSelector = getDefaultOption('pv-under-age-at-time-of-exploitation', 1);
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -85,8 +87,13 @@ describe('Critical user path(s)', () => {
             await page.click(testPvAgeSelector);
             await clickContinueButton(1);
 
+            // pv-under-age-at-time-of-exploitation
+            await page.waitForSelector(testPvUnderAgeAtTimeOfExploitationSelector);
+            await page.click(testPvUnderAgeAtTimeOfExploitationSelector);
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(21);
+            await clickContinueButton(20);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
