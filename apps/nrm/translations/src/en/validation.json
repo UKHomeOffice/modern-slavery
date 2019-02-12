@@ -11,6 +11,9 @@
   "pv-under-age-at-time-of-exploitation" : {
     "required": "You must select an option"
   },
+  "what-happened" : {
+    "required": "You must enter details of the exploitation"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

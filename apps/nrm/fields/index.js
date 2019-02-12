@@ -46,6 +46,18 @@ module.exports = {
       'not-sure',
     ]
   },
+  'what-happened': {
+    mixin: 'textarea',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 14
+    }]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
