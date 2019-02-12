@@ -9,8 +9,7 @@
     "build": "hof-build",
     "temp": "mkdir ./public/temp",
     "clean": "rm -rf ./public",
-    "preinstall": "npm run clean",
-    "postinstall": "npm-run-all build temp",
+    "postinstall": "npm-run-all clean build temp",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
