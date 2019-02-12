@@ -1,13 +1,16 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --inspect app.js",
     "dev": "NODE_ENV=development hof-build watch",
-    "test": "NODE_ENV=test npm run test:unit && npm run lint",
+    "test": "NODE_ENV=test npm-run-all test:unit lint",
     "test:unit": "_mocha",
     "lint": "eslint .",
     "build": "hof-build",
-    "postinstall": "npm run build",
+    "temp": "mkdir ./public/temp",
+    "clean": "rm -rf ./public",
+    "preinstall": "npm run clean",
+    "postinstall": "npm-run-all build temp",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
@@ -25,8 +28,10 @@
     "hof-theme-govuk": "^4.1.1",
     "ioredis": "^4.0.0",
     "notifications-node-client": "^4.5.1",
+    "npm-run-all": "^4.1.5",
     "url": "^0.11.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",

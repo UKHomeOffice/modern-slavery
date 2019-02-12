@@ -1,0 +1,8 @@
+{
+  "generate": {
+    "header": "Dummy page to generate a PDF"
+  },
+  "complete": {
+    "header": "Placeholder page"
+  }
+}
