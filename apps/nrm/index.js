@@ -43,6 +43,7 @@ module.exports = {
       next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {
+      fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-happened'
     },
     '/what-happened': {

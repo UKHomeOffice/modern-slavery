@@ -37,6 +37,20 @@
       }
     }
   },
+  "pv-under-age-at-time-of-exploitation": {
+    "legend": "Were they under 18 at any time during the exploitation?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      },
+      "not-sure": {
+        "label": "Not Sure"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

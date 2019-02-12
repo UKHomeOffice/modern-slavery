@@ -34,6 +34,18 @@ module.exports = {
       child: 'partials/panel'
     }]
   },
+  'pv-under-age-at-time-of-exploitation': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no',
+      'not-sure',
+    ]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

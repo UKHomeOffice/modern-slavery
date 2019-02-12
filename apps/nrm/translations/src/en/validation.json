@@ -8,6 +8,9 @@
   "pv-under-age" : {
     "required": "You must select an option"
   },
+  "pv-under-age-at-time-of-exploitation" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
