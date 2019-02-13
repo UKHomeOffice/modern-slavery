@@ -2,5 +2,6 @@
   "start": "Start",
   "continue": "Continue",
   "correct-email": "Yes - my email is correct",
+  "generate": "Generate",
   "delete": "Delete"
 }

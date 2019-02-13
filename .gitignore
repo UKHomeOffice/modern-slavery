@@ -4,3 +4,6 @@ apps/*/translations/*
 node_modules/
 .env
 .vscode/settings.json
+.idea/vcs.xml
+.idea/workspace.xml
+dump.rdb
