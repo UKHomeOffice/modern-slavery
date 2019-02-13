@@ -1,6 +1,6 @@
 FROM quay.io/ukhomeofficedigital/nodejs-base:v8
 RUN yum clean all && yum update -y -q && yum clean all && yum -y upgrade
-RUN yum install -y wget fontconfig freetype libX11 libXext libXrender libjpeg libpng openssl xorg-x11-fonts-75dpi xorg-x11-fonts-Type1
+RUN yum install -y libX11 make gcc gcc-c++ krb5-devel git bzip2 ImageMagick fontconfig libXrender libXext xorg-x11-fonts-Type1 xorg-x11-fonts-75dpi freetype libpng zlib libjpeg-turbo wget openssl
 
 RUN wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm && \
     rpm -Uvh wkhtmltox-0.12.5-1.centos7.x86_64.rpm
