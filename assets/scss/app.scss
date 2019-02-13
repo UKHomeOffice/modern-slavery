@@ -1,5 +1,5 @@
 @import "$$theme";
-@import "node_modules/govuk-frontend/components/textarea/textarea";
+@import '~govuk-frontend/components/textarea/textarea';
 
 .phase-banner {
   @include phase-banner(beta);
