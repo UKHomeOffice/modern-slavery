@@ -10,6 +10,7 @@ const {
     ORGANISATION_INPUT,
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
+    PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -81,8 +82,14 @@ describe('Critical user path(s)', () => {
             await page.click(PV_UNDER_AGE_NO_OPTION);
             await clickContinueButton(1);
 
+            // pv-under-age-at-time-of-exploitation
+            await page.waitForSelector(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+            await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+            await clickContinueButton(1);
+
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(21);
+            await clickContinueButton(20);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
