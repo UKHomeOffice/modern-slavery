@@ -32,6 +32,7 @@ module.exports = {
   },
   pdf: {
     template: './apps/pdf/views/pdf.html',
-    tempLocation: './public/temp'
+    // problems with creating temp folder so use images folder
+    tempLocation: './public/images'
   }
 };
