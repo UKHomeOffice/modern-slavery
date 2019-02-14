@@ -11,7 +11,8 @@ COPY package.json /app/package.json
 RUN npm --loglevel warn install --production  --no-optional
 COPY . /app
 RUN npm --loglevel warn run postinstall
-RUN chown -R nodejs:nodejs /public
+# Give nodejs user permissions to public folder. Nodejs user is set to 999 and the group 998
+RUN chown -R 999:998 /public && chown -R 999:998 public
 
 USER 999
 
