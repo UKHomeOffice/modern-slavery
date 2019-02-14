@@ -47,6 +47,7 @@ module.exports = {
       next: '/what-happened'
     },
     '/what-happened': {
+      fields: ['what-happened'],
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {

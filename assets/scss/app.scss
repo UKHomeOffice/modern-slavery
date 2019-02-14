@@ -1,4 +1,5 @@
 @import "$$theme";
+@import "node_modules/govuk-frontend/components/textarea/textarea";
 
 .phase-banner {
   @include phase-banner(beta);
@@ -29,6 +30,13 @@
   }
 }
 
+.bullet-list {
+  list-style: disc;
+  margin-left: 20px;
+}
+#what-happened {
+  font-size: 19px;
+}
 #supporting-documents-list {
   border: 5px solid #dee0e2;
   margin-top: 30px;

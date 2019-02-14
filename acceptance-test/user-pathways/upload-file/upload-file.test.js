@@ -16,6 +16,7 @@ const {
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
+    WHAT_HAPPENED_INPUT,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -103,9 +104,15 @@ describe('Upload File(s)', () => {
             await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
             await clickContinueButton(1);
 
+            // what-happened
+            await page.waitForSelector(WHAT_HAPPENED_INPUT);
+            await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
+                element.value = 'Test input regarding details of exploitation';
+            });
+            await clickContinueButton(1);
 
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(20);
+            await clickContinueButton(19);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);

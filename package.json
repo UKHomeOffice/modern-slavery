@@ -18,6 +18,7 @@
   "dependencies": {
     "busboy-body-parser": "^0.3.2",
     "express": "^4.16.4",
+    "govuk-frontend": "^2.7.0",
     "hof": "^13.3.0",
     "hof-behaviour-summary-page": "^2.0.0",
     "hof-build": "^1.6.0",

@@ -51,6 +51,10 @@
       }
     }
   },
+  "what-happened": {
+    "legend": "What did they say happened?",
+    "label": "Details about exploitation (and trafficking, if relevant). For example, how they were recruited and controlled."
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
