@@ -15,7 +15,7 @@ services:
       - "8081:8081"
     volumes:
       - "/app/public"
-    user: root
+    user: nodejs
     container_name: modern-slavery-app
 
   chrome-browser:
