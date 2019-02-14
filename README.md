@@ -71,7 +71,7 @@ http://localhost:8081/nrm/start?token=skip
 
 ## PDF Generation <a name="pdf-generation"></a>
 
-We are currently working on a feature for pdf generation.  In order for this not to affect development, this has been put on a different route on the app
+We are currently working on a feature for pdf generation. In order for this not to affect development, this has been put on a different route on the app
 
 http://localhost:8081/pdf/
 
