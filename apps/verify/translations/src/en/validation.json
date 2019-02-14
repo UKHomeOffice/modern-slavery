@@ -1,4 +1,7 @@
 {
+  "user-organisation" : {
+    "required": "You must select an option"
+  },
   "user-email": {
     "required": "Enter your email address",
     "email": "Enter a valid email address"
