@@ -7,9 +7,7 @@
     "test:unit": "_mocha",
     "lint": "eslint .",
     "build": "hof-build",
-    "temp": "mkdir ./public/temp",
-    "clean": "rm -rf ./public",
-    "postinstall": "npm-run-all clean build temp",
+    "postinstall": "npm run build",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
