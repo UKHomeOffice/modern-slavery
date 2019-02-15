@@ -7,6 +7,7 @@ module.exports = {
   baseUrl: '/pdf',
   steps: {
     '/generate': {
+      fields: ['email'],
       behaviours: [pdf],
       next: '/complete'
     },

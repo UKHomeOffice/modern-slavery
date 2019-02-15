@@ -29,6 +29,7 @@ module.exports = {
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY || '',
     templateUserAuthId: '56b5a84f-7024-41d3-bd08-26521435be16',
+    templatePDF: '0ff859d5-4991-4d73-99ad-2ada9048a927',
   },
   pdf: {
     template: './apps/pdf/views/pdf.html',
