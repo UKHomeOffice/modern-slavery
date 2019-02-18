@@ -1,5 +1,9 @@
 'use strict';
 
+const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
+const ukRegions = require('ms-uk-regions');
+const countries = require('hof-util-countries')();
+
 module.exports = {
   'select-location': {
     mixin: 'radio-group',
@@ -57,6 +61,89 @@ module.exports = {
       attribute: 'rows',
       value: 14
     }]
+  },
+  'where-exploitation-happened': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'uk',
+      toggle: 'uk-location-details-fieldset',
+      child: 'partials/where-exploitation-happened-uk-panel'
+    }, {
+      value: 'overseas',
+      toggle: 'overseas-location-details-fieldset',
+      child: 'partials/where-exploitation-happened-overseas-panel'
+    }]
+  },
+  'where-exploitation-happened-uk-city': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+    dependent: {
+      value: 'uk',
+      field: 'where-exploitation-happened',
+    }
+  },
+  'where-exploitation-happened-uk-region': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-region.options.null'
+    }].concat(ukRegions),
+    dependent: {
+      value: 'uk',
+      field: 'where-exploitation-happened',
+    }
+  },
+  'where-exploitation-happened-overseas-country': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+    dependent: {
+      value: 'overseas',
+      field: 'where-exploitation-happened',
+    }
+  },
+  'where-exploitation-happened-other-uk-other-location': {
+    mixin: 'textarea',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 5
+    }],
+    dependent: {
+      value: 'uk',
+      field: 'where-exploitation-happened',
+    }
+  },
+  'where-exploitation-happened-other-overseas-other-location': {
+    mixin: 'textarea',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 5
+    }],
+    dependent: {
+      value: 'overseas',
+      field: 'where-exploitation-happened',
+    },
   },
   'supporting-documents-add': {
     mixin: 'radio-group',
