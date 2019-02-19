@@ -3,7 +3,7 @@
     "label": "Email",
     "hint": "Use your work address so we can confirm who you work for"
   },
-  "select-location": {
+  "fr-location": {
     "legend": "Where are you making this report?",
     "options": {
       "england": {

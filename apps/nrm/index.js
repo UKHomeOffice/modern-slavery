@@ -13,10 +13,10 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: checkEmailToken,
-      next: '/select-location'
+      next: '/fr-location'
     },
-    '/select-location': {
-      fields: ['select-location'],
+    '/fr-location': {
+      fields: ['fr-location'],
       next: '/pv-under-age'
     },
     '/pv-under-age': {
