@@ -55,6 +55,43 @@
     "legend": "What did they say happened?",
     "label": "Details about exploitation (and trafficking, if relevant). For example, how they were recruited and controlled."
   },
+  "where-exploitation-happened": {
+    "legend": "Where were they last exploited?",
+    "options": {
+      "uk": {
+        "label": "UK"
+      },
+      "overseas": {
+        "label": "Overseas"
+      }
+    }
+  },
+  "where-exploitation-happened-uk-city": {
+    "label": "Select city or town (optional)",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "where-exploitation-happened-uk-region": {
+    "label": "Select region (optional)",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "where-exploitation-happened-overseas-country": {
+    "label": "Select country",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "where-exploitation-happened-other-uk-other-location": {
+    "label": "Address or location",
+    "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
+  },
+  "where-exploitation-happened-other-overseas-other-location": {
+    "label": "Address or location",
+    "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

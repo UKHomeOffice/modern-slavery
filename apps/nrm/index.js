@@ -51,6 +51,14 @@ module.exports = {
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
+      fields: [
+        'where-exploitation-happened',
+        'where-exploitation-happened-uk-city',
+        'where-exploitation-happened-uk-region',
+        'where-exploitation-happened-other-uk-other-location',
+        'where-exploitation-happened-overseas-country',
+        'where-exploitation-happened-other-overseas-other-location'
+      ],
       next: '/current-pv-location'
     },
     '/current-pv-location': {

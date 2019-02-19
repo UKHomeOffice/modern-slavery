@@ -14,6 +14,12 @@
   "what-happened" : {
     "required": "You must enter details of the exploitation"
   },
+  "where-exploitation-happened" : {
+    "required": "You must select an option"
+  },
+  "where-exploitation-happened-overseas-country" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
