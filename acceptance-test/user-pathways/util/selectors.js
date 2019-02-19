@@ -15,7 +15,7 @@ const UPLOAD_DOCUMENT_PAGE_4_YES_OPTION = '#supporting-documents-add-another-yes
 const EMAIL_INPUT = '#user-email';
 const ORGANISATION_INPUT = '#user-organisation';
 const WHAT_HAPPENED_INPUT = '#what-happened';
-const LOCATION_ENGLAND_OPTION = '#select-location-england';
+const LOCATION_ENGLAND_OPTION = '#fr-location-england';
 const PV_UNDER_AGE_NO_OPTION = '#pv-under-age-no';
 const PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION = '#pv-under-age-at-time-of-exploitation-no';
 

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'select-location': {
+  'fr-location': {
     mixin: 'radio-group',
     validate: 'required',
     legend: {

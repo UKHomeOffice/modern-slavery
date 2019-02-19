@@ -89,7 +89,7 @@ describe('Upload File(s)', () => {
             // Run through the skeleton until we reach the Where are you making this report? page
             await clickContinueButton(1);
 
-            // select-location
+            // fr-location
             await page.waitForSelector(LOCATION_ENGLAND_OPTION);
             await page.click(LOCATION_ENGLAND_OPTION);
             await clickContinueButton(1);

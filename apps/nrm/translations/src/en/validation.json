@@ -2,7 +2,7 @@
   "user-email": {
     "wrongEmail": "this is not a first responder email we recognise"
   },
-  "select-location" : {
+  "fr-location" : {
     "required": "You must enter a region"
   },
   "pv-under-age" : {
