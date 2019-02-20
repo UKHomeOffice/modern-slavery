@@ -1,8 +1,8 @@
-'use strict';
 /* eslint-disable no-console */
+'use strict';
+
 const config = require('../../../config');
 const htmlTemplate = config.pdf.template;
-// const tempLocation = config.pdf.tempLocation;
 const uuid = require('uuid');
 const PdfGenerator = require('../util/pdf-generator');
 const fs = require('fs');

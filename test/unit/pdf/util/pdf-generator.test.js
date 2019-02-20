@@ -28,6 +28,13 @@ describe('/apps/pdf/util/pdf-generator', () => {
   describe('Promise', () => {
     it('rejects an error', () => {
       fsStub.createReadStream.yields('err', null);
+      const result = pdfGenerator.generate('nohtml', 'path', 'myfile.pdf');
+        result.should.eventually.be.rejected;
+    });
+
+    // test not running properly
+    xit('fulfills a valid file', () => {
+      fsStub.createReadStream.yields(null, 'test');
       const result = pdfGenerator.generate('<html></html>', 'path', 'myfile.pdf');
         result.should.eventually.be.rejected;
     });

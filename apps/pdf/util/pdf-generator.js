@@ -1,5 +1,6 @@
-'use strict';
 /* eslint-disable no-console */
+'use strict';
+
 const wkhtmltopdf = require('wkhtmltopdf');
 const fs = require('fs');
 
