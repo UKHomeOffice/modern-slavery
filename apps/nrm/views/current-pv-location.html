@@ -1,0 +1,9 @@
+{{<partials-page}}
+  {{$page-content}}
+  <p>{{#markdown}}current-pv-location{{/markdown}}</p>
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

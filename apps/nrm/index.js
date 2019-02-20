@@ -62,6 +62,7 @@ module.exports = {
       next: '/current-pv-location'
     },
     '/current-pv-location': {
+      fields: ['current-pv-location-uk-city', 'current-pv-location-uk-region'],
       next: '/who-exploited-pv'
     },
     '/who-exploited-pv': {

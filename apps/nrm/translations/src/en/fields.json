@@ -92,6 +92,18 @@
     "label": "Address or location",
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
+  "current-pv-location-uk-city": {
+    "label": "Select city or town (optional)",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "current-pv-location-uk-region": {
+    "label": "Select region",
+    "options": {
+      "null": "Select..."
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

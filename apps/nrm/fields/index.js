@@ -145,6 +145,23 @@ module.exports = {
       field: 'where-exploitation-happened',
     },
   },
+  'current-pv-location-uk-city': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.current-pv-locationd-uk-city.options.null'
+    }].concat(ukCitiesAndTowns)
+  },
+  'current-pv-location-uk-region': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.current-pv-location-uk-region.options.null'
+    }].concat(ukRegions)
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

@@ -13,6 +13,7 @@ const {
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
     EXPLOITED_IN_UK_OPTION,
+    CURRENT_PV_LOCATION_UK_REGION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -101,8 +102,15 @@ describe('Critical user path(s)', () => {
             await page.click(EXPLOITED_IN_UK_OPTION);
             await clickContinueButton(1);
 
+            // current-pv-location
+            await page.waitForSelector(CURRENT_PV_LOCATION_UK_REGION);
+            await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
+                element.value = 'Rutland';
+            });
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(18);
+            await clickContinueButton(17);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);

@@ -19,7 +19,7 @@ const LOCATION_ENGLAND_OPTION = '#fr-location-england';
 const PV_UNDER_AGE_NO_OPTION = '#pv-under-age-no';
 const PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION = '#pv-under-age-at-time-of-exploitation-no';
 const EXPLOITED_IN_UK_OPTION = '#where-exploitation-happened-uk';
-
+const CURRENT_PV_LOCATION_UK_REGION = '#current-pv-location-uk-region';
 /**
  * Get the test file path
  *
@@ -53,4 +53,5 @@ module.exports = {
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
     EXPLOITED_IN_UK_OPTION,
+    CURRENT_PV_LOCATION_UK_REGION,
 };
