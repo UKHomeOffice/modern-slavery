@@ -21,6 +21,7 @@ const PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION = '#pv-under-age-at-time-of
 const EXPLOITED_IN_UK_OPTION = '#where-exploitation-happened-uk';
 const CURRENT_PV_LOCATION_UK_REGION = '#current-pv-location-uk-region';
 const WHO_EXPLOITED_PV = '#who-exploited-pv';
+const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
 
 /**
  * Get the test file path
@@ -57,4 +58,5 @@ module.exports = {
     EXPLOITED_IN_UK_OPTION,
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
+    ANY_OTHER_PVS_NO_OPTION,
 };

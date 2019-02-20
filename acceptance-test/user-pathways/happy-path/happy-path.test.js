@@ -15,6 +15,7 @@ const {
     EXPLOITED_IN_UK_OPTION,
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
+    ANY_OTHER_PVS_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -117,8 +118,16 @@ describe('Critical user path(s)', () => {
             });
             await clickContinueButton(1);
 
+            // types-of-exploitation
+            await clickContinueButton(1);
+
+            // any-other-pvs
+            await page.waitForSelector(ANY_OTHER_PVS_NO_OPTION);
+            await page.click(ANY_OTHER_PVS_NO_OPTION);
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(16);
+            await clickContinueButton(14);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
