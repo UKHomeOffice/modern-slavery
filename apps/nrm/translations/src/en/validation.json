@@ -23,6 +23,9 @@
   "current-pv-location-uk-region" : {
     "required": "You must select an option"
   },
+  "who-exploited-pv" : {
+    "required": "You must enter details aboutWho exploited them? the exploiter(s)"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

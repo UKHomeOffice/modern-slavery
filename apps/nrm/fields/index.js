@@ -162,6 +162,18 @@ module.exports = {
       label: 'fields.current-pv-location-uk-region.options.null'
     }].concat(ukRegions)
   },
+  'who-exploited-pv': {
+    mixin: 'textarea',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 5
+    }]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
