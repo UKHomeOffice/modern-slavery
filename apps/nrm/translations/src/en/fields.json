@@ -104,6 +104,10 @@
       "null": "Select..."
     }
   },
+  "who-exploited-pv": {
+    "label": "Details about the exploiter(s)",
+    "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
