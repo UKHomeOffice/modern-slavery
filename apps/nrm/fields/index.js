@@ -5,7 +5,7 @@ const ukRegions = require('ms-uk-regions');
 const countries = require('hof-util-countries')();
 
 module.exports = {
-  'select-location': {
+  'fr-location': {
     mixin: 'radio-group',
     validate: 'required',
     legend: {
