@@ -19,6 +19,7 @@ const {
     WHAT_HAPPENED_INPUT,
     EXPLOITED_IN_UK_OPTION,
     CURRENT_PV_LOCATION_UK_REGION,
+    WHO_EXPLOITED_PV,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -125,8 +126,15 @@ describe('Upload File(s)', () => {
             });
             await clickContinueButton(1);
 
+            // who-exploited-pv
+            await page.waitForSelector(WHO_EXPLOITED_PV);
+            await page.$eval(WHO_EXPLOITED_PV, (element) => {
+                element.value = 'Test details about exploiter(s)';
+            });
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(17);
+            await clickContinueButton(16);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);

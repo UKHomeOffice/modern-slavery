@@ -66,6 +66,7 @@ module.exports = {
       next: '/who-exploited-pv'
     },
     '/who-exploited-pv': {
+      fields: ['who-exploited-pv'],
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
