@@ -11,7 +11,7 @@ const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyClient = new NotifyClient(notifyApiKey);
 const path = require('path');
-const tempLocation = path.resolve(__dirname, '../temp');
+const tempLocation = path.resolve(config.pdf.tempLocation);
 
 const createTemporaryFileName = () => {
   return (`${uuid.v1()}.pdf`);
