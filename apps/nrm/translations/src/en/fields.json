@@ -108,6 +108,21 @@
     "label": "Details about the exploiter(s)",
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
+  "any-other-pvs": {
+    "label": "We don’t need names, but it will help police with their investigation if they know there were other potential victims.",
+    "legend": "Were there any other potential victims?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      },
+      "not-sure": {
+        "label": "Not Sure"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

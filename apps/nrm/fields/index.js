@@ -174,6 +174,18 @@ module.exports = {
       value: 5
     }]
   },
+  'any-other-pvs': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no',
+      'not-sure',
+    ]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

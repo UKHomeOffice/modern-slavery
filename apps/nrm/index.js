@@ -73,6 +73,7 @@ module.exports = {
       next: '/any-other-pvs'
     },
     '/any-other-pvs': {
+      fields: ['any-other-pvs'],
       next: '/reported-to-police'
     },
     '/reported-to-police': {
