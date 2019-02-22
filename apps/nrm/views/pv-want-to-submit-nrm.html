@@ -1,0 +1,16 @@
+{{<partials-page}}
+  {{$page-content}}
+    <p>If a potential victim wants you to refer their case, they can get:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>access to support (for example, housing and legal advice)</li>
+        <li>a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit</li>
+    </ul>
+    <div class="govuk-inset-text">
+        We will need to share their personal details with organisations such as the police and the Home Office if they refer their case.
+    </div>
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

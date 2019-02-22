@@ -32,6 +32,9 @@
   "reported-to-police" : {
     "required": "You must select an option"
   },
+  "pv-want-to-submit-nrm" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
