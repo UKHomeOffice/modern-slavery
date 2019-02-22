@@ -50,34 +50,32 @@ describe('/apps/pdf/behaviours/generate-send-pdf', () => {
     });
 
     // test not running properly
-    xit('sends an email', (done) => {
+    xit('sends an email', () => {
       req.form = {
         values: {
           email: 's@mail.com'
         }
       };
-      pdfGeneratorStub.generate.resolves('a');
-      fsStub.readFile.resolves('b');
-      fsStub.unlink.resolves('file');
+      pdfGeneratorStub.generate.resolves('file');
+      fsStub.readFile.yields(null, 'file');
+      fsStub.unlink.yields(null);
       instance.saveValues(req, res, () => {
-        NotifyClient.prototype.sendEmail.should.have.been.called;
-        done();
+        return expect(NotifyClient.prototype.sendEmail).to.have.been.called;
       });
     });
 
     // test not running properly
-    xit('calls pdf generator', (done) => {
+    xit('calls pdf generator', () => {
       req.form = {
         values: {
           email: 's@mail.com'
         }
       };
-      pdfGeneratorStub.generate.yieldAsync('a');
-      fsStub.readFile.yieldAsync('b');
-      fsStub.unlink.yieldAsync('file');
+            pdfGeneratorStub.generate.resolves('file');
+      fsStub.readFile.yields(null, 'file');
+      fsStub.unlink.yields(null);
       instance.saveValues(req, res, () => {
-        pdfGeneratorStub.generate.should.eventually.be.called;
-        done();
+        return expect(pdfGeneratorStub.generate).to.be.called;
       });
     });
   });
