@@ -108,6 +108,39 @@
     "label": "Details about the exploiter(s)",
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
+  "types-of-exploitation-forced-to-work": {
+    "label": "Forced to work for nothing or almost nothing"
+  },
+  "types-of-exploitation-wages-taken": {
+    "label": "Wages taken by force or coercion, such as through control of a bank account"
+  },
+  "types-of-exploitation-forced-to-commit-fraud": {
+    "label": "Forced to commit fraud, such as using their identity to claim benefits"
+  },
+  "types-of-exploitation-prostitution": {
+    "label": "Forced into prostitution"
+  },
+  "types-of-exploitation-child-exploitation": {
+    "label": "Child sexual exploitation"
+  },
+  "types-of-exploitation-taken-somewhere": {
+    "label": "Taken somewhere, held against their will and sexually assaulted"
+  },
+  "types-of-exploitation-forced-to-commit-crime": {
+    "label": "Forced to commit a crime, such as growing cannabis, drug dealing or begging"
+  },
+  "types-of-exploitation-organs-removed": {
+    "label": "Organs, such as kidneys, removed against their will"
+  },
+  "types-of-exploitation-unpaid-household-work": {
+    "label": "Forced to do unpaid household work by relatives or strangers"
+  },
+  "types-of-exploitation-other": {
+    "label": "Other"
+  },
+  "other-exploitation-details": {
+    "label": "Enter other type of exploitation:"
+  },
   "any-other-pvs": {
     "label": "We don’t need names, but it will help police with their investigation if they know there were other potential victims.",
     "legend": "Were there any other potential victims?",
