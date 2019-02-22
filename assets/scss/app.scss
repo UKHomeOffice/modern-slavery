@@ -1,5 +1,9 @@
 @import "$$theme";
-@import "node_modules/govuk-frontend/components/textarea/textarea";
+@import "node_modules/govuk-frontend/all.scss";
+
+html {
+  font-size:16px;
+}
 
 .phase-banner {
   @include phase-banner(beta);
@@ -29,7 +33,10 @@
     cursor: pointer;
   }
 }
-
+.checkbox-hint {
+  padding-left: 50px;
+  margin-top: -25px;
+}
 .bullet-list {
   list-style: disc;
   margin-left: 20px;

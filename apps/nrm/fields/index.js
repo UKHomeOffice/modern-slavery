@@ -174,12 +174,86 @@ module.exports = {
       value: 5
     }]
   },
-  'any-other-pvs': {
-    mixin: 'radio-group',
+  'types-of-exploitation-forced-to-work': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-wages-taken': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-forced-to-commit-fraud': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-prostitution': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-child-exploitation': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-taken-somewhere': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-forced-to-commit-crime': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-organs-removed': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-unpaid-household-work': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'types-of-exploitation-other': {
+    mixin: 'checkbox',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    toggle: 'other-exploitation-fieldset',
+    child: 'partials/other-exploitation-fieldset'
+  },
+  'other-exploitation-details': {
+    mixin: 'textarea',
     validate: 'required',
     legend: {
       className: 'visuallyhidden'
     },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 4
+    }],
+    dependent: {
+      value: 'other',
+      field: 'types-of-exploitation-other',
+    }
+  },
+  'any-other-pvs': {
+    mixin: 'radio-group',
     options: [
       'yes',
       'no',

@@ -70,6 +70,19 @@ module.exports = {
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
+      fields: [
+        'types-of-exploitation-forced-to-work',
+        'types-of-exploitation-wages-taken',
+        'types-of-exploitation-forced-to-commit-fraud',
+        'types-of-exploitation-prostitution',
+        'types-of-exploitation-child-exploitation',
+        'types-of-exploitation-taken-somewhere',
+        'types-of-exploitation-forced-to-commit-crime',
+        'types-of-exploitation-organs-removed',
+        'types-of-exploitation-unpaid-household-work',
+        'types-of-exploitation-other',
+        'other-exploitation-details'
+      ],
       next: '/any-other-pvs'
     },
     '/any-other-pvs': {
