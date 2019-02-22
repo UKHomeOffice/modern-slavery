@@ -17,6 +17,7 @@ const {
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
+    REFER_CASE_TO_NRM_YES_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -53,7 +54,7 @@ describe('Critical user path(s)', () => {
     });
 
     /**
-     * Navigate from Who do you work for? page
+     * Navigate from Who do you work for? Page
      *
      * @returns {void}
      */
@@ -65,6 +66,143 @@ describe('Critical user path(s)', () => {
         await page.$eval(EMAIL_INPUT, (element) => {
             element.value = 'test.user@homeoffice.gov.uk';
         });
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Where are you making this report? Page
+     *
+     * @returns {void}
+     */
+    async function whereAreYouMakingThisReportPage() {
+        await page.waitForSelector(LOCATION_ENGLAND_OPTION);
+        await page.click(LOCATION_ENGLAND_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Is the potential victim under 18? Page
+     *
+     * @returns {void}
+     */
+    async function isThePotentialVictimUnder18Page() {
+        await page.waitForSelector(PV_UNDER_AGE_NO_OPTION);
+        await page.click(PV_UNDER_AGE_NO_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Were they under 18 at any time during the exploitation?
+     * Page
+     *
+     * @returns {void}
+     */
+    async function wereTheyUnder18AtAnyTimeDuringTheExploitationPage() {
+        await page.waitForSelector(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+        await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from What did they say happened? Page
+     *
+     * @returns {void}
+     */
+    async function whatDidTheySayHappenedPage() {
+        await page.waitForSelector(WHAT_HAPPENED_INPUT);
+        await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
+            element.value = 'Test input regarding details of exploitation';
+        });
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Where were they last exploited? Page
+     *
+     * @returns {void}
+     */
+    async function whereWereTheyLastExploitedPage() {
+        await page.waitForSelector(EXPLOITED_IN_UK_OPTION);
+        await page.click(EXPLOITED_IN_UK_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Where are they now? Page
+     *
+     * @returns {void}
+     */
+    async function whereAreTheyNowPage() {
+        await page.waitForSelector(CURRENT_PV_LOCATION_UK_REGION);
+        await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
+            element.value = 'Rutland';
+        });
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Who exploited them? Page
+     *
+     * @returns {void}
+     */
+    async function whoExploitedThemPage() {
+        await page.waitForSelector(WHO_EXPLOITED_PV);
+        await page.$eval(WHO_EXPLOITED_PV, (element) => {
+            element.value = 'Test details about exploiter(s)';
+        });
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from How were they exploited? Page
+     *
+     * @returns {void}
+     */
+    async function howWereTheyExploitedPage() {
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Were there any other potential victims? Page
+     *
+     * @returns {void}
+     */
+    async function wereThereAnyOtherPotentialVictimsPage() {
+        await page.waitForSelector(ANY_OTHER_PVS_NO_OPTION);
+        await page.click(ANY_OTHER_PVS_NO_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Do they have a crime reference number? Page
+     *
+     * @returns {void}
+     */
+    async function doTheyHaveACrimeReferenceNumberPage() {
+        await page.waitForSelector(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await page.click(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Do they want their case referred to the NRM? Page
+     *
+     * @returns {void}
+     */
+    async function doTheyWantTheirCaseReferredToTheNrmPage() {
+        await page.waitForSelector(REFER_CASE_TO_NRM_YES_OPTION);
+        await page.click(REFER_CASE_TO_NRM_YES_OPTION);
+        await clickContinueButton(1);
+    }
+
+    /**
+     * Navigate from Do you want to upload supporting documents? Page
+     *
+     * @returns {void}
+     */
+    async function doYouWantToUploadSupportingDocumentsPage() {
+        await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
+        await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
         await clickContinueButton(1);
     }
 
@@ -84,71 +222,50 @@ describe('Critical user path(s)', () => {
             await page.goto(url);
             await page.setViewport(VIEWPORT);
 
-            // Run through the skeleton until we reach the Where are you making this report? page
+            // nrm start
             await clickContinueButton(1);
 
             // fr-location
-            await page.waitForSelector(LOCATION_ENGLAND_OPTION);
-            await page.click(LOCATION_ENGLAND_OPTION);
-            await clickContinueButton(1);
+            await whereAreYouMakingThisReportPage();
 
             // pv-under-age
-            await page.waitForSelector(PV_UNDER_AGE_NO_OPTION);
-            await page.click(PV_UNDER_AGE_NO_OPTION);
-            await clickContinueButton(1);
+            await isThePotentialVictimUnder18Page();
 
             // pv-under-age-at-time-of-exploitation
-            await page.waitForSelector(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await clickContinueButton(1);
+            await wereTheyUnder18AtAnyTimeDuringTheExploitationPage();
 
             // what-happened
-            await page.waitForSelector(WHAT_HAPPENED_INPUT);
-            await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
-                element.value = 'Test input regarding details of exploitation';
-            });
-            await clickContinueButton(1);
+            await whatDidTheySayHappenedPage();
 
             // where-exploitation-happened
-            await page.waitForSelector(EXPLOITED_IN_UK_OPTION);
-            await page.click(EXPLOITED_IN_UK_OPTION);
-            await clickContinueButton(1);
+            await whereWereTheyLastExploitedPage();
 
             // current-pv-location
-            await page.waitForSelector(CURRENT_PV_LOCATION_UK_REGION);
-            await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-                element.value = 'Rutland';
-            });
-            await clickContinueButton(1);
+            await whereAreTheyNowPage();
 
             // who-exploited-pv
-            await page.waitForSelector(WHO_EXPLOITED_PV);
-            await page.$eval(WHO_EXPLOITED_PV, (element) => {
-                element.value = 'Test details about exploiter(s)';
-            });
-            await clickContinueButton(1);
+            await whoExploitedThemPage();
 
             // types-of-exploitation
-            await clickContinueButton(1);
+            await howWereTheyExploitedPage();
 
             // any-other-pvs
-            await page.waitForSelector(ANY_OTHER_PVS_NO_OPTION);
-            await page.click(ANY_OTHER_PVS_NO_OPTION);
-            await clickContinueButton(1);
+            await wereThereAnyOtherPotentialVictimsPage();
 
             // reported-to-police
-            await page.waitForSelector(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await page.click(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await clickContinueButton(1);
+            await doTheyHaveACrimeReferenceNumberPage();
+
+            // pv-want-to-submit-nrm
+            await doTheyWantTheirCaseReferredToTheNrmPage();
 
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(13);
+            await clickContinueButton(12);
 
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
+            // supporting-documents-add
+            await doYouWantToUploadSupportingDocumentsPage();
 
             // Run through the skeleton until we reach the end
-            await clickContinueButton(4);
+            await clickContinueButton(3);
 
         } catch (err) {
             throw new Error(err);
