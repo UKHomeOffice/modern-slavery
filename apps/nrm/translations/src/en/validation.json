@@ -29,6 +29,9 @@
   "any-other-pvs" : {
     "required": "You must select an option"
   },
+  "reported-to-police" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

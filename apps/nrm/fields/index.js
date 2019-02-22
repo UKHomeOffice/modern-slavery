@@ -3,6 +3,7 @@
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
 const countries = require('hof-util-countries')();
+const ukPoliceForces = require('ms-uk-police-forces');
 
 module.exports = {
   'fr-location': {
@@ -259,6 +260,39 @@ module.exports = {
       'no',
       'not-sure',
     ]
+  },
+  'reported-to-police': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'yes-crime-reference-fieldset',
+      child: 'partials/reported-to-police-yes'
+    }, {
+      value: 'no',
+    }]
+  },
+  'reported-to-police-police-forces': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.reported-to-police-police-forces.options.null'
+    }].concat(ukPoliceForces),
+    dependent: {
+      value: 'yes',
+      field: 'reported-to-police',
+    }
+  },
+  'reported-to-police-crime-reference': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'yes',
+      field: 'reported-to-police',
+    }
   },
   'supporting-documents-add': {
     mixin: 'radio-group',
