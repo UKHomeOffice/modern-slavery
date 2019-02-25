@@ -9,7 +9,8 @@ module.exports = {
     return new Promise((resolve, reject) => {
       const file = `${destination}/${tempName}`;
       // first read the template
-      wkhtmltopdf(fs.createReadStream(html), (err, stream) => {
+      const readStream = fs.createReadStream(html);
+      wkhtmltopdf(readStream, (err, stream) => {
         if (err) {
           console.log(`Pdf generation: Failed, something went wrong
             reading the template ${html}, further details here -> ${err}`);
