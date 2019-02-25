@@ -16,6 +16,7 @@ const {
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
+    PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -51,20 +52,29 @@ describe('Critical user path(s)', () => {
         await page.goto(url);
     });
 
+    /**
+     * Navigate from Who do you work for? page
+     *
+     * @returns {void}
+     */
+    async function whoDoYouWorkForPage() {
+        await page.waitForSelector(ORGANISATION_INPUT);
+        await page.$eval(ORGANISATION_INPUT, (element) => {
+            element.value = 'Barnardos';
+        });
+        await page.$eval(EMAIL_INPUT, (element) => {
+            element.value = 'test.user@homeoffice.gov.uk';
+        });
+        await clickContinueButton(1);
+    }
+
     it('Happy path - Adult', async() => {
         try {
             // start
             await clickContinueButton(1);
 
             // who-do-you-work-for
-            await page.waitForSelector(ORGANISATION_INPUT);
-            await page.$eval(ORGANISATION_INPUT, (element) => {
-                element.value = 'Barnardos';
-            });
-            await page.$eval(EMAIL_INPUT, (element) => {
-                element.value = 'test.user@homeoffice.gov.uk';
-            });
-            await clickContinueButton(1);
+            await whoDoYouWorkForPage();
 
             // Bypass user clicking email link - Notify Key will not be set during test runs
             url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
@@ -126,8 +136,13 @@ describe('Critical user path(s)', () => {
             await page.click(ANY_OTHER_PVS_NO_OPTION);
             await clickContinueButton(1);
 
+            // reported-to-police
+            await page.waitForSelector(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+            await page.click(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+            await clickContinueButton(1);
+
             // Run through the skeleton until we reach the upload page
-            await clickContinueButton(14);
+            await clickContinueButton(13);
 
             await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
             await page.click(UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);

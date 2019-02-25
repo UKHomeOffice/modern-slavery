@@ -90,6 +90,11 @@ module.exports = {
       next: '/reported-to-police'
     },
     '/reported-to-police': {
+      fields: [
+        'reported-to-police',
+        'reported-to-police-police-forces',
+        'reported-to-police-crime-reference'
+      ],
       next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {

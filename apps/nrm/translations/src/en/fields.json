@@ -156,6 +156,26 @@
       }
     }
   },
+  "reported-to-police": {
+    "legend": "Do they have a crime reference number?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "reported-to-police-police-forces": {
+    "label": "Select police force",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "reported-to-police-crime-reference": {
+    "label": "Enter crime or incident reference number (if given one)"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

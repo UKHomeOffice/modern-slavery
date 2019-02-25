@@ -22,6 +22,7 @@ const EXPLOITED_IN_UK_OPTION = '#where-exploitation-happened-uk';
 const CURRENT_PV_LOCATION_UK_REGION = '#current-pv-location-uk-region';
 const WHO_EXPLOITED_PV = '#who-exploited-pv';
 const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
+const PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION = '#reported-to-police-yes';
 
 /**
  * Get the test file path
@@ -59,4 +60,5 @@ module.exports = {
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
+    PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
 };
