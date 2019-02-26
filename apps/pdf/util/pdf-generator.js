@@ -7,6 +7,7 @@ const fs = require('fs');
 module.exports = {
   generate: (html, destination, tempName) => {
     return new Promise((resolve, reject) => {
+      console.log('>>>>>>>>>>>>> yoooo in generator')
       const file = `${destination}/${tempName}`;
       // first read the template
       wkhtmltopdf(fs.createReadStream(html), (err, stream) => {

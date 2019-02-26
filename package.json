@@ -1,13 +1,15 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "node --inspect app.js",
+    "start": "node app.js",
     "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm-run-all test:unit lint",
     "test:unit": "_mocha",
     "lint": "eslint .",
     "build": "hof-build",
-    "postinstall": "npm run build",
+    "watch:sass": "nodemon -e scss -x 'npm run sass'",
+    "sass": "npm-sass ./assets/scss/pdf.scss > ./public/css/pdf.css",
+    "postinstall": "npm run build && npm run sass",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
@@ -32,6 +34,7 @@
     "ms-uk-regions": "^1.0.0",
     "notifications-node-client": "^4.5.1",
     "npm-run-all": "^4.1.5",
+    "npm-sass": "^2.3.0",
     "typeahead-aria": "^1.0.4",
     "url": "^0.11.0",
     "uuid": "^3.3.2",

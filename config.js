@@ -6,6 +6,7 @@ const useMocks = process.env.USE_MOCKS ? process.env.USE_MOCKS === 'true' : env 
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8081}`;
 
 module.exports = {
+  hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   env: env,
   useMocks: useMocks,
   redis: {

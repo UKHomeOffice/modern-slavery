@@ -39,15 +39,16 @@ const deleteFile = (file) => {
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
+    console.log('>>>>>>>>>>>>>>>>  saveValues');
     const email = req.form.values.email;
     const tempName = createTemporaryFileName();
     PdfGenerator.generate(htmlTemplate, tempLocation, tempName)
       .then(file => {
-        sendEmailWithFile(file, email);
+        // sendEmailWithFile(file, email);
         return file;
       })
       .then(file => {
-        deleteFile(file);
+        // deleteFile(file);
       })
       .catch(err=> console.log(`pdf generation error -> ${err}`));
 
