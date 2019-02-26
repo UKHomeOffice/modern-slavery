@@ -1,9 +1,60 @@
-<h1>Placeholder for Home office Modern Slavery PDF</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NRM for {{name}}</title>
+  <!-- TODO: pass in this through locals -->
+  <link href="http://localhost:8081/public/css/pdf.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <main id="content" role="main" class="evw container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="pad-bottom-40"><span class="organisation-logo organisation-logo-stacked-ho organisation-logo-stacked-ho-large"></span></h1>
+      </div>
+      <div class="col-sm-6">
+        <h2 class="text-right bold-large pad-top-10">NRM Report</h1>
+        <h3 class="text-right">Date submitted: 18/02/19 12:15</span>
+      </div>
+    </div>
 
-<p>Below is Lorem Ipsum i.e. dummy text </p>
+    <hr/>
+    <div class= "row">
+      <h2 class="bold">Section 1 - Your details</h2>
+    </div>
+    <hr/>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius dolor tortor, ac imperdiet diam blandit eget. Mauris in interdum nulla, et ullamcorper lorem. Mauris pharetra vitae nunc non malesuada. Cras venenatis porttitor leo, sit amet ultricies lectus imperdiet ut. Donec dignissim suscipit ligula ut ultrices. Mauris vitae lectus eros. Nullam eget aliquam odio, in mattis dolor. Aenean sed feugiat ligula. In a tellus congue, fermentum ex et, consectetur nisl.</p>
+    
 
-<p>Pellentesque quis dapibus dolor. Etiam quis mi pretium, lacinia ante eget, eleifend ante. Vestibulum lobortis efficitur diam, pretium dignissim nunc tristique eget. Cras id risus sem. Nam porta lobortis tortor, eget mattis nisi scelerisque a. Nulla sed purus iaculis, commodo odio quis, rutrum tellus. Fusce eu euismod purus, eu elementum nibh. Morbi nunc mi, feugiat sed dui ac, fermentum porta metus. Proin molestie nibh sed ligula fringilla ornare. Morbi sit amet ipsum sed urna faucibus pretium et vel orci. Aliquam varius tempus suscipit. Phasellus in erat eros. Duis a porta neque, in lobortis massa. Vivamus porttitor placerat tortor a fermentum. Curabitur sagittis vitae odio eget rhoncus.</p>
 
-<p>Morbi quis tortor vitae nisl facilisis faucibus. Nulla facilisi. Cras porta, quam id sagittis faucibus, quam eros consequat mi, lacinia ultricies mauris lacus vel lectus. Mauris imperdiet euismod metus. Ut scelerisque sed nulla non finibus. Sed pulvinar, diam tempor mattis porta, est metus consequat tellus, ac malesuada est est vitae leo. Aenean suscipit mauris elit, ut congue velit convallis a. Quisque faucibus sodales lectus non fermentum. Proin lorem turpis, lacinia at scelerisque nec, faucibus nec enim. Aliquam congue nec magna vel rhoncus. Morbi sapien elit, commodo quis nisl a, pulvinar vehicula ante. Praesent enim justo, egestas ornare nisl in, placerat pellentesque magna.</p>
+      <div class="row pad-top-60">
+        <div class="col-sm-12">
+          <p class="item-title font-medium">Name / الاسم</p>
+          <p class="font-large">{{name}}</p>
+        </div>
+      </div>
+
+      <div class="row pad-top-40">
+        <div class="col-sm-12">
+          <p class="item-title font-medium"">Passport number / رقم جواز السفر</p>
+          <p class="font-large">{{passportNumber}}</p>
+        </div>
+      </div>
+
+      <div class="row pad-top-20">
+        <div class="col-sm-12">
+          <p class="item-title font-medium">Country of nationality / الجنسية:</p>
+          <p class="font-large">{{nationality}}</p>
+        </div>
+      </div>
+      <div class="row pad-top-20">
+        <div class="col-sm-12">
+          <p class="item-title font-medium">Date of birth / تاريخ الميلاد</p>
+          <p class="font-large">{{dob}}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

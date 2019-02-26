@@ -43,11 +43,11 @@ module.exports = superclass => class extends superclass {
     const tempName = createTemporaryFileName();
     PdfGenerator.generate(htmlTemplate, tempLocation, tempName)
       .then(file => {
-        sendEmailWithFile(file, email);
+        // sendEmailWithFile(file, email);
         return file;
       })
       .then(file => {
-        deleteFile(file);
+        // deleteFile(file);
       })
       .catch(err=> console.log(`pdf generation error -> ${err}`));
 

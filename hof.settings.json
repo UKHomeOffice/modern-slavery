@@ -4,6 +4,10 @@
       "shared": "./apps/common/translations/src"
     }
   },
+  "sass": [
+    "./assets/scss/app.scss",
+    "./assets/scss/pdf.scss"
+  ],
   "theme": "govuk",
   "routes": [
     "./apps/verify",
