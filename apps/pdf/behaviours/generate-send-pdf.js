@@ -38,21 +38,20 @@ const deleteFile = (file) => {
 };
 
 module.exports = superclass => class extends superclass {
-  saveValues(req, res, next) {
+  async saveValues(req, res, next) {
     const email = req.form.values.email;
     const tempName = createTemporaryFileName();
-    PdfGenerator.generate(htmlTemplate, tempLocation, tempName)
-      .then(file => {
-        sendEmailWithFile(file, email);
-        return file;
-      })
-      .then(file => {
-        deleteFile(file);
-      })
-      .catch(err=> console.log(`pdf generation error -> ${err}`));
 
-    super.saveValues(req, res, (err) => {
-      next(err);
-    });
+    // Try catch for async function because PDFgenerate function returns a promise need to manage any errors.
+    try {
+      const file = await PdfGenerator.generate(htmlTemplate, tempLocation, tempName);
+      await sendEmailWithFile(file, email);
+      await deleteFile(file);
+      super.saveValues(req, res, (err) => {
+        next(err);
+      });
+    } catch (err) {
+      console.log(`pdf generation error -> ${err}`);
+    }
   }
 };
