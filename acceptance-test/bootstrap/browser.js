@@ -5,7 +5,7 @@ const getContainerIP = require('../user-pathways/util/get-container-ip');
 
 /* Constants */
 const DEMO_BROWSER_RUN_SPEED = 550;
-const HEADLESS_BROWSER_RUN_SPEED = 100;
+const HEADLESS_BROWSER_RUN_SPEED = 150;
 const VIEWPORT = { width: 1920, height: 1080 };
 
 /**
