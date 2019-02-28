@@ -28,15 +28,15 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'yes-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }, {
       value: 'no',
       toggle: 'no-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }]
   },
   'pv-under-age-at-time-of-exploitation': {
