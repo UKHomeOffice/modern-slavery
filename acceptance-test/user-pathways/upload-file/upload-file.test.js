@@ -22,6 +22,7 @@ const {
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
+    REFER_CASE_TO_NRM_YES_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -32,19 +33,43 @@ let page;
 let url;
 
 /**
- * Select the continue button a number of times specified within the
- * supplied parameters
+ * Click on a page element
  *
- * @param {number} loopCount - the number of time the loop should run
+ * @param {string} selector - selector for element on the page
+ *
+ * @returns {Promise}
+ */
+async function clickElement(selector) {
+    await page.waitForSelector(selector);
+    await page.click(selector);
+}
+
+/**
+ * Navigate to a page
+ *
+ * @param {string} urlString - the page url
+ *
+ * @returns {Promise}
+ */
+async function navigateTo(urlString) {
+    url = urlString;
+    await page.goto(url);
+    await page.setViewport(VIEWPORT);
+}
+
+/**
+ * Upload File on a page
+ *
+ * @param {string} selector - selector for element on the page
+ * @param {string} filePath - The location of the file
  *
  * @returns {void}
  */
-const clickContinueButton = async(loopCount) => {
-    for (let i = 0; i < loopCount; i++) {
-            await page.waitForSelector(CONTINUE_BUTTON);
-            await page.click(CONTINUE_BUTTON);
-    }
-};
+async function uploadFile(selector, filePath) {
+    await page.waitForSelector(selector);
+    const input = await page.$(selector);
+    await input.uploadFile(filePath);
+}
 
 describe('Upload File(s)', () => {
     beforeEach(async() => {
@@ -68,117 +93,116 @@ describe('Upload File(s)', () => {
         await browser.close();
     });
 
-    /**
-     * Navigate from Who do you work for? page
+     /**
+     * Run a sequence of actions to simulate verification of a user
      *
-     * @returns {void}
+     * @returns {Promise}
      */
-    async function whoDoYouWorkForPage() {
-        await page.waitForSelector(ORGANISATION_INPUT);
+    async function verifyUser() {
+        // start
+        await clickElement(CONTINUE_BUTTON);
+        // who-do-you-work-for
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
         });
         await page.$eval(EMAIL_INPUT, (element) => {
             element.value = 'test.user@homeoffice.gov.uk';
         });
-        await clickContinueButton(1);
+        await clickElement(CONTINUE_BUTTON);
+        // Bypass user clicking email link - Notify Key will not be set during test runs
+        await navigateTo(`http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
+    }
+
+    /**
+     * Run a sequence of actions to simulate the completion of the first half
+     * of the NRM form
+     *
+     * @returns {Promise}
+     */
+    async function completeNrmFormPart1() {
+        // nrm start
+        await clickElement(CONTINUE_BUTTON);
+        // fr-location
+        await clickElement(LOCATION_ENGLAND_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // pv-under-age
+        await clickElement(PV_UNDER_AGE_NO_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // pv-under-age-at-time-of-exploitation
+        await clickElement(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // what-happened
+        await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
+            element.value = 'Test input regarding details of exploitation';
+        });
+        await clickElement(CONTINUE_BUTTON);
+        // where-exploitation-happened
+        await clickElement(EXPLOITED_IN_UK_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // current-pv-location
+        await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
+            element.value = 'Rutland';
+        });
+        await clickElement(CONTINUE_BUTTON);
+        // who-exploited-pv
+        await page.$eval(WHO_EXPLOITED_PV, (element) => {
+            element.value = 'Test details about exploiter(s)';
+        });
+        await clickElement(CONTINUE_BUTTON);
+        // types-of-exploitation
+        await clickElement(CONTINUE_BUTTON);
+        // any-other-pvs
+        await clickElement(ANY_OTHER_PVS_NO_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // reported-to-police
+        await clickElement(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // pv-want-to-submit-nrm
+        await clickElement(REFER_CASE_TO_NRM_YES_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+    }
+
+    /**
+     * Run a sequence of actions to simulate the completion of the second half
+     * of the NRM form
+     */
+    async function completeNrmFormPart2() {
+        // Run through the skeleton until we reach the upload page
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        // supporting-documents-add
+        await clickElement(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // supporting-documents
+        await uploadFile(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT, TEST_FILE_PATH());
+        await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
+            element.value = 'NRM Test File example';
+        });
+        await clickElement(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+        // supporting-documents-add-another
+        await clickElement(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+        await clickElement(CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the end
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
+        await clickElement(CONTINUE_BUTTON);
     }
 
     it('upload 1 document', async() => {
         try {
-            // start
-            await clickContinueButton(1);
-
-            // who-do-you-work-for
-            await whoDoYouWorkForPage();
-
-            // Bypass user clicking email link - Notify Key will not be set during test runs
-            url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
-            await page.goto(url);
-
-            // Hit the url a second time since the first page resolves to an error
-            await page.goto(url);
-            await page.setViewport(VIEWPORT);
-
-            // Run through the skeleton until we reach the Where are you making this report? page
-            await clickContinueButton(1);
-
-            // fr-location
-            await page.waitForSelector(LOCATION_ENGLAND_OPTION);
-            await page.click(LOCATION_ENGLAND_OPTION);
-            await clickContinueButton(1);
-
-            // pv-under-age
-            await page.waitForSelector(PV_UNDER_AGE_NO_OPTION);
-            await page.click(PV_UNDER_AGE_NO_OPTION);
-            await clickContinueButton(1);
-
-            // pv-under-age-at-time-of-exploitation
-            await page.waitForSelector(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await clickContinueButton(1);
-
-            // what-happened
-            await page.waitForSelector(WHAT_HAPPENED_INPUT);
-            await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
-                element.value = 'Test input regarding details of exploitation';
-            });
-            await clickContinueButton(1);
-
-            // where-exploitation-happened
-            await page.waitForSelector(EXPLOITED_IN_UK_OPTION);
-            await page.click(EXPLOITED_IN_UK_OPTION);
-            await clickContinueButton(1);
-
-            // current-pv-location
-            await page.waitForSelector(CURRENT_PV_LOCATION_UK_REGION);
-            await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-                element.value = 'Rutland';
-            });
-            await clickContinueButton(1);
-
-            // who-exploited-pv
-            await page.waitForSelector(WHO_EXPLOITED_PV);
-            await page.$eval(WHO_EXPLOITED_PV, (element) => {
-                element.value = 'Test details about exploiter(s)';
-            });
-            await clickContinueButton(1);
-
-            // types-of-exploitation
-            await clickContinueButton(1);
-
-            // any-other-pvs
-            await page.waitForSelector(ANY_OTHER_PVS_NO_OPTION);
-            await page.click(ANY_OTHER_PVS_NO_OPTION);
-            await clickContinueButton(1);
-
-            // reported-to-police
-            await page.waitForSelector(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await page.click(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await clickContinueButton(1);
-
-            // Run through the skeleton until we reach the upload page
-            await clickContinueButton(13);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(CONTINUE_BUTTON);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
-            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
-            await input.uploadFile(TEST_FILE_PATH());
-
-            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
-                element.value = 'NRM Test File example';
-            });
-            await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-
-            // Run through the skeleton until we reach the end
-            await clickContinueButton(4);
-
+            await verifyUser();
+            await completeNrmFormPart1();
+            await completeNrmFormPart2();
         } catch (err) {
             throw new Error(err);
         }
