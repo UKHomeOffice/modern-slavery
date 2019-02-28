@@ -1,12 +1,12 @@
 {{<partials-page}}
   {{$page-content}}
-    <p>If a potential victim wants you to refer their case, they can get:</p>
+    <p>{{#t}}fields.pv-want-to-submit-nrm.paragraph-1{{/t}}</p>
     <ul class="govuk-list govuk-list--bullet">
-        <li>access to support (for example, housing and legal advice)</li>
-        <li>a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit</li>
+        <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-1{{/t}}</li>
+        <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-2{{/t}}</li>
     </ul>
     <div class="govuk-inset-text">
-        We will need to share their personal details with organisations such as the police and the Home Office if they refer their case.
+        {{#t}}fields.pv-want-to-submit-nrm.div-1{{/t}}
     </div>
     {{#fields}}
       {{#renderField}}{{/renderField}}
