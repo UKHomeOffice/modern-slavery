@@ -188,7 +188,7 @@ describe('Upload File(s)', () => {
         await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
             element.value = 'NRM Test File example';
         });
-        await clickElement(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+        await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
         // supporting-documents-add-another
         await clickElement(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
         await clickElement(CONTINUE_BUTTON);
