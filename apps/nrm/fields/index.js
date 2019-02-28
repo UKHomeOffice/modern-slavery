@@ -294,6 +294,20 @@ module.exports = {
       field: 'reported-to-police',
     }
   },
+  'pv-want-to-submit-nrm': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no',
+      toggle: 'pv-want-to-submit-nrm-no-fieldset',
+      child: 'partials/pv-want-to-submit-nrm-no'
+    }]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

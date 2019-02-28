@@ -176,6 +176,22 @@
   "reported-to-police-crime-reference": {
     "label": "Enter crime or incident reference number (if given one)"
   },
+  "pv-want-to-submit-nrm": {
+    "legend": "Do they have a crime reference number?",
+    "paragraph-1": "If a potential victim wants you to refer their case, they can get:",
+    "bullet-1": "access to support (for example, housing and legal advice)",
+    "bullet-2": "a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit",
+    "div-1" : "We will need to share their personal details with organisations such as the police and the Home Office if they refer their case.",
+    "options": {
+      "yes": {
+        "label": "Yes – I have explained this to the potential victim and they want me to refer their case"
+      },
+      "no": {
+        "label": "No – I have explained this to the potential victim and they do not want me to refer their case",
+        "hint": "They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

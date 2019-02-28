@@ -98,6 +98,7 @@ module.exports = {
       next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {
+      fields: ['pv-want-to-submit-nrm'],
       next: '/does-pv-need-support'
     },
     '/does-pv-need-support': {
