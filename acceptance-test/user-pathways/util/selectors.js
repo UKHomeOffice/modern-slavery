@@ -31,6 +31,7 @@ const DOES_PV_HAVE_CHILDREN_NO_OPTION = '#does-pv-have-children-no';
 const PV_NATIONALITY = '#pv-nationality';
 const INTERPRETER_NO_OPTION = '#pv-interpreter-requirements-no';
 const COMMUNICATION_AID_NO_OPTION = '#pv-other-help-with-communication-no';
+const HO_REFERENCE_NO_OPTION = '#pv-ho-reference-no';
 
 /**
  * Get the test file path
@@ -77,5 +78,5 @@ module.exports = {
     PV_NATIONALITY,
     INTERPRETER_NO_OPTION,
     COMMUNICATION_AID_NO_OPTION,
-
+    HO_REFERENCE_NO_OPTION,
 };

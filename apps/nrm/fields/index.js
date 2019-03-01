@@ -420,6 +420,23 @@ module.exports = {
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
   },
+  'pv-ho-reference': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-ho-reference-type-fieldset',
+      child: 'partials/pv-ho-reference-type'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-ho-reference-type': {
+    mixin: 'input-text',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
