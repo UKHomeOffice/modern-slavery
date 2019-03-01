@@ -53,7 +53,13 @@
   },
   "what-happened": {
     "legend": "What did they say happened?",
-    "label": "Details about exploitation (and trafficking, if relevant). For example, how they were recruited and controlled."
+    "label": "Provide as much detail as you can. Do not include their name or the names of any other potential victims.",
+    "paragraph-1": "A detailed report should include information about:",
+    "bullet-1": "how the potential victim was treated",
+    "bullet-2": "what an average day was like and a description of their living conditions",
+    "paragraph-2": "If they were trafficked, it helps to know:",
+    "bullet-3": "where they were recruited and who arranged the journey",
+    "bullet-4": "details of their journey, including if they travelled with anyone"
   },
   "where-exploitation-happened": {
     "legend": "Where were they last exploited?",
@@ -109,7 +115,8 @@
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
   "types-of-exploitation-forced-to-work": {
-    "label": "Forced to work for nothing or almost nothing"
+    "label": "Forced to work for nothing or almost nothing",
+    "hint": "Victims may live in isolated areas or poor conditions, such as in squats or at their place of work. They may be unable to leave and threatened with violence."
   },
   "types-of-exploitation-wages-taken": {
     "label": "Wages taken by force or coercion, such as through control of a bank account"
@@ -121,19 +128,23 @@
     "label": "Forced into prostitution"
   },
   "types-of-exploitation-child-exploitation": {
-    "label": "Child sexual exploitation"
+    "label": "Child sexual exploitation",
+    "hint": "This includes child sex trafficking."
   },
   "types-of-exploitation-taken-somewhere": {
-    "label": "Taken somewhere, held against their will and sexually assaulted"
+    "label": "Taken somewhere, held against their will and sexually assaulted",
+    "hint": "This is different to rape."
   },
   "types-of-exploitation-forced-to-commit-crime": {
-    "label": "Forced to commit a crime, such as growing cannabis, drug dealing or begging"
+    "label": "Forced to commit a crime, such as growing cannabis, drug dealing or begging",
+    "hint": "This includes being used as a drug mule across county lines. Victims will often be unpaid although they may get food and somewhere to live."
   },
   "types-of-exploitation-organs-removed": {
     "label": "Organs, such as kidneys, removed against their will"
   },
   "types-of-exploitation-unpaid-household-work": {
-    "label": "Forced to do unpaid household work by relatives or strangers"
+    "label": "Forced to do unpaid household work by relatives or strangers",
+    "hint": "Victims who are exploited by relatives may have been forced into an arranged marriage and abused in other ways."
   },
   "types-of-exploitation-other": {
     "label": "Other"
