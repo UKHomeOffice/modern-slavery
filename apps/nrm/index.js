@@ -208,6 +208,7 @@ module.exports = {
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {
+      fields: ['fr-alternative-contact'],
       next: '/confirm'
     },
     '/confirm': {

@@ -105,5 +105,8 @@
   "fr-details-phone" : {
     "required": "You must enter a phone number",
     "numeric": "You must only enter numbers"
+  },
+  "fr-alternative-contact" : {
+    "email": "You must enter a valid email address"
   }
 }

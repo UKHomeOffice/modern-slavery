@@ -405,5 +405,9 @@
   },
   "fr-details-phone": {
     "label": "Phone number"
+  },
+  "fr-alternative-contact": {
+    "label": "Email address",
+    "hint": "This could be a manager, colleague or a team inbox."
   }
 }

@@ -36,6 +36,7 @@ const {
     FR_DETAILS_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
+    FR_ALTERNATE_CONTACT_EMAIL_INPUT,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -211,6 +212,10 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-alternative-contact
+        await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
+        await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
+            element.value = 'Test@test.com';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
         // summary page
         await clickSelector(page, CONTINUE_BUTTON);

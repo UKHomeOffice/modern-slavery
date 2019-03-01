@@ -575,4 +575,8 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required', 'numeric']
   },
+  'fr-alternative-contact': {
+    mixin: 'input-text',
+    validate: ['email']
+  }
 };
