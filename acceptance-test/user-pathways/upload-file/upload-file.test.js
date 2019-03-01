@@ -37,6 +37,7 @@ const {
     PV_CONTACT_DETAILS_EMAIL_INPUT,
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
+    POLICE_CONTACT_YES_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -188,6 +189,7 @@ describe('Upload File(s)', () => {
         await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         // co-operate-with-police
+        await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         // supporting-documents-add
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);

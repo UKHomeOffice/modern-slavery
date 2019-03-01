@@ -534,6 +534,17 @@ module.exports = {
     mixin: 'input-text',
     validate: 'numeric'
   },
+  'co-operate-with-police': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
   'supporting-document-upload': {
     mixin: 'input-file',
     validate: 'required'
