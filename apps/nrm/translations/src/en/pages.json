@@ -21,8 +21,7 @@
     "header": "Where were they last exploited?"
   },
   "current-pv-location": {
-    "header": "Where are they now?",
-    "heading-1": "Select where the potential victim is currently staying. This helps the caseworker know which police force to contact."
+    "header": "Where are they now?"
   },
   "who-exploited-pv": {
     "header": "Who exploited them?"
