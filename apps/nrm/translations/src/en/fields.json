@@ -226,6 +226,20 @@
   "pv-dob": {
     "hint": "For example, 31 3 1980. Fill in what you know."
   },
+  "pv-gender": {
+    "legend": "What is their gender?",
+    "options": {
+      "female": {
+        "label": "Female"
+      },
+      "male": {
+        "label": "Male"
+      },
+      "unknown": {
+        "label": "They do not identify as male or female"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
