@@ -267,6 +267,20 @@
     },
     "summary-text": "Select a second nationality for dual nationals"
   },
+  "pv-interpreter-requirements": {
+    "legend": "Do they need an interpreter?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-interpreter-requirements-language": {
+    "label": "Language"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
