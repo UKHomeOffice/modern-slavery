@@ -143,8 +143,9 @@ describe('Upload File(s)', () => {
             element.value = 'Lastname';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // pv-dob
         await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
