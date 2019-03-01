@@ -23,6 +23,7 @@ const {
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
     PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
     PV_GENDER_MALE_OPTION,
+    DOES_PV_HAVE_CHILDREN_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -150,8 +151,10 @@ describe.only('User path(s)', () => {
         // pv-gender
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // does-pv-have-children
+        await clickSelector(page, DOES_PV_HAVE_CHILDREN_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);

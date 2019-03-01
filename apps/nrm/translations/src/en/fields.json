@@ -240,6 +240,20 @@
       }
     }
   },
+  "does-pv-have-children": {
+    "legend": "Do they have any children?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-pv-have-children-yes-amount": {
+    "label": "Enter number of children"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

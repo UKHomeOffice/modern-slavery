@@ -122,6 +122,7 @@ module.exports = {
       next: '/does-pv-have-children'
     },
     '/does-pv-have-children': {
+      fields: ['does-pv-have-children', 'does-pv-have-children-yes-amount'],
       next: '/pv-nationality'
     },
     '/pv-nationality': {

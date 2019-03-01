@@ -347,6 +347,28 @@ module.exports = {
       'unknown'
     ]
   },
+  'does-pv-have-children': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'does-pv-have-children-yes-fieldset',
+      child: 'partials/does-pv-have-children-yes-amount'
+    }, {
+      value: 'no',
+    }]
+  },
+  'does-pv-have-children-yes-amount': {
+    mixin: 'input-text',
+    validate: 'numeric',
+    dependent: {
+      value: 'yes',
+      field: 'does-pv-have-children',
+    }
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
