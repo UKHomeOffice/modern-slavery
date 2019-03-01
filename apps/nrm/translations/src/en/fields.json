@@ -396,5 +396,14 @@
         "label": "No"
       }
     }
+  },
+  "fr-details-name": {
+    "label": "Name"
+  },
+  "fr-details-role": {
+    "label": "Role"
+  },
+  "fr-details-phone": {
+    "label": "Phone number"
   }
 }

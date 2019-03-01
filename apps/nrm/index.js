@@ -200,6 +200,11 @@ module.exports = {
       next: '/fr-details'
     },
     '/fr-details': {
+      fields: [
+        'fr-details-name',
+        'fr-details-role',
+        'fr-details-phone',
+      ],
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {

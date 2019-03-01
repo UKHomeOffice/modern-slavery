@@ -33,6 +33,9 @@ const {
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
     POLICE_CONTACT_YES_OPTION,
+    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_ROLE_INPUT,
+    FR_DETAILS_PHONE_INPUT,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -195,9 +198,21 @@ describe.only('User path(s)', () => {
         // supporting-documents-add
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the end
+        // fr-details
+        await page.waitForSelector(FR_DETAILS_NAME_INPUT);
+        await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
+            element.value = 'Test';
+        });
+        await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
+            element.value = 'Test Role';
+        });
+        await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
+            element.value = '00000000000';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
+        // fr-alternative-contact
         await clickSelector(page, CONTINUE_BUTTON);
+        // summary page
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
