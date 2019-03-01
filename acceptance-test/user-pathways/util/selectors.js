@@ -3,7 +3,6 @@
 const path = require('path');
 const bootstrap = require('../../bootstrap/bootstrap');
 
-const VIEWPORT = { width: 1920, height: 1080 };
 const CONTINUE_BUTTON = '#content > div > form > input.button';
 const UPLOAD_DOCUMENT_PAGE_2_YES_OPTION = '#supporting-documents-add-yes';
 const UPLOAD_DOCUMENT_PAGE_2_NO_OPTION = '#supporting-documents-add-no';
@@ -41,7 +40,6 @@ const TEST_FILE_PATH = () => {
 };
 
 module.exports = {
-    VIEWPORT,
     CONTINUE_BUTTON,
     ORGANISATION_INPUT,
     WHAT_HAPPENED_INPUT,

@@ -1,9 +1,10 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
 const selectors = require('../util/selectors');
+const pageActions = require('../util/page-actions');
+const { clickSelector, navigateTo, uploadFile } = pageActions;
 
 const {
-    VIEWPORT,
     CONTINUE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT,
@@ -30,46 +31,6 @@ let APP_CONTAINER_HOST;
 
 let browser;
 let page;
-let url;
-
-/**
- * Click on a page element
- *
- * @param {string} selector - selector for element on the page
- *
- * @returns {Promise}
- */
-async function clickElement(selector) {
-    await page.waitForSelector(selector);
-    await page.click(selector);
-}
-
-/**
- * Navigate to a page
- *
- * @param {string} urlString - the page url
- *
- * @returns {Promise}
- */
-async function navigateTo(urlString) {
-    url = urlString;
-    await page.goto(url);
-    await page.setViewport(VIEWPORT);
-}
-
-/**
- * Upload File on a page
- *
- * @param {string} selector - selector for element on the page
- * @param {string} filePath - The location of the file
- *
- * @returns {void}
- */
-async function uploadFile(selector, filePath) {
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
-    await input.uploadFile(filePath);
-}
 
 describe('Upload File(s)', () => {
     beforeEach(async() => {
@@ -80,9 +41,9 @@ describe('Upload File(s)', () => {
 
         APP_CONTAINER_HOST = hostIP;
 
-        url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
+        const initialUrl = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
 
-        await page.goto(url);
+        await page.goto(initialUrl);
     });
 
     afterEach(async() => {
@@ -100,7 +61,7 @@ describe('Upload File(s)', () => {
      */
     async function verifyUser() {
         // start
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // who-do-you-work-for
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
@@ -108,9 +69,9 @@ describe('Upload File(s)', () => {
         await page.$eval(EMAIL_INPUT, (element) => {
             element.value = 'test.user@homeoffice.gov.uk';
         });
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // Bypass user clicking email link - Notify Key will not be set during test runs
-        await navigateTo(`http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
+        await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
     }
 
     /**
@@ -121,45 +82,45 @@ describe('Upload File(s)', () => {
      */
     async function completeNrmFormPart1() {
         // nrm start
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // fr-location
-        await clickElement(LOCATION_ENGLAND_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, LOCATION_ENGLAND_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // pv-under-age
-        await clickElement(PV_UNDER_AGE_NO_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // pv-under-age-at-time-of-exploitation
-        await clickElement(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // what-happened
         await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
             element.value = 'Test input regarding details of exploitation';
         });
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // where-exploitation-happened
-        await clickElement(EXPLOITED_IN_UK_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, EXPLOITED_IN_UK_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // current-pv-location
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
             element.value = 'Rutland';
         });
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // who-exploited-pv
         await page.$eval(WHO_EXPLOITED_PV, (element) => {
             element.value = 'Test details about exploiter(s)';
         });
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // types-of-exploitation
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // any-other-pvs
-        await clickElement(ANY_OTHER_PVS_NO_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // reported-to-police
-        await clickElement(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // pv-want-to-submit-nrm
-        await clickElement(REFER_CASE_TO_NRM_YES_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
     }
 
     /**
@@ -168,34 +129,34 @@ describe('Upload File(s)', () => {
      */
     async function completeNrmFormPart2() {
         // Run through the skeleton until we reach the upload page
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
         // supporting-documents-add
-        await clickElement(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // supporting-documents
-        await uploadFile(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT, TEST_FILE_PATH());
+        await uploadFile(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT, TEST_FILE_PATH());
         await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
             element.value = 'NRM Test File example';
         });
-        await clickElement(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
         // supporting-documents-add-another
-        await clickElement(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         // Run through the skeleton until we reach the end
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
-        await clickElement(CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
     }
 
     it('upload 1 document', async() => {
