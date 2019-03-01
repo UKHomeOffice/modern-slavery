@@ -344,6 +344,20 @@
   "pv-contact-details-post-check": {
     "label": "It is safe to write to them here"
   },
+  "pv-phone-number": {
+    "legend": "Can the support provider contact them by phone?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-phone-number-yes": {
+    "label": "Enter potential victim's phone number"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

@@ -155,6 +155,7 @@ module.exports = {
       next: '/pv-phone-number'
     },
     '/pv-phone-number': {
+      fields: ['pv-phone-number', 'pv-phone-number-yes'],
       next: '/co-operate-with-police'
     },
     '/co-operate-with-police': {
