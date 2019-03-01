@@ -6,7 +6,6 @@ const { clickSelector, navigateTo } = pageActions;
 
 const {
     CONTINUE_BUTTON,
-    UPLOAD_DOCUMENT_PAGE_2_NO_OPTION,
     EMAIL_INPUT,
     ORGANISATION_INPUT,
     WHAT_HAPPENED_INPUT,
@@ -195,9 +194,6 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         // co-operate-with-police
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
-        // supporting-documents-add
-        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-details
         await page.waitForSelector(FR_DETAILS_NAME_INPUT);
