@@ -403,6 +403,23 @@ module.exports = {
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
   },
+  'pv-other-help-with-communication': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-other-help-with-communication-aid-fieldset',
+      child: 'partials/pv-other-help-with-communication-aid'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-other-help-with-communication-aid': {
+    mixin: 'input-text',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

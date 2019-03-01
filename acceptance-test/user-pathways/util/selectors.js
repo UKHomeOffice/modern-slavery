@@ -30,6 +30,7 @@ const PV_GENDER_MALE_OPTION = '#pv-gender-male';
 const DOES_PV_HAVE_CHILDREN_NO_OPTION = '#does-pv-have-children-no';
 const PV_NATIONALITY = '#pv-nationality';
 const INTERPRETER_NO_OPTION = '#pv-interpreter-requirements-no';
+const COMMUNICATION_AID_NO_OPTION = '#pv-other-help-with-communication-no';
 
 /**
  * Get the test file path
@@ -75,4 +76,6 @@ module.exports = {
     DOES_PV_HAVE_CHILDREN_NO_OPTION,
     PV_NATIONALITY,
     INTERPRETER_NO_OPTION,
+    COMMUNICATION_AID_NO_OPTION,
+
 };
