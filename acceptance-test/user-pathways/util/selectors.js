@@ -23,6 +23,7 @@ const WHO_EXPLOITED_PV = '#who-exploited-pv';
 const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
 const PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION = '#reported-to-police-yes';
 const REFER_CASE_TO_NRM_YES_OPTION = '#pv-want-to-submit-nrm-yes';
+const DOES_PV_NEED_SUPPORT_NO_OPTION = '#does-pv-need-support-no';
 
 /**
  * Get the test file path
@@ -61,4 +62,5 @@ module.exports = {
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
+    DOES_PV_NEED_SUPPORT_NO_OPTION,
 };

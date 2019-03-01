@@ -203,6 +203,17 @@
       }
     }
   },
+  "does-pv-need-support": {
+    "legend": "Do they need support?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

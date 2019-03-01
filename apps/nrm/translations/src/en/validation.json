@@ -35,6 +35,9 @@
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
   },
+  "does-pv-need-support" : {
+    "required": "You must select if support is required"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
