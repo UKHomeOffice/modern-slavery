@@ -126,7 +126,7 @@ describe.only('User path(s)', () => {
      */
     async function completeNrmFormPart2() {
         // does-pv-need-support
-        await clickSelector(DOES_PV_NEED_SUPPORT_NO_OPTION);
+        await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
         // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
