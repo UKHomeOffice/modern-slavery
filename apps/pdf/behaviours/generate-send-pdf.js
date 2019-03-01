@@ -45,8 +45,8 @@ module.exports = superclass => class extends superclass {
     // Try catch for async function because PDFgenerate function returns a promise need to manage any errors.
     try {
       const file = await PdfGenerator.generate(htmlTemplate, tempLocation, tempName);
-      await sendEmailWithFile(file, email);
-      await deleteFile(file);
+      // await sendEmailWithFile(file, email);
+      // await deleteFile(file);
       super.saveValues(req, res, (err) => {
         next(err);
       });
