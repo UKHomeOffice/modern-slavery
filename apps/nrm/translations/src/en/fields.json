@@ -254,6 +254,19 @@
   "does-pv-have-children-yes-amount": {
     "label": "Enter number of children"
   },
+  "pv-nationality": {
+    "label": "Select nationality",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "pv-nationality-second": {
+    "label": "Select second nationality",
+    "options": {
+      "null": "Select..."
+    },
+    "summary-text": "Select a second nationality for dual nationals"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
