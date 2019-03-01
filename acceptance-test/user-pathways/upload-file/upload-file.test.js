@@ -25,6 +25,8 @@ const {
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
     DOES_PV_NEED_SUPPORT_NO_OPTION,
+    PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
+    PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -130,9 +132,18 @@ describe('Upload File(s)', () => {
      */
     async function completeNrmFormPart2() {
         // does-pv-need-support
-        await clickSelector(DOES_PV_NEED_SUPPORT_NO_OPTION);
-        // Run through the skeleton until we reach the upload page
+        await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // pv-name-that-requires-support
+        await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
+        await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
+            element.value = 'Firstname';
+        });
+        await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
+            element.value = 'Lastname';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
