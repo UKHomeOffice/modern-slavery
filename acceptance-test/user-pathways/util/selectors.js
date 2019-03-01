@@ -32,6 +32,9 @@ const PV_NATIONALITY = '#pv-nationality';
 const INTERPRETER_NO_OPTION = '#pv-interpreter-requirements-no';
 const COMMUNICATION_AID_NO_OPTION = '#pv-other-help-with-communication-no';
 const HO_REFERENCE_NO_OPTION = '#pv-ho-reference-no';
+const PV_CONTACT_DETAILS_EMAIL_OPTION = '#pv-contact-details-email';
+const PV_CONTACT_DETAILS_EMAIL_INPUT = '#pv-contact-details-email-input';
+const PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION = '#pv-contact-details-email-check';
 
 /**
  * Get the test file path
@@ -79,4 +82,7 @@ module.exports = {
     INTERPRETER_NO_OPTION,
     COMMUNICATION_AID_NO_OPTION,
     HO_REFERENCE_NO_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_INPUT,
+    PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
 };

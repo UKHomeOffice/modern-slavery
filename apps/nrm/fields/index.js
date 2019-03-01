@@ -437,6 +437,74 @@ module.exports = {
   'pv-ho-reference-type': {
     mixin: 'input-text',
   },
+  'pv-contact-details': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'pv-contact-details-email-input-fieldset',
+      child: 'partials/pv-contact-details-email-input'
+    }, {
+      value: 'post',
+      toggle: 'pv-contact-details-post-fieldset',
+      child: 'partials/pv-contact-details-post'
+    }]
+  },
+  'pv-contact-details-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-email-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'email',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-street': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-town': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-postcode': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-post-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

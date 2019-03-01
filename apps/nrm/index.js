@@ -142,6 +142,16 @@ module.exports = {
       next: '/pv-contact-details'
     },
     '/pv-contact-details': {
+      fields: [
+        'pv-contact-details',
+        'pv-contact-details-email-input',
+        'pv-contact-details-email-check',
+        'pv-contact-details-street',
+        'pv-contact-details-town',
+        'pv-contact-details-county',
+        'pv-contact-details-postcode',
+        'pv-contact-details-post-check',
+      ],
       next: '/pv-phone-number'
     },
     '/pv-phone-number': {
