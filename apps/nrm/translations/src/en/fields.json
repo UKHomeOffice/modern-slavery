@@ -37,6 +37,21 @@
       }
     }
   },
+  "local-authority-contacted-about-child-local-authority-name": {
+    "label": "Name of local authority",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "local-authority-contacted-about-child-local-authority-phone": {
+    "label": "Enter phone number"
+  },
+  "local-authority-contacted-about-child-local-authority-email": {
+    "label": "Enter email address"
+  },
+  "local-authority-contacted-about-child-local-authority-contact": {
+    "label": "Enter contact name (if known)"
+  },
   "pv-under-age-at-time-of-exploitation": {
     "legend": "Were they under 18 at any time during the exploitation?",
     "options": {

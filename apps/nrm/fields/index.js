@@ -5,6 +5,7 @@ const ukRegions = require('ms-uk-regions');
 const countries = require('hof-util-countries')();
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
+const ukLocalAuthorities = require('ms-uk-local-authorities');
 
 module.exports = {
   'fr-location': {
@@ -39,6 +40,26 @@ module.exports = {
       toggle: 'not-sure-toggle-content',
       child: 'partials/pv-under-age-panel'
     }]
+  },
+  'local-authority-contacted-about-child-local-authority-name': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.local-authority-contacted-about-child.options.null'
+    }].concat(ukLocalAuthorities)
+  },
+  'local-authority-contacted-about-child-local-authority-phone': {
+    mixin: 'input-text',
+    validate: ['required', 'numeric']
+  },
+  'local-authority-contacted-about-child-local-authority-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email']
+  },
+  'local-authority-contacted-about-child-local-authority-contact': {
+    mixin: 'input-text',
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',

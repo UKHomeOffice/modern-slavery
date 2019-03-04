@@ -36,6 +36,10 @@ const {
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
+    PV_UNDER_AGE_YES_OPTION,
+    LOCAL_AUTHORITY_NAME,
+    LOCAL_AUTHORITY_PHONE,
+    LOCAL_AUTHORITY_EMAIL,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -90,20 +94,42 @@ describe.only('User path(s)', () => {
      * the function is excuted within the browser and cannot recognise any
      * variables passed to it execept those that exist within the browser.
      *
+     * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
+     *
      * @returns {Promise}
      */
-    async function completeNrmFormPart1() {
+    async function completeNrmFormPart1(typeOfPV) {
         // nrm start
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-location
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-under-age
-        await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
-        // pv-under-age-at-time-of-exploitation
-        await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
+
+        if (typeOfPV === 'adult') {
+            // pv-under-age
+            await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // pv-under-age-at-time-of-exploitation
+            await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+        } else {
+            // pv-under-age
+            await clickSelector(page, PV_UNDER_AGE_YES_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // local-authority-contacted-about-child
+            await page.waitForSelector(LOCAL_AUTHORITY_NAME);
+            await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
+                element.value = 'Firstname';
+            });
+            await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
+                element.value = 'Firstname';
+            });
+            await page.$eval(LOCAL_AUTHORITY_EMAIL, (element) => {
+                element.value = 'Firstname';
+            });
+            await clickSelector(page, CONTINUE_BUTTON);
+        }
+
         // what-happened
         await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
             element.value = 'Test input regarding details of exploitation';
@@ -220,7 +246,17 @@ describe.only('User path(s)', () => {
     it('Happy path - Adult', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1();
+            await completeNrmFormPart1('adult');
+            await completeNrmFormPart2();
+        } catch (err) {
+            throw new Error(err);
+        }
+    });
+
+    it('User path - Child', async() => {
+        try {
+            await verifyUser();
+            await completeNrmFormPart1('child');
             await completeNrmFormPart2();
         } catch (err) {
             throw new Error(err);
