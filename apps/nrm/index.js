@@ -102,6 +102,7 @@ module.exports = {
       next: '/does-pv-need-support'
     },
     '/does-pv-need-support': {
+      fields: ['does-pv-need-support'],
       next: '/pv-name-that-requires-support'
     },
     '/pv-name-that-requires-support': {

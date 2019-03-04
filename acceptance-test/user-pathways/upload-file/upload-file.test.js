@@ -24,6 +24,7 @@ const {
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
+    DOES_PV_NEED_SUPPORT_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -128,8 +129,9 @@ describe('Upload File(s)', () => {
      * of the NRM form
      */
     async function completeNrmFormPart2() {
+        // does-pv-need-support
+        await clickSelector(DOES_PV_NEED_SUPPORT_NO_OPTION);
         // Run through the skeleton until we reach the upload page
-        await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);

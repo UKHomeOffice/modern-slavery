@@ -308,6 +308,17 @@ module.exports = {
       child: 'partials/pv-want-to-submit-nrm-no'
     }]
   },
+  'does-pv-need-support': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
