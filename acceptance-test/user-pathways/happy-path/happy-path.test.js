@@ -119,18 +119,19 @@ describe.only('User path(s)', () => {
             // local-authority-contacted-about-child
             await page.waitForSelector(LOCAL_AUTHORITY_NAME);
             await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
-                element.value = 'Firstname';
+                element.value = 'Local Authority A';
             });
             await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
-                element.value = 'Firstname';
+                element.value = '0000000000';
             });
             await page.$eval(LOCAL_AUTHORITY_EMAIL, (element) => {
-                element.value = 'Firstname';
+                element.value = 'test@authority.org';
             });
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
         // what-happened
+        await page.waitForSelector(WHAT_HAPPENED_INPUT);
         await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
             element.value = 'Test input regarding details of exploitation';
         });
