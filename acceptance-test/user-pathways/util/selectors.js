@@ -3,7 +3,6 @@
 const path = require('path');
 const bootstrap = require('../../bootstrap/bootstrap');
 
-const VIEWPORT = { width: 1920, height: 1080 };
 const CONTINUE_BUTTON = '#content > div > form > input.button';
 const UPLOAD_DOCUMENT_PAGE_2_YES_OPTION = '#supporting-documents-add-yes';
 const UPLOAD_DOCUMENT_PAGE_2_NO_OPTION = '#supporting-documents-add-no';
@@ -23,6 +22,7 @@ const CURRENT_PV_LOCATION_UK_REGION = '#current-pv-location-uk-region';
 const WHO_EXPLOITED_PV = '#who-exploited-pv';
 const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
 const PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION = '#reported-to-police-yes';
+const REFER_CASE_TO_NRM_YES_OPTION = '#pv-want-to-submit-nrm-yes';
 
 /**
  * Get the test file path
@@ -40,7 +40,6 @@ const TEST_FILE_PATH = () => {
 };
 
 module.exports = {
-    VIEWPORT,
     CONTINUE_BUTTON,
     ORGANISATION_INPUT,
     WHAT_HAPPENED_INPUT,
@@ -61,4 +60,5 @@ module.exports = {
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
+    REFER_CASE_TO_NRM_YES_OPTION,
 };

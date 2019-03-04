@@ -27,7 +27,14 @@
     "header": "Who exploited them?"
   },
   "types-of-exploitation": {
-    "header": "How were they exploited?"
+    "header": "How were they exploited?",
+    "hint": "Select all that apply.",
+    "heading-1": "Labour and financial exploitation",
+    "heading-2": "Sexual exploitation",
+    "heading-3": "Criminal exploitation",
+    "heading-4": "Domestic servitude",
+    "warning": "If you think they are a victim of another crime you can report it to the police by calling 101.",
+    "warning-heading" : "Warning"
   },
   "any-other-pvs": {
     "header": "Were there any other potential victims?"
@@ -36,10 +43,18 @@
     "header": "Do they have a crime reference number?"
   },
   "pv-want-to-submit-nrm": {
-    "header": "Placeholder page"
+    "header": "Do they want their case referred to the NRM?"
   },
   "does-pv-need-support": {
-    "header": "Placeholder page"
+    "header": "Do they need support?",
+    "paragraph-1" : "Support can take 5 days to start and may include:",
+    "bullet-1": "safe housing",
+    "bullet-2": "medical treatment",
+    "bullet-3": "someone to help them cope with their experience",
+    "bullet-4": "protection from the people who exploited them",
+    "bullet-5": "independent legal advice",
+    "link-text-1": "Contact the support provider",
+    "link-text-2": "about emergency housing if they need somewhere safe to stay immediately."
   },
   "pv-name-that-requires-support": {
     "header": "Placeholder page"
