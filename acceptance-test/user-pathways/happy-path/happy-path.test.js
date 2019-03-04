@@ -46,6 +46,9 @@ describe.only('User path(s)', () => {
         await page.goto(initialUrl);
     });
 
+    /**
+     * Close browser to end tests.
+     */
     after(async() => {
         await browser.close();
     });
