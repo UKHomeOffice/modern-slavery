@@ -126,7 +126,6 @@ describe.only('User path(s)', () => {
     /**
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
-     *
      */
     async function completeNrmFormPart2() {
         // Run through the skeleton until we reach the upload page
