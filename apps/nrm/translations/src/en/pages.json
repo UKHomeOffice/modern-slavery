@@ -45,6 +45,18 @@
   "pv-want-to-submit-nrm": {
     "header": "Do they want their case referred to the NRM?"
   },
+  "refuse-nrm": {
+    "header": "Why don't they want their case referred?"
+  },
+  "refuse-nrm-co-operate-with-police": {
+    "header": "Can the police contact them about their case?"
+  },
+  "refuse-nrm-pv-name": {
+    "header": "What is their name?"
+  },
+  "refuse-nrm-pv-contact-details": {
+    "header": "How should we notify them of our decision?"
+  },
   "does-pv-need-support": {
     "header": "Do they need support?",
     "paragraph-1" : "Support can take 5 days to start and may include:",

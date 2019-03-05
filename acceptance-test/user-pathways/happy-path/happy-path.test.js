@@ -40,6 +40,13 @@ const {
     LOCAL_AUTHORITY_NAME,
     LOCAL_AUTHORITY_PHONE,
     LOCAL_AUTHORITY_EMAIL,
+    REFER_CASE_TO_NRM_NO_OPTION,
+    REFUSE_NRM_POLICE_CONTACT_YES_OPTION,
+    REFUSE_NRM_PV_NAME_FIRST_NAME,
+    REFUSE_NRM_PV_NAME_LAST_NAME,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -95,10 +102,12 @@ describe.only('User path(s)', () => {
      * variables passed to it execept those that exist within the browser.
      *
      * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
+     * @param {bool} caseReferred - does the Potential Victim was their case
+     * referred?
      *
      * @returns {Promise}
      */
-    async function completeNrmFormPart1(typeOfPV) {
+    async function completeNrmFormPart1(typeOfPV, caseReferred) {
         // nrm start
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-location
@@ -157,9 +166,40 @@ describe.only('User path(s)', () => {
         // reported-to-police
         await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-want-to-submit-nrm
-        await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
+
+        if (caseReferred) {
+            // pv-want-to-submit-nrm
+            await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+        } else {
+            // pv-want-to-submit-nrm
+            await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // refuse-nrm
+            await clickSelector(page, CONTINUE_BUTTON);
+            // refuse-nrm-co-operate-with-police
+            await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // refuse-nrm-pv-name
+            await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
+            await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
+                element.value = 'Robert';
+            });
+            await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
+                element.value = 'Maxwell';
+            });
+            await clickSelector(page, CONTINUE_BUTTON);
+            // refuse-nrm-pv-contact-details
+            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
+            await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
+            await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+                element.value = 'Test@test.com';
+            });
+            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // summary page
+            await clickSelector(page, CONTINUE_BUTTON);
+        }
     }
 
     /**
@@ -247,7 +287,7 @@ describe.only('User path(s)', () => {
     it('Happy path - Adult', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1('adult');
+            await completeNrmFormPart1('adult', true);
             await completeNrmFormPart2();
         } catch (err) {
             throw new Error(err);
@@ -257,8 +297,17 @@ describe.only('User path(s)', () => {
     it('User path - Child', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1('child');
+            await completeNrmFormPart1('child', true);
             await completeNrmFormPart2();
+        } catch (err) {
+            throw new Error(err);
+        }
+    });
+
+    it('User path - Duty to Notify', async() => {
+        try {
+            await verifyUser();
+            await completeNrmFormPart1('adult', false);
         } catch (err) {
             throw new Error(err);
         }

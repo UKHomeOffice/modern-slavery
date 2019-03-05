@@ -330,6 +330,107 @@ module.exports = {
       child: 'partials/pv-want-to-submit-nrm-no'
     }]
   },
+  'refuse-nrm': {
+    mixin: 'textarea',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 3
+    }]
+  },
+  'refuse-nrm-co-operate-with-police': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'refuse-nrm-pv-name-first-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'refuse-nrm-pv-name-last-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'refuse-nrm-pv-name-nickname': {
+    mixin: 'input-text',
+  },
+  'refuse-nrm-pv-contact-details': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'refuse-nrm-pv-contact-details-email-input-fieldset',
+      child: 'partials/refuse-nrm-pv-contact-details-email-input'
+    }, {
+      value: 'post',
+      toggle: 'refuse-nrm-pv-contact-details-post-fieldset',
+      child: 'partials/refuse-nrm-pv-contact-details-post'
+    }]
+  },
+  'refuse-nrm-pv-contact-details-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-email-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'email',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-street': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-town': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-postcode': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-post-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
   'does-pv-need-support': {
     mixin: 'radio-group',
     validate: 'required',
