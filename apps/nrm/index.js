@@ -106,6 +106,11 @@ module.exports = {
       next: '/pv-name-that-requires-support'
     },
     '/pv-name-that-requires-support': {
+      fields: [
+        'pv-name-that-requires-support-first-name',
+        'pv-name-that-requires-support-last-name',
+        'pv-name-that-requires-support-nickname',
+      ],
       next: '/pv-dob'
     },
     '/pv-dob': {

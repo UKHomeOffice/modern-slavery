@@ -24,6 +24,8 @@ const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
 const PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION = '#reported-to-police-yes';
 const REFER_CASE_TO_NRM_YES_OPTION = '#pv-want-to-submit-nrm-yes';
 const DOES_PV_NEED_SUPPORT_NO_OPTION = '#does-pv-need-support-no';
+const PV_NAME_REQUIRING_SUPPORT_FIRST_NAME = '#pv-name-that-requires-support-first-name';
+const PV_NAME_REQUIRING_SUPPORT_LAST_NAME = '#pv-name-that-requires-support-last-name';
 
 /**
  * Get the test file path
@@ -63,4 +65,6 @@ module.exports = {
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
     DOES_PV_NEED_SUPPORT_NO_OPTION,
+    PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
+    PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
 };

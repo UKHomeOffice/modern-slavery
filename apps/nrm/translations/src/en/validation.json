@@ -38,6 +38,12 @@
   "does-pv-need-support" : {
     "required": "You must select if support is required"
   },
+  "pv-name-that-requires-support-first-name" : {
+    "required": "You must enter the potential victim's first name"
+  },
+  "pv-name-that-requires-support-last-name" : {
+    "required": "You must enter the potential victim's last name"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

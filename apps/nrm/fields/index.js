@@ -319,6 +319,17 @@ module.exports = {
       'no'
     ]
   },
+  'pv-name-that-requires-support-first-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'pv-name-that-requires-support-last-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'pv-name-that-requires-support-nickname': {
+    mixin: 'input-text',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

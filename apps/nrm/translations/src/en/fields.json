@@ -214,6 +214,15 @@
       }
     }
   },
+  "pv-name-that-requires-support-first-name": {
+    "label": "First name"
+  },
+  "pv-name-that-requires-support-last-name": {
+    "label": "Last name"
+  },
+  "pv-name-that-requires-support-nickname": {
+    "label": "Nickname or name used during exploitation"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
