@@ -7,7 +7,7 @@ module.exports = {
   generate: async(url, destination, tempName) => {
     try {
       const file = `${destination}/${tempName}`;
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({ args: ['--no-sandbox']});
       const page = await browser.newPage();
 
       // let's try to pass in our template
