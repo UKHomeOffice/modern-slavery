@@ -19,13 +19,6 @@ pipeline:
     when:
       event: [push, pull_request]
 
-  build_app_pr:
-    image: quay.io/ukhomeofficedigital/drone-docker
-    commands:
-      - docker build -t app-$${DRONE_COMMIT_SHA} .
-    when:
-      event: pull_request
-
   build_app:
     image: quay.io/ukhomeofficedigital/drone-docker
     commands:
