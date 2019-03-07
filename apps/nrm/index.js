@@ -101,6 +101,12 @@ module.exports = {
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
       ],
+      forks: [{
+        target: '/pv-name-that-requires-support',
+        condition: (req) => {
+          return (req.sessionModel.get('pv-under-age')) !== 'no';
+        }
+      }],
       next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {
