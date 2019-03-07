@@ -58,6 +58,10 @@ describe.only('User path(s)', () => {
 
         const initialUrl = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
 
+        /* Clear browser cookies before start of each test.
+        This so we do not hit the invalid token page when running
+        subsequent tests */
+        await page._client.send('Network.clearBrowserCookies');
         await page.goto(initialUrl);
     });
 
