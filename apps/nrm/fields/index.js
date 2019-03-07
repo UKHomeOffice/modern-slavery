@@ -369,6 +369,23 @@ module.exports = {
       field: 'does-pv-have-children',
     }
   },
+  'pv-nationality': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.pv-nationality.options.null'
+    }].concat(countries)
+  },
+  'pv-nationality-second': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.pv-nationality-second.options.null'
+    }].concat(countries)
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

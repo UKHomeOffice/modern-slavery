@@ -126,6 +126,7 @@ module.exports = {
       next: '/pv-nationality'
     },
     '/pv-nationality': {
+      fields: ['pv-nationality', 'pv-nationality-second'],
       next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
