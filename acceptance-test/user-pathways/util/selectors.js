@@ -27,6 +27,7 @@ const DOES_PV_NEED_SUPPORT_NO_OPTION = '#does-pv-need-support-no';
 const PV_NAME_REQUIRING_SUPPORT_FIRST_NAME = '#pv-name-that-requires-support-first-name';
 const PV_NAME_REQUIRING_SUPPORT_LAST_NAME = '#pv-name-that-requires-support-last-name';
 const PV_GENDER_MALE_OPTION = '#pv-gender-male';
+const DOES_PV_HAVE_CHILDREN_NO_OPTION = '#does-pv-have-children-no';
 
 /**
  * Get the test file path
@@ -69,4 +70,5 @@ module.exports = {
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
     PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
     PV_GENDER_MALE_OPTION,
+    DOES_PV_HAVE_CHILDREN_NO_OPTION,
 };
