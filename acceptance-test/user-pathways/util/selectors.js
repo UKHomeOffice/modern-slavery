@@ -23,7 +23,7 @@ const WHO_EXPLOITED_PV = '#who-exploited-pv';
 const ANY_OTHER_PVS_NO_OPTION = '#any-other-pvs-no';
 const PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION = '#reported-to-police-yes';
 const REFER_CASE_TO_NRM_YES_OPTION = '#pv-want-to-submit-nrm-yes';
-const DOES_PV_NEED_SUPPORT_NO_OPTION = '#does-pv-need-support-no';
+const DOES_PV_NEED_SUPPORT_YES_OPTION = '#does-pv-need-support-yes';
 const PV_NAME_REQUIRING_SUPPORT_FIRST_NAME = '#pv-name-that-requires-support-first-name';
 const PV_NAME_REQUIRING_SUPPORT_LAST_NAME = '#pv-name-that-requires-support-last-name';
 const PV_GENDER_MALE_OPTION = '#pv-gender-male';
@@ -90,7 +90,7 @@ module.exports = {
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
-    DOES_PV_NEED_SUPPORT_NO_OPTION,
+    DOES_PV_NEED_SUPPORT_YES_OPTION,
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
     PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
     PV_GENDER_MALE_OPTION,
