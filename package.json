@@ -7,7 +7,9 @@
     "test:unit": "_mocha",
     "lint": "eslint .",
     "build": "hof-build",
-    "postinstall": "npm run build",
+    "watch:sass": "nodemon -e scss -x 'npm run sass'",
+    "sass": "npm-sass ./assets/scss/pdf.scss > ./public/css/pdf.css",
+    "postinstall": "npm run build && npm run sass",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways"
