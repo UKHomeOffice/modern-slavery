@@ -118,6 +118,7 @@ module.exports = {
       next: '/pv-gender'
     },
     '/pv-gender': {
+      fields: ['pv-gender'],
       next: '/does-pv-have-children'
     },
     '/does-pv-have-children': {

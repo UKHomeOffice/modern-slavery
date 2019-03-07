@@ -335,6 +335,18 @@ module.exports = {
     labelClassName: 'visuallyhidden',
     validate: ['date', 'before', {type: 'after', arguments: '1900-01-01'}],
   }),
+  'pv-gender': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'female',
+      'male',
+      'unknown'
+    ]
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

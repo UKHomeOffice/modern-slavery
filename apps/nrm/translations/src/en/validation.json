@@ -49,6 +49,9 @@
     "before": "Date cannot be in the future",
     "after": "This date appears to be too far in the past"
   },
+  "pv-gender" : {
+    "required": "You must select the potential victim's gender"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
