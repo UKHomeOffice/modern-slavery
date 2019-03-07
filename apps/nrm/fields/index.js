@@ -4,6 +4,7 @@ const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
 const countries = require('hof-util-countries')();
 const ukPoliceForces = require('ms-uk-police-forces');
+const dateComponent = require('hof-component-date');
 
 module.exports = {
   'fr-location': {
@@ -330,6 +331,10 @@ module.exports = {
   'pv-name-that-requires-support-nickname': {
     mixin: 'input-text',
   },
+  'pv-dob': dateComponent('pv-dob', {
+    labelClassName: 'visuallyhidden',
+    validate: ['date', 'before', {type: 'after', arguments: '1900-01-01'}],
+  }),
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
