@@ -281,6 +281,21 @@
   "pv-interpreter-requirements-language": {
     "label": "Language"
   },
+  "pv-other-help-with-communication": {
+    "legend": "Do they need an interpreter?",
+    "hint": "For example, a hearing aid or a sign language interpreter.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-other-help-with-communication-aid": {
+    "label": "Enter communication aid"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

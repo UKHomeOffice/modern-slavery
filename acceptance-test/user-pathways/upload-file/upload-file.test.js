@@ -31,6 +31,7 @@ const {
     DOES_PV_HAVE_CHILDREN_NO_OPTION,
     PV_NATIONALITY,
     INTERPRETER_NO_OPTION,
+    COMMUNICATION_AID_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -164,8 +165,10 @@ describe('Upload File(s)', () => {
         // pv-interpreter-requirements
         await clickSelector(page, INTERPRETER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // pv-other-help-with-communication
+        await clickSelector(page, COMMUNICATION_AID_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);

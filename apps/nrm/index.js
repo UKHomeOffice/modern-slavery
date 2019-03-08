@@ -134,6 +134,7 @@ module.exports = {
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {
+      fields: ['pv-other-help-with-communication', 'pv-other-help-with-communication-aid'],
       next: '/pv-ho-reference'
     },
     '/pv-ho-reference': {
