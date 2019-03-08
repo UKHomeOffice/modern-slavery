@@ -194,6 +194,12 @@ module.exports = {
     },
     '/pv-ho-reference': {
       fields: ['pv-ho-reference', 'pv-ho-reference-type'],
+      forks: [{
+        target: '/fr-details',
+        condition: (req) => {
+          return (req.sessionModel.get('pv-under-age')) !== 'no';
+        }
+      }],
       next: '/pv-contact-details'
     },
     '/pv-contact-details': {

@@ -226,8 +226,11 @@ describe.only('User path(s)', () => {
      * the function is excuted within the browser and cannot recognise any
      * variables passed to it execept those that exist within the browser.
      *
+     *  @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
+     *
+     * @returns {Promise}
      */
-    async function completeNrmFormPart2() {
+    async function completeNrmFormPart2(typeOfPV) {
         // pv-name-that-requires-support
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
@@ -260,20 +263,24 @@ describe.only('User path(s)', () => {
         // pv-ho-reference
         await clickSelector(page, HO_REFERENCE_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-contact-details
-        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-        await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
-        await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-            element.value = 'paul.shortlands@pv.com';
-        });
-        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
-        // pv-phone-number
-        await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
-        // co-operate-with-police
-        await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
+
+        if (typeOfPV === 'adult') {
+            // pv-contact-details
+            await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+            await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
+            await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+                element.value = 'paul.shortlands@pv.com';
+            });
+            await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // pv-phone-number
+            await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+            // co-operate-with-police
+            await clickSelector(page, POLICE_CONTACT_YES_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+        }
+
         // fr-details
         await page.waitForSelector(FR_DETAILS_NAME_INPUT);
         await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
@@ -300,7 +307,7 @@ describe.only('User path(s)', () => {
         try {
             await verifyUser();
             await completeNrmFormPart1('adult', true);
-            await completeNrmFormPart2();
+            await completeNrmFormPart2('adult');
         } catch (err) {
             throw new Error(err);
         }
@@ -310,7 +317,7 @@ describe.only('User path(s)', () => {
         try {
             await verifyUser();
             await completeNrmFormPart1('child', true);
-            await completeNrmFormPart2();
+            await completeNrmFormPart2('child');
         } catch (err) {
             throw new Error(err);
         }
