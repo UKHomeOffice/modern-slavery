@@ -143,7 +143,7 @@ describe.only('User path(s)', () => {
                 element.value = 'Local Authority A';
             });
             await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
-                element.value = '0000000000';
+                element.value = '020878546453';
             });
             await page.$eval(LOCAL_AUTHORITY_EMAIL, (element) => {
                 element.value = 'test@authority.org';
@@ -179,11 +179,14 @@ describe.only('User path(s)', () => {
         await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
 
-        if (caseReferred) {
+        if (caseReferred && typeOfPV === 'adult') {
             // pv-want-to-submit-nrm
             await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
-        } else {
+            // does-pv-need-support
+            await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
+        } else if (!caseReferred && typeOfPV === 'adult') {
             // pv-want-to-submit-nrm
             await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
@@ -205,7 +208,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
             await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
             await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-                element.value = 'Test@test.com';
+                element.value = 'robert.maxwell@pvrefuse.com';
             });
             await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
@@ -225,9 +228,6 @@ describe.only('User path(s)', () => {
      *
      */
     async function completeNrmFormPart2() {
-        // does-pv-need-support
-        await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
         // pv-name-that-requires-support
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
@@ -289,7 +289,7 @@ describe.only('User path(s)', () => {
         // fr-alternative-contact
         await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
         await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
-            element.value = 'Test@test.com';
+            element.value = 'jack.smith@police.com';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // summary page
@@ -316,7 +316,7 @@ describe.only('User path(s)', () => {
         }
     });
 
-    it('User path - Duty to Notify', async() => {
+    it('User path - Duty to Notify (Adult)', async() => {
         try {
             await verifyUser();
             await completeNrmFormPart1('adult', false);
