@@ -40,6 +40,12 @@ module.exports = {
       next: '/pv-under-age-at-time-of-exploitation',
     },
     '/local-authority-contacted-about-child': {
+      fields: [
+        'local-authority-contacted-about-child-local-authority-name',
+        'local-authority-contacted-about-child-local-authority-phone',
+        'local-authority-contacted-about-child-local-authority-email',
+        'local-authority-contacted-about-child-local-authority-contact',
+      ],
       next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {

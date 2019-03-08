@@ -41,6 +41,10 @@ const FR_DETAILS_NAME_INPUT = '#fr-details-name';
 const FR_DETAILS_ROLE_INPUT = '#fr-details-role';
 const FR_DETAILS_PHONE_INPUT = '#fr-details-phone';
 const FR_ALTERNATE_CONTACT_EMAIL_INPUT = '#fr-alternative-contact';
+const PV_UNDER_AGE_YES_OPTION = '#pv-under-age-yes';
+const LOCAL_AUTHORITY_NAME = '#local-authority-contacted-about-child-local-authority-name';
+const LOCAL_AUTHORITY_PHONE = '#local-authority-contacted-about-child-local-authority-phone';
+const LOCAL_AUTHORITY_EMAIL = '#local-authority-contacted-about-child-local-authority-email';
 
 /**
  * Get the test file path
@@ -97,4 +101,8 @@ module.exports = {
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
+    PV_UNDER_AGE_YES_OPTION,
+    LOCAL_AUTHORITY_NAME,
+    LOCAL_AUTHORITY_PHONE,
+    LOCAL_AUTHORITY_EMAIL,
 };
