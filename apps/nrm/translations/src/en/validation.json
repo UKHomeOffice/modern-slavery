@@ -55,9 +55,6 @@
   "does-pv-have-children" : {
     "required": "You must select an option"
   },
-  "does-pv-have-children-yes-amount" : {
-    "numeric": "You must only enter numbers"
-  },
   "pv-nationality" : {
     "required": "You must select the potential victim's nationality"
   },
@@ -84,6 +81,9 @@
     "required": "Make sure it is safe to contact the potential victim at this addresss."
   },
   "pv-phone-number" : {
+    "required": "You must select an option"
+  },
+  "co-operate-with-police" : {
     "required": "You must select an option"
   },
   "supporting-document-upload": {

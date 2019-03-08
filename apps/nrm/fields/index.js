@@ -363,7 +363,6 @@ module.exports = {
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
-    validate: 'numeric',
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
@@ -532,6 +531,17 @@ module.exports = {
   },
   'pv-phone-number-yes': {
     mixin: 'input-text'
+  },
+  'co-operate-with-police': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
   },
   'supporting-document-upload': {
     mixin: 'input-file',

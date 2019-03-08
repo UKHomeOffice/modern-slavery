@@ -159,6 +159,7 @@ module.exports = {
       next: '/co-operate-with-police'
     },
     '/co-operate-with-police': {
+      fields: ['co-operate-with-police'],
       next: '/supporting-documents-add'
     },
     '/supporting-documents-add': {
