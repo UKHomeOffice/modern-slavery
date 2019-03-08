@@ -77,5 +77,4 @@ module.exports = {
     PV_NATIONALITY,
     INTERPRETER_NO_OPTION,
     COMMUNICATION_AID_NO_OPTION,
-
 };
