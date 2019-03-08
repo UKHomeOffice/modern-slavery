@@ -160,7 +160,7 @@ module.exports = {
     },
     '/co-operate-with-police': {
       fields: ['co-operate-with-police'],
-      next: '/supporting-documents-add'
+      next: '/fr-details'
     },
     '/supporting-documents-add': {
       fields: [
@@ -208,6 +208,7 @@ module.exports = {
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {
+      fields: ['fr-alternative-contact'],
       next: '/confirm'
     },
     '/confirm': {

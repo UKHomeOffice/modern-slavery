@@ -40,6 +40,7 @@ const POLICE_CONTACT_YES_OPTION = '#co-operate-with-police-yes';
 const FR_DETAILS_NAME_INPUT = '#fr-details-name';
 const FR_DETAILS_ROLE_INPUT = '#fr-details-role';
 const FR_DETAILS_PHONE_INPUT = '#fr-details-phone';
+const FR_ALTERNATE_CONTACT_EMAIL_INPUT = '#fr-alternative-contact';
 
 /**
  * Get the test file path
@@ -95,4 +96,5 @@ module.exports = {
     FR_DETAILS_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
+    FR_ALTERNATE_CONTACT_EMAIL_INPUT,
 };

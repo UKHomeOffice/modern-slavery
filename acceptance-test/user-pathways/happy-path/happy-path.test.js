@@ -6,7 +6,6 @@ const { clickSelector, navigateTo } = pageActions;
 
 const {
     CONTINUE_BUTTON,
-    UPLOAD_DOCUMENT_PAGE_2_NO_OPTION,
     EMAIL_INPUT,
     ORGANISATION_INPUT,
     WHAT_HAPPENED_INPUT,
@@ -36,6 +35,7 @@ const {
     FR_DETAILS_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
+    FR_ALTERNATE_CONTACT_EMAIL_INPUT,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -203,9 +203,6 @@ describe.only('User path(s)', () => {
         // co-operate-with-police
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // supporting-documents-add
-        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
-        await clickSelector(page, CONTINUE_BUTTON);
         // fr-details
         await page.waitForSelector(FR_DETAILS_NAME_INPUT);
         await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
@@ -219,6 +216,10 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-alternative-contact
+        await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
+        await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
+            element.value = 'Test@test.com';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
         // summary page
         await clickSelector(page, CONTINUE_BUTTON);
