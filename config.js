@@ -8,6 +8,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   useMocks: useMocks,
+  hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   redis: {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'
@@ -32,7 +33,7 @@ module.exports = {
     templatePDF: '0ff859d5-4991-4d73-99ad-2ada9048a927'
   },
   pdf: {
-    template: './apps/pdf/views/pdf.html',
+    url: 'http://localhost:8081/pdf/pdf',
     // problems with creating temp folder so use images folder
     tempLocation: 'public/images'
   }
