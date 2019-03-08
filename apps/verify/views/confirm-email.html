@@ -3,7 +3,6 @@
     <div id="confirm-email-group" class="form-group{{#compound}} form-group-compound{{/compound}}{{#formGroupClassName}} {{formGroupClassName}}{{/formGroupClassName}}{{^date}}{{#error}} validation-error{{/error}}{{/date}}">
       <label for="confirm-email" class="{{labelClassName}}">
           {{{label}}}
-
           {{^date}}{{#error}}<span class="error-message">{{error.message}}</span>{{/error}}{{/date}}
       </label>
       <span class="govuk-hint">
