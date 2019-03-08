@@ -45,6 +45,13 @@ const PV_UNDER_AGE_YES_OPTION = '#pv-under-age-yes';
 const LOCAL_AUTHORITY_NAME = '#local-authority-contacted-about-child-local-authority-name';
 const LOCAL_AUTHORITY_PHONE = '#local-authority-contacted-about-child-local-authority-phone';
 const LOCAL_AUTHORITY_EMAIL = '#local-authority-contacted-about-child-local-authority-email';
+const REFER_CASE_TO_NRM_NO_OPTION = '#pv-want-to-submit-nrm-no';
+const REFUSE_NRM_POLICE_CONTACT_YES_OPTION = '#refuse-nrm-co-operate-with-police-yes';
+const REFUSE_NRM_PV_NAME_FIRST_NAME = '#refuse-nrm-pv-name-first-name';
+const REFUSE_NRM_PV_NAME_LAST_NAME = '#refuse-nrm-pv-name-last-name';
+const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION = '#refuse-nrm-pv-contact-details-email';
+const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT = '#refuse-nrm-pv-contact-details-email-input';
+const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION = '#refuse-nrm-pv-contact-details-email-check';
 
 /**
  * Get the test file path
@@ -105,4 +112,11 @@ module.exports = {
     LOCAL_AUTHORITY_NAME,
     LOCAL_AUTHORITY_PHONE,
     LOCAL_AUTHORITY_EMAIL,
+    REFER_CASE_TO_NRM_NO_OPTION,
+    REFUSE_NRM_POLICE_CONTACT_YES_OPTION,
+    REFUSE_NRM_PV_NAME_FIRST_NAME,
+    REFUSE_NRM_PV_NAME_LAST_NAME,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
+    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
 };

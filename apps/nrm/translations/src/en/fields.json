@@ -218,6 +218,63 @@
       }
     }
   },
+  "refuse-nrm": {
+    "label": "Why don’t they want thier case referred? (Optional)",
+    "hint" : "Briefly explain your reasons"
+  },
+  "refuse-nrm-co-operate-with-police": {
+    "legend": "Can the police contact them about their case?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "refuse-nrm-pv-name-first-name": {
+    "label": "First name"
+  },
+  "refuse-nrm-pv-name-last-name": {
+    "label": "Last name"
+  },
+  "refuse-nrm-pv-name-nickname": {
+    "label": "Nickname or name used during exploitation"
+  },
+  "refuse-nrm-pv-contact-details": {
+    "legend": "How should we notify them of our decision?",
+    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "refuse-nrm-pv-contact-details-email-input": {
+    "label": "Email address"
+  },
+  "refuse-nrm-pv-contact-details-email-check": {
+    "label": "It is safe to write to them here"
+  },
+  "refuse-nrm-pv-contact-details-street": {
+    "label": "Building and street"
+  },
+  "refuse-nrm-pv-contact-details-town": {
+    "label": "Town or city"
+  },
+  "refuse-nrm-pv-contact-details-county": {
+    "label": "County"
+  },
+  "refuse-nrm-pv-contact-details-postcode": {
+    "label": "Postcode"
+  },
+  "refuse-nrm-pv-contact-details-post-check": {
+    "label": "It is safe to write to them here"
+  },
   "does-pv-need-support": {
     "legend": "Do they need support?",
     "options": {

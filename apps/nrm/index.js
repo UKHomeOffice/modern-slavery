@@ -105,7 +105,50 @@ module.exports = {
     },
     '/pv-want-to-submit-nrm': {
       fields: ['pv-want-to-submit-nrm'],
+      forks: [{
+        target: '/refuse-nrm',
+        condition: {
+          field: 'pv-want-to-submit-nrm',
+          value: 'no'
+        }
+      }],
       next: '/does-pv-need-support'
+    },
+    '/refuse-nrm': {
+      fields: ['refuse-nrm'],
+      next: '/refuse-nrm-co-operate-with-police'
+    },
+    '/refuse-nrm-co-operate-with-police': {
+      fields: ['refuse-nrm-co-operate-with-police'],
+      forks: [{
+        target: '/confirm',
+        condition: {
+          field: 'refuse-nrm-co-operate-with-police',
+          value: 'no'
+        }
+      }],
+      next: '/refuse-nrm-pv-name'
+    },
+    '/refuse-nrm-pv-name': {
+      fields: [
+        'refuse-nrm-pv-name-first-name',
+        'refuse-nrm-pv-name-last-name',
+        'refuse-nrm-pv-name-nickname',
+      ],
+      next: '/refuse-nrm-pv-contact-details'
+    },
+    '/refuse-nrm-pv-contact-details': {
+      fields: [
+        'refuse-nrm-pv-contact-details',
+        'refuse-nrm-pv-contact-details-email-input',
+        'refuse-nrm-pv-contact-details-email-check',
+        'refuse-nrm-pv-contact-details-street',
+        'refuse-nrm-pv-contact-details-town',
+        'refuse-nrm-pv-contact-details-county',
+        'refuse-nrm-pv-contact-details-postcode',
+        'refuse-nrm-pv-contact-details-post-check',
+      ],
+      next: '/confirm'
     },
     '/does-pv-need-support': {
       fields: ['does-pv-need-support'],
