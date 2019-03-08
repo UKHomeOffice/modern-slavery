@@ -36,6 +36,7 @@ const {
     PV_CONTACT_DETAILS_EMAIL_OPTION,
     PV_CONTACT_DETAILS_EMAIL_INPUT,
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
+    PV_PHONE_NUMBER_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -183,8 +184,10 @@ describe('Upload File(s)', () => {
         });
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // pv-phone-number
+        await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // co-operate-with-police
         await clickSelector(page, CONTINUE_BUTTON);
         // supporting-documents-add
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);

@@ -516,6 +516,23 @@ module.exports = {
       'no'
     ]
   },
+  'pv-phone-number': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-phone-number-yes-fieldset',
+      child: 'partials/pv-phone-number-yes'
+     }, {
+      value: 'no',
+    }]
+  },
+  'pv-phone-number-yes': {
+    mixin: 'input-text'
+  },
   'supporting-document-upload': {
     mixin: 'input-file',
     validate: 'required'
