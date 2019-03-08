@@ -363,7 +363,6 @@ module.exports = {
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
-    validate: 'numeric',
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
