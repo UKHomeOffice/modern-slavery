@@ -591,8 +591,7 @@ module.exports = {
     validate: 'required'
   },
   'fr-details-phone': {
-    mixin: 'input-text',
-    validate: ['required', 'numeric']
+    mixin: 'input-text'
   },
   'fr-alternative-contact': {
     mixin: 'input-text',

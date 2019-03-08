@@ -12,8 +12,7 @@
     "required": "You must enter the local authority name"
   },
   "local-authority-contacted-about-child-local-authority-phone": {
-    "required": "You must enter a phone number",
-    "numeric": "You must only enter numbers"
+    "required": "You must enter a phone number"
   },
   "local-authority-contacted-about-child-local-authority-email": {
     "required": "You must enter a valid email address",
