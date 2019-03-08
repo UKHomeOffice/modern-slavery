@@ -311,6 +311,39 @@
   "pv-ho-reference-type": {
     "label": "Enter type of reference, reference number or both (if known)"
   },
+  "pv-contact-details": {
+    "legend": "How should we notify them of our decision?",
+    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "pv-contact-details-email-input": {
+    "label": "Email address"
+  },
+  "pv-contact-details-email-check": {
+    "label": "It is safe to write to them here"
+  },
+  "pv-contact-details-street": {
+    "label": "Building and street"
+  },
+  "pv-contact-details-town": {
+    "label": "Town or city"
+  },
+  "pv-contact-details-county": {
+    "label": "County"
+  },
+  "pv-contact-details-postcode": {
+    "label": "Postcode"
+  },
+  "pv-contact-details-post-check": {
+    "label": "It is safe to write to them here"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

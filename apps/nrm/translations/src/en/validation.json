@@ -70,6 +70,19 @@
   "pv-ho-reference" : {
     "required": "You must select an option"
   },
+  "pv-contact-details" : {
+    "required": "You must select one or more of the contact methods listed"
+  },
+  "pv-contact-details-email-input" : {
+    "required": "You must enter an email address",
+    "email": "You must enter a valid email address"
+  },
+  "pv-contact-details-email-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this email addresss."
+  },
+  "pv-contact-details-post-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this addresss."
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

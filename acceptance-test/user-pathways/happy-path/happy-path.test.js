@@ -28,6 +28,9 @@ const {
     INTERPRETER_NO_OPTION,
     COMMUNICATION_AID_NO_OPTION,
     HO_REFERENCE_NO_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_INPUT,
+    PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -181,8 +184,15 @@ describe.only('User path(s)', () => {
         // pv-ho-reference
         await clickSelector(page, HO_REFERENCE_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // pv-contact-details
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+        await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+            element.value = 'Test@test.com';
+        });
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         // supporting-documents-add
