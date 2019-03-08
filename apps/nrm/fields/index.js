@@ -199,6 +199,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
+    validation: 'undefined',
     legend: {
       className: 'visuallyhidden'
     }
