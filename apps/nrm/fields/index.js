@@ -52,7 +52,7 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
-    validate: ['required', 'numeric']
+    validate: ['required']
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
