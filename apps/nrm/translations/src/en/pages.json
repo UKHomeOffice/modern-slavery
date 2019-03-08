@@ -96,7 +96,10 @@
     "list-header": "Documents added"
   },
   "fr-details": {
-    "header": "Placeholder page"
+    "header": "What are your contact details?",
+    "read-only-field-1-label": "Email",
+    "read-only-field-1-hint": "This is the address you gave at the start of the form.",
+    "read-only-field-1-placeholder": "FR EMAIL PLACEHOLDER"
   },
   "fr-alternative-contact": {
     "header": "Placeholder page"

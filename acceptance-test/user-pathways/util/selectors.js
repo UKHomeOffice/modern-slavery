@@ -37,6 +37,9 @@ const PV_CONTACT_DETAILS_EMAIL_INPUT = '#pv-contact-details-email-input';
 const PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION = '#pv-contact-details-email-check';
 const PV_PHONE_NUMBER_NO_OPTION = '#pv-phone-number-no';
 const POLICE_CONTACT_YES_OPTION = '#co-operate-with-police-yes';
+const FR_DETAILS_NAME_INPUT = '#fr-details-name';
+const FR_DETAILS_ROLE_INPUT = '#fr-details-role';
+const FR_DETAILS_PHONE_INPUT = '#fr-details-phone';
 
 /**
  * Get the test file path
@@ -89,4 +92,7 @@ module.exports = {
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
     POLICE_CONTACT_YES_OPTION,
+    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_ROLE_INPUT,
+    FR_DETAILS_PHONE_INPUT,
 };

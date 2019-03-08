@@ -561,4 +561,16 @@ module.exports = {
       'no'
     ]
   },
+  'fr-details-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-role': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-phone': {
+    mixin: 'input-text',
+    validate: ['required', 'numeric']
+  },
 };

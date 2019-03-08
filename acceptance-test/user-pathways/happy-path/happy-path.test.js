@@ -33,6 +33,9 @@ const {
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
     POLICE_CONTACT_YES_OPTION,
+    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_ROLE_INPUT,
+    FR_DETAILS_PHONE_INPUT,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -157,10 +160,10 @@ describe.only('User path(s)', () => {
         // pv-name-that-requires-support
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
-            element.value = 'Firstname';
+            element.value = 'Paul';
         });
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
-            element.value = 'Lastname';
+            element.value = 'Shortlands';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // pv-dob
@@ -190,7 +193,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
         await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
         await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-            element.value = 'Test@test.com';
+            element.value = 'paul.shortlands@pv.com';
         });
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -203,9 +206,21 @@ describe.only('User path(s)', () => {
         // supporting-documents-add
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the end
+        // fr-details
+        await page.waitForSelector(FR_DETAILS_NAME_INPUT);
+        await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
+            element.value = 'Jack Smith';
+        });
+        await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
+            element.value = 'Police Officer';
+        });
+        await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
+            element.value = '02086757436';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
+        // fr-alternative-contact
         await clickSelector(page, CONTINUE_BUTTON);
+        // summary page
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
