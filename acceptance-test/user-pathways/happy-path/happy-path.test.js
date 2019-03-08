@@ -55,6 +55,11 @@ let APP_CONTAINER_HOST;
 let browser;
 let page;
 
+/**
+ * .only method used to run only tests within this describe function
+ * block. This can be removed if we wish to incorporate other tests in external
+ * files
+ */
 describe.only('User path(s)', () => {
     beforeEach(async() => {
         let { browser: testBrowser, page: initialPage, hostIP } = await bootstrap.buildBrowser();
@@ -72,6 +77,9 @@ describe.only('User path(s)', () => {
         await page.goto(initialUrl);
     });
 
+    /**
+     * Close browser to end tests.
+     */
     after(async() => {
         await browser.close();
     });
@@ -223,10 +231,10 @@ describe.only('User path(s)', () => {
         // pv-name-that-requires-support
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
-            element.value = 'Firstname';
+            element.value = 'Paul';
         });
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
-            element.value = 'Lastname';
+            element.value = 'Shortlands';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // pv-dob
@@ -256,7 +264,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
         await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
         await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-            element.value = 'Test@test.com';
+            element.value = 'paul.shortlands@pv.com';
         });
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -269,13 +277,13 @@ describe.only('User path(s)', () => {
         // fr-details
         await page.waitForSelector(FR_DETAILS_NAME_INPUT);
         await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
-            element.value = 'Test';
+            element.value = 'Jack Smith';
         });
         await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
-            element.value = 'Test Role';
+            element.value = 'Police Officer';
         });
         await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
-            element.value = '00000000000';
+            element.value = '02086757436';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // fr-alternative-contact
