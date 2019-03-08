@@ -52,6 +52,7 @@ const REFUSE_NRM_PV_NAME_LAST_NAME = '#refuse-nrm-pv-name-last-name';
 const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION = '#refuse-nrm-pv-contact-details-email';
 const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT = '#refuse-nrm-pv-contact-details-email-input';
 const REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION = '#refuse-nrm-pv-contact-details-email-check';
+const HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION = '#types-of-exploitation-forced-to-work';
 
 /**
  * Get the test file path
@@ -119,4 +120,5 @@ module.exports = {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
+    HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
 };

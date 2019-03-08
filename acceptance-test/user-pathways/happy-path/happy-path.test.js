@@ -47,6 +47,7 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
+    HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -163,6 +164,7 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         // types-of-exploitation
+        await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         // any-other-pvs
         await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
