@@ -3,7 +3,7 @@
 const VIEWPORT = { width: 1920, height: 1080 };
 
 /**
- * Click on a page element
+ * Click on a page element via selector
  *
  * @param {Promise<Page>} page - page instance
  * @param {string} selector - selector for element on the page
