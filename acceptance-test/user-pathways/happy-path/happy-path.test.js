@@ -34,6 +34,11 @@ let APP_CONTAINER_HOST;
 let browser;
 let page;
 
+/**
+ * .only method used to run only tests within this describe function
+ * block. This can be removed if we wish to incorporate other tests in external
+ * files
+ */
 describe.only('User path(s)', () => {
     beforeEach(async() => {
         let { browser: testBrowser, page: initialPage, hostIP } = await bootstrap.buildBrowser();
@@ -47,6 +52,9 @@ describe.only('User path(s)', () => {
         await page.goto(initialUrl);
     });
 
+    /**
+     * Close browser to end tests.
+     */
     after(async() => {
         await browser.close();
     });
