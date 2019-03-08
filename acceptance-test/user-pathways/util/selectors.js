@@ -29,6 +29,7 @@ const PV_NAME_REQUIRING_SUPPORT_LAST_NAME = '#pv-name-that-requires-support-last
 const PV_GENDER_MALE_OPTION = '#pv-gender-male';
 const DOES_PV_HAVE_CHILDREN_NO_OPTION = '#does-pv-have-children-no';
 const PV_NATIONALITY = '#pv-nationality';
+const INTERPRETER_NO_OPTION = '#pv-interpreter-requirements-no';
 
 /**
  * Get the test file path
@@ -73,4 +74,5 @@ module.exports = {
     PV_GENDER_MALE_OPTION,
     DOES_PV_HAVE_CHILDREN_NO_OPTION,
     PV_NATIONALITY,
+    INTERPRETER_NO_OPTION,
 };

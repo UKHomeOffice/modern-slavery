@@ -130,6 +130,7 @@ module.exports = {
       next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
+      fields: ['pv-interpreter-requirements', 'pv-interpreter-requirements-language'],
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {

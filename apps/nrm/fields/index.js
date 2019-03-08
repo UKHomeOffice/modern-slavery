@@ -386,6 +386,23 @@ module.exports = {
       label: 'fields.pv-nationality-second.options.null'
     }].concat(countries)
   },
+  'pv-interpreter-requirements': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-interpreter-requirements-language-fieldset',
+      child: 'partials/pv-interpreter-requirements-language'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-interpreter-requirements-language': {
+    mixin: 'input-text',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
