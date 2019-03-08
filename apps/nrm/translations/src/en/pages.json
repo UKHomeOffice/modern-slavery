@@ -108,7 +108,10 @@
     "list-header": "Documents added"
   },
   "fr-details": {
-    "header": "What are your contact details?"
+    "header": "What are your contact details?",
+    "read-only-field-1-label": "Email",
+    "read-only-field-1-hint": "This is the address you gave at the start of the form.",
+    "read-only-field-1-placeholder": "FR EMAIL PLACEHOLDER"
   },
   "fr-alternative-contact": {
     "header": "Who should we contact in your absence?"
