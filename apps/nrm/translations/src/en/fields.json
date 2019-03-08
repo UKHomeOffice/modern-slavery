@@ -296,6 +296,21 @@
   "pv-other-help-with-communication-aid": {
     "label": "Enter communication aid"
   },
+  "pv-ho-reference": {
+    "legend": "Do they have any Home Office references?",
+    "hint": "For example, a Home Office visa application or port reference",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-ho-reference-type": {
+    "label": "Enter type of reference, reference number or both (if known)"
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },

@@ -67,6 +67,9 @@
   "pv-other-help-with-communication" : {
     "required": "You must select an option"
   },
+  "pv-ho-reference" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"

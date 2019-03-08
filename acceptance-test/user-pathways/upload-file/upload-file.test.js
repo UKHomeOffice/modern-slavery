@@ -32,6 +32,7 @@ const {
     PV_NATIONALITY,
     INTERPRETER_NO_OPTION,
     COMMUNICATION_AID_NO_OPTION,
+    HO_REFERENCE_NO_OPTION,
 } = selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -168,8 +169,10 @@ describe('Upload File(s)', () => {
         // pv-other-help-with-communication
         await clickSelector(page, COMMUNICATION_AID_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // Run through the skeleton until we reach the upload page
+        // pv-ho-reference
+        await clickSelector(page, HO_REFERENCE_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        // Run through the skeleton until we reach the upload page
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);

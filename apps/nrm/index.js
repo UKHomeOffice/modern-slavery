@@ -138,6 +138,7 @@ module.exports = {
       next: '/pv-ho-reference'
     },
     '/pv-ho-reference': {
+      fields: ['pv-ho-reference', 'pv-ho-reference-type'],
       next: '/pv-contact-details'
     },
     '/pv-contact-details': {
