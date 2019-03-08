@@ -531,8 +531,7 @@ module.exports = {
     }]
   },
   'pv-phone-number-yes': {
-    mixin: 'input-text',
-    validate: 'numeric'
+    mixin: 'input-text'
   },
   'co-operate-with-police': {
     mixin: 'radio-group',
