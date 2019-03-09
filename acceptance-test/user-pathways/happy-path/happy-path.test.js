@@ -18,7 +18,7 @@ const {
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
-    DOES_PV_NEED_SUPPORT_NO_OPTION,
+    DOES_PV_NEED_SUPPORT_YES_OPTION,
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
     PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
     PV_GENDER_MALE_OPTION,
@@ -167,7 +167,7 @@ describe.only('User path(s)', () => {
         if (caseReferred && typeOfPV === 'adult') {
             await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
+            await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
         } else if (!caseReferred && typeOfPV === 'adult') {
             await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);

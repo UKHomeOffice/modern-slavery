@@ -24,7 +24,7 @@ const {
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
-    DOES_PV_NEED_SUPPORT_NO_OPTION,
+    DOES_PV_NEED_SUPPORT_YES_OPTION,
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
     PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
     PV_GENDER_MALE_OPTION,
@@ -132,7 +132,7 @@ describe('Upload File(s)', () => {
      * of the NRM form
      */
     async function completeNrmFormPart2() {
-        await clickSelector(page, DOES_PV_NEED_SUPPORT_NO_OPTION);
+        await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {

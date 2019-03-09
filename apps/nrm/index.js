@@ -213,6 +213,12 @@ module.exports = {
         'pv-contact-details-postcode',
         'pv-contact-details-post-check',
       ],
+      forks: [{
+        target: '/co-operate-with-police',
+        condition: (req) => {
+          return (req.sessionModel.get('does-pv-need-support')) === 'no';
+        }
+      }],
       next: '/pv-phone-number'
     },
     '/pv-phone-number': {
