@@ -1,6 +1,6 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
-const selectors = require('../util/selectors');
+const config = require('../../../config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, navigateTo } = pageActions;
 
@@ -47,7 +47,7 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
-} = selectors;
+} = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -87,6 +87,13 @@ describe.only('User path(s)', () => {
     /**
      * Run a sequence of actions to simulate verification of a user
      *
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
      * @returns {Promise}
      */
     async function verifyUser() {
@@ -106,10 +113,18 @@ describe.only('User path(s)', () => {
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
-     * page.$eval(param1, param2) has a limitation such that we cannot pass a
-     * variable to param2 (function in the second parameter). This is because
-     * the function is excuted within the browser and cannot recognise any
-     * variables passed to it execept those that exist within the browser.
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * The method "page.$eval(param1, param2)" has a limitation such that we
+     * cannot pass a variable to param2 (function in the second parameter).
+     * This is because the function is excuted within the browser and cannot
+     * recognise any variables passed to it execept those that exist within the
+     * browser.
      *
      * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
      * @param {bool} caseReferred - does the Potential Victim was their case
@@ -117,7 +132,7 @@ describe.only('User path(s)', () => {
      *
      * @returns {Promise}
      */
-    async function completeNrmFormPart1(typeOfPV, caseReferred) {
+    async function completeFormUptoX(typeOfPV, caseReferred) {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -198,16 +213,24 @@ describe.only('User path(s)', () => {
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
      *
-     * page.$eval(param1, param2) has a limitation such that we cannot pass a
-     * variable to param2 (function in the second parameter). This is because
-     * the function is excuted within the browser and cannot recognise any
-     * variables passed to it execept those that exist within the browser.
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * The method "page.$eval(param1, param2)" has a limitation such that we
+     * cannot pass a variable to param2 (function in the second parameter).
+     * This is because the function is excuted within the browser and cannot
+     * recognise any variables passed to it execept those that exist within the
+     * browser.
      *
      *  @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
      *
      * @returns {Promise}
      */
-    async function completeNrmFormPart2(typeOfPV) {
+    async function completeFormFromXtoY(typeOfPV) {
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
             element.value = 'Paul';
@@ -269,8 +292,8 @@ describe.only('User path(s)', () => {
     it('Happy path - Adult', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1('adult', true);
-            await completeNrmFormPart2('adult');
+            await completeFormUptoX('adult', true);
+            await completeFormFromXtoY('adult');
         } catch (err) {
             throw new Error(err);
         }
@@ -279,8 +302,8 @@ describe.only('User path(s)', () => {
     it('User path - Child', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1('child', true);
-            await completeNrmFormPart2('child');
+            await completeFormUptoX('child', true);
+            await completeFormFromXtoY('child');
         } catch (err) {
             throw new Error(err);
         }
@@ -289,7 +312,7 @@ describe.only('User path(s)', () => {
     it('User path - Duty to Notify (Adult)', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1('adult', false);
+            await completeFormUptoX('adult', false);
         } catch (err) {
             throw new Error(err);
         }

@@ -1,6 +1,7 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
-const selectors = require('../util/selectors');
+const path = require('path');
+const config = require('../../../config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, navigateTo, uploadFile } = pageActions;
 
@@ -12,7 +13,6 @@ const {
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
-    TEST_FILE_PATH,
     ORGANISATION_INPUT,
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
@@ -42,7 +42,22 @@ const {
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
-} = selectors;
+} = config.selectors;
+
+/**
+ * Get the test file path
+ *
+ * If the browser is on the local machine then get the file from the upload file
+ * directory otherwise get the file from the root of the container in which the
+ * browser is running
+ *.
+ * @returns {string} - The test file path
+ */
+const TEST_FILE_PATH = () => {
+    return !bootstrap.getTestEnvironmentOptions().isLocalTest ?
+    path.resolve('/test.png')
+    : path.resolve(__dirname, '../upload-file/images/test.png');
+};
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -75,6 +90,13 @@ describe('Upload File(s)', () => {
      /**
      * Run a sequence of actions to simulate verification of a user
      *
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
      * @returns {Promise}
      */
     async function verifyUser() {
@@ -94,9 +116,16 @@ describe('Upload File(s)', () => {
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
      * @returns {Promise}
      */
-    async function completeNrmFormPart1() {
+    async function completeFormUptoX() {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -130,8 +159,17 @@ describe('Upload File(s)', () => {
     /**
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
+     *
+     * The sequence of actions have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * @returns {Promise}
      */
-    async function completeNrmFormPart2() {
+    async function completeFormFromXtoY() {
         await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
@@ -200,8 +238,8 @@ describe('Upload File(s)', () => {
     it('upload 1 document', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1();
-            await completeNrmFormPart2();
+            await completeFormUptoX();
+            await completeFormFromXtoY();
         } catch (err) {
             throw new Error(err);
         }
