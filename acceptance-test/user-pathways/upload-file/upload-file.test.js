@@ -1,9 +1,11 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
-const selectors = require('../util/selectors');
+const path = require('path');
+const config = require('../../../config');
+const pageActions = require('../util/page-actions');
+const { clickSelector, navigateTo, uploadFile } = pageActions;
 
 const {
-    VIEWPORT,
     CONTINUE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION,
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT,
@@ -11,7 +13,6 @@ const {
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
-    TEST_FILE_PATH,
     ORGANISATION_INPUT,
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
@@ -22,29 +23,47 @@ const {
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
-} = selectors;
+    REFER_CASE_TO_NRM_YES_OPTION,
+    DOES_PV_NEED_SUPPORT_YES_OPTION,
+    PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
+    PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
+    PV_GENDER_MALE_OPTION,
+    DOES_PV_HAVE_CHILDREN_NO_OPTION,
+    PV_NATIONALITY,
+    INTERPRETER_NO_OPTION,
+    COMMUNICATION_AID_NO_OPTION,
+    HO_REFERENCE_NO_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_OPTION,
+    PV_CONTACT_DETAILS_EMAIL_INPUT,
+    PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
+    PV_PHONE_NUMBER_NO_OPTION,
+    POLICE_CONTACT_YES_OPTION,
+    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_ROLE_INPUT,
+    FR_DETAILS_PHONE_INPUT,
+    FR_ALTERNATE_CONTACT_EMAIL_INPUT,
+} = config.selectors;
+
+/**
+ * Get the test file path
+ *
+ * If the browser is on the local machine then get the file from the upload file
+ * directory otherwise get the file from the root of the container in which the
+ * browser is running
+ *.
+ * @returns {string} - The test file path
+ */
+const TEST_FILE_PATH = () => {
+    return !bootstrap.getTestEnvironmentOptions().isLocalTest ?
+    path.resolve('/test.png')
+    : path.resolve(__dirname, '../upload-file/images/test.png');
+};
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
 
 let browser;
 let page;
-let url;
-
-/**
- * Select the continue button a number of times specified within the
- * supplied parameters
- *
- * @param {number} loopCount - the number of time the loop should run
- *
- * @returns {void}
- */
-const clickContinueButton = async(loopCount) => {
-    for (let i = 0; i < loopCount; i++) {
-            await page.waitForSelector(CONTINUE_BUTTON);
-            await page.click(CONTINUE_BUTTON);
-    }
-};
 
 describe('Upload File(s)', () => {
     beforeEach(async() => {
@@ -55,9 +74,9 @@ describe('Upload File(s)', () => {
 
         APP_CONTAINER_HOST = hostIP;
 
-        url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
+        const initialUrl = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}`;
 
-        await page.goto(url);
+        await page.goto(initialUrl);
     });
 
     afterEach(async() => {
@@ -68,117 +87,152 @@ describe('Upload File(s)', () => {
         await browser.close();
     });
 
-    /**
-     * Navigate from Who do you work for? page
+     /**
+     * Run a sequence of actions to simulate verification of a user
      *
-     * @returns {void}
+     * @returns {Promise}
      */
-    async function whoDoYouWorkForPage() {
-        await page.waitForSelector(ORGANISATION_INPUT);
+    async function verifyUser() {
+        await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
         });
         await page.$eval(EMAIL_INPUT, (element) => {
             element.value = 'test.user@homeoffice.gov.uk';
         });
-        await clickContinueButton(1);
+        await clickSelector(page, CONTINUE_BUTTON);
+        // Bypass user clicking email link - Notify Key will not be set during test runs
+        await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
+    }
+
+    /**
+     * Run a sequence of actions to simulate the completion of the first half
+     * of the NRM form
+     *
+     * The sequence of actions  in the form have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * @returns {Promise}
+     */
+    async function completeForm1of2() {
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, LOCATION_ENGLAND_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
+            element.value = 'Test input regarding details of exploitation';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, EXPLOITED_IN_UK_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
+            element.value = 'Rutland';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(WHO_EXPLOITED_PV, (element) => {
+            element.value = 'Test details about exploiter(s)';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+    }
+
+    /**
+     * Run a sequence of actions to simulate the completion of the second half
+     * of the NRM form
+     *
+     * The sequence of actions  in the form have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * @returns {Promise}
+     */
+    async function completeForm2of2() {
+        await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
+        await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
+            element.value = 'Jack';
+        });
+        await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
+            element.value = 'Smith';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_GENDER_MALE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, DOES_PV_HAVE_CHILDREN_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(PV_NATIONALITY);
+        await page.$eval(PV_NATIONALITY, (element) => {
+            element.value = 'United Kingdom';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, INTERPRETER_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, COMMUNICATION_AID_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, HO_REFERENCE_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+        await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+            element.value = 'Test@test.com';
+        });
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, POLICE_CONTACT_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await uploadFile(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT, TEST_FILE_PATH());
+        await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
+            element.value = 'NRM Test File example';
+        });
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
+        await clickSelector(page, UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(FR_DETAILS_NAME_INPUT);
+        await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
+            element.value = 'Francis Drake';
+        });
+        await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
+            element.value = 'Police Officer';
+        });
+        await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
+            element.value = '020879865645';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
+        await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
+            element.value = 'francis.drake@police.com';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
     }
 
     it('upload 1 document', async() => {
         try {
-            // start
-            await clickContinueButton(1);
-
-            // who-do-you-work-for
-            await whoDoYouWorkForPage();
-
-            // Bypass user clicking email link - Notify Key will not be set during test runs
-            url = `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`;
-            await page.goto(url);
-
-            // Hit the url a second time since the first page resolves to an error
-            await page.goto(url);
-            await page.setViewport(VIEWPORT);
-
-            // Run through the skeleton until we reach the Where are you making this report? page
-            await clickContinueButton(1);
-
-            // fr-location
-            await page.waitForSelector(LOCATION_ENGLAND_OPTION);
-            await page.click(LOCATION_ENGLAND_OPTION);
-            await clickContinueButton(1);
-
-            // pv-under-age
-            await page.waitForSelector(PV_UNDER_AGE_NO_OPTION);
-            await page.click(PV_UNDER_AGE_NO_OPTION);
-            await clickContinueButton(1);
-
-            // pv-under-age-at-time-of-exploitation
-            await page.waitForSelector(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await page.click(PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-            await clickContinueButton(1);
-
-            // what-happened
-            await page.waitForSelector(WHAT_HAPPENED_INPUT);
-            await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
-                element.value = 'Test input regarding details of exploitation';
-            });
-            await clickContinueButton(1);
-
-            // where-exploitation-happened
-            await page.waitForSelector(EXPLOITED_IN_UK_OPTION);
-            await page.click(EXPLOITED_IN_UK_OPTION);
-            await clickContinueButton(1);
-
-            // current-pv-location
-            await page.waitForSelector(CURRENT_PV_LOCATION_UK_REGION);
-            await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-                element.value = 'Rutland';
-            });
-            await clickContinueButton(1);
-
-            // who-exploited-pv
-            await page.waitForSelector(WHO_EXPLOITED_PV);
-            await page.$eval(WHO_EXPLOITED_PV, (element) => {
-                element.value = 'Test details about exploiter(s)';
-            });
-            await clickContinueButton(1);
-
-            // types-of-exploitation
-            await clickContinueButton(1);
-
-            // any-other-pvs
-            await page.waitForSelector(ANY_OTHER_PVS_NO_OPTION);
-            await page.click(ANY_OTHER_PVS_NO_OPTION);
-            await clickContinueButton(1);
-
-            // reported-to-police
-            await page.waitForSelector(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await page.click(PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
-            await clickContinueButton(1);
-
-            // Run through the skeleton until we reach the upload page
-            await clickContinueButton(13);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
-            await page.click(CONTINUE_BUTTON);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
-            const input = await page.$(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT);
-            await input.uploadFile(TEST_FILE_PATH());
-
-            await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
-                element.value = 'NRM Test File example';
-            });
-            await page.click(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
-
-            await page.waitForSelector(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-            await page.click(UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
-
-            // Run through the skeleton until we reach the end
-            await clickContinueButton(4);
-
+            await verifyUser();
+            await completeForm1of2();
+            await completeForm2of2();
         } catch (err) {
             throw new Error(err);
         }

@@ -1,6 +1,17 @@
 {{<partials-page}}
   {{$page-content}}
-    {{> partials-what-happened-intro}}
+    <p class="govuk-body">{{#t}}fields.what-happened.paragraph-1{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>{{#t}}fields.what-happened.bullet-1{{/t}}</li>
+      <li>{{#t}}fields.what-happened.bullet-2{{/t}}</li>
+    </ul>
+    <br/>
+    <p class="govuk-body">{{#t}}fields.what-happened.paragraph-2{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>{{#t}}fields.what-happened.bullet-3{{/t}}</li>
+      <li>{{#t}}fields.what-happened.bullet-4{{/t}}</li>
+    </ul>
+    <br/>
     {{#renderField}}what-happened{{/renderField}}
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}

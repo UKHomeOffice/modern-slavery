@@ -4,6 +4,8 @@ const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
 const countries = require('hof-util-countries')();
 const ukPoliceForces = require('ms-uk-police-forces');
+const dateComponent = require('hof-component-date');
+const ukLocalAuthorities = require('ms-uk-local-authorities');
 
 module.exports = {
   'fr-location': {
@@ -28,16 +30,36 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'yes-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }, {
       value: 'no',
       toggle: 'no-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
-      child: 'partials/panel'
+      child: 'partials/pv-under-age-panel'
     }]
+  },
+  'local-authority-contacted-about-child-local-authority-name': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.local-authority-contacted-about-child.options.null'
+    }].concat(ukLocalAuthorities)
+  },
+  'local-authority-contacted-about-child-local-authority-phone': {
+    mixin: 'input-text',
+    validate: ['required']
+  },
+  'local-authority-contacted-about-child-local-authority-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email']
+  },
+  'local-authority-contacted-about-child-local-authority-contact': {
+    mixin: 'input-text',
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',
@@ -294,7 +316,345 @@ module.exports = {
       field: 'reported-to-police',
     }
   },
+  'pv-want-to-submit-nrm': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no',
+      toggle: 'pv-want-to-submit-nrm-no-fieldset',
+      child: 'partials/pv-want-to-submit-nrm-no'
+    }]
+  },
+  'refuse-nrm': {
+    mixin: 'textarea',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [{
+      attribute: 'rows',
+      value: 3
+    }]
+  },
+  'refuse-nrm-co-operate-with-police': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'refuse-nrm-pv-name-first-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'refuse-nrm-pv-name-last-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'refuse-nrm-pv-name-nickname': {
+    mixin: 'input-text',
+  },
+  'refuse-nrm-pv-contact-details': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'refuse-nrm-pv-contact-details-email-input-fieldset',
+      child: 'partials/refuse-nrm-pv-contact-details-email-input'
+    }, {
+      value: 'post',
+      toggle: 'refuse-nrm-pv-contact-details-post-fieldset',
+      child: 'partials/refuse-nrm-pv-contact-details-post'
+    }]
+  },
+  'refuse-nrm-pv-contact-details-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-email-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'email',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-street': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-town': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-postcode': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'refuse-nrm-pv-contact-details-post-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'refuse-nrm-pv-contact-details',
+    },
+  },
+  'does-pv-need-support': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'pv-name-that-requires-support-first-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'pv-name-that-requires-support-last-name': {
+    mixin: 'input-text',
+    validate: 'required',
+  },
+  'pv-name-that-requires-support-nickname': {
+    mixin: 'input-text',
+  },
+  'pv-dob': dateComponent('pv-dob', {
+    labelClassName: 'visuallyhidden',
+    validate: ['date', 'before', {type: 'after', arguments: '1900-01-01'}],
+  }),
+  'pv-gender': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'female',
+      'male',
+      'unknown'
+    ]
+  },
+  'does-pv-have-children': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'does-pv-have-children-yes-fieldset',
+      child: 'partials/does-pv-have-children-yes-amount'
+    }, {
+      value: 'no',
+    }]
+  },
+  'does-pv-have-children-yes-amount': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'yes',
+      field: 'does-pv-have-children',
+    }
+  },
+  'pv-nationality': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.pv-nationality.options.null'
+    }].concat(countries)
+  },
+  'pv-nationality-second': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.pv-nationality-second.options.null'
+    }].concat(countries)
+  },
+  'pv-interpreter-requirements': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-interpreter-requirements-language-fieldset',
+      child: 'partials/pv-interpreter-requirements-language'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-interpreter-requirements-language': {
+    mixin: 'input-text',
+  },
+  'pv-other-help-with-communication': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-other-help-with-communication-aid-fieldset',
+      child: 'partials/pv-other-help-with-communication-aid'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-other-help-with-communication-aid': {
+    mixin: 'input-text',
+  },
+  'pv-ho-reference': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-ho-reference-type-fieldset',
+      child: 'partials/pv-ho-reference-type'
+    }, {
+      value: 'no',
+    }]
+  },
+  'pv-ho-reference-type': {
+    mixin: 'input-text',
+  },
+  'pv-contact-details': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'pv-contact-details-email-input-fieldset',
+      child: 'partials/pv-contact-details-email-input'
+    }, {
+      value: 'post',
+      toggle: 'pv-contact-details-post-fieldset',
+      child: 'partials/pv-contact-details-post'
+    }]
+  },
+  'pv-contact-details-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-email-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'email',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-street': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-town': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-postcode': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
+  'pv-contact-details-post-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'pv-contact-details',
+    },
+  },
   'supporting-documents-add': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'pv-phone-number': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'pv-phone-number-yes-fieldset',
+      child: 'partials/pv-phone-number-yes'
+     }, {
+      value: 'no',
+    }]
+  },
+  'pv-phone-number-yes': {
+    mixin: 'input-text'
+  },
+  'co-operate-with-police': {
     mixin: 'radio-group',
     validate: 'required',
     legend: {
@@ -323,4 +683,19 @@ module.exports = {
       'no'
     ]
   },
+  'fr-details-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-role': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-phone': {
+    mixin: 'input-text'
+  },
+  'fr-alternative-contact': {
+    mixin: 'input-text',
+    validate: ['email']
+  }
 };

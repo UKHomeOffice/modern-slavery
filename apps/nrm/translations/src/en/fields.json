@@ -37,6 +37,21 @@
       }
     }
   },
+  "local-authority-contacted-about-child-local-authority-name": {
+    "label": "Name of local authority",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "local-authority-contacted-about-child-local-authority-phone": {
+    "label": "Enter phone number"
+  },
+  "local-authority-contacted-about-child-local-authority-email": {
+    "label": "Enter email address"
+  },
+  "local-authority-contacted-about-child-local-authority-contact": {
+    "label": "Enter contact name (if known)"
+  },
   "pv-under-age-at-time-of-exploitation": {
     "legend": "Were they under 18 at any time during the exploitation?",
     "options": {
@@ -53,7 +68,13 @@
   },
   "what-happened": {
     "legend": "What did they say happened?",
-    "label": "Details about exploitation (and trafficking, if relevant). For example, how they were recruited and controlled."
+    "label": "Provide as much detail as you can. Do not include their name or the names of any other potential victims.",
+    "paragraph-1": "A detailed report should include information about:",
+    "bullet-1": "how the potential victim was treated",
+    "bullet-2": "what an average day was like and a description of their living conditions",
+    "paragraph-2": "If they were trafficked, it helps to know:",
+    "bullet-3": "where they were recruited and who arranged the journey",
+    "bullet-4": "details of their journey, including if they travelled with anyone"
   },
   "where-exploitation-happened": {
     "legend": "Where were they last exploited?",
@@ -109,7 +130,8 @@
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
   "types-of-exploitation-forced-to-work": {
-    "label": "Forced to work for nothing or almost nothing"
+    "label": "Forced to work for nothing or almost nothing",
+    "hint": "Victims may live in isolated areas or poor conditions, such as in squats or at their place of work. They may be unable to leave and threatened with violence."
   },
   "types-of-exploitation-wages-taken": {
     "label": "Wages taken by force or coercion, such as through control of a bank account"
@@ -121,19 +143,23 @@
     "label": "Forced into prostitution"
   },
   "types-of-exploitation-child-exploitation": {
-    "label": "Child sexual exploitation"
+    "label": "Child sexual exploitation",
+    "hint": "This includes child sex trafficking."
   },
   "types-of-exploitation-taken-somewhere": {
-    "label": "Taken somewhere, held against their will and sexually assaulted"
+    "label": "Taken somewhere, held against their will and sexually assaulted",
+    "hint": "This is different to rape."
   },
   "types-of-exploitation-forced-to-commit-crime": {
-    "label": "Forced to commit a crime, such as growing cannabis, drug dealing or begging"
+    "label": "Forced to commit a crime, such as growing cannabis, drug dealing or begging",
+    "hint": "This includes being used as a drug mule across county lines. Victims will often be unpaid although they may get food and somewhere to live."
   },
   "types-of-exploitation-organs-removed": {
     "label": "Organs, such as kidneys, removed against their will"
   },
   "types-of-exploitation-unpaid-household-work": {
-    "label": "Forced to do unpaid household work by relatives or strangers"
+    "label": "Forced to do unpaid household work by relatives or strangers",
+    "hint": "Victims who are exploited by relatives may have been forced into an arranged marriage and abused in other ways."
   },
   "types-of-exploitation-other": {
     "label": "Other"
@@ -176,6 +202,245 @@
   "reported-to-police-crime-reference": {
     "label": "Enter crime or incident reference number (if given one)"
   },
+  "pv-want-to-submit-nrm": {
+    "legend": "Do they have a crime reference number?",
+    "paragraph-1": "If a potential victim wants you to refer their case, they can get:",
+    "bullet-1": "access to support (for example, housing and legal advice)",
+    "bullet-2": "a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit",
+    "div-1" : "We will need to share their personal details with organisations such as the police and the Home Office if they refer their case.",
+    "options": {
+      "yes": {
+        "label": "Yes – I have explained this to the potential victim and they want me to refer their case"
+      },
+      "no": {
+        "label": "No – I have explained this to the potential victim and they do not want me to refer their case",
+        "hint": "They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
+      }
+    }
+  },
+  "refuse-nrm": {
+    "label": "Why don’t they want thier case referred? (Optional)",
+    "hint" : "Briefly explain your reasons"
+  },
+  "refuse-nrm-co-operate-with-police": {
+    "legend": "Can the police contact them about their case?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "refuse-nrm-pv-name-first-name": {
+    "label": "First name"
+  },
+  "refuse-nrm-pv-name-last-name": {
+    "label": "Last name"
+  },
+  "refuse-nrm-pv-name-nickname": {
+    "label": "Nickname or name used during exploitation"
+  },
+  "refuse-nrm-pv-contact-details": {
+    "legend": "How should we notify them of our decision?",
+    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "refuse-nrm-pv-contact-details-email-input": {
+    "label": "Email address"
+  },
+  "refuse-nrm-pv-contact-details-email-check": {
+    "label": "It is safe to write to them here"
+  },
+  "refuse-nrm-pv-contact-details-street": {
+    "label": "Building and street"
+  },
+  "refuse-nrm-pv-contact-details-town": {
+    "label": "Town or city"
+  },
+  "refuse-nrm-pv-contact-details-county": {
+    "label": "County"
+  },
+  "refuse-nrm-pv-contact-details-postcode": {
+    "label": "Postcode"
+  },
+  "refuse-nrm-pv-contact-details-post-check": {
+    "label": "It is safe to write to them here"
+  },
+  "does-pv-need-support": {
+    "legend": "Do they need support?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-name-that-requires-support-first-name": {
+    "label": "First name"
+  },
+  "pv-name-that-requires-support-last-name": {
+    "label": "Last name"
+  },
+  "pv-name-that-requires-support-nickname": {
+    "label": "Nickname or name used during exploitation"
+  },
+  "pv-dob": {
+    "hint": "For example, 31 3 1980. Fill in what you know."
+  },
+  "pv-gender": {
+    "legend": "What is their gender?",
+    "options": {
+      "female": {
+        "label": "Female"
+      },
+      "male": {
+        "label": "Male"
+      },
+      "unknown": {
+        "label": "They do not identify as male or female"
+      }
+    }
+  },
+  "does-pv-have-children": {
+    "legend": "Do they have any children?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-pv-have-children-yes-amount": {
+    "label": "Enter number of children"
+  },
+  "pv-nationality": {
+    "label": "Select nationality",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "pv-nationality-second": {
+    "label": "Select second nationality",
+    "options": {
+      "null": "Select..."
+    },
+    "summary-text": "Select a second nationality for dual nationals"
+  },
+  "pv-interpreter-requirements": {
+    "legend": "Do they need an interpreter?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-interpreter-requirements-language": {
+    "label": "Language"
+  },
+  "pv-other-help-with-communication": {
+    "legend": "Do they need an interpreter?",
+    "hint": "For example, a hearing aid or a sign language interpreter.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-other-help-with-communication-aid": {
+    "label": "Enter communication aid"
+  },
+  "pv-ho-reference": {
+    "legend": "Do they have any Home Office references?",
+    "hint": "For example, a Home Office visa application or port reference",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-ho-reference-type": {
+    "label": "Enter type of reference, reference number or both (if known)"
+  },
+  "pv-contact-details": {
+    "legend": "How should we notify them of our decision?",
+    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "pv-contact-details-email-input": {
+    "label": "Email address"
+  },
+  "pv-contact-details-email-check": {
+    "label": "It is safe to write to them here"
+  },
+  "pv-contact-details-street": {
+    "label": "Building and street"
+  },
+  "pv-contact-details-town": {
+    "label": "Town or city"
+  },
+  "pv-contact-details-county": {
+    "label": "County"
+  },
+  "pv-contact-details-postcode": {
+    "label": "Postcode"
+  },
+  "pv-contact-details-post-check": {
+    "label": "It is safe to write to them here"
+  },
+  "pv-phone-number": {
+    "legend": "Can the support provider contact them by phone?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "pv-phone-number-yes": {
+    "label": "Enter potential victim's phone number"
+  },
+  "co-operate-with-police": {
+    "legend": "Can the police contact them about their case?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "supporting-document-upload": {
     "label": "Upload a file"
   },
@@ -203,5 +468,18 @@
         "label": "No"
       }
     }
+  },
+  "fr-details-name": {
+    "label": "Name"
+  },
+  "fr-details-role": {
+    "label": "Role"
+  },
+  "fr-details-phone": {
+    "label": "Phone number"
+  },
+  "fr-alternative-contact": {
+    "label": "Email address",
+    "hint": "This could be a manager, colleague or a team inbox."
   }
 }

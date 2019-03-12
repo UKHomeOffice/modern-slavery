@@ -9,7 +9,7 @@
     "header": "Is the potential victim under 18?"
   },
   "local-authority-contacted-about-child": {
-    "header": "Placeholder page"
+    "header": "Which local authority have you contacted about the child?"
   },
   "pv-under-age-at-time-of-exploitation": {
     "header": "Were they under 18 at any time during the exploitation?"
@@ -27,7 +27,14 @@
     "header": "Who exploited them?"
   },
   "types-of-exploitation": {
-    "header": "How were they exploited?"
+    "header": "How were they exploited?",
+    "hint": "Select all that apply.",
+    "heading-1": "Labour and financial exploitation",
+    "heading-2": "Sexual exploitation",
+    "heading-3": "Criminal exploitation",
+    "heading-4": "Domestic servitude",
+    "warning": "If you think they are a victim of another crime you can report it to the police by calling 101.",
+    "warning-heading" : "Warning"
   },
   "any-other-pvs": {
     "header": "Were there any other potential victims?"
@@ -36,43 +43,63 @@
     "header": "Do they have a crime reference number?"
   },
   "pv-want-to-submit-nrm": {
-    "header": "Placeholder page"
+    "header": "Do they want their case referred to the NRM?"
+  },
+  "refuse-nrm": {
+    "header": "Why don't they want their case referred?"
+  },
+  "refuse-nrm-co-operate-with-police": {
+    "header": "Can the police contact them about their case?"
+  },
+  "refuse-nrm-pv-name": {
+    "header": "What is their name?"
+  },
+  "refuse-nrm-pv-contact-details": {
+    "header": "How should we notify them of our decision?"
   },
   "does-pv-need-support": {
-    "header": "Placeholder page"
+    "header": "Do they need support?",
+    "paragraph-1" : "Support can take 5 days to start and may include:",
+    "bullet-1": "safe housing",
+    "bullet-2": "medical treatment",
+    "bullet-3": "someone to help them cope with their experience",
+    "bullet-4": "protection from the people who exploited them",
+    "bullet-5": "independent legal advice",
+    "link-text-1": "Contact the support provider",
+    "link-text-2": "about emergency housing if they need somewhere safe to stay immediately."
   },
   "pv-name-that-requires-support": {
-    "header": "Placeholder page"
+    "header": "What is their name?"
   },
   "pv-dob": {
-    "header": "Placeholder page"
+    "header": "What is their date of birth?"
   },
   "pv-gender": {
-    "header": "Placeholder page"
+    "header": "What is their gender?"
   },
   "does-pv-have-children": {
-    "header": "Placeholder page"
+    "header": "Do they have any children?"
   },
   "pv-nationality": {
-    "header": "Placeholder page"
+    "header": "What is their nationality?"
   },
   "pv-interpreter-requirements": {
-    "header": "Placeholder page"
+    "header": "Do they need an interpreter?"
   },
   "pv-other-help-with-communication": {
-    "header": "Placeholder page"
+    "header": "Do they need help with communication?"
   },
   "pv-ho-reference": {
-    "header": "Placeholder page"
+    "header": "Do they have any Home Office references?"
   },
   "pv-contact-details": {
-    "header": "Placeholder page"
+    "header": "How should we notify them of our decision?"
   },
   "pv-phone-number": {
-    "header": "Placeholder page"
+    "header": "Can the support provider contact them by phone?"
   },
   "co-operate-with-police": {
-    "header": "Placeholder page"
+    "header": "Can the police contact them about their case?"
   },
   "supporting-documents": {
     "header": "Upload supporting documents"
@@ -81,10 +108,13 @@
     "list-header": "Documents added"
   },
   "fr-details": {
-    "header": "Placeholder page"
+    "header": "What are your contact details?",
+    "read-only-field-1-label": "Email",
+    "read-only-field-1-hint": "This is the address you gave at the start of the form.",
+    "read-only-field-1-placeholder": "FR EMAIL PLACEHOLDER"
   },
   "fr-alternative-contact": {
-    "header": "Placeholder page"
+    "header": "Who should we contact in your absence?"
   },
   "confirm": {
     "header": "Placeholder page"

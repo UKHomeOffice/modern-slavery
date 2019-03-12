@@ -8,6 +8,16 @@
   "pv-under-age" : {
     "required": "You must select an option"
   },
+  "local-authority-contacted-about-child-local-authority-name": {
+    "required": "You must enter the local authority name"
+  },
+  "local-authority-contacted-about-child-local-authority-phone": {
+    "required": "You must enter a phone number"
+  },
+  "local-authority-contacted-about-child-local-authority-email": {
+    "required": "You must enter a valid email address",
+    "email": "You must enter a valid email address"
+  },
   "pv-under-age-at-time-of-exploitation" : {
     "required": "You must select an option"
   },
@@ -32,8 +42,96 @@
   "reported-to-police" : {
     "required": "You must select an option"
   },
+  "pv-want-to-submit-nrm" : {
+    "required": "You must enter the NRM decision"
+  },
+  "refuse-nrm-co-operate-with-police" : {
+    "required": "You must select an option"
+  },
+  "refuse-nrm-pv-name-first-name" : {
+    "required": "You must enter the potential victim's first name"
+  },
+  "refuse-nrm-pv-name-last-name" : {
+    "required": "You must enter the potential victim's last name"
+  },
+  "refuse-nrm-pv-contact-details" : {
+    "required": "You must select one or more of the contact methods listed"
+  },
+  "refuse-nrm-pv-contact-details-email-input" : {
+    "required": "You must enter an email address",
+    "email": "You must enter a valid email address"
+  },
+  "refuse-nrm-pv-contact-details-email-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this email addresss."
+  },
+  "refuse-nrm-pv-contact-details-post-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this addresss."
+  },
+  "does-pv-need-support" : {
+    "required": "You must select if support is required"
+  },
+  "pv-name-that-requires-support-first-name" : {
+    "required": "You must enter the potential victim's first name"
+  },
+  "pv-name-that-requires-support-last-name" : {
+    "required": "You must enter the potential victim's last name"
+  },
+  "pv-dob": {
+    "date": "You must enter a valid date",
+    "before": "Date cannot be in the future",
+    "after": "This date appears to be too far in the past"
+  },
+  "pv-gender" : {
+    "required": "You must select the potential victim's gender"
+  },
+  "does-pv-have-children" : {
+    "required": "You must select an option"
+  },
+  "pv-nationality" : {
+    "required": "You must select the potential victim's nationality"
+  },
+  "pv-interpreter-requirements" : {
+    "required": "You must select an option"
+  },
+  "pv-other-help-with-communication" : {
+    "required": "You must select an option"
+  },
+  "pv-ho-reference" : {
+    "required": "You must select an option"
+  },
+  "pv-contact-details" : {
+    "required": "You must select one or more of the contact methods listed"
+  },
+  "pv-contact-details-email-input" : {
+    "required": "You must enter an email address",
+    "email": "You must enter a valid email address"
+  },
+  "pv-contact-details-email-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this email addresss."
+  },
+  "pv-contact-details-post-check" : {
+    "required": "Make sure it is safe to contact the potential victim at this addresss."
+  },
+  "pv-phone-number" : {
+    "required": "You must select an option"
+  },
+  "co-operate-with-police" : {
+    "required": "You must select an option"
+  },
   "supporting-document-upload": {
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
+  },
+  "fr-details-name" : {
+    "required": "You must enter your name "
+  },
+  "fr-details-role" : {
+    "required": "You must enter your role"
+  },
+  "fr-details-phone" : {
+    "required": "You must enter a phone number"
+  },
+  "fr-alternative-contact" : {
+    "email": "You must enter a valid email address"
   }
 }
