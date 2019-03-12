@@ -90,13 +90,6 @@ describe('Upload File(s)', () => {
      /**
      * Run a sequence of actions to simulate verification of a user
      *
-     * The sequence of actions have been broken up into three functions
-     * to reduce the number of statements within an asyncronous function in
-     * order to reduce function complexity
-     *
-     * For additional information:
-     * @see https://eslint.org/docs/rules/max-statements
-     *
      * @returns {Promise}
      */
     async function verifyUser() {
@@ -116,7 +109,7 @@ describe('Upload File(s)', () => {
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
-     * The sequence of actions have been broken up into three functions
+     * The sequence of actions  in the form have been broken up into three functions
      * to reduce the number of statements within an asyncronous function in
      * order to reduce function complexity
      *
@@ -125,7 +118,7 @@ describe('Upload File(s)', () => {
      *
      * @returns {Promise}
      */
-    async function completeFormUptoX() {
+    async function completeForm1of2() {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -160,7 +153,7 @@ describe('Upload File(s)', () => {
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
      *
-     * The sequence of actions have been broken up into three functions
+     * The sequence of actions  in the form have been broken up into three functions
      * to reduce the number of statements within an asyncronous function in
      * order to reduce function complexity
      *
@@ -169,7 +162,7 @@ describe('Upload File(s)', () => {
      *
      * @returns {Promise}
      */
-    async function completeFormFromXtoY() {
+    async function completeForm2of2() {
         await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
@@ -238,8 +231,8 @@ describe('Upload File(s)', () => {
     it('upload 1 document', async() => {
         try {
             await verifyUser();
-            await completeFormUptoX();
-            await completeFormFromXtoY();
+            await completeForm1of2();
+            await completeForm2of2();
         } catch (err) {
             throw new Error(err);
         }

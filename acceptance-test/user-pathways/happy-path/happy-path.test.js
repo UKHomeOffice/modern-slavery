@@ -87,13 +87,6 @@ describe.only('User path(s)', () => {
     /**
      * Run a sequence of actions to simulate verification of a user
      *
-     * The sequence of actions have been broken up into three functions
-     * to reduce the number of statements within an asyncronous function in
-     * order to reduce function complexity
-     *
-     * For additional information:
-     * @see https://eslint.org/docs/rules/max-statements
-     *
      * @returns {Promise}
      */
     async function verifyUser() {
@@ -113,7 +106,7 @@ describe.only('User path(s)', () => {
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
-     * The sequence of actions have been broken up into three functions
+     * The sequence of actions  in the form have been broken up into three functions
      * to reduce the number of statements within an asyncronous function in
      * order to reduce function complexity
      *
@@ -132,7 +125,7 @@ describe.only('User path(s)', () => {
      *
      * @returns {Promise}
      */
-    async function completeFormUptoX(typeOfPV, caseReferred) {
+    async function completeForm1of2(typeOfPV, caseReferred) {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -213,7 +206,7 @@ describe.only('User path(s)', () => {
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
      *
-     * The sequence of actions have been broken up into three functions
+     * The sequence of actions in the form have been broken up into two functions
      * to reduce the number of statements within an asyncronous function in
      * order to reduce function complexity
      *
@@ -230,7 +223,7 @@ describe.only('User path(s)', () => {
      *
      * @returns {Promise}
      */
-    async function completeFormFromXtoY(typeOfPV) {
+    async function completeForm2of2(typeOfPV) {
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
             element.value = 'Paul';
@@ -292,8 +285,8 @@ describe.only('User path(s)', () => {
     it('Happy path - Adult', async() => {
         try {
             await verifyUser();
-            await completeFormUptoX('adult', true);
-            await completeFormFromXtoY('adult');
+            await completeForm1of2('adult', true);
+            await completeForm2of2('adult');
         } catch (err) {
             throw new Error(err);
         }
@@ -302,8 +295,8 @@ describe.only('User path(s)', () => {
     it('User path - Child', async() => {
         try {
             await verifyUser();
-            await completeFormUptoX('child', true);
-            await completeFormFromXtoY('child');
+            await completeForm1of2('child', true);
+            await completeForm2of2('child');
         } catch (err) {
             throw new Error(err);
         }
@@ -312,7 +305,7 @@ describe.only('User path(s)', () => {
     it('User path - Duty to Notify (Adult)', async() => {
         try {
             await verifyUser();
-            await completeFormUptoX('adult', false);
+            await completeForm1of2('adult', false);
         } catch (err) {
             throw new Error(err);
         }
