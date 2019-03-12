@@ -1,0 +1,261 @@
+<h2 class="details-header">{{#t}}pages.confirm.sections.potential-victim.header{{/t}}</h2>
+<table id="potential-victim" class="table-details">
+  <tbody>
+      {{#values.does-pv-need-support}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.does-pv-need-support.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.does-pv-need-support}}</span>
+          </td>
+          <td>
+            <a href="/nrm/does-pv-need-support#does-pv-need-support" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.does-pv-need-support}}
+
+      {{#values.pv-want-to-submit-nrm}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.pv-want-to-submit-nrm.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.pv-want-to-submit-nrm}}</span>
+          </td>
+          <td>
+            <a href="/nrm/pv-want-to-submit-nrm#pv-want-to-submit-nrm" class="button">Change</a>
+        </td>
+        </tr>
+      {{/values.pv-want-to-submit-nrm}}
+
+      {{#values.co-operate-with-police}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.co-operate-with-police.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.co-operate-with-police}}</span>
+          </td>
+          <td>
+            <a href="/nrm/co-operate-with-police#co-operate-with-police" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.co-operate-with-police}}
+
+      {{#values.refuse-nrm-co-operate-with-police}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.co-operate-with-police.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.refuse-nrm-co-operate-with-police}}</span>
+          </td>
+          <td>
+            <a href="/nrm/refuse-nrm-co-operate-with-police#refuse-nrm-co-operate-with-police" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.refuse-nrm-co-operate-with-police}}
+
+      {{#values.pv-name-that-requires-support-first-name}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-name.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-name-that-requires-support-first-name}} {{values.pv-name-that-requires-support-last-name}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-contact-details#pv-name-that-requires-support-first-name" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-name-that-requires-support-first-name}}
+
+      {{#values.refuse-nrm-pv-name-first-name}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-name.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.refuse-nrm-pv-name-first-name}} {{values.refuse-nrm-pv-name-last-name}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/refuse-nrm-pv-contact-details#refuse-nrm-pv-name-first-name" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.refuse-nrm-pv-name-first-name}}
+
+      {{#values.pv-name-that-requires-support-nickname}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-name-that-requires-support-first-name}} {{values.pv-name-that-requires-support-last-name}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-contact-details#pv-name-that-requires-support-nickname" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-name-that-requires-support-nickname}}
+
+      {{#values.refuse-nrm-pv-name-nickname}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.refuse-nrm-pv-name-nickname}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/refuse-nrm-pv-contact-details#refuse-nrm-pv-name-nickname" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.refuse-nrm-pv-name-nickname}}
+
+      {{#values.pv-dob}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-dob.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-dob}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-dob#pv-dob" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-dob}}
+
+      {{#values.pv-gender}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-gender.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-gender}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-gender#pv-gender" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-gender}}
+
+      {{#values.pv-nationality}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-nationality.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-nationality}}
+            {{values.pv-nationality-second}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-nationality#pv-nationality" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-nationality}}
+
+      {{#values.pv-interpreter-requirements}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-interpreter-requirements.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-interpreter-requirements}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-interpreter-requirements#pv-interpreter-requirements" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-interpreter-requirements}}
+
+      {{#values.pv-interpreter-requirements-language}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-interpreter-requirements-language.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-interpreter-requirements-language}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-interpreter-requirements#pv-interpreter-requirements-language" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-interpreter-requirements-language}}
+
+      {{#values.pv-other-help-with-communication}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-other-help-with-communication.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.pv-other-help-with-communication}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/pv-other-help-with-communication#pv-other-help-with-communication" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-other-help-with-communication}}
+
+      {{#values.pv-contact-details}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}</td>
+        <td class="no-white-space">
+          {{#values.pv-contact-details-street}}
+            <span>{{values.pv-contact-details-street}}</span>
+          {{/values.pv-contact-details-street}}
+          {{#values.pv-contact-details-town}}
+            <span>{{values.pv-contact-details-town}}</span>
+          {{/values.pv-contact-details-town}}
+          {{#values.pv-contact-details-county}}
+            <span>{{values.pv-contact-details-county}}</span>
+          {{/values.pv-contact-details-county}}
+          {{#values.pv-contact-details-postcode}}
+            <span>{{values.pv-contact-details-postcode}}</span>
+          {{/values.pv-contact-details-postcode}}
+          {{#values.pv-contact-details-post-check}}
+            <span>Safe to use</span>
+          {{/values.pv-contact-details-post-check}}
+        </td>
+        <td>
+          <a href="/nrm/pv-contact-details#pv-contact-details-street" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-contact-details}}
+
+      {{#values.refuse-nrm-pv-contact-details}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}</td>
+        <td class="no-white-space">
+            {{#values.refuse-nrm-pv-contact-details-street}}
+            <span>{{values.refuse-nrm-pv-contact-details-streett}}</span>
+          {{/values.refuse-nrm-pv-contact-details-street}}
+          {{#values.refuse-nrm-pv-contact-details-town}}
+            <span>{{values.refuse-nrm-pv-contact-details-town}}</span>
+          {{/values.refuse-nrm-pv-contact-details-town}}
+          {{#values.refuse-nrm-pv-contact-details-county}}
+            <span>{{values.refuse-nrm-pv-contact-details-county}}</span>
+          {{/values.refuse-nrm-pv-contact-details-county}}
+          {{#values.refuse-nrm-pv-contact-details-postcode}}
+            <span>{{values.refuse-nrm-pv-contact-details-postcode}}</span>
+          {{/values.refuse-nrm-pv-contact-details-postcode}}
+          {{#values.refuse-nrm-pv-contact-details-post-check}}
+            <span>Safe to use</span>
+          {{/values.refuse-nrm-pv-contact-details-post-check}}
+        </td>
+        <td>
+          <a href="/nrm/refuse-nrm-pv-contact-details#refuse-nrm-pv-contact-details-street" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.refuse-nrm-pv-contact-details}}
+
+      {{#values.pv-ho-reference}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}</td>
+        <td class="no-white-space">
+          {{#values.pv-ho-reference-type}}
+            <span>
+              {{values.pv-ho-reference-type}}
+            </span>
+          {{/values.pv-ho-reference-type}}
+        </td>
+        <td>
+          <a href="/nrm/pv-ho-reference#pv-ho-reference" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-ho-reference}}
+  </tbody>
+</table>

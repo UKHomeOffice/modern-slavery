@@ -117,6 +117,94 @@
     "header": "Who should we contact in your absence?"
   },
   "confirm": {
-    "header": "Placeholder page"
+    "header": "Check your answers",
+    "sections": {
+      "your-report": {
+        "header": "Your report"
+      },
+      "potential-victim": {
+        "header": "Potential victim"
+      },
+      "your-details": {
+        "header": "Your details"
+      }
+    },
+    "fields": {
+      "pv-under-age": {
+        "label": "Under 18"
+      },
+      "fr-location": {
+        "label": "Region"
+      },
+      "types-of-exploitation": {
+        "label": "Exploitation type"
+      },
+      "where-exploitation-happened": {
+        "label": "Exploitation location"
+      },
+      "who-exploited-pv": {
+        "label": "Exploiter"
+      },
+      "what-happened": {
+        "label": "Victim's story"
+      },
+      "any-other-pvs": {
+        "label": "Other victims"
+      },
+      "reported-to-police": {
+        "label": "Reported to police"
+      },
+      "does-pv-need-support": {
+        "label": "Support"
+      },
+      "pv-want-to-submit-nrm": {
+        "label": "Formal decision"
+      },
+      "co-operate-with-police": {
+        "label": "Consent"
+      },
+      "pv-name": {
+        "label": "Name"
+      },
+      "pv-name-nickname": {
+        "label": "Nickname"
+      },
+      "pv-dob": {
+        "label": "Date of birth"
+      },
+      "pv-gender": {
+        "label": "Gender"
+      },
+      "pv-nationality": {
+        "label": "Country of nationality"
+      },
+      "pv-interpreter-requirements": {
+        "label": "Interpreter"
+      },
+      "pv-interpreter-requirements-language": {
+        "label": "Language"
+      },
+      "pv-other-help-with-communication": {
+        "label": "Other aids"
+      },
+      "pv-contact-details": {
+        "label": "Home address"
+      },
+      "pv-ho-reference": {
+        "label": "Home Office reference"
+      },
+      "fr-details-name": {
+        "label": "Name"
+      },
+      "fr-details-role": {
+        "label": "Job title"
+      },
+      "fr-details-phone": {
+        "label": "Telephone"
+      },
+      "fr-alternative-contact": {
+        "label": "Second contact"
+      }
+    }
   }
 }

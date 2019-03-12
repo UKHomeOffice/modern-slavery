@@ -279,7 +279,10 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-       behaviours: ['complete'],
+       behaviours: [
+         'complete',
+         require('hof-behaviour-summary-page')
+        ],
        next: '/confirmation'
     },
     '/confirmation': {

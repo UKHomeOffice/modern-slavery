@@ -78,3 +78,31 @@ textarea {
     }
   }
 }
+
+// Check your answers page
+#your-report, #potential-victim, #your-details {
+  td {
+    text-transform: capitalize;
+
+    a[href*="nrm"] {
+      color: #005ea5 !important;
+      background-color: white !important;
+      text-decoration: underline;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+
+    span {
+      display: block;
+    }
+
+    &:first-child{
+      font-weight: bold;
+    }
+
+    &:not(.no-white-space) {
+      white-space: normal;
+    }
+  }
+}

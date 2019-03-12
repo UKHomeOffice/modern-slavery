@@ -1,0 +1,129 @@
+<h2 class="details-header">{{#t}}pages.confirm.sections.your-report.header{{/t}}</h2>
+<table id="your-report" class="table-details">
+  <tbody>
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
+        <td class="no-white-space">
+          {{#values.pv-under-age}}
+            {{values.pv-under-age}}
+          {{/values.pv-under-age}}
+        </td>
+        <td></td>
+      </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.fr-location.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.fr-location}}
+          {{values.fr-location}}
+        {{/values.fr-location}}
+      </td>
+      <td>
+        <a href="/nrm/fr-location#fr-location" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.types-of-exploitation-forced-to-work}}
+          <span>Work</span>
+        {{/values.types-of-exploitation-forced-to-work}}
+        {{#values.types-of-exploitation-forced-to-commit-fraud}}
+          <span>Fraud</span>
+        {{/values.types-of-exploitation-forced-to-commit-fraud}}
+        {{#values.types-of-exploitation-prostitution}}
+          <span>Prostitution</span>
+        {{/values.types-of-exploitation-prostitution}}
+        {{#values.types-of-exploitation-child-exploitation}}
+          <span>Child sexual exploitation</span>
+        {{/values.types-of-exploitation-child-exploitation}}
+        {{#values.types-of-exploitation-taken-somewhere}}
+          <span>Taken somewhere, held against their will and sexually assaulted</span>
+        {{/values.types-of-exploitation-taken-somewhere}}
+        {{#values.types-of-exploitation-forced-to-commit-crime}}
+          <span>Crime</span>
+        {{/values.types-of-exploitation-forced-to-commit-crime}}
+        {{#values.types-of-exploitation-organs-removed}}
+          <span>Organs</span>
+        {{/values.types-of-exploitation-organs-removed}}
+        {{#values.types-of-exploitation-unpaid-household-work}}
+          <span>Forced to do unpaid household work by relatives or strangers</span>
+        {{/values.types-of-exploitation-unpaid-household-work}}
+        {{#values.types-of-exploitation-other}}
+          <span>{{values.other-exploitation-details}}</span>
+        {{/values.types-of-exploitation-other}}
+      </td>
+      <td>
+        <a href="/nrm/types-of-exploitation" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.where-exploitation-happened}}
+          <span>{{values.where-exploitation-happened-uk-city}}</span>
+          <span>{{values.where-exploitation-happened-uk-region}}</span>
+          <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country}}</span>
+          <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
+        {{/values.where-exploitation-happened}}
+      </td>
+      <td>
+        <a href="/nrm/where-exploitation-happened#where-exploitation-happened" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.who-exploited-pv.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.who-exploited-pv}}
+          <span>{{values.who-exploited-pv}}</span>
+        {{/values.who-exploited-pv}}
+      </td>
+      <td>
+        <a href="/nrm/who-exploited-pv#who-exploited-pv" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.what-happened.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.what-happened}}
+          <span>{{values.what-happened}}</span>
+        {{/values.what-happened}}
+      </td>
+      <td>
+        <a href="/nrm/what-happened#what-happened" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.any-other-pvs}}
+          <span>{{values.any-other-pvs}}</span>
+        {{/values.any-other-pvs}}
+      </td>
+      <td>
+        <a href="/nrm/any-other-pvs#any-other-pvs" class="button">Change</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.reported-to-police.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.reported-to-police}}
+          <span>{{values.any-other-pvs}}</span>
+          {{#values.reported-to-police-police-forces}}
+            <span>{{values.reported-to-police-police-forces}}</span>
+          {{/values.reported-to-police-police-forces}}
+        {{/values.reported-to-police}}
+      </td>
+      <td>
+        <a href="/nrm/reported-to-police#reported-to-police" class="button">Change</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
