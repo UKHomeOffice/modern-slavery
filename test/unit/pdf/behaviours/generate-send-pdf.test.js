@@ -13,7 +13,7 @@ const fsStub = {
 
 const Behaviour = proxyquire('../../../../apps/pdf/behaviours/generate-send-pdf',
   {
-    '../util/pdf-generator': pdfGeneratorStub,
+    '../util/pdf-puppeteer': pdfGeneratorStub,
     'fs': fsStub
   }
 );
@@ -46,7 +46,7 @@ describe('/apps/pdf/behaviours/generate-send-pdf', () => {
 
   describe('saveValues()', () => {
     beforeEach(() => {
-      pdfGeneratorStub.generate.resolves('file');
+      pdfGeneratorStub.generate.returns('file');
       fsStub.readFile.yields(null, 'file');
       fsStub.unlink.yields(null);
       sinon.stub(Base.prototype, 'saveValues');

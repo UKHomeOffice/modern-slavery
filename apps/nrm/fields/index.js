@@ -52,7 +52,7 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
-    validate: ['required', 'numeric']
+    validate: ['required']
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
@@ -278,6 +278,10 @@ module.exports = {
   },
   'any-other-pvs': {
     mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [
       'yes',
       'no',
@@ -486,7 +490,6 @@ module.exports = {
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
-    validate: 'numeric',
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
@@ -654,8 +657,7 @@ module.exports = {
     }]
   },
   'pv-phone-number-yes': {
-    mixin: 'input-text',
-    validate: 'numeric'
+    mixin: 'input-text'
   },
   'co-operate-with-police': {
     mixin: 'radio-group',
@@ -695,8 +697,7 @@ module.exports = {
     validate: 'required'
   },
   'fr-details-phone': {
-    mixin: 'input-text',
-    validate: ['required', 'numeric']
+    mixin: 'input-text'
   },
   'fr-alternative-contact': {
     mixin: 'input-text',

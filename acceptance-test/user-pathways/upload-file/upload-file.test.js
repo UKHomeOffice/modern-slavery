@@ -1,6 +1,7 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
-const selectors = require('../util/selectors');
+const path = require('path');
+const config = require('../../../config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, navigateTo, uploadFile } = pageActions;
 
@@ -12,7 +13,6 @@ const {
     UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON,
     UPLOAD_DOCUMENT_PAGE_4_NO_OPTION,
     EMAIL_INPUT,
-    TEST_FILE_PATH,
     ORGANISATION_INPUT,
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
@@ -42,7 +42,22 @@ const {
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
-} = selectors;
+} = config.selectors;
+
+/**
+ * Get the test file path
+ *
+ * If the browser is on the local machine then get the file from the upload file
+ * directory otherwise get the file from the root of the container in which the
+ * browser is running
+ *.
+ * @returns {string} - The test file path
+ */
+const TEST_FILE_PATH = () => {
+    return !bootstrap.getTestEnvironmentOptions().isLocalTest ?
+    path.resolve('/test.png')
+    : path.resolve(__dirname, '../upload-file/images/test.png');
+};
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
 let APP_CONTAINER_HOST;
@@ -78,9 +93,7 @@ describe('Upload File(s)', () => {
      * @returns {Promise}
      */
     async function verifyUser() {
-        // start
         await clickSelector(page, CONTINUE_BUTTON);
-        // who-do-you-work-for
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
         });
@@ -96,47 +109,42 @@ describe('Upload File(s)', () => {
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
+     * The sequence of actions  in the form have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
      * @returns {Promise}
      */
-    async function completeNrmFormPart1() {
-        // nrm start
+    async function completeForm1of2() {
         await clickSelector(page, CONTINUE_BUTTON);
-        // fr-location
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-under-age
         await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-under-age-at-time-of-exploitation
         await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // what-happened
         await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
             element.value = 'Test input regarding details of exploitation';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // where-exploitation-happened
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // current-pv-location
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
             element.value = 'Rutland';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // who-exploited-pv
         await page.$eval(WHO_EXPLOITED_PV, (element) => {
             element.value = 'Test details about exploiter(s)';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // types-of-exploitation
         await clickSelector(page, CONTINUE_BUTTON);
-        // any-other-pvs
         await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // reported-to-police
         await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-want-to-submit-nrm
         await clickSelector(page, REFER_CASE_TO_NRM_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
     }
@@ -144,44 +152,43 @@ describe('Upload File(s)', () => {
     /**
      * Run a sequence of actions to simulate the completion of the second half
      * of the NRM form
+     *
+     * The sequence of actions  in the form have been broken up into three functions
+     * to reduce the number of statements within an asyncronous function in
+     * order to reduce function complexity
+     *
+     * For additional information:
+     * @see https://eslint.org/docs/rules/max-statements
+     *
+     * @returns {Promise}
      */
-    async function completeNrmFormPart2() {
-        // does-pv-need-support
+    async function completeForm2of2() {
         await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-name-that-requires-support
         await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
-            element.value = 'Firstname';
+            element.value = 'Jack';
         });
         await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
-            element.value = 'Lastname';
+            element.value = 'Smith';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-dob
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-gender
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // does-pv-have-children
         await clickSelector(page, DOES_PV_HAVE_CHILDREN_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-nationality
         await page.waitForSelector(PV_NATIONALITY);
         await page.$eval(PV_NATIONALITY, (element) => {
             element.value = 'United Kingdom';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-interpreter-requirements
         await clickSelector(page, INTERPRETER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-other-help-with-communication
         await clickSelector(page, COMMUNICATION_AID_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-ho-reference
         await clickSelector(page, HO_REFERENCE_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-contact-details
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
         await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
         await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
@@ -189,51 +196,43 @@ describe('Upload File(s)', () => {
         });
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // pv-phone-number
         await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // co-operate-with-police
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // supporting-documents-add
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // supporting-documents
         await uploadFile(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_INPUT, TEST_FILE_PATH());
         await page.$eval(UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_DESCRIPTION, (element) => {
             element.value = 'NRM Test File example';
         });
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_3_UPLOAD_FILE_BUTTON);
-        // supporting-documents-add-another
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_4_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        // fr-details
         await page.waitForSelector(FR_DETAILS_NAME_INPUT);
         await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
-            element.value = 'Test';
+            element.value = 'Francis Drake';
         });
         await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
-            element.value = 'Test Role';
+            element.value = 'Police Officer';
         });
         await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
-            element.value = '00000000000';
+            element.value = '020879865645';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // fr-alternative-contact
         await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
         await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
-            element.value = 'Test@test.com';
+            element.value = 'francis.drake@police.com';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        // summary page
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
     it('upload 1 document', async() => {
         try {
             await verifyUser();
-            await completeNrmFormPart1();
-            await completeNrmFormPart2();
+            await completeForm1of2();
+            await completeForm2of2();
         } catch (err) {
             throw new Error(err);
         }

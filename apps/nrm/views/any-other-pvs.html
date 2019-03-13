@@ -1,8 +1,7 @@
 {{<partials-page}}
   {{$page-content}}
-    {{#fields}}
-      {{#renderField}}{{/renderField}}
-    {{/fields}}
+    <p>{{#markdown}}any-other-pvs{{/markdown}}</p>
+    {{#renderField}}any-other-pvs{{/renderField}}
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}
