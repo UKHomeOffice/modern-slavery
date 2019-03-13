@@ -2,9 +2,9 @@
 'use strict';
 
 const config = require('../../../config');
-const htmlTemplate = config.pdf.template;
+const htmlUrl = config.pdf.url;
 const uuid = require('uuid');
-const PdfGenerator = require('../util/pdf-generator');
+const pdfPuppeteer = require('../util/pdf-puppeteer');
 const fs = require('fs');
 const templateId = config.govukNotify.templatePDF;
 const notifyApiKey = config.govukNotify.notifyApiKey;
@@ -42,16 +42,11 @@ module.exports = superclass => class extends superclass {
     const email = req.form.values.email;
     const tempName = createTemporaryFileName();
 
-    // Try catch for async function because PDFgenerate function returns a promise need to manage any errors.
-    try {
-      const file = await PdfGenerator.generate(htmlTemplate, tempLocation, tempName);
-      await sendEmailWithFile(file, email);
-      await deleteFile(file);
-      super.saveValues(req, res, (err) => {
-        next(err);
-      });
-    } catch (err) {
-      console.log(`pdf generation error -> ${err}`);
-    }
+    const file = await pdfPuppeteer.generate(htmlUrl, tempLocation, tempName);
+    await sendEmailWithFile(file, email);
+    await deleteFile(file);
+    super.saveValues(req, res, (err) => {
+      next(err);
+    });
   }
 };
