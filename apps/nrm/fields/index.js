@@ -199,6 +199,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
+    validation: 'undefined',
     legend: {
       className: 'visuallyhidden'
     }
@@ -277,6 +278,10 @@ module.exports = {
   },
   'any-other-pvs': {
     mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [
       'yes',
       'no',

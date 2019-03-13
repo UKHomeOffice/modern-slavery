@@ -3,6 +3,7 @@
 const checkEmailToken = require('./behaviours/check-email-token');
 const supportingDocuments = require('./behaviours/supporting-documents');
 const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
+const typesOfExploitation = require('./behaviours/types-of-exploitation');
 
 module.exports = {
   name: 'nrm',
@@ -76,6 +77,7 @@ module.exports = {
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
+      behaviours: typesOfExploitation,
       fields: [
         'types-of-exploitation-forced-to-work',
         'types-of-exploitation-wages-taken',

@@ -36,6 +36,9 @@
   "who-exploited-pv" : {
     "required": "You must enter details about the exploiter(s)"
   },
+  "types-of-exploitation-forced-to-work" : {
+    "undefined" : "You must select an exploitation type"
+  },
   "any-other-pvs" : {
     "required": "You must select an option"
   },
