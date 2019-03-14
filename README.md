@@ -1,6 +1,6 @@
 # Modern slavery
 
-An app for a first responder to submit a form for a possible victim of modern slavery
+An app for a first responder to submit a form for a possible victim of modern slavery.
 
 # Contents
 
