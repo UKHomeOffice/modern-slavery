@@ -6,7 +6,9 @@ pipeline:
       - npm --loglevel warn install
       - npm run test
     when:
-      event: [push, pull_request]
+      event:
+        - push
+        - pull_request
 
   # Run acceptance tests using docker-compose only
   acceptance_test:
@@ -17,7 +19,9 @@ pipeline:
       - docker-compose --verbose up -d --build chrome-browser app redis
       - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
     when:
-      event: [push, pull_request]
+      event:
+        - push
+        - pull_request
 
   build_app:
     image: quay.io/ukhomeofficedigital/drone-docker
