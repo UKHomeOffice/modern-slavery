@@ -79,6 +79,26 @@ textarea {
   }
 }
 
+#types-of-exploitation-forced-to-work-group > .validation-error {
+  box-sizing: inherit;
+  padding-left: 0px;
+  border-left: none;
+}
+
+#types-of-exploitation-forced-to-work-group > .error-message {
+  display: none;
+}
+
+.validation-error-override {
+  box-sizing: border-box;
+  padding-left: 12px;
+  border-left: 4px solid #b10e1e;
+}
+
+.error-message-override {
+  display: block !important;
+}
+
 // Check your answers page
 #your-report, #potential-victim, #your-details {
   td {

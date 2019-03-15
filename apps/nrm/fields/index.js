@@ -272,7 +272,7 @@ module.exports = {
       value: 4
     }],
     dependent: {
-      value: 'other',
+      value: 'true',
       field: 'types-of-exploitation-other',
     }
   },
