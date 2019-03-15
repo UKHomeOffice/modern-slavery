@@ -51,6 +51,9 @@
   "refuse-nrm-pv-gender": {
     "header": "What is their gender?"
   },
+  "refuse-pv-nationality": {
+    "header": "What is their nationality?"
+  },
   "refuse-nrm-co-operate-with-police": {
     "header": "Can the police contact them about their case?"
   },

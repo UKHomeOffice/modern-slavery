@@ -358,6 +358,23 @@ module.exports = {
       'unknown'
     ]
   },
+  'refuse-nrm-pv-nationality': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.refuse-nrm-pv-nationality.options.null'
+    }].concat(countries)
+  },
+  'refuse-nrm-pv-nationality-second': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.refuse-nrm-pv-nationality-second.options.null'
+    }].concat(countries)
+  },
   'refuse-nrm-co-operate-with-police': {
     mixin: 'radio-group',
     validate: 'required',

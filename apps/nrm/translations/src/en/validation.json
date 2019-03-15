@@ -54,6 +54,9 @@
   "refuse-nrm-pv-gender" : {
     "required": "You must select the potential victim's gender"
   },
+  "refuse-nrm-pv-nationality" : {
+    "required": "You must select the potential victim's nationality"
+  },
   "refuse-nrm-co-operate-with-police" : {
     "required": "You must select an option"
   },

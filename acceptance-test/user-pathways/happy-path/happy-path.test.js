@@ -49,6 +49,7 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
     REFUSE_NRM_PV_GENDER_MALE_OPTION,
+    REFUSE_NRM_PV_NATIONALITY,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -115,6 +116,11 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, REFUSE_NRM_PV_GENDER_MALE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(REFUSE_NRM_PV_NATIONALITY);
+        await page.$eval(REFUSE_NRM_PV_NATIONALITY, (element) => {
+            element.value = 'United Kingdom';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);

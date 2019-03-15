@@ -89,5 +89,6 @@ module.exports = {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION: '#refuse-nrm-pv-contact-details-email-check',
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION: '#types-of-exploitation-forced-to-work',
     REFUSE_NRM_PV_GENDER_MALE_OPTION: '#refuse-nrm-pv-gender-male',
+    REFUSE_NRM_PV_NATIONALITY: '#refuse-nrm-pv-nationality',
   }
 };

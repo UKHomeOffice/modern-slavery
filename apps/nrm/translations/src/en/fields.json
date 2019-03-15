@@ -235,6 +235,19 @@
       }
     }
   },
+  "refuse-pv-nationality": {
+    "label": "Select nationality",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "refuse-pv-nationality-second": {
+    "label": "Select second nationality",
+    "options": {
+      "null": "Select..."
+    },
+    "summary-text": "Select a second nationality for dual nationals"
+  },
   "refuse-nrm-co-operate-with-police": {
     "legend": "Can the police contact them about their case?",
     "options": {
