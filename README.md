@@ -55,7 +55,7 @@ $ docker-compose up -d --build chrome-browser app redis
 
 You'll need the test Gov Notify Key called, `NOTIFY_KEY`, to run the email functionality properly. Do NOT use the Production key.
 
-This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so
+This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so:
 
 ```bash
 $ npm run dev -- --env
