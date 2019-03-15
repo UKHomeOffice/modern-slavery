@@ -346,6 +346,18 @@ module.exports = {
       value: 3
     }]
   },
+  'refuse-nrm-pv-gender': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'female',
+      'male',
+      'unknown'
+    ]
+  },
   'refuse-nrm-co-operate-with-police': {
     mixin: 'radio-group',
     validate: 'required',

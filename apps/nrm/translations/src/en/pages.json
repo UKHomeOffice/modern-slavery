@@ -48,6 +48,9 @@
   "refuse-nrm": {
     "header": "Why don't they want their case referred?"
   },
+  "refuse-nrm-pv-gender": {
+    "header": "What is their gender?"
+  },
   "refuse-nrm-co-operate-with-police": {
     "header": "Can the police contact them about their case?"
   },

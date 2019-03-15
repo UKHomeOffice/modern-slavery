@@ -48,6 +48,7 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
+    REFUSE_NRM_PV_GENDER_MALE_OPTION,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -104,6 +105,38 @@ describe.only('User path(s)', () => {
     }
 
     /**
+     * Run a sequence of actions to simulate user not opting to refer case to
+     * the NRM
+     *
+     * @returns {Promise}
+     */
+    async function completeDutyToNotifyForm() {
+        await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_PV_GENDER_MALE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
+        await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
+            element.value = 'Robert';
+        });
+        await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
+            element.value = 'Maxwell';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
+        await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+            element.value = 'robert.maxwell@pvrefuse.com';
+        });
+        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+    }
+
+    /**
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
@@ -121,7 +154,7 @@ describe.only('User path(s)', () => {
      * browser.
      *
      * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
-     * @param {bool} caseReferred - does the Potential Victim was their case
+     * @param {bool} caseReferred - does the Potential Victim want their case
      * referred?
      *
      * @returns {Promise}
@@ -180,27 +213,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
         } else if (!caseReferred && typeOfPV === 'adult') {
-            await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
-            await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
-                element.value = 'Robert';
-            });
-            await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
-                element.value = 'Maxwell';
-            });
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
-            await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
-            await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-                element.value = 'robert.maxwell@pvrefuse.com';
-            });
-            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, CONTINUE_BUTTON);
+            await completeDutyToNotifyForm();
         }
     }
 

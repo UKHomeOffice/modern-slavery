@@ -221,6 +221,20 @@
     "label": "Why don’t they want thier case referred? (Optional)",
     "hint" : "Briefly explain your reasons"
   },
+  "refuse-nrm-pv-gender": {
+    "legend": "What is their gender?",
+    "options": {
+      "female": {
+        "label": "Female"
+      },
+      "male": {
+        "label": "Male"
+      },
+      "unknown": {
+        "label": "They do not identify as male or female"
+      }
+    }
+  },
   "refuse-nrm-co-operate-with-police": {
     "legend": "Can the police contact them about their case?",
     "options": {

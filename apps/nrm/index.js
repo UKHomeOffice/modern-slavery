@@ -124,6 +124,10 @@ module.exports = {
     },
     '/refuse-nrm': {
       fields: ['refuse-nrm'],
+      next: '/refuse-nrm-pv-gender'
+    },
+    '/refuse-nrm-pv-gender': {
+      fields: ['refuse-nrm-pv-gender'],
       next: '/refuse-nrm-co-operate-with-police'
     },
     '/refuse-nrm-co-operate-with-police': {

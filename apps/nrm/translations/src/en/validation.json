@@ -51,6 +51,9 @@
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
   },
+  "refuse-nrm-pv-gender" : {
+    "required": "You must select the potential victim's gender"
+  },
   "refuse-nrm-co-operate-with-police" : {
     "required": "You must select an option"
   },
