@@ -409,6 +409,16 @@
   "pv-ho-reference-type": {
     "label": "Enter type of reference, reference number or both (if known)"
   },
+  "who-contact": {
+    "options": {
+      "potential-victim": {
+        "label": "Potential victim"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      }
+    }
+  },
   "pv-contact-details": {
     "legend": "How should we notify them of our decision?",
     "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",

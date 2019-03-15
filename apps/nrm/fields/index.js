@@ -592,6 +592,17 @@ module.exports = {
   'pv-ho-reference-type': {
     mixin: 'input-text',
   },
+  'who-contact': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'potential-victim',
+      'someone-else'
+    ]
+  },
   'pv-contact-details': {
     mixin: 'checkbox-group',
     validate: 'required',

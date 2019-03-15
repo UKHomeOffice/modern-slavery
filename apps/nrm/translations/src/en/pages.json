@@ -98,6 +98,12 @@
   "pv-ho-reference": {
     "header": "Do they have any Home Office references?"
   },
+  "who-contact": {
+    "header": "Who should we send our decision to?"
+  },
+  "someone-else": {
+    "header": "Placeholder page"
+  },
   "pv-contact-details": {
     "header": "How should we notify them of our decision?"
   },
