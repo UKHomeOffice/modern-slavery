@@ -1,6 +1,6 @@
 # Modern slavery
 
-An app for a first responder to submit a form for a possible victim of modern slavery
+An app for a first responder to submit a form for a possible victim of modern slavery.
 
 # Contents
 
@@ -120,7 +120,7 @@ The location of the user pathway tests are in the directory: `/modern-slavery/ac
 
 The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the test files within the directory `/modern-slavery/acceptance-test/user-pathways/` uses as its browser and whether the browser runs slower for demonstration purposes.
 
-`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing
+`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing.
 
 `BROWSER_DEMO`can be left blank so the tests run at normal speed or can be set so the test runs at a slower speed.
 
