@@ -168,7 +168,6 @@
     "label": "Enter other type of exploitation:"
   },
   "any-other-pvs": {
-    "label": "We don’t need names, but it will help police with their investigation if they know there were other potential victims.",
     "legend": "Were there any other potential victims?",
     "options": {
       "yes": {
@@ -178,7 +177,7 @@
         "label": "No"
       },
       "not-sure": {
-        "label": "Not Sure"
+        "label": "Not sure"
       }
     }
   },

@@ -277,6 +277,10 @@ module.exports = {
   },
   'any-other-pvs': {
     mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [
       'yes',
       'no',
