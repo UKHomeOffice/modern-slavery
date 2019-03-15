@@ -235,13 +235,13 @@
       }
     }
   },
-  "refuse-pv-nationality": {
+  "refuse-nrm-pv-nationality": {
     "label": "Select nationality",
     "options": {
       "null": "Select..."
     }
   },
-  "refuse-pv-nationality-second": {
+  "refuse-nrm-pv-nationality-second": {
     "label": "Select second nationality",
     "options": {
       "null": "Select..."
