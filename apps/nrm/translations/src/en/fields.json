@@ -25,11 +25,10 @@
     "options": {
       "yes": {
         "label": "Yes",
-        "toggle-content": "They will be treated as a child during the process."
+        "toggle-content": "You must explain to them how organisations such as the Home Office and the police will use their information."
       },
       "no": {
-        "label": "No",
-        "toggle-content": "They will be treated as an adult during the process."
+        "label": "No"
       },
       "not-sure": {
         "label": "Not Sure",
@@ -49,8 +48,11 @@
   "local-authority-contacted-about-child-local-authority-email": {
     "label": "Enter email address"
   },
-  "local-authority-contacted-about-child-local-authority-contact": {
-    "label": "Enter contact name (if known)"
+  "local-authority-contacted-about-child-local-authority-first-name": {
+    "label": "Enter first name (if known)"
+  },
+  "local-authority-contacted-about-child-local-authority-last-name": {
+    "label": "Enter last name (if known)"
   },
   "pv-under-age-at-time-of-exploitation": {
     "legend": "Were they under 18 at any time during the exploitation?",
@@ -88,19 +90,19 @@
     }
   },
   "where-exploitation-happened-uk-city": {
-    "label": "Select city or town (optional)",
+    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-region": {
-    "label": "Select region (optional)",
+    "label": "Select region (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country": {
-    "label": "Select country",
+    "label": "Select country (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
@@ -114,13 +116,13 @@
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
   "current-pv-location-uk-city": {
-    "label": "Select city or town (optional)",
+    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "current-pv-location-uk-region": {
-    "label": "Select region",
+    "label": "Select region  (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
@@ -182,7 +184,7 @@
     }
   },
   "reported-to-police": {
-    "legend": "Do they have a crime reference number?",
+    "legend": "Do they have a crime or CAD reference?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -199,7 +201,7 @@
     }
   },
   "reported-to-police-crime-reference": {
-    "label": "Enter crime or incident reference number (if given one)"
+    "label": "Enter crime or CAD reference"
   },
   "pv-want-to-submit-nrm": {
     "legend": "Do they have a crime reference number?",
@@ -220,6 +222,33 @@
   "refuse-nrm": {
     "label": "Why don’t they want thier case referred? (Optional)",
     "hint" : "Briefly explain your reasons"
+  },
+  "refuse-nrm-pv-gender": {
+    "legend": "What is their gender?",
+    "options": {
+      "female": {
+        "label": "Female"
+      },
+      "male": {
+        "label": "Male"
+      },
+      "unknown": {
+        "label": "They do not identify as male or female"
+      }
+    }
+  },
+  "refuse-nrm-pv-nationality": {
+    "label": "Select nationality",
+    "options": {
+      "null": "Select..."
+    }
+  },
+  "refuse-nrm-pv-nationality-second": {
+    "label": "Select second nationality",
+    "options": {
+      "null": "Select..."
+    },
+    "summary-text": "Select a second nationality for dual nationals"
   },
   "refuse-nrm-co-operate-with-police": {
     "legend": "Can the police contact them about their case?",
@@ -382,9 +411,55 @@
   "pv-ho-reference-type": {
     "label": "Enter type of reference, reference number or both (if known)"
   },
+  "who-contact": {
+    "options": {
+      "potential-victim": {
+        "label": "Potential victim"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      }
+    }
+  },
+  "someone-else": {
+    "legend": "How should we notify them?",
+    "hint": "Select all that apply.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "someone-else-first-name": {
+    "label": "First name (Optional)"
+  },
+  "someone-else-last-name": {
+    "label": "Last name (Optional)"
+  },
+  "someone-else-email-input": {
+    "label": "Email address"
+  },
+  "someone-else-street": {
+    "label": "Building and street"
+  },
+  "someone-else-town": {
+    "label": "Town or city"
+  },
+  "someone-else-county": {
+    "label": "County"
+  },
+  "someone-else-postcode": {
+    "label": "Postcode"
+  },
+  "someone-else-permission-check": {
+    "label": "The potential victim has given you permission to send the decision to this person."
+  },
   "pv-contact-details": {
     "legend": "How should we notify them of our decision?",
-    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "hint": "Select all that apply.",
     "options": {
       "email": {
         "label": "Email"
@@ -468,8 +543,11 @@
       }
     }
   },
-  "fr-details-name": {
-    "label": "Name"
+  "fr-details-first-name": {
+    "label": "First name"
+  },
+  "fr-details-last-name": {
+    "label": "Last name"
   },
   "fr-details-role": {
     "label": "Role"

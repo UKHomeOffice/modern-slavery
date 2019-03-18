@@ -13,10 +13,11 @@ const {
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
     EXPLOITED_IN_UK_OPTION,
+    CURRENT_PV_LOCATION_UK_CITY,
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
-    PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
+    PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
     DOES_PV_NEED_SUPPORT_YES_OPTION,
     PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
@@ -32,7 +33,8 @@ const {
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
     POLICE_CONTACT_YES_OPTION,
-    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_FIRST_NAME_INPUT,
+    FR_DETAILS_LAST_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
@@ -48,6 +50,11 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
+    REFUSE_NRM_PV_GENDER_MALE_OPTION,
+    REFUSE_NRM_PV_NATIONALITY,
+    WHO_CONTACT_PV_OPTION,
+    EXPLOITED_IN_UK_CITY_INPUT,
+    EXPLOITED_IN_UK_REGION_INPUT,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -104,6 +111,43 @@ describe.only('User path(s)', () => {
     }
 
     /**
+     * Run a sequence of actions to simulate user not opting to refer case to
+     * the NRM
+     *
+     * @returns {Promise}
+     */
+    async function completeDutyToNotifyForm() {
+        await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_PV_GENDER_MALE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(REFUSE_NRM_PV_NATIONALITY);
+        await page.$eval(REFUSE_NRM_PV_NATIONALITY, (element) => {
+            element.value = 'French';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
+        await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
+            element.value = 'Robert';
+        });
+        await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
+            element.value = 'Maxwell';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
+        await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+            element.value = 'robert.maxwell@pvrefuse.com';
+        });
+        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, CONTINUE_BUTTON);
+    }
+
+    /**
      * Run a sequence of actions to simulate the completion of the first half
      * of the NRM form
      *
@@ -121,7 +165,7 @@ describe.only('User path(s)', () => {
      * browser.
      *
      * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
-     * @param {bool} caseReferred - does the Potential Victim was their case
+     * @param {bool} caseReferred - does the Potential Victim want their case
      * referred?
      *
      * @returns {Promise}
@@ -158,9 +202,18 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
+        await page.$eval(EXPLOITED_IN_UK_CITY_INPUT, (element) => {
+            element.value = 'Croydon';
+        });
+        await page.$eval(EXPLOITED_IN_UK_REGION_INPUT, (element) => {
+            element.value = 'Surrey';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(CURRENT_PV_LOCATION_UK_CITY, (element) => {
+            element.value = 'Bromley';
+        });
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-            element.value = 'Rutland';
+            element.value = 'Kent';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(WHO_EXPLOITED_PV, (element) => {
@@ -171,7 +224,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION);
+        await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
 
         if (caseReferred && typeOfPV === 'adult') {
@@ -180,27 +233,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, DOES_PV_NEED_SUPPORT_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
         } else if (!caseReferred && typeOfPV === 'adult') {
-            await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
-            await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
-                element.value = 'Robert';
-            });
-            await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
-                element.value = 'Maxwell';
-            });
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
-            await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
-            await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-                element.value = 'robert.maxwell@pvrefuse.com';
-            });
-            await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-            await clickSelector(page, CONTINUE_BUTTON);
-            await clickSelector(page, CONTINUE_BUTTON);
+            await completeDutyToNotifyForm();
         }
     }
 
@@ -241,7 +274,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NATIONALITY);
         await page.$eval(PV_NATIONALITY, (element) => {
-            element.value = 'United Kingdom';
+            element.value = 'English';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, INTERPRETER_NO_OPTION);
@@ -252,6 +285,8 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
 
         if (typeOfPV === 'adult') {
+            await clickSelector(page, WHO_CONTACT_PV_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
             await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
             await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
@@ -265,9 +300,12 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
-        await page.waitForSelector(FR_DETAILS_NAME_INPUT);
-        await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
-            element.value = 'Jack Smith';
+        await page.waitForSelector(FR_DETAILS_FIRST_NAME_INPUT);
+        await page.$eval(FR_DETAILS_FIRST_NAME_INPUT, (element) => {
+            element.value = 'Jack';
+        });
+        await page.$eval(FR_DETAILS_LAST_NAME_INPUT, (element) => {
+            element.value = 'Smith';
         });
         await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
             element.value = 'Police Officer';

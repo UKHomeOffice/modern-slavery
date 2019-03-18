@@ -2,10 +2,12 @@
 
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
-const countries = require('hof-util-countries')();
+const hofCountries = require('hof-util-countries')();
+const countries = hofCountries.concat([{value: 'Unknown', label: 'Unknown'}]);
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');
+const msNationalities = require('ms-nationalities');
 
 module.exports = {
   'fr-location': {
@@ -33,8 +35,6 @@ module.exports = {
       child: 'partials/pv-under-age-panel'
     }, {
       value: 'no',
-      toggle: 'no-toggle-content',
-      child: 'partials/pv-under-age-panel'
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
@@ -58,7 +58,10 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required', 'email']
   },
-  'local-authority-contacted-about-child-local-authority-contact': {
+  'local-authority-contacted-about-child-local-authority-first-name': {
+    mixin: 'input-text',
+  },
+  'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
   },
   'pv-under-age-at-time-of-exploitation': {
@@ -103,6 +106,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -115,6 +119,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-region': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -170,6 +175,7 @@ module.exports = {
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -304,6 +310,7 @@ module.exports = {
   },
   'reported-to-police-police-forces': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -316,6 +323,7 @@ module.exports = {
   },
   'reported-to-police-crime-reference': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'yes',
       field: 'reported-to-police',
@@ -345,6 +353,35 @@ module.exports = {
       attribute: 'rows',
       value: 3
     }]
+  },
+  'refuse-nrm-pv-gender': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'female',
+      'male',
+      'unknown'
+    ]
+  },
+  'refuse-nrm-pv-nationality': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.refuse-nrm-pv-nationality.options.null'
+    }].concat(msNationalities)
+  },
+  'refuse-nrm-pv-nationality-second': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.refuse-nrm-pv-nationality-second.options.null'
+    }].concat(msNationalities)
   },
   'refuse-nrm-co-operate-with-police': {
     mixin: 'radio-group',
@@ -502,7 +539,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'pv-nationality-second': {
     mixin: 'select',
@@ -510,7 +547,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality-second.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'pv-interpreter-requirements': {
     mixin: 'radio-group',
@@ -562,6 +599,17 @@ module.exports = {
   },
   'pv-ho-reference-type': {
     mixin: 'input-text',
+  },
+  'who-contact': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'potential-victim',
+      'someone-else'
+    ]
   },
   'pv-contact-details': {
     mixin: 'checkbox-group',
@@ -631,6 +679,71 @@ module.exports = {
       field: 'pv-contact-details',
     },
   },
+  'someone-else': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'someone-else-email-input-fieldset',
+      child: 'partials/someone-else-email-input'
+    }, {
+      value: 'post',
+      toggle: 'someone-else-post-fieldset',
+      child: 'partials/someone-else-post'
+    }]
+  },
+  'someone-else-first-name': {
+    mixin: 'input-text',
+  },
+  'someone-else-last-name': {
+    mixin: 'input-text',
+  },
+  'someone-else-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-street': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-town': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-postcode': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-permission-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',
@@ -688,7 +801,11 @@ module.exports = {
       'no'
     ]
   },
-  'fr-details-name': {
+  'fr-details-first-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-last-name': {
     mixin: 'input-text',
     validate: 'required'
   },

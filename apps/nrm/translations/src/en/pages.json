@@ -40,13 +40,19 @@
     "header": "Were there any other potential victims?"
   },
   "reported-to-police": {
-    "header": "Do they have a crime reference number?"
+    "header": "Do they have a crime or CAD reference?"
   },
   "pv-want-to-submit-nrm": {
     "header": "Do they want their case referred to the NRM?"
   },
   "refuse-nrm": {
     "header": "Why don't they want their case referred?"
+  },
+  "refuse-nrm-pv-gender": {
+    "header": "What is their gender?"
+  },
+  "refuse-pv-nationality": {
+    "header": "What is their nationality?"
   },
   "refuse-nrm-co-operate-with-police": {
     "header": "Can the police contact them about their case?"
@@ -59,14 +65,18 @@
   },
   "does-pv-need-support": {
     "header": "Do they need support?",
-    "paragraph-1" : "Support can take 5 days to start and may include:",
+    "paragraph-1" : "Support can take 5 days to start unless the potential victim needs emergency housing.",
+    "paragraph-2" : "Support can take 5 days to start and may include:",
     "bullet-1": "safe housing",
     "bullet-2": "medical treatment",
     "bullet-3": "someone to help them cope with their experience",
     "bullet-4": "protection from the people who exploited them",
     "bullet-5": "independent legal advice",
     "link-text-1": "Contact the support provider",
-    "link-text-2": "about emergency housing if they need somewhere safe to stay immediately."
+    "link-text-2": "for more information."
+  },
+  "support-organisations": {
+    "header": "Find a support provider"
   },
   "pv-name-that-requires-support": {
     "header": "What is their name?"
@@ -92,8 +102,14 @@
   "pv-ho-reference": {
     "header": "Do they have any Home Office references?"
   },
+  "who-contact": {
+    "header": "Who should we send our decision to?"
+  },
+  "someone-else": {
+    "header": "How should we notify them?"
+  },
   "pv-contact-details": {
-    "header": "How should we notify them of our decision?"
+    "header": "How should we notify them?"
   },
   "pv-phone-number": {
     "header": "Can the support provider contact them by phone?"

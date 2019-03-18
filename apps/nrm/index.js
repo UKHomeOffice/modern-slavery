@@ -45,7 +45,8 @@ module.exports = {
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
         'local-authority-contacted-about-child-local-authority-email',
-        'local-authority-contacted-about-child-local-authority-contact',
+        'local-authority-contacted-about-child-local-authority-first-name',
+        'local-authority-contacted-about-child-local-authority-last-name',
       ],
       next: '/what-happened'
     },
@@ -125,6 +126,14 @@ module.exports = {
     },
     '/refuse-nrm': {
       fields: ['refuse-nrm'],
+      next: '/refuse-nrm-pv-gender'
+    },
+    '/refuse-nrm-pv-gender': {
+      fields: ['refuse-nrm-pv-gender'],
+      next: '/refuse-nrm-pv-nationality'
+    },
+    '/refuse-nrm-pv-nationality': {
+      fields: ['refuse-nrm-pv-nationality', 'refuse-nrm-pv-nationality-second'],
       next: '/refuse-nrm-co-operate-with-police'
     },
     '/refuse-nrm-co-operate-with-police': {
@@ -163,6 +172,8 @@ module.exports = {
     '/does-pv-need-support': {
       fields: ['does-pv-need-support'],
       next: '/pv-name-that-requires-support'
+    },
+    '/support-organisations': {
     },
     '/pv-name-that-requires-support': {
       fields: [
@@ -204,7 +215,38 @@ module.exports = {
           return (req.sessionModel.get('pv-under-age')) !== 'no';
         }
       }],
+      next: '/who-contact'
+    },
+    '/who-contact': {
+      fields: ['who-contact'],
+      forks: [{
+        target: '/someone-else',
+        condition: {
+          field: 'who-contact',
+          value: 'someone-else'
+        }
+      }],
       next: '/pv-contact-details'
+    },
+    '/someone-else': {
+      fields: [
+        'someone-else',
+        'someone-else-first-name',
+        'someone-else-last-name',
+        'someone-else-email-input',
+        'someone-else-street',
+        'someone-else-town',
+        'someone-else-county',
+        'someone-else-postcode',
+        'someone-else-permission-check',
+      ],
+      forks: [{
+        target: '/co-operate-with-police',
+        condition: (req) => {
+          return (req.sessionModel.get('does-pv-need-support')) === 'no';
+        }
+      }],
+      next: '/pv-phone-number'
     },
     '/pv-contact-details': {
       fields: [
@@ -272,7 +314,8 @@ module.exports = {
     },
     '/fr-details': {
       fields: [
-        'fr-details-name',
+        'fr-details-first-name',
+        'fr-details-last-name',
         'fr-details-role',
         'fr-details-phone',
       ],

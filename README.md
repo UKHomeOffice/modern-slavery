@@ -1,6 +1,6 @@
 # Modern slavery
 
-An app for a first responder to submit a form for a possible victim of modern slavery
+An app for a first responder to submit a form for a possible victim of modern slavery.
 
 # Contents
 
@@ -55,7 +55,7 @@ $ docker-compose up -d --build chrome-browser app redis
 
 You'll need the test Gov Notify Key called, `NOTIFY_KEY`, to run the email functionality properly. Do NOT use the Production key.
 
-This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so
+This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so:
 
 ```bash
 $ npm run dev -- --env
@@ -120,7 +120,7 @@ The location of the user pathway tests are in the directory: `/modern-slavery/ac
 
 The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEMO` to determine what the test files within the directory `/modern-slavery/acceptance-test/user-pathways/` uses as its browser and whether the browser runs slower for demonstration purposes.
 
-`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing
+`BROWSER_TYPE` can be left blank or set to `local` for local machine browser testing. This variable can be set to `remote` for remote browser testing.
 
 `BROWSER_DEMO`can be left blank so the tests run at normal speed or can be set so the test runs at a slower speed.
 
