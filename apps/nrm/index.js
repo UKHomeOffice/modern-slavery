@@ -310,7 +310,8 @@ module.exports = {
     },
     '/fr-details': {
       fields: [
-        'fr-details-name',
+        'fr-details-first-name',
+        'fr-details-last-name',
         'fr-details-role',
         'fr-details-phone',
       ],

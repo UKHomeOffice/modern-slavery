@@ -162,8 +162,11 @@
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
   },
-  "fr-details-name" : {
-    "required": "You must enter your name "
+  "fr-details-first-name" : {
+    "required": "You must enter your first name "
+  },
+  "fr-details-last-name" : {
+    "required": "You must enter your last name "
   },
   "fr-details-role" : {
     "required": "You must enter your role"

@@ -796,7 +796,11 @@ module.exports = {
       'no'
     ]
   },
-  'fr-details-name': {
+  'fr-details-first-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-last-name': {
     mixin: 'input-text',
     validate: 'required'
   },

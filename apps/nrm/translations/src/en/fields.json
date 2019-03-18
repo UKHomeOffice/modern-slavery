@@ -544,8 +544,11 @@
       }
     }
   },
-  "fr-details-name": {
-    "label": "Name"
+  "fr-details-first-name": {
+    "label": "First name"
+  },
+  "fr-details-last-name": {
+    "label": "Last name"
   },
   "fr-details-role": {
     "label": "Role"
