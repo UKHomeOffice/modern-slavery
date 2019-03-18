@@ -49,8 +49,11 @@
   "local-authority-contacted-about-child-local-authority-email": {
     "label": "Enter email address"
   },
-  "local-authority-contacted-about-child-local-authority-contact": {
-    "label": "Enter contact name (if known)"
+  "local-authority-contacted-about-child-local-authority-first-name": {
+    "label": "Enter first name (if known)"
+  },
+  "local-authority-contacted-about-child-local-authority-last-name": {
+    "label": "Enter last name (if known)"
   },
   "pv-under-age-at-time-of-exploitation": {
     "legend": "Were they under 18 at any time during the exploitation?",
