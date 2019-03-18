@@ -6,6 +6,7 @@ const countries = require('hof-util-countries')();
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');
+const msNationalities = require('ms-nationalities');
 
 module.exports = {
   'fr-location': {
@@ -368,7 +369,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.refuse-nrm-pv-nationality.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'refuse-nrm-pv-nationality-second': {
     mixin: 'select',
@@ -376,7 +377,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.refuse-nrm-pv-nationality-second.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'refuse-nrm-co-operate-with-police': {
     mixin: 'radio-group',
@@ -534,7 +535,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'pv-nationality-second': {
     mixin: 'select',
@@ -542,7 +543,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality-second.options.null'
-    }].concat(countries)
+    }].concat(msNationalities)
   },
   'pv-interpreter-requirements': {
     mixin: 'radio-group',
