@@ -185,7 +185,7 @@
     }
   },
   "reported-to-police": {
-    "legend": "Do they have a crime reference number?",
+    "legend": "Do they have a crime or CAD reference?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -202,7 +202,7 @@
     }
   },
   "reported-to-police-crime-reference": {
-    "label": "Enter crime or incident reference number (if given one)"
+    "label": "Enter crime or CAD reference"
   },
   "pv-want-to-submit-nrm": {
     "legend": "Do they have a crime reference number?",
