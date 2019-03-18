@@ -117,13 +117,13 @@
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
   "current-pv-location-uk-city": {
-    "label": "Select city or town (optional)",
+    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "current-pv-location-uk-region": {
-    "label": "Select region",
+    "label": "Select region  (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }

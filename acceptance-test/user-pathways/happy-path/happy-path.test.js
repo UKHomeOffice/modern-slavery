@@ -13,6 +13,7 @@ const {
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
     EXPLOITED_IN_UK_OPTION,
+    CURRENT_PV_LOCATION_UK_CITY,
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
@@ -208,8 +209,11 @@ describe.only('User path(s)', () => {
             element.value = 'Surrey';
         });
         await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(CURRENT_PV_LOCATION_UK_CITY, (element) => {
+            element.value = 'Bromley';
+        });
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-            element.value = 'Rutland';
+            element.value = 'Kent';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(WHO_EXPLOITED_PV, (element) => {
