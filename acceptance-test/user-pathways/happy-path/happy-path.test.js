@@ -52,6 +52,8 @@ const {
     REFUSE_NRM_PV_GENDER_MALE_OPTION,
     REFUSE_NRM_PV_NATIONALITY,
     WHO_CONTACT_PV_OPTION,
+    EXPLOITED_IN_UK_CITY_INPUT,
+    EXPLOITED_IN_UK_REGION_INPUT,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -199,6 +201,12 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
+        await page.$eval(EXPLOITED_IN_UK_CITY_INPUT, (element) => {
+            element.value = 'Croydon';
+        });
+        await page.$eval(EXPLOITED_IN_UK_REGION_INPUT, (element) => {
+            element.value = 'Surrey';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
             element.value = 'Rutland';
