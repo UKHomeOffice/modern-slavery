@@ -185,7 +185,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
             await page.waitForSelector(LOCAL_AUTHORITY_NAME);
             await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
-                element.value = 'Local Authority A';
+                element.value = 'Cornwall Council';
             });
             await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
                 element.value = '020878546453';
