@@ -35,8 +35,6 @@ module.exports = {
       child: 'partials/pv-under-age-panel'
     }, {
       value: 'no',
-      toggle: 'no-toggle-content',
-      child: 'partials/pv-under-age-panel'
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
