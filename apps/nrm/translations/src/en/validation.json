@@ -124,8 +124,36 @@
   "pv-contact-details-email-check" : {
     "required": "Make sure it is safe to contact the potential victim at this email addresss."
   },
+  "pv-contact-details-street" : {
+    "required": "You must enter the street"
+  },
+  "pv-contact-details-town" : {
+    "required": "You must enter the town."
+  },
+  "pv-contact-details-postcode" : {
+    "required": "You must enter the postcode."
+  },
   "pv-contact-details-post-check" : {
     "required": "Make sure it is safe to contact the potential victim at this addresss."
+  },
+  "someone-else" : {
+    "required": "You must select one or more of the contact methods listed"
+  },
+  "someone-else-email-input" : {
+    "required": "You must enter an email address",
+    "email": "You must enter a valid email address"
+  },
+  "someone-else-street" : {
+    "required": "You must enter the street"
+  },
+  "someone-else-town" : {
+    "required": "You must enter the town."
+  },
+  "someone-else-postcode" : {
+    "required": "You must enter the postcode."
+  },
+  "someone-else-permission-check" : {
+    "required": "Make sure the potential victim has given you permission to send the decision to this person."
   },
   "pv-phone-number" : {
     "required": "You must select an option"

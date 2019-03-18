@@ -102,10 +102,10 @@
     "header": "Who should we send our decision to?"
   },
   "someone-else": {
-    "header": "Placeholder page"
+    "header": "How should we notify them?"
   },
   "pv-contact-details": {
-    "header": "How should we notify them of our decision?"
+    "header": "How should we notify them?"
   },
   "pv-phone-number": {
     "header": "Can the support provider contact them by phone?"
