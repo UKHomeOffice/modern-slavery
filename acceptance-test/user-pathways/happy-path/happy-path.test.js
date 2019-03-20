@@ -284,7 +284,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
-    it.skip('Happy path - Adult', async() => {
+    it('Happy path - Adult', async() => {
         try {
             await verifyUser();
             await completeForm1of2('adult', true);
