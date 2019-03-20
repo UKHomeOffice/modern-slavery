@@ -141,7 +141,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
             await page.waitForSelector(LOCAL_AUTHORITY_NAME);
             await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
-                element.value = 'Local Authority A';
+                element.value = 'Crawley Borough Council';
             });
             await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
                 element.value = '020878546453';
@@ -284,7 +284,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
-    it('Happy path - Adult', async() => {
+    it.skip('Happy path - Adult', async() => {
         try {
             await verifyUser();
             await completeForm1of2('adult', true);
