@@ -199,6 +199,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
+    validation: 'at-least-one-option-selected',
     legend: {
       className: 'visuallyhidden'
     }
@@ -271,7 +272,7 @@ module.exports = {
       value: 4
     }],
     dependent: {
-      value: 'other',
+      value: 'true',
       field: 'types-of-exploitation-other',
     }
   },

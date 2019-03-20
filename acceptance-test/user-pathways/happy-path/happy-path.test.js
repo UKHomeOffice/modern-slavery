@@ -47,6 +47,7 @@ const {
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
     REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
+    HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -140,7 +141,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
             await page.waitForSelector(LOCAL_AUTHORITY_NAME);
             await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
-                element.value = 'Local Authority A';
+                element.value = 'Crawley Borough Council';
             });
             await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
                 element.value = '020878546453';
@@ -166,6 +167,7 @@ describe.only('User path(s)', () => {
             element.value = 'Test details about exploiter(s)';
         });
         await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
