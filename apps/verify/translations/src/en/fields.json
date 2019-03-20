@@ -10,6 +10,7 @@
     "hint": "We need this to confirm who you work for"
   },
   "confirm-email": {
-    "label": "Email"
+    "label": "Email",
+    "hint": "If your email is wrong just change it"
   }
 }
