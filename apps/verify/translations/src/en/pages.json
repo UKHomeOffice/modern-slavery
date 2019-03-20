@@ -6,8 +6,7 @@
     "header": "Who do you work for?"
   },
   "confirm-email": {
-    "header": "Make sure this is right",
-    "helper": "If your email is wrong just change it"
+    "header": "Confirm email is right"
   },
   "check-inbox": {
     "header": "Check your email",
