@@ -329,7 +329,7 @@
     }
   },
   "pv-ho-reference-type": {
-    "label": "Enter type of reference, reference number or both (if known)"
+    "label": "Enter type of reference, reference number or both"
   },
   "who-contact": {
     "options": {
