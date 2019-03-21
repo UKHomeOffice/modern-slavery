@@ -50,14 +50,18 @@
   },
   "does-pv-need-support": {
     "header": "Do they need support?",
-    "paragraph-1" : "Support can take 5 days to start and may include:",
+    "paragraph-1" : "Support can take 5 days to start unless the potential victim needs emergency housing.",
+    "paragraph-2" : "Support can take 5 days to start and may include:",
     "bullet-1": "safe housing",
     "bullet-2": "medical treatment",
     "bullet-3": "someone to help them cope with their experience",
     "bullet-4": "protection from the people who exploited them",
     "bullet-5": "independent legal advice",
     "link-text-1": "Contact the support provider",
-    "link-text-2": "about emergency housing if they need somewhere safe to stay immediately."
+    "link-text-2": "for more information."
+  },
+  "support-organisations": {
+    "header": "Find a support provider"
   },
   "pv-name": {
     "header": "What is their name?"

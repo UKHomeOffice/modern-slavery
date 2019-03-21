@@ -53,6 +53,7 @@ module.exports = {
     PV_UNDER_AGE_NO_OPTION: '#pv-under-age-no',
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION: '#pv-under-age-at-time-of-exploitation-no',
     EXPLOITED_IN_UK_OPTION: '#where-exploitation-happened-uk',
+    CURRENT_PV_LOCATION_UK_CITY: '#current-pv-location-uk-city',
     CURRENT_PV_LOCATION_UK_REGION: '#current-pv-location-uk-region',
     WHO_EXPLOITED_PV: '#who-exploited-pv',
     ANY_OTHER_PVS_NO_OPTION: '#any-other-pvs-no',
@@ -87,5 +88,7 @@ module.exports = {
     WHO_CONTACT_PV_OPTION: '#who-contact-potential-victim',
     FR_DETAILS_FIRST_NAME_INPUT: '#fr-details-first-name',
     FR_DETAILS_LAST_NAME_INPUT: '#fr-details-last-name',
+    EXPLOITED_IN_UK_CITY_INPUT: '#where-exploitation-happened-uk-city',
+    EXPLOITED_IN_UK_REGION_INPUT: '#where-exploitation-happened-uk-region',
   }
 };

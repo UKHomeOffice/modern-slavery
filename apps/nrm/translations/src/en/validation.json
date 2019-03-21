@@ -24,7 +24,16 @@
   "where-exploitation-happened" : {
     "required": "You must select an option"
   },
+  "where-exploitation-happened-uk-city" : {
+    "required": "You must select an option"
+  },
+  "where-exploitation-happened-uk-region" : {
+    "required": "You must select an option"
+  },
   "where-exploitation-happened-overseas-country" : {
+    "required": "You must select an option"
+  },
+  "current-pv-location-uk-city" : {
     "required": "You must select an option"
   },
   "current-pv-location-uk-region" : {

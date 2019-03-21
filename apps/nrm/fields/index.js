@@ -2,7 +2,8 @@
 
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
-const countries = require('hof-util-countries')();
+const hofCountries = require('hof-util-countries')();
+const countries = hofCountries.concat([{value: 'Unknown', label: 'Unknown'}]);
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');
@@ -34,8 +35,6 @@ module.exports = {
       child: 'partials/pv-under-age-panel'
     }, {
       value: 'no',
-      toggle: 'no-toggle-content',
-      child: 'partials/pv-under-age-panel'
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
@@ -107,6 +106,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -119,6 +119,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-region': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -174,6 +175,7 @@ module.exports = {
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',

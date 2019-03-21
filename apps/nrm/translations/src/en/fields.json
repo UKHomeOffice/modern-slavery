@@ -25,11 +25,10 @@
     "options": {
       "yes": {
         "label": "Yes",
-        "toggle-content": "They will be treated as a child during the process."
+        "toggle-content": "You must explain to them how organisations such as the Home Office and the police will use their information."
       },
       "no": {
-        "label": "No",
-        "toggle-content": "They will be treated as an adult during the process."
+        "label": "No"
       },
       "not-sure": {
         "label": "Not Sure",
@@ -91,19 +90,19 @@
     }
   },
   "where-exploitation-happened-uk-city": {
-    "label": "Select city or town (optional)",
+    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-region": {
-    "label": "Select region (optional)",
+    "label": "Select region (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country": {
-    "label": "Select country",
+    "label": "Select country (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
@@ -117,13 +116,13 @@
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
   "current-pv-location-uk-city": {
-    "label": "Select city or town (optional)",
+    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }
   },
   "current-pv-location-uk-region": {
-    "label": "Select region",
+    "label": "Select region  (Type ‘Unknown’ if they are unsure)",
     "options": {
       "null": "Select..."
     }

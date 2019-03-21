@@ -13,6 +13,7 @@ const {
     PV_UNDER_AGE_NO_OPTION,
     PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
     EXPLOITED_IN_UK_OPTION,
+    CURRENT_PV_LOCATION_UK_CITY,
     CURRENT_PV_LOCATION_UK_REGION,
     WHO_EXPLOITED_PV,
     ANY_OTHER_PVS_NO_OPTION,
@@ -44,6 +45,8 @@ const {
     REFER_CASE_TO_NRM_NO_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
     WHO_CONTACT_PV_OPTION,
+    EXPLOITED_IN_UK_CITY_INPUT,
+    EXPLOITED_IN_UK_REGION_INPUT,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -191,9 +194,18 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
+        await page.$eval(EXPLOITED_IN_UK_CITY_INPUT, (element) => {
+            element.value = 'Croydon';
+        });
+        await page.$eval(EXPLOITED_IN_UK_REGION_INPUT, (element) => {
+            element.value = 'Surrey';
+        });
         await clickSelector(page, CONTINUE_BUTTON);
+        await page.$eval(CURRENT_PV_LOCATION_UK_CITY, (element) => {
+            element.value = 'Bromley';
+        });
         await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-            element.value = 'Rutland';
+            element.value = 'Kent';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(WHO_EXPLOITED_PV, (element) => {
