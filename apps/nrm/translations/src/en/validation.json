@@ -33,6 +33,9 @@
   "where-exploitation-happened-overseas-country" : {
     "required": "You must select an option"
   },
+  "current-pv-location-uk-city" : {
+    "required": "You must select an option"
+  },
   "current-pv-location-uk-region" : {
     "required": "You must select an option"
   },
