@@ -25,11 +25,10 @@
     "options": {
       "yes": {
         "label": "Yes",
-        "toggle-content": "They will be treated as a child during the process."
+        "toggle-content": "You must explain to them how organisations such as the Home Office and the police will use their information."
       },
       "no": {
-        "label": "No",
-        "toggle-content": "They will be treated as an adult during the process."
+        "label": "No"
       },
       "not-sure": {
         "label": "Not Sure",
