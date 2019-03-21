@@ -51,35 +51,13 @@
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
   },
-  "refuse-nrm-co-operate-with-police" : {
-    "required": "You must select an option"
-  },
-  "refuse-nrm-pv-name-first-name" : {
-    "required": "You must enter the potential victim's first name"
-  },
-  "refuse-nrm-pv-name-last-name" : {
-    "required": "You must enter the potential victim's last name"
-  },
-  "refuse-nrm-pv-contact-details" : {
-    "required": "You must select one or more of the contact methods listed"
-  },
-  "refuse-nrm-pv-contact-details-email-input" : {
-    "required": "You must enter an email address",
-    "email": "You must enter a valid email address"
-  },
-  "refuse-nrm-pv-contact-details-email-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this email addresss."
-  },
-  "refuse-nrm-pv-contact-details-post-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this addresss."
-  },
   "does-pv-need-support" : {
     "required": "You must select if support is required"
   },
-  "pv-name-that-requires-support-first-name" : {
+  "pv-name-first-name" : {
     "required": "You must enter the potential victim's first name"
   },
-  "pv-name-that-requires-support-last-name" : {
+  "pv-name-last-name" : {
     "required": "You must enter the potential victim's last name"
   },
   "pv-dob": {
