@@ -202,6 +202,23 @@ module.exports = {
       next: '/pv-contact-details'
     },
     '/someone-else': {
+      fields: [
+        'someone-else',
+        'someone-else-first-name',
+        'someone-else-last-name',
+        'someone-else-email-input',
+        'someone-else-street',
+        'someone-else-town',
+        'someone-else-county',
+        'someone-else-postcode',
+        'someone-else-permission-check',
+      ],
+      forks: [{
+        target: '/co-operate-with-police',
+        condition: (req) => {
+          return (req.sessionModel.get('does-pv-need-support')) === 'no';
+        }
+      }],
       next: '/pv-phone-number'
     },
     '/pv-contact-details': {

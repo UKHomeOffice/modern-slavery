@@ -552,6 +552,71 @@ module.exports = {
       field: 'pv-contact-details',
     },
   },
+  'someone-else': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'email',
+      toggle: 'someone-else-email-input-fieldset',
+      child: 'partials/someone-else-email-input'
+    }, {
+      value: 'post',
+      toggle: 'someone-else-post-fieldset',
+      child: 'partials/someone-else-post'
+    }]
+  },
+  'someone-else-first-name': {
+    mixin: 'input-text',
+  },
+  'someone-else-last-name': {
+    mixin: 'input-text',
+  },
+  'someone-else-email-input': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    dependent: {
+      value: 'email',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-street': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-town': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-county': {
+    mixin: 'input-text',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-postcode': {
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'post',
+      field: 'someone-else',
+    },
+  },
+  'someone-else-permission-check': {
+    mixin: 'checkbox',
+    validate: 'required',
+  },
   'supporting-documents-add': {
     mixin: 'radio-group',
     validate: 'required',

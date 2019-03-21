@@ -339,9 +339,45 @@
       }
     }
   },
+  "someone-else": {
+    "legend": "How should we notify them?",
+    "hint": "Select all that apply.",
+    "options": {
+      "email": {
+        "label": "Email"
+      },
+      "post": {
+        "label": "Post"
+      }
+    }
+  },
+  "someone-else-first-name": {
+    "label": "First name (Optional)"
+  },
+  "someone-else-last-name": {
+    "label": "Last name (Optional)"
+  },
+  "someone-else-email-input": {
+    "label": "Email address"
+  },
+  "someone-else-street": {
+    "label": "Building and street"
+  },
+  "someone-else-town": {
+    "label": "Town or city"
+  },
+  "someone-else-county": {
+    "label": "County"
+  },
+  "someone-else-postcode": {
+    "label": "Postcode"
+  },
+  "someone-else-permission-check": {
+    "label": "The potential victim has given you permission to send the decision to this person."
+  },
   "pv-contact-details": {
     "legend": "How should we notify them of our decision?",
-    "hint": "Select all that apply. If they don’t have an email or postal address, enter the details of the support provider.",
+    "hint": "Select all that apply.",
     "options": {
       "email": {
         "label": "Email"
