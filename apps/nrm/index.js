@@ -104,7 +104,7 @@ module.exports = {
         'reported-to-police-crime-reference'
       ],
       forks: [{
-        target: '/pv-name-that-requires-support',
+        target: '/pv-name',
         condition: (req) => {
           return (req.sessionModel.get('pv-under-age')) !== 'no';
         }
@@ -124,54 +124,24 @@ module.exports = {
     },
     '/refuse-nrm': {
       fields: ['refuse-nrm'],
-      next: '/refuse-nrm-pv-gender'
-    },
-    '/refuse-nrm-pv-gender': {
-      fields: ['refuse-nrm-pv-gender'],
-      next: '/refuse-nrm-co-operate-with-police'
-    },
-    '/refuse-nrm-co-operate-with-police': {
-      fields: ['refuse-nrm-co-operate-with-police'],
-      forks: [{
-        target: '/confirm',
-        condition: {
-          field: 'refuse-nrm-co-operate-with-police',
-          value: 'no'
-        }
-      }],
-      next: '/refuse-nrm-pv-name'
-    },
-    '/refuse-nrm-pv-name': {
-      fields: [
-        'refuse-nrm-pv-name-first-name',
-        'refuse-nrm-pv-name-last-name',
-        'refuse-nrm-pv-name-nickname',
-      ],
-      next: '/refuse-nrm-pv-contact-details'
-    },
-    '/refuse-nrm-pv-contact-details': {
-      fields: [
-        'refuse-nrm-pv-contact-details',
-        'refuse-nrm-pv-contact-details-email-input',
-        'refuse-nrm-pv-contact-details-email-check',
-        'refuse-nrm-pv-contact-details-street',
-        'refuse-nrm-pv-contact-details-town',
-        'refuse-nrm-pv-contact-details-county',
-        'refuse-nrm-pv-contact-details-postcode',
-        'refuse-nrm-pv-contact-details-post-check',
-      ],
-      next: '/confirm'
+      next: '/pv-gender'
     },
     '/does-pv-need-support': {
       fields: ['does-pv-need-support'],
-      next: '/pv-name-that-requires-support'
+      next: '/pv-name'
     },
-    '/pv-name-that-requires-support': {
+    '/pv-name': {
       fields: [
-        'pv-name-that-requires-support-first-name',
-        'pv-name-that-requires-support-last-name',
-        'pv-name-that-requires-support-nickname',
+        'pv-name-first-name',
+        'pv-name-last-name',
+        'pv-name-nickname',
       ],
+      forks: [{
+        target: '/pv-contact-details',
+        condition: (req) => {
+          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+        }
+      }],
       next: '/pv-dob'
     },
     '/pv-dob': {
@@ -180,6 +150,12 @@ module.exports = {
     },
     '/pv-gender': {
       fields: ['pv-gender'],
+      forks: [{
+        target: '/co-operate-with-police',
+        condition: (req) => {
+          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+        }
+      }],
       next: '/does-pv-have-children'
     },
     '/does-pv-have-children': {
@@ -219,12 +195,23 @@ module.exports = {
         'pv-contact-details-postcode',
         'pv-contact-details-post-check',
       ],
-      forks: [{
-        target: '/co-operate-with-police',
-        condition: (req) => {
-          return (req.sessionModel.get('does-pv-need-support')) === 'no';
-        }
-      }],
+      forks: [
+        {
+          target: '/co-operate-with-police',
+          condition: (req) => {
+            return (req.sessionModel.get('does-pv-need-support')) === 'no';
+          }
+        },
+        {
+          target: '/confirm',
+          condition: (req) => {
+            return (
+              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
+              ((req.sessionModel.get('does-pv-need-support')) !== 'yes')
+              );
+          }
+        },
+      ],
       next: '/pv-phone-number'
     },
     '/pv-phone-number': {
@@ -233,6 +220,26 @@ module.exports = {
     },
     '/co-operate-with-police': {
       fields: ['co-operate-with-police'],
+      forks: [
+        {
+          target: '/confirm',
+          condition: (req) => {
+            return (
+              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
+              (req.sessionModel.get('co-operate-with-police') === 'no')
+              );
+          }
+        },
+        {
+          target: '/pv-name',
+          condition: (req) => {
+            return (
+              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
+              (req.sessionModel.get('co-operate-with-police') === 'yes')
+              );
+          }
+        },
+      ],
       next: '/fr-details'
     },
     '/supporting-documents-add': {

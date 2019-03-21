@@ -19,8 +19,8 @@ const {
     PV_HAS_CRIME_REFERENCE_NUMBER_YES_OPTION,
     REFER_CASE_TO_NRM_YES_OPTION,
     DOES_PV_NEED_SUPPORT_YES_OPTION,
-    PV_NAME_REQUIRING_SUPPORT_FIRST_NAME,
-    PV_NAME_REQUIRING_SUPPORT_LAST_NAME,
+    PV_NAME_FIRST_NAME,
+    PV_NAME_LAST_NAME,
     PV_GENDER_MALE_OPTION,
     DOES_PV_HAVE_CHILDREN_NO_OPTION,
     PV_NATIONALITY,
@@ -41,14 +41,7 @@ const {
     LOCAL_AUTHORITY_PHONE,
     LOCAL_AUTHORITY_EMAIL,
     REFER_CASE_TO_NRM_NO_OPTION,
-    REFUSE_NRM_POLICE_CONTACT_YES_OPTION,
-    REFUSE_NRM_PV_NAME_FIRST_NAME,
-    REFUSE_NRM_PV_NAME_LAST_NAME,
-    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION,
-    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT,
-    REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
-    REFUSE_NRM_PV_GENDER_MALE_OPTION,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -114,24 +107,24 @@ describe.only('User path(s)', () => {
         await clickSelector(page, REFER_CASE_TO_NRM_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, REFUSE_NRM_PV_GENDER_MALE_OPTION);
+        await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, REFUSE_NRM_POLICE_CONTACT_YES_OPTION);
+        await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(REFUSE_NRM_PV_NAME_FIRST_NAME);
-        await page.$eval(REFUSE_NRM_PV_NAME_FIRST_NAME, (element) => {
+        await page.waitForSelector(PV_NAME_FIRST_NAME);
+        await page.$eval(PV_NAME_FIRST_NAME, (element) => {
             element.value = 'Robert';
         });
-        await page.$eval(REFUSE_NRM_PV_NAME_LAST_NAME, (element) => {
+        await page.$eval(PV_NAME_LAST_NAME, (element) => {
             element.value = 'Maxwell';
         });
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_OPTION);
-        await page.waitForSelector(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT);
-        await page.$eval(REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+        await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
             element.value = 'robert.maxwell@pvrefuse.com';
         });
-        await clickSelector(page, REFUSE_NRM_PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+        await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
     }
@@ -239,11 +232,11 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
     async function completeForm2of2(typeOfPV) {
-        await page.waitForSelector(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME);
-        await page.$eval(PV_NAME_REQUIRING_SUPPORT_FIRST_NAME, (element) => {
+        await page.waitForSelector(PV_NAME_FIRST_NAME);
+        await page.$eval(PV_NAME_FIRST_NAME, (element) => {
             element.value = 'Paul';
         });
-        await page.$eval(PV_NAME_REQUIRING_SUPPORT_LAST_NAME, (element) => {
+        await page.$eval(PV_NAME_LAST_NAME, (element) => {
             element.value = 'Shortlands';
         });
         await clickSelector(page, CONTINUE_BUTTON);

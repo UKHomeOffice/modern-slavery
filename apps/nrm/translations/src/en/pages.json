@@ -48,18 +48,6 @@
   "refuse-nrm": {
     "header": "Why don't they want their case referred?"
   },
-  "refuse-nrm-pv-gender": {
-    "header": "What is their gender?"
-  },
-  "refuse-nrm-co-operate-with-police": {
-    "header": "Can the police contact them about their case?"
-  },
-  "refuse-nrm-pv-name": {
-    "header": "What is their name?"
-  },
-  "refuse-nrm-pv-contact-details": {
-    "header": "How should we notify them of our decision?"
-  },
   "does-pv-need-support": {
     "header": "Do they need support?",
     "paragraph-1" : "Support can take 5 days to start and may include:",
@@ -71,7 +59,7 @@
     "link-text-1": "Contact the support provider",
     "link-text-2": "about emergency housing if they need somewhere safe to stay immediately."
   },
-  "pv-name-that-requires-support": {
+  "pv-name": {
     "header": "What is their name?"
   },
   "pv-dob": {
