@@ -37,7 +37,7 @@ const {
     PV_CONTACT_DETAILS_EMAIL_INPUT,
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
-    POLICE_CONTACT_YES_OPTION,
+    POLICE_CONTACT_NO_OPTION,
     FR_DETAILS_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
@@ -198,7 +198,7 @@ describe('Upload File(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, POLICE_CONTACT_YES_OPTION);
+        await clickSelector(page, POLICE_CONTACT_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, UPLOAD_DOCUMENT_PAGE_2_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);

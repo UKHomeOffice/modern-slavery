@@ -308,6 +308,7 @@ module.exports = {
   },
   'reported-to-police-police-forces': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -320,6 +321,7 @@ module.exports = {
   },
   'reported-to-police-crime-reference': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'yes',
       field: 'reported-to-police',
