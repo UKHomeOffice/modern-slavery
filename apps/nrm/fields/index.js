@@ -439,6 +439,7 @@ module.exports = {
   },
   'refuse-nrm-pv-contact-details-street': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'refuse-nrm-pv-contact-details',
@@ -446,6 +447,7 @@ module.exports = {
   },
   'refuse-nrm-pv-contact-details-town': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'refuse-nrm-pv-contact-details',
@@ -453,6 +455,7 @@ module.exports = {
   },
   'refuse-nrm-pv-contact-details-county': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'refuse-nrm-pv-contact-details',
@@ -460,6 +463,7 @@ module.exports = {
   },
   'refuse-nrm-pv-contact-details-postcode': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'refuse-nrm-pv-contact-details',
@@ -527,6 +531,7 @@ module.exports = {
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
+    validate: ['reqiured', 'numeric'],
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
@@ -565,6 +570,11 @@ module.exports = {
   },
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'yes',
+      field: 'pv-interpreter-requirements',
+    },
   },
   'pv-other-help-with-communication': {
     mixin: 'radio-group',
@@ -582,6 +592,11 @@ module.exports = {
   },
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'yes',
+      field: 'pv-other-help-with-communication',
+    },
   },
   'pv-ho-reference': {
     mixin: 'radio-group',
@@ -599,6 +614,7 @@ module.exports = {
   },
   'pv-ho-reference-type': {
     mixin: 'input-text',
+    validate: 'required',
   },
   'who-contact': {
     mixin: 'radio-group',
@@ -645,6 +661,7 @@ module.exports = {
   },
   'pv-contact-details-street': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -652,6 +669,7 @@ module.exports = {
   },
   'pv-contact-details-town': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -659,6 +677,7 @@ module.exports = {
   },
   'pv-contact-details-county': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -666,6 +685,7 @@ module.exports = {
   },
   'pv-contact-details-postcode': {
     mixin: 'input-text',
+    validate: 'required',
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -770,7 +790,12 @@ module.exports = {
     }]
   },
   'pv-phone-number-yes': {
-    mixin: 'input-text'
+    mixin: 'input-text',
+    validate: 'required',
+    dependent: {
+      value: 'yes',
+      field: 'pv-phone-number',
+    },
   },
   'co-operate-with-police': {
     mixin: 'radio-group',

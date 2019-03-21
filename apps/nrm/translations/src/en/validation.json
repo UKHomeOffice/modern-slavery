@@ -88,6 +88,18 @@
   "refuse-nrm-pv-contact-details-email-check" : {
     "required": "Make sure it is safe to contact the potential victim at this email addresss."
   },
+  "refuse-nrm-pv-contact-details-street" : {
+    "required": "You must enter the street."
+  },
+  "refuse-nrm-pv-contact-details-town" : {
+    "required": "You must enter the town or city."
+  },
+  "refuse-nrm-pv-contact-details-county" : {
+    "required": "You must enter the county."
+  },
+  "refuse-nrm-pv-contact-details-postcode" : {
+    "required": "You must enter the postcode."
+  },
   "refuse-nrm-pv-contact-details-post-check" : {
     "required": "Make sure it is safe to contact the potential victim at this addresss."
   },
@@ -111,17 +123,30 @@
   "does-pv-have-children" : {
     "required": "You must select an option"
   },
+  "does-pv-have-children-yes-amount" : {
+    "required": "You must enter the number of children",
+    "numeric": "You must enter numbers only"
+  },
   "pv-nationality" : {
     "required": "You must select the potential victim's nationality"
   },
   "pv-interpreter-requirements" : {
     "required": "You must select an option"
   },
+  "pv-interpreter-requirements-language" : {
+    "required": "You must enter a language"
+  },
   "pv-other-help-with-communication" : {
     "required": "You must select an option"
   },
+  "pv-other-help-with-communication-aid" : {
+    "required": "You must enter the communication aid"
+  },
   "pv-ho-reference" : {
     "required": "You must select an option"
+  },
+  "pv-ho-reference-type" : {
+    "required": "You must enter the type of reference, reference number or both"
   },
   "who-contact" : {
     "required": "You must select an option"
@@ -141,6 +166,9 @@
   },
   "pv-contact-details-town" : {
     "required": "You must enter the town."
+  },
+  "pv-contact-details-county" : {
+    "required": "You must enter the county."
   },
   "pv-contact-details-postcode" : {
     "required": "You must enter the postcode."
@@ -169,6 +197,9 @@
   },
   "pv-phone-number" : {
     "required": "You must select an option"
+  },
+  "pv-phone-number-yes" : {
+    "required": "You must enter the potential victim's phone number"
   },
   "co-operate-with-police" : {
     "required": "You must select an option"
