@@ -168,7 +168,7 @@ module.exports = {
       forks: [{
         target: '/co-operate-with-police',
         condition: (req) => {
-          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+          return ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no');
         }
       }],
       next: '/pv-interpreter-requirements'
