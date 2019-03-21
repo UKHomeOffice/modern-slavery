@@ -131,6 +131,8 @@ module.exports = {
       fields: ['does-pv-need-support'],
       next: '/pv-name'
     },
+    '/support-organisations': {
+    },
     '/pv-name': {
       fields: [
         'pv-name-first-name',
