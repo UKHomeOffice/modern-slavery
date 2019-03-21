@@ -113,7 +113,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NATIONALITY);
         await page.$eval(PV_NATIONALITY, (element) => {
-            element.value = 'United Kingdom';
+            element.value = 'French';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
@@ -254,7 +254,7 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NATIONALITY);
         await page.$eval(PV_NATIONALITY, (element) => {
-            element.value = 'United Kingdom';
+            element.value = 'English';
         });
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, INTERPRETER_NO_OPTION);
