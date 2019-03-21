@@ -43,7 +43,7 @@
     "required": "You must enter details about the exploiter(s)"
   },
   "types-of-exploitation-forced-to-work" : {
-    "atLeastOneOptionSelected" : "You must select an exploitation type"
+    "at-least-one-option-selected" : "You must select an exploitation type"
   },
   "other-exploitation-details" : {
     "required" : "Please enter other type of exploitation"
