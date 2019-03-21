@@ -109,6 +109,11 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
+        await page.waitForSelector(PV_NATIONALITY);
+        await page.$eval(PV_NATIONALITY, (element) => {
+            element.value = 'United Kingdom';
+        });
+        await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NAME_FIRST_NAME);

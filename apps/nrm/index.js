@@ -151,7 +151,7 @@ module.exports = {
     '/pv-gender': {
       fields: ['pv-gender'],
       forks: [{
-        target: '/co-operate-with-police',
+        target: '/pv-nationality',
         condition: (req) => {
           return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
         }
@@ -164,6 +164,12 @@ module.exports = {
     },
     '/pv-nationality': {
       fields: ['pv-nationality', 'pv-nationality-second'],
+      forks: [{
+        target: '/co-operate-with-police',
+        condition: (req) => {
+          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+        }
+      }],
       next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
