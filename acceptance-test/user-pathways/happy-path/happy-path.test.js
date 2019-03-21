@@ -32,7 +32,8 @@ const {
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
     PV_PHONE_NUMBER_NO_OPTION,
     POLICE_CONTACT_YES_OPTION,
-    FR_DETAILS_NAME_INPUT,
+    FR_DETAILS_FIRST_NAME_INPUT,
+    FR_DETAILS_LAST_NAME_INPUT,
     FR_DETAILS_ROLE_INPUT,
     FR_DETAILS_PHONE_INPUT,
     FR_ALTERNATE_CONTACT_EMAIL_INPUT,
@@ -279,9 +280,12 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
-        await page.waitForSelector(FR_DETAILS_NAME_INPUT);
-        await page.$eval(FR_DETAILS_NAME_INPUT, (element) => {
-            element.value = 'Jack Smith';
+        await page.waitForSelector(FR_DETAILS_FIRST_NAME_INPUT);
+        await page.$eval(FR_DETAILS_FIRST_NAME_INPUT, (element) => {
+            element.value = 'Jack';
+        });
+        await page.$eval(FR_DETAILS_LAST_NAME_INPUT, (element) => {
+            element.value = 'Smith';
         });
         await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
             element.value = 'Police Officer';
