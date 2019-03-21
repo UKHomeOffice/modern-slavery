@@ -45,6 +45,12 @@
   "reported-to-police" : {
     "required": "You must select an option"
   },
+  "reported-to-police-police-forces" : {
+    "required": "You must enter a police force"
+  },
+  "reported-to-police-crime-reference" : {
+    "required": "You must enter a crime or CAD reference"
+  },
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
   },
