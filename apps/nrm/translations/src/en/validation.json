@@ -8,9 +8,6 @@
   "pv-under-age" : {
     "required": "You must select an option"
   },
-  "local-authority-contacted-about-child-local-authority-name": {
-    "required": "You must enter the local authority name"
-  },
   "local-authority-contacted-about-child-local-authority-phone": {
     "required": "You must enter a phone number"
   },
@@ -137,8 +134,11 @@
     "filesize": "That file is too big. We only accept files smaller than 100mb",
     "required": "Upload a document"
   },
-  "fr-details-name" : {
-    "required": "You must enter your name "
+  "fr-details-first-name" : {
+    "required": "You must enter your first name "
+  },
+  "fr-details-last-name" : {
+    "required": "You must enter your last name "
   },
   "fr-details-role" : {
     "required": "You must enter your role"

@@ -45,7 +45,8 @@ module.exports = {
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
         'local-authority-contacted-about-child-local-authority-email',
-        'local-authority-contacted-about-child-local-authority-contact',
+        'local-authority-contacted-about-child-local-authority-first-name',
+        'local-authority-contacted-about-child-local-authority-last-name',
       ],
       next: '/what-happened'
     },
@@ -318,7 +319,8 @@ module.exports = {
     },
     '/fr-details': {
       fields: [
-        'fr-details-name',
+        'fr-details-first-name',
+        'fr-details-last-name',
         'fr-details-role',
         'fr-details-phone',
       ],

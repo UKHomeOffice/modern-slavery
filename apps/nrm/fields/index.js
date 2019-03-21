@@ -58,7 +58,10 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required', 'email']
   },
-  'local-authority-contacted-about-child-local-authority-contact': {
+  'local-authority-contacted-about-child-local-authority-first-name': {
+    mixin: 'input-text',
+  },
+  'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
   },
   'pv-under-age-at-time-of-exploitation': {
@@ -674,7 +677,11 @@ module.exports = {
       'no'
     ]
   },
-  'fr-details-name': {
+  'fr-details-first-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'fr-details-last-name': {
     mixin: 'input-text',
     validate: 'required'
   },
