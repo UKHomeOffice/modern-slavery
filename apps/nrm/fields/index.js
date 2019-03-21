@@ -199,7 +199,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
-    validation: 'atLeastOneOptionSelected',
+    validation: 'at-least-one-option-selected',
     legend: {
       className: 'visuallyhidden'
     }
