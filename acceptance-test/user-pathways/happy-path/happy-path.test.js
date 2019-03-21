@@ -42,6 +42,7 @@ const {
     LOCAL_AUTHORITY_EMAIL,
     REFER_CASE_TO_NRM_NO_OPTION,
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION,
+    WHO_CONTACT_PV_OPTION,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -263,6 +264,8 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
 
         if (typeOfPV === 'adult') {
+            await clickSelector(page, WHO_CONTACT_PV_OPTION);
+            await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
             await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
             await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {

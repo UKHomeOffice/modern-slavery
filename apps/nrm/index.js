@@ -188,7 +188,21 @@ module.exports = {
           return (req.sessionModel.get('pv-under-age')) !== 'no';
         }
       }],
+      next: '/who-contact'
+    },
+    '/who-contact': {
+      fields: ['who-contact'],
+      forks: [{
+        target: '/someone-else',
+        condition: {
+          field: 'who-contact',
+          value: 'someone-else'
+        }
+      }],
       next: '/pv-contact-details'
+    },
+    '/someone-else': {
+      next: '/pv-phone-number'
     },
     '/pv-contact-details': {
       fields: [

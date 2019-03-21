@@ -83,6 +83,9 @@
   "pv-ho-reference" : {
     "required": "You must select an option"
   },
+  "who-contact" : {
+    "required": "You must select an option"
+  },
   "pv-contact-details" : {
     "required": "You must select one or more of the contact methods listed"
   },

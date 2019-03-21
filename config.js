@@ -83,5 +83,7 @@ module.exports = {
     REFER_CASE_TO_NRM_NO_OPTION: '#pv-want-to-submit-nrm-no',
     HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION: '#types-of-exploitation-forced-to-work',
     REFUSE_NRM_PV_GENDER_MALE_OPTION: '#refuse-nrm-pv-gender-male',
+    REFUSE_NRM_PV_NATIONALITY: '#refuse-nrm-pv-nationality',
+    WHO_CONTACT_PV_OPTION: '#who-contact-potential-victim',
   }
 };
