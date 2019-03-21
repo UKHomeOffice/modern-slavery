@@ -615,6 +615,10 @@ module.exports = {
   'pv-ho-reference-type': {
     mixin: 'input-text',
     validate: 'required',
+    dependent: {
+      value: 'yes',
+      field: 'pv-ho-reference',
+    },
   },
   'who-contact': {
     mixin: 'radio-group',
