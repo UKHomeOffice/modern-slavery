@@ -177,6 +177,7 @@ module.exports = {
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
+    validate: 'required',
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
