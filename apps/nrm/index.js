@@ -121,6 +121,7 @@ module.exports = {
           value: 'no'
         }
       }],
+      continueOnEdit: true,
       next: '/does-pv-need-support'
     },
     '/refuse-nrm': {
@@ -333,8 +334,11 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-       behaviours: ['complete'],
-       next: '/confirmation'
+      behaviours: [
+        'complete',
+        require('hof-behaviour-summary-page')
+      ],
+      next: '/confirmation'
     },
     '/confirmation': {
       backLink: false
