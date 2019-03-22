@@ -130,6 +130,7 @@ module.exports = {
     },
     '/does-pv-need-support': {
       fields: ['does-pv-need-support'],
+      continueOnEdit: true,
       next: '/pv-name'
     },
     '/support-organisations': {
@@ -203,6 +204,7 @@ module.exports = {
           value: 'someone-else'
         }
       }],
+      continueOnEdit: true,
       next: '/pv-contact-details'
     },
     '/someone-else': {

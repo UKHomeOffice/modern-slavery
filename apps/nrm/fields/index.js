@@ -720,7 +720,8 @@ module.exports = {
     validate: 'required'
   },
   'fr-details-phone': {
-    mixin: 'input-text'
+    mixin: 'input-text',
+    validate: 'required'
   },
   'fr-alternative-contact': {
     mixin: 'input-text',

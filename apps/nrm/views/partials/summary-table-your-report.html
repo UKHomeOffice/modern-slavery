@@ -1,15 +1,25 @@
 <h2 class="details-header">{{#t}}pages.confirm.sections.your-report.header{{/t}}</h2>
 <table id="your-report" class="table-details">
   <tbody>
+    <tr>
+      <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.pv-under-age}}
+          {{values.pv-under-age}}
+        {{/values.pv-under-age}}
+      </td>
+      <td></td>
+    </tr>
+
+    {{#values.pv-under-age-at-time-of-exploitation}}
       <tr>
-        <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
+        <td>{{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}</td>
         <td class="no-white-space">
-          {{#values.pv-under-age}}
-            {{values.pv-under-age}}
-          {{/values.pv-under-age}}
+            {{values.pv-under-age-at-time-of-exploitation}}
         </td>
         <td></td>
       </tr>
+    {{/values.pv-under-age-at-time-of-exploitation}}
 
     <tr>
       <td>{{#t}}pages.confirm.fields.fr-location.label{{/t}}</td>
@@ -22,6 +32,54 @@
         <a href="/nrm/fr-location/edit#fr-location" class="button">Change</a>
       </td>
     </tr>
+
+    {{#values.local-authority-contacted-about-child-local-authority-name}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
+          </td>
+          <td>
+            <a href="/nrm/local-authority-contacted-about-child/edit#local-authority-contacted-about-child-local-authority-name" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-name}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-phone}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
+          </td>
+          <td>
+            <a href="/nrm/local-authority-contacted-about-child/edit#local-authority-contacted-about-child-local-authority-phone" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-phone}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-email}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
+          </td>
+          <td>
+            <a href="/nrm/local-authority-contacted-about-child/edit#local-authority-contacted-about-child-local-authority-email" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-email}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-first-name}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
+          </td>
+          <td>
+            <a href="/nrm/local-authority-contacted-about-child/edit#local-authority-contacted-about-child-local-authority-first-name" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-first-name}}
 
     <tr>
       <td>{{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}</td>
@@ -115,10 +173,13 @@
       <td>{{#t}}pages.confirm.fields.reported-to-police.label{{/t}}</td>
       <td class="no-white-space">
         {{#values.reported-to-police}}
-          <span>{{values.any-other-pvs}}</span>
+          <span>{{values.reported-to-police}}</span>
           {{#values.reported-to-police-police-forces}}
             <span>{{values.reported-to-police-police-forces}}</span>
           {{/values.reported-to-police-police-forces}}
+          {{#values.reported-to-police-crime-reference}}
+          <span>Reference: {{values.reported-to-police-crime-reference}}</span>
+          {{/values.reported-to-police-crime-reference}}
         {{/values.reported-to-police}}
       </td>
       <td>
