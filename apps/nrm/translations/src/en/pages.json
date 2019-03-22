@@ -67,7 +67,7 @@
     "header": "What is their name?"
   },
   "pv-dob": {
-    "header": "What is their date of birth?"
+    "header": "What is their date of birth? (Optional)"
   },
   "pv-gender": {
     "header": "What is their gender?"
@@ -115,7 +115,7 @@
     "read-only-field-1-placeholder": "FR EMAIL PLACEHOLDER"
   },
   "fr-alternative-contact": {
-    "header": "Who should we contact in your absence?"
+    "header": "Who should we contact in your absence?  (Optional)"
   },
   "confirm": {
     "header": "Check your answers",
@@ -126,6 +126,9 @@
       "potential-victim": {
         "header": "Potential victim"
       },
+      "someone-else": {
+        "header": "Alternate contact for potential victim"
+      },
       "your-details": {
         "header": "Your details"
       }
@@ -133,6 +136,21 @@
     "fields": {
       "pv-under-age": {
         "label": "Under 18"
+      },
+      "local-authority-contacted-about-child-local-authority-name" : {
+        "label": "Local authority name"
+      },
+      "local-authority-contacted-about-child-local-authority-phone" : {
+        "label": "Local authority phone"
+      },
+      "local-authority-contacted-about-child-local-authority-email" : {
+        "label": "Local authority email"
+      },
+      "local-authority-contacted-about-child-local-authority-contact" : {
+        "label": "Local authority contact"
+      },
+      "pv-under-age-at-time-of-exploitation" : {
+        "table-data": "Under 18 when exploited"
       },
       "fr-location": {
         "label": "Region"
@@ -164,6 +182,12 @@
       "co-operate-with-police": {
         "label": "Consent"
       },
+      "someone-else-name": {
+        "label": "Name"
+      },
+      "someone-else-email-input": {
+        "label": "Email"
+      },
       "pv-name": {
         "label": "Name"
       },
@@ -179,6 +203,9 @@
       "pv-nationality": {
         "label": "Country of nationality"
       },
+      "does-pv-have-children": {
+        "label": "Children?"
+      },
       "pv-interpreter-requirements": {
         "label": "Interpreter"
       },
@@ -190,6 +217,12 @@
       },
       "pv-contact-details": {
         "label": "Home address"
+      },
+      "pv-contact-details-email": {
+        "label": "Email"
+      },
+      "pv-phone-number-yes": {
+        "label": "Phone"
       },
       "pv-ho-reference": {
         "label": "Home Office reference"

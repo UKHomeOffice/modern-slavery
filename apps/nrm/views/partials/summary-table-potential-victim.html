@@ -37,73 +37,33 @@
         </tr>
       {{/values.co-operate-with-police}}
 
-      {{#values.refuse-nrm-co-operate-with-police}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.co-operate-with-police.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{values.refuse-nrm-co-operate-with-police}}</span>
-          </td>
-          <td>
-            <a href="/nrm/refuse-nrm-co-operate-with-police/edit#refuse-nrm-co-operate-with-police" class="button">Change</a>
-          </td>
-        </tr>
-      {{/values.refuse-nrm-co-operate-with-police}}
-
-      {{#values.pv-name-that-requires-support-first-name}}
+      {{#values.pv-name-first-name}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-name.label{{/t}}</td>
         <td class="no-white-space">
           <span>
-            {{values.pv-name-that-requires-support-first-name}} {{values.pv-name-that-requires-support-last-name}}
+            {{values.pv-name-first-name}} {{values.pv-name-last-name}}
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-name-that-requires-support/edit#pv-name-that-requires-support-first-name" class="button">Change</a>
+          <a href="/nrm/pv-name/edit#pv-name-first-name" class="button">Change</a>
         </td>
       </tr>
-      {{/values.pv-name-that-requires-support-first-name}}
+      {{/values.pv-name-first-name}}
 
-      {{#values.refuse-nrm-pv-name-first-name}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-name.label{{/t}}</td>
-        <td class="no-white-space">
-          <span>
-            {{values.refuse-nrm-pv-name-first-name}} {{values.refuse-nrm-pv-name-last-name}}
-          </span>
-        </td>
-        <td>
-          <a href="/nrm/refuse-nrm-pv-name/edit#refuse-nrm-pv-name-first-name" class="button">Change</a>
-        </td>
-      </tr>
-      {{/values.refuse-nrm-pv-name-first-name}}
-
-      {{#values.pv-name-that-requires-support-nickname}}
+      {{#values.pv-name-nickname}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}</td>
         <td class="no-white-space">
           <span>
-            {{values.pv-name-that-requires-support-first-name}} {{values.pv-name-that-requires-support-last-name}}
+            {{values.pv-name-first-name}} {{values.pv-name-last-name}}
           </span>
         </td>
         <td>
-          <a href="/nrm/refuse-nrm-pv-name/edit#pv-name-that-requires-support-nickname" class="button">Change</a>
+          <a href="/nrm/pv-name/edit#pv-name-nickname" class="button">Change</a>
         </td>
       </tr>
-      {{/values.pv-name-that-requires-support-nickname}}
-
-      {{#values.refuse-nrm-pv-name-nickname}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}</td>
-        <td class="no-white-space">
-          <span>
-            {{values.refuse-nrm-pv-name-nickname}}
-          </span>
-        </td>
-        <td>
-          <a href="/nrm/refuse-nrm-pv-name/edit#refuse-nrm-pv-name-nickname" class="button">Change</a>
-        </td>
-      </tr>
-      {{/values.refuse-nrm-pv-name-nickname}}
+      {{/values.pv-name-nickname}}
 
       {{#values.pv-dob}}
       <tr>
@@ -132,6 +92,23 @@
         </td>
       </tr>
       {{/values.pv-gender}}
+
+      {{#values.does-pv-have-children}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.does-pv-have-children.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.does-pv-have-children}}
+            {{#values.does-pv-have-children-yes-amount}}
+            : {{values.does-pv-have-children-yes-amount}}
+            {{/values.does-pv-have-children-yes-amount}}
+          </span>
+        </td>
+        <td>
+          <a href="/nrm/does-pv-have-children/edit#does-pv-have-children" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.does-pv-have-children}}
 
       {{#values.pv-nationality}}
       <tr>
@@ -182,6 +159,9 @@
         <td class="no-white-space">
           <span>
             {{values.pv-other-help-with-communication}}
+            {{#values.pv-other-help-with-communication-aid}}
+            : {{values.pv-other-help-with-communication-aid}}
+            {{/values.pv-other-help-with-communication-aid}}
           </span>
         </td>
         <td>
@@ -190,72 +170,62 @@
       </tr>
       {{/values.pv-other-help-with-communication}}
 
-      {{#values.pv-contact-details}}
+      {{#values.pv-contact-details-email-check}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-contact-details-email.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>{{values.pv-contact-details-email-input}}</span>
+          <span>Safe to use</span>
+        </td>
+        <td>
+          <a href="/nrm/pv-contact-details/edit#pv-contact-details-email-input" class="button">Change</a>
+        </td>
+      </tr>
+      {{/values.pv-contact-details-email-check}}
+
+      {{#values.pv-contact-details-post-check}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}</td>
         <td class="no-white-space">
-          {{#values.pv-contact-details-street}}
-            <span>{{values.pv-contact-details-street}}</span>
-          {{/values.pv-contact-details-street}}
-          {{#values.pv-contact-details-town}}
-            <span>{{values.pv-contact-details-town}}</span>
-          {{/values.pv-contact-details-town}}
-          {{#values.pv-contact-details-county}}
-            <span>{{values.pv-contact-details-county}}</span>
-          {{/values.pv-contact-details-county}}
-          {{#values.pv-contact-details-postcode}}
-            <span>{{values.pv-contact-details-postcode}}</span>
-          {{/values.pv-contact-details-postcode}}
-          {{#values.pv-contact-details-post-check}}
-            <span>Safe to use</span>
-          {{/values.pv-contact-details-post-check}}
+          <span>{{values.pv-contact-details-street}}</span>
+          <span>{{values.pv-contact-details-town}}</span>
+          <span>{{values.pv-contact-details-county}}</span>
+          <span>{{values.pv-contact-details-postcode}}</span>
+          <span>Safe to use</span>
         </td>
         <td>
           <a href="/nrm/pv-contact-details/edit#pv-contact-details-street" class="button">Change</a>
         </td>
       </tr>
-      {{/values.pv-contact-details}}
+      {{/values.pv-contact-details-post-check}}
 
-      {{#values.refuse-nrm-pv-contact-details}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}</td>
-        <td class="no-white-space">
-            {{#values.refuse-nrm-pv-contact-details-street}}
-            <span>{{values.refuse-nrm-pv-contact-details-streett}}</span>
-          {{/values.refuse-nrm-pv-contact-details-street}}
-          {{#values.refuse-nrm-pv-contact-details-town}}
-            <span>{{values.refuse-nrm-pv-contact-details-town}}</span>
-          {{/values.refuse-nrm-pv-contact-details-town}}
-          {{#values.refuse-nrm-pv-contact-details-county}}
-            <span>{{values.refuse-nrm-pv-contact-details-county}}</span>
-          {{/values.refuse-nrm-pv-contact-details-county}}
-          {{#values.refuse-nrm-pv-contact-details-postcode}}
-            <span>{{values.refuse-nrm-pv-contact-details-postcode}}</span>
-          {{/values.refuse-nrm-pv-contact-details-postcode}}
-          {{#values.refuse-nrm-pv-contact-details-post-check}}
-            <span>Safe to use</span>
-          {{/values.refuse-nrm-pv-contact-details-post-check}}
-        </td>
-        <td>
-          <a href="/nrm/refuse-nrm-pv-contact-details/edit#refuse-nrm-pv-contact-details-street" class="button">Change</a>
-        </td>
-      </tr>
-      {{/values.refuse-nrm-pv-contact-details}}
+      {{#values.pv-phone-number-yes}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.pv-phone-number-yes}}</span>
+          </td>
+          <td>
+            <a href="/nrm/pv-phone-number-yes/edit#pv-phone-number-yes" class="button">Change</a>
+          </td>
+        </tr>
+      {{/values.pv-phone-number-yes}}
 
-      {{#values.pv-ho-reference}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}</td>
         <td class="no-white-space">
-          {{#values.pv-ho-reference-type}}
-            <span>
+          <span>
+            {{#values.pv-ho-reference-type}}
               {{values.pv-ho-reference-type}}
-            </span>
-          {{/values.pv-ho-reference-type}}
+            {{/values.pv-ho-reference-type}}
+            {{^values.pv-ho-reference-type}}
+              No information
+            {{/values.pv-ho-reference-type}}
+          </span>
         </td>
         <td>
           <a href="/nrm/pv-ho-reference/edit#pv-ho-reference" class="button">Change</a>
         </td>
       </tr>
-      {{/values.pv-ho-reference}}
   </tbody>
 </table>

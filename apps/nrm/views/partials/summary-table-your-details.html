@@ -1,4 +1,4 @@
-{{#values.fr-details-name}}
+{{#values.fr-details-first-name}}
 <h2 class="details-header">{{#t}}pages.confirm.sections.your-details.header{{/t}}</h2>
 <table id="your-details" class="table-details">
   <tbody>
@@ -6,11 +6,11 @@
         <td>{{#t}}pages.confirm.fields.fr-details-name.label{{/t}}</td>
         <td class="no-white-space">
           <span>
-            {{values.fr-details-name}}
+            {{values.fr-details-first-name}} {{values.fr-details-last-name}}
           </span>
         </td>
         <td>
-          <a href="/nrm/fr-details/edit#fr-details-name" class="button">Change</a>
+          <a href="/nrm/fr-details/edit#fr-details-first-name" class="button">Change</a>
         </td>
       </tr>
 
@@ -52,4 +52,4 @@
 
   </tbody>
 </table>
-{{/values.fr-details-name}}
+{{/values.fr-details-first-name}}

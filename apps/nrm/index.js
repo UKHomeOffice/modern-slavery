@@ -107,7 +107,7 @@ module.exports = {
       forks: [{
         target: '/pv-name',
         condition: (req) => {
-          return (req.sessionModel.get('pv-under-age')) !== 'no';
+          return req.sessionModel.get('pv-under-age') !== 'no';
         }
       }],
       next: '/pv-want-to-submit-nrm'
@@ -130,6 +130,7 @@ module.exports = {
     },
     '/does-pv-need-support': {
       fields: ['does-pv-need-support'],
+      continueOnEdit: true,
       next: '/pv-name'
     },
     '/support-organisations': {
@@ -143,7 +144,7 @@ module.exports = {
       forks: [{
         target: '/pv-contact-details',
         condition: (req) => {
-          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
         }
       }],
       next: '/pv-dob'
@@ -157,7 +158,7 @@ module.exports = {
       forks: [{
         target: '/pv-nationality',
         condition: (req) => {
-          return (req.sessionModel.get('pv-want-to-submit-nrm')) === 'no';
+          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
         }
       }],
       next: '/does-pv-have-children'
@@ -171,7 +172,7 @@ module.exports = {
       forks: [{
         target: '/co-operate-with-police',
         condition: (req) => {
-          return ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no');
+          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
         }
       }],
       next: '/pv-interpreter-requirements'
@@ -189,7 +190,7 @@ module.exports = {
       forks: [{
         target: '/fr-details',
         condition: (req) => {
-          return (req.sessionModel.get('pv-under-age')) !== 'no';
+          return req.sessionModel.get('pv-under-age') !== 'no';
         }
       }],
       next: '/who-contact'
@@ -203,6 +204,7 @@ module.exports = {
           value: 'someone-else'
         }
       }],
+      continueOnEdit: true,
       next: '/pv-contact-details'
     },
     '/someone-else': {
@@ -220,7 +222,7 @@ module.exports = {
       forks: [{
         target: '/co-operate-with-police',
         condition: (req) => {
-          return (req.sessionModel.get('does-pv-need-support')) === 'no';
+          return req.sessionModel.get('does-pv-need-support') === 'no';
         }
       }],
       next: '/pv-phone-number'
