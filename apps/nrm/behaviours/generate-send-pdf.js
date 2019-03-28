@@ -2,7 +2,6 @@
 'use strict';
 
 const config = require('../../../config');
-const htmlUrl = config.pdf.url;
 const uuid = require('uuid');
 const pdfPuppeteer = require('../util/pdf-puppeteer');
 const fs = require('fs');
@@ -12,6 +11,8 @@ const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyClient = new NotifyClient(notifyApiKey);
 const path = require('path');
 const tempLocation = path.resolve(config.pdf.tempLocation);
+const util = require('../util/transform-data');
+const templateFile = path.resolve(config.pdf.template);
 
 const createTemporaryFileName = () => {
   return (`${uuid.v1()}.pdf`);
@@ -39,10 +40,13 @@ const deleteFile = (file) => {
 
 module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
-    const email = req.form.values.email;
+    const email = req.form.values['caseworker-email'];
     const tempName = createTemporaryFileName();
 
-    const file = await pdfPuppeteer.generate(htmlUrl, tempLocation, tempName);
+    const session = req.sessionModel.attributes;
+    const data = await util.transformData(session);
+    const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
+
     await sendEmailWithFile(file, email);
     await deleteFile(file);
     super.saveValues(req, res, (err) => {

@@ -33,7 +33,7 @@ module.exports = {
     templatePDF: '0ff859d5-4991-4d73-99ad-2ada9048a927'
   },
   pdf: {
-    url: 'http://localhost:8081/pdf/pdf',
+    template: './apps/nrm/views/pdf.html',
     // problems with creating temp folder so use images folder
     tempLocation: 'public/images'
   },

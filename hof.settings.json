@@ -7,8 +7,7 @@
   "theme": "govuk",
   "routes": [
     "./apps/verify",
-    "./apps/nrm",
-    "./apps/pdf"
+    "./apps/nrm"
   ],
   "session": {
     "name": "modern-slavery.hof.sid"
