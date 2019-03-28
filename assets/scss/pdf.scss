@@ -225,6 +225,10 @@ body,
   width: 66.6666667%;
 }
 
+.col-sm-9 {
+  width: 75%;
+}
+
 .col-sm-10 {
   width: 83.3%;
 }
@@ -240,6 +244,7 @@ body,
 .col-sm-3,
 .col-sm-4,
 .col-sm-8,
+.col-sm-9,
 .col-sm-10,
 .col-sm-5,
 .col-sm-6 {
@@ -257,11 +262,13 @@ body,
 .col-sm-3:first-child,
 .col-sm-4:first-child,
 .col-sm-8:first-child,
+.col-sm-9:first-child,
 .col-sm-10:first-child,
 .col-sm-5:first-child,
 .col-sm-6:first-child {
     padding-left: 0
 }
+
 .col-sm-12:last-child,
 .col-sm-1:last-child,
 .col-sm-2:last-child,
@@ -269,6 +276,7 @@ body,
 .col-sm-3:last-child,
 .col-sm-4:last-child,
 .col-sm-8:last-child,
+.col-sm-9:last-child,
 .col-sm-10:last-child,
 .col-sm-5:last-child,
 .col-sm-6:last-child {
@@ -306,11 +314,7 @@ body,
   background-color: #F2F2F2;
 }
 
-.bgrey .col-sm-6 {
- background-color: #FFFFFF; 
-}
-
-.bgrey .col-sm-1, .bgrey .col-sm-2, .bgrey .col-sm-2-dot-4, .bgrey .col-sm-3, .bgrey .col-sm-4, .bgrey .col-sm-5, .bgrey .col-sm-6, .bgrey .col-sm-8, .bgrey .col-sm-10, .bgrey .col-sm-12 {
+.bgrey .col-sm-1, .bgrey .col-sm-2, .bgrey .col-sm-2-dot-4, .bgrey .col-sm-3, .bgrey .col-sm-4, .bgrey .col-sm-5, .bgrey .col-sm-6, .bgrey .col-sm-8, .bgrey .col-sm-9, .bgrey .col-sm-10, .bgrey .col-sm-12 {
  background-color: #FFFFFF; 
 }
 
@@ -532,4 +536,8 @@ hr {
 
 .new-page {
     page-break-before: always;
+}
+
+.bwhite {
+  background-color: white!important;
 }

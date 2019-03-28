@@ -10,10 +10,14 @@ const fsStub = {
   readFile: sinon.stub(),
   unlink: sinon.stub()
 };
+const transformDataStub = {
+  transformData: sinon.stub()
+};
 
-const Behaviour = proxyquire('../../../../apps/pdf/behaviours/generate-send-pdf',
+const Behaviour = proxyquire('../../../../apps/nrm/behaviours/generate-send-pdf',
   {
     '../util/pdf-puppeteer': pdfGeneratorStub,
+    '../util/tranform-Data': transformDataStub,
     'fs': fsStub
   }
 );
@@ -36,8 +40,11 @@ describe('/apps/pdf/behaviours/generate-send-pdf', () => {
     req = reqres.req();
     req.form = {
       values: {
-        email: 's@mail.com'
+        'caseworker-email': 's@mail.com'
       }
+    };
+    req.sessionModel = {
+      attributes: {}
     };
     res = reqres.res();
     PdfBehaviour = Behaviour(Base);

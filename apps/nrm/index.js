@@ -4,11 +4,14 @@ const checkEmailToken = require('./behaviours/check-email-token');
 const supportingDocuments = require('./behaviours/supporting-documents');
 const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
 const typesOfExploitation = require('./behaviours/types-of-exploitation');
+const dataToPdf = require('./behaviours/data-to-pdf');
+const generateSendPdf = require('./behaviours/generate-send-pdf');
 
 module.exports = {
   name: 'nrm',
   baseUrl: '/nrm',
   pages: {
+    '/template-pdf': 'pdf',
     '/token-invalid': 'token-invalid'
   },
   steps: {
@@ -337,10 +340,17 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        'complete',
         require('hof-behaviour-summary-page')
       ],
+      next: '/send-pdf'
+    },
+    '/send-pdf': {
+      behaviours: [generateSendPdf],
+      fields: ['caseworker-email'],
       next: '/confirmation'
+    },
+    '/pdf': {
+      behaviours: dataToPdf
     },
     '/confirmation': {
       backLink: false

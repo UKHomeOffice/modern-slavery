@@ -726,5 +726,9 @@ module.exports = {
   'fr-alternative-contact': {
     mixin: 'input-text',
     validate: ['email']
+  },
+  'caseworker-email': {
+    mixin: 'input-text',
+    validate: ['email']
   }
 };

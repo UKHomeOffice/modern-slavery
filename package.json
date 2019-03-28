@@ -30,9 +30,11 @@
     "hof-model": "^3.1.2",
     "hof-theme-govuk": "^4.1.1",
     "hof-util-countries": "^1.0.0",
+    "hogan.js": "^3.0.2",
     "ioredis": "^4.0.0",
     "jquery": "^3.3.1",
     "mocha": "^6.0.2",
+    "moment": "^2.24.0",
     "ms-nationalities": "^1.0.0",
     "ms-organisations": "^1.2.0",
     "ms-uk-cities-and-towns": "^1.1.0",
@@ -52,6 +54,7 @@
     "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
+    "chai-shallow-deep-equal": "^1.4.6",
     "eslint": "^5.12.1",
     "eslint-config-homeoffice": "^2.1.0",
     "pre-commit": "^1.2.2",
