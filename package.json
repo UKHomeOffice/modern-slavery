@@ -21,6 +21,7 @@
     "busboy-body-parser": "^0.3.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "chai-shallow-deep-equal": "^1.4.6",
     "express": "^4.16.4",
     "govuk-frontend": "^2.7.0",
     "hof": "^13.3.0",
@@ -54,7 +55,6 @@
     "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
-    "chai-shallow-deep-equal": "^1.4.6",
     "eslint": "^5.12.1",
     "eslint-config-homeoffice": "^2.1.0",
     "pre-commit": "^1.2.2",
