@@ -6,6 +6,8 @@ const supportingDocumentsAddAnother = require('./behaviours/supporting-documents
 const typesOfExploitation = require('./behaviours/types-of-exploitation');
 const dataToPdf = require('./behaviours/data-to-pdf');
 const generateSendPdf = require('./behaviours/generate-send-pdf');
+const saveMissingData = require('./behaviours/save-missing-data');
+const transferMissingData = require('./behaviours/transfer-missing-data');
 
 module.exports = {
   name: 'nrm',
@@ -154,10 +156,12 @@ module.exports = {
     },
     '/pv-dob': {
       fields: ['pv-dob'],
+      behaviours: saveMissingData('pv-dob'),
       next: '/pv-gender'
     },
     '/pv-gender': {
       fields: ['pv-gender'],
+      behaviours: saveMissingData('pv-gender'),
       forks: [{
         target: '/pv-nationality',
         condition: (req) => {
@@ -167,11 +171,13 @@ module.exports = {
       next: '/does-pv-have-children'
     },
     '/does-pv-have-children': {
+      behaviours: saveMissingData(['does-pv-have-children', 'does-pv-have-children-yes-amount']),
       fields: ['does-pv-have-children', 'does-pv-have-children-yes-amount'],
       next: '/pv-nationality'
     },
     '/pv-nationality': {
       fields: ['pv-nationality', 'pv-nationality-second'],
+      behaviours: saveMissingData(['pv-nationality', 'pv-nationality-second']),
       forks: [{
         target: '/co-operate-with-police',
         condition: (req) => {
@@ -181,15 +187,18 @@ module.exports = {
       next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
+      behaviours: saveMissingData(['pv-interpreter-requirements', 'pv-interpreter-requirements-language']),
       fields: ['pv-interpreter-requirements', 'pv-interpreter-requirements-language'],
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {
+      behaviours: saveMissingData(['pv-other-help-with-communication', 'pv-other-help-with-communication-aid']),
       fields: ['pv-other-help-with-communication', 'pv-other-help-with-communication-aid'],
       next: '/pv-ho-reference'
     },
     '/pv-ho-reference': {
       fields: ['pv-ho-reference', 'pv-ho-reference-type'],
+      behaviours: saveMissingData(['pv-ho-reference', 'pv-ho-reference-type']),
       forks: [{
         target: '/fr-details',
         condition: (req) => {
@@ -199,6 +208,7 @@ module.exports = {
       next: '/who-contact'
     },
     '/who-contact': {
+      behaviours: saveMissingData('who-contact'),
       fields: ['who-contact'],
       forks: [{
         target: '/someone-else',
@@ -335,6 +345,11 @@ module.exports = {
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {
+      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+        'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
+        'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
+        'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
       fields: ['fr-alternative-contact'],
       next: '/confirm'
     },
@@ -345,10 +360,11 @@ module.exports = {
       next: '/send-pdf'
     },
     '/send-pdf': {
-      behaviours: [generateSendPdf],
+      behaviours: [generateSendPdf, 'complete'],
       fields: ['caseworker-email'],
       next: '/confirmation'
     },
+    // need this to check the formatting of the pdf
     '/pdf': {
       behaviours: dataToPdf
     },
