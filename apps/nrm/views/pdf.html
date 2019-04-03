@@ -65,9 +65,12 @@
     </div>
 
     <div class= "row bgrey">
-      <h3 class="bold">Who should we contact in your absence</h3>
+      <h3 class="bold">Who should we contact in their absence</h3>
       <div class="col-sm-6">
         {{values.fr-alternative-contact}}
+        {{^values.fr-alternative-contact}}
+          Not provided
+        {{/values.fr-alternative-contact}}
       </div>
     </div>
 
@@ -448,19 +451,14 @@
       <div class="row bgrey">
         <h3 class="bold">Additional details</h3>
         <div class="col-sm-2 bold">
-          Home office ref
+          HO reference
         </div>
-        <div class="col-sm-10">
-          {{values.pv-ho-reference}}
-        </div>
-        {{#values.pv-ho-reference-type}}
-        <div class="col-sm-2 bold">
-          Reference
-        </div>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           {{values.pv-ho-reference-type}}
+          {{^values.pv-ho-reference-type}}
+            Not provided
+          {{/values.pv-ho-reference-type}}
         </div>
-        {{/values.pv-ho-reference-type}}
       </div>
 
       <div class="row bgrey">
@@ -608,6 +606,7 @@
             </div>
           </div>
 
+          {{#values.pv-contact-details-postcode}}
           <div class= "row bgrey">
             <div class="col-sm-2 bold pad-left-10">
               Address
@@ -633,9 +632,10 @@
               {{/values.pv-contact-details-post-check}}
             </div>
           </div>
+          {{/values.pv-contact-details-postcode}}
         {{/contactSomeoneElse}}
         <div class= "row bgrey pad-bottom-40">
-          <div class="col-sm-2 bold">
+          <div class="col-sm-2 bold pad-left-10">
             Phone
           </div>
           <div class="col-sm-4">
