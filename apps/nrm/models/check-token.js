@@ -10,9 +10,12 @@ const redis = new Redis({
 module.exports = {
  // check the token is in redis
  // catch is dealt with later by whatever calls this promise
-  read(token) {
-    return redis.get(`token:${token}`)
-      .then((result) => result ? (true) : (false));
+  async read(token) {
+    const user = {};
+    user.valid = await redis.get(`token:${token}`);
+    user.email = await redis.get(`${token}:email`);
+    user.organisation = await redis.get(`${token}:organisation`);
+    return user;
  },
 
   delete(token) {
