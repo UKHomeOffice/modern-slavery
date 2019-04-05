@@ -30,14 +30,38 @@
 
     <div class="row bgrey">
       <h3 class="bold">Your details</h3>
-      <div class="col-sm-6">
-        {{values.fr-details-first-name}} {{values.fr-details-last-name}}
+      <div class="col-sm-2 bold pad-left-10">
+        First Name
       </div>
-      <div class="col-sm-1 bold">
+      <div class="col-sm-10">
+        {{values.fr-details-first-name}} 
+        {{^values.fr-details-first-name}} 
+          No information
+        {{/values.fr-details-first-name}} 
+      </div>
+    </div>
+
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Last name
+      </div>
+      <div class="col-sm-10">
+        {{values.fr-last-name}}
+        {{^values.fr-last-name}}
+          No information
+        {{/values.fr-last-name}}
+      </div>
+    </div>
+
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
         Phone
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-10">
         {{values.fr-details-phone}}
+        {{^values.fr-details-phone}}
+          No information
+        {{/values.fr-details-phone}}
       </div>
     </div>
 
@@ -54,21 +78,27 @@
       </div>
       <div class="col-sm-4">
         {{values.user-organisation}}
+        {{^values.user-organisation}}
+          No information
+        {{/values.user-organisation}}
       </div>
       <div class="col-sm-1 bold">
         Role
       </div>
       <div class="col-sm-5">
         {{values.fr-details-role}}
+        {{^values.fr-details-role}}
+        No information
+        {{/values.fr-details-role}}
       </div>
     </div>
 
     <div class= "row bgrey">
-      <h3 class="bold">Who should we contact in their absence</h3>
+      <h3 class="bold">Who should we contact in your absence</h3>
       <div class="col-sm-6">
         {{values.fr-alternative-contact}}
         {{^values.fr-alternative-contact}}
-          Not provided
+          No information
         {{/values.fr-alternative-contact}}
       </div>
     </div>
@@ -76,7 +106,7 @@
     <div class= "row bgrey pad-bottom-40">
       <h3 class="bold">Where are you making this report?</h3>
       <div class="col-sm-6">
-        {{values.fr-location}}
+        {{reportLocation}}
       </div>
     </div>
 
@@ -92,16 +122,16 @@
         Is the PV under 18?
       </div>
       <div class="col-sm-3">
-        {{values.pv-under-age}}
+        {{isUnderAge}}
       </div>
-      {{#values.pv-under-age-at-time-of-exploitation}}
+      {{#underAgeWhenExploited}}
       <div class="col-sm-4 bold">
         Under 18 (during exploitation)?
       </div>
       <div class="col-sm-2">
-        {{values.pv-under-age-at-time-of-exploitation}}
+        {{underAgeWhenExploited}}
       </div>
-      {{/values.pv-under-age-at-time-of-exploitation}}
+      {{/underAgeWhenExploited}}
     </div>
 
     {{#isChild}}
@@ -137,6 +167,30 @@
         </div>
         {{/values.local-authority-contacted-about-child-local-authority-contact}}
       </div>
+
+      <div class="row bgrey">
+        <div class="col-sm-2 bold pad-left-10">
+          First name
+        </div>
+        <div class="col-sm-10">
+          {{values.local-authority-contacted-about-child-local-authority-first-name}}
+          {{^values.local-authority-contacted-about-child-local-authority-first-name}}
+          No information
+          {{/values.local-authority-contacted-about-child-local-authority-first-name}}
+        </div>
+      </div>
+
+      <div class="row bgrey">
+        <div class="col-sm-2 bold pad-left-10">
+          Last name
+        </div>
+        <div class="col-sm-10">
+          {{values.local-authority-contacted-about-child-local-authority-last-name}}
+          {{^values.local-authority-contacted-about-child-local-authority-last-name}}
+          No information
+          {{/values.local-authority-contacted-about-child-local-authority-last-name}}
+        </div>
+      </div>
     {{/isChild}}
 
 
@@ -159,16 +213,17 @@
       </div>
     </div>
 
-    {{#values.where-exploitation-happened-other-overseas-other-location}}
     <div class="row bgrey">
       <div class="col-sm-2 bold pad-left-10">
         Address
       </div>
       <div class="col-sm-10">
         {{values.where-exploitation-happened-other-overseas-other-location}}
+        {{^values.where-exploitation-happened-other-overseas-other-location}}
+        No information
+        {{/values.where-exploitation-happened-other-overseas-other-location}}
       </div>
     </div>
-    {{/values.where-exploitation-happened-other-overseas-other-location}}
     {{/exploitationUk}}
 
     {{#exploitationUk}}
@@ -232,6 +287,13 @@
       </div>
       <div class="col-sm-9">
         {{values.current-pv-location-uk-region}}
+      </div>
+    </div>
+
+    <div class= "row bgrey">
+      <h3 class="bold">Exploiter</h3>
+      <div class="col-sm-12">
+         {{values.who-exploited-pv}}
       </div>
     </div>
 
@@ -331,43 +393,36 @@
     {{/values.types-of-exploitation-other}}
 
     <div class= "row bgrey">
-      <h3 class="bold">Exploiter</h3>
-      <div class="col-sm-12">
-         {{values.who-exploited-pv}}
-      </div>
-    </div>
-
-    <div class= "row bgrey">
       <h3 class="bold">Further information</h3>
       <div class="col-sm-2 bold">
         Other victims
       </div>
       <div class="col-sm-10">
-        {{values.any-other-pvs}}
+        {{otherVictims}}
       </div>
     </div>
 
     <div class="row bgrey">
-      <div class="col-sm-2 bold pad-left-10">
-        Crime reference
-      </div>
-      <div class="col-sm-10">
-        {{values.reported-to-police-crime-reference}}
-        {{^values.reported-to-police-crime-reference}}
-          Not provided
-        {{/values.reported-to-police-crime-reference}}
-      </div>
-    </div>
-
-    <div class="row bgrey pad-bottom-40">
       <div class="col-sm-2 bold pad-left-10">
         Police force
       </div>
       <div class="col-sm-10">
         {{values.reported-to-police-police-forces}}
         {{^values.reported-to-police-police-forces}}
-          Not provided
+          No information
         {{/values.reported-to-police-police-forces}}
+      </div>
+    </div>
+
+    <div class="row bgrey pad-bottom-40">
+      <div class="col-sm-2 bold pad-left-10">
+        Crime reference
+      </div>
+      <div class="col-sm-10">
+        {{values.reported-to-police-crime-reference}}
+        {{^values.reported-to-police-crime-reference}}
+          No information
+        {{/values.reported-to-police-crime-reference}}
       </div>
     </div>
 
@@ -383,10 +438,25 @@
     <div class="row bgrey">
       <h3 class="bold">Personal details</h3>
       <div class="col-sm-2 bold">
-        Full name
+        First name
       </div>
       <div class="col-sm-10">
-        {{values.pv-name-first-name}} {{values.pv-name-last-name}}
+        {{values.pv-name-first-name}}
+        {{^values.pv-name-first-name}}
+        No information
+        {{/values.pv-name-first-name}}
+      </div>
+    </div>
+
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Last name
+      </div>
+      <div class="col-sm-10">
+        {{values.pv-name-last-name}}
+        {{^values.pv-name-last-name}}
+          No information
+        {{/values.pv-name-last-name}}
       </div>
     </div>
 
@@ -397,8 +467,9 @@
       <div class="col-sm-10">
         {{values.pv-name-nickname}}
         {{^values.pv-name-nickname}}
-          Not provided
+          No information
         {{/values.pv-name-nickname}}
+      </div>
     </div>
 
     <div class="row bgrey">
@@ -407,12 +478,27 @@
       </div>
       <div class="col-sm-4">
         {{values.pv-dob}}
+        {{^values.pv-dob}}
+        No information
+        {{/values.pv-dob}}
       </div>
       <div class="col-sm-2 bold">
         Gender
       </div>
       <div class="col-sm-4">
         {{values.pv-gender}}
+      </div>
+    </div>
+
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Children
+      </div>
+      <div class="col-sm-4">
+        {{pvHasChildren}}{{#values.does-pv-have-children-yes-amount}} - {{values.does-pv-have-children-yes-amount}}{{/values.does-pv-have-children-yes-amount}}
+        {{^pvHasChildren}}
+        No information
+        {{/pvHasChildren}}
       </div>
     </div>
 
@@ -432,70 +518,70 @@
       <div class="col-sm-10">
         {{values.pv-nationality-second}}
         {{^values.pv-nationality-second}}
-          Not provided
+          No information
         {{/values.pv-nationality-second}}
       </div>
     </div>
 
     <div class="row bgrey">
-      <div class="col-sm-2 bold pad-left-10">
-        Children
+      <h3 class="bold">Additional details</h3>
+      <div class="col-sm-3 bold">
+        HO reference
       </div>
-      <div class="col-sm-4">
-        {{pvHasChildren}}{{#values.does-pv-have-children-yes-amount}} - {{values.does-pv-have-children-yes-amount}}{{/values.does-pv-have-children-yes-amount}}
+      <div class="col-sm-9">
+        {{values.pv-ho-reference-type}}
+        {{^values.pv-ho-reference-type}}
+          No information
+        {{/values.pv-ho-reference-type}}
       </div>
     </div>
 
-    {{#pvWantToSubmit}}
-      <div class="row bgrey">
-        <h3 class="bold">Additional details</h3>
-        <div class="col-sm-2 bold">
-          HO reference
-        </div>
-        <div class="col-sm-4">
-          {{values.pv-ho-reference-type}}
-          {{^values.pv-ho-reference-type}}
-            Not provided
-          {{/values.pv-ho-reference-type}}
-        </div>
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        Interpreter
       </div>
-
-      <div class="row bgrey">
-        <div class="col-sm-2 bold pad-left-10">
-          Interpreter
-        </div>
-        <div class="col-sm-4">
-          {{values.pv-interpreter-requirements}}
-        </div>
-        {{#values.pv-interpreter-requirements-language}}
-          <div class="col-sm-2 bold">
-            Language
-          </div>
-          <div class="col-sm-4">
-            {{values.pv-interpreter-requirements-language}}
-          </div>
-        {{/values.pv-interpreter-requirements-language}}
+      <div class="col-sm-9">
+        {{values.pv-interpreter-requirements}}
+        {{^values.pv-interpreter-requirements}}
+        No information
+        {{/values.pv-interpreter-requirements}}
       </div>
+    </div>
 
-      <div class="row bgrey pad-bottom-40">
-        <div class="col-sm-2 bold pad-left-10">
-          Communication aid
-        </div>
-        <div class="col-sm-4">
-          {{values.pv-other-help-with-communication}}
-        </div>
-
-        {{#values.pv-other-help-with-communication-aid}}
-          <div class="col-sm-2 bold">
-            Type
-          </div>
-          <div class="col-sm-4">
-            {{values.pv-other-help-with-communication-aid}}
-          </div>
-        {{/values.pv-other-help-with-communication-aid}}
-      {{/pvWantToSubmit}}
+    {{#values.pv-interpreter-requirements}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        Interpreter Language
       </div>
-    <hr/>
+      <div class="col-sm-9">
+        {{values.pv-interpreter-requirements}}
+      </div>
+    </div>
+    {{/values.pv-interpreter-requirements}}
+
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        Communication aid
+      </div>
+      <div class="col-sm-9">
+        {{values.pv-other-help-with-communication}}
+        {{^values.pv-other-help-with-communication}}
+        No information
+        {{/values.pv-other-help-with-communication}}
+      </div>
+    </div>
+
+    {{#values.pv-other-help-with-communication-aid}}
+    <div class="row bgrey pad-bottom-40">
+      <div class="col-sm-3 bold pad-left-10">
+        Communication aid type
+      </div>
+      <div class="col-sm-9">
+        {{values.pv-other-help-with-communication-aid}}
+      </div>
+    </div>
+    {{/values.pv-other-help-with-communication-aid}}
+  <hr/>
 
     {{#isAdult}}
       <div class= "row bwhite">
@@ -521,7 +607,7 @@
         <div class="col-sm-6">
           {{values.refuse-nrm}}
           {{^values.refuse-nrm}}
-            Not provided
+            No information
           {{/values.refuse-nrm}}
         </div>
       </div>
@@ -530,19 +616,19 @@
       {{#pvWantToSubmit}}
         <div class="row bgrey">
           <div class="col-sm-6 bold pad-left-10">
-            Who should we send our decision to?
+            Do they need support?
           </div>
           <div class="col-sm-6">
-            {{values.who-contact}}
+            {{values.does-pv-need-support}}
           </div>
         </div>
 
         <div class="row bgrey">
           <div class="col-sm-6 bold pad-left-10">
-            Do they need support?
+            Who should we send our decision to?
           </div>
           <div class="col-sm-6">
-            {{values.does-pv-need-support}}
+            {{whoContact}}
           </div>
         </div>
 
@@ -639,6 +725,9 @@
           </div>
           <div class="col-sm-4">
             {{values.pv-phone-number-yes}}
+            {{^values.pv-phone-number-yes}}
+            No information
+            {{/values.pv-phone-number-yes}}
           </div>
           <div class="col-sm-4 bold">
             Contact victim about the case?
