@@ -124,5 +124,10 @@ textarea {
     &:not(.no-white-space) {
       white-space: normal;
     }
+    }
+  }
+  .types-of-exploitation {
+    span {
+      margin-bottom: 10px;
   }
 }
