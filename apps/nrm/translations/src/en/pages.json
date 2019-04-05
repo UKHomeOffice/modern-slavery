@@ -112,7 +112,8 @@
     "header": "What are your contact details?",
     "read-only-field-1-label": "Email",
     "read-only-field-1-hint": "This is the address you gave at the start of the form.",
-    "read-only-field-1-placeholder": "FR EMAIL PLACEHOLDER"
+    "read-only-field-2-label": "Organisation",
+    "read-only-field-2-hint": "This is the organisation you gave at the start of the form."
   },
   "fr-alternative-contact": {
     "header": "Who should we contact in your absence?  (Optional)"
@@ -230,8 +231,14 @@
       "fr-details-name": {
         "label": "Name"
       },
+      "fr-details-organisation": {
+        "label": "Organisation"
+      },
       "fr-details-role": {
         "label": "Job title"
+      },
+      "fr-details-email": {
+        "label": "Email"
       },
       "fr-details-phone": {
         "label": "Telephone"
