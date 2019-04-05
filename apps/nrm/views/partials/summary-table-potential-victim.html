@@ -211,6 +211,7 @@
         </tr>
       {{/values.pv-phone-number-yes}}
 
+      {{#values.does-pv-have-children}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}</td>
         <td class="no-white-space">
@@ -227,5 +228,6 @@
           <a href="/nrm/pv-ho-reference/edit#pv-ho-reference" class="button">Change</a>
         </td>
       </tr>
+      {{/values.does-pv-have-children}}
   </tbody>
 </table>
