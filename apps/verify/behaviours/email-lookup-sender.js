@@ -47,6 +47,7 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, callback) {
     super.saveValues(req, res, err => {
       const email = req.form.values['confirm-email'];
+      const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
       const isRecognisedDomain = checkDomain(emailDomain);
 
@@ -56,7 +57,7 @@ module.exports = superclass => class extends superclass {
       }
 
       const host = req.get('host');
-      const token = tokenGenerator.save();
+      const token = tokenGenerator.save(email, organisation);
       sendEmail(email, host, token);
       return callback(err);
     });
