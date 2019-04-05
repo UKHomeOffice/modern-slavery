@@ -355,18 +355,13 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page')
+        require('hof-behaviour-summary-page'),
       ],
-      next: '/send-pdf'
-    },
-    '/send-pdf': {
-      behaviours: [generateSendPdf, 'complete'],
-      fields: ['caseworker-email'],
-      next: '/confirmation'
+      next: '/pdf'
     },
     // need this to check the formatting of the pdf
     '/pdf': {
-      behaviours: dataToPdf
+      behaviours: dataToPdf, generateSendPdf
     },
     '/confirmation': {
       backLink: false

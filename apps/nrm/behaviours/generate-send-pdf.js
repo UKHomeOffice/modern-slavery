@@ -5,6 +5,7 @@ const config = require('../../../config');
 const uuid = require('uuid');
 const pdfPuppeteer = require('../util/pdf-puppeteer');
 const fs = require('fs');
+const caseworkerEmail = config.govukNotify.caseworkerEmail;
 const templateId = config.govukNotify.templatePDF;
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
@@ -40,14 +41,13 @@ const deleteFile = (file) => {
 
 module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
-    const email = req.form.values['caseworker-email'];
     const tempName = createTemporaryFileName();
 
     const session = req.sessionModel.attributes;
     const data = await util.transformData(session);
     const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
 
-    await sendEmailWithFile(file, email);
+    await sendEmailWithFile(file, caseworkerEmail);
     await deleteFile(file);
     super.saveValues(req, res, (err) => {
       next(err);
