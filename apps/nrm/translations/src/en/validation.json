@@ -8,6 +8,9 @@
   "pv-under-age" : {
     "required": "You must select an option"
   },
+  "local-authority-contacted-about-child-local-authority-name": {
+    "required": "you must enter the local authority name"
+  },
   "local-authority-contacted-about-child-local-authority-phone": {
     "required": "You must enter a phone number"
   },
