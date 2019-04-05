@@ -241,6 +241,11 @@ module.exports = {
       next: '/pv-phone-number'
     },
     '/pv-contact-details': {
+      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+        'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
+        'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
+        'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -276,6 +281,11 @@ module.exports = {
     },
     '/co-operate-with-police': {
       fields: ['co-operate-with-police'],
+      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+        'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
+        'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
+        'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
       forks: [
         {
           target: '/confirm',
