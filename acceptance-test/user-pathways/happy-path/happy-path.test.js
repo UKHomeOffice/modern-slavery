@@ -136,7 +136,6 @@ describe.only('User path(s)', () => {
         });
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, CONTINUE_BUTTON);
     }
 
     /**
@@ -310,7 +309,6 @@ describe.only('User path(s)', () => {
         await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
             element.value = 'jack.smith@police.com';
         });
-        await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
