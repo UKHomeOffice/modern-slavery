@@ -15,7 +15,7 @@
         </div>
         <div class="col-sm-6">
           <h2 class="text-right pad-top-10">NRM Report ID: {{reportId}}</h2>
-          <h3 class="text-right font-small">Date submitted: {{date}}</h3>
+          <h3 class="text-right font-small">Date submitted (GMT): {{date}}</h3>
         </div>
       </div>
     </div>
@@ -66,8 +66,14 @@
     </div>
 
     <div class="row bgrey">
-      <div class="col-sm-6 pad-left-10">
+      <div class="col-sm-2 bold pad-left-10">
+        Email
+      </div>
+      <div class="col-sm-10 pad-left-10">
         {{values.user-email}}
+        {{^values.user-email}}
+          No information
+        {{/values.user-email}}
       </div>
     </div>
 
@@ -95,7 +101,10 @@
 
     <div class= "row bgrey">
       <h3 class="bold">Who should we contact in your absence</h3>
-      <div class="col-sm-6">
+      <div class="col-sm-2 bold">
+        Email
+      </div>
+      <div class="col-sm-10">
         {{values.fr-alternative-contact}}
         {{^values.fr-alternative-contact}}
           No information
@@ -389,19 +398,19 @@
 
     <div class= "row bgrey">
       <h3 class="bold">Further information</h3>
-      <div class="col-sm-2 bold">
+      <div class="col-sm-3 bold">
         Other victims
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         {{otherVictims}}
       </div>
     </div>
 
     <div class="row bgrey">
-      <div class="col-sm-2 bold pad-left-10">
+      <div class="col-sm-3 bold pad-left-10">
         Police force
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         {{values.reported-to-police-police-forces}}
         {{^values.reported-to-police-police-forces}}
           No information
@@ -410,10 +419,10 @@
     </div>
 
     <div class="row bgrey pad-bottom-40">
-      <div class="col-sm-2 bold pad-left-10">
+      <div class="col-sm-3 bold pad-left-10">
         Crime reference
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         {{values.reported-to-police-crime-reference}}
         {{^values.reported-to-police-crime-reference}}
           No information
@@ -481,7 +490,7 @@
         Gender
       </div>
       <div class="col-sm-4">
-        {{values.pv-gender}}
+        {{gender}}
       </div>
     </div>
 
@@ -607,7 +616,7 @@
       {{#values.refuse-nrm}}
       <div class="row bgrey">
         <div class="col-sm-6 bold pad-left-10">
-          Why don’t they want thier case referred?
+          Why don’t they want their case referred?
         </div>
         <div class="col-sm-6">
           {{values.refuse-nrm}}
@@ -738,14 +747,16 @@
           </div>
           {{/values.pv-contact-details-postcode}}
 
+      {{#values.pv-phone-number}}
       <div class= "row bgrey">
-        <div class="col-sm-6 bold pad-left-10">
+        <div class="col-sm-4 bold pad-left-10">
           Can the police contact them by phone?
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           {{values.pv-phone-number}}
         </div>
       </div>
+      {{/values.pv-phone-number}}
 
       {{#values.pv-phone-number-yes}}
       <div class= "row bgrey">
