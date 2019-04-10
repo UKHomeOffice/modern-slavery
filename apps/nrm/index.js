@@ -8,30 +8,35 @@ const dataToPdf = require('./behaviours/data-to-pdf');
 const generateSendPdf = require('./behaviours/generate-send-pdf');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
-const pvUnderAge = require('./behaviours/pv-under-age');
-const pvUnderAgeAtTimeOfExploitation = require('./behaviours/pv-under-age-at-time-of-exploitation');
-const localAuthorityContactedAboutChild = require('./behaviours/local-authority-contacted-about-child');
-const coOperateWithPolice = require('./behaviours/co-operate-with-police');
-const confirm = require('./behaviours/confirm');
-const pvName = require('./behaviours/pv-name');
-const pvNationality = require('./behaviours/pv-nationality');
-const pvContactDetails = require('./behaviours/pv-contact-details');
-const frLocation = require('./behaviours/fr-location.js');
-const whatHappend = require('./behaviours/what-happend');
-const pvGender = require('./behaviours/pv-gender');
-const pvPhoneNumber = require('./behaviours/pv-phone-number');
-const frDetails = require('./behaviours/fr-details');
-const doesPvHaveChildren = require('./behaviours/does-pv-have-children');
-const reportedToPolice = require('./behaviours/reported-to-police');
-const pvDob = require('./behaviours/pv-dob');
-const pvHoReference = require('./behaviours/pv-ho-reference');
-const pvWantToSubmitNrm = require('./behaviours/pv-want-to-submit-nrm');
-const doesPvNeedSupport = require('./behaviours/does-pv-need-support');
-const pvInterpreterRequirements = require('./behaviours/pv-interpreter-requirements');
-const refuseNrm = require('./behaviours/refuse-nrm');
-const whoContact = require('./behaviours/who-contact');
-const someoneElse = require('./behaviours/someone-else');
-const frAlternateContact = require('./behaviours/fr-alternate-contact');
+
+/* Back Link and Next Step functions overridden */
+const bkLinkNextPvUnderAge = require('./behaviours/pv-under-age');
+const bkLinkNextCoOperateWithPolice = require('./behaviours/co-operate-with-police');
+const bkLinkNextPvName = require('./behaviours/pv-name');
+const bkLinkNextPvNationality = require('./behaviours/pv-nationality');
+const bkLinkNextPvContactDetails = require('./behaviours/pv-contact-details');
+const bkLinkNextPvGender = require('./behaviours/pv-gender');
+const bkLinkNextDoesPvHaveChildren = require('./behaviours/does-pv-have-children');
+const bkLinkNextReportedToPolice = require('./behaviours/reported-to-police');
+const bkLinkNextPvHoReference = require('./behaviours/pv-ho-reference');
+const bkLinkNextPvWantToSubmitNrm = require('./behaviours/pv-want-to-submit-nrm');
+const bkLinkNextDoesPvNeedSupport = require('./behaviours/does-pv-need-support');
+const bkLinkNextWhoContact = require('./behaviours/who-contact');
+const bkLinkNextSomeoneElse = require('./behaviours/someone-else');
+const bkLinkNextFrAlternateContact = require('./behaviours/fr-alternate-contact');
+
+/* Back Link function overridden */
+const bkLinkRefuseNrm = require('./behaviours/refuse-nrm');
+const bkLinkPvInterpreterRequirements = require('./behaviours/pv-interpreter-requirements');
+const bkLinkPvDob = require('./behaviours/pv-dob');
+const bkLinkFrLocation = require('./behaviours/fr-location.js');
+const bkLinkWhatHappend = require('./behaviours/what-happend');
+const bkLinkPvPhoneNumber = require('./behaviours/pv-phone-number');
+const bkLinkFrDetails = require('./behaviours/fr-details');
+const bkLinkConfirm = require('./behaviours/confirm');
+const bkLinkPvUnderAgeAtTimeOfExploitation = require('./behaviours/pv-under-age-at-time-of-exploitation');
+const bkLinkLocalAuthorityContactedAboutChild = require('./behaviours/local-authority-contacted-about-child');
+
 
 module.exports = {
   name: 'nrm',
@@ -46,16 +51,16 @@ module.exports = {
       next: '/fr-location'
     },
     '/fr-location': {
-      behaviours: frLocation,
+      behaviours: bkLinkFrLocation,
       fields: ['fr-location'],
       next: '/pv-under-age'
     },
     '/pv-under-age': {
-      behaviours: pvUnderAge,
+      behaviours: bkLinkNextPvUnderAge,
       fields: ['pv-under-age'],
     },
     '/local-authority-contacted-about-child': {
-      behaviours: localAuthorityContactedAboutChild,
+      behaviours: bkLinkLocalAuthorityContactedAboutChild,
       fields: [
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
@@ -66,12 +71,12 @@ module.exports = {
       next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {
-      behaviours: pvUnderAgeAtTimeOfExploitation,
+      behaviours: bkLinkPvUnderAgeAtTimeOfExploitation,
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-happened'
     },
     '/what-happened': {
-      behaviours: whatHappend,
+      behaviours: bkLinkWhatHappend,
       fields: ['what-happened'],
       next: '/where-exploitation-happened'
     },
@@ -116,7 +121,7 @@ module.exports = {
       next: '/reported-to-police'
     },
     '/reported-to-police': {
-      behaviours: reportedToPolice,
+      behaviours: bkLinkNextReportedToPolice,
       fields: [
         'reported-to-police',
         'reported-to-police-police-forces',
@@ -124,17 +129,17 @@ module.exports = {
       ]
     },
     '/pv-want-to-submit-nrm': {
-      behaviours: pvWantToSubmitNrm,
+      behaviours: bkLinkNextPvWantToSubmitNrm,
       fields: ['pv-want-to-submit-nrm'],
       continueOnEdit: true,
     },
     '/refuse-nrm': {
-      behaviours: refuseNrm,
+      behaviours: bkLinkRefuseNrm,
       fields: ['refuse-nrm'],
       next: '/pv-gender'
     },
     '/does-pv-need-support': {
-      behaviours: doesPvNeedSupport,
+      behaviours: bkLinkNextDoesPvNeedSupport,
       fields: ['does-pv-need-support'],
       continueOnEdit: true,
     },
@@ -142,7 +147,7 @@ module.exports = {
       backLink: '/does-pv-need-support'
     },
     '/pv-name': {
-      behaviours: pvName,
+      behaviours: bkLinkNextPvName,
       fields: [
         'pv-name-first-name',
         'pv-name-last-name',
@@ -151,25 +156,28 @@ module.exports = {
     },
     '/pv-dob': {
       fields: ['pv-dob'],
-      behaviours: [pvDob, saveMissingData('pv-dob')],
+      behaviours: [bkLinkPvDob, saveMissingData('pv-dob')],
       next: '/pv-gender'
     },
     '/pv-gender': {
       fields: ['pv-gender'],
-      behaviours: [pvGender, saveMissingData('pv-gender')],
+      behaviours: [bkLinkNextPvGender, saveMissingData('pv-gender')],
     },
     '/does-pv-have-children': {
-      behaviours: [doesPvHaveChildren, saveMissingData(['does-pv-have-children', 'does-pv-have-children-yes-amount'])],
+      behaviours: [
+        bkLinkNextDoesPvHaveChildren,
+        saveMissingData(['does-pv-have-children', 'does-pv-have-children-yes-amount'])
+      ],
       fields: ['does-pv-have-children', 'does-pv-have-children-yes-amount'],
     },
     '/pv-nationality': {
       fields: ['pv-nationality', 'pv-nationality-second'],
-      behaviours: [pvNationality, saveMissingData(['pv-nationality', 'pv-nationality-second'])],
+      behaviours: [bkLinkNextPvNationality, saveMissingData(['pv-nationality', 'pv-nationality-second'])],
       next: '/co-operate-with-police'
     },
     '/pv-interpreter-requirements': {
       behaviours: [
-        pvInterpreterRequirements,
+        bkLinkPvInterpreterRequirements,
         saveMissingData(['pv-interpreter-requirements', 'pv-interpreter-requirements-language'])
       ],
       fields: ['pv-interpreter-requirements', 'pv-interpreter-requirements-language'],
@@ -182,15 +190,15 @@ module.exports = {
     },
     '/pv-ho-reference': {
       fields: ['pv-ho-reference', 'pv-ho-reference-type'],
-      behaviours: [pvHoReference, saveMissingData(['pv-ho-reference', 'pv-ho-reference-type'])],
+      behaviours: [bkLinkNextPvHoReference, saveMissingData(['pv-ho-reference', 'pv-ho-reference-type'])],
     },
     '/who-contact': {
-      behaviours: [whoContact, saveMissingData('who-contact')],
+      behaviours: [bkLinkNextWhoContact, saveMissingData('who-contact')],
       fields: ['who-contact'],
       continueOnEdit: true,
     },
     '/someone-else': {
-      behaviours: someoneElse,
+      behaviours: bkLinkNextSomeoneElse,
       fields: [
         'someone-else',
         'someone-else-first-name',
@@ -204,7 +212,7 @@ module.exports = {
       ],
     },
     '/pv-contact-details': {
-      behaviours: [pvContactDetails, transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [bkLinkNextPvContactDetails, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
@@ -223,7 +231,7 @@ module.exports = {
     },
     '/pv-phone-number': {
       behaviours: [
-      pvPhoneNumber,
+      bkLinkPvPhoneNumber,
       saveMissingData(['pv-phone-number', 'pv-phone-number-yes']),
       ],
       fields: ['pv-phone-number', 'pv-phone-number-yes'],
@@ -231,7 +239,7 @@ module.exports = {
     },
     '/co-operate-with-police': {
       fields: ['co-operate-with-police'],
-      behaviours: [coOperateWithPolice, transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [bkLinkNextCoOperateWithPolice, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
@@ -274,7 +282,7 @@ module.exports = {
       continueOnEdit: true,
     },
     '/fr-details': {
-      behaviours: frDetails,
+      behaviours: bkLinkFrDetails,
       fields: [
         'fr-details-first-name',
         'fr-details-last-name',
@@ -284,7 +292,7 @@ module.exports = {
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {
-      behaviours: [frAlternateContact, transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [bkLinkNextFrAlternateContact, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
@@ -296,7 +304,7 @@ module.exports = {
       behaviours: [
         require(
           'hof-behaviour-summary-page'),
-          confirm,
+          bkLinkConfirm,
           generateSendPdf,
           'complete'
       ],
