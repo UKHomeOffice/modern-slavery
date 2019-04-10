@@ -209,7 +209,7 @@ module.exports = {
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
         'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact',
-        'pv-phone-number', 'pv-phone-number-yes']),
+        'pv-phone-number', 'pv-phone-number-yes'])],
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -289,7 +289,7 @@ module.exports = {
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
         'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact',
-        'pv-phone-number', 'pv-phone-number-yes']),
+        'pv-phone-number', 'pv-phone-number-yes'])],
       fields: ['fr-alternative-contact'],
     },
     '/confirm': {
