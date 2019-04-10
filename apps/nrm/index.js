@@ -245,7 +245,8 @@ module.exports = {
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact',
+        'pv-phone-number', 'pv-phone-number-yes']),
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -277,6 +278,7 @@ module.exports = {
     },
     '/pv-phone-number': {
       fields: ['pv-phone-number', 'pv-phone-number-yes'],
+      behaviours: saveMissingData(['pv-phone-number', 'pv-phone-number-yes']),
       next: '/co-operate-with-police'
     },
     '/co-operate-with-police': {
@@ -285,7 +287,8 @@ module.exports = {
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
+        'pv-phone-number', 'pv-phone-number-yes', 'who-contact']),
       forks: [
         {
           target: '/confirm',
@@ -359,7 +362,8 @@ module.exports = {
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact',
+        'pv-phone-number', 'pv-phone-number-yes']),
       fields: ['fr-alternative-contact'],
       next: '/confirm'
     },

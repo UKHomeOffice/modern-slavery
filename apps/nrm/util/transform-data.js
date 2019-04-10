@@ -50,6 +50,10 @@ module.exports = {
     if (data.otherVictims === 'not-sure') {
       data.otherVictims = 'not sure';
     }
+    data.gender = values['pv-gender'];
+    if (data.gender === 'unknown') {
+      data.gender = 'They do not identify as male or female';
+    }
     data.pvWantToSubmit = equal(values['pv-want-to-submit-nrm'], 'yes');
     data.pvNotWantToSubmit = equal(values['pv-want-to-submit-nrm'], 'no');
     data.contactSomeoneElse = equal(values['who-contact'], 'someone-else');
