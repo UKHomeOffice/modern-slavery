@@ -18,10 +18,6 @@ module.exports = superclass => class extends superclass {
 
     nextStep = '/nrm/pv-name';
 
-    if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
-    }
-
     return nextStep;
   }
 

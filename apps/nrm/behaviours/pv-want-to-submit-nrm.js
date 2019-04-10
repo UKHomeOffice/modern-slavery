@@ -22,10 +22,6 @@ module.exports = superclass => class extends superclass {
       nextStep = '/nrm/does-pv-need-support';
     }
 
-    if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
-    }
-
     return nextStep;
   }
 
