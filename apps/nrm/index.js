@@ -8,6 +8,30 @@ const dataToPdf = require('./behaviours/data-to-pdf');
 const generateSendPdf = require('./behaviours/generate-send-pdf');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
+const pvUnderAge = require('./behaviours/pv-under-age');
+const pvUnderAgeAtTimeOfExploitation = require('./behaviours/pv-under-age-at-time-of-exploitation');
+const localAuthorityContactedAboutChild = require('./behaviours/local-authority-contacted-about-child');
+const coOperateWithPolice = require('./behaviours/co-operate-with-police');
+const confirm = require('./behaviours/confirm');
+const pvName = require('./behaviours/pv-name');
+const pvNationality = require('./behaviours/pv-nationality');
+const pvContactDetails = require('./behaviours/pv-contact-details');
+const frLocation = require('./behaviours/fr-location.js');
+const whatHappend = require('./behaviours/what-happend');
+const pvGender = require('./behaviours/pv-gender');
+const pvPhoneNumber = require('./behaviours/pv-phone-number');
+const frDetails = require('./behaviours/fr-details');
+const doesPvHaveChildren = require('./behaviours/does-pv-have-children');
+const reportedToPolice = require('./behaviours/reported-to-police');
+const pvDob = require('./behaviours/pv-dob');
+const pvHoReference = require('./behaviours/pv-ho-reference');
+const pvWantToSubmitNrm = require('./behaviours/pv-want-to-submit-nrm');
+const doesPvNeedSupport = require('./behaviours/does-pv-need-support');
+const pvInterpreterRequirements = require('./behaviours/pv-interpreter-requirements');
+const refuseNrm = require('./behaviours/refuse-nrm');
+const whoContact = require('./behaviours/who-contact');
+const someoneElse = require('./behaviours/someone-else');
+const frAlternateContact = require('./behaviours/fr-alternate-contact');
 
 module.exports = {
   name: 'nrm',
@@ -22,30 +46,16 @@ module.exports = {
       next: '/fr-location'
     },
     '/fr-location': {
+      behaviours: frLocation,
       fields: ['fr-location'],
       next: '/pv-under-age'
     },
     '/pv-under-age': {
+      behaviours: pvUnderAge,
       fields: ['pv-under-age'],
-      forks: [
-       {
-        target: '/local-authority-contacted-about-child',
-        condition: {
-          field: 'pv-under-age',
-          value: 'yes'
-        }
-       },
-       {
-        target: '/local-authority-contacted-about-child',
-        condition: {
-          field: 'pv-under-age',
-          value: 'not-sure'
-        }
-       }
-      ],
-      next: '/pv-under-age-at-time-of-exploitation',
     },
     '/local-authority-contacted-about-child': {
+      behaviours: localAuthorityContactedAboutChild,
       fields: [
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
@@ -56,10 +66,12 @@ module.exports = {
       next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {
+      behaviours: pvUnderAgeAtTimeOfExploitation,
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-happened'
     },
     '/what-happened': {
+      behaviours: whatHappend,
       fields: ['what-happened'],
       next: '/where-exploitation-happened'
     },
@@ -104,90 +116,62 @@ module.exports = {
       next: '/reported-to-police'
     },
     '/reported-to-police': {
+      behaviours: reportedToPolice,
       fields: [
         'reported-to-police',
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
-      ],
-      forks: [{
-        target: '/pv-name',
-        condition: (req) => {
-          return req.sessionModel.get('pv-under-age') !== 'no';
-        }
-      }],
-      next: '/pv-want-to-submit-nrm'
+      ]
     },
     '/pv-want-to-submit-nrm': {
+      behaviours: pvWantToSubmitNrm,
       fields: ['pv-want-to-submit-nrm'],
-      forks: [{
-        target: '/refuse-nrm',
-        condition: {
-          field: 'pv-want-to-submit-nrm',
-          value: 'no'
-        }
-      }],
       continueOnEdit: true,
-      next: '/does-pv-need-support'
     },
     '/refuse-nrm': {
+      behaviours: refuseNrm,
       fields: ['refuse-nrm'],
       next: '/pv-gender'
     },
     '/does-pv-need-support': {
+      behaviours: doesPvNeedSupport,
       fields: ['does-pv-need-support'],
       continueOnEdit: true,
-      next: '/pv-name'
     },
     '/support-organisations': {
+      backLink: '/does-pv-need-support'
     },
     '/pv-name': {
+      behaviours: pvName,
       fields: [
         'pv-name-first-name',
         'pv-name-last-name',
         'pv-name-nickname',
-      ],
-      forks: [{
-        target: '/pv-contact-details',
-        condition: (req) => {
-          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
-        }
-      }],
-      next: '/pv-dob'
+      ]
     },
     '/pv-dob': {
       fields: ['pv-dob'],
-      behaviours: saveMissingData('pv-dob'),
+      behaviours: [pvDob, saveMissingData('pv-dob')],
       next: '/pv-gender'
     },
     '/pv-gender': {
       fields: ['pv-gender'],
-      behaviours: saveMissingData('pv-gender'),
-      forks: [{
-        target: '/pv-nationality',
-        condition: (req) => {
-          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
-        }
-      }],
-      next: '/does-pv-have-children'
+      behaviours: [pvGender, saveMissingData('pv-gender')],
     },
     '/does-pv-have-children': {
-      behaviours: saveMissingData(['does-pv-have-children', 'does-pv-have-children-yes-amount']),
+      behaviours: [doesPvHaveChildren, saveMissingData(['does-pv-have-children', 'does-pv-have-children-yes-amount'])],
       fields: ['does-pv-have-children', 'does-pv-have-children-yes-amount'],
-      next: '/pv-nationality'
     },
     '/pv-nationality': {
       fields: ['pv-nationality', 'pv-nationality-second'],
-      behaviours: saveMissingData(['pv-nationality', 'pv-nationality-second']),
-      forks: [{
-        target: '/co-operate-with-police',
-        condition: (req) => {
-          return req.sessionModel.get('pv-want-to-submit-nrm') === 'no';
-        }
-      }],
-      next: '/pv-interpreter-requirements'
+      behaviours: [pvNationality, saveMissingData(['pv-nationality', 'pv-nationality-second'])],
+      next: '/co-operate-with-police'
     },
     '/pv-interpreter-requirements': {
-      behaviours: saveMissingData(['pv-interpreter-requirements', 'pv-interpreter-requirements-language']),
+      behaviours: [
+        pvInterpreterRequirements,
+        saveMissingData(['pv-interpreter-requirements', 'pv-interpreter-requirements-language'])
+      ],
       fields: ['pv-interpreter-requirements', 'pv-interpreter-requirements-language'],
       next: '/pv-other-help-with-communication'
     },
@@ -198,29 +182,15 @@ module.exports = {
     },
     '/pv-ho-reference': {
       fields: ['pv-ho-reference', 'pv-ho-reference-type'],
-      behaviours: saveMissingData(['pv-ho-reference', 'pv-ho-reference-type']),
-      forks: [{
-        target: '/fr-details',
-        condition: (req) => {
-          return req.sessionModel.get('pv-under-age') !== 'no';
-        }
-      }],
-      next: '/who-contact'
+      behaviours: [pvHoReference, saveMissingData(['pv-ho-reference', 'pv-ho-reference-type'])],
     },
     '/who-contact': {
-      behaviours: saveMissingData('who-contact'),
+      behaviours: [whoContact, saveMissingData('who-contact')],
       fields: ['who-contact'],
-      forks: [{
-        target: '/someone-else',
-        condition: {
-          field: 'who-contact',
-          value: 'someone-else'
-        }
-      }],
       continueOnEdit: true,
-      next: '/pv-contact-details'
     },
     '/someone-else': {
+      behaviours: someoneElse,
       fields: [
         'someone-else',
         'someone-else-first-name',
@@ -232,20 +202,13 @@ module.exports = {
         'someone-else-postcode',
         'someone-else-permission-check',
       ],
-      forks: [{
-        target: '/co-operate-with-police',
-        condition: (req) => {
-          return req.sessionModel.get('does-pv-need-support') === 'no';
-        }
-      }],
-      next: '/pv-phone-number'
     },
     '/pv-contact-details': {
-      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [pvContactDetails, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact'])],
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -256,57 +219,19 @@ module.exports = {
         'pv-contact-details-postcode',
         'pv-contact-details-post-check',
       ],
-      forks: [
-        {
-          target: '/co-operate-with-police',
-          condition: (req) => {
-            return (req.sessionModel.get('does-pv-need-support')) === 'no';
-          }
-        },
-        {
-          target: '/confirm',
-          condition: (req) => {
-            return (
-              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
-              ((req.sessionModel.get('does-pv-need-support')) !== 'yes')
-              );
-          }
-        },
-      ],
-      next: '/pv-phone-number'
     },
     '/pv-phone-number': {
+      behaviours: pvPhoneNumber,
       fields: ['pv-phone-number', 'pv-phone-number-yes'],
       next: '/co-operate-with-police'
     },
     '/co-operate-with-police': {
       fields: ['co-operate-with-police'],
-      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [coOperateWithPolice, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
-      forks: [
-        {
-          target: '/confirm',
-          condition: (req) => {
-            return (
-              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
-              (req.sessionModel.get('co-operate-with-police') === 'no')
-              );
-          }
-        },
-        {
-          target: '/pv-name',
-          condition: (req) => {
-            return (
-              ((req.sessionModel.get('pv-want-to-submit-nrm')) === 'no') &&
-              (req.sessionModel.get('co-operate-with-police') === 'yes')
-              );
-          }
-        },
-      ],
-      next: '/fr-details'
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact'])],
     },
     '/supporting-documents-add': {
       fields: [
@@ -319,7 +244,6 @@ module.exports = {
           value: 'yes'
         }
       }],
-      next: '/fr-details'
     },
     '/supporting-documents': {
       behaviours: supportingDocuments,
@@ -343,9 +267,9 @@ module.exports = {
         }
       }],
       continueOnEdit: true,
-      next: '/fr-details'
     },
     '/fr-details': {
+      behaviours: frDetails,
       fields: [
         'fr-details-first-name',
         'fr-details-last-name',
@@ -355,17 +279,20 @@ module.exports = {
       next: '/fr-alternative-contact'
     },
     '/fr-alternative-contact': {
-      behaviours: transferMissingData(['pv-dob', 'pv-gender',
+      behaviours: [frAlternateContact, transferMissingData(['pv-dob', 'pv-gender',
         'does-pv-have-children', 'does-pv-have-children-yes-amount', 'pv-nationality',
         'pv-nationality-second', 'pv-ho-reference', 'pv-ho-reference-type',
         'pv-interpreter-requirements', 'pv-interpreter-requirements-language',
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact']),
+        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid', 'who-contact'])],
       fields: ['fr-alternative-contact'],
-      next: '/confirm'
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page'), generateSendPdf, 'complete'
+        require(
+          'hof-behaviour-summary-page'),
+          confirm,
+          generateSendPdf,
+          'complete'
       ],
       next: '/confirmation'
     },
