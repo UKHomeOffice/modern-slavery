@@ -29,7 +29,7 @@ module.exports = superclass => class extends superclass {
     } else if (req.sessionModel.get('co-operate-with-police') === 'no') {
       nextStep = '/nrm/confirm';
     } else {
-      nextStep = '/pv-name';
+      nextStep = '/nrm/pv-name';
     }
 
     if (req.params && req.params.action && req.params.action === 'edit' && nextStep !== 'confirm') {
