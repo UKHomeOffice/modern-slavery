@@ -8,10 +8,10 @@ RUN apt-get update && \
   apt-get install -yq curl libgconf-2-4
 
 # Install Google Chrome
+# the --allow-unauthenticated command is a temporary solution in order to
+# allow chrome to be installed when runnning docker acceptance tests
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main' >> /etc/apt/sources.list.d/google-chrome.list && \
-  # the --allow-unauthenticated command is a temporary solution in order to
-  # allow chrome to be installed when runnning docker acceptance tests
   apt-get update --allow-unauthenticated && \
   apt-get install -y google-chrome-unstable --no-install-recommends && \
   rm -fr /var/lib/apt/lists/* && \
