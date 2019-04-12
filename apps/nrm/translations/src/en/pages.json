@@ -180,6 +180,9 @@
       "pv-want-to-submit-nrm": {
         "label": "Formal decision"
       },
+      "refuse-nrm": {
+        "label": "Reason for Refusing NRM"
+      },
       "co-operate-with-police": {
         "label": "Consent"
       },

@@ -8,6 +8,7 @@ const dataToPdf = require('./behaviours/data-to-pdf');
 const generateSendPdf = require('./behaviours/generate-send-pdf');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
+const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
 
 module.exports = {
   name: 'nrm',
@@ -369,7 +370,11 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page'), generateSendPdf, 'complete'
+        require(
+          'hof-behaviour-summary-page'),
+          hideAndShowSummaryFields,
+          generateSendPdf,
+          'complete'
       ],
       next: '/confirmation'
     },
