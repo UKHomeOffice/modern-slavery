@@ -10,8 +10,8 @@ RUN apt-get update && \
 # Install Google Chrome
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main' >> /etc/apt/sources.list.d/google-chrome.list && \
-  apt-get update && \
-  apt-get install -y --allow-unauthenticated google-chrome-unstable --no-install-recommends && \
+  apt-get update --allow-unauthenticated && \
+  apt-get install -y google-chrome-unstable --no-install-recommends && \
   rm -fr /var/lib/apt/lists/* && \
   # Uninstall Curl, it's configuration files and the installation file from Ubuntu
   apt-get purge --auto-remove -y curl && \
