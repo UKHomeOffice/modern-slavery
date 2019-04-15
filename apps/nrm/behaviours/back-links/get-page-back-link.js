@@ -32,6 +32,7 @@ const getPageBackLink = (req, pageName) => {
     'who-contact': pageCustomBackLinks.whoContact(req),
     'confirm': pageCustomBackLinks.confirm(req),
     'fr-details': pageCustomBackLinks.frDetails(req),
+    'local-authority-contacted-about-child': pageCustomBackLinks.localAuthorityContactedAboutChild(req),
   };
 
   return pageBackLinks[pageName];
