@@ -8,6 +8,7 @@ const dataToPdf = require('./behaviours/data-to-pdf');
 const generateSendPdf = require('./behaviours/generate-send-pdf');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
+const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
 const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-link');
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 
@@ -397,6 +398,7 @@ module.exports = {
       behaviours: [
         require(
           'hof-behaviour-summary-page'),
+          hideAndShowSummaryFields,
           getPageCustomBackLink('confirm'),
           generateSendPdf,
           'complete'
