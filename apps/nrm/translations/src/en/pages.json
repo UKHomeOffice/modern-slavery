@@ -162,6 +162,9 @@
       "where-exploitation-happened": {
         "label": "Exploitation location"
       },
+      "current-pv-location": {
+        "label": "Current location"
+      },
       "who-exploited-pv": {
         "label": "Exploiter"
       },
@@ -191,6 +194,9 @@
       },
       "someone-else-email-input": {
         "label": "Email"
+      },
+      "someone-else-contact-details": {
+        "label": "Address"
       },
       "pv-name": {
         "label": "Name"

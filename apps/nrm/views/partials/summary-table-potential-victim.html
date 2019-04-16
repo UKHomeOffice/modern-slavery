@@ -134,23 +134,14 @@
         <td class="no-white-space">
           <span>
             {{values.pv-interpreter-requirements}}
+            {{#values.pv-interpreter-requirements-language}}
+            : {{#t}}pages.confirm.fields.pv-interpreter-requirements-language.label{{/t}}; {{values.pv-interpreter-requirements-language}}
+            {{/values.pv-interpreter-requirements-language}}
           </span>
         </td>
         <td></td>
       </tr>
       {{/values.pv-interpreter-requirements}}
-
-      {{#values.pv-interpreter-requirements-language}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-interpreter-requirements-language.label{{/t}}</td>
-        <td class="no-white-space">
-          <span>
-            {{values.pv-interpreter-requirements-language}}
-          </span>
-        </td>
-        <td></td>
-      </tr>
-      {{/values.pv-interpreter-requirements-language}}
 
       {{#values.pv-other-help-with-communication}}
       <tr>
