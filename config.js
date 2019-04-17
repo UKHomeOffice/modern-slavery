@@ -39,6 +39,7 @@ module.exports = {
     tempLocation: 'public/images'
   },
   selectors: {
+    START_HOME_BUTTON: '#content > div > form > div > div.govuk-grid-column-two-thirds > input',
     CONTINUE_BUTTON: '#content > div > form > input.button',
     UPLOAD_DOCUMENT_PAGE_2_YES_OPTION: '#supporting-documents-add-yes',
     UPLOAD_DOCUMENT_PAGE_2_NO_OPTION: '#supporting-documents-add-no',
