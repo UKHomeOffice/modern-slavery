@@ -67,3 +67,12 @@ $('.typeahead').each(function applyTypeahead() {
     limit: 100
   });
 });
+
+/**
+ * Override for Start Page width
+ */
+
+ // eslint-disable-next-line no-undef
+ if (window.location.pathname === '/start') {
+   $('.column-two-thirds').addClass('max-page-width');
+ }

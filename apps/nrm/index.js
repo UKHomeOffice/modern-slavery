@@ -132,7 +132,7 @@ module.exports = {
       continueOnEdit: true,
     },
     '/support-organisations': {
-      backLink: '/does-pv-need-support'
+      backLink: false,
     },
     '/pv-name': {
       behaviours: [
