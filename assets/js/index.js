@@ -71,20 +71,37 @@ $('.typeahead').each(function applyTypeahead() {
 /**
  * Override for Start Page width
  */
-
  // eslint-disable-next-line no-undef
  if (window.location.pathname === '/start') {
    $('.column-two-thirds').addClass('max-page-width');
  }
 
-
  /**
- * Override to remove dashes on Summary page
+ * Override to remove dashes and capitalise first letters on Summary page answers
+ *
+ * @returns {void}
  */
-$('.capitalise-and-remove-dashes').text(() => {
-  const originalText = $(this).text();
-  const strippedDashes = $(this).text().replace('-', ' ');
-  const capitalisedText = strippedDashes.charAt(0).toUpperCase() + originalText.slice(1);
+const formatSummaryPageAnswersDisplay = () => {
+  const answersWithFirstLetterToBeCapitalised = $('.capitalise-first-letter');
 
-  return capitalisedText;
-});
+  for (let i = 0; i < answersWithFirstLetterToBeCapitalised.length; i++) {
+    const originalText = answersWithFirstLetterToBeCapitalised[i].innerText;
+    const capitalisedText = originalText.charAt(0).toUpperCase() + originalText.slice(1);
+
+    answersWithFirstLetterToBeCapitalised[i].innerText = capitalisedText;
+  }
+
+  const answersWithDashesToBeRemoved = $('.remove-dashes');
+
+  for (let i = 0; i < answersWithDashesToBeRemoved.length; i++) {
+    const originalText = answersWithDashesToBeRemoved[i].innerText;
+    const strippedDashes = originalText.replace('-', ' ');
+
+    answersWithDashesToBeRemoved[i].innerText = strippedDashes;
+  }
+};
+
+// eslint-disable-next-line no-undef
+if (window.location.pathname.includes('/confirm')) {
+  formatSummaryPageAnswersDisplay();
+}

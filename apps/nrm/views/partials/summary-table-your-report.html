@@ -3,7 +3,7 @@
   <tbody>
     <tr>
       <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
-      <td class="no-white-space capitalise-and-remove-dashes">
+      <td class="no-white-space capitalise-first-letter remove-dashes">
         {{#values.pv-under-age}}
           {{values.pv-under-age}}
         {{/values.pv-under-age}}
@@ -14,7 +14,7 @@
     {{#values.pv-under-age-at-time-of-exploitation}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}</td>
-        <td class="no-white-space capitalise-and-remove-dashes">
+        <td class="no-white-space capitalise-first-letter remove-dashes">
             {{values.pv-under-age-at-time-of-exploitation}}
         </td>
         <td></td>
@@ -23,7 +23,7 @@
 
     <tr>
       <td>{{#t}}pages.confirm.fields.fr-location.label{{/t}}</td>
-      <td class="no-white-space capitalise-and-remove-dashes">
+      <td class="no-white-space capitalise-all remove-dashes">
         {{#values.fr-location}}
           {{values.fr-location}}
         {{/values.fr-location}}
@@ -155,7 +155,7 @@
 
     <tr>
       <td>{{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}</td>
-      <td class="no-white-space capitalise-and-remove-dashes">
+      <td class="no-white-space capitalise-first-letter remove-dashes">
         {{#values.any-other-pvs}}
           <span>{{values.any-other-pvs}}</span>
         {{/values.any-other-pvs}}
@@ -165,10 +165,10 @@
 
     <tr>
       <td>{{#t}}pages.confirm.fields.reported-to-police.label{{/t}}</td>
-      <td class="no-white-space capitalise-and-remove-dashes">
+      <td class="no-white-space capitalise-first-letter">
         {{#values.reported-to-police}}
           <span>{{values.reported-to-police}}</span>
-          {{#values.reported-to-police-p\olice-forces}}
+          {{#values.reported-to-police-police-forces}}
             <span>{{values.reported-to-police-police-forces}}</span>
           {{/values.reported-to-police-police-forces}}
           {{#values.reported-to-police-crime-reference}}
