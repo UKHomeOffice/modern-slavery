@@ -76,3 +76,13 @@ $('.typeahead').each(function applyTypeahead() {
  if (window.location.pathname === '/start') {
    $('.column-two-thirds').addClass('max-page-width');
  }
+
+/**
+ * Disable submit button on submission of form
+ *
+ * This is in place to prevent duplicate form submissions.
+ */
+$('input[value="Accept and send report"]').on('click', () => {
+  $('input[value="Accept and send report"]').prop('disabled', true);
+  $('form').submit();
+});
