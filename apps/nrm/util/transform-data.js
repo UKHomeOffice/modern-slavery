@@ -51,7 +51,7 @@ module.exports = {
       data.otherVictims = 'not sure';
     }
     data.gender = values['pv-gender'];
-    if (data.gender === 'unknown') {
+    if (data.gender === 'they-do-not-identify-as-male-or-female') {
       data.gender = 'They do not identify as male or female';
     }
     data.pvWantToSubmit = equal(values['pv-want-to-submit-nrm'], 'yes');
