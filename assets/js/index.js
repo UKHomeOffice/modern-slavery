@@ -76,3 +76,15 @@ $('.typeahead').each(function applyTypeahead() {
  if (window.location.pathname === '/start') {
    $('.column-two-thirds').addClass('max-page-width');
  }
+
+
+ /**
+ * Override to remove dashes on Summary page
+ */
+$('.capitalise-and-remove-dashes').text(() => {
+  const originalText = $(this).text();
+  const strippedDashes = $(this).text().replace('-', ' ');
+  const capitalisedText = strippedDashes.charAt(0).toUpperCase() + originalText.slice(1);
+
+  return capitalisedText;
+});
