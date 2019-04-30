@@ -389,7 +389,7 @@ module.exports = {
     options: [
       'female',
       'male',
-      'unknown'
+      'they-do-not-identify-as-male-or-female'
     ]
   },
   'does-pv-have-children': {
