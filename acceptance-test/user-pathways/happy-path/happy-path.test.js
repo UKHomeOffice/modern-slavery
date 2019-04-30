@@ -47,6 +47,7 @@ const {
     WHO_CONTACT_PV_OPTION,
     EXPLOITED_IN_UK_CITY_INPUT,
     EXPLOITED_IN_UK_REGION_INPUT,
+    START_HOME_BUTTON,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -90,7 +91,7 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
     async function verifyUser() {
-        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, START_HOME_BUTTON);
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
         });

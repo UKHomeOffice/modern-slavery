@@ -11,6 +11,12 @@ module.exports = {
     '/start': {
       next: '/who-do-you-work-for'
     },
+    '/designated-organisations': {
+      backLink: false,
+    },
+    '/support-organisations': {
+      backLink: false,
+    },
     '/who-do-you-work-for': {
       fields: ['user-organisation', 'user-email'],
       next: '/confirm-email'

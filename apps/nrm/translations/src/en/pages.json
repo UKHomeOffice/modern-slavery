@@ -61,7 +61,22 @@
     "link-text-2": "for more information."
   },
   "support-organisations": {
-    "header": "Find a support provider"
+    "header": "Find a support provider",
+    "paragraph-1": "If the potential victim needs support you'll need to contact the relevant provider for more information.",
+    "heading-1": "England and Wales",
+    "heading-1-sub-heading-1": "Salvation Army",
+    "heading-1-sub-heading-1-paragraph-1": "Telephone: 0300 303 8151 (24 hours)",
+    "heading-2": "Scotland",
+    "heading-2-sub-heading-1": "Trafficking Awareness Raising Alliance (TARA)",
+    "heading-2-sub-heading-1-paragraph-1": "Telephone: 0141 2767729 or 0141 2767730",
+    "heading-2-sub-heading-2": "Migrant help",
+    "heading-2-sub-heading-2-paragraph-1": "Telephone 07837 937737 or 07789 791 110",
+    "heading-3": "Northern Ireland",
+    "heading-3-sub-heading-1": "Migrant Help",
+    "heading-3-sub-heading-1-paragraph-1": "Office hours Mon to Fri: 028 9031 5744",
+    "heading-3-sub-heading-1-paragraph-2": "Out of hours 24/7 referral: 028 9244 8449",
+    "heading-3-sub-heading-2": "Belfast and Lisburn Women’s Aid",
+    "heading-3-sub-heading-2-paragraph-1": "24hr number: 028 90662385"
   },
   "pv-name": {
     "header": "What is their name?"
@@ -256,6 +271,24 @@
         "label": "Second contact"
       }
     }
+  },
+  "confirmation": {
+    "panel-title": "NRM report sent",
+    "paragraph-1": "We have sent you a confirmation email with an NRM reference. You will also get a copy of the report for your records.",
+    "heading-1": "What happens next",
+    "heading-1-paragraph-1": "We will look at the potential victim’s case within 5 working days and decide if there are reasonable grounds to believe they are a victim of modern slavery.",
+    "heading-1-paragraph-2": "We may contact you if we need more information.",
+    "heading-2": "If the potential victim needs support",
+    "heading-2-paragraph-1": "Support can take up to 5 days to start. If they need help immediately, you’ll need to contact the relevant provider or local authority for more information.",
+    "heading-2-link-1": "Contact a support provider",
+    "heading-3": "Contact us",
+    "heading-3-paragraph-1": "Email: email@email.com",
+    "heading-3-paragraph-2": "Telephone: 01234 567 890",
+    "heading-3-paragraph-3": "Back to the",
+    "heading-3-paragraph-3-link-1": "first responder guidance",
+    "heading-3-paragraph-4-link-1": "What did you think of this service?",
+    "heading-3-paragraph-4": "(takes 30 seconds)",
+    "heading-3-paragraph-5-link-1": "Start a new report"
   },
   "send-pdf": {
     "header": "Enter the email to send the Pdf"

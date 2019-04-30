@@ -4,7 +4,7 @@ const hof = require('hof');
 const config = require('./config');
 const mockAPIs = require('./mock-apis');
 const busboyBodyParser = require('busboy-body-parser');
-
+const download = require('./download-file');
 const settings = require('./hof.settings');
 
 settings.routes = settings.routes.map(route => require(route));
@@ -20,5 +20,10 @@ if (config.useMocks) {
 // limits the size of a file that can be uploaded
 // sets the file truncated value to true
 app.use(busboyBodyParser({ limit: config.upload.maxFileSize }));
+
+// Downloads the offline form to client side
+app.use('/offline-form', (req, res) => {
+  download.responseFile('/assets/documents', 'nrm-form-offline.pdf', res);
+});
 
 module.exports = app;

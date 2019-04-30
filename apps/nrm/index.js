@@ -11,6 +11,7 @@ const transferMissingData = require('./behaviours/transfer-missing-data');
 const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
 const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-link');
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
+const ResetOnChange = require('./behaviours/reset-on-change');
 
 module.exports = {
   name: 'nrm',
@@ -32,6 +33,9 @@ module.exports = {
     '/pv-under-age': {
       behaviours: [
         getPageCustomNextStep('pv-under-age'),
+        ResetOnChange({
+          currentField: 'pv-under-age', storeFields: ['fr-location']
+        })
       ],
       fields: ['pv-under-age'],
     },
@@ -132,7 +136,7 @@ module.exports = {
       continueOnEdit: true,
     },
     '/support-organisations': {
-      backLink: '/does-pv-need-support'
+      backLink: false,
     },
     '/pv-name': {
       behaviours: [
