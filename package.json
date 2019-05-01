@@ -36,7 +36,7 @@
     "jquery": "^3.3.1",
     "mocha": "^6.0.2",
     "moment": "^2.24.0",
-    "ms-email-domains": "^1.1.0",
+    "ms-email-domains": "^1.1.1",
     "ms-nationalities": "^1.0.0",
     "ms-organisations": "^1.2.0",
     "ms-uk-cities-and-towns": "^1.1.0",
