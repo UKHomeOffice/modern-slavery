@@ -122,7 +122,7 @@
     "email": "You must enter a valid email address"
   },
   "pv-contact-details-email-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this email addresss."
+    "required": "Make sure it is safe to contact the potential victim at this email address."
   },
   "pv-contact-details-street" : {
     "required": "You must enter the street"
@@ -137,7 +137,7 @@
     "required": "You must enter the postcode."
   },
   "pv-contact-details-post-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this addresss."
+    "required": "Make sure it is safe to contact the potential victim at this address."
   },
   "someone-else" : {
     "required": "You must select one or more of the contact methods listed"
