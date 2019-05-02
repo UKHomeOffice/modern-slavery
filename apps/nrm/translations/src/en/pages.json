@@ -1,5 +1,6 @@
 {
   "token-invalid": {
+    "header": "Your link has expired",
     "request-another": "Request a new link"
   },
   "fr-location": {
