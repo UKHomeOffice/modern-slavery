@@ -98,7 +98,6 @@ describe.only('User path(s)', () => {
         await page.$eval(EMAIL_INPUT, (element) => {
             element.value = 'test.user@homeoffice.gov.uk';
         });
-        // await clickSelector(page, CONTINUE_BUTTON);
         // Bypass user clicking email link - Notify Key will not be set during test runs
         await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
     }
