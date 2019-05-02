@@ -71,7 +71,6 @@ $('.typeahead').each(function applyTypeahead() {
 /**
  * Override for Start Page width
  */
-
  // eslint-disable-next-line no-undef
  if (window.location.pathname === '/start') {
    $('.column-two-thirds').addClass('max-page-width');
@@ -82,7 +81,10 @@ $('.typeahead').each(function applyTypeahead() {
  *
  * This is in place to prevent duplicate form submissions.
  */
-$('input[value="Accept and send report"]').on('click', () => {
-  $('input[value="Accept and send report"]').prop('disabled', true);
-  $('form').submit();
-});
+ // eslint-disable-next-line no-undef
+if (window.location.pathname.indexOf('confirm') > -1) {
+  $('input[value="Accept and send report"]').on('click', () => {
+    $('input[value="Accept and send report"]').prop('disabled', true);
+    $('form').submit();
+  });
+}
