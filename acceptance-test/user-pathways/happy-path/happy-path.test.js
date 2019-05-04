@@ -309,7 +309,6 @@ describe.only('User path(s)', () => {
         await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
             element.value = 'jack.smith@police.com';
         });
-        await clickSelector(page, CONTINUE_BUTTON);
     }
 
     it('Happy path - Adult', async() => {
