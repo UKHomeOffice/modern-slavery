@@ -76,21 +76,13 @@ if (window.location.pathname === '/start' || window.location.pathname === '/pape
   $('.column-two-thirds').addClass('max-page-width');
 }
 
-
 /**
- * Disable Input Button before form is submitted
- */
-function disableDuplicateSubmission() {
-  $('input[value="Accept and send report"]').prop('disabled', true);
-  $('form').submit();
-}
-
-/**
- * Disable submit button on submission of form
- *
  * This is in place to prevent duplicate form submissions.
  */
 // eslint-disable-next-line no-undef
-if (window.location.pathname.indexOf('confirm') > -1) {
-  $('input[value="Accept and send report"]').on('click', disableDuplicateSubmission());
+if (window.location.pathname === '/nrm/confirm') {
+ $('input[value="Accept and send report"]').on('click', function disableDoubleClick() {
+   $('input[value="Accept and send report"]').prop('disabled', true);
+   $('form').submit();
+ });
 }
