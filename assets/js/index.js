@@ -72,7 +72,7 @@ $('.typeahead').each(function applyTypeahead() {
  * Override for Start Page width
  */
 // eslint-disable-next-line no-undef
-if (window.location.pathname === '/start') {
+if (window.location.pathname === '/start' || window.location.pathname === '/paper-version-download') {
   $('.column-two-thirds').addClass('max-page-width');
 }
 
