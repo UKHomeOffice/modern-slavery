@@ -62,7 +62,7 @@ module.exports = {
       data.whoContact = 'Someone else';
     }
     if (data.whoContact === 'potential-victim') {
-      data.whoContact = 'Potenital victim';
+      data.whoContact = 'Potential victim';
     }
     data.pvHasChildren = upperCase(values['does-pv-have-children']);
     data.values = values;
