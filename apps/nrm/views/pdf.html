@@ -690,6 +690,28 @@
             </div>
           </div>
           {{/values.someone-else-postcode}}
+
+          {{#values.someone-else-email-input}}
+          <div class= "row bgrey">
+            <div class="col-sm-2 bold pad-left-10">
+              Email
+            </div>
+            <div class="col-sm-10">
+              {{values.someone-else-email-input}}
+            </div>
+          </div>
+          {{/values.someone-else-email-input}}
+
+          {{#values.someone-else-permission-check}}
+          <div class= "row bgrey">
+            <div class="col-sm-8 bold pad-left-10">
+              The potential victim has given permission to send the decision to this person?
+            </div>
+            <div class="col-sm-4">
+              Yes
+            </div>
+          </div>
+          {{/values.someone-else-permission-check}}
         {{/contactSomeoneElse}}
         {{/pvWantToSubmit}}
 
@@ -749,10 +771,10 @@
 
       {{#values.pv-phone-number}}
       <div class= "row bgrey">
-        <div class="col-sm-4 bold pad-left-10">
-          Can the police contact them by phone?
+        <div class="col-sm-8 bold pad-left-10">
+          Can the support provider contact the potential victim by phone?
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-4">
           {{{values.pv-phone-number}}}
         </div>
       </div>
