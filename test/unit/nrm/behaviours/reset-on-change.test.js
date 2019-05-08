@@ -31,7 +31,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
       res = reqres.res();
       next = sinon.stub();
       config = {
-        currentField: 'pv-under-age', storeFields: ['fr-location']
+        currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
       };
       ResetOnChange = Behaviour(config)(Base);
       instance = new ResetOnChange();
@@ -42,7 +42,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
     });
 
     it('does NOT reset the session if we visit the page the first time', async() => {
-      req.sessionModel.get.withArgs('steps').returns(['fr-location']);
+      req.sessionModel.get.withArgs('steps').returns(['fr-location', 'user-organisation', 'user-email']);
       req.form = {
         options: {
           route: 'pv-under-age'
@@ -54,7 +54,13 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
     });
 
     it('does NOT reset the session when the field has not changed from what was stored previously', async() => {
-      req.sessionModel.get.withArgs('steps').returns(['fr-location', 'pv-under-age']);
+      req.sessionModel.get.withArgs('steps').returns(
+        [
+          'fr-location',
+          'pv-under-age',
+          'user-organisation',
+          'user-email'
+        ]);
       req.sessionModel.get.withArgs('pv-under-age').returns('yes');
       req.form = {
         values: {
@@ -71,7 +77,13 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
 
     describe('when the field has changed from what was previously stored', async() => {
       beforeEach(async() => {
-        req.sessionModel.get.withArgs('steps').returns(['fr-location', 'pv-under-age']);
+        req.sessionModel.get.withArgs('steps').returns(
+          [
+            'fr-location',
+            'pv-under-age',
+            'user-organisation',
+            'user-email'
+          ]);
         req.sessionModel.get.withArgs('pv-under-age').returns('yes');
         req.form = {
           values: {
@@ -89,13 +101,15 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
         expect(sessionModel.reset).to.have.been.called;
       });
 
-      it('stores the field from the previous page', () => {
+      it('stores the field(s) from the previous page', () => {
+        expect(sessionModel.set).to.have.been.calledWith('user-organisation');
+        expect(sessionModel.set).to.have.been.calledWith('user-email');
         expect(sessionModel.set).to.have.been.calledWith('fr-location');
       });
 
       it('stores the steps', () => {
         expect(sessionModel.set).to.have.been.calledWith('steps',
-          ['fr-location', 'pv-under-age']);
+          ['fr-location', 'pv-under-age', 'user-organisation', 'user-email']);
       });
     });
   });
