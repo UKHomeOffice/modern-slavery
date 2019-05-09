@@ -42,7 +42,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
     });
 
     it('does NOT reset the session if we visit the page the first time', async() => {
-      req.sessionModel.get.withArgs('steps').returns(['fr-location', 'user-organisation', 'user-email']);
+      req.sessionModel.get.withArgs('steps').returns(['fr-location']);
       req.form = {
         options: {
           route: 'pv-under-age'
@@ -57,9 +57,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
       req.sessionModel.get.withArgs('steps').returns(
         [
           'fr-location',
-          'pv-under-age',
-          'user-organisation',
-          'user-email'
+          'pv-under-age'
         ]);
       req.sessionModel.get.withArgs('pv-under-age').returns('yes');
       req.form = {
@@ -80,9 +78,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
         req.sessionModel.get.withArgs('steps').returns(
           [
             'fr-location',
-            'pv-under-age',
-            'user-organisation',
-            'user-email'
+            'pv-under-age'
           ]);
         req.sessionModel.get.withArgs('pv-under-age').returns('yes');
         req.form = {
@@ -109,7 +105,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
 
       it('stores the steps', () => {
         expect(sessionModel.set).to.have.been.calledWith('steps',
-          ['fr-location', 'pv-under-age', 'user-organisation', 'user-email']);
+          ['fr-location', 'pv-under-age']);
       });
     });
   });
