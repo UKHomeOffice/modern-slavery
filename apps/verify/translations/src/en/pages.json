@@ -79,8 +79,5 @@
   "check-inbox": {
     "header": "Check your email",
     "link-text": "Resubmit"
-  },
-  "email-not-recognised": {
-    "header": "Email not recognised"
   }
 }
