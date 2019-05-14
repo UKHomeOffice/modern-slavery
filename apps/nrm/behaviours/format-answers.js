@@ -6,7 +6,7 @@
  * @param {Object} text - text to be capitalised
  * @param {bool} [all=false] - whether the first letter of each word is capitalised
  *
- * @returns {bool} - capitalised text
+ * @returns {string} - capitalised text
  */
 const capitaliseText = (text, all = false) => {
   const capitalisedText = text.charAt(0).toUpperCase() + text.slice(1);
@@ -26,9 +26,9 @@ const capitaliseText = (text, all = false) => {
 /**
  * Remove dashes from text
  *
- * @param {Object} text - request parameters
+ * @param {Object} text - text to be formatted
  *
- * @returns {bool} - has the user followed the duty to notify path
+ * @returns {string} - the text without dashes
  */
 const removeDashesFromText = (text) => {
   const strippedDashes = text.replace('-', ' ');
