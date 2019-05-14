@@ -35,7 +35,7 @@ module.exports = {
       behaviours: [
         getPageCustomNextStep('pv-under-age'),
         ResetOnChange({
-          currentField: 'pv-under-age', storeFields: ['fr-location']
+          currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
         })
       ],
       fields: ['pv-under-age'],

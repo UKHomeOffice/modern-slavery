@@ -2,8 +2,7 @@
 
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
-const hofCountries = require('hof-util-countries')();
-const countries = hofCountries.concat([{value: 'Unknown', label: 'Unknown'}]);
+const countries = require('ms-countries');
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');

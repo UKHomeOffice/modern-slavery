@@ -31,7 +31,7 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
       res = reqres.res();
       next = sinon.stub();
       config = {
-        currentField: 'pv-under-age', storeFields: ['fr-location']
+        currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
       };
       ResetOnChange = Behaviour(config)(Base);
       instance = new ResetOnChange();
@@ -54,7 +54,11 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
     });
 
     it('does NOT reset the session when the field has not changed from what was stored previously', async() => {
-      req.sessionModel.get.withArgs('steps').returns(['fr-location', 'pv-under-age']);
+      req.sessionModel.get.withArgs('steps').returns(
+        [
+          'fr-location',
+          'pv-under-age'
+        ]);
       req.sessionModel.get.withArgs('pv-under-age').returns('yes');
       req.form = {
         values: {
@@ -71,7 +75,11 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
 
     describe('when the field has changed from what was previously stored', async() => {
       beforeEach(async() => {
-        req.sessionModel.get.withArgs('steps').returns(['fr-location', 'pv-under-age']);
+        req.sessionModel.get.withArgs('steps').returns(
+          [
+            'fr-location',
+            'pv-under-age'
+          ]);
         req.sessionModel.get.withArgs('pv-under-age').returns('yes');
         req.form = {
           values: {
@@ -89,7 +97,9 @@ describe('/apps/nrm/behaviours/reset-on-change', () => {
         expect(sessionModel.reset).to.have.been.called;
       });
 
-      it('stores the field from the previous page', () => {
+      it('stores the field(s) from the previous page', () => {
+        expect(sessionModel.set).to.have.been.calledWith('user-organisation');
+        expect(sessionModel.set).to.have.been.calledWith('user-email');
         expect(sessionModel.set).to.have.been.calledWith('fr-location');
       });
 

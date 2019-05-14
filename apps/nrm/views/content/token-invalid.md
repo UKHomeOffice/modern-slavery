@@ -1,3 +1,3 @@
-# Email Link expired
+#Your link has expired
 
-It appears that your link has expired.  You can request a new link
+The link we emailed you is no longer valid. You must request a new one to access the service.
