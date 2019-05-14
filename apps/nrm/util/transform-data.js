@@ -34,6 +34,9 @@ module.exports = {
       'types-of-exploitation-organs-removed'], values);
     data.otherVictims = values['any-other-pvs'];
     data.gender = values['pv-gender'];
+    if (data.gender === 'Unknown') {
+      data.gender = 'They do not identify as male or female';
+    }
     data.pvWantToSubmit = equal(values['pv-want-to-submit-nrm'], 'Yes');
     data.pvNotWantToSubmit = equal(values['pv-want-to-submit-nrm'], 'No');
     data.contactSomeoneElse = equal(values['who-contact'], 'someone-else');
