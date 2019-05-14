@@ -107,7 +107,7 @@ const formatAnswers = (req) => {
 
   req.sessionModel.set(
     'fr-location',
-    removeDashesFromText(capitaliseText(req.sessionModel.get('fr-location'), true)),
+    capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
   );
 
   req.sessionModel.set(
