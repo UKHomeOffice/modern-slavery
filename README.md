@@ -21,6 +21,8 @@ An app for a first responder to submit a form for a possible victim of modern sl
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
+6. [Release Guidelines](#release-guidelines)
+
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
 
