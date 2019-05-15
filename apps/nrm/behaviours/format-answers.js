@@ -37,93 +37,93 @@ const removeDashesFromText = (text) => {
 };
 
 /**
- * Format session answers
+ * Format session answers for display purposes
  *
  * @param {Object} req - request object
  *
- * @returns {void}
+ * @returns {Object} - additional formatted data for display on UI
  */
 const formatAnswers = (req) => {
-  req.sessionModel.set(
-    'pv-under-age',
-    removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age'))),
-  );
+  let data = {};
+
+  data = Object.assign({}, data, {
+    formattedPvUnderAge: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age'))),
+  });
 
   if (req.sessionModel.get('does-pv-need-support')) {
-    req.sessionModel.set(
-      'does-pv-need-support',
-      capitaliseText(req.sessionModel.get('does-pv-need-support')),
-    );
+    data = Object.assign({}, data, {
+      formattedDoesPvNeedSupport: capitaliseText(req.sessionModel.get('does-pv-need-support')),
+    });
   }
 
   if (req.sessionModel.get('pv-want-to-submit-nrm')) {
-    req.sessionModel.set(
-      'pv-want-to-submit-nrm',
-      capitaliseText(req.sessionModel.get('pv-want-to-submit-nrm')),
-    );
+    data = Object.assign({}, data, {
+      formattedPvWnatToSubmitNrm: capitaliseText(req.sessionModel.get('pv-want-to-submit-nrm')),
+    });
   }
 
   if (req.sessionModel.get('co-operate-with-police')) {
-    req.sessionModel.set(
-      'co-operate-with-police',
-      capitaliseText(req.sessionModel.get('co-operate-with-police')),
-    );
+    data = Object.assign({}, data, {
+      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police')),
+    });
   }
 
   if (req.sessionModel.get('pv-gender')) {
-    req.sessionModel.set(
-      'pv-gender',
-      removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender'))),
-    );
+    data = Object.assign({}, data, {
+      formattedPvGender: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender'))),
+    });
   }
 
   if (req.sessionModel.get('does-pv-have-children')) {
-    req.sessionModel.set(
-      'does-pv-have-children',
-      capitaliseText(req.sessionModel.get('does-pv-have-children')),
-    );
+    data = Object.assign({}, data, {
+      formattedDoesPvHaveChildren: capitaliseText(req.sessionModel.get('does-pv-have-children')),
+    });
   }
 
+
   if (req.sessionModel.get('pv-interpreter-requirements')) {
-    req.sessionModel.set(
-      'pv-interpreter-requirements',
-      capitaliseText(req.sessionModel.get('pv-interpreter-requirements')),
-    );
+    data = Object.assign({}, data, {
+      formattedPvInterpreterRequirements: capitaliseText(req.sessionModel.get('pv-interpreter-requirements')),
+    });
   }
 
   if (req.sessionModel.get('pv-other-help-with-communication')) {
-    req.sessionModel.set(
-      'pv-other-help-with-communication',
-      capitaliseText(req.sessionModel.get('pv-other-help-with-communication')),
-    );
+    data = Object.assign({}, data, {
+      formattedPvOtherHelpWithCommunication: capitaliseText(req.sessionModel.get('pv-other-help-with-communication')),
+    });
   }
 
   if (req.sessionModel.get('pv-under-age-at-time-of-exploitation')) {
-    req.sessionModel.set(
-      'pv-under-age-at-time-of-exploitation',
-      removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age-at-time-of-exploitation'))),
-    );
+    data = Object.assign({}, data, {
+      formattedPvUnderAgeAtTimeOfExploitation: removeDashesFromText(
+        capitaliseText(req.sessionModel.get('pv-under-age-at-time-of-exploitation'))
+        ),
+    });
   }
 
-  req.sessionModel.set(
-    'fr-location',
-    capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
-  );
+  data = Object.assign({}, data, {
+    formattedFrLocation: capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
+  });
 
-  req.sessionModel.set(
-    'any-other-pvs',
-    removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs'))),
-  );
+  data = Object.assign({}, data, {
+    formattedAnyOtherPvs: removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs'))),
+  });
 
-  req.sessionModel.set(
-    'reported-to-police',
-    capitaliseText(req.sessionModel.get('reported-to-police')),
-  );
+  data = Object.assign({}, data, {
+    formattedReportedToPolice: capitaliseText(req.sessionModel.get('reported-to-police')),
+  });
+
+  return data;
 };
 
 module.exports = superclass => class extends superclass {
-  getValues(req, res, callback) {
-    formatAnswers(req);
-    return super.getValues(req, res, callback);
+  locals(req, res) {
+    const superlocals = super.locals(req, res);
+
+    const data = Object.assign({}, formatAnswers(req));
+
+    const locals = Object.assign({}, superlocals, data);
+
+    return locals;
   }
 };
