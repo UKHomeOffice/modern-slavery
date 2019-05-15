@@ -130,4 +130,5 @@ The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests
 
-
+## Release Guidelines <a name="release-guidelines"></a>
+<a href="https://github.com/UKHomeOffice/modern-slavery/tree/master/documents/release-guidelines.md">More Details</a>
