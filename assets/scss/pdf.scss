@@ -518,6 +518,18 @@ hr {
   margin-left: -10px;
 }
 
+.new-page {
+    page-break-before: always;
+}
+
+.bwhite {
+  background-color: white!important;
+}
+
+.wrap {
+   word-wrap: break-word;      // IE
+}
+
 @media print {
   html,
   body {
@@ -532,12 +544,4 @@ hr {
   .disclaimer {
     padding-top: 20px;
   }
-}
-
-.new-page {
-    page-break-before: always;
-}
-
-.bwhite {
-  background-color: white!important;
 }
