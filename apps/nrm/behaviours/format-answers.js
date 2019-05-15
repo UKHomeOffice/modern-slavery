@@ -69,8 +69,14 @@ const formatAnswers = (req) => {
   }
 
   if (req.sessionModel.get('pv-gender')) {
+    let formattedPvGenderValue = removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender')));
+
+    if (formattedPvGenderValue === 'Unknown') {
+      formattedPvGenderValue = 'They do not identify as male or female';
+    }
+
     data = Object.assign({}, data, {
-      formattedPvGender: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender'))),
+      formattedPvGender: formattedPvGenderValue,
     });
   }
 
