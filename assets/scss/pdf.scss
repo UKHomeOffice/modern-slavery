@@ -529,19 +529,3 @@ hr {
 .wrap {
    word-wrap: break-word;      // IE
 }
-
-@media print {
-  html,
-  body {
-    height: 25.4cm;
-    overflow: hidden;
-  }
-
-  @page {
-    margin: 1cm 1.5cm;
-  }
-
-  .disclaimer {
-    padding-top: 20px;
-  }
-}
