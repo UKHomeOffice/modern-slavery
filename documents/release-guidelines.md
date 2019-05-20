@@ -5,12 +5,13 @@
 2. [Version Control](#version-control)
 3. [Collating Issues for Release using Project Management Tool (JIRA)](#collating-issues-for-release)
 4. [Creating a Release](#creating-a-release)
+4. [Completing a Release](#completing-a-release)
 
 ## Overview <a name="overview"></a>
 On every new deployment to our environment we create an assoicated release note to reflect the changes made and the reference the source code at the point in time.
 We currently use <a href="https://www.atlassian.com/software/jira">JIRA</a> to manage project tasks and issues.
 
-# Version Control <a name="version-control"></a>
+## Version Control <a name="version-control"></a>
 We follow the verisoning format of Major.Minor.Patch i.e. (v1.2.3) where Major = breaking change, Minor non-breaking change but more than a patch, like a new feature and a Patch = non breaking usually a bugfix
 
 ## Collating Issues for Release using Project Management Tool (JIRA) <a name="collating-issues-for-release"></a>
@@ -38,3 +39,6 @@ Once this PR has been approved and merged to master we follow the next steps in 
 - <b>Release Title</b> - Will be in the format of <b>Project Name - Version {Release Version}</b> i.e. (Modern Slavery - Version modern-slavery v.1.2.3)
 - <b>Description </b> - Here we will put the contents of our release (usually in accordance with the related JIRA release which is available in HTML format). Underneath any additional notes, we link a reference to the related code repository.
 - <b>Pre-release</b> - If the deployment is prior to a production release then we select this option to highlight this.
+
+## Completing a Release <a name="completing-a-release"></a>
+We finalise the release by archiving it in JIRA after clicking the <b>Release</b> button for the current release and logging the release date within the release details in JIRA.
