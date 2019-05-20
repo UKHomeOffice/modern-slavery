@@ -518,26 +518,14 @@ hr {
   margin-left: -10px;
 }
 
-@media print {
-  html,
-  body {
-    height: 25.4cm;
-    overflow: hidden;
-  }
-
-  @page {
-    margin: 1cm 1.5cm;
-  }
-
-  .disclaimer {
-    padding-top: 20px;
-  }
-}
-
 .new-page {
     page-break-before: always;
 }
 
 .bwhite {
   background-color: white!important;
+}
+
+.wrap {
+   word-wrap: break-word;      // IE
 }
