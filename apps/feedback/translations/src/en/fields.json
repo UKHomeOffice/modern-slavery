@@ -1,0 +1,25 @@
+{
+  "feedback": {
+    "legend": "Overall, how did you feel about the service you received today?",
+    "options": {
+      "very-satisfied": {
+        "label": "Very satisfied"
+      },
+      "satisfied": {
+        "label": "Satisfied"
+      },
+      "neutral": {
+        "label": "Neither satisfied or dissatisified"
+      },
+      "dissatisified": {
+        "label": "Dissatisified"
+      },
+      "very-dissatisified": {
+        "label": "Very dissatisified"
+      }
+    }
+  },
+  "improvements": {
+    "label": "How could we improve this service?"
+  }
+}
