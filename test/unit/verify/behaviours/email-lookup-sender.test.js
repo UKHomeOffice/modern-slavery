@@ -1,4 +1,4 @@
-'use strict';
+/* 'use strict';
 
 const reqres = require('reqres');
 const proxyquire = require('proxyquire').noCallThru();
@@ -130,3 +130,4 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
     });
   });
 });
+ */
