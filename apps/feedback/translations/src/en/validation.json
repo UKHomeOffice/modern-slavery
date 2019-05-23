@@ -1,0 +1,9 @@
+{
+  "feedback": {
+    "required": "Please select an option"
+  },
+  "improvements": {
+    "required": "Please enter feedback",
+    "maxlength": "Please enter fewer than 1200 characters"
+  }
+}
