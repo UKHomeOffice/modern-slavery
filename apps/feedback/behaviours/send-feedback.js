@@ -4,6 +4,8 @@
 const config = require('../../../config');
 const feedbackEmail = config.govukNotify.feedbackEmail;
 const util = require('../util/send-email');
+const formatter = require('../util/data-formatter');
+const { capitaliseText, removeDashesFromText } = formatter;
 
 /**
  * Get Feedback Data
@@ -13,8 +15,8 @@ const util = require('../util/send-email');
  * @returns {object} - feedback data
  */
 const getFeedbackData = (req) => {
-  const feedbackRating = req.sessionModel.feedback;
-  const feedbackMessage = req.sessionModel.improvements;
+  const feedbackRating = capitaliseText(removeDashesFromText(req.body.feedback));
+  const feedbackMessage = req.body.improvements;
 
   const data = {
     rating: feedbackRating,
