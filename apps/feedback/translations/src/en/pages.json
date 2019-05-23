@@ -3,5 +3,8 @@
     "header": "Give feedback",
     "paragraph-1-hint": "(Limit is 1200 characters)",
     "paragraph-2": "Please do not include any personal information"
+  },
+  "complete": {
+    "panel-title": "Feedback submitted"
   }
 }
