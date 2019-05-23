@@ -31,6 +31,7 @@ module.exports = {
     notifyApiKey: process.env.NOTIFY_KEY || '',
     templateUserAuthId: '56b5a84f-7024-41d3-bd08-26521435be16',
     templatePDF: '0ff859d5-4991-4d73-99ad-2ada9048a927',
+    templateFeedback: 'ad4440d9-c40e-4252-ac4c-ff5a82cafecf',
     caseworkerEmail: process.env.CASEWORKER_EMAIL || 'ms-test@homeoffice.gov.uk',
     feedbackEmail: process.env.FEEDBACK_EMAIL || 'ms-test@homeoffice.gov.uk'
   },

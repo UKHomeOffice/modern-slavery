@@ -2,7 +2,7 @@
 'use strict';
 
 const config = require('../../../config');
-const templateId = config.govukNotify.templatePDF;
+const templateId = config.govukNotify.templateFeedback;
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyClient = new NotifyClient(notifyApiKey);
