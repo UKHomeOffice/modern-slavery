@@ -12,6 +12,7 @@ const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fie
 const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-link');
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
+const formatAnswers = require('./behaviours/format-answers');
 
 module.exports = {
   name: 'nrm',
@@ -34,7 +35,7 @@ module.exports = {
       behaviours: [
         getPageCustomNextStep('pv-under-age'),
         ResetOnChange({
-          currentField: 'pv-under-age', storeFields: ['fr-location']
+          currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
         })
       ],
       fields: ['pv-under-age'],
@@ -403,6 +404,7 @@ module.exports = {
         require(
           'hof-behaviour-summary-page'),
           hideAndShowSummaryFields,
+          formatAnswers,
           getPageCustomBackLink('confirm'),
           generateSendPdf,
           'complete'

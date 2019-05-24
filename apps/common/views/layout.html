@@ -1,0 +1,40 @@
+{{<govuk-template}}
+  {{$head}}
+    {{> partials-head}}
+  {{/head}}
+  {{$pageTitle}}
+    {{$header}}{{/header}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$headerClass}}with-proposition{{/headerClass}}
+  {{$insideHeader}}{{/insideHeader}}
+  {{$main}}
+    <main class="main" role="main">
+      <div class="phase-banner">
+        <p>
+          <strong class="phase-tag">{{#t}}journey.phase{{/t}}</strong>
+          <span>This is a new service – your <a href="/feedback">feedback</a> will help us to improve it.</span>
+        </p>
+      </div>
+      <span id="step">
+        {{> partials-back}} <span>{{$step}}{{/step}}</span>
+      </span>
+      <div class="grid-row" id="content">
+        {{> partials-maincontent-left}}
+      </div>
+      {{> partials-gatag}}
+      <script type="text/javascript" src="{{assetPath}}/js/bundle.js"></script>
+    </main>
+  {{/main}}
+  {{$cookieMessage}}
+    <p>
+      {{#t}}cookies.banner.message{{/t}}
+      <a href="https://www.gov.uk/help/cookies">{{#t}}cookies.banner.link{{/t}}</a>
+    </p>
+  {{/cookieMessage}}
+  {{$footerSupportLinks}}
+    <ul>
+      <li><a href="/cookies">{{#t}}base.cookies{{/t}}</a></li>
+      <li><a href="/terms-and-conditions">{{#t}}base.terms{{/t}}</a></li>
+    </ul>
+  {{/footerSupportLinks}}
+{{/govuk-template}}

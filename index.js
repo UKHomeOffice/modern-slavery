@@ -6,8 +6,10 @@ const mockAPIs = require('./mock-apis');
 const busboyBodyParser = require('busboy-body-parser');
 const download = require('./download-file');
 const settings = require('./hof.settings');
+const path = require('path');
 
 settings.routes = settings.routes.map(route => require(route));
+settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
 settings.start = false;
 

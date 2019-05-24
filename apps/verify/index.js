@@ -11,6 +11,9 @@ module.exports = {
     '/start': {
       next: '/who-do-you-work-for'
     },
+    '/paper-version-download': {
+      backLink: false,
+    },
     '/designated-organisations': {
       backLink: false,
     },

@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
+# bash not installed so we use sh instead of bash
 # kubernetes does not support volumes-from so when we want to
 # share a dir with nginx we use /public which is an emptyDir
 # we then copy files from app/public on start of the container which
