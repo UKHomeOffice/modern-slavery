@@ -1,24 +1,31 @@
-/* 'use strict';
+'use strict';
 
 const redis = sinon.stub();
-const Model = require('../../../../apps/nrm/models/check-token');
+const proxyquire = require('proxyquire');
+const Model = proxyquire('../../../../apps/nrm/models/check-token',
+{
+  '../../../redis': redis,
+});
 
-describe.skip('apps/nrm/models/check-token', () => {
+describe('apps/nrm/models/check-token', () => {
   describe('read()', ()=> {
     beforeEach(() => {
-      sinon.stub(redis.prototype, 'get');
+      sinon.stub(redis, 'get');
     });
+
     afterEach(() => {
-      redis.prototype.get.restore();
+      redis.get.restore();
     });
 
-    it('is a function', () => (typeof Model.read).should.equal('function'));
+    it('is a function', () => {
+      expect(Model.read).to.be.a('function');
+    });
 
-    xit('returns a valid user when it finds a token in redis', (done) => {
+    it('returns a valid user when it finds a token in redis', async() => {
       const token = 'test';
-      redis.prototype.get.withArgs('token:test').returns(token);
-      redis.prototype.get.withArgs('test:email').returns('s@mail.com');
-      redis.prototype.get.withArgs('test:organisation').returns('Oxfam');
+      redis.get.withArgs('token:test').returns(token);
+      redis.get.withArgs('test:email').returns('s@mail.com');
+      redis.get.withArgs('test:organisation').returns('Oxfam');
 
       const expected = {
         valid: 'test',
@@ -26,19 +33,17 @@ describe.skip('apps/nrm/models/check-token', () => {
         organisation: 'Oxfam'
       };
 
-      Model.setDataSource(redis);
-
-      Model.read('test')
-        .then((result) => {
-          console.log(result);
-            result.should.to.deep.equal(expected);
-            done();
-          })
-          .catch(err=> console.log(err));
+      try {
+        const result = await Model.read('test');
+        console.log(result);
+        await expect(result).to.deep.equal(expected);
+      } catch (err) {
+          throw new Error(err);
+      }
     });
 
-    xit('returns user with no valid properties when it does NOT find a token in redis', (done) => {
-      redis.prototype.get.resolves(undefined);
+    it('returns user with no valid properties when it does NOT find a token in redis', async() => {
+      redis.get.resolves(undefined);
 
       const expected = {
         valid: undefined,
@@ -46,19 +51,18 @@ describe.skip('apps/nrm/models/check-token', () => {
         organisation: undefined
       };
 
-      Model.setDataSource(redis);
-
-      Model.read('test')
-        .then((result) => {
-            result.should.to.deep.equal(expected);
-            done();
-          })
-          .catch(err=> console.log(err));
+      try {
+        const result = await Model.read('test');
+        await expect(result).to.deep.equal(expected);
+      } catch (err) {
+          throw new Error(err);
+      }
     });
   });
 
   describe('delete()', ()=> {
-    it('is a function', () => (typeof Model.delete).should.equal('function'));
+    it('is a function', () => {
+      expect(Model.delete).to.be.a('function');
+    });
   });
 });
- */
