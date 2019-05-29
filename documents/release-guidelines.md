@@ -21,6 +21,7 @@ We follow these sequence of steps to produce release notes in a consistent forma
 2. Ensure the following pre-requisites have been met before the issues can be assigned a <b>Fix Version</b> in JIRA
 - The resolution for the selected JIRA issues has been deployed to the development environment. See [Deployment](#deployment-and-completing-a-release)
 - The issues have been tested and verified on the development environment
+- Any issues that fail the testing will either be removed from the next release or a solution for the fix will be required
 2. Assign the <b>Fix Version</b> to each Issue
 - See [Version Control](#version-control)
 3. JIRA will generate a HTML with the contents of the release
@@ -49,6 +50,9 @@ Once this PR has been approved and merged to master we follow the next steps in 
 The above commit will also need to be deployed. See [Deployment & Completing a Release](#deployment-and-completing-a-release)
 
 ## Deployment & Completing a Release <a name="deployment-and-completing-a-release"></a>
+
+Deploy the latest commit to the required environment.
+
 For details on how to deploy the release to an environment see <a href="https://gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery/blob/master/README.md#general">deployment guidance</a>
 
 We finalise the release by archiving it in JIRA after clicking the <b>Release</b> button for the current release and logging the release date within the release details in JIRA.
