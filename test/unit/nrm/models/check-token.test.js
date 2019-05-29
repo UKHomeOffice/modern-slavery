@@ -1,7 +1,7 @@
 'use strict';
 
 const redis = sinon.stub();
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 const Model = proxyquire('../../../../apps/nrm/models/check-token',
 {
   '../../../redis': redis,
