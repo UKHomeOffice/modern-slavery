@@ -6,9 +6,9 @@
 3. [Collating Issues for Release using Project Management Tool (JIRA)](#collating-issues-for-release)
 4. [Creating a Release](#creating-a-release)
 5. [Deployment & Completing a Release](#deployment-and-completing-a-release)
-  - [Deployment for Development Testing](#dev-deployment)
-  - [Deployment for a Release](#release-deployment)
-  - [Deployment](#deployment)
+    - [Deployment for Development Testing](#dev-deployment)
+    - [Deployment for a Release](#release-deployment)
+    - [Deployment](#deployment)
 
 ## Overview <a name="overview"></a>
 On every new deployment to our environment we create an assoicated release note to reflect the changes made and the reference the source code at the point in time.
