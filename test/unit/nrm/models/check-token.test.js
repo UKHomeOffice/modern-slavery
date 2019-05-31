@@ -35,7 +35,6 @@ describe('apps/nrm/models/check-token', () => {
 
       try {
         const result = await Model.read('test');
-        console.log(result);
         await expect(result).to.deep.equal(expected);
       } catch (err) {
           throw new Error(err);

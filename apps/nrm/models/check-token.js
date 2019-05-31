@@ -1,6 +1,6 @@
 'use strict';
 
-let redis = require('../../../redis');
+const redis = require('../../../redis');
 
 /**
  * Read token from redis
