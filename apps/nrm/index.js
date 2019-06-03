@@ -63,14 +63,39 @@ module.exports = {
     },
     '/where-exploitation-happened': {
       fields: [
-        'where-exploitation-happened',
-        'where-exploitation-happened-uk-city',
-        'where-exploitation-happened-uk-region',
-        'where-exploitation-happened-other-uk-other-location',
-        'where-exploitation-happened-overseas-country',
-        'where-exploitation-happened-other-overseas-other-location',
+        'where-exploitation-happened'
       ],
       next: '/current-pv-location'
+    },
+    '/where-exploitation-happened-uk': {
+      fields: [
+        'where-exploitation-happened-uk-city-1',
+        'where-exploitation-happened-uk-city-2',
+        'where-exploitation-happened-uk-city-3',
+        'where-exploitation-happened-uk-city-4',
+        'where-exploitation-happened-uk-city-5',
+        'where-exploitation-happened-uk-city-6',
+        'where-exploitation-happened-uk-city-7',
+        'where-exploitation-happened-uk-city-8',
+        'where-exploitation-happened-uk-city-9',
+        'where-exploitation-happened-uk-city-10',
+        'where-exploitation-happened-other-uk-other-location',
+      ],
+    },
+    '/where-exploitation-happened-overseas': {
+      fields: [
+        'where-exploitation-happened-overseas-country-1',
+        'where-exploitation-happened-overseas-country-2',
+        'where-exploitation-happened-overseas-country-3',
+        'where-exploitation-happened-overseas-country-4',
+        'where-exploitation-happened-overseas-country-5',
+        'where-exploitation-happened-overseas-country-6',
+        'where-exploitation-happened-overseas-country-7',
+        'where-exploitation-happened-overseas-country-8',
+        'where-exploitation-happened-overseas-country-9',
+        'where-exploitation-happened-overseas-country-10',
+        'where-exploitation-happened-other-overseas-other-location',
+      ],
     },
     '/current-pv-location': {
       fields: [

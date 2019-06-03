@@ -93,20 +93,70 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    options: [{
-      value: 'uk',
-      toggle: 'uk-location-details-fieldset',
-      child: 'partials/where-exploitation-happened-uk-panel'
-    }, {
-      value: 'overseas',
-      toggle: 'overseas-location-details-fieldset',
-      child: 'partials/where-exploitation-happened-overseas-panel'
-    }]
+    options: [
+      'uk',
+      'overseas',
+      'uk-and-overseas',
+    ]
   },
-  'where-exploitation-happened-uk-city': {
+  'where-exploitation-happened-uk-city-1': {
     mixin: 'select',
     validate: 'required',
-    className: ['typeahead', 'js-hidden'],
+    className: ['typeahead', 'js-hidden', 'uk-city-1'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-2': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-2'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-3': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-3'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-4': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-4'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-5': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-5'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-6': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-6'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-7': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-7'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -116,31 +166,32 @@ module.exports = {
       field: 'where-exploitation-happened',
     }
   },
-  'where-exploitation-happened-uk-region': {
+  'where-exploitation-happened-uk-city-8': {
     mixin: 'select',
     validate: 'required',
-    className: ['typeahead', 'js-hidden'],
+    className: ['typeahead', 'js-hidden', 'uk-city-8'],
     options: [{
       value: '',
-      label: 'fields.where-exploitation-happened-uk-region.options.null'
-    }].concat(ukRegions),
-    dependent: {
-      value: 'uk',
-      field: 'where-exploitation-happened',
-    }
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
   },
-  'where-exploitation-happened-overseas-country': {
+  'where-exploitation-happened-uk-city-9': {
     mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
     validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-9'],
     options: [{
       value: '',
-      label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries),
-    dependent: {
-      value: 'overseas',
-      field: 'where-exploitation-happened',
-    }
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
+  },
+  'where-exploitation-happened-uk-city-10': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden', 'uk-city-10'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns),
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
@@ -156,6 +207,96 @@ module.exports = {
       value: 'uk',
       field: 'where-exploitation-happened',
     }
+  },
+  'where-exploitation-happened-overseas-country-1': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-1'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-2': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-2'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-3': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-3'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-4': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-4'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-5': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-5'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-6': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-6'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-7': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-7'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-8': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-8'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-9': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-9'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
+  },
+  'where-exploitation-happened-overseas-country-10': {
+    mixin: 'select',
+    className: ['typeahead', 'js-hidden', 'country-10'],
+    validate: 'required',
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-overseas-country.options.null'
+    }].concat(countries),
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
