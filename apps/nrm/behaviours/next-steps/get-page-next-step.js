@@ -25,6 +25,9 @@ const getPageNextStep = (req, pageName) => {
     'reported-to-police': pageCustomNextSteps.reportedToPolice(req),
     'someone-else': pageCustomNextSteps.someoneElse(req),
     'who-contact': pageCustomNextSteps.whoContact(req),
+    'where-exploitation-happened': pageCustomNextSteps.whereExploitationHappened(req),
+    'where-exploitation-happened-uk': pageCustomNextSteps.whereExploitationHappenedUk(req),
+    'where-exploitation-happened-overseas': pageCustomNextSteps.whereExploitationHappenedOverseas(req),
   };
 
   return pageNextSteps[pageName];

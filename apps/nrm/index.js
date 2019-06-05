@@ -62,12 +62,19 @@ module.exports = {
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened'),
+        getPageCustomNextStep('where-exploitation-happened'),
+      ],
       fields: [
         'where-exploitation-happened'
       ],
-      next: '/current-pv-location'
     },
     '/where-exploitation-happened-uk': {
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened-uk'),
+        getPageCustomNextStep('where-exploitation-happened-uk'),
+      ],
       fields: [
         'where-exploitation-happened-uk-city-1',
         'where-exploitation-happened-uk-city-2',
@@ -83,6 +90,10 @@ module.exports = {
       ],
     },
     '/where-exploitation-happened-overseas': {
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened-overseas'),
+        getPageCustomNextStep('where-exploitation-happened-overseas'),
+      ],
       fields: [
         'where-exploitation-happened-overseas-country-1',
         'where-exploitation-happened-overseas-country-2',

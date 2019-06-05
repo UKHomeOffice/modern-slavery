@@ -33,6 +33,9 @@ const getPageBackLink = (req, pageName) => {
     'confirm': pageCustomBackLinks.confirm(req),
     'fr-details': pageCustomBackLinks.frDetails(req),
     'local-authority-contacted-about-child': pageCustomBackLinks.localAuthorityContactedAboutChild(req),
+    'where-exploitation-happened': pageCustomBackLinks.whereExploitationHappened(req),
+    'where-exploitation-happened-uk': pageCustomBackLinks.whereExploitationHappenedUk(req),
+    'where-exploitation-happened-overseas': pageCustomBackLinks.whereExploitationHappenedOverseas(req),
   };
 
   return pageBackLinks[pageName];

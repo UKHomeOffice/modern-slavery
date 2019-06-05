@@ -97,12 +97,12 @@ module.exports = {
       'uk',
       'overseas',
       'uk-and-overseas',
-    ]
+    ],
   },
   'where-exploitation-happened-uk-city-1': {
     mixin: 'select',
     validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-1'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -110,8 +110,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-2': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-2'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -119,8 +118,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-3': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-3'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -128,8 +126,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-4': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-4'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -137,8 +134,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-5': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-5'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -146,8 +142,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-6': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-6'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -155,8 +150,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-7': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-7'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -168,8 +162,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-8': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-8'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -177,8 +170,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-9': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-9'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -186,8 +178,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city-10': {
     mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden', 'uk-city-10'],
+    className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
@@ -220,7 +211,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-2': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-2'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -229,7 +219,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-3': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-3'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -238,7 +227,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-4': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-4'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -247,7 +235,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-5': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-5'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -256,7 +243,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-6': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-6'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -265,7 +251,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-7': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-7'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -274,7 +259,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-8': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-8'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -283,7 +267,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-9': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-9'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -292,7 +275,6 @@ module.exports = {
   'where-exploitation-happened-overseas-country-10': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden', 'country-10'],
-    validate: 'required',
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'

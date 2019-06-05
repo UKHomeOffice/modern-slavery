@@ -99,55 +99,55 @@
     }
   },
   "where-exploitation-happened-uk-city-2": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-3": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-4": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-5": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-6": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-7": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-8": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-9": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-10": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
@@ -163,55 +163,55 @@
     }
   },
   "where-exploitation-happened-overseas-country-2": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-3": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-4": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-5": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-6": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-7": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-8": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-9": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-10": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }

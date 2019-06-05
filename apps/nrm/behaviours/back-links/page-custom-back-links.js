@@ -261,5 +261,33 @@ module.exports = {
 
     return backLink;
   },
-};
+  whereExploitationHappened: (req) => {
+    let backLink = '/nrm/what-happened';
 
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      backLink += '/edit';
+    }
+
+    return backLink;
+  },
+  whereExploitationHappenedUk: (req) => {
+    let backLink = '/nrm/where-exploitation-happened';
+
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      backLink += '/edit';
+    }
+
+    return backLink;
+  },
+  whereExploitationHappenedOverseas: (req) => {
+    let backLink;
+
+    if (req.sessionModel.get('where-exploitation-happened') === 'overseas') {
+      backLink = '/nrm/where-exploitation-happened';
+    } else {
+      backLink = '/nrm/where-exploitation-happened-uk';
+    }
+
+    return backLink;
+  },
+};
