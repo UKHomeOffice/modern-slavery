@@ -112,15 +112,51 @@
       <td>{{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}</td>
       <td class="no-white-space">
         {{#values.where-exploitation-happened}}
-          <span>{{values.where-exploitation-happened-uk-city}}</span>
-          <span>{{values.where-exploitation-happened-uk-region}}</span>
-          <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
-          <span>{{values.where-exploitation-happened-overseas-country}}</span>
-          <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
+          {{formattedWhereExploitationHappened}}
         {{/values.where-exploitation-happened}}
       </td>
       <td></td>
     </tr>
+
+    {{#values.where-exploitation-happened-uk-city-1}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.where-exploitation-happened-uk.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{values.where-exploitation-happened-uk-city-1}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-2}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-3}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-4}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-5}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-6}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-7}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-8}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-9}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-10}}</span>
+          <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
+      </td>
+      <td></td>
+    </tr>
+    {{/values.where-exploitation-happened-uk-city-1}}
+
+    {{#values.where-exploitation-happened-overseas-country-1}}
+    <tr>
+        <td>{{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}</td>
+        <td class="no-white-space">
+            <span>{{values.where-exploitation-happened-overseas-country-1}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-2}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-3}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-4}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-5}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-6}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-7}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-8}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-9}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-10}}</span>
+            <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
+        </td>
+        <td></td>
+      </tr>
+      {{/values.where-exploitation-happened-overseas-country-1}}
 
     <tr>
       <td>{{#t}}pages.confirm.fields.current-pv-location.label{{/t}}</td>

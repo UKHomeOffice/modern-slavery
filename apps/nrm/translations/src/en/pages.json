@@ -23,29 +23,11 @@
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
     "paragraph-1": "If the explioitation was in more then one location, add more towns or cities.",
-    "select-another-uk-city-2": "Select a second UK city or town",
-    "select-another-uk-city-3": "Select a third UK city or town",
-    "select-another-uk-city-4": "Select a fourth UK city or town",
-    "select-another-uk-city-5": "Select a fifth UK city or town",
-    "select-another-uk-city-6": "Select a sixth UK city or town",
-    "select-another-uk-city-7": "Select a seventh UK city or town",
-    "select-another-uk-city-8": "Select a eighth UK city or town",
-    "select-another-uk-city-9": "Select a ninth UK city or town",
-    "select-another-uk-city-10": "Select a tenth UK city or town",
     "select-overseas-note": "Once you press continue you will be able to add more details about the overseas locations."
   },
   "where-exploitation-happened-overseas": {
     "header": "Where were they exploited overseas?",
-    "paragraph-1": "If the explioitation was in more then one location, add more countries.",
-    "select-another-overseas-country-2": "Select a second country",
-    "select-another-overseas-country-3": "Select a third country",
-    "select-another-overseas-country-4": "Select a fourth country",
-    "select-another-overseas-country-5": "Select a fifth country",
-    "select-another-overseas-country-6": "Select a sixth country",
-    "select-another-overseas-country-7": "Select a seventh country",
-    "select-another-overseas-country-8": "Select a eighth country",
-    "select-another-overseas-country-9": "Select a ninth country",
-    "select-another-overseas-country-10": "Select a tenth country"
+    "paragraph-1": "If the explioitation was in more then one location, add more countries."
   },
   "current-pv-location": {
     "header": "Where are they now?"
