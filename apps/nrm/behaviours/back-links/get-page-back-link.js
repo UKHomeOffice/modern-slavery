@@ -36,6 +36,7 @@ const getPageBackLink = (req, pageName) => {
     'where-exploitation-happened': pageCustomBackLinks.whereExploitationHappened(req),
     'where-exploitation-happened-uk': pageCustomBackLinks.whereExploitationHappenedUk(req),
     'where-exploitation-happened-overseas': pageCustomBackLinks.whereExploitationHappenedOverseas(req),
+    'current-pv-location': pageCustomBackLinks.currentPvLocation(req),
   };
 
   return pageBackLinks[pageName];

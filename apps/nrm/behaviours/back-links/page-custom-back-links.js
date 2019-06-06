@@ -290,4 +290,15 @@ module.exports = {
 
     return backLink;
   },
+  currentPvLocation: (req) => {
+    let backLink;
+
+    if (req.sessionModel.get('where-exploitation-happened') === 'uk') {
+      backLink = '/nrm/where-exploitation-happened-uk';
+    } else {
+      backLink = '/nrm/where-exploitation-happened-overseas';
+    }
+
+    return backLink;
+  },
 };

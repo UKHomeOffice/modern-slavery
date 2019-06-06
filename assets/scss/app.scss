@@ -196,8 +196,6 @@ textarea {
 .hidden-checkbox {
   position: absolute;
   opacity: 0;
-  /* For mobile, it's typically better to position checkbox on top of clickable
-     area and turn opacity to 0 instead. */
 }
 
 /* Toggled State */
@@ -207,6 +205,4 @@ input[value=uk-city]:checked + .uk-city {
 input[value=overseas-country]:checked + .overseas-country {
   display: block !important;
 }
-
-
 /* Where were they exploited in the UK / Overseas Additional Styling END */

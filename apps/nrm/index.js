@@ -109,6 +109,9 @@ module.exports = {
       ],
     },
     '/current-pv-location': {
+      behaviours: [
+        getPageCustomBackLink('current-pv-location'),
+      ],
       fields: [
         'current-pv-location-uk-city',
         'current-pv-location-uk-region',
