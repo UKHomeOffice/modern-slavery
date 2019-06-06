@@ -28,4 +28,10 @@ app.use('/offline-form', (req, res) => {
   download.responseFile('/assets/documents', 'nrm-form-offline.pdf', res);
 });
 
+// Set HTML Language
+app.use((req, res, next) => {
+  res.locals.htmlLang = 'en';
+  next();
+});
+
 module.exports = app;
