@@ -13,6 +13,7 @@ const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-lin
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
+const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 
 module.exports = {
   name: 'nrm',
@@ -74,6 +75,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('where-exploitation-happened-uk'),
         getPageCustomNextStep('where-exploitation-happened-uk'),
+        whereExploitationHappenedUk,
       ],
       fields: [
         'where-exploitation-happened-uk-city-1',
