@@ -10,7 +10,7 @@
  * @returns {string} - string with the supplied capitalisation formatting applied
  */
 const capitaliseWord = (wordAttributes) => {
-  const { word, allCaps} = wordAttributes;
+  const { word, allCaps } = wordAttributes;
 
   if (allCaps) {
     return word.toUpperCase();
