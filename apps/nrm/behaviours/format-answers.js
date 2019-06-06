@@ -90,7 +90,7 @@ const formatAnswers = (req) => {
     formattedWhereExploitationHappened: capitaliseText(
       removeDashesFromText(req.sessionModel.get('where-exploitation-happened')),
       true,
-      [{word: 'and', allCaps: false}, {word: 'uk', allCaps: true}]
+      [{ word: 'and', allCaps: false}, {word: 'uk', allCaps: true }]
       ),
   });
 
