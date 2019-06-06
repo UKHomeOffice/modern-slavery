@@ -99,55 +99,55 @@
     }
   },
   "where-exploitation-happened-uk-city-2": {
-    "label": "Select city or town",
+    "label": "Select a second city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-3": {
-    "label": "Select city or town",
+    "label": "Select a third city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-4": {
-    "label": "Select city or town",
+    "label": "Select a fourth city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-5": {
-    "label": "Select city or town",
+    "label": "Select a fifth city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-6": {
-    "label": "Select city or town",
+    "label": "Select a sixth city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-7": {
-    "label": "Select city or town",
+    "label": "Select a seventh city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-8": {
-    "label": "Select city or town",
+    "label": "Select an eighth city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-9": {
-    "label": "Select city or town",
+    "label": "Select a ninth city or town (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-10": {
-    "label": "Select city or town",
+    "label": "Select a tenth city or town (optional)",
     "options": {
       "null": "Select..."
     }
@@ -163,55 +163,55 @@
     }
   },
   "where-exploitation-happened-overseas-country-2": {
-    "label": "Select country",
+    "label": "Select a second country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-3": {
-    "label": "Select country",
+    "label": "Select a third country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-4": {
-    "label": "Select country",
+    "label": "Select a fourth country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-5": {
-    "label": "Select country",
+    "label": "Select a fifth country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-6": {
-    "label": "Select country",
+    "label": "Select a sixth country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-7": {
-    "label": "Select country",
+    "label": "Select a seventh country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-8": {
-    "label": "Select country",
+    "label": "Select an eighth country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-9": {
-    "label": "Select country",
+    "label": "Select a ninth country (optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-10": {
-    "label": "Select country",
+    "label": "Select a tenth country (optional)",
     "options": {
       "null": "Select..."
     }
