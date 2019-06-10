@@ -1,0 +1,6 @@
+{
+  "default": {
+    "title": "Invalid character",
+    "message": "You have used a special character. You must only use letters a to z. Please delete and try again."
+  }
+}
