@@ -20,7 +20,7 @@ module.exports = {
       'wales',
       'scotland',
       'northern-ireland'
-    ]
+    ],
   },
   'pv-under-age': {
     mixin: 'radio-group',
@@ -38,7 +38,7 @@ module.exports = {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
       child: 'partials/pv-under-age-panel'
-    }]
+    }],
   },
   'local-authority-contacted-about-child-local-authority-name': {
     mixin: 'select',
@@ -47,21 +47,45 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.local-authority-contacted-about-child.options.null'
-    }].concat(ukLocalAuthorities)
+    }].concat(ukLocalAuthorities),
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
-    validate: ['required']
+    validate: ['required'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',
@@ -73,7 +97,7 @@ module.exports = {
       'yes',
       'no',
       'not-sure',
-    ]
+    ],
   },
   'what-happened': {
     mixin: 'textarea',
@@ -91,7 +115,7 @@ module.exports = {
         attribute: 'maxlength',
         value: 16000
       },
-    ]
+    ],
   },
   'where-exploitation-happened': {
     mixin: 'radio-group',
@@ -107,7 +131,7 @@ module.exports = {
       value: 'overseas',
       toggle: 'overseas-location-details-fieldset',
       child: 'partials/where-exploitation-happened-overseas-panel'
-    }]
+    }],
   },
   'where-exploitation-happened-uk-city': {
     mixin: 'select',
@@ -120,7 +144,7 @@ module.exports = {
     dependent: {
       value: 'uk',
       field: 'where-exploitation-happened',
-    }
+    },
   },
   'where-exploitation-happened-uk-region': {
     mixin: 'select',
@@ -133,7 +157,7 @@ module.exports = {
     dependent: {
       value: 'uk',
       field: 'where-exploitation-happened',
-    }
+    },
   },
   'where-exploitation-happened-overseas-country': {
     mixin: 'select',
@@ -146,7 +170,7 @@ module.exports = {
     dependent: {
       value: 'overseas',
       field: 'where-exploitation-happened',
-    }
+    },
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
@@ -154,14 +178,20 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
+    attributes: [
+      {
       attribute: 'rows',
       value: 5
-    }],
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'uk',
       field: 'where-exploitation-happened',
-    }
+    },
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
@@ -169,10 +199,16 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
+    attributes: [
+      {
       attribute: 'rows',
       value: 5
-    }],
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'overseas',
       field: 'where-exploitation-happened',
@@ -185,7 +221,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.current-pv-locationd-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
   },
   'current-pv-location-uk-region': {
     mixin: 'select',
@@ -194,7 +230,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.current-pv-location-uk-region.options.null'
-    }].concat(ukRegions)
+    }].concat(ukRegions),
   },
   'who-exploited-pv': {
     mixin: 'textarea',
@@ -203,65 +239,71 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
+    attributes: [
+      {
       attribute: 'rows',
       value: 5
-    }]
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
     validation: 'at-least-one-option-selected',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-wages-taken': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-forced-to-commit-fraud': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-prostitution': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-child-exploitation': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-taken-somewhere': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-forced-to-commit-crime': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-organs-removed': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-unpaid-household-work': {
     mixin: 'checkbox',
     legend: {
       className: 'visuallyhidden'
-    }
+    },
   },
   'types-of-exploitation-other': {
     mixin: 'checkbox',
@@ -269,7 +311,7 @@ module.exports = {
       className: 'visuallyhidden'
     },
     toggle: 'other-exploitation-fieldset',
-    child: 'partials/other-exploitation-fieldset'
+    child: 'partials/other-exploitation-fieldset',
   },
   'other-exploitation-details': {
     mixin: 'textarea',
@@ -278,14 +320,20 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
+    attributes: [
+      {
       attribute: 'rows',
       value: 4
-    }],
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'true',
       field: 'types-of-exploitation-other',
-    }
+    },
   },
   'any-other-pvs': {
     mixin: 'radio-group',
@@ -297,7 +345,7 @@ module.exports = {
       'yes',
       'no',
       'not-sure',
-    ]
+    ],
   },
   'reported-to-police': {
     mixin: 'radio-group',
@@ -311,7 +359,7 @@ module.exports = {
       child: 'partials/reported-to-police-yes'
     }, {
       value: 'no',
-    }]
+    }],
   },
   'reported-to-police-police-forces': {
     mixin: 'select',
@@ -324,15 +372,21 @@ module.exports = {
     dependent: {
       value: 'yes',
       field: 'reported-to-police',
-    }
+    },
   },
   'reported-to-police-crime-reference': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'reported-to-police',
-    }
+    },
   },
   'pv-want-to-submit-nrm': {
     mixin: 'radio-group',
@@ -346,7 +400,7 @@ module.exports = {
       value: 'no',
       toggle: 'pv-want-to-submit-nrm-no-fieldset',
       child: 'partials/pv-want-to-submit-nrm-no'
-    }]
+    }],
   },
   'refuse-nrm': {
     mixin: 'textarea',
@@ -354,10 +408,16 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
+    attributes: [
+      {
       attribute: 'rows',
       value: 3
-    }]
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'does-pv-need-support': {
     mixin: 'radio-group',
@@ -368,18 +428,36 @@ module.exports = {
     options: [
       'yes',
       'no'
-    ]
+    ],
   },
   'pv-name-first-name': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'pv-name-last-name': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'pv-name-nickname': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'pv-dob': dateComponent('pv-dob', {
     labelClassName: 'visuallyhidden',
@@ -395,7 +473,7 @@ module.exports = {
       'female',
       'male',
       'unknown'
-    ]
+    ],
   },
   'does-pv-have-children': {
     mixin: 'radio-group',
@@ -409,15 +487,21 @@ module.exports = {
       child: 'partials/does-pv-have-children-yes-amount'
     }, {
       value: 'no',
-    }]
+    }],
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
     validate: ['required', 'numeric'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
-    }
+    },
   },
   'pv-nationality': {
     mixin: 'select',
@@ -426,7 +510,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality.options.null'
-    }].concat(msNationalities)
+    }].concat(msNationalities),
   },
   'pv-nationality-second': {
     mixin: 'select',
@@ -434,7 +518,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.pv-nationality-second.options.null'
-    }].concat(msNationalities)
+    }].concat(msNationalities),
   },
   'pv-interpreter-requirements': {
     mixin: 'radio-group',
@@ -448,11 +532,17 @@ module.exports = {
       child: 'partials/pv-interpreter-requirements-language'
     }, {
       value: 'no',
-    }]
+    }],
   },
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'pv-interpreter-requirements',
@@ -470,11 +560,17 @@ module.exports = {
       child: 'partials/pv-other-help-with-communication-aid'
     }, {
       value: 'no',
-    }]
+    }],
   },
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'pv-other-help-with-communication',
@@ -492,11 +588,17 @@ module.exports = {
       child: 'partials/pv-ho-reference-type'
     }, {
       value: 'no',
-    }]
+    }],
   },
   'pv-ho-reference-type': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'pv-ho-reference',
@@ -511,7 +613,7 @@ module.exports = {
     options: [
       'potential-victim',
       'someone-else'
-    ]
+    ],
   },
   'pv-contact-details': {
     mixin: 'checkbox-group',
@@ -527,11 +629,17 @@ module.exports = {
       value: 'post',
       toggle: 'pv-contact-details-post-fieldset',
       child: 'partials/pv-contact-details-post'
-    }]
+    }],
   },
   'pv-contact-details-email-input': {
     mixin: 'input-text',
     validate: ['required', 'email'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'email',
       field: 'pv-contact-details',
@@ -548,6 +656,12 @@ module.exports = {
   'pv-contact-details-street': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -556,6 +670,12 @@ module.exports = {
   'pv-contact-details-town': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -564,6 +684,12 @@ module.exports = {
   'pv-contact-details-county': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -572,6 +698,12 @@ module.exports = {
   'pv-contact-details-postcode': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -603,13 +735,31 @@ module.exports = {
   },
   'someone-else-first-name': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'someone-else-last-name': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'someone-else-email-input': {
     mixin: 'input-text',
     validate: ['required', 'email'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'email',
       field: 'someone-else',
@@ -618,6 +768,12 @@ module.exports = {
   'someone-else-street': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -626,6 +782,12 @@ module.exports = {
   'someone-else-town': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -633,6 +795,12 @@ module.exports = {
   },
   'someone-else-county': {
     mixin: 'input-text',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -641,6 +809,12 @@ module.exports = {
   'someone-else-postcode': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -659,7 +833,7 @@ module.exports = {
     options: [
       'yes',
       'no'
-    ]
+    ],
   },
   'pv-phone-number': {
     mixin: 'radio-group',
@@ -673,11 +847,17 @@ module.exports = {
       child: 'partials/pv-phone-number-yes'
      }, {
       value: 'no',
-    }]
+    }],
   },
   'pv-phone-number-yes': {
     mixin: 'input-text',
     validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
     dependent: {
       value: 'yes',
       field: 'pv-phone-number',
@@ -692,14 +872,14 @@ module.exports = {
     options: [
       'yes',
       'no'
-    ]
+    ],
   },
   'supporting-document-upload': {
     mixin: 'input-file',
-    validate: 'required'
+    validate: 'required',
   },
   'supporting-document-description': {
-    mixin: 'textarea'
+    mixin: 'textarea',
   },
   'supporting-documents-add-another': {
     mixin: 'radio-group',
@@ -710,26 +890,56 @@ module.exports = {
     options: [
       'yes',
       'no'
-    ]
+    ],
   },
   'fr-details-first-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'fr-details-last-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'fr-details-role': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'fr-details-phone': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: 'required',
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   },
   'fr-alternative-contact': {
     mixin: 'input-text',
-    validate: ['email']
+    validate: ['email'],
+    attributes: [
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ],
   }
 };
