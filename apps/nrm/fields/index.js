@@ -82,10 +82,16 @@ module.exports = {
       className: 'visuallyhidden'
     },
     className: 'govuk-textarea',
-    attributes: [{
-      attribute: 'rows',
-      value: 14
-    }]
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      },
+      {
+        attribute: 'maxlength',
+        value: 16000
+      },
+    ]
   },
   'where-exploitation-happened': {
     mixin: 'radio-group',
