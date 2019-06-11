@@ -39,6 +39,17 @@ const deleteFile = (file) => {
   });
 };
 
+/**
+ * Get the user email from the session
+ *
+ * @param {*} req - request object
+ *
+ * @returns {string} - user's email
+ */
+const getUserEmail = (req) => {
+  return req.sessionModel.get('user-email');
+};
+
 module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
     const tempName = createTemporaryFileName();
@@ -46,9 +57,16 @@ module.exports = superclass => class extends superclass {
     const session = req.sessionModel.attributes;
     const data = await util.transformData(session);
     const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
+    const firstResponderEmail = getUserEmail(req);
 
     await sendEmailWithFile(file, caseworkerEmail);
+
+    if (firstResponderEmail) {
+      await sendEmailWithFile(file, firstResponderEmail);
+    }
+
     await deleteFile(file);
+
     super.saveValues(req, res, (err) => {
       next(err);
     });
