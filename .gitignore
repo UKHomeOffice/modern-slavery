@@ -8,3 +8,4 @@ node_modules/
 .idea/workspace.xml
 dump.rdb
 .scannerwork/
+.nyc_output/
