@@ -1,6 +1,7 @@
 {
   "user-organisation": {
-    "label": "Start typing the name of your organisation. It must appear on the list for you to be able to continue.",
+    "label": "Organisation",
+    "hint": "Start typing the name of your organisation. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
