@@ -28,8 +28,10 @@ app.use('/offline-form', (req, res) => {
   download.responseFile('/assets/documents', 'nrm-form-offline.pdf', res);
 });
 
-// Set HTML Language
 app.use((req, res, next) => {
+  // Overrides the Gov UK template to add alt tags to images
+  res.locals.partials['govuk-template'] = path.resolve(__dirname, './govuk_template');
+  // Set HTML Language
   res.locals.htmlLang = 'en';
   next();
 });
