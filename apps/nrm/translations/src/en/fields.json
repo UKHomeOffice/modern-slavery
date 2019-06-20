@@ -281,7 +281,7 @@
     }
   },
   "pv-nationality-second": {
-    "label": "Select second nationality",
+    "label": "Select second nationality (Optional) ",
     "options": {
       "null": "Select..."
     },
