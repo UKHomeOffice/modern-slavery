@@ -289,7 +289,7 @@
     }
   },
   "pv-nationality-second": {
-    "label": "Select second nationality",
+    "label": "Select second nationality (Optional)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
