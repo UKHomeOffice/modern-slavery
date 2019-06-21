@@ -5,6 +5,9 @@
     "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm-run-all test:unit lint",
     "test:unit": "_mocha",
+    "test:unit-coverage": "nyc --silent npm run test:unit",
+    "test:coverage-report": "nyc report --reporter=text",
+    "test:coverage": "npm run test:unit-coverage && npm run test:coverage-report",
     "lint": "eslint .",
     "build": "hof-build",
     "watch:sass": "nodemon -e scss -x 'npm run sass'",
@@ -60,6 +63,7 @@
     "eslint": "^5.12.1",
     "eslint-config-homeoffice": "^2.1.0",
     "nodemon": "^1.19.0",
+    "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.1.0",
     "reqres": "^2.1.0"
