@@ -9,7 +9,8 @@
     "required": "You must select an option"
   },
   "local-authority-contacted-about-child-local-authority-name": {
-    "required": "you must enter the local authority name"
+    "required": "You must select the local authority from the list",
+    "equal": "You must select the local authority from the list"
   },
   "local-authority-contacted-about-child-local-authority-phone": {
     "required": "You must enter a phone number"
@@ -28,19 +29,24 @@
     "required": "You must select an option"
   },
   "where-exploitation-happened-uk-city" : {
-    "required": "You must select an option"
+    "required": "You must select a city from the list",
+    "equal": "You must select a city from the list"
   },
   "where-exploitation-happened-uk-region" : {
-    "required": "You must select an option"
+    "required": "You must select a region from the list",
+    "equal": "You must select a region from the list"
   },
   "where-exploitation-happened-overseas-country" : {
-    "required": "You must select an option"
+    "required": "You must select a country from the list",
+    "equal": "You must select a country from the list"
   },
   "current-pv-location-uk-city" : {
-    "required": "You must select an option"
+    "required": "You must select a city from the list",
+    "equal": "You must select a city from the list"
   },
   "current-pv-location-uk-region" : {
-    "required": "You must select an option"
+    "required": "You must select a region from the list",
+    "equal": "You must select a region from the list"
   },
   "who-exploited-pv" : {
     "required": "You must enter details about the exploiter(s)"
@@ -58,7 +64,8 @@
     "required": "You must select an option"
   },
   "reported-to-police-police-forces" : {
-    "required": "You must enter a police force"
+    "required": "You must select a police force from the list",
+    "equal": "You must select a police force from the list"
   },
   "reported-to-police-crime-reference" : {
     "required": "You must enter a crime or CAD reference"
@@ -91,7 +98,11 @@
     "numeric": "You must enter numbers only"
   },
   "pv-nationality" : {
-    "required": "You must select the potential victim's nationality"
+    "required": "You must select the potential victim's nationality from the list",
+    "equal": "You must select the potential victim's nationality from the list"
+  },
+  "pv-nationality-second" : {
+    "equal": "You must select the potential victim's second nationality from the list"
   },
   "pv-interpreter-requirements" : {
     "required": "You must select an option"
