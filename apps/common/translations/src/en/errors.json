@@ -2,5 +2,11 @@
   "default": {
     "title": "Invalid character",
     "message": "You have used a special character. You must only use letters a to z. Please delete and try again."
+  },
+  "session": {
+    "title": "Session timed out",
+    "message-1": "Sorry, your session has timed out due to inactivity. Any information you may have entered has been deleted.",
+    "message-2": "To continue to use this service, you will need to",
+    "link-1": "start again"
   }
 }
