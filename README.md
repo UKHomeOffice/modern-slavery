@@ -21,6 +21,8 @@ An app for a first responder to submit a form for a possible victim of modern sl
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
+6. [Release Guidelines](#release-guidelines)
+
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
 
@@ -130,4 +132,5 @@ The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests
 
-
+## Release Guidelines <a name="release-guidelines"></a>
+<a href="https://github.com/UKHomeOffice/modern-slavery/tree/master/documents/release-guidelines.md">More Details</a>

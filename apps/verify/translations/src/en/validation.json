@@ -1,6 +1,6 @@
 {
   "user-organisation" : {
-    "required": "You must select your organisation"
+    "required": "You must select your organisation from the list"
   },
   "user-email": {
     "required": "Enter your email address",

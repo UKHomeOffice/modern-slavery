@@ -38,6 +38,7 @@
   },
   "local-authority-contacted-about-child-local-authority-name": {
     "label": "Name of local authority",
+    "hint": "Start typing the local authority. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
@@ -91,18 +92,21 @@
   },
   "where-exploitation-happened-uk-city": {
     "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-region": {
     "label": "Select region (Type ‘Unknown’ if they are unsure)",
+    "hint": "Start typing the region. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country": {
     "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
@@ -117,12 +121,14 @@
   },
   "current-pv-location-uk-city": {
     "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "current-pv-location-uk-region": {
     "label": "Select region  (Type ‘Unknown’ if they are unsure)",
+    "hint": "Start typing the region. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
@@ -196,6 +202,7 @@
   },
   "reported-to-police-police-forces": {
     "label": "Select police force",
+    "hint": "Start typing the police force. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
@@ -244,7 +251,7 @@
     "label": "Nickname or name used during exploitation"
   },
   "pv-dob": {
-    "hint": "For example, 31 3 1980. Fill in what you know."
+    "hint": "For example, 31 3 1980."
   },
   "pv-gender": {
     "legend": "What is their gender?",
@@ -276,12 +283,14 @@
   },
   "pv-nationality": {
     "label": "Select nationality",
+    "hint": "Start typing the nationality. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "pv-nationality-second": {
-    "label": "Select second nationality",
+    "label": "Select second nationality (Optional)",
+    "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     },
