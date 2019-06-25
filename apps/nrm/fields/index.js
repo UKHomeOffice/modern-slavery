@@ -31,13 +31,13 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'yes-toggle-content',
-      child: 'partials/pv-under-age-panel'
+      child: 'partials/pv-under-age-panel-yes'
     }, {
       value: 'no',
     }, {
       value: 'not-sure',
       toggle: 'not-sure-toggle-content',
-      child: 'partials/pv-under-age-panel'
+      child: 'partials/pv-under-age-panel-not-sure'
     }]
   },
   'local-authority-contacted-about-child-local-authority-name': {
