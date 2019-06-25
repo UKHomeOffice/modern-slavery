@@ -1,5 +1,3 @@
-We have sent a link to your email
-
-Check your spam or junk folder if you can't find the email in your inbox
+<br> Check your spam or junk folder if you can't find the email in your inbox
 
 If you haven't received the email, you can resubmit the email or a new email
