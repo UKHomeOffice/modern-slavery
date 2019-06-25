@@ -1,7 +1,7 @@
 {
   "default": {
-    "title": "Invalid character",
-    "message": "You have used a special character. You must only use letters a to z. Please delete and try again."
+    "title": "Error",
+    "message": "Something went wrong. Any text entered must only include letters a to z, hyphens, spaces and apostrophes. Please delete any special characters and try again."
   },
   "session": {
     "title": "Session timed out",
