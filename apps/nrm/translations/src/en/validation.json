@@ -114,7 +114,7 @@
     "required": "You must select an option"
   },
   "pv-other-help-with-communication-aid" : {
-    "required": "You must enter the communication aid"
+    "required": "You must enter a type of communication aid"
   },
   "pv-ho-reference" : {
     "required": "You must select an option"
@@ -129,20 +129,20 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "pv-contact-details-email-input" : {
-    "required": "You must enter an email address",
+    "required": "You must enter a valid email address",
     "email": "You must enter a valid email address"
   },
   "pv-contact-details-email-check" : {
     "required": "Make sure it is safe to contact the potential victim at this email address."
   },
   "pv-contact-details-street" : {
-    "required": "You must enter the street"
+    "required": "You must enter a building or street"
   },
   "pv-contact-details-town" : {
-    "required": "You must enter the town."
+    "required": "You must enter a town or city"
   },
   "pv-contact-details-county" : {
-    "required": "You must enter the county."
+    "required": "You must enter a county"
   },
   "pv-contact-details-postcode" : {
     "required": "You must enter the postcode."
@@ -154,14 +154,14 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "someone-else-email-input" : {
-    "required": "You must enter an email address",
+    "required": "You must enter a valid email address",
     "email": "You must enter a valid email address"
   },
   "someone-else-street" : {
-    "required": "You must enter the street"
+    "required": "You must enter a building or street"
   },
   "someone-else-town" : {
-    "required": "You must enter the town."
+    "required": "You must enter a town or city"
   },
   "someone-else-postcode" : {
     "required": "You must enter the postcode."
