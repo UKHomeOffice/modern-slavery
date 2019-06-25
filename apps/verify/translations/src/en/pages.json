@@ -1,7 +1,6 @@
 {
   "start": {
-    "main-header": "Report modern slavery",
-    "breadcrumbs-home": "Home",
+    "header": "Report modern slavery",
     "paragraph-1": "First responders in the UK can use this service to:",
     "paragraph-1-bullet-1": "refer potential victims of any age to the National Referral Mechanism",
     "paragraph-1-bullet-2": "help potential victims receive support and medical care",
@@ -78,6 +77,7 @@
   },
   "check-inbox": {
     "header": "Check your email",
+    "email": "We have sent a link to the email you entered, {{confirmEmail}}",
     "link-text": "Resubmit"
   }
 }

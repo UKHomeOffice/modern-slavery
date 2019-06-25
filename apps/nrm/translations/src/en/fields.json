@@ -32,7 +32,8 @@
       },
       "not-sure": {
         "label": "Not Sure",
-        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made."
+        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.",
+        "toggle-content-2": "You must explain to them how organisations such as the Home Office will use their information."
       }
     }
   },
@@ -227,7 +228,7 @@
     }
   },
   "refuse-nrm": {
-    "label": "Why don’t they want thier case referred? (Optional)",
+    "label": "Why don’t they want their case referred? (Optional)",
     "hint" : "Briefly explain your reasons"
   },
   "does-pv-need-support": {
@@ -248,7 +249,7 @@
     "label": "Last name"
   },
   "pv-name-nickname": {
-    "label": "Nickname or name used during exploitation"
+    "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
     "hint": "For example, 31 3 1980."

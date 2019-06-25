@@ -1,4 +1,7 @@
 {
+  "start": {
+    "header": "Start"
+  },
   "token-invalid": {
     "request-another": "Request a new link"
   },
@@ -273,6 +276,7 @@
     }
   },
   "confirmation": {
+    "header": "Confirmation",
     "panel-title": "NRM / DTN report sent",
     "paragraph-1": "We will need to review your report before sending a confirmation email and reference. We will also send a copy of your report for your records.",
     "heading-1": "What happens next",
