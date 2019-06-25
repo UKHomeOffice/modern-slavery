@@ -248,7 +248,7 @@
     "label": "Last name"
   },
   "pv-name-nickname": {
-    "label": "Nickname or name used during exploitation"
+    "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
     "hint": "For example, 31 3 1980."
