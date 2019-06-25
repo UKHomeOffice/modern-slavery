@@ -227,7 +227,7 @@
     }
   },
   "refuse-nrm": {
-    "label": "Why don’t they want thier case referred? (Optional)",
+    "label": "Why don’t they want their case referred? (Optional)",
     "hint" : "Briefly explain your reasons"
   },
   "does-pv-need-support": {
