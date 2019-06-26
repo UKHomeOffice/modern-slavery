@@ -3,7 +3,7 @@
     {{> partials-head}}
   {{/head}}
   {{$pageTitle}}
-    {{$header}}{{/header}} &ndash; GOV.UK
+    {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}}{{$header}}{{/header}} &ndash; GOV.UK
   {{/pageTitle}}
   {{$headerClass}}with-proposition{{/headerClass}}
   {{$insideHeader}}{{/insideHeader}}
