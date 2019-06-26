@@ -1,4 +1,8 @@
 {
+  "default": {
+    "title": "Error",
+    "message": "Something went wrong. Any text entered must only include letters a to z, hyphens, spaces and apostrophes. Please delete any special characters and try again."
+  },
   "session": {
     "title": "Session timed out",
     "message-1": "Sorry, your session has timed out due to inactivity. Any information you may have entered has been deleted.",
