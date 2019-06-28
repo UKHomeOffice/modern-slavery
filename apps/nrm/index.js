@@ -13,6 +13,7 @@ const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-lin
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
+const handleSessionFields = require('./behaviours/session-field-handler/handle-session-fields');
 
 module.exports = {
   name: 'nrm',
@@ -362,6 +363,7 @@ module.exports = {
           'pv-phone-number-yes',
           'who-contact',
         ]),
+        handleSessionFields('co-operate-with-police'),
       ],
     },
     '/supporting-documents-add': {

@@ -1,9 +1,9 @@
 'use strict';
 
 const reqres = require('reqres');
-const Behaviour = require('../../../../apps/nrm/behaviours/delete-on-change');
+const Behaviour = require('../../../../../apps/nrm/behaviours/session-field-handler/handle-session-fields');
 
-describe('/apps/nrm/behaviours/delete-on-change', () => {
+describe('/apps/nrm/behaviours/session-field-handler/handle-session-fields', () => {
   it('exports a function', () => {
     expect(Behaviour).to.be.a('function');
   });
@@ -15,10 +15,10 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
   let req;
   let res;
   let sessionModel;
-  let config;
+  let pageName;
   let instance;
   let next;
-  let DeleteOnChange;
+  let HandleSessionFields;
 
   describe('process()', () => {
     beforeEach(() => {
@@ -30,11 +30,9 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
       req = reqres.req({sessionModel});
       res = reqres.res();
       next = sinon.stub();
-      config = {
-        currentField: 'co-operate-with-police', deleteFields: ['fr-details', 'fr-alternative-contact']
-      };
-      DeleteOnChange = Behaviour(config)(Base);
-      instance = new DeleteOnChange();
+      pageName = 'co-operate-with-police';
+      HandleSessionFields = Behaviour(pageName)(Base);
+      instance = new HandleSessionFields();
       sinon.stub(Base.prototype, 'process');
     });
     afterEach(() => {
@@ -124,8 +122,17 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
       });
 
       it('deletes the field(s) within the subsequent pages', () => {
-        expect(sessionModel.unset).to.have.been.calledWith('fr-details');
-        expect(sessionModel.unset).to.have.been.calledWith('fr-alternative-contact');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-name-first-name');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-name-last-name');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-name-nickname');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-email-input');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-email-check');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-street');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-town');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-county');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-postcode');
+        expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-post-check');
       });
     });
   });
