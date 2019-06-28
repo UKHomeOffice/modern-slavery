@@ -134,6 +134,21 @@ describe('/apps/nrm/behaviours/session-field-handler/handle-session-fields', () 
         expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-postcode');
         expect(sessionModel.unset).to.have.been.calledWith('pv-contact-details-post-check');
       });
+
+      it('stores the steps', () => {
+        const currentSessionSteps = [
+          'pv-want-to-submit-nrm',
+          'does-pv-need-support',
+          'pv-name',
+          'pv-dob',
+          'pv-gender',
+          'does-pv-have-children',
+          'co-operate-with-police',
+        ];
+        expect(sessionModel.set).to.have.been.calledWith('steps',
+        currentSessionSteps);
+      });
+
     });
   });
 });

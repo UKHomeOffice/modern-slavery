@@ -20,15 +20,8 @@ const deleteFieldsFromSession = (req, config) => {
         req.sessionModel.unset(field);
       });
 
-      // Remove steps containing fields from sessionModel
-      const updatedVisitedSteps = visited.map((step) => {
-        if (deleteFields.indexOf(step) === -1) {
-          return step;
-        }
-      });
-
       // Required for the back button
-      req.sessionModel.set('steps', updatedVisitedSteps);
+      req.sessionModel.set('steps', visited);
     }
   }
 };
