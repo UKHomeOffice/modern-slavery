@@ -32,7 +32,7 @@
     "hof-build": "^1.6.0",
     "hof-component-date": "^1.4.0",
     "hof-model": "^3.1.2",
-    "hof-theme-govuk": "^4.2.0",
+    "hof-theme-govuk": "^4.3.0",
     "hof-util-countries": "^1.0.0",
     "hogan.js": "^3.0.2",
     "ioredis": "^4.0.0",
