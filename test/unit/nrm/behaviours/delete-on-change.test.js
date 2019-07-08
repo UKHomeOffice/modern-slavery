@@ -51,20 +51,10 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
     it(
       'does NOT unset any session field values if we visit the page the first time',
       async() => {
-        const currentSessionSteps = [
-          'pv-want-to-submit-nrm',
-          'does-pv-need-support',
-          'pv-name',
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-        ];
-
-        req.sessionModel.get.withArgs('steps').returns(currentSessionSteps);
         req.form = {
-          options: {
-            route: 'co-operate-with-police'
-          }
+          values: {
+            'co-operate-with-police': 'yes'
+          },
         };
 
         await instance.process(req, res, next);
@@ -75,52 +65,24 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
     it(
       'does NOT unset any session field values when the field has not changed from what was stored previously',
       async() => {
-        const currentSessionSteps = [
-          'pv-want-to-submit-nrm',
-          'does-pv-need-support',
-          'pv-name',
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'co-operate-with-police',
-        ];
-
-        req.sessionModel.get.withArgs('steps').returns(currentSessionSteps);
         req.sessionModel.get.withArgs('co-operate-with-police').returns('yes');
         req.form = {
           values: {
             'co-operate-with-police': 'yes'
           },
-          options: {
-            route: 'co-operate-with-police'
-          }
-      };
+        };
 
-      await instance.process(req, res, next);
-      expect(sessionModel.unset).to.have.not.been.called;
+        await instance.process(req, res, next);
+        expect(sessionModel.unset).to.have.not.been.called;
     });
 
     describe('when the current field has changed from what was previously stored', async() => {
       beforeEach(async() => {
-        const currentSessionSteps = [
-          'pv-want-to-submit-nrm',
-          'does-pv-need-support',
-          'pv-name',
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'co-operate-with-police',
-        ];
-
-        req.sessionModel.get.withArgs('steps').returns(currentSessionSteps);
         req.sessionModel.get.withArgs('co-operate-with-police').returns('yes');
         req.form = {
           values: {
             'co-operate-with-police': 'no'
           },
-          options: {
-            route: 'co-operate-with-police'
-          }
         };
 
         await instance.process(req, res, next);
@@ -136,20 +98,6 @@ describe('/apps/nrm/behaviours/delete-on-change', () => {
         expect(sessionModel.unset).to.have.been.calledWith('fr-details-role');
         expect(sessionModel.unset).to.have.been.calledWith('fr-details-phone');
         expect(sessionModel.unset).to.have.been.calledWith('fr-alternative-contact');
-      });
-
-      it('stores the steps', () => {
-        const currentSessionSteps = [
-          'pv-want-to-submit-nrm',
-          'does-pv-need-support',
-          'pv-name',
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'co-operate-with-police',
-        ];
-        expect(sessionModel.set).to.have.been.calledWith('steps',
-        currentSessionSteps);
       });
 
     });

@@ -10,20 +10,17 @@
  * @returns {void}
  */
 const deleteFieldsFromSession = (req, config) => {
-  const visited = req.sessionModel.get('steps');
   const { deleteFields, currentField } = config;
+  const currentValue = req.sessionModel.get(currentField);
 
-  if (visited && visited.indexOf(req.form.options.route) > -1) {
-    if (req.form.values[config.currentField] !== req.sessionModel.get(currentField)) {
-      // delete each field from the session
-      deleteFields.forEach(field => {
-        req.sessionModel.unset(field);
-      });
-
-      // Required for the back button
-      req.sessionModel.set('steps', visited);
+    if (currentValue) {
+      if (req.form.values[config.currentField] !== req.sessionModel.get(currentField)) {
+        // delete each field from the session
+        deleteFields.forEach(field => {
+          req.sessionModel.unset(field);
+        });
+      }
     }
-  }
 };
 
 module.exports = config => superclass => class extends superclass {
