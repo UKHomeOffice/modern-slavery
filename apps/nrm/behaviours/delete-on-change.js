@@ -26,6 +26,9 @@ const deleteFieldsFromSession = (req, config) => {
   }
 };
 
-module.exports = {
-  deleteFieldsFromSession,
- };
+module.exports = config => superclass => class extends superclass {
+  process(req, res, cb) {
+    deleteFieldsFromSession(req, config);
+    super.process(req, res, cb);
+  }
+};
