@@ -1,4 +1,4 @@
-<p>{{#t}}pages.does-pv-need-support.paragraph-1{{/t}} <a href="/support-organisations" target="_blank">{{#t}}pages.does-pv-need-support.link-text-1{{/t}}</a> {{#t}}pages.does-pv-need-support.link-text-2{{/t}}</p>
+<p>{{#t}}pages.does-pv-need-support.paragraph-1{{/t}} <a href="/support-organisations" target="_blank" rel="noopener" aria-describedby="new-window-0">{{#t}}pages.does-pv-need-support.link-text-1{{/t}}</a> {{#t}}pages.does-pv-need-support.link-text-2{{/t}}</p>
 <p>{{#t}}pages.does-pv-need-support.paragraph-2{{/t}}</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>{{#t}}pages.does-pv-need-support.bullet-1{{/t}}</li>
