@@ -12,7 +12,7 @@ const formatHeading = (req) => {
   let headingMessage = 'NRM referral sent';
 
   if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
-    headingMessage = 'DtN sent';
+    headingMessage = 'Duty to Notify (DtN) sent';
   }
 
   data = Object.assign({}, data, {
