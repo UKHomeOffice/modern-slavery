@@ -8,16 +8,24 @@ const templateId = config.govukNotify.templateUserAuthId;
 const appPath = require('../../nrm/index').baseUrl;
 const firstStep = '/start/';
 const tokenGenerator = require('../models/save-token');
+const checkEmailExtension = require('../util/check-email-ext');
+// this will be an npm module in the future
+const emailExtensions = ['gov.uk', 'police.uk'];
+
+const isRecognisedExtension = (email) => {
+  const extensionString = checkEmailExtension.getExtensionsString(emailExtensions);
+  return checkEmailExtension.isRecognised(email, extensionString);
+};
 
 const checkDomain = (userEmailDomain) => {
-    let flag = false;
+  let flag = false;
 
-    emailDomainList.forEach((emailDomain) => {
-      if (userEmailDomain === emailDomain) {
-        flag = true;
-      }
-    });
-    return flag;
+  emailDomainList.forEach((emailDomain) => {
+    if (userEmailDomain === emailDomain) {
+      flag = true;
+    }
+  });
+  return flag;
 };
 
 const getPersonalisation = (host, token) => {
@@ -50,9 +58,10 @@ module.exports = superclass => class extends superclass {
       const email = req.form.values['confirm-email'];
       const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
-      const isRecognisedDomain = checkDomain(emailDomain);
 
-      if (isRecognisedDomain === false) {
+      const isRecognisedEmail = isRecognisedExtension(email) || checkDomain(emailDomain);
+
+      if (isRecognisedEmail === false) {
         req.sessionModel.set('recognised-email', false);
         return callback(err);
       }
