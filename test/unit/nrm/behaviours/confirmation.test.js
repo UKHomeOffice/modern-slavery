@@ -9,37 +9,61 @@ describe('/apps/nrm/behaviours/confirmation', () => {
   });
 
   class Base {
-    process() {}
+    locals() {}
   }
 
   let sessionModel;
   let req;
   let res;
   let instance;
-  let next;
-  let Confrimation;
+  let Confirmation;
 
-  describe('process()', () => {
+  let superLocals = {
+    route: 'confirmation',
+  };
+
+  describe('locals()', () => {
     beforeEach(() => {
       sessionModel = {
         get: sinon.stub(),
       };
       req = reqres.req({ sessionModel });
       res = reqres.res();
-      next = sinon.stub();
-      Confrimation = Behaviour(Base);
-      instance = new Confrimation();
-      sinon.stub(Base.prototype, 'process');
+      Confirmation = Behaviour(Base);
+      instance = new Confirmation();
+      sinon.stub(Base.prototype, 'locals').returns(superLocals);
     });
     afterEach(() => {
-      Base.prototype.process.restore();
+      superLocals = {
+        route: 'confirmation',
+      };
+
+      Base.prototype.locals.restore();
     });
 
-    it('calls the parent method after updating the page locals', async() => {
+    it('returns an extended locals with the isDtn variable', async() => {
+      const expected = {
+        route: 'confirmation',
+        isDtn: true,
+      };
+
       req.sessionModel.get.withArgs('pv-want-to-submit-nrm').returns('no');
 
-      await instance.process(req, res, next);
-      expect(Base.prototype.process).to.have.been.called;
+      const result = instance.locals(req, res);
+      result.should.deep.equal(expected);
     });
+
+    it('returns an extended locals with the isNrm variable', async() => {
+      const expected = {
+        route: 'confirmation',
+        isNrm: true,
+      };
+
+      req.sessionModel.get.withArgs('pv-want-to-submit-nrm').returns('yes');
+
+      const result = instance.locals(req, res);
+      result.should.deep.equal(expected);
+    });
+
   });
 });

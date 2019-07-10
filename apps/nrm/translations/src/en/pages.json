@@ -277,6 +277,8 @@
   },
   "confirmation": {
     "header": "Confirmation",
+    "dtn-message": "Duty to Notify (DtN) sent",
+    "nrm-message": "NRM referral sent",
     "paragraph-1": "You will shortly receive a confirmation email with a reference number. You will also receive a copy of your report for your records.",
     "heading-1": "What happens next",
     "heading-1-paragraph-1": "We will look at the potential victim’s case within 5 working days and decide if there are reasonable grounds to believe they are a victim of modern slavery.",
