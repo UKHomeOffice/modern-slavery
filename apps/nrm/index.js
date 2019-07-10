@@ -13,6 +13,7 @@ const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-lin
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
+const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
 
 module.exports = {
@@ -540,7 +541,10 @@ module.exports = {
       behaviours: dataToPdf
     },
     '/confirmation': {
-      backLink: false
+      backLink: false,
+      behaviours: [
+        confirmation,
+      ],
     }
   }
 };

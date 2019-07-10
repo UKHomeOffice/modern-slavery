@@ -3,7 +3,12 @@
 <div class="govuk-grid-row">
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">
-        {{#t}}pages.confirmation.panel-title{{/t}}
+        {{#isDtn}}
+          {{#t}}pages.confirmation.dtn-message{{/t}}
+        {{/isDtn}}
+        {{#isNrm}}
+          {{#t}}pages.confirmation.nrm-message{{/t}}
+        {{/isNrm}}
       </h1>
     </div>
 
