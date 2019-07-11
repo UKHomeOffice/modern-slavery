@@ -222,8 +222,7 @@
         "label": "Yes – I have explained this to the potential victim and they want me to refer their case"
       },
       "no": {
-        "label": "No – I have explained this to the potential victim and they do not want me to refer their case",
-        "hint": "They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
+        "label": "No – I have explained this to the potential victim and they do not want me to refer their case. They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
       }
     }
   },
