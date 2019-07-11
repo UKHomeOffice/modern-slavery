@@ -348,8 +348,6 @@ module.exports = {
       value: 'yes'
     }, {
       value: 'no',
-      toggle: 'pv-want-to-submit-nrm-no-fieldset',
-      child: 'partials/pv-want-to-submit-nrm-no'
     }],
   },
   'refuse-nrm': {
