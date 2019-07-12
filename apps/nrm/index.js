@@ -64,6 +64,7 @@ module.exports = {
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
+      behaviours: getPageCustomBackLink('default'),
       fields: [
         'where-exploitation-happened',
         'where-exploitation-happened-uk-city',
@@ -75,6 +76,7 @@ module.exports = {
       next: '/current-pv-location'
     },
     '/current-pv-location': {
+      behaviours: getPageCustomBackLink('default'),
       fields: [
         'current-pv-location-uk-city',
         'current-pv-location-uk-region',
@@ -82,11 +84,15 @@ module.exports = {
       next: '/who-exploited-pv'
     },
     '/who-exploited-pv': {
+      behaviours: getPageCustomBackLink('default'),
       fields: ['who-exploited-pv'],
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
-      behaviours: typesOfExploitation,
+      behaviours: [
+        typesOfExploitation,
+        getPageCustomBackLink('default'),
+      ],
       fields: [
         'types-of-exploitation-forced-to-work',
         'types-of-exploitation-wages-taken',
@@ -103,6 +109,7 @@ module.exports = {
       next: '/any-other-pvs'
     },
     '/any-other-pvs': {
+      behaviours: getPageCustomBackLink('default'),
       fields: ['any-other-pvs'],
       next: '/reported-to-police'
     },
@@ -282,9 +289,12 @@ module.exports = {
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {
-      behaviours: saveMissingData([
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
-      ]),
+      behaviours: [
+        saveMissingData([
+          'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
+        ]),
+        getPageCustomBackLink('default'),
+      ],
       fields: [
         'pv-other-help-with-communication',
         'pv-other-help-with-communication-aid',
