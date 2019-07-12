@@ -42,7 +42,7 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-name': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -51,17 +51,19 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
-    validate: ['required'],
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
-    validate: ['required', 'email'],
+    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
+    validate: {'type': 'maxlength', 'arguments': [15000]}
   },
   'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
+    validate: {'type': 'maxlength', 'arguments': [15000]}
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',
@@ -77,7 +79,7 @@ module.exports = {
   },
   'what-happened': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -146,6 +148,7 @@ module.exports = {
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
+    validate: {'type': 'maxlength', 'arguments': [15000]},
     legend: {
       className: 'visuallyhidden'
     },
@@ -163,6 +166,7 @@ module.exports = {
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
+    validate: {'type': 'maxlength', 'arguments': [15000]},
     legend: {
       className: 'visuallyhidden'
     },
@@ -198,7 +202,7 @@ module.exports = {
   },
   'who-exploited-pv': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -275,7 +279,7 @@ module.exports = {
   },
   'other-exploitation-details': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -332,7 +336,7 @@ module.exports = {
   },
   'reported-to-police-crime-reference': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'reported-to-police',
@@ -352,6 +356,7 @@ module.exports = {
   },
   'refuse-nrm': {
     mixin: 'textarea',
+    validate: {'type': 'maxlength', 'arguments': [15000]},
     legend: {
       className: 'visuallyhidden'
     },
@@ -376,14 +381,15 @@ module.exports = {
   },
   'pv-name-first-name': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'pv-name-last-name': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'pv-name-nickname': {
     mixin: 'input-text',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'pv-dob': dateComponent('pv-dob', {
     labelClassName: 'visuallyhidden',
@@ -417,7 +423,7 @@ module.exports = {
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
-    validate: ['required', 'numeric'],
+    validate: ['required', 'numeric', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children',
@@ -456,7 +462,7 @@ module.exports = {
   },
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'pv-interpreter-requirements',
@@ -478,7 +484,7 @@ module.exports = {
   },
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'pv-other-help-with-communication',
@@ -500,7 +506,7 @@ module.exports = {
   },
   'pv-ho-reference-type': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'pv-ho-reference',
@@ -535,7 +541,7 @@ module.exports = {
   },
   'pv-contact-details-email-input': {
     mixin: 'input-text',
-    validate: ['required', 'email'],
+    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'email',
       field: 'pv-contact-details',
@@ -551,7 +557,7 @@ module.exports = {
   },
   'pv-contact-details-street': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -559,7 +565,7 @@ module.exports = {
   },
   'pv-contact-details-town': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -567,7 +573,7 @@ module.exports = {
   },
   'pv-contact-details-county': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -575,7 +581,7 @@ module.exports = {
   },
   'pv-contact-details-postcode': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -607,13 +613,15 @@ module.exports = {
   },
   'someone-else-first-name': {
     mixin: 'input-text',
+    validate: {'type': 'maxlength', 'arguments': [15000]}
   },
   'someone-else-last-name': {
     mixin: 'input-text',
+    validate: {'type': 'maxlength', 'arguments': [15000]}
   },
   'someone-else-email-input': {
     mixin: 'input-text',
-    validate: ['required', 'email'],
+    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'email',
       field: 'someone-else',
@@ -621,7 +629,7 @@ module.exports = {
   },
   'someone-else-street': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -629,7 +637,7 @@ module.exports = {
   },
   'someone-else-town': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -637,6 +645,7 @@ module.exports = {
   },
   'someone-else-county': {
     mixin: 'input-text',
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -644,7 +653,7 @@ module.exports = {
   },
   'someone-else-postcode': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'someone-else',
@@ -681,7 +690,7 @@ module.exports = {
   },
   'pv-phone-number-yes': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'yes',
       field: 'pv-phone-number',
@@ -718,22 +727,22 @@ module.exports = {
   },
   'fr-details-first-name': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'fr-details-last-name': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'fr-details-role': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'fr-details-phone': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'fr-alternative-contact': {
     mixin: 'input-text',
-    validate: ['email'],
+    validate: ['email', {'type': 'maxlength', 'arguments': [15000]}],
   }
 };
