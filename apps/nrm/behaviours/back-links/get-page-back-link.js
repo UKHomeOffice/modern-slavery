@@ -43,7 +43,12 @@ module.exports = pageName => {
     getBackLink(req, res) {
       let backLink = super.getBackLink(req, res);
 
-      backLink = getPageBackLink(req, pageName);
+      // default behaviour when editing page is to return to CYA page
+      if (pageName !== 'default') {
+        backLink = getPageBackLink(req, pageName);
+      } else if (req.params && req.params.action && req.params.action === 'edit') {
+        backLink = '/nrm/confirm';
+      }
 
       return backLink;
     }

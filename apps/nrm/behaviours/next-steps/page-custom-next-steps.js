@@ -28,7 +28,7 @@ module.exports = {
     let nextStep = '/nrm/pv-nationality';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -46,16 +46,15 @@ module.exports = {
   pvContactDetails: (req) => {
     let nextStep;
 
-    if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
+    if (
+      req.sessionModel.get('pv-want-to-submit-nrm') === 'no' ||
+      (req.params && req.params.action && req.params.action === 'edit')
+      ) {
       nextStep = '/nrm/confirm';
     } else if (req.sessionModel.get('does-pv-need-support') === 'no') {
       nextStep = '/nrm/co-operate-with-police';
     } else {
       nextStep = '/nrm/pv-phone-number';
-    }
-
-    if (req.params && req.params.action && req.params.action === 'edit' && nextStep !== 'confirm') {
-      nextStep += '/edit';
     }
 
     return nextStep;
@@ -70,7 +69,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -85,7 +84,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -100,7 +99,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -115,7 +114,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -156,7 +155,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -171,7 +170,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -186,7 +185,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
