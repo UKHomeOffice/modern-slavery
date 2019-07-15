@@ -24,7 +24,7 @@ module.exports = {
   },
   'pv-under-age': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -59,15 +59,15 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
-    validate: {'type': 'maxlength', 'arguments': [15000]}
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
   },
   'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
-    validate: {'type': 'maxlength', 'arguments': [15000]}
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -93,7 +93,7 @@ module.exports = {
   },
   'where-exploitation-happened': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -109,7 +109,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-city': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -122,7 +122,7 @@ module.exports = {
   },
   'where-exploitation-happened-uk-region': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -136,7 +136,7 @@ module.exports = {
   'where-exploitation-happened-overseas-country': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden'],
-    validate: 'required',
+    validate: ['required'],
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
@@ -148,7 +148,7 @@ module.exports = {
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
-    validate: {'type': 'maxlength', 'arguments': [15000]},
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -166,7 +166,7 @@ module.exports = {
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
-    validate: {'type': 'maxlength', 'arguments': [15000]},
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -184,7 +184,7 @@ module.exports = {
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -193,7 +193,7 @@ module.exports = {
   },
   'current-pv-location-uk-region': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -297,7 +297,7 @@ module.exports = {
   },
   'any-other-pvs': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -309,7 +309,7 @@ module.exports = {
   },
   'reported-to-police': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -323,7 +323,7 @@ module.exports = {
   },
   'reported-to-police-police-forces': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -344,7 +344,7 @@ module.exports = {
   },
   'pv-want-to-submit-nrm': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -356,7 +356,7 @@ module.exports = {
   },
   'refuse-nrm': {
     mixin: 'textarea',
-    validate: {'type': 'maxlength', 'arguments': [15000]},
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -397,7 +397,7 @@ module.exports = {
   }),
   'pv-gender': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -409,7 +409,7 @@ module.exports = {
   },
   'does-pv-have-children': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -448,7 +448,7 @@ module.exports = {
   },
   'pv-interpreter-requirements': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -470,7 +470,7 @@ module.exports = {
   },
   'pv-other-help-with-communication': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -492,7 +492,7 @@ module.exports = {
   },
   'pv-ho-reference': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -514,7 +514,7 @@ module.exports = {
   },
   'who-contact': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -525,7 +525,7 @@ module.exports = {
   },
   'pv-contact-details': {
     mixin: 'checkbox-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -549,7 +549,7 @@ module.exports = {
   },
   'pv-contact-details-email-check': {
     mixin: 'checkbox',
-    validate: 'required',
+    validate: ['required'],
     dependent: {
       value: 'email',
       field: 'pv-contact-details',
@@ -589,7 +589,7 @@ module.exports = {
   },
   'pv-contact-details-post-check': {
     mixin: 'checkbox',
-    validate: 'required',
+    validate: ['required'],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
@@ -597,7 +597,7 @@ module.exports = {
   },
   'someone-else': {
     mixin: 'checkbox-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -613,11 +613,11 @@ module.exports = {
   },
   'someone-else-first-name': {
     mixin: 'input-text',
-    validate: {'type': 'maxlength', 'arguments': [15000]}
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
   },
   'someone-else-last-name': {
     mixin: 'input-text',
-    validate: {'type': 'maxlength', 'arguments': [15000]}
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
   },
   'someone-else-email-input': {
     mixin: 'input-text',
@@ -661,11 +661,11 @@ module.exports = {
   },
   'someone-else-permission-check': {
     mixin: 'checkbox',
-    validate: 'required',
+    validate: ['required'],
   },
   'supporting-documents-add': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -676,7 +676,7 @@ module.exports = {
   },
   'pv-phone-number': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -698,7 +698,7 @@ module.exports = {
   },
   'co-operate-with-police': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -709,14 +709,14 @@ module.exports = {
   },
   'supporting-document-upload': {
     mixin: 'input-file',
-    validate: 'required',
+    validate: ['required'],
   },
   'supporting-document-description': {
     mixin: 'textarea',
   },
   'supporting-documents-add-another': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },

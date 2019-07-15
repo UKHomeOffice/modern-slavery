@@ -6,11 +6,11 @@
   "user-email": {
     "required": "You must enter a valid email address",
     "email": "You must enter a valid email address",
-    "maxlength": "You must enter no more than 15000 characters"
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "confirm-email": {
     "required": "You must enter a valid email address",
     "email": "You must enter a valid email address",
-    "maxlength": "You must enter no more than 15000 characters"
+    "maxlength": "You must enter no more than 15,000 characters"
   }
 }
