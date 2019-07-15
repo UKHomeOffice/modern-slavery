@@ -17,20 +17,25 @@ module.exports = data => {
     response['Customer.DOB'] = data['pv-dob'];
   }
   // response['Customer.AgeGroup'];
-  response['Customer.Gender'] = data['pv-gender'];
+  const genderMap = {
+    'female': 'Female',
+    'male': 'Male',
+    'other': 'Other'
+  };
+  response['Customer.Gender'] = genderMap[data['pv-gender']];
   response['Customer.Email'] = data['pv-contact-details-email-input'];
   response['Customer.Mobile'] = data['pv-phone-number-yes'];
-  // response['Customer.Phone'];
+  response['Customer.Mobile'] = data['pv-phone-number-yes'];
   // response['Customer.ContactTime'];
-  response['Customer.HaveChildren'] = data['does-pv-have-children'];
+  response['Customer.HaveChildren'] = data['does-pv-have-children'] === 'yes' ? 'Yes' : 'No';
   response['Customer.NumberOfChildren'] = data['does-pv-have-children-yes-amount'];
   response['Customer.Nationality'] = data['pv-nationality'];
   response['Customer.DualNationality'] = data['pv-nationality-second'];
   // response['Customer.Country'];
   // response['Customer.ReferenceNumbers'] = data['pv-ho-reference-type'];
-  response['Customer.InterpreterNeeded'] = data['pv-interpreter-requirements'];
+  response['Customer.InterpreterNeeded'] = data['pv-interpreter-requirements'] === 'yes' ? 'Yes' : 'No';
   response['Customer.InterpreterLanguage'] = data['pv-interpreter-requirements-language'];
-  response['Customer.HelpWithCommunication'] = data['pv-other-help-with-communication'];
+  response['Customer.HelpWithCommunication'] = data['pv-other-help-with-communication'] === 'yes' ? 'Yes' : 'No';
   response['Customer.CommunicationAid'] = data['pv-other-help-with-communication-aid'];
   // response['Customer.PassportNumber'];
 
