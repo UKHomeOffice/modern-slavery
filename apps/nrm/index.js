@@ -14,6 +14,10 @@ const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-ste
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
+const Submission = require('./behaviours/casework-submission');
+const submission = Submission({
+  prepare: require('./models/submission')
+});
 
 module.exports = {
   name: 'nrm',
@@ -476,13 +480,13 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require(
-          'hof-behaviour-summary-page'),
-          hideAndShowSummaryFields,
-          formatAnswers,
-          getPageCustomBackLink('confirm'),
-          generateSendPdf,
-          'complete'
+        require('hof-behaviour-summary-page'),
+        hideAndShowSummaryFields,
+        formatAnswers,
+        getPageCustomBackLink('confirm'),
+        generateSendPdf,
+        submission,
+        'complete'
       ],
       next: '/confirmation'
     },
