@@ -43,6 +43,9 @@ module.exports = superclass => class extends superclass {
 
       if (req.sessionModel.get('does-pv-need-support') === 'yes') {
         data = Object.assign({}, data, {showPvPhoneNumber: true});
+        if (req.sessionModel.get('pv-phone-number') === 'no') {
+          data = Object.assign({}, data, {showPvPhoneNumberNoOption: true});
+        }
       }
     } else if (isDutyToNotifyPath(req)) {
         if (req.sessionModel.get('co-operate-with-police') === 'yes') {

@@ -10,6 +10,7 @@ const { removeDashesFromText, capitaliseText } = dataFormatter;
  *
  * @returns {Object} - additional formatted data for display on UI
  */
+// eslint-disable-next-line complexity
 const formatAnswers = (req) => {
   let data = {};
 
@@ -71,6 +72,12 @@ const formatAnswers = (req) => {
       formattedPvUnderAgeAtTimeOfExploitation: removeDashesFromText(
         capitaliseText(req.sessionModel.get('pv-under-age-at-time-of-exploitation'))
         ),
+    });
+  }
+
+  if (req.sessionModel.get('pv-phone-number')) {
+    data = Object.assign({}, data, {
+      formattedPvPhoneNumber: capitaliseText(req.sessionModel.get('pv-phone-number')),
     });
   }
 

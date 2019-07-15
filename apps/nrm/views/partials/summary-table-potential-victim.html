@@ -220,6 +220,17 @@
           </td>
         </tr>
       {{/values.pv-phone-number-yes}}
+      {{#showPvPhoneNumberNoOption}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{formattedPvPhoneNumber}}</span>
+          </td>
+          <td>
+            <a href="/nrm/pv-phone-number/edit" class="button">Change</a>
+          </td>
+        </tr>
+      {{/showPvPhoneNumberNoOption}}
       {{/showPvPhoneNumber}}
 
 

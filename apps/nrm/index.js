@@ -538,8 +538,8 @@ module.exports = {
       behaviours: [
         require(
           'hof-behaviour-summary-page'),
-          hideAndShowSummaryFields,
           formatAnswers,
+          hideAndShowSummaryFields,
           getPageCustomBackLink('confirm'),
           generateSendPdf,
           'complete'
