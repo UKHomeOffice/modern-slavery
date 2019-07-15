@@ -11,7 +11,7 @@ const msNationalities = require('ms-nationalities');
 module.exports = {
   'fr-location': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required'],
     legend: {
       className: 'visuallyhidden'
     },
@@ -389,7 +389,7 @@ module.exports = {
   },
   'pv-name-nickname': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
   },
   'pv-dob': dateComponent('pv-dob', {
     labelClassName: 'visuallyhidden',
@@ -431,7 +431,7 @@ module.exports = {
   },
   'pv-nationality': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required'],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
