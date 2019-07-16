@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint complexity: 0 max-statements: 0 */
+
 module.exports = data => {
   const response = {};
 
@@ -40,7 +42,7 @@ module.exports = data => {
   // response['Customer.PassportNumber'];
 
   response.AdultOrChild = data['pv-under-age'] === 'yes' ? 'Child' : 'Adult';
-  response.AdultOrChildDuringExploitation  = data['pv-under-age-at-time-of-exploitation'] === 'yes' ? 'Child' : 'Adult';
+  response.AdultOrChildDuringExploitation = data['pv-under-age-at-time-of-exploitation'] === 'yes' ? 'Child' : 'Adult';
   response.VictimAccount = data['what-happened'];
   response.ExploitationLocationPresented = data['where-exploitation-happened'].toUpperCase();
 
@@ -129,7 +131,8 @@ module.exports = data => {
   response['CaseContact.Local_authority'] = data['local-authority-contacted-about-child-local-authority-name'];
 
   response['CaseContactOrganisation.Police_force'] = data['reported-to-police-police-forces'];
-  response['CaseContactOrganisation.Local_authority'] = data['local-authority-contacted-about-child-local-authority-name'];
+  response['CaseContactOrganisation.Local_authority']
+    = data['local-authority-contacted-about-child-local-authority-name'];
 
   response['CaseContactEmail.Police_force'] = data['local-authority-contacted-about-child-local-authority-email'];
   response['CaseContactEmail.Alternate_contact'] = data['fr-alternative-contact'];
@@ -160,7 +163,7 @@ module.exports = data => {
   response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'Yes' : 'No';
   // response.DTNReason;
   response.NeedSupport = data['does-pv-need-support'] === 'yes' ? 'Yes' : 'No';
-  response.SendDecisionTo = data['who-contact']  === 'potential-victim' ? 'PV' : 'FR';
+  response.SendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'FR';
 
   response['Agent.Forename1'] = data['fr-details-first-name'];
   response['Agent.Name'] = data['fr-details-last-name'];
