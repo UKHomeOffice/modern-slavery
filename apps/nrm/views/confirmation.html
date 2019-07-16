@@ -3,7 +3,12 @@
 <div class="govuk-grid-row">
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">
-        {{#t}}pages.confirmation.panel-title{{/t}}
+        {{#isDtn}}
+          {{#t}}pages.confirmation.dtn-message{{/t}}
+        {{/isDtn}}
+        {{#isNrm}}
+          {{#t}}pages.confirmation.nrm-message{{/t}}
+        {{/isNrm}}
       </h1>
     </div>
 
@@ -46,7 +51,7 @@
     <p>
       {{#t}}pages.confirmation.heading-3-paragraph-3{{/t}} <a href="https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms/guidance-on-the-national-referral-mechanism-for-potential-adult-victims-of-modern-slavery-england-and-wales">
         {{#t}}pages.confirmation.heading-3-paragraph-3-link-1{{/t}}
-      </a>.
+      </a>
     </p>
     <p>
       <a href="/feedback">
@@ -56,7 +61,7 @@
     <p>
       <a href="/start">
         {{#t}}pages.confirmation.heading-3-paragraph-5-link-1{{/t}}
-      </a>.
+      </a>
     </p>
 </div>
 {{/page-content}}

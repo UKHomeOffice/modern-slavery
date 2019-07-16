@@ -37,7 +37,7 @@ module.exports = {
     let backLink = '/nrm/pv-gender';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -55,7 +55,7 @@ module.exports = {
     let backLink = '/nrm/fr-details';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -70,7 +70,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -79,7 +79,7 @@ module.exports = {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink = '/nrm/fr-location/edit';
+      backLink = '/nrm/confirm';
     } else {
       backLink = '/nrm/pv-under-age';
     }
@@ -96,7 +96,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -105,7 +105,7 @@ module.exports = {
     let backLink = '/nrm/pv-name';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -120,7 +120,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -129,7 +129,7 @@ module.exports = {
     let backLink = '/nrm/pv-other-help-with-communication';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -138,7 +138,7 @@ module.exports = {
     let backLink = '/nrm/pv-nationality';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -155,7 +155,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -170,7 +170,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -185,7 +185,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -194,7 +194,7 @@ module.exports = {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink = '/nrm/fr-location/edit';
+      backLink = '/nrm/confirm';
     } else {
       backLink = '/nrm/pv-under-age';
     }
@@ -214,7 +214,7 @@ module.exports = {
     let backLink = '/nrm/pv-want-to-submit-nrm';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -223,7 +223,7 @@ module.exports = {
     let backLink = '/nrm/any-other-pvs';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -232,7 +232,7 @@ module.exports = {
     let backLink = '/nrm/who-contact';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -247,7 +247,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -256,7 +256,7 @@ module.exports = {
     let backLink = '/nrm/pv-ho-reference';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;

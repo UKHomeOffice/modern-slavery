@@ -32,7 +32,8 @@
       },
       "not-sure": {
         "label": "Not Sure",
-        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made."
+        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.",
+        "toggle-content-2": "You must explain to them how organisations such as the Home Office will use their information."
       }
     }
   },
@@ -94,70 +95,70 @@
     }
   },
   "where-exploitation-happened-uk-city-1": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-2": {
-    "label": "Select a second city or town (optional)",
+    "label": "Select a second city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-3": {
-    "label": "Select a third city or town (optional)",
+    "label": "Select a third city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-4": {
-    "label": "Select a fourth city or town (optional)",
+    "label": "Select a fourth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-5": {
-    "label": "Select a fifth city or town (optional)",
+    "label": "Select a fifth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-6": {
-    "label": "Select a sixth city or town (optional)",
+    "label": "Select a sixth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-7": {
-    "label": "Select a seventh city or town (optional)",
+    "label": "Select a seventh city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-8": {
-    "label": "Select an eighth city or town (optional)",
+    "label": "Select an eighth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-9": {
-    "label": "Select a ninth city or town (optional)",
+    "label": "Select a ninth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-10": {
-    "label": "Select a tenth city or town (optional)",
+    "label": "Select a tenth city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
@@ -168,70 +169,70 @@
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
   "where-exploitation-happened-overseas-country-1": {
-    "label": "Select country (Type ‘Unknown’ if they are unsure)",
+    "label": "Select country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-2": {
-    "label": "Select a second country (optional)",
+    "label": "Select a second country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-3": {
-    "label": "Select a third country (optional)",
+    "label": "Select a third country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-4": {
-    "label": "Select a fourth country (optional)",
+    "label": "Select a fourth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-5": {
-    "label": "Select a fifth country (optional)",
+    "label": "Select a fifth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-6": {
-    "label": "Select a sixth country (optional)",
+    "label": "Select a sixth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-7": {
-    "label": "Select a seventh country (optional)",
+    "label": "Select a seventh country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-8": {
-    "label": "Select an eighth country (optional)",
+    "label": "Select an eighth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-9": {
-    "label": "Select a ninth country (optional)",
+    "label": "Select a ninth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-10": {
-    "label": "Select a tenth country (optional)",
+    "label": "Select a tenth country (Type Unknown if they are unsure)",
     "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
@@ -242,14 +243,14 @@
     "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
   },
   "current-pv-location-uk-city": {
-    "label": "Select city or town (Type ‘Unknown’ if they are unsure)",
+    "label": "Select city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
   },
   "current-pv-location-uk-region": {
-    "label": "Select region  (Type ‘Unknown’ if they are unsure)",
+    "label": "Select region  (Type Unknown if they are unsure)",
     "hint": "Start typing the region. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
@@ -343,13 +344,12 @@
         "label": "Yes – I have explained this to the potential victim and they want me to refer their case"
       },
       "no": {
-        "label": "No – I have explained this to the potential victim and they do not want me to refer their case",
-        "hint": "They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
+        "label": "No – I have explained this to the potential victim and they do not want me to refer their case. They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
       }
     }
   },
   "refuse-nrm": {
-    "label": "Why don’t they want thier case referred? (Optional)",
+    "label": "Why don’t they want their case referred? (Optional)",
     "hint" : "Briefly explain your reasons"
   },
   "does-pv-need-support": {
@@ -370,7 +370,7 @@
     "label": "Last name"
   },
   "pv-name-nickname": {
-    "label": "Nickname or name used during exploitation"
+    "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
     "hint": "For example, 31 3 1980."

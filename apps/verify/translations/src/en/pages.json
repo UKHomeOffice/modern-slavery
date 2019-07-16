@@ -1,7 +1,6 @@
 {
   "start": {
-    "main-header": "Report modern slavery",
-    "breadcrumbs-home": "Home",
+    "header": "Report modern slavery",
     "paragraph-1": "First responders in the UK can use this service to:",
     "paragraph-1-bullet-1": "refer potential victims of any age to the National Referral Mechanism",
     "paragraph-1-bullet-2": "help potential victims receive support and medical care",
@@ -12,7 +11,7 @@
     "button-1": "Start now",
     "heading-2": "Before you start",
     "paragraph-3": "You will need to complete the form in one go as you cannot save your progress.",
-    "paragraph-4": "If you don't do anything for 30 minutes, your session will expire. This is for security reasons.",
+    "paragraph-4": "If you don't do anything for 1 hour, your session will expire. This is for security reasons.",
     "div-1": "You can still report modern slavery if you’re not a first responder. Call the modern slavery helpline on 0800 0121 700 or",
     "div-1-link-text-1": "report it online",
     "aside-heading-1": "First responder guidance",
@@ -78,6 +77,7 @@
   },
   "check-inbox": {
     "header": "Check your email",
+    "email": "We have sent a link to the email you entered, {{confirmEmail}}",
     "link-text": "Resubmit"
   }
 }

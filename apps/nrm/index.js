@@ -13,6 +13,8 @@ const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-lin
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
+const confirmation = require('./behaviours/confirmation');
+const deleteOnChange = require('./behaviours/delete-on-change');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 
 module.exports = {
@@ -121,11 +123,15 @@ module.exports = {
       next: '/who-exploited-pv'
     },
     '/who-exploited-pv': {
+      behaviours: getPageCustomBackLink('default'),
       fields: ['who-exploited-pv'],
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
-      behaviours: typesOfExploitation,
+      behaviours: [
+        typesOfExploitation,
+        getPageCustomBackLink('default'),
+      ],
       fields: [
         'types-of-exploitation-forced-to-work',
         'types-of-exploitation-wages-taken',
@@ -142,6 +148,7 @@ module.exports = {
       next: '/any-other-pvs'
     },
     '/any-other-pvs': {
+      behaviours: getPageCustomBackLink('default'),
       fields: ['any-other-pvs'],
       next: '/reported-to-police'
     },
@@ -207,6 +214,42 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('does-pv-need-support'),
         getPageCustomNextStep('does-pv-need-support'),
+        ResetOnChange({
+          currentField: 'does-pv-need-support',
+          storeFields: [
+          'fr-location',
+          'user-organisation',
+          'user-email',
+          'pv-under-age',
+          'pv-under-age-at-time-of-exploitation',
+          'what-happened',
+          'where-exploitation-happened',
+          'where-exploitation-happened-uk-city',
+          'where-exploitation-happened-uk-region',
+          'where-exploitation-happened-other-uk-other-location',
+          'where-exploitation-happened-overseas-country',
+          'where-exploitation-happened-other-overseas-other-location',
+          'current-pv-location-uk-city',
+          'current-pv-location-uk-region',
+          'who-exploited-pv',
+          'types-of-exploitation-forced-to-work',
+          'types-of-exploitation-wages-taken',
+          'types-of-exploitation-forced-to-commit-fraud',
+          'types-of-exploitation-prostitution',
+          'types-of-exploitation-child-exploitation',
+          'types-of-exploitation-taken-somewhere',
+          'types-of-exploitation-forced-to-commit-crime',
+          'types-of-exploitation-organs-removed',
+          'types-of-exploitation-unpaid-household-work',
+          'types-of-exploitation-other',
+          'other-exploitation-details',
+          'any-other-pvs',
+          'reported-to-police',
+          'reported-to-police-police-forces',
+          'reported-to-police-crime-reference',
+          'pv-want-to-submit-nrm',
+          ],
+        }),
       ],
       fields: ['does-pv-need-support'],
       continueOnEdit: true,
@@ -285,9 +328,12 @@ module.exports = {
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {
-      behaviours: saveMissingData([
-        'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
-      ]),
+      behaviours: [
+        saveMissingData([
+          'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
+        ]),
+        getPageCustomBackLink('default'),
+      ],
       fields: [
         'pv-other-help-with-communication',
         'pv-other-help-with-communication-aid',
@@ -313,6 +359,39 @@ module.exports = {
         getPageCustomBackLink('who-contact'),
         getPageCustomNextStep('who-contact'),
         saveMissingData('who-contact'),
+        deleteOnChange({
+          currentField: 'who-contact',
+          deleteFields: [
+            'pv-name-first-name',
+            'pv-name-last-name',
+            'pv-name-nickname',
+            'pv-contact-details',
+            'pv-contact-details-email-input',
+            'pv-contact-details-email-check',
+            'pv-contact-details-street',
+            'pv-contact-details-town',
+            'pv-contact-details-county',
+            'pv-contact-details-postcode',
+            'pv-contact-details-post-check',
+            'someone-else',
+            'someone-else-first-name',
+            'someone-else-last-name',
+            'someone-else-email-input',
+            'someone-else-street',
+            'someone-else-town',
+            'someone-else-county',
+            'someone-else-postcode',
+            'someone-else-permission-check',
+            'pv-phone-number',
+            'pv-phone-number-yes',
+            'co-operate-with-police',
+            'fr-details-first-name',
+            'fr-details-last-name',
+            'fr-details-role',
+            'fr-details-phone',
+            'fr-alternative-contact',
+          ],
+        }),
       ],
       fields: ['who-contact'],
       continueOnEdit: true,
@@ -403,6 +482,26 @@ module.exports = {
           'pv-phone-number-yes',
           'who-contact',
         ]),
+        deleteOnChange({
+          currentField: 'co-operate-with-police', deleteFields: [
+            'pv-name-first-name',
+            'pv-name-last-name',
+            'pv-name-nickname',
+            'pv-contact-details',
+            'pv-contact-details-email-input',
+            'pv-contact-details-email-check',
+            'pv-contact-details-street',
+            'pv-contact-details-town',
+            'pv-contact-details-county',
+            'pv-contact-details-postcode',
+            'pv-contact-details-post-check',
+            'fr-details-first-name',
+            'fr-details-last-name',
+            'fr-details-role',
+            'fr-details-phone',
+            'fr-alternative-contact',
+          ]
+        }),
       ],
     },
     '/supporting-documents-add': {
@@ -478,8 +577,8 @@ module.exports = {
       behaviours: [
         require(
           'hof-behaviour-summary-page'),
-          hideAndShowSummaryFields,
           formatAnswers,
+          hideAndShowSummaryFields,
           getPageCustomBackLink('confirm'),
           generateSendPdf,
           'complete'
@@ -491,7 +590,10 @@ module.exports = {
       behaviours: dataToPdf
     },
     '/confirmation': {
-      backLink: false
+      backLink: false,
+      behaviours: [
+        confirmation,
+      ],
     }
   }
 };

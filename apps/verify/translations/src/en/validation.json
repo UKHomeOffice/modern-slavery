@@ -1,13 +1,16 @@
 {
   "user-organisation" : {
-    "required": "You must select your organisation from the list"
+    "required": "You must select your organisation from the list",
+    "equal": "You must select your organisation from the list"
   },
   "user-email": {
-    "required": "Enter your email address",
-    "email": "Enter a valid email address"
+    "required": "You must enter a valid email address",
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "confirm-email": {
-    "required": "Enter your email address",
-    "email": "Enter a valid email address"
+    "required": "You must enter a valid email address",
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
   }
 }

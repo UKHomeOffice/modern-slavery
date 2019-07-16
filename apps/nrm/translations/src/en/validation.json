@@ -1,6 +1,7 @@
 {
   "user-email": {
-    "wrongEmail": "this is not a first responder email we recognise"
+    "wrongEmail": "this is not a first responder email we recognise",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-location" : {
     "required": "You must enter a region"
@@ -9,44 +10,52 @@
     "required": "You must select an option"
   },
   "local-authority-contacted-about-child-local-authority-name": {
-    "required": "you must enter the local authority name"
+    "required": "You must select the local authority from the list",
+    "equal": "You must select the local authority from the list"
   },
   "local-authority-contacted-about-child-local-authority-phone": {
-    "required": "You must enter a phone number"
+    "required": "You must enter a phone number",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "local-authority-contacted-about-child-local-authority-email": {
     "required": "You must enter a valid email address",
-    "email": "You must enter a valid email address"
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-under-age-at-time-of-exploitation" : {
     "required": "You must select an option"
   },
   "what-happened" : {
-    "required": "You must enter details of the exploitation"
+    "required": "You must enter details of the exploitation",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "where-exploitation-happened" : {
     "required": "You must select an option"
   },
   "where-exploitation-happened-uk-city-1" : {
-    "required": "You must select a city or town"
+    "required": "You must select a city or town from the list"
   },
   "where-exploitation-happened-overseas-country-1" : {
-    "required": "You must select a country"
+    "required": "You must select a country from the list"
   },
   "current-pv-location-uk-city" : {
-    "required": "You must select an option"
+    "required": "You must select a city from the list",
+    "equal": "You must select a city from the list"
   },
   "current-pv-location-uk-region" : {
-    "required": "You must select an option"
+    "required": "You must select a region from the list",
+    "equal": "You must select a region from the list"
   },
   "who-exploited-pv" : {
-    "required": "You must enter details about the exploiter(s)"
+    "required": "You must enter details about the exploiter(s)",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "types-of-exploitation-forced-to-work" : {
     "at-least-one-option-selected" : "You must select an exploitation type"
   },
   "other-exploitation-details" : {
-    "required" : "Please enter other type of exploitation"
+    "required" : "Please enter other type of exploitation",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "any-other-pvs" : {
     "required": "You must select an option"
@@ -55,10 +64,12 @@
     "required": "You must select an option"
   },
   "reported-to-police-police-forces" : {
-    "required": "You must enter a police force"
+    "required": "You must select a police force from the list",
+    "equal": "You must select a police force from the list"
   },
   "reported-to-police-crime-reference" : {
-    "required": "You must enter a crime or CAD reference"
+    "required": "You must enter a crime or CAD reference",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
@@ -67,10 +78,15 @@
     "required": "You must select if support is required"
   },
   "pv-name-first-name" : {
-    "required": "You must enter the potential victim's first name"
+    "required": "You must enter the potential victim's first name",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-name-last-name" : {
-    "required": "You must enter the potential victim's last name"
+    "required": "You must enter the potential victim's last name",
+    "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "pv-name-nickname" : {
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-dob": {
     "date": "You must enter a valid date",
@@ -85,28 +101,36 @@
   },
   "does-pv-have-children-yes-amount" : {
     "required": "You must enter the number of children",
-    "numeric": "You must enter numbers only"
+    "numeric": "You must enter numbers only",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-nationality" : {
-    "required": "You must select the potential victim's nationality"
+    "required": "You must select the potential victim's nationality from the list",
+    "equal": "You must select the potential victim's nationality from the list"
+  },
+  "pv-nationality-second" : {
+    "equal": "You must select the potential victim's second nationality from the list"
   },
   "pv-interpreter-requirements" : {
     "required": "You must select an option"
   },
   "pv-interpreter-requirements-language" : {
-    "required": "You must enter a language"
+    "required": "You must enter a language",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-other-help-with-communication" : {
     "required": "You must select an option"
   },
   "pv-other-help-with-communication-aid" : {
-    "required": "You must enter the communication aid"
+    "required": "You must enter a type of communication aid",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-ho-reference" : {
     "required": "You must select an option"
   },
   "pv-ho-reference-type" : {
-    "required": "You must enter the type of reference, reference number or both"
+    "required": "You must enter the type of reference, reference number or both",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "who-contact" : {
     "required": "You must select an option"
@@ -115,23 +139,28 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "pv-contact-details-email-input" : {
-    "required": "You must enter an email address",
-    "email": "You must enter a valid email address"
+    "required": "You must enter a valid email address",
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-email-check" : {
     "required": "Make sure it is safe to contact the potential victim at this email address."
   },
   "pv-contact-details-street" : {
-    "required": "You must enter the street"
+    "required": "You must enter a building or street",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-town" : {
-    "required": "You must enter the town."
+    "required": "You must enter a town or city",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-county" : {
-    "required": "You must enter the county."
+    "required": "You must enter a county",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-postcode" : {
-    "required": "You must enter the postcode."
+    "required": "You must enter the postcode.",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-post-check" : {
     "required": "Make sure it is safe to contact the potential victim at this address."
@@ -140,17 +169,24 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "someone-else-email-input" : {
-    "required": "You must enter an email address",
-    "email": "You must enter a valid email address"
+    "required": "You must enter a valid email address",
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "someone-else-street" : {
-    "required": "You must enter the street"
+    "required": "You must enter a building or street",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "someone-else-town" : {
-    "required": "You must enter the town."
+    "required": "You must enter a town or city",
+    "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "someone-else-county" : {
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "someone-else-postcode" : {
-    "required": "You must enter the postcode."
+    "required": "You must enter the postcode.",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "someone-else-permission-check" : {
     "required": "Make sure the potential victim has given you permission to send the decision to this person."
@@ -159,7 +195,8 @@
     "required": "You must select an option"
   },
   "pv-phone-number-yes" : {
-    "required": "You must enter the potential victim's phone number"
+    "required": "You must enter the potential victim's phone number",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "co-operate-with-police" : {
     "required": "You must select an option"
@@ -169,18 +206,26 @@
     "required": "Upload a document"
   },
   "fr-details-first-name" : {
-    "required": "You must enter your first name "
+    "required": "You must enter your first name ",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-details-last-name" : {
-    "required": "You must enter your last name "
+    "required": "You must enter your last name ",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-details-role" : {
-    "required": "You must enter your role"
+    "required": "You must enter your role",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-details-phone" : {
-    "required": "You must enter a phone number"
+    "required": "You must enter a phone number",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-alternative-contact" : {
-    "email": "You must enter a valid email address"
+    "email": "You must enter a valid email address",
+    "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "refuse-nrm" : {
+    "maxlength": "You must enter no more than 15,000 characters"
   }
 }

@@ -14,10 +14,10 @@ module.exports = {
   },
   'user-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'confirm-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}]
   },
 };
