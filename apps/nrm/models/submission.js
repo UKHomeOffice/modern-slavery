@@ -20,9 +20,9 @@ module.exports = data => {
   const genderMap = {
     'female': 'Female',
     'male': 'Male',
-    'other': 'Other'
+    'unknown': 'Other'
   };
-  response['Customer.Gender'] = genderMap[data['pv-gender']];
+  response['Customer.iGender'] = genderMap[data['pv-gender']];
   response['Customer.Email'] = data['pv-contact-details-email-input'];
   response['Customer.Mobile'] = data['pv-phone-number-yes'];
   response['Customer.Mobile'] = data['pv-phone-number-yes'];
@@ -42,7 +42,7 @@ module.exports = data => {
   response.AdultOrChild = data['pv-under-age'] === 'yes' ? 'Child' : 'Adult';
   response.AdultOrChildDuringExploitation  = data['pv-under-age-at-time-of-exploitation'] === 'yes' ? 'Child' : 'Adult';
   response.VictimAccount = data['what-happened'];
-  response.ExploitationLocationPresented = data['where-exploitation-happened'];
+  response.ExploitationLocationPresented = data['where-exploitation-happened'].toUpperCase();
 
   response.City1 = data['where-exploitation-happened-uk-city-1'];
   response.City2 = data['where-exploitation-happened-uk-city-2'];
@@ -122,7 +122,7 @@ module.exports = data => {
 
   response.OtherVictims = data['any-other-pvs'];
 
-  response.ReportedCase = data['reported-to-police'];
+  response.ReportedCase = data['reported-to-police'] === 'yes' ? 'Yes' : 'No';
   response['CaseContact.Police_force'] = data['reported-to-police-police-forces'];
   response['CaseContact.Alternate_contact'] = data['fr-alternative-contact'];
   response['CaseContact.Alternate_first_responder'] = data['fr-alternative-contact'];
@@ -137,37 +137,30 @@ module.exports = data => {
   response['CaseContactEmail.Local_authority'] = data['local-authority-contacted-about-child-local-authority-email'];
 
   // response['CaseContactCustom1.Police_force'];
-  //
   // response['CaseContactFirstName.Alternate_contact'];
   // response['CaseContactFirstName.Local_authority'];
-  //
   // response['CaseContactAddress.Alternate_contact'];
-  //
   // response['CaseContactTown.Alternate_contact'];
-  //
   // response['CaseContactCounty.Alternate_contact'];
-
   // response['CaseContactPostcode.Alternate_contact'];
-  //
   // response['CaseContactCustom1.Alternate_contact'];
 
   response['CaseContactPhone.Local_authority'] = data['fr-details-phone'];
 
-  response.SafeToEmail = data['pv-contact-details-email-check'];
-  response.SafeToPostal = data['pv-contact-details-post-check'];
+  response.SafeToEmail = data['pv-contact-details-email-check'] === 'true' ? 'Yes' : 'No';
+  response.SafeToPostal = data['pv-contact-details-post-check'] === 'true' ? 'Yes' : 'No';
 
-  // response.CountryLabel;
-  response.Country = data['fr-location']; //eg 'ENG';
+  response.CountryLabel = data['fr-location'];
+  // response.Country = data['fr-location'] //eg ENG;
 
-  // response.HowToNotfy;
-  // response.CanPoliceContactPV;
+  response.HowToNotfy = data['pv-contact-details'] === 'email' ? 'Email' : 'Post';
+  response.CanPoliceContactPV = data['co-operate-with-police'] === 'yes' ? 'Yes' : 'No';
   response.CIDReference = data['reported-to-police-crime-reference'];
   response.HORefType = data['pv-ho-reference-type'];
-  // response.NRMOrDuty;
+  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'Yes' : 'No';
   // response.DTNReason;
-  // response.NeedSupport;
-  response.SendDecisionTo = data['pv-contact-details'];
-  // response.Jurisdiction;
+  response.NeedSupport = data['does-pv-need-support'] === 'yes' ? 'Yes' : 'No';
+  response.SendDecisionTo = data['who-contact']  === 'potential-victim' ? 'PV' : 'FR';
 
   response['Agent.Forename1'] = data['fr-details-first-name'];
   response['Agent.Name'] = data['fr-details-last-name'];
@@ -180,6 +173,8 @@ module.exports = data => {
   // response['Agent.County'];
   // response['Agent.Postcode'];
   // response['Agent.Mobile'];
+
+  response.Jurisdiction = data['fr-location'];
 
   return response;
 };
