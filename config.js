@@ -93,7 +93,6 @@ module.exports = {
     WHO_CONTACT_PV_OPTION: '#who-contact-potential-victim',
     FR_DETAILS_FIRST_NAME_INPUT: '#fr-details-first-name',
     FR_DETAILS_LAST_NAME_INPUT: '#fr-details-last-name',
-    EXPLOITED_IN_UK_CITY_INPUT: '#where-exploitation-happened-uk-city',
-    EXPLOITED_IN_UK_REGION_INPUT: '#where-exploitation-happened-uk-region',
+    EXPLOITED_IN_UK_CITY_INPUT: '#where-exploitation-happened-uk-city-1',
   }
 };

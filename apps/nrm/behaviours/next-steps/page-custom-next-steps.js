@@ -190,5 +190,43 @@ module.exports = {
 
     return nextStep;
   },
-};
+  whereExploitationHappened: (req) => {
+    let nextStep;
 
+    if (req.sessionModel.get('where-exploitation-happened') === 'overseas') {
+      nextStep = '/nrm/where-exploitation-happened-overseas';
+    } else {
+      nextStep = '/nrm/where-exploitation-happened-uk';
+    }
+
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      nextStep += '/edit';
+    }
+
+    return nextStep;
+  },
+  whereExploitationHappenedUk: (req) => {
+    let nextStep;
+
+    if (req.sessionModel.get('where-exploitation-happened') === 'uk-and-overseas') {
+      nextStep = '/nrm/where-exploitation-happened-overseas';
+    } else {
+      nextStep = '/nrm/current-pv-location';
+    }
+
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      nextStep += '/edit';
+    }
+
+    return nextStep;
+  },
+  whereExploitationHappenedOverseas: (req) => {
+    let nextStep = '/nrm/current-pv-location';
+
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      nextStep += '/edit';
+    }
+
+    return nextStep;
+  },
+};

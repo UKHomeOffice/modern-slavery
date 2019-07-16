@@ -32,23 +32,11 @@
   "where-exploitation-happened" : {
     "required": "You must select an option"
   },
-  "where-exploitation-happened-uk-city" : {
-    "required": "You must select a city from the list",
-    "equal": "You must select a city from the list"
+  "where-exploitation-happened-uk-city-1" : {
+    "required": "You must select a city or town from the list"
   },
-  "where-exploitation-happened-uk-region" : {
-    "required": "You must select a region from the list",
-    "equal": "You must select a region from the list"
-  },
-  "where-exploitation-happened-overseas-country" : {
-    "required": "You must select a country from the list",
-    "equal": "You must select a country from the list"
-  },
-  "where-exploitation-happened-other-overseas-other-location" : {
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "where-exploitation-happened-other-uk-other-location" : {
-    "maxlength": "You must enter no more than 15,000 characters"
+  "where-exploitation-happened-overseas-country-1" : {
+    "required": "You must select a country from the list"
   },
   "current-pv-location-uk-city" : {
     "required": "You must select a city from the list",

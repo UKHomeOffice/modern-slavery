@@ -15,6 +15,7 @@ const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
+const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 
 module.exports = {
   name: 'nrm',
@@ -64,19 +65,57 @@ module.exports = {
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
-      behaviours: getPageCustomBackLink('default'),
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened'),
+        getPageCustomNextStep('where-exploitation-happened'),
+      ],
       fields: [
-        'where-exploitation-happened',
-        'where-exploitation-happened-uk-city',
-        'where-exploitation-happened-uk-region',
+        'where-exploitation-happened'
+      ],
+    },
+    '/where-exploitation-happened-uk': {
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened-uk'),
+        getPageCustomNextStep('where-exploitation-happened-uk'),
+        whereExploitationHappenedUk,
+      ],
+      fields: [
+        'where-exploitation-happened-uk-city-1',
+        'where-exploitation-happened-uk-city-2',
+        'where-exploitation-happened-uk-city-3',
+        'where-exploitation-happened-uk-city-4',
+        'where-exploitation-happened-uk-city-5',
+        'where-exploitation-happened-uk-city-6',
+        'where-exploitation-happened-uk-city-7',
+        'where-exploitation-happened-uk-city-8',
+        'where-exploitation-happened-uk-city-9',
+        'where-exploitation-happened-uk-city-10',
         'where-exploitation-happened-other-uk-other-location',
-        'where-exploitation-happened-overseas-country',
+      ],
+    },
+    '/where-exploitation-happened-overseas': {
+      behaviours: [
+        getPageCustomBackLink('where-exploitation-happened-overseas'),
+        getPageCustomNextStep('where-exploitation-happened-overseas'),
+      ],
+      fields: [
+        'where-exploitation-happened-overseas-country-1',
+        'where-exploitation-happened-overseas-country-2',
+        'where-exploitation-happened-overseas-country-3',
+        'where-exploitation-happened-overseas-country-4',
+        'where-exploitation-happened-overseas-country-5',
+        'where-exploitation-happened-overseas-country-6',
+        'where-exploitation-happened-overseas-country-7',
+        'where-exploitation-happened-overseas-country-8',
+        'where-exploitation-happened-overseas-country-9',
+        'where-exploitation-happened-overseas-country-10',
         'where-exploitation-happened-other-overseas-other-location',
       ],
-      next: '/current-pv-location'
     },
     '/current-pv-location': {
-      behaviours: getPageCustomBackLink('default'),
+      behaviours: [
+        getPageCustomBackLink('current-pv-location'),
+      ],
       fields: [
         'current-pv-location-uk-city',
         'current-pv-location-uk-region',

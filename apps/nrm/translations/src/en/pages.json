@@ -21,7 +21,16 @@
     "header": "What did they say happened?"
   },
   "where-exploitation-happened": {
-    "header": "Where were they last exploited?"
+    "header": "Where were they exploited?"
+  },
+  "where-exploitation-happened-uk": {
+    "header": "Where were they exploited in the UK?",
+    "paragraph-1": "If the explioitation was in more then one location, add more towns or cities.",
+    "select-overseas-note": "Once you press continue you will be able to add more details about the overseas locations."
+  },
+  "where-exploitation-happened-overseas": {
+    "header": "Where were they exploited overseas?",
+    "paragraph-1": "If the explioitation was in more then one location, add more countries."
   },
   "current-pv-location": {
     "header": "Where are they now?"
@@ -178,7 +187,13 @@
         "label": "Exploitation type"
       },
       "where-exploitation-happened": {
-        "label": "Exploitation location"
+        "label": "Where were they exploited?"
+      },
+      "where-exploitation-happened-uk": {
+        "label": "Where were they exploited in the UK?"
+      },
+      "where-exploitation-happened-overseas": {
+        "label": "Where were they exploited overseas?"
       },
       "current-pv-location": {
         "label": "Current location"
