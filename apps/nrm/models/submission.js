@@ -18,6 +18,10 @@ module.exports = data => {
     response['Customer.DOBKnown'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
   }
+  /* eslint-disable no-warning-comments */
+  // TODO: Remove these API fields once we know they're not needed.
+  /* eslint-enable no-warning-comments */
+  // At the moment they're in here because they exist in casework but we don't have corresponding fields in the form
   // response['Customer.AgeGroup'];
   const genderMap = {
     'female': 'Female',

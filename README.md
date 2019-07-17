@@ -5,6 +5,7 @@ An app for a first responder to submit a form for a possible victim of modern sl
 # Contents
 
 1. [Install & Run](#install-and-run)
+    - [Environment variables](#env-vars)
     - [Install & Run on local machine](#install-and-run-on-local-machine)
     - [Install & Run on docker container](#install-and-run-on-docker-container)
 
@@ -25,6 +26,18 @@ An app for a first responder to submit a form for a possible victim of modern sl
 
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
+
+### Environment variables <a name="env-vars"></a>
+
+You'll need to set the following env vars to run the application:
+
+```
+NOTIFY_KEY       | Your GOV.UK notify key
+ICASEWORK_KEY    | Key for the iCasework API
+ICASEWORK_SECRET | Secret for the API key
+```
+
+Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
 
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
