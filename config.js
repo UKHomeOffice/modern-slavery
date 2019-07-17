@@ -38,6 +38,15 @@ module.exports = {
     caseworkerEmail: process.env.CASEWORKER_EMAIL || 'ms-test@homeoffice.gov.uk',
     feedbackEmail: process.env.FEEDBACK_EMAIL || 'ms-test@homeoffice.gov.uk'
   },
+  icasework: {
+    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
+    createpath: '/createcase',
+    uploadpath: '/uploaddocuments',
+    getcasepath: '/getcasedetails',
+    key: process.env.ICASEWORK_KEY,
+    secret: process.env.ICASEWORK_SECRET,
+    timeout: process.env.ICASEWORK_TIMEOUT || 20000
+  },
   pdf: {
     template: './apps/nrm/views/pdf.html',
     // problems with creating temp folder so use images folder
