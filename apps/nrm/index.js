@@ -16,10 +16,6 @@ const formatAnswers = require('./behaviours/format-answers');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
-const Submission = require('./behaviours/casework-submission');
-const submission = Submission({
-  prepare: require('./models/submission')
-});
 
 module.exports = {
   name: 'nrm',
@@ -579,13 +575,13 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page'),
-        formatAnswers,
-        hideAndShowSummaryFields,
-        getPageCustomBackLink('confirm'),
-        generateSendPdf,
-        submission,
-        'complete'
+        require(
+          'hof-behaviour-summary-page'),
+          formatAnswers,
+          hideAndShowSummaryFields,
+          getPageCustomBackLink('confirm'),
+          generateSendPdf,
+          'complete'
       ],
       next: '/confirmation'
     },
