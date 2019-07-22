@@ -20,6 +20,9 @@ module.exports = {
     '/support-organisations': {
       backLink: false,
     },
+    '/privacy': {
+      backLink: false,
+    },
     '/who-do-you-work-for': {
       fields: ['user-organisation', 'user-email'],
       next: '/confirm-email'
