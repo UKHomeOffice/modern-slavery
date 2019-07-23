@@ -3,7 +3,7 @@ apps/*/translations/*
 !apps/*/translations/src
 node_modules/
 .env
-.vscode/settings.json
+.vscode/*
 .idea/vcs.xml
 .idea/workspace.xml
 dump.rdb
