@@ -215,7 +215,7 @@ module.exports = {
     }
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
@@ -224,7 +224,7 @@ module.exports = {
     let nextStep = '/nrm/current-pv-location';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      nextStep += '/edit';
+      nextStep = '/nrm/confirm';
     }
 
     return nextStep;
