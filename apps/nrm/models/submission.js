@@ -14,41 +14,56 @@ module.exports = data => {
   response['Customer.Postcode'] = data['pv-contact-details-postcode'];
   response['Customer.ContactMethod'] = data['pv-contact-details'];
   response['Customer.Alias'] = data['pv-name-nickname'];
+  response['Customer.Judrisdiction'] = data['fr-location'].toUppperCase().replace(' ', '');
   if (data['pv-dob']) {
-    response['Customer.DOBKnown'] = 'Yes';
+    response['Customer.Custom7'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
   }
   /* eslint-disable no-warning-comments */
   // TODO: Remove these API fields once we know they're not needed.
   /* eslint-enable no-warning-comments */
-  // At the moment they're in here because they exist in casework but we don't have corresponding fields in the form
-  // response['Customer.AgeGroup'];
   const genderMap = {
     'female': 'Female',
     'male': 'Male',
     'unknown': 'Other'
   };
-  response['Customer.iGender'] = genderMap[data['pv-gender']];
+  response['Customer.Gender'] = genderMap[data['pv-gender']];
   response['Customer.Email'] = data['pv-contact-details-email-input'];
   response['Customer.Mobile'] = data['pv-phone-number-yes'];
-  response['Customer.Mobile'] = data['pv-phone-number-yes'];
   // response['Customer.ContactTime'];
-  response['Customer.HaveChildren'] = data['does-pv-have-children'] === 'yes' ? 'Yes' : 'No';
-  response['Customer.NumberOfChildren'] = data['does-pv-have-children-yes-amount'];
+  // Have children?
+  response['Customer.Custom9'] = data['does-pv-have-children'] === 'yes' ? 'Yes' : 'No';
+  // Number Of Children
+  response['Customer.Custom10'] = data['does-pv-have-children-yes-amount'];
   response['Customer.Nationality'] = data['pv-nationality'];
-  response['Customer.DualNationality'] = data['pv-nationality-second'];
-  // response['Customer.Country'];
-  // response['Customer.ReferenceNumbers'] = data['pv-ho-reference-type'];
-  response['Customer.InterpreterNeeded'] = data['pv-interpreter-requirements'] === 'yes' ? 'Yes' : 'No';
-  response['Customer.InterpreterLanguage'] = data['pv-interpreter-requirements-language'];
-  response['Customer.HelpWithCommunication'] = data['pv-other-help-with-communication'] === 'yes' ? 'Yes' : 'No';
-  response['Customer.CommunicationAid'] = data['pv-other-help-with-communication-aid'];
-  // response['Customer.PassportNumber'];
-
-  response.AdultOrChild = data['pv-under-age'] === 'yes' ? 'Child' : 'Adult';
+  // Dual nationality
+  response['Customer.Custom11'] = data['pv-nationality-second'];
+  // Country field pv-address?
+  // response['Customer.Custom12'];
+  // Interpreter Needed
+  response['Customer.Custom13'] = data['pv-interpreter-requirements'] === 'yes' ? 'Yes' : 'No';
+  // Interpreter Language
+  response['Customer.Custom14'] = data['pv-interpreter-requirements-language'];
+  // Help With Communication
+  response['Customer.Custom15'] = data['pv-other-help-with-communication'] === 'yes' ? 'Yes' : 'No';
+  // Communication Aid
+  response['Customer.Custom16'] = data['pv-other-help-with-communication-aid'];
+  // PassportNumber
+  // response['Customer.AlternativeId2'];
+  const underAgeMap = {
+    'yes': 'Child',
+    'no': 'Adult',
+    'not-sure': 'Unknown'
+  };
+  response.AdultOrChild = underAgeMap[data['pv-under-age']];
   response.AdultOrChildDuringExploitation = data['pv-under-age-at-time-of-exploitation'] === 'yes' ? 'Child' : 'Adult';
   response.VictimAccount = data['what-happened'];
-  response.ExploitationLocationPresented = data['where-exploitation-happened'].toUpperCase();
+  const locationMap = {
+    'uk': 'UK',
+    'overseas': 'OVERSEAS',
+    'uk-and-overseas': 'BOTH'
+  };
+  response.ExploitationLocationPresented = locationMap[data['where-exploitation-happened']];
 
   response.City1 = data['where-exploitation-happened-uk-city-1'];
   response.City2 = data['where-exploitation-happened-uk-city-2'];
@@ -129,7 +144,7 @@ module.exports = data => {
   response.OtherVictims = data['any-other-pvs'];
 
   response.ReportedCase = data['reported-to-police'] === 'yes' ? 'Yes' : 'No';
-  response['CaseContact.Police_force'] = data['reported-to-police-police-forces'];
+  response['CaseContactCustom2.Police_force'] = data['reported-to-police-police-forces'];
   response['CaseContact.Alternate_contact'] = data['fr-alternative-contact'];
   response['CaseContact.Alternate_first_responder'] = data['fr-alternative-contact'];
   response['CaseContact.Local_authority'] = data['local-authority-contacted-about-child-local-authority-name'];
@@ -157,17 +172,18 @@ module.exports = data => {
   response.SafeToEmail = data['pv-contact-details-email-check'] === 'true' ? 'Yes' : 'No';
   response.SafeToPostal = data['pv-contact-details-post-check'] === 'true' ? 'Yes' : 'No';
 
-  response.CountryLabel = data['fr-location'];
   // response.Country = data['fr-location'] //eg ENG;
 
   response.HowToNotfy = data['pv-contact-details'] === 'email' ? 'Email' : 'Post';
   response.CanPoliceContactPV = data['co-operate-with-police'] === 'yes' ? 'Yes' : 'No';
-  response.CIDReference = data['reported-to-police-crime-reference'];
+  // CaseContactCustom4.Police_force
+  // CID Reference
+  response['CaseContactCustom4.Police_force'] = data['reported-to-police-crime-reference'];
   response.HORefType = data['pv-ho-reference-type'];
   response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'Yes' : 'No';
   // response.DTNReason;
   response.NeedSupport = data['does-pv-need-support'] === 'yes' ? 'Yes' : 'No';
-  response.SendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'FR';
+  response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
 
   response['Agent.Forename1'] = data['fr-details-first-name'];
   response['Agent.Name'] = data['fr-details-last-name'];
