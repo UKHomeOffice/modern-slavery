@@ -19,9 +19,9 @@
         </div>
       </div>
     </div>
-    
+
     <hr/>
-        
+
     <div class= "row">
       <h2>Section 1 - Your details</h2>
     </div>
@@ -35,9 +35,9 @@
       </div>
       <div class="col-sm-10">
         {{{values.fr-details-first-name}}}
-        {{^values.fr-details-first-name}} 
+        {{^values.fr-details-first-name}}
           No information
-        {{/values.fr-details-first-name}} 
+        {{/values.fr-details-first-name}}
       </div>
     </div>
 
@@ -207,31 +207,10 @@
 
     <div class= "row bgrey">
       <h3 class="bold">Exploitation location</h3>
-      
-    {{^exploitationUk}}
-      <div class="col-sm-2 bold pad-left-10">
-        Overseas
-      </div>
-      <div class="col-sm-10">
-        {{{values.where-exploitation-happened-overseas-country}}}
-      </div>
     </div>
-
-    <div class="row bgrey">
-      <div class="col-sm-2 bold pad-left-10">
-        Address
-      </div>
-      <div class="col-sm-10">
-        {{{values.where-exploitation-happened-other-overseas-other-location}}}
-        {{^values.where-exploitation-happened-other-overseas-other-location}}
-        No information
-        {{/values.where-exploitation-happened-other-overseas-other-location}}
-      </div>
-    </div>
-    {{/exploitationUk}}
 
     {{#exploitationUk}}
-
+    <div>
       <div class="col-sm-3 bold">
         Country
       </div>
@@ -239,28 +218,116 @@
         UK
       </div>
     </div>
-    
-    {{#values.where-exploitation-happened-uk-city}}
-    <div class="row bgrey">  
+
+    {{#values.where-exploitation-happened-uk-city-1}}
+    <div class="row bgrey">
       <div class="col-sm-3 bold pad-left-10">
         City
       </div>
       <div class="col-sm-9">
-        {{{values.where-exploitation-happened-uk-city}}}
+        {{{values.where-exploitation-happened-uk-city-1}}}
       </div>
     </div>
-    {{/values.where-exploitation-happened-uk-city}}
+    {{/values.where-exploitation-happened-uk-city-1}}
 
-    {{#values.where-exploitation-happened-uk-region}}
+    {{#values.where-exploitation-happened-uk-city-2}}
     <div class="row bgrey">
       <div class="col-sm-3 bold pad-left-10">
-        Region
+        City
       </div>
       <div class="col-sm-9">
-        {{{values.where-exploitation-happened-uk-region}}}
+        {{{values.where-exploitation-happened-uk-city-2}}}
       </div>
     </div>
-    {{/values.where-exploitation-happened-uk-region}}
+    {{/values.where-exploitation-happened-uk-city-2}}
+
+    {{#values.where-exploitation-happened-uk-city-3}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-3}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-3}}
+
+    {{#values.where-exploitation-happened-uk-city-4}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-4}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-4}}
+
+    {{#values.where-exploitation-happened-uk-city-5}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-5}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-5}}
+
+    {{#values.where-exploitation-happened-uk-city-6}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-6}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-6}}
+
+    {{#values.where-exploitation-happened-uk-city-7}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-7}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-7}}
+
+    {{#values.where-exploitation-happened-uk-city-8}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-8}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-8}}
+
+    {{#values.where-exploitation-happened-uk-city-9}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-9}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-9}}
+
+    {{#values.where-exploitation-happened-uk-city-10}}
+    <div class="row bgrey">
+      <div class="col-sm-3 bold pad-left-10">
+        City
+      </div>
+      <div class="col-sm-9">
+        {{{values.where-exploitation-happened-uk-city-10}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-uk-city-10}}
 
     {{#values.where-exploitation-happened-other-uk-other-location}}
     <div class="row bgrey">
@@ -272,8 +339,133 @@
       </div>
     </div>
     {{/values.where-exploitation-happened-other-uk-other-location}}
-    
+
     {{/exploitationUk}}
+
+    {{#exploitationOverseas}}
+
+    {{#values.where-exploitation-happened-overseas-country-1}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-1}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-1}}
+
+    {{#values.where-exploitation-happened-overseas-country-2}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-2}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-2}}
+
+    {{#values.where-exploitation-happened-overseas-country-3}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-3}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-3}}
+
+    {{#values.where-exploitation-happened-overseas-country-4}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-4}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-4}}
+
+    {{#values.where-exploitation-happened-overseas-country-5}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-5}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-5}}
+
+    {{#values.where-exploitation-happened-overseas-country-6}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-6}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-6}}
+
+    {{#values.where-exploitation-happened-overseas-country-7}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-7}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-7}}
+
+    {{#values.where-exploitation-happened-overseas-country-8}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-8}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-8}}
+
+    {{#values.where-exploitation-happened-overseas-country-9}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-9}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-9}}
+
+    {{#values.where-exploitation-happened-overseas-country-10}}
+    <div class="row bgrey">
+      <div class="col-sm-2 bold pad-left-10">
+        Overseas
+      </div>
+      <div class="col-sm-10">
+        {{{values.where-exploitation-happened-overseas-country-10}}}
+      </div>
+    </div>
+    {{/values.where-exploitation-happened-overseas-country-10}}
+
+  <div class="row bgrey">
+    <div class="col-sm-2 bold pad-left-10">
+      Address
+    </div>
+    <div class="col-sm-10">
+      {{{values.where-exploitation-happened-other-overseas-other-location}}}
+      {{^values.where-exploitation-happened-other-overseas-other-location}}
+      No information
+      {{/values.where-exploitation-happened-other-overseas-other-location}}
+    </div>
+  </div>
+  {{/exploitationOverseas}}
 
     <div class= "row bgrey">
       <h3 class="bold">Where are they now?</h3>
@@ -336,9 +528,9 @@
         {{#values.types-of-exploitation-prostitution}}
           <li>Forced into prostitution</li>
         {{/values.types-of-exploitation-prostitution}}
-        {{#values.types-of-exploitation-child-exploitation}} 
+        {{#values.types-of-exploitation-child-exploitation}}
           <li>Child sexual exploitation</li>
-        {{/values.types-of-exploitation-child-exploitation}} 
+        {{/values.types-of-exploitation-child-exploitation}}
         {{#values.types-of-exploitation-taken-somewhere}}
           <li>Taken somewhere, held against their will and sexually assaulted</li>
         {{/values.types-of-exploitation-taken-somewhere}}
