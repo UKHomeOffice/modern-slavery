@@ -21,12 +21,14 @@ const createTemporaryFileName = () => {
 
 const sendEmailWithFile = (file, email) => {
   fs.readFile(file, (err, pdfFile) => {
-    console.log(err);
+    if (err) {
+      console.log(err);
+    }
     notifyClient.sendEmail(templateId, email, {
       personalisation: {
         documentLink: notifyClient.prepareUpload(pdfFile)
       }
-    }).then(response => console.log(response.body)).catch(error => console.error(error));
+    }).then(console.log('>>>>>>>>>>> PDF Sent')).catch(error => console.error(error));
   });
 };
 
@@ -35,7 +37,7 @@ const deleteFile = (file) => {
     if (err) {
       throw err;
     }
-    console.log(`successfully deleted ${file}`);
+    console.log('>>>>>>>>>>> successfully deleted PDF');
   });
 };
 
@@ -46,13 +48,8 @@ module.exports = superclass => class extends superclass {
     const session = req.sessionModel.attributes;
     const data = await util.transformData(session);
     const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
-    const firstResponderEmail = req.sessionModel.get('user-email');
 
     await sendEmailWithFile(file, caseworkerEmail);
-
-    if (firstResponderEmail) {
-      await sendEmailWithFile(file, firstResponderEmail);
-    }
 
     await deleteFile(file);
 
