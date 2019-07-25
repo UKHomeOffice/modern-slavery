@@ -274,7 +274,7 @@ module.exports = {
     let backLink = '/nrm/where-exploitation-happened';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
-      backLink += '/edit';
+      backLink = '/nrm/confirm';
     }
 
     return backLink;
@@ -282,7 +282,9 @@ module.exports = {
   whereExploitationHappenedOverseas: (req) => {
     let backLink;
 
-    if (req.sessionModel.get('where-exploitation-happened') === 'overseas') {
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      backLink = '/nrm/confirm';
+    } else if (req.sessionModel.get('where-exploitation-happened') === 'overseas') {
       backLink = '/nrm/where-exploitation-happened';
     } else {
       backLink = '/nrm/where-exploitation-happened-uk';
@@ -293,7 +295,9 @@ module.exports = {
   currentPvLocation: (req) => {
     let backLink;
 
-    if (req.sessionModel.get('where-exploitation-happened') === 'uk') {
+    if (req.params && req.params.action && req.params.action === 'edit') {
+      backLink = '/nrm/confirm';
+    } else if (req.sessionModel.get('where-exploitation-happened') === 'uk') {
       backLink = '/nrm/where-exploitation-happened-uk';
     } else {
       backLink = '/nrm/where-exploitation-happened-overseas';

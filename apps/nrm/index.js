@@ -43,7 +43,7 @@ module.exports = {
         getPageCustomNextStep('pv-under-age'),
         ResetOnChange({
           currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
-        })
+        }),
       ],
       fields: ['pv-under-age'],
     },
@@ -72,6 +72,23 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('where-exploitation-happened'),
         getPageCustomNextStep('where-exploitation-happened'),
+        ResetOnChange({
+          currentField: 'where-exploitation-happened',
+          storeFields: [
+            'fr-location',
+            'user-organisation',
+            'user-email',
+            'pv-under-age',
+            'local-authority-contacted-about-child-local-authority-name',
+            'local-authority-contacted-about-child-local-authority-phone',
+            'local-authority-contacted-about-child-local-authority-email',
+            'local-authority-contacted-about-child-local-authority-first-name',
+            'local-authority-contacted-about-child-local-authority-last-name',
+            'pv-under-age-at-time-of-exploitation',
+            'what-happened',
+          ],
+        }),
+
       ],
       fields: [
         'where-exploitation-happened'

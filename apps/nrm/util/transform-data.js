@@ -28,7 +28,10 @@ module.exports = {
     if (data.reportLocation === 'Northern-ireland') {
       data.reportLocation = 'Northern Ireland';
     }
-    data.exploitationUk = equal(values['where-exploitation-happened'], 'uk');
+    data.exploitationUk = equal(values['where-exploitation-happened'], 'uk')
+    || equal(values['where-exploitation-happened'], 'uk-and-overseas');
+    data.exploitationOverseas = equal(values['where-exploitation-happened'], 'overseas')
+    || equal(values['where-exploitation-happened'], 'uk-and-overseas');
     data.isChild = equal(values['pv-under-age'], 'yes');
     data.isAdult = equal(values['pv-under-age'], 'no');
     data.isUnderAge = values['pv-under-age'];
