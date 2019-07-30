@@ -2,37 +2,36 @@
 
 /* eslint complexity: 0 max-statements: 0 */
 
+const _ = require('lodash');
+
 module.exports = data => {
   const response = {};
 
-  response.Type = '560734';
-  response['Customer.FirstName'] = data['pv-name-first-name'];
+  response.Type = '662265';
+  response['Customer.Forename1'] = data['pv-name-first-name'];
   response['Customer.Surname'] = data['pv-name-last-name'];
   response['Customer.Address'] = data['pv-contact-details-street'];
   response['Customer.Town'] = data['pv-contact-details-town'];
   response['Customer.County'] = data['pv-contact-details-county'];
   response['Customer.Postcode'] = data['pv-contact-details-postcode'];
-  response['Customer.ContactMethod'] = data['pv-contact-details'];
+  response['Customer.ContactMethod'] = _.upperFirst(data['pv-contact-details']);
   response['Customer.Alias'] = data['pv-name-nickname'];
   response['Customer.Judrisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
   if (data['pv-dob']) {
     response['Customer.Custom7'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
   }
-  /* eslint-disable no-warning-comments */
-  // TODO: Remove these API fields once we know they're not needed.
-  /* eslint-enable no-warning-comments */
   const genderMap = {
     'female': 'Female',
     'male': 'Male',
     'unknown': 'Other'
   };
-  response['Customer.Gender'] = genderMap[data['pv-gender']];
+  // Gender
+  response['Customer.Custom17'] = genderMap[data['pv-gender']];
   response['Customer.Email'] = data['pv-contact-details-email-input'];
-  response['Customer.Mobile'] = data['pv-phone-number-yes'];
-  // response['Customer.ContactTime'];
+  response['Customer.Phone'] = data['pv-phone-number-yes'];
   // Have children?
-  response['Customer.Custom9'] = data['does-pv-have-children'] === 'yes' ? 'Yes' : 'No';
+  response['Customer.Custom9'] = _.upperFirst(data['does-pv-have-children']);
   // Number Of Children
   response['Customer.Custom10'] = data['does-pv-have-children-yes-amount'];
   response['Customer.Nationality'] = data['pv-nationality'];
@@ -41,22 +40,20 @@ module.exports = data => {
   // Country field pv-address?
   // response['Customer.Custom12'];
   // Interpreter Needed
-  response['Customer.Custom13'] = data['pv-interpreter-requirements'] === 'yes' ? 'Yes' : 'No';
+  response['Customer.Custom13'] = _.upperFirst(data['pv-interpreter-requirements']);
   // Interpreter Language
   response['Customer.Custom14'] = data['pv-interpreter-requirements-language'];
   // Help With Communication
-  response['Customer.Custom15'] = data['pv-other-help-with-communication'] === 'yes' ? 'Yes' : 'No';
+  response['Customer.Custom15'] = _.upperFirst(data['pv-other-help-with-communication']);
   // Communication Aid
   response['Customer.Custom16'] = data['pv-other-help-with-communication-aid'];
-  // PassportNumber
-  // response['Customer.AlternativeId2'];
   const underAgeMap = {
     'yes': 'Child',
     'no': 'Adult',
     'not-sure': 'Unknown'
   };
   response.AdultOrChild = underAgeMap[data['pv-under-age']];
-  response.AdultOrChildDuringExploitation = data['pv-under-age-at-time-of-exploitation'] === 'yes' ? 'Child' : 'Adult';
+  response.AdultOrChildDuringExploitation = data['pv-under-age-at-time-of-exploitation'];
   response.VictimAccount = data['what-happened'];
   const locationMap = {
     'uk': 'UK',
@@ -76,29 +73,18 @@ module.exports = data => {
   response.City9 = data['where-exploitation-happened-uk-city-9'];
   response.City10 = data['where-exploitation-happened-uk-city-10'];
 
-  // response.Region1;
-  // response.Region2;
-  // response.Region3;
-  // response.Region4;
-  // response.Region5;
-  // response.Region6;
-  // response.Region7;
-  // response.Region8;
-  // response.Region9;
-  // response.Region10;
-
   response.ExploitationUKAddress = data['where-exploitation-happened-other-uk-other-location'];
 
-  response.ExploitationOverseasRegion = data['where-exploitation-happened-overseas-country-1'];
-  response.ExploitationOverseasRegion2 = data['where-exploitation-happened-overseas-country-2'];
-  response.ExploitationOverseasRegion3 = data['where-exploitation-happened-overseas-country-3'];
-  response.ExploitationOverseasRegion4 = data['where-exploitation-happened-overseas-country-4'];
-  response.ExploitationOverseasRegion5 = data['where-exploitation-happened-overseas-country-5'];
-  response.ExploitationOverseasRegion6 = data['where-exploitation-happened-overseas-country-6'];
-  response.ExploitationOverseasRegion7 = data['where-exploitation-happened-overseas-country-7'];
-  response.ExploitationOverseasRegion8 = data['where-exploitation-happened-overseas-country-8'];
-  response.ExploitationOverseasRegion9 = data['where-exploitation-happened-overseas-country-9'];
-  response.ExploitationOverseasRegion10 = data['where-exploitation-happened-overseas-country-10'];
+  response.Country1 = data['where-exploitation-happened-overseas-country-1'];
+  response.Country2 = data['where-exploitation-happened-overseas-country-2'];
+  response.Country3 = data['where-exploitation-happened-overseas-country-3'];
+  response.Country4 = data['where-exploitation-happened-overseas-country-4'];
+  response.Country5 = data['where-exploitation-happened-overseas-country-5'];
+  response.Country6 = data['where-exploitation-happened-overseas-country-6'];
+  response.Country7 = data['where-exploitation-happened-overseas-country-7'];
+  response.Country8 = data['where-exploitation-happened-overseas-country-8'];
+  response.Country9 = data['where-exploitation-happened-overseas-country-9'];
+  response.Country10 = data['where-exploitation-happened-overseas-country-10'];
 
   response.ExploitationOverseasAddress = data['where-exploitation-happened-other-overseas-other-location'];
 
@@ -143,46 +129,36 @@ module.exports = data => {
 
   response.OtherVictims = data['any-other-pvs'];
 
-  response.ReportedCase = data['reported-to-police'] === 'yes' ? 'Yes' : 'No';
-  response['CaseContactCustom2.Police_force'] = data['reported-to-police-police-forces'];
-  response['CaseContact.Alternate_contact'] = data['fr-alternative-contact'];
-  response['CaseContact.Alternate_first_responder'] = data['fr-alternative-contact'];
-  response['CaseContact.Local_authority'] = data['local-authority-contacted-about-child-local-authority-name'];
+  response.ReportedCase = _.upperFirst(data['reported-to-police']);
+  response.PoliceForce = data['reported-to-police-police-forces'];
+  response.AltContactFirstName = data['fr-details-first-name'];
+  response.AltContactName = data['fr-details-last-name'];
+  response.AltContactEmail = data['fr-alternative-contact'];
 
-  response['CaseContactOrganisation.Police_force'] = data['reported-to-police-police-forces'];
-  response['CaseContactOrganisation.Local_authority']
-    = data['local-authority-contacted-about-child-local-authority-name'];
-
-  response['CaseContactEmail.Police_force'] = data['local-authority-contacted-about-child-local-authority-email'];
-  response['CaseContactEmail.Alternate_contact'] = data['fr-alternative-contact'];
-  response['CaseContactEmail.Alternate_first_responder'] = data['fr-alternative-contact'];
-  response['CaseContactEmail.Local_authority'] = data['local-authority-contacted-about-child-local-authority-email'];
-
-  // response['CaseContactCustom1.Police_force'];
-  // response['CaseContactFirstName.Alternate_contact'];
-  // response['CaseContactFirstName.Local_authority'];
-  // response['CaseContactAddress.Alternate_contact'];
-  // response['CaseContactTown.Alternate_contact'];
-  // response['CaseContactCounty.Alternate_contact'];
-  // response['CaseContactPostcode.Alternate_contact'];
-  // response['CaseContactCustom1.Alternate_contact'];
-
-  response['CaseContactPhone.Local_authority'] = data['fr-details-phone'];
+  response.LocalAuthority = data['local-authority-contacted-about-child-local-authority-name'];
+  response.LAFirstName = data['local-authority-contacted-about-child-local-authority-first-name'];
+  response.LALastName = data['local-authority-contacted-about-child-local-authority-last-name'];
+  response.LAPhone = data['local-authority-contacted-about-child-local-authority-phone'];
+  response.LAEmail = data['local-authority-contacted-about-child-local-authority-email'];
 
   response.SafeToEmail = data['pv-contact-details-email-check'] === 'true' ? 'Yes' : 'No';
   response.SafeToPostal = data['pv-contact-details-post-check'] === 'true' ? 'Yes' : 'No';
 
-  // response.Country = data['fr-location'] //eg ENG;
+  const countryKey = {
+    'england': 'ENG',
+    'wales': 'WAL',
+    'scotland': 'SCOT',
+    'northern-ireland': 'NI'
+  };
+  response.Country = countryKey[data['fr-location']];
 
   response.HowToNotfy = data['pv-contact-details'] === 'email' ? 'Email' : 'Post';
-  response.CanPoliceContactPV = data['co-operate-with-police'] === 'yes' ? 'Yes' : 'No';
-  // CaseContactCustom4.Police_force
-  // CID Reference
-  response['CaseContactCustom4.Police_force'] = data['reported-to-police-crime-reference'];
+  response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
+  response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.HORefType = data['pv-ho-reference-type'];
-  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'Yes' : 'No';
-  // response.DTNReason;
-  response.NeedSupport = data['does-pv-need-support'] === 'yes' ? 'Yes' : 'No';
+  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'NRM' : 'DTN';
+  response.DTNReason = data['refuse-nrm'];
+  response.NeedSupport = _.upperFirst(data['does-pv-need-support']);
   response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
 
   response['Agent.Forename1'] = data['fr-details-first-name'];
@@ -191,13 +167,6 @@ module.exports = data => {
   response['Agent.Phone'] = data['fr-details-phone'];
   response['Agent.Jobtitle'] = data['fr-details-role'];
   response['Agent.Organisation'] = data['user-organisation'];
-  // response['Agent.Address'];
-  // response['Agent.Town'];
-  // response['Agent.County'];
-  // response['Agent.Postcode'];
-  // response['Agent.Mobile'];
-
-  response.Jurisdiction = data['fr-location'];
 
   return response;
 };
