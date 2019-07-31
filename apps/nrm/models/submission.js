@@ -7,14 +7,15 @@ const _ = require('lodash');
 module.exports = data => {
   const response = {};
 
-  response.Type = '662265';
+  response.Type = data['pv-want-to-submit-nrm'] === 'yes' ? '560734' : '662265';
   response['Customer.Forename1'] = data['pv-name-first-name'];
   response['Customer.Surname'] = data['pv-name-last-name'];
   response['Customer.Address'] = data['pv-contact-details-street'];
   response['Customer.Town'] = data['pv-contact-details-town'];
   response['Customer.County'] = data['pv-contact-details-county'];
   response['Customer.Postcode'] = data['pv-contact-details-postcode'];
-  response['Customer.ContactMethod'] = _.upperFirst(data['pv-contact-details']);
+  response['Customer.ContactMethod'] = _.isArray(data['pv-contact-details']) ?
+    'Email, Post' : _.upperFirst(data['pv-contact-details']);
   response['Customer.Alias'] = data['pv-name-nickname'];
   response['Customer.Judrisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
   if (data['pv-dob']) {
@@ -121,7 +122,7 @@ module.exports = data => {
     response.ComponentOrgansRemoved = 'Yes';
   }
   if (data['types-of-exploitation-unpaid-household-work'] === 'true') {
-    response.ComponentDomesticServitude = 'Yes';
+    response.ExploitationOther = 'Yes';
   }
   if (data['types-of-exploitation-other'] === 'true') {
     response.ComponentDomesticServitude = data['other-exploitation-details'];
@@ -151,12 +152,16 @@ module.exports = data => {
     'northern-ireland': 'NI'
   };
   response.Country = countryKey[data['fr-location']];
+  response.CountryLabel = _.upperFirst(data['fr-location']);
 
-  response.HowToNotfy = data['pv-contact-details'] === 'email' ? 'Email' : 'Post';
+
+  response.HowToNotify = _.isArray(data['pv-contact-details']) ?
+    'Email, Post' : _.upperFirst(data['pv-contact-details']);
   response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
-  response.HORefType = data['pv-ho-reference-type'];
+  response.CIDReference = data['pv-ho-reference-type'];
   response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'NRM' : 'DTN';
+
   response.DTNReason = data['refuse-nrm'];
   response.NeedSupport = _.upperFirst(data['does-pv-need-support']);
   response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
@@ -167,6 +172,19 @@ module.exports = data => {
   response['Agent.Phone'] = data['fr-details-phone'];
   response['Agent.Jobtitle'] = data['fr-details-role'];
   response['Agent.Organisation'] = data['user-organisation'];
+
+  response.AlternateFREmail = data['fr-alternative-contact'];
+
+  response.AltContactFirstName = data['someone-else-first-name'];
+  response.AltContactName = data['someone-else-last-name'];
+  response.AltContactAddress = data['someone-else-street'];
+  response.AltContactTown = data['someone-else-town'];
+  response.AltContactCounty = data['someone-else-county'];
+  response.AltContactPostcode = data['someone-else-postcode'];
+  response.AltContactEmail = data['someone-else-email-input'];
+  response.AltContactPermissionToSend = data['someone-else-permission-check'] === 'true' ? 'Yes' : 'No';
+
+  response.SupportProviderContactByPhone = data['pv-phone-number-yes'];
 
   return response;
 };
