@@ -504,7 +504,8 @@ module.exports = {
           'who-contact',
         ]),
         deleteOnChange({
-          currentField: 'co-operate-with-police', deleteFields: [
+          currentField: 'co-operate-with-police',
+          deleteFields: [
             'pv-name-first-name',
             'pv-name-last-name',
             'pv-name-nickname',
@@ -521,7 +522,26 @@ module.exports = {
             'fr-details-role',
             'fr-details-phone',
             'fr-alternative-contact',
-          ]
+          ],
+          exceptions: [
+            {
+              field: 'pv-want-to-submit-nrm',
+              value: 'yes',
+              exemptFields: [
+                'pv-name-first-name',
+                'pv-name-last-name',
+                'pv-name-nickname',
+                'pv-contact-details',
+                'pv-contact-details-email-input',
+                'pv-contact-details-email-check',
+                'pv-contact-details-street',
+                'pv-contact-details-town',
+                'pv-contact-details-county',
+                'pv-contact-details-postcode',
+                'pv-contact-details-post-check',
+              ],
+            },
+          ],
         }),
       ],
     },
