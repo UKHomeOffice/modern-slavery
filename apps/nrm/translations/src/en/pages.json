@@ -25,12 +25,12 @@
   },
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
-    "paragraph-1": "If the explioitation was in more then one location, add more towns or cities.",
+    "paragraph-1": "If the exploitation was in more then one location, add more towns or cities.",
     "select-overseas-note": "Once you press continue you will be able to add more details about the overseas locations."
   },
   "where-exploitation-happened-overseas": {
     "header": "Where were they exploited overseas?",
-    "paragraph-1": "If the explioitation was in more then one location, add more countries."
+    "paragraph-1": "If the exploitation was in more then one location, add more countries."
   },
   "current-pv-location": {
     "header": "Where are they now?"
