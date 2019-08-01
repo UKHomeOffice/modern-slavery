@@ -17,7 +17,7 @@ module.exports = data => {
   response['Customer.ContactMethod'] = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
   response['Customer.Alias'] = data['pv-name-nickname'];
-  response['Customer.Judrisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
+  response['Customer.Jurisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
   if (data['pv-dob']) {
     response['Customer.Custom7'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
@@ -122,19 +122,16 @@ module.exports = data => {
     response.ComponentOrgansRemoved = 'Yes';
   }
   if (data['types-of-exploitation-unpaid-household-work'] === 'true') {
-    response.ExploitationOther = 'Yes';
+    response.ComponentDomesticServitude = 'Yes';
   }
   if (data['types-of-exploitation-other'] === 'true') {
-    response.ComponentDomesticServitude = data['other-exploitation-details'];
+    response.ExploitationOther = data['other-exploitation-details'];
   }
 
   response.OtherVictims = data['any-other-pvs'];
 
   response.ReportedCase = _.upperFirst(data['reported-to-police']);
   response.PoliceForce = data['reported-to-police-police-forces'];
-  response.AltContactFirstName = data['fr-details-first-name'];
-  response.AltContactName = data['fr-details-last-name'];
-  response.AltContactEmail = data['fr-alternative-contact'];
 
   response.LocalAuthority = data['local-authority-contacted-about-child-local-authority-name'];
   response.LAFirstName = data['local-authority-contacted-about-child-local-authority-first-name'];
