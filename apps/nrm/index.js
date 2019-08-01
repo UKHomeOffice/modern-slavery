@@ -383,9 +383,6 @@ module.exports = {
         deleteOnChange({
           currentField: 'who-contact',
           deleteFields: [
-            'pv-name-first-name',
-            'pv-name-last-name',
-            'pv-name-nickname',
             'pv-contact-details',
             'pv-contact-details-email-input',
             'pv-contact-details-email-check',
