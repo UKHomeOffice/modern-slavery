@@ -103,7 +103,6 @@
   },
   "where-exploitation-happened-uk-city-2": {
     "label": "Select a second city or town (Optional)",
-    "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
     "options": {
       "null": "Select..."
     }
