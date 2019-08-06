@@ -54,7 +54,7 @@ module.exports = data => {
     'not-sure': 'Unknown'
   };
   response.AdultOrChild = underAgeMap[data['pv-under-age']];
-  response.AdultOrChildDuringExploitation = data['pv-under-age-at-time-of-exploitation'];
+  response.AdultOrChildDuringExploitation = underAgeMap[data['pv-under-age-at-time-of-exploitation']];
   response.VictimAccount = data['what-happened'];
   const locationMap = {
     'uk': 'UK',
