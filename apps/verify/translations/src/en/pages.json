@@ -95,16 +95,14 @@
     "bullet-2": "details of the potential victim’s experience",
     "bullet-3": "your Internet Protocol (IP) address and web browser information",
     "bullet-4-part-1": "information on how you use the site, using ",
-    "bullet-4-link-1": "cookies",
-    "bullet-4-part-2": "and page-tagging techniques",
+    "bullet-4-link-1": "cookies and page-tagging techniques",
     "paragraph-7": "This helps us to:",
     "bullet-5": "refer the potential victim to the NRM",
     "bullet-6": "improve the service by monitoring how you use it",
     "bullet-7": "respond to any feedback or questions you send us, if you’ve asked us to",
     "heading-3": "Where your data is stored",
     "paragraph-8-part-1": "We store your data on secure servers in the ",
-    "paragraph-8-link-1": "European Economic Area",
-    "paragraph-8-part-2": "(EEA).",
+    "paragraph-8-link-1": "European Economic Area (EEA).",
     "heading-4": "Your rights",
     "paragraph-9": "Under the General Data Protection Regulation (GDPR) you have the right to:",
     "bullet-8": "raise an objection about how your personal information is used ",
@@ -126,8 +124,7 @@
     "paragraph-15": "If you go to another website from this service, you will need to read the privacy policy on that website to find out what it does with your information.",
     "heading-7": "Following a link to this service from another website",
     "paragraph-16": "If you come to this service from another website, we may receive personal information about you from the other website. Read the privacy policy of that website to find out more.",
-    "heading-8": "Private beta",
-    "paragraph-17": "This service is currently in ‘private beta’. This means you’re looking at the first version of it.",
-    "paragraph-18": "Something that's in ‘private beta’ isn’t open to everyone or may not work for everyone. We do this so we can test and make improvements before releasing it to more people."
+    "heading-8": "Public beta",
+    "paragraph-17": "This service is currently in 'public beta'. This means we're still testing and improving it. "
   }
 }
