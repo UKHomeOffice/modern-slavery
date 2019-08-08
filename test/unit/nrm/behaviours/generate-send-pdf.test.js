@@ -43,8 +43,11 @@ describe('/apps/pdf/behaviours/generate-send-pdf', () => {
         'caseworker-email': 's@mail.com'
       }
     };
+    req.log = sinon.stub();
     req.sessionModel = {
-      attributes: {},
+      attributes: {
+      },
+      get: sinon.stub()
     };
     res = reqres.res();
     PdfBehaviour = Behaviour(Base);

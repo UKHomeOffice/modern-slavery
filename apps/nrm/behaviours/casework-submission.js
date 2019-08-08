@@ -34,6 +34,7 @@ module.exports = config => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
+        req.sessionModel.set('jsonPayload', config.prepare(req.sessionModel.toJSON()));
         req.log('debug', `Sending icasework submission to ${model.url()}`);
         model.save()
           .then(data => {
