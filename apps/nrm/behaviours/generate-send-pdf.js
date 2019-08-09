@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use strict';
 
 const config = require('../../../config');
@@ -19,25 +18,28 @@ const createTemporaryFileName = () => {
   return (`${uuid.v1()}.pdf`);
 };
 
-const sendEmailWithFile = (file, email) => {
+const sendEmailWithFile = (file, email, req) => {
   fs.readFile(file, (err, pdfFile) => {
     if (err) {
-      console.log(err);
+      req.log('error', err);
     }
     notifyClient.sendEmail(templateId, email, {
       personalisation: {
-        documentLink: notifyClient.prepareUpload(pdfFile)
+        documentLink: notifyClient.prepareUpload(pdfFile),
+        jsonPayload: JSON.stringify(req.sessionModel.get('jsonPayload'), null, 4)
       }
-    }).then(console.log('>>>>>>>>>>> PDF Sent')).catch(error => console.error(error));
+    }).then(
+      req.log('debug', `${uuid.v1()}.pdf successfully sent`)
+    ).catch(error => req.log('error', error));
   });
 };
 
-const deleteFile = (file) => {
+const deleteFile = (file, req) => {
   fs.unlink(file, (err) => {
     if (err) {
       throw err;
     }
-    console.log('>>>>>>>>>>> successfully deleted PDF');
+    req.log('debug', `${uuid.v1()}.pdf successfully deleted`);
   });
 };
 
@@ -49,9 +51,9 @@ module.exports = superclass => class extends superclass {
     const data = await util.transformData(session);
     const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
 
-    await sendEmailWithFile(file, caseworkerEmail);
+    await sendEmailWithFile(file, caseworkerEmail, req);
 
-    await deleteFile(file);
+    await deleteFile(file, req);
 
     super.saveValues(req, res, (err) => {
       next(err);
