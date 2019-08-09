@@ -7,7 +7,7 @@ const _ = require('lodash');
 module.exports = data => {
   const response = {};
 
-  response.Type = data['pv-want-to-submit-nrm'] === 'yes' ? '560734' : '662265';
+  response.Type = data['pv-want-to-submit-nrm'] === 'no' ? '662265' : '560734';
   response['Customer.Forename1'] = data['pv-name-first-name'];
   response['Customer.Surname'] = data['pv-name-last-name'];
   response['Customer.Address'] = data['pv-contact-details-street'];
