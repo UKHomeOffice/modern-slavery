@@ -19,13 +19,22 @@
     <h2 class="govuk-heading-m">
       {{#t}}pages.confirmation.heading-1{{/t}}
     </h2>
+    {{#isNrm}}
     <p class="govuk-body">
       {{#t}}pages.confirmation.heading-1-paragraph-1{{/t}}
     </p>
     <p class="govuk-body">
       {{#t}}pages.confirmation.heading-1-paragraph-2{{/t}}
     </p>
+    {{/isNrm}}
 
+    {{#isDtn}}
+    <p class="govuk-body">
+      {{#t}}pages.confirmation.heading-1-paragraph-1-dtn{{/t}}
+    </p>
+    {{/isDtn}}
+
+    {{#isNrm}}
     <h2 class="govuk-heading-m">
       {{#t}}pages.confirmation.heading-2{{/t}}
     </h2>
@@ -37,6 +46,7 @@
         {{#t}}pages.confirmation.heading-2-link-1{{/t}}
       </a>
     </p>
+    {{/isNrm}}
 
     <h2 class="govuk-heading-m">
       {{#t}}pages.confirmation.heading-3{{/t}}
