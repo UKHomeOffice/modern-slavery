@@ -157,7 +157,7 @@ module.exports = data => {
   response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.CIDReference = data['pv-ho-reference-type'];
-  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'yes' ? 'NRM' : 'DTN';
+  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'no' ? 'DTN' : 'NRM';
 
   response.DTNReason = data['refuse-nrm'];
   response.NeedSupport = _.upperFirst(data['does-pv-need-support']);
