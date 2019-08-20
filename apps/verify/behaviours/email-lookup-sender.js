@@ -10,7 +10,7 @@ const firstStep = '/start/';
 const tokenGenerator = require('../models/save-token');
 const checkEmailExtension = require('../util/check-email-ext');
 // this will be an npm module in the future
-const emailExtensions = ['gov.uk', 'police.uk', 'pnn.police.uk'];
+const emailExtensions = ['gov.uk', 'police.uk', 'pnn.police.uk', 'gov.scot', 'gov.wales'];
 
 const isRecognisedExtension = (email) => {
   const extensionString = checkEmailExtension.getExtensionsString(emailExtensions);
