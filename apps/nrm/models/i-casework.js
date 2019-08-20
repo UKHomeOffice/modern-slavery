@@ -38,7 +38,7 @@ module.exports = class CaseworkModel extends Model {
     const options = this.requestConfig({});
     options.form = this.prepare();
     options.method = 'POST';
-    if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+    if (!config.writeToCasework || !config.icasework.secret || !config.icasework.key && config.env !== 'production') {
       return Promise.resolve({
         createcaseresponse: {
           caseid: 'mock caseid'

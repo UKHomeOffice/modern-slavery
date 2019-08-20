@@ -8,6 +8,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   useMocks: useMocks,
+  writeToCasework: (process.env.WRITE_TO_CASEWORK === 'true') ? true : false,
   hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   redis: {
     port: process.env.REDIS_PORT || '6379',

@@ -55,7 +55,7 @@ module.exports = superclass => class extends superclass {
     await sendEmailWithFile(file, caseworkerEmail, req);
 
     if (firstResponderEmail) {
-      await sendEmailWithFile(file, firstResponderEmail);
+      await sendEmailWithFile(file, firstResponderEmail, req);
     }
 
     await deleteFile(file, req);

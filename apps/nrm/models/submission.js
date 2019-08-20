@@ -17,7 +17,9 @@ module.exports = data => {
   response['Customer.ContactMethod'] = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
   response['Customer.Alias'] = data['pv-name-nickname'];
-  response['Case.Jurisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
+  if (data['fr-location']) {
+    response['Case.Jurisdiction'] = data['fr-location'].toUpperCase().replace(' ', '');
+  }
   if (data['pv-dob']) {
     response['Customer.Custom7'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
