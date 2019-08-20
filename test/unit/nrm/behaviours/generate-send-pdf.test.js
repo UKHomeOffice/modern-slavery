@@ -61,6 +61,7 @@ describe('/apps/pdf/behaviours/generate-send-pdf', () => {
       fsStub.unlink.yields(null);
       sinon.stub(Base.prototype, 'saveValues');
       sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
+      req.sessionModel.get = sinon.stub();
     });
     afterEach(() => {
       Base.prototype.saveValues.restore();
