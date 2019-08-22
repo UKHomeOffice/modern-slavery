@@ -3,6 +3,7 @@
 const CaseworkModel = require('../models/i-casework');
 const StatsD = require('hot-shots');
 const client = new StatsD();
+const appConfig = require('../../../config');
 
 const Compose = func => superclass => class extends superclass {
 
@@ -34,7 +35,11 @@ module.exports = config => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
-        req.sessionModel.set('jsonPayload', config.prepare(req.sessionModel.toJSON()));
+
+        let caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON()) :
+          { info: 'No submission was made to icasework' };
+
+        req.sessionModel.set('jsonPayload', caseWorkPayload);
         req.log('debug', `Sending icasework submission to ${model.url()}`);
         model.save()
           .then(data => {
