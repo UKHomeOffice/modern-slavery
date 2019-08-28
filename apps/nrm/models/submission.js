@@ -141,8 +141,12 @@ module.exports = data => {
   response.LAPhone = data['local-authority-contacted-about-child-local-authority-phone'];
   response.LAEmail = data['local-authority-contacted-about-child-local-authority-email'];
 
-  response.SafeToEmail = data['pv-contact-details-email-check'] === 'true' ? 'Yes' : 'No';
-  response.SafeToPostal = data['pv-contact-details-post-check'] === 'true' ? 'Yes' : 'No';
+  if (data['pv-contact-details-email-check']) {
+    response.SafeToEmail = data['pv-contact-details-email-check'] === 'true' ? 'Yes' : 'No';
+  }
+  if (data['pv-contact-details-post-check']) {
+    response.SafeToPostal = data['pv-contact-details-post-check'] === 'true' ? 'Yes' : 'No';
+  }
 
   const countryKey = {
     'england': 'ENG',
@@ -159,11 +163,19 @@ module.exports = data => {
   response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.CIDReference = data['pv-ho-reference-type'];
-  response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'no' ? 'DTN' : 'NRM';
+
+  if (data['pv-want-to-submit-nrm']) {
+    response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'no' ? 'DTN' : 'NRM';
+  }
+
 
   response.DTNReason = data['refuse-nrm'];
   response.NeedSupport = _.upperFirst(data['does-pv-need-support']);
-  response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
+
+  if (data['who-contact']) {
+    response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
+  }
+
 
   response['Agent.Forename1'] = data['fr-details-first-name'];
   response['Agent.Name'] = data['fr-details-last-name'];
@@ -181,7 +193,9 @@ module.exports = data => {
   response.AltContactCounty = data['someone-else-county'];
   response.AltContactPostcode = data['someone-else-postcode'];
   response.AltContactEmail = data['someone-else-email-input'];
-  response.AltContactPermissionToSend = data['someone-else-permission-check'] === 'true' ? 'Yes' : 'No';
+  if (data['someone-else-permission-check']) {
+    response.AltContactPermissionToSend = data['someone-else-permission-check'] === 'true' ? 'Yes' : 'No';
+  }
 
   response.SupportProviderContactByPhone = data['pv-phone-number-yes'];
 
