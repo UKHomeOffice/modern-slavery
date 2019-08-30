@@ -17,8 +17,6 @@ module.exports = superclass => class extends superclass {
     return checkToken.read(token)
     .then(user => {
       if (user.valid) {
-         // delete the token once it's been used
-         checkToken.delete(token);
          // this is so a user can go back without requesting a new token
          req.sessionModel.set('valid-token', true);
          // store email & org to send to caseworker later
