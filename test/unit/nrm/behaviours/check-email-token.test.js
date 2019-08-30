@@ -67,28 +67,6 @@ describe('apps/nrm/behaviours/check-email-token', () => {
     });
 
     describe('we get the token from the url & we look it up in our DB', () => {
-      it('deletes the new token if we find it in our db', (done) => {
-        const expected = {
-          valid: 'match',
-          email: 's@mail.com',
-          organisation: 'Oxfam'
-        };
-
-        checkTokenStub.read.withArgs('match').resolves(expected);
-        req.query = {
-          token: 'match'
-        };
-
-        instance.getValues(req, res)
-          // wrapped in a promise because this function has a promise
-          // can't use eventually should have been called
-          .then(() => {
-            checkTokenStub.delete.should.have.been.calledWith('match');
-            done();
-          })
-          .catch(err=> console.log(err));
-      });
-
       it('sets a valid-token to true when we find it in our db', (done) => {
         const expected = {
           valid: 'match',
