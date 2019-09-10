@@ -8,11 +8,17 @@ const checkTokenStub = {
   delete: sinon.stub()
 };
 
+const configStub = {
+  allowSkip: true
+};
+
 // we need to proxyquire checkToken model rather than requiring and then using sinon.
 // As soon as you require the checkToken it tries to create a Redis connection. We do not
 // want Redis as a dependency of our unit tests. Therefore stub it before it gets to that
-const Behaviour = proxyquire('../../../../apps/nrm/behaviours/check-email-token',
-  { '../models/check-token': checkTokenStub});
+const Behaviour = proxyquire('../../../../apps/nrm/behaviours/check-email-token', {
+    '../models/check-token': checkTokenStub,
+    '../../../config': configStub
+});
 
 describe('apps/nrm/behaviours/check-email-token', () => {
   it('exports a function', () => {
@@ -50,6 +56,15 @@ describe('apps/nrm/behaviours/check-email-token', () => {
 
     it('calls the parent when we provide a skip token in the development environment', () => {
       process.env.NODE_ENV = 'development';
+      req.query = {
+        token: 'skip'
+      };
+      instance.saveValues(req, res);
+
+      Base.prototype.saveValues.should.have.been.calledWith(req, res);
+    });
+
+    it('calls the parent when we provide a skip token & allowSkip flag', () => {
       req.query = {
         token: 'skip'
       };
