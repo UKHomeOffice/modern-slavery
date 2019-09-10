@@ -18,9 +18,12 @@ const getFeedbackData = (req) => {
   const feedbackRating = capitaliseText(removeDashesFromText(req.body.feedback));
   const feedbackMessage = req.body.improvements;
 
+  const feedbackReplyEmail = req.body.email;
+
   const data = {
     rating: feedbackRating,
     message: feedbackMessage,
+    email: feedbackReplyEmail,
   };
 
   return data;

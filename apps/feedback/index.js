@@ -9,7 +9,7 @@ module.exports = {
     '/start': {
       backLink: false,
       behaviours: [sendFeedback],
-      fields: ['feedback', 'improvements'],
+      fields: ['feedback', 'improvements', 'email'],
       next: '/complete'
     },
     '/complete': {
