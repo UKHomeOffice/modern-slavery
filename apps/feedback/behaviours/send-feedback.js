@@ -15,10 +15,10 @@ const { capitaliseText, removeDashesFromText } = formatter;
  * @returns {object} - feedback data
  */
 const getFeedbackData = (req) => {
-  const feedbackRating = capitaliseText(removeDashesFromText(req.body.feedback));
-  const feedbackMessage = req.body.improvements;
+  const feedbackRating = capitaliseText(removeDashesFromText(req.form.values.feedback));
+  const feedbackMessage = req.form.values.improvements;
 
-  const feedbackReplyEmail = req.body.email;
+  const feedbackReplyEmail = req.form.values.email;
 
   const data = {
     rating: feedbackRating,

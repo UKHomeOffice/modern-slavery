@@ -21,8 +21,10 @@ describe('/apps/feedback/behaviours/send-feedback', () => {
 
   beforeEach(() => {
     req = reqres.req();
-    req.body = {
-      feedback: 'Test Feedback Message'
+    req.form = {
+      values: {
+      'feedback': 'Test Feedback Message'
+      }
     };
     res = reqres.res();
     SendFeedback = Behaviour(Base);
