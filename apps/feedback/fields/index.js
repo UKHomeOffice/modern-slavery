@@ -24,4 +24,11 @@ module.exports = {
       value: 5
     }]
   },
+  'email': {
+    mixin: 'input-text',
+    validate: ['email', {type: 'maxlength', arguments: [1200]}],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
 };

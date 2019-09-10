@@ -21,5 +21,8 @@
   },
   "improvements": {
     "label": "How could we improve this service?"
+  },
+  "email": {
+    "label": "Email address (optional)"
   }
 }

@@ -5,5 +5,9 @@
   "improvements": {
     "required": "Please enter feedback",
     "maxlength": "Please enter fewer than 1200 characters"
+  },
+  "email": {
+    "email": "Please enter a valid email",
+    "maxlength": "Please enter fewer than 1200 characters"
   }
 }
