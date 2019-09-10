@@ -45,11 +45,5 @@ describe('/apps/feedback/behaviours/send-feedback', () => {
       await instance.saveValues(req, res, ()=> {});
       expect(NotifyClient.prototype.sendEmail).to.have.been.called;
     });
-
-    it('calls the callback in super', async() => {
-      const spy = sinon.spy();
-      await instance.saveValues(req, res, spy);
-      expect(Base.prototype.saveValues).to.have.been.called;
-    });
   });
 });
