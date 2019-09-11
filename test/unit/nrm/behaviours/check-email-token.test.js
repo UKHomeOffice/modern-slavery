@@ -8,11 +8,17 @@ const checkTokenStub = {
   delete: sinon.stub()
 };
 
+const configStub = {
+  allowSkip: true
+};
+
 // we need to proxyquire checkToken model rather than requiring and then using sinon.
 // As soon as you require the checkToken it tries to create a Redis connection. We do not
 // want Redis as a dependency of our unit tests. Therefore stub it before it gets to that
-const Behaviour = proxyquire('../../../../apps/nrm/behaviours/check-email-token',
-  { '../models/check-token': checkTokenStub});
+const Behaviour = proxyquire('../../../../apps/nrm/behaviours/check-email-token', {
+    '../models/check-token': checkTokenStub,
+    '../../../config': configStub
+});
 
 describe('apps/nrm/behaviours/check-email-token', () => {
   it('exports a function', () => {
@@ -26,7 +32,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
   let instance;
 
   class Base {
-    getValues() {}
+    saveValues() {}
   }
 
   beforeEach(() => {
@@ -40,12 +46,12 @@ describe('apps/nrm/behaviours/check-email-token', () => {
     instance = new CheckEmailToken();
   });
 
-  describe('getValues()', () => {
+  describe('saveValues()', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'getValues');
+      sinon.stub(Base.prototype, 'saveValues');
     });
     afterEach(() => {
-      Base.prototype.getValues.restore();
+      Base.prototype.saveValues.restore();
     });
 
     it('calls the parent when we provide a skip token in the development environment', () => {
@@ -53,17 +59,26 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       req.query = {
         token: 'skip'
       };
-      instance.getValues(req, res);
+      instance.saveValues(req, res);
 
-      Base.prototype.getValues.should.have.been.calledWith(req, res);
+      Base.prototype.saveValues.should.have.been.calledWith(req, res);
+    });
+
+    it('calls the parent when we provide a skip token & allowSkip flag', () => {
+      req.query = {
+        token: 'skip'
+      };
+      instance.saveValues(req, res);
+
+      Base.prototype.saveValues.should.have.been.calledWith(req, res);
     });
 
     it('calls the parent when there is already a valid token', () => {
       req.sessionModel.get.withArgs('valid-token').returns(true);
 
-      instance.getValues(req, res);
+      instance.saveValues(req, res);
 
-      Base.prototype.getValues.should.have.been.calledWith(req, res);
+      Base.prototype.saveValues.should.have.been.calledWith(req, res);
     });
 
     describe('we get the token from the url & we look it up in our DB', () => {
@@ -79,7 +94,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           token: 'match'
         };
 
-        instance.getValues(req, res)
+        instance.saveValues(req, res)
           // wrapped in a promise because this function has a promise
           // can't use eventually should have been called
           .then(() => {
@@ -101,7 +116,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
         };
         checkTokenStub.read.withArgs('match').resolves(expected);
 
-        instance.getValues(req, res)
+        instance.saveValues(req, res)
           // wrapped in a promise because this function has a promise
           // can't use eventually should have been called
           .then(() => {
@@ -122,11 +137,11 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           };
         checkTokenStub.read.withArgs('match').resolves(expected);
 
-        instance.getValues(req, res)
+        instance.saveValues(req, res)
             // wrapped in a promise because this function has a promise
             // can't use eventually should have been called
           .then(() => {
-            Base.prototype.getValues.should.have.been.calledWith(req, res);
+            Base.prototype.saveValues.should.have.been.calledWith(req, res);
             done();
           })
           .catch(err=> console.log(err));
@@ -143,11 +158,11 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           };
         checkTokenStub.read.withArgs('fail').resolves(expected);
 
-        instance.getValues(req, res)
+        instance.saveValues(req, res)
           // wrapped in a promise because this function has a promise
           // can't use eventually should have been called
           .then(() => {
-            Base.prototype.getValues.should.not.have.been.calledWith(req, res);
+            Base.prototype.saveValues.should.not.have.been.calledWith(req, res);
             done();
           })
           .catch(err=> console.log(err));
