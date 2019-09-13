@@ -20,6 +20,7 @@ const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
 });
+const pvUnderAge = require('./behaviours/pv-under-age');
 
 module.exports = {
   name: 'nrm',
@@ -40,6 +41,7 @@ module.exports = {
     },
     '/pv-under-age': {
       behaviours: [
+        pvUnderAge,
         getPageCustomNextStep('pv-under-age'),
         ResetOnChange({
           currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']

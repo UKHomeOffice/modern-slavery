@@ -1,0 +1,33 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div id="pv-under-age-group" class="form-group">
+        <fieldset role="radiogroup" aria-required="true">
+            <legend>
+                <span class="visuallyhidden">{{#t}}fields.pv-under-age.legend{{/t}}</span>
+            </legend>
+            <div class="multiple-choice">
+                <input type="radio" name="pv-under-age" id="pv-under-age-yes" value="yes" required="true" {{#isYes}}checked{{/isYes}} aria-describedby="pv-under-age-yes-hint">
+                <label class="block-label" for="pv-under-age-yes">
+                    {{#t}}fields.pv-under-age.options.yes.label{{/t}}
+                </label>
+                <span id="pv-under-age-yes-hint" class="form-hint govuk-!-padding-left-2 inline-block-display">{{#t}}fields.pv-under-age.options.yes.hint{{/t}}</span>
+            </div>
+            <div class="multiple-choice">
+                <input type="radio" name="pv-under-age" id="pv-under-age-no" value="no" required="true" {{#isNo}}checked{{/isNo}}>
+                <label class="block-label" for="pv-under-age-no">
+                    {{#t}}fields.pv-under-age.options.no.label{{/t}}
+                </label>
+            </div>
+            <div class="multiple-choice">
+                <input type="radio" name="pv-under-age" id="pv-under-age-not-sure" value="not-sure" required="true" aria-describedby="pv-under-age-not-sure-hint" {{#isNotSure}}checked{{/isNotSure}} >
+                <label class="block-label" for="pv-under-age-not-sure">
+                    {{#t}}fields.pv-under-age.options.not-sure.label{{/t}}
+                </label>
+                <span id="pv-under-age-not-sure-hint" class="form-hint govuk-!-padding-left-2 inline-block-display">{{#t}}fields.pv-under-age.options.not-sure.hint-1{{/t}}</span>
+                <span id="pv-under-age-not-sure-hint" class="form-hint govuk-!-padding-left-2 govuk-!-padding-top-1 inline-block-display">{{#t}}fields.pv-under-age.options.not-sure.hint-2{{/t}}</span>
+            </div>
+        </fieldset>
+    </div>
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

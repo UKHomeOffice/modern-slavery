@@ -25,15 +25,15 @@
     "options": {
       "yes": {
         "label": "Yes",
-        "toggle-content": "You must explain to them how organisations such as the Home Office and the police will use their information."
+        "hint": "You must explain to them how organisations such as the Home Office and the police will use their information."
       },
       "no": {
         "label": "No"
       },
       "not-sure": {
         "label": "Not Sure",
-        "toggle-content": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.",
-        "toggle-content-2": "You must explain to them how organisations such as the Home Office will use their information."
+        "hint-1": "If you’re not sure of the potential victim’s age, you will need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.",
+        "hint-2": "You must explain to them how organisations such as the Home Office will use their information."
       }
     }
   },
