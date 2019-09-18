@@ -25,7 +25,7 @@ app.use(busboyBodyParser({ limit: config.upload.maxFileSize }));
 
 // Downloads the offline form to client side
 app.use('/offline-form', (req, res) => {
-  download.responseFile('/assets/documents', 'nrm-prompt-sheet.pdf', res);
+  download.responseFile('/assets/documents', 'nrm-form-offline-v2-19-09-2019.pdf', res);
 });
 
 app.use((req, res, next) => {
