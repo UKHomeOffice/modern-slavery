@@ -181,7 +181,7 @@
         "table-data": "Under 18 when exploited"
       },
       "fr-location": {
-        "label": "Region"
+        "label": "Location of report"
       },
       "types-of-exploitation": {
         "label": "Exploitation type"
@@ -199,28 +199,28 @@
         "label": "Current location"
       },
       "who-exploited-pv": {
-        "label": "Exploiter"
+        "label": "Details of exploiter(s)"
       },
       "what-happened": {
-        "label": "Victim's story"
+        "label": "Victim's account"
       },
       "any-other-pvs": {
-        "label": "Other victims"
+        "label": "Other potential victims"
       },
       "reported-to-police": {
         "label": "Reported to police"
       },
       "does-pv-need-support": {
-        "label": "Support"
+        "label": "Support requested"
       },
       "pv-want-to-submit-nrm": {
-        "label": "Formal decision"
+        "label": "Case referred to NRM"
       },
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"
       },
       "co-operate-with-police": {
-        "label": "Consent"
+        "label": "Permission for police to contact them"
       },
       "someone-else-name": {
         "label": "Name"
@@ -247,22 +247,25 @@
         "label": "Country of nationality"
       },
       "does-pv-have-children": {
-        "label": "Children?"
+        "label": "Children"
       },
       "pv-interpreter-requirements": {
-        "label": "Interpreter"
+        "label": "Interpreter needed"
       },
       "pv-interpreter-requirements-language": {
         "label": "Language"
       },
       "pv-other-help-with-communication": {
-        "label": "Other aids"
+        "label": "Other communications aids"
       },
       "pv-contact-details": {
         "label": "Home address"
       },
       "pv-contact-details-email": {
         "label": "Email"
+      },
+      "pv-phone-number": {
+        "label": "Permission for support provider to contact them"
       },
       "pv-phone-number-yes": {
         "label": "Phone"
