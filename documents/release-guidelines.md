@@ -61,8 +61,6 @@ If you are tesing issues for a release you must deploy the latest commit with th
 
 On this service if you have merged any pull requests to the master branch your changes will be automatically deployed to the development environment.
 
-The automated deployments use the `drone_token` secret. The token value is associated with token assigned to the drone user `Julian Robotham`.
-
 ### Deployment for a Release <a name="release-deployment"></a>
 Deploy the above commit containing the issues for the release to the developer environment. See [Deployment](#deployment)
 
