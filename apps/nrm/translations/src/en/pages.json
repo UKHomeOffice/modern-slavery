@@ -12,7 +12,11 @@
     "header": "Is the potential victim under 18?"
   },
   "local-authority-contacted-about-child": {
-    "header": "Which local authority have you contacted about the child?"
+    "header": "Which local authority have you contacted about the child?",
+    "paragraph-1": "You must contact the relevant local authority to safeguard the child before continuing.",
+    "paragraph-2": "If the child is in an Independent Child Trafficking Guardian (ICTG) area you will also need to refer them to the",
+    "paragraph-2-link-1": "ICTG service."
+
   },
   "pv-under-age-at-time-of-exploitation": {
     "header": "Were they under 18 at any time during the exploitation?"
@@ -181,7 +185,7 @@
         "table-data": "Under 18 when exploited"
       },
       "fr-location": {
-        "label": "Region"
+        "label": "Location of report"
       },
       "types-of-exploitation": {
         "label": "Exploitation type"
@@ -199,28 +203,28 @@
         "label": "Current location"
       },
       "who-exploited-pv": {
-        "label": "Exploiter"
+        "label": "Details of exploiter(s)"
       },
       "what-happened": {
-        "label": "Victim's story"
+        "label": "Victim's account"
       },
       "any-other-pvs": {
-        "label": "Other victims"
+        "label": "Other potential victims"
       },
       "reported-to-police": {
         "label": "Reported to police"
       },
       "does-pv-need-support": {
-        "label": "Support"
+        "label": "Support requested"
       },
       "pv-want-to-submit-nrm": {
-        "label": "Formal decision"
+        "label": "Case referred to NRM"
       },
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"
       },
       "co-operate-with-police": {
-        "label": "Consent"
+        "label": "Permission for police to contact them"
       },
       "someone-else-name": {
         "label": "Name"
@@ -247,22 +251,25 @@
         "label": "Country of nationality"
       },
       "does-pv-have-children": {
-        "label": "Children?"
+        "label": "Children"
       },
       "pv-interpreter-requirements": {
-        "label": "Interpreter"
+        "label": "Interpreter needed"
       },
       "pv-interpreter-requirements-language": {
         "label": "Language"
       },
       "pv-other-help-with-communication": {
-        "label": "Other aids"
+        "label": "Other communications aids"
       },
       "pv-contact-details": {
         "label": "Home address"
       },
       "pv-contact-details-email": {
         "label": "Email"
+      },
+      "pv-phone-number": {
+        "label": "Permission for support provider to contact them"
       },
       "pv-phone-number-yes": {
         "label": "Phone"
