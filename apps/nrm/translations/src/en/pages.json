@@ -122,10 +122,10 @@
     "header": "Who should we send our decision to?"
   },
   "someone-else": {
-    "header": "How should we notify them?"
+    "header": "How should they be contacted?"
   },
   "pv-contact-details": {
-    "header": "How should we notify them?"
+    "header": "How should they be contacted?"
   },
   "pv-phone-number": {
     "header": "Can the support provider contact them by phone?"
