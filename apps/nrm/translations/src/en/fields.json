@@ -455,7 +455,7 @@
     }
   },
   "someone-else": {
-    "legend": "How should we notify them?",
+    "legend": "How should they be contacted?",
     "hint": "Select all that apply.",
     "options": {
       "email": {
@@ -491,7 +491,7 @@
     "label": "The potential victim has given you permission to send the decision to this person."
   },
   "pv-contact-details": {
-    "legend": "How should we notify them of our decision?",
+    "legend": "How should they be contacted?",
     "hint": "Select all that apply.",
     "options": {
       "email": {
