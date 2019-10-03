@@ -70,15 +70,18 @@ $ docker-compose up -d --build chrome-browser app redis
 
 ## Email functionality  <a name="email-functionality"></a>
 
-You'll need the test Gov Notify Key called, `NOTIFY_KEY`, to run the email functionality properly. Do NOT use the Production key.
+We use [Gov Notify](https://notifications.service.gov.uk/sign-in) to send emails. We have two accounts:
+
+1. Modern slavery for our Live service. This is on our production environment
+2. Modern slavery test for testing. This is on our dev, uat and preprod environments
+
+In order to run the email functionality, you'll need the API Gov Notify Key called, `NOTIFY_KEY` for the Modern slavery test service. Do NOT use the Production key.
 
 This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so:
 
 ```bash
 $ npm run dev -- --env
 ```
-
-To get an email from gov notify, you'll need to be added to the email list for testing on [gov notify](https://www.notifications.service.gov.uk/sign-in)
 
 ## Skip email verify step  <a name="skip-email-verify-step"></a>
 
