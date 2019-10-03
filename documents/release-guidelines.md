@@ -59,6 +59,8 @@ The above commit will also need to be deployed. See [Deployment for a Release](#
 ### Deployment for Development Testing <a name="dev-deployment"></a>
 If you are tesing issues for a release you must deploy the latest commit with the targeted issues to the developer environment. See [Deployment](#deployment)
 
+On this service if you have merged any pull requests to the master branch your changes will be automatically deployed to the development environment.
+
 ### Deployment for a Release <a name="release-deployment"></a>
 Deploy the above commit containing the issues for the release to the developer environment. See [Deployment](#deployment)
 
