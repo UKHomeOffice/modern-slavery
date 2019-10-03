@@ -31,11 +31,11 @@ module.exports = {
   tokenExpiry: 86400,
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY || '',
-    templateUserAuthId: '56b5a84f-7024-41d3-bd08-26521435be16',
-    templatePDF: '90fa07d2-50ab-468f-bc14-4bcaf7f7b34d',
-    templateFeedback: '5bf7a9df-eec6-4e38-95d5-5107ab41d87f',
-    caseworkerEmail: process.env.CASEWORKER_EMAIL || 'ms-test@homeoffice.gov.uk',
-    feedbackEmail: process.env.FEEDBACK_EMAIL || 'ms-test@homeoffice.gov.uk'
+    templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID || 'fe0408cb-24f0-4b5f-9bdb-6569834039fb',
+    templatePDF: process.env.TEMPLATE_PDF || 'd48b84c8-9350-4cf8-b31c-8cc4ef8237f1',
+    templateFeedback: process.env.TEMPLATE_FEEDBACK || '92b314e9-8ed5-4762-a8e2-7f208cdf3836',
+    caseworkerEmail: process.env.CASEWORKER_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk',
+    feedbackEmail: process.env.FEEDBACK_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk'
   },
   icasework: {
     url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
