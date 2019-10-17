@@ -6,11 +6,14 @@ const Producer = require('sqs-producer');
 module.exports = config => {
 
   config = config || {};
+  let producer;
 
-  const producer = Producer.create({
-    queueUrl: appConfig.aws.sqs,
-    region: 'eu-west-2'
-  });
+  if (appConfig.writeToCasework) {
+    producer = Producer.create({
+      queueUrl: appConfig.aws.sqs,
+      region: 'eu-west-2'
+    });
+  }
 
   return superclass => class extends superclass {
 
