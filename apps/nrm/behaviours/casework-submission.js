@@ -2,6 +2,7 @@
 
 const appConfig = require('../../../config');
 const Producer = require('sqs-producer');
+const uuid = require('uuid/v4');
 
 module.exports = config => {
 
@@ -33,7 +34,10 @@ module.exports = config => {
           next();
         } else {
           // send casework model to AWS SQS
-          producer.send([JSON.stringify(config.prepare(req.sessionModel.toJSON()))], error => {
+          producer.send([{
+              id: uuid(),
+              body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
+          }], error => {
             if (error) {
               next(error);
             }
