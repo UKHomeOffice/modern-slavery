@@ -31,15 +31,15 @@ module.exports = config => {
         // short circuit casework submission
         if (!appConfig.writeToCasework) {
           next();
+        } else {
+          // send casework model to AWS SQS
+          producer.send([JSON.stringify(config.prepare(req.sessionModel.toJSON()))], error => {
+            if (error) {
+              next(error);
+            }
+            next();
+          });
         }
-
-        // send casework model to AWS SQS
-        producer.send([JSON.stringify(config.prepare(req.sessionModel.toJSON()))], error => {
-          if (error) {
-            next(error);
-          }
-          next();
-        });
       });
     }
 
