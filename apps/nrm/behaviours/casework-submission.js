@@ -34,9 +34,7 @@ module.exports = config => {
         }
 
         // send casework model to AWS SQS
-        producer.send([{
-          body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
-        }], error => {
+        producer.send([JSON.stringify(config.prepare(req.sessionModel.toJSON()))], error => {
           if (error) {
             next(error);
           }
