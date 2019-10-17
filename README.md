@@ -2,6 +2,8 @@
 
 An app for a first responder to submit a form for a possible victim of modern slavery.
 
+When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by a casework resolver service.
+
 # Contents
 
 1. [Install & Run](#install-and-run)
@@ -38,6 +40,7 @@ NOTIFY_KEY            | Your GOV.UK notify key
 AWS_SQS               | AWS SQS URL
 AWS_SECRET_ACCESS_KEY | AWS Secret Access Key
 AWS_ACCESS_KEY_ID     | AWS Access Key ID
+WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false)
 ```
 
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
