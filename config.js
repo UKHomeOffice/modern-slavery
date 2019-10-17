@@ -6,6 +6,9 @@ const useMocks = process.env.USE_MOCKS ? process.env.USE_MOCKS === 'true' : env 
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8081}`;
 
 module.exports = {
+  aws: {
+    sqs: process.env.AWS_SQS
+  },
   env: env,
   useMocks: useMocks,
   allowSkip: process.env.allowSkip,
@@ -36,15 +39,6 @@ module.exports = {
     templateFeedback: process.env.TEMPLATE_FEEDBACK || '92b314e9-8ed5-4762-a8e2-7f208cdf3836',
     caseworkerEmail: process.env.CASEWORKER_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk',
     feedbackEmail: process.env.FEEDBACK_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk'
-  },
-  icasework: {
-    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
-    createpath: '/createcase',
-    uploadpath: '/uploaddocuments',
-    getcasepath: '/getcasedetails',
-    key: process.env.ICASEWORK_KEY,
-    secret: process.env.ICASEWORK_SECRET,
-    timeout: process.env.ICASEWORK_TIMEOUT || 20000
   },
   pdf: {
     template: './apps/nrm/views/pdf.html',
