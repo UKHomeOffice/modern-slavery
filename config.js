@@ -18,6 +18,15 @@ module.exports = {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
+  postgre: {
+    user: process.env.POSTGRE_USER || 'test',
+    host: process.env.POSTGRE_HOST || 'localhost',
+    password: process.env.POSTGRE_PASSWORD || 'test',
+    database: {
+      reports: process.env.POSTGRE_DB_NAME || 'postgres'
+    },
+    port: process.env.POSTGRE_PORT || 5432
+  },
   upload: {
     maxFileSize: '100mb',
     hostname: !useMocks && process.env.FILE_VAULT_URL ?
