@@ -1,7 +1,15 @@
 'use strict';
 
 const reqres = require('reqres');
-const Behaviour = require('../../../../apps/nrm/behaviours/save-application');
+const proxyquire = require('proxyquire').noCallThru();
+
+const saveAndExitServiceStub = {
+  sendDataToBeStored: sinon.stub(),
+};
+
+const Behaviour = proxyquire('../../../../apps/nrm/behaviours/save-application', {
+  '../models/saved-data': saveAndExitServiceStub,
+});
 
 describe('/apps/nrm/behaviours/save-application', () => {
   it('exports a function', () => {
@@ -17,7 +25,7 @@ describe('/apps/nrm/behaviours/save-application', () => {
   let req;
   let res;
   let instance;
-  let ApplicationSaved;
+  let SaveApplication;
 
   let superLocals = {
     route: 'save-application',
@@ -33,8 +41,8 @@ describe('/apps/nrm/behaviours/save-application', () => {
       };
       req = reqres.req({ sessionModel });
       res = reqres.res();
-      ApplicationSaved = Behaviour(Base);
-      instance = new ApplicationSaved();
+      SaveApplication = Behaviour(Base);
+      instance = new SaveApplication();
       sinon.stub(Base.prototype, 'getValues');
     });
     afterEach(() => {
@@ -46,6 +54,23 @@ describe('/apps/nrm/behaviours/save-application', () => {
         expect(sessionModel.set).to.have.been.calledWith('application-id');
         expect(sessionModel.unset).to.have.been.calledWith('application-save-error');
     });
+
+    // eslint-disable-next-line max-len
+    it('when there is an error saving the data there is a value in application-save-error within the sessionModel', async() => {
+      const sessionData = {
+        'fr-location': 'england'
+      };
+
+      saveAndExitServiceStub.sendDataToBeStored.withArgs(sessionData).rejects(null);
+
+      try {
+        await instance.getValues(req, res, ()=> {});
+      } catch (error) {
+        expect(sessionModel.unset).to.have.been.calledWith('application-id');
+        expect(sessionModel.set).to.have.been.calledWith('application-save-error');
+      }
+
+  });
   });
 
   describe('locals()', () => {
@@ -55,8 +80,8 @@ describe('/apps/nrm/behaviours/save-application', () => {
       };
       req = reqres.req({ sessionModel });
       res = reqres.res();
-      ApplicationSaved = Behaviour(Base);
-      instance = new ApplicationSaved();
+      SaveApplication = Behaviour(Base);
+      instance = new SaveApplication();
       sinon.stub(Base.prototype, 'locals').returns(superLocals);
     });
     afterEach(() => {
