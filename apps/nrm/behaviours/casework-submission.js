@@ -3,6 +3,8 @@
 const appConfig = require('../../../config');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
+const StatsD = require('hot-shots');
+const client = new StatsD();
 
 module.exports = config => {
 
@@ -39,8 +41,10 @@ module.exports = config => {
               body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
           }], error => {
             if (error) {
+              client.increment('sqs.submission.error');
               next(error);
             }
+            client.increment('sqs.submission.success');
             next();
           });
         }
