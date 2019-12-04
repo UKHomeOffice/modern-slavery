@@ -9,6 +9,7 @@ module.exports = {
   aws: {
     sqs: process.env.AWS_SQS
   },
+  prometheusPort: 8082,
   env: env,
   useMocks: useMocks,
   allowSkip: process.env.allowSkip,

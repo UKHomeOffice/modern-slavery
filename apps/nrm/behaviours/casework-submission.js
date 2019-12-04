@@ -3,8 +3,17 @@
 const appConfig = require('../../../config');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
-const StatsD = require('hot-shots');
-const client = new StatsD();
+const client = require('prom-client');
+
+const sqsSuccess = new client.Counter({
+  name: 'sqs_submission_success',
+  help: 'Counts the number of successful submissions to AWS SQS'
+});
+
+const sqsFailed = new client.Counter({
+  name: 'sqs_submission_failed',
+  help: 'Counts the number of failed submissions to AWS SQS'
+});
 
 module.exports = config => {
 
@@ -41,10 +50,10 @@ module.exports = config => {
               body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
           }], error => {
             if (error) {
-              client.increment('sqs.submission.error');
+              sqsFailed.inc();
               next(error);
             }
-            client.increment('sqs.submission.success');
+            sqsSuccess.inc();
             next();
           });
         }
