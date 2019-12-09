@@ -50,8 +50,13 @@ module.exports = superclass => class extends superclass {
     const session = req.sessionModel.attributes;
     const data = await util.transformData(session);
     const file = await pdfPuppeteer.generate(templateFile, tempLocation, tempName, data);
+    const firstResponderEmail = req.sessionModel.get('user-email');
 
     await sendEmailWithFile(file, caseworkerEmail, req);
+
+    if (firstResponderEmail) {
+      await sendEmailWithFile(file, firstResponderEmail, req);
+    }
 
     await deleteFile(file, req);
 
