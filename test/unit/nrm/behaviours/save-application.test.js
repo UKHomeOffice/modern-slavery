@@ -22,6 +22,7 @@ describe('/apps/nrm/behaviours/save-application', () => {
   }
 
   let sessionModel;
+  let applicationId;
   let req;
   let res;
   let instance;
@@ -41,6 +42,7 @@ describe('/apps/nrm/behaviours/save-application', () => {
       };
       req = reqres.req({ sessionModel });
       res = reqres.res();
+      applicationId = sinon.stub();
       SaveApplication = Behaviour(Base);
       instance = new SaveApplication();
       sinon.stub(Base.prototype, 'getValues');
@@ -49,14 +51,28 @@ describe('/apps/nrm/behaviours/save-application', () => {
       Base.prototype.getValues.restore();
     });
 
-    it('when the data is saved there is a value in application-id within the sessionModel', async() => {
+    it('when the data is saved there is a value in sessionModel[\'application-id\']', async() => {
+        const response = {
+          rowCount: 1,
+          rows: [
+            {
+              id: 1
+            },
+          ],
+        };
+        const sessionData = {
+          'fr-location': 'england'
+        };
+        applicationId.returns(1);
+        saveAndExitServiceStub.sendDataToBeStored.withArgs(sessionData).resolves(response);
+        console.log(response);
         await instance.getValues(req, res, ()=> {});
         expect(sessionModel.set).to.have.been.calledWith('application-id');
         expect(sessionModel.unset).to.have.been.calledWith('application-save-error');
     });
 
     // eslint-disable-next-line max-len
-    it('when there is an error saving the data there is a value in application-save-error within the sessionModel', async() => {
+    it('when there is an error saving the data a value is stored in sessionModel[\'application-save-error\']', async() => {
       const sessionData = {
         'fr-location': 'england'
       };

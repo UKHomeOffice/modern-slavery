@@ -44,6 +44,7 @@ const saveApplication = async(req) => {
 
   try {
     const applicationId = await saveData(sessionData);
+
     // This proves data has been saved to the data store
     req.sessionModel.set('application-id', applicationId);
     req.sessionModel.unset('application-save-error');
