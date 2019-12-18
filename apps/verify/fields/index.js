@@ -2,6 +2,8 @@
 
 const organisations = require('ms-organisations');
 
+const { isValidEmail } = require('../../common/validators.js');
+
 module.exports = {
   'user-organisation': {
     mixin: 'select',
@@ -14,10 +16,10 @@ module.exports = {
   },
   'user-email': {
     mixin: 'input-text',
-    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: ['required', isValidEmail, {'type': 'maxlength', 'arguments': [15000]}],
   },
   'confirm-email': {
     mixin: 'input-text',
-    validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}]
+    validate: ['required', isValidEmail, {'type': 'maxlength', 'arguments': [15000]}]
   },
 };
