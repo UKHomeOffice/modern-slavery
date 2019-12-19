@@ -54,13 +54,13 @@ You have the option to set these additional env vars below to run the applicatio
 However if these env vars are left unset they will resolve to the defined defaults.
 
 ```
-DATASERVICEMODEL      | The database used  (default: postgresql)
-PGUSER                | The user name that will be used to connect to your database (default: test)
-PGPASSWORD            | The password used to access the database (default: test)
-PGHOST                | The host address where the database can be found (default: localhost)
-PGDATABASE            | The database name (default: test)
-PGDATABASETABLE       | The database table used (We are only using one table (default: reports)
-PGPORT                | Port number to access the database (default: 5432)
+DATA_SERVICE_MODEL    | The database used  (default: postgresql)
+PG_USER               | The user name that will be used to connect to your database (default: test)
+PG_PASSWORD           | The password used to access the database (default: test)
+PG_HOST               | The host address where the database can be found (default: localhost)
+PG_DATABASE           | The database name (default: test)
+PG_DATABASE_TABLE     | The database table used (We are only using one table (default: reports)
+PG_PORT               | Port number to access the database (default: 5432)
 ```
 
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
