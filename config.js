@@ -9,6 +9,13 @@ module.exports = {
   aws: {
     sqs: process.env.AWS_SQS
   },
+  audit: {
+    enabled: process.env.AUDIT_DATA || false,
+    host: process.env.AUDIT_DB_HOST,
+    user: process.env.AUDIT_DB_USER,
+    password: process.env.AUDIT_DB_PASS,
+    database: process.env.AUDIT_DB_NAME
+  },
   prometheusPort: 8082,
   env: env,
   useMocks: useMocks,
