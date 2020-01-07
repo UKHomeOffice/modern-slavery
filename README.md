@@ -41,6 +41,11 @@ AWS_SQS               | AWS SQS URL
 AWS_SECRET_ACCESS_KEY | AWS Secret Access Key
 AWS_ACCESS_KEY_ID     | AWS Access Key ID
 WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false)
+AUDIT_DATA            | Enable/Disable sending audit data to postgres (defaults to false)
+AUDIT_DB_HOST         | Postgres host for audit data
+AUDIT_DB_USER         | Postgres audit user
+AUDIT_DB_PASS         | Postgres audit password
+AUDIT_DB_NAME         | Postgres database name for audit data (writes to table named hof)
 ```
 
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!

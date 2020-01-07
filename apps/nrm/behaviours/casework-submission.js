@@ -3,17 +3,11 @@
 const appConfig = require('../../../config');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
-const client = require('prom-client');
+let db;
 
-const sqsSuccess = new client.Counter({
-  name: 'sqs_submission_success',
-  help: 'Counts the number of successful submissions to AWS SQS'
-});
-
-const sqsFailed = new client.Counter({
-  name: 'sqs_submission_failed',
-  help: 'Counts the number of failed submissions to AWS SQS'
-});
+if (appConfig.audit.enabled) {
+  db = require('./../../common/db');
+}
 
 module.exports = config => {
 
@@ -49,12 +43,17 @@ module.exports = config => {
               id: uuid(),
               body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
           }], error => {
-            if (error) {
-              sqsFailed.inc();
+            if (appConfig.audit.enabled) {
+              db('hof').insert({
+                ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
+                type: (req.sessionModel['pv-want-to-submit-nrm'] === 'no') ? 'DTN' : 'NRM',
+                success: error ? false : true
+              }).then(() => {
+                next(error);
+              });
+            } else {
               next(error);
             }
-            sqsSuccess.inc();
-            next();
           });
         }
       });
