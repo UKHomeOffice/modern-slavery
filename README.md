@@ -46,23 +46,6 @@ WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults t
 
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
 
-### Environment variables for the modern-slavery-data-service <a name="env-vars-data-service"></a>
-The main modern slavery service has the ability to save an application or read a saved application.
-
-You have the option to set these additional env vars below to run the application along with the [modern-slavery-data-service](https://github.com/UKHomeOffice/modern-slavery-data-service).
-
-However if these env vars are left unset they will resolve to the defined defaults.
-
-```
-DATA_SERVICE_MODEL    | The database used  (default: postgresql)
-PG_USER               | The user name that will be used to connect to your database (default: test)
-PG_PASSWORD           | The password used to access the database (default: test)
-PG_HOST               | The host address where the database can be found (default: localhost)
-PG_DATABASE           | The database name (default: test)
-PG_DATABASE_TABLE     | The database table used (We are only using one table (default: reports)
-PG_PORT               | Port number to access the database (default: 5432)
-```
-
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
 ```bash
