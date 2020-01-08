@@ -320,5 +320,8 @@
   },
   "send-pdf": {
     "header": "Enter the email to send the Pdf"
+  },
+  "application-saved": {
+    "header": "Placeholder page"
   }
 }

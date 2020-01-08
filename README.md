@@ -8,6 +8,7 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
 
 1. [Install & Run](#install-and-run)
     - [Environment variables](#env-vars)
+    - [Environment variables for the modern-slavery-data-service](#env-vars-data-service)
     - [Install & Run on local machine](#install-and-run-on-local-machine)
     - [Install & Run on docker container](#install-and-run-on-docker-container)
 
@@ -85,6 +86,11 @@ This can be obtained from a developer in the team.  It is recommended to have a 
 
 ```bash
 $ npm run dev -- --env
+```
+Or
+
+```bash
+$ npm run dev:env
 ```
 
 ## Skip email verify step  <a name="skip-email-verify-step"></a>

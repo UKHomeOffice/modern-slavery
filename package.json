@@ -3,6 +3,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "NODE_ENV=development hof-build watch",
+    "dev:env": "hof-build watch --env",
     "test": "NODE_ENV=test npm-run-all test:unit lint",
     "test:unit": "_mocha",
     "test:coverage": "nyc npm run test:unit ",
@@ -37,6 +38,7 @@
     "jquery": "^3.3.1",
     "lodash": "^4.17.15",
     "mocha": "^6.0.2",
+    "modern-slavery-data-service": "0.0.1",
     "moment": "^2.24.0",
     "ms-countries": "^1.0.0",
     "ms-email-domains": "^1.2.0",
