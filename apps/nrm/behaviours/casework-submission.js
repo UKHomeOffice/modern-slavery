@@ -39,18 +39,15 @@ module.exports = config => {
           next();
         } else {
           // send casework model to AWS SQS
+          const caseworkModel = JSON.stringify(config.prepare(req.sessionModel.toJSON()));
           producer.send([{
               id: uuid(),
-              body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
+              body: caseworkModel
           }], error => {
             if (appConfig.audit.enabled) {
-              let type = 'NRM';
-              if (req.sessionModel['pv-want-to-submit-nrm'] && req.sessionModel['pv-want-to-submit-nrm'] === 'no') {
-                type = 'DTN';
-              }
               db('hof').insert({
                 ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
-                type: type,
+                type: caseworkModel.Type,
                 success: error ? false : true
               }).then(() => {
                 next(error);
