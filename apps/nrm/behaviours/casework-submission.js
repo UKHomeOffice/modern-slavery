@@ -44,9 +44,13 @@ module.exports = config => {
               body: JSON.stringify(config.prepare(req.sessionModel.toJSON()))
           }], error => {
             if (appConfig.audit.enabled) {
+              let type = 'NRM';
+              if (req.sessionModel['pv-want-to-submit-nrm'] && req.sessionModel['pv-want-to-submit-nrm'] === 'no') {
+                type = 'DTN';
+              }
               db('hof').insert({
                 ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
-                type: (req.sessionModel['pv-want-to-submit-nrm'] === 'no') ? 'DTN' : 'NRM',
+                type: type,
                 success: error ? false : true
               }).then(() => {
                 next(error);
