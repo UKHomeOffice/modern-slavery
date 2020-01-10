@@ -39,10 +39,10 @@ module.exports = config => {
           next();
         } else {
           // send casework model to AWS SQS
-          const caseworkModel = JSON.stringify(config.prepare(req.sessionModel.toJSON()));
+          const caseworkModel = config.prepare(req.sessionModel.toJSON());
           producer.send([{
               id: uuid(),
-              body: caseworkModel
+              body: JSON.stringify(caseworkModel)
           }], error => {
             if (appConfig.audit.enabled) {
               db('hof').insert({
