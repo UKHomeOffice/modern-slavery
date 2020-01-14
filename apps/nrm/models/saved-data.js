@@ -54,10 +54,24 @@ const sendDataToBeStored = async(data) => {
 
     return applicationId;
   }
+};
 
-  throw new Error('Attempt to save application failed: Invalid response from the data service');
+/**
+ * Read data from data service
+ *
+ * @param {number} applicationId - the id of the application
+ *
+ * @returns {Promise} - response from data service (the row data)
+ */
+const readDataFromStore = async(applicationId) => {
+  const response = await dataService.read(applicationId);
+
+  if (response && response.rowCount === 1) {
+    return response.rows[0];
+  }
 };
 
 module.exports = {
   sendDataToBeStored: sendDataToBeStored,
+  readDataFromStore: readDataFromStore,
 };
