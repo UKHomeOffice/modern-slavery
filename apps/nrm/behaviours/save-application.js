@@ -14,7 +14,7 @@ const saveData = async(data) => {
 };
 
 /**
- * Save application progress
+ * Save application process
  *
  * Get the application data from the session then attempt to save
  * it to a data store by sending it to a service.
