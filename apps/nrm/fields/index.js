@@ -696,7 +696,7 @@ module.exports = {
   },
   'pv-contact-details-county': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
