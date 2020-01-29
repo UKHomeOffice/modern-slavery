@@ -15,6 +15,7 @@ const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
+const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
@@ -618,6 +619,7 @@ module.exports = {
         hideAndShowSummaryFields,
         getPageCustomBackLink('confirm'),
         generateSendPdf,
+        fullWidth,
         submission,
         'complete'
       ],

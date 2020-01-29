@@ -1,0 +1,11 @@
+{{$content-outer}}
+{{$preloader}}{{/preloader}}
+  <div class="column-{{columnWidth}}{{^columnWidth}}two-thirds{{/columnWidth}}">
+    <q>column-{{columnWidth}}{{^columnWidth}}two-thirds{{/columnWidth}}</q>
+    {{$validationSummary}}{{/validationSummary}}
+    <header>
+      <h1>{{$header}}{{/header}}</h1>
+    </header>
+    {{$content}}{{/content}}
+  </div>
+{{/content-outer}}
