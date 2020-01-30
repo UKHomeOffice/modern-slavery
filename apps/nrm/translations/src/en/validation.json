@@ -155,7 +155,6 @@
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-county" : {
-    "required": "You must enter a county",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-postcode" : {
