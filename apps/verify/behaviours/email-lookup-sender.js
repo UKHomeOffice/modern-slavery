@@ -16,16 +16,26 @@ const isRecognisedExtension = (email) => {
   const extensionString = checkEmailExtension.getExtensionsString(emailExtensions);
   return checkEmailExtension.isRecognised(email, extensionString);
 };
-
+/*
 const checkDomain = (userEmailDomain) => {
   let flag = false;
 
   emailDomainList.forEach((emailDomain) => {
-    if (userEmailDomain === emailDomain) {
+    if (userEmailDomain === emailDomain &&
+      userEmailDomain !== 'gov.uk') {
       flag = true;
     }
   });
   return flag;
+};
+*/
+
+const checkDomain = (userEmailDomain) => {
+  const isValid = (emailDomain) => {
+    return (userEmailDomain === emailDomain &&
+      userEmailDomain !== 'gov.uk');
+  };
+  return (emailDomainList.some(isValid));
 };
 
 const getPersonalisation = (host, token) => {
