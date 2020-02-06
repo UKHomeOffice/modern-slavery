@@ -13,6 +13,11 @@ settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
 settings.start = false;
 
+// Check if Data service login & password has been defined
+if (!process.env.DATA_SERVICE_LOGIN || !process.env.DATA_SERVICE_PASSWORD) {
+  throw new Error('You need to provide an DATA_SERVICE_LOGIN && DATA_SERVICE_PASSWORD');
+}
+
 const app = hof(settings);
 
 if (config.useMocks) {

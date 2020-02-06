@@ -1,7 +1,33 @@
 'use strict';
+const fetch = require('node-fetch');
+const base64 = require('base-64');
 
 const formFields = require('../util/get-all-form-fields');
-const dataService = require('modern-slavery-data-service');
+const dataService = require('../../../config').dataService;
+const {
+  url: dataServiceUrl,
+  login,
+  password,
+} = dataService;
+
+const dataServiceRequestheaders = {
+  'Content-Type': 'application/json',
+  'Authorization': `Basic ${base64.encode(`${login}:${password}`)}`
+};
+
+/**
+ * Make request to data service API endpoint
+ *
+ * @param {string} uri - endpoint URI
+ * @param {object} options - request options (e.g. method, body and headers)
+ *
+ * @returns {Promise} - promise obejct containing the response
+ */
+async function makeRequest(uri, options) {
+  const response = await fetch(`${dataServiceUrl}/${uri}`, options);
+
+  return response.json();
+}
 
 /**
  * Get saved form data.
@@ -10,7 +36,7 @@ const dataService = require('modern-slavery-data-service');
  *
  * @param {object} data - the entire data set retirved from the sessionModel
  *
- * @returns {object} -  the saved form values
+ * @returns {string} -  the saved form values in string format
  */
 function getSavedFormData(data) {
   // check if we have any form data saved in the data object, if so return all of them.
@@ -25,7 +51,7 @@ function getSavedFormData(data) {
     return null;
   }).filter((arrayElement) => arrayElement);
 
-  return formData;
+  return JSON.stringify(formData);
 }
 
 /**
@@ -40,35 +66,44 @@ const sendDataToBeStored = async(data) => {
   const formData = getSavedFormData(data);
   const visitedPages = data.steps.toString();
 
-  const dataToBeStored = {
-    userEmail: userEmail,
-    jsonSavedData: formData,
-    visitedPages: visitedPages,
+  const body = {
+    'user_email': userEmail,
+    'json_saved_data': formData,
+    'visited_pages': visitedPages,
   };
 
-  const response = await dataService.write(dataToBeStored);
+  const options = {
+    method: 'post',
+    body: JSON.stringify(body),
+    headers: dataServiceRequestheaders,
+  };
 
-  if (response && response.rowCount === 1) {
-    // get the resulting row ID from the response
-    const applicationId = response.rows[0].id;
+  const response = await makeRequest('/reports', options);
 
-    return applicationId;
-  }
+  return response;
 };
 
 /**
  * Read data from data service
  *
- * @param {number} applicationId - the id of the application
+ * @param {number} userEmail - the user email
  *
  * @returns {Promise} - response from data service (the row data)
  */
-const readDataFromStore = async(applicationId) => {
-  const response = await dataService.read(applicationId);
+const readDataFromStore = async(userEmail) => {
+  const body = {
+    userEmail,
+  };
 
-  if (response && response.rowCount === 1) {
-    return response.rows[0];
-  }
+  const options = {
+    method: 'get',
+    body: JSON.stringify(body),
+    headers: dataServiceRequestheaders,
+  };
+
+  const response = await makeRequest('/reports/findByEmail', options);
+
+  return response;
 };
 
 module.exports = {
