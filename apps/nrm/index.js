@@ -21,6 +21,7 @@ const submission = Submission({
   prepare: require('./models/submission')
 });
 const saveApplication = require('./behaviours/save-application');
+const existingReportCheck = require('./behaviours/existing-report-check');
 
 module.exports = {
   name: 'nrm',
@@ -32,7 +33,17 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: checkEmailToken,
-      next: '/fr-location'
+      next: '/existing-report-check'
+    },
+    '/existing-report-check': {
+      backLink: false,
+      behaviours: [
+        existingReportCheck,
+      ],
+      fields: ['existing-report-check'],
+    },
+    '/enter-your-email': {
+      backLink: false,
     },
     '/fr-location': {
       backLink: false,
