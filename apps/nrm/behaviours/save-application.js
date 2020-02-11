@@ -14,7 +14,7 @@ const saveData = async(data) => {
 };
 
 /**
- * Save application progress
+ * Save application process
  *
  * Get the application data from the session then attempt to save
  * it to a data store by sending it to a service.
@@ -43,7 +43,8 @@ const saveApplication = async(req) => {
   const sessionData = req.sessionModel.toJSON();
 
   try {
-    const applicationId = await saveData(sessionData);
+    const response = await saveData(sessionData);
+    const applicationId = response.rows[0].id;
 
     // This proves data has been saved to the data store
     req.sessionModel.set('application-id', applicationId);
