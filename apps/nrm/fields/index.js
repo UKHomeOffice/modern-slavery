@@ -658,6 +658,7 @@ module.exports = {
   },
   'pv-contact-details-email-input': {
     mixin: 'input-text',
+    className: ['form-control form-control-3-4'],
     validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'email',
