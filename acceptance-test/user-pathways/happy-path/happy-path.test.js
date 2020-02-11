@@ -1,6 +1,6 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
-const config = require('../../../config');
+const config = require('../config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, navigateTo } = pageActions;
 
@@ -47,6 +47,7 @@ const {
     WHO_CONTACT_PV_OPTION,
     EXPLOITED_IN_UK_CITY_INPUT,
     START_HOME_BUTTON,
+    EXISTING_REPORT_NO_OPTION,
 } = config.selectors;
 
 const APP_CONTAINER_PORT = process.env.PORT || 8081;
@@ -161,6 +162,8 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
     async function completeForm1of2(typeOfPV, caseReferred) {
+        await clickSelector(page, CONTINUE_BUTTON);
+        await clickSelector(page, EXISTING_REPORT_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
