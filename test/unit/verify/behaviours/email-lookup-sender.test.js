@@ -89,7 +89,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
   describe('saveValues()', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'saveValues').yields();
+      sinon.stub(Base.prototype, 'saveValues');
       sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
     });
     afterEach(() => {
