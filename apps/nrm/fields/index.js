@@ -49,6 +49,7 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
+    className: ['form-control form-control-3-4'],
     validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
@@ -739,6 +740,7 @@ module.exports = {
   },
   'someone-else-email-input': {
     mixin: 'input-text',
+    className: ['form-control form-control-3-4'],
     validate: ['required', 'email', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'email',
@@ -861,6 +863,7 @@ module.exports = {
   },
   'fr-alternative-contact': {
     mixin: 'input-text',
+    className: ['form-control form-control-3-4'],
     validate: ['email', {'type': 'maxlength', 'arguments': [15000]}],
   }
 };
