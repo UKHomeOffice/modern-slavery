@@ -97,8 +97,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
       NotifyClient.prototype.sendEmail.restore();
     });
 
-    // this bit doesnt work - Sulthan any help?
-    xit('sets a `recognised-email` to false when an email is not on the whitelist', (done) => {
+    it('sets a `recognised-email` to false when an email is not on the whitelist', (done) => {
       req.form = {
         values: {
           'confirm-email': 'hello@email.com'
