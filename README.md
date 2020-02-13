@@ -44,6 +44,17 @@ AWS_ACCESS_KEY_ID     | AWS Access Key ID
 WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false)
 ```
 
+```
+DATA_SERVICE_PORT_10443_TCP   | Data Service URL (HTTPS) 
+DATA_SERVICE_PORT_10080_TCP   | Data Service URL (HTTP)
+DATA_SERVICE_LOGIN            | username
+DATA_SERVICE_PASSWORD         | password
+```
+You can either set `DATA_SERVICE_PORT_10443_TCP` or `DATA_SERVICE_PORT_10080_TCP`. The data service URL defaults to `http://localhost:8080` when both these variables are not set.
+
+
+These additional vars are required to enable the save and return feature within the application:
+
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
 
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
