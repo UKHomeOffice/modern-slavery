@@ -20,7 +20,7 @@ const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
 });
-const saveApplication = require('./behaviours/save-application');
+const saveReport = require('./behaviours/save-report');
 
 module.exports = {
   name: 'nrm',
@@ -634,10 +634,10 @@ module.exports = {
         confirmation,
       ],
     },
-    '/save-application': {
+    '/save-report': {
       backLink: false,
       behaviours: [
-        saveApplication,
+        saveReport,
       ],
     }
   }
