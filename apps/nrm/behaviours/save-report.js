@@ -63,19 +63,15 @@ const saveReport = async(req) => {
  * save process
  */
 const getLocalPageData = (req) => {
-  const reportSavedSuccessfully = {
-    reportSavedSuccessfully: true,
-  };
-
-  const reportNotSaved = {
-    reportNotSaved: true,
+  let reportSaveStatus = {
+    reportSaved: false,
   };
 
   if (req.sessionModel.get('report-id')) {
-    return reportSavedSuccessfully;
+    reportSaveStatus.reportSaved = true;
   }
 
-  return reportNotSaved;
+  return reportSaveStatus;
 };
 
 module.exports = superclass => class extends superclass {

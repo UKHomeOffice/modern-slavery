@@ -108,10 +108,10 @@ describe('/apps/nrm/behaviours/save-report', () => {
       Base.prototype.locals.restore();
     });
 
-    it('returns an extended locals with the reportSavedSuccessfully variable', async() => {
+    it('returns an extended locals with the reportSaved variable as true', async() => {
       const expected = {
         route: 'save-report',
-        reportSavedSuccessfully: true,
+        reportSaved: true,
       };
 
       req.sessionModel.get.withArgs('report-id').returns(true);
@@ -120,10 +120,10 @@ describe('/apps/nrm/behaviours/save-report', () => {
       result.should.deep.equal(expected);
     });
 
-    it('returns an extended locals with the reportNotSaved variable', async() => {
+    it('returns an extended locals with the reportSaved variable as false', async() => {
       const expected = {
         route: 'save-report',
-        reportNotSaved: true,
+        reportSaved: false,
       };
 
       req.sessionModel.get.withArgs('report-id').returns(undefined);
