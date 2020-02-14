@@ -321,7 +321,7 @@
   "send-pdf": {
     "header": "Enter the email to send the Pdf"
   },
-  "application-saved": {
+  "save-report": {
     "header": "Placeholder page"
   }
 }
