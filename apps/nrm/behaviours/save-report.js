@@ -51,11 +51,7 @@ const saveReport = async(req) => {
  * request. So we check the sessionModel variable 'report-id'
  * to determine whether the request was successful.
  *
- * @const reportSavedSuccessfully - if sent to page then the
- * user will see content related to a sucessfully saved report.
- *
- * @const reportNotSaved -  if sent to the page then the user
- * will see content relating to an failure in the save request.
+ * @const reportSaved - if true then user is sent to page and will see content related to a sucessfully saved report.
  *
  * @param {object} req - request object
  *
