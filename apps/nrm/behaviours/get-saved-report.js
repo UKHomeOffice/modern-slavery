@@ -45,7 +45,7 @@ const getReports = async(req) => {
       req.sessionModel.unset('no-report-found');
       req.sessionModel.unset('report-read-error');
     } else {
-      // This proves data has been retrived but no report
+      // This proves data has been retrived but no report was found
       req.sessionModel.set('no-report-found');
       req.sessionModel.unset('report-read-success');
       req.sessionModel.unset('report-read-error');
