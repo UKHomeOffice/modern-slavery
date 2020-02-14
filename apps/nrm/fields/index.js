@@ -28,17 +28,11 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    options: [{
-      value: 'yes',
-      toggle: 'yes-toggle-content',
-      child: 'partials/pv-under-age-panel-yes'
-    }, {
-      value: 'no',
-    }, {
-      value: 'not-sure',
-      toggle: 'not-sure-toggle-content',
-      child: 'partials/pv-under-age-panel-not-sure'
-    }]
+    options: [
+      'yes',
+      'no',
+      'not-sure'
+    ]
   },
   'local-authority-contacted-about-child-local-authority-name': {
     mixin: 'select',
@@ -696,7 +690,7 @@ module.exports = {
   },
   'pv-contact-details-county': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: [{'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       value: 'post',
       field: 'pv-contact-details',
