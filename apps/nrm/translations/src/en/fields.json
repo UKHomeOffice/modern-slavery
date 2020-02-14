@@ -3,6 +3,17 @@
     "label": "Email",
     "hint": "Use your work address so we can confirm who you work for"
   },
+  "existing-report-check": {
+    "legend": "Have you got an existing modern slavery report?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "fr-location": {
     "legend": "Where are you making this report?",
     "options": {

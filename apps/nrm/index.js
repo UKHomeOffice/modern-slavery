@@ -21,6 +21,7 @@ const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
 });
+const existingReportCheck = require('./behaviours/existing-report-check');
 const saveReport = require('./behaviours/save-report');
 
 module.exports = {
@@ -33,7 +34,17 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: checkEmailToken,
-      next: '/fr-location'
+      next: '/existing-report-check'
+    },
+    '/existing-report-check': {
+      backLink: false,
+      behaviours: [
+        existingReportCheck,
+      ],
+      fields: ['existing-report-check'],
+    },
+    '/enter-your-email': {
+      backLink: false,
     },
     '/fr-location': {
       backLink: false,

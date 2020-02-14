@@ -1,7 +1,7 @@
 'use strict';
 const bootstrap = require('../../bootstrap/bootstrap');
 const path = require('path');
-const config = require('../../../config');
+const config = require('../config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, navigateTo, uploadFile } = pageActions;
 
