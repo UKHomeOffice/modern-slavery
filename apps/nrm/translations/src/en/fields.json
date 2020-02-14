@@ -77,7 +77,7 @@
         "label": "No"
       },
       "not-sure": {
-        "label": "Not Sure"
+        "label": "Not sure"
       }
     }
   },
@@ -526,7 +526,7 @@
     "label": "Town or city"
   },
   "pv-contact-details-county": {
-    "label": "County"
+    "label": "County (optional)"
   },
   "pv-contact-details-postcode": {
     "label": "Postcode"

@@ -1,6 +1,6 @@
 {
   "start": {
-    "header": "Start"
+    "header": "Almost there"
   },
   "token-invalid": {
     "request-another": "Request a new link"
@@ -327,7 +327,7 @@
   "send-pdf": {
     "header": "Enter the email to send the Pdf"
   },
-  "application-saved": {
+  "save-report": {
     "header": "Placeholder page"
   }
 }

@@ -15,13 +15,14 @@ const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
+const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
 });
-const saveApplication = require('./behaviours/save-application');
 const existingReportCheck = require('./behaviours/existing-report-check');
+const saveReport = require('./behaviours/save-report');
 
 module.exports = {
   name: 'nrm',
@@ -630,6 +631,7 @@ module.exports = {
         hideAndShowSummaryFields,
         getPageCustomBackLink('confirm'),
         generateSendPdf,
+        fullWidth,
         submission,
         'complete'
       ],
@@ -645,10 +647,10 @@ module.exports = {
         confirmation,
       ],
     },
-    '/save-application': {
+    '/save-report': {
       backLink: false,
       behaviours: [
-        saveApplication,
+        saveReport,
       ],
     }
   }
