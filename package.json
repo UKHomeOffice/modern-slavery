@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --inspect app.js",
     "dev": "NODE_ENV=development hof-build watch",
     "dev:env": "hof-build watch --env",
     "test": "NODE_ENV=test npm-run-all test:unit lint",

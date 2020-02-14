@@ -1,6 +1,6 @@
 'use strict';
 
-const saveReportService = null;
+const saveReportService = require('../models/write-saved-report-data');
 
 /**
  * Save report progress
