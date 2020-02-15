@@ -26,6 +26,11 @@ module.exports = {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
+  dataService: {
+    url: process.env.DATA_SERVICE_PORT_10443_TCP || process.env.DATA_SERVICE_PORT_10080_TCP || 'http://localhost:8080',
+    login: process.env.DATA_SERVICE_LOGIN,
+    password: process.env.DATA_SERVICE_PASSWORD,
+  },
   upload: {
     maxFileSize: '100mb',
     hostname: !useMocks && process.env.FILE_VAULT_URL ?
