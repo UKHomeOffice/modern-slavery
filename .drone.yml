@@ -58,7 +58,8 @@ pipeline:
       - build-${DRONE_BUILD_NUMBER}
       - latest
     when:
-      branch: master
+    # temporarily remove branch restrictions to allow alternate branch to be pushed to quay and tested
+      #branch: master
       event: push
 
   trigger_deploy_to_dev:
