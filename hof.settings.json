@@ -6,6 +6,7 @@
   },
   "theme": "govuk",
   "routes": [
+    "./apps/static-pages",
     "./apps/verify",
     "./apps/nrm",
     "./apps/feedback"
