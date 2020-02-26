@@ -144,3 +144,7 @@ textarea {
   margin-top: -30px;
   margin-bottom: 30px;
 }
+
+.button-secondary {
+  @include button($grey-3);
+}
