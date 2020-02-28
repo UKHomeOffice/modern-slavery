@@ -58,11 +58,55 @@ const getReports = async(req) => {
   }
 };
 
+/**
+ * Get local page data
+ *
+ * We need to feedback to the user the outcome of the save
+ * request. So we check the sessionModel variable 'report-id'
+ * to determine whether the request was successful.
+ *
+ * @const reportSaved - if true then user is sent to page and will see content related to a sucessfully saved report.
+ *
+ * @param {object} req - request object
+ *
+ * @returns {object} - containing the outcome report
+ * save process
+ */
+const getLocalPageData = (req) => {
+  let reportsRequestStatus = {
+    reportSaved: false,
+  };
+
+  if (req.sessionModel.get('report-read-success')) {
+    reportsRequestStatus.reportSaved = true;
+  }
+
+  if (req.sessionModel.get('no-report-found')) {
+    return {
+      reportsNotFound: true,
+    };
+  }
+
+  return reportsRequestStatus;
+};
+
 module.exports = superclass => class extends superclass {
   async getValues(req, res, next) {
     // attempt to read a saved report data using a data service
     await getReports(req);
 
     super.getValues(req, res, next);
+  }
+
+  locals(req, res) {
+    const superlocals = super.locals(req, res);
+
+    /* Get relevant content to show on the page.
+    Dependant on the outcome of the getReports() request */
+    let data = getLocalPageData(req);
+
+    const locals = Object.assign({}, superlocals, data);
+
+    return locals;
   }
 };
