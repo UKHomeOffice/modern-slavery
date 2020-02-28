@@ -44,10 +44,14 @@ const sendDataToBeStored = async(data) => {
   const formData = getSavedFormData(data);
   const visitedPages = data.steps.toString();
 
+  const dateObject = new Date();
+  const currentDateTime = dateObject.toISOString();
+
   const body = {
     'user_email': userEmail,
     'json_saved_data': formData,
     'visited_pages': visitedPages,
+    'createdAt': currentDateTime,
   };
 
   const options = {
