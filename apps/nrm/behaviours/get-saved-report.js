@@ -90,7 +90,7 @@ module.exports = superclass => class extends superclass {
     const superlocals = super.locals(req, res);
 
     /* Get relevant content to show on the page.
-    Dependant on the outcome of the getReports() request */
+    Dependent on the outcome of the getReports() request */
     let data = getLocalPageData(req);
 
     const locals = Object.assign({}, superlocals, data);
