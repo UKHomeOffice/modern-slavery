@@ -61,11 +61,12 @@ const getReports = async(req) => {
 /**
  * Get local page data
  *
- * We need to feedback to the user the outcome of the save
- * request. So we check the sessionModel variable 'report-id'
+ * We need to feedback to the user the outcome of the read
+ * request. So we check the sessionModel variable 'report-read-success'
  * to determine whether the request was successful.
  *
- * @const reportSaved - if true then user is sent to page and will see content related to a sucessfully saved report.
+ * @const reportSaved - if true then user is sent to page and will see
+ * content related to a sucessful read from their list of reports.
  *
  * @param {object} req - request object
  *
