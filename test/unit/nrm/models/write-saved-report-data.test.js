@@ -8,7 +8,7 @@ const dataService = {
 const proxyquire = require('proxyquire').noCallThru();
 const Model = proxyquire('../../../../apps/nrm/models/write-saved-report-data',
 {
-  './data-service': dataService,
+  '../../common/data-service': dataService,
 });
 
 describe('apps/nrm/models/write-saved-report-data', () => {
