@@ -65,8 +65,10 @@ const getReports = async(req) => {
  * request. So we check the sessionModel variable 'report-read-success'
  * to determine whether the request was successful.
  *
- * @const reportSaved - if true then user is sent to page and will see
- * content related to a sucessful read from their list of reports.
+ * @const reportsRequestStatus - if true or false then user is sent to page and will see
+ * content related to a sucessful / failed read from their list of reports.
+ *
+ * Otherwise an object declaring that no records were found will be sent
  *
  * @param {object} req - request object
  *
