@@ -1,4 +1,3 @@
-
 {{#reportSaved}}
 <div class="govuk-panel govuk-panel--confirmation">
   <h1 class="govuk-panel__title">{{#t}}pages.save-report.save-report-success{{/t}}</h1>
