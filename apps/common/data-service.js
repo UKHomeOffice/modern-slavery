@@ -3,7 +3,7 @@
 const fetch = require('node-fetch');
 const base64 = require('base-64');
 
-const dataService = require('../../../config').dataService;
+const dataService = require('../../config').dataService;
 const {
   url: dataServiceUrl,
   login,

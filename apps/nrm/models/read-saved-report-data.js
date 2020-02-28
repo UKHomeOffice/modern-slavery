@@ -1,9 +1,9 @@
 'use strict';
 
-const dataService = require('./data-service');
+const dataService = require('../../common/data-service');
 const {
-makeRequest,
-requestHeaders,
+  makeRequest,
+  requestHeaders,
 } = dataService;
 
 /**
