@@ -328,6 +328,13 @@
     "header": "Enter the email to send the Pdf"
   },
   "save-report": {
-    "header": "Placeholder page"
+    "header": "Save report status",
+    "save-report-success": "Report saved",
+    "save-report-fail": "An error has occured",
+    "success-panel-text": "Your application has been saved for 28 days",
+    "fail-panel-text": "Unfortunately the report was not saved",
+    "paragraph-1-success": "We have emailed you a link",
+    "paragraph-1-fail": "Unfortunately the report was not saved",
+    "paragraph-2-success": "We have emailed you a link"
   }
 }
