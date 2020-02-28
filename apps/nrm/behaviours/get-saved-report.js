@@ -42,19 +42,12 @@ const getReports = async(req) => {
 
       // This proves data has been retrieved from the data store
       req.sessionModel.set('report-read-success', savedData);
-      req.sessionModel.unset('no-report-found');
-      req.sessionModel.unset('report-read-error');
     } else {
-      // This proves data has been retrieved but no report was found
-      req.sessionModel.set('no-report-found');
       req.sessionModel.unset('report-read-success');
-      req.sessionModel.unset('report-read-error');
     }
   } catch (err) {
     // There was a problem reading the data
     req.sessionModel.unset('report-read-success');
-    req.sessionModel.unset('no-report-found');
-    req.sessionModel.set('report-read-error', err);
   }
 };
 
@@ -76,18 +69,10 @@ const getReports = async(req) => {
  * save process
  */
 const getLocalPageData = (req) => {
-  let reportsRequestStatus = {
-    reportSaved: false,
-  };
+  let reportsRequestStatus = {};
 
   if (req.sessionModel.get('report-read-success')) {
-    reportsRequestStatus.reportSaved = true;
-  }
-
-  if (req.sessionModel.get('no-report-found')) {
-    return {
-      reportsNotFound: true,
-    };
+      reportsRequestStatus.hasReports = true;
   }
 
   return reportsRequestStatus;
