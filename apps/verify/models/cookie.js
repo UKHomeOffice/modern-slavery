@@ -1,15 +1,16 @@
 'use strict';
 const uuidv4 = require('uuid/v4');
-const read = require('./read-cookie');
-const write = require('./write-cookie');
+const read = require('../../common/models/read-token');
+const write = require('../../common/models/write-token');
+const param = 'cookies';
 
 const readUuid = async(uuid) => {
-  return await read(uuid);
+  return await read(uuid, param);
 };
 
 const writeCookie = async(data) => {
   data.uuid = uuidv4();
-  return await write(data);
+  return await write(data, param);
 };
 
 module.exports = {

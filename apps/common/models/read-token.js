@@ -1,6 +1,6 @@
 'use strict';
 
-const dataService = require('../../common/data-service');
+const dataService = require('../data-service');
 const {
   makeRequest,
   requestHeaders,
@@ -9,11 +9,12 @@ const {
 /**
  * API get - check nrm cookie
  *
- * @param {string} uuid - unique id for the cookie
+ * @param {string} uuid
+ * @param {string} path - api end point `cookies` or `short-life-tokens`
  *
  * @returns {Promise} - response from data service (the row data)
  */
-const readDataFromStore = async(uuid) => {
+const readDataFromStore = async(uuid, path) => {
 
   const options = {
     method: 'get',
@@ -22,7 +23,7 @@ const readDataFromStore = async(uuid) => {
   };
 
   try {
-    const response = await makeRequest(`/cookies/${uuid}`, options);
+    const response = await makeRequest(`/${path}/${uuid}`, options);
     return (response || null);
   } catch (e) {
     // eslint-disable-next-line no-console
