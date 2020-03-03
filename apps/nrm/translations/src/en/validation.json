@@ -18,8 +18,8 @@
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "local-authority-contacted-about-child-local-authority-email": {
-    "required": "You must enter a valid email address",
-    "email": "You must enter a valid email address",
+    "required": "Enter a valid email address",
+    "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-under-age-at-time-of-exploitation" : {
@@ -90,8 +90,8 @@
   },
   "pv-dob": {
     "date": "You must enter a valid date",
-    "before": "Date cannot be in the future",
-    "after": "This date appears to be too far in the past"
+    "before": "You must enter a valid date. The date cannot be in the future",
+    "after": "You must enter a valid date. The date cannot be too far in the past"
   },
   "pv-gender" : {
     "required": "You must select the potential victim's gender"
@@ -122,14 +122,14 @@
     "required": "You must select an option"
   },
   "pv-other-help-with-communication-aid" : {
-    "required": "You must enter a type of communication aid",
+    "required": "You must enter the communication aid",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-ho-reference" : {
     "required": "You must select an option"
   },
   "pv-ho-reference-type" : {
-    "required": "You must enter the type of reference, reference number or both",
+    "required": "You must enter a reference number",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "who-contact" : {
@@ -139,8 +139,8 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "pv-contact-details-email-input" : {
-    "required": "You must enter a valid email address",
-    "email": "You must enter a valid email address",
+    "required": "Enter a valid email address",
+    "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-contact-details-email-check" : {
@@ -168,8 +168,8 @@
     "required": "You must select one or more of the contact methods listed"
   },
   "someone-else-email-input" : {
-    "required": "You must enter a valid email address",
-    "email": "You must enter a valid email address",
+    "required": "Enter a valid email address",
+    "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "someone-else-street" : {
@@ -221,7 +221,7 @@
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-alternative-contact" : {
-    "email": "You must enter a valid email address",
+    "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "refuse-nrm" : {
