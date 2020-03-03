@@ -1,0 +1,11 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#hasReports}}
+      {{> partials-check-your-answers-so-far-summary-table}}
+      {{#input-submit}}continue{{/input-submit}}
+    {{/hasReports}}
+    {{^hasReports}}
+    Error
+    {{/hasReports}}
+  {{/page-content}}
+{{/partials-page}}

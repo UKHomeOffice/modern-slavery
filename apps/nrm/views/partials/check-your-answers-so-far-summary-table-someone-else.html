@@ -1,0 +1,48 @@
+{{^isDutyToNotifyPath}}
+{{#showSomeoneElsesContactDetails}}
+<h2 class="details-header">{{#t}}pages.confirm.sections.someone-else.header{{/t}}</h2>
+<table id="someone-else" class="table-details">
+  <tbody>
+      {{#values.someone-else-first-name}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.someone-else-name.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.someone-else-first-name}} {{values.someone-else-last-name}}
+          </span>
+        </td>
+        <td>
+        </td>
+      </tr>
+      {{/values.someone-else-first-name}}
+
+      {{#values.someone-else-email-input}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.someone-else-email-input.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>{{values.someone-else-email-input}}</span>
+          <span>Permission to use granted</span>
+        </td>
+        <td>
+        </td>
+      </tr>
+      {{/values.someone-else-email-input}}
+
+      {{#values.someone-else-street}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.someone-else-contact-details.label{{/t}}</td>
+        <td class="no-white-space">
+            <span>{{values.someone-else-street}}</span>
+            <span>{{values.someone-else-town}}</span>
+            <span>{{values.someone-else-county}}</span>
+            <span>{{values.someone-else-postcode}}</span>
+            <span>Permission to use granted</span>
+        </td>
+        <td>
+        </td>
+      </tr>
+      {{/values.someone-else-street}}
+  </tbody>
+</table>
+{{/showSomeoneElsesContactDetails}}
+{{/isDutyToNotifyPath}}
