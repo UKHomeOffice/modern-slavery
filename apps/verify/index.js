@@ -9,7 +9,7 @@ module.exports = {
   },
   steps: {
     '/start': {
-      next: '/who-do-you-work-for'
+      next: '/existing-report-check'
     },
     '/paper-version-download': {
       backLink: false,
@@ -22,6 +22,24 @@ module.exports = {
     },
     '/privacy': {
       backLink: false,
+    },
+    '/existing-report-check': {
+      fields: ['existing-report-check'],
+      forks: [{
+        target: '/saved-email',
+        condition: {
+          field: 'existing-report-check',
+          value: 'yes'
+        }
+      }],
+      next: '/who-do-you-work-for'
+    },
+    '/saved-email': {
+      fields: ['saved-email'],
+      behaviours: require('../common/behaviours/send-save-report-token'),
+      next: '/check-saved-email'
+    },
+    '/check-saved-email': {
     },
     '/who-do-you-work-for': {
       fields: ['user-organisation', 'user-email'],

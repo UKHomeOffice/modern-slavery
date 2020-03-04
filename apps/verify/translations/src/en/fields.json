@@ -1,4 +1,19 @@
 {
+  "existing-report-check": {
+    "legend": "Have you got an existing modern slavery report?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "saved-email": {
+    "label": "Enter your email address",
+    "hint": "Enter the email address you used when you created the report."
+  },
   "user-organisation": {
     "label": "Organisation",
     "hint": "Start typing the name of your organisation. It must appear on the list for you to be able to continue.",

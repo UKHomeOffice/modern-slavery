@@ -21,7 +21,6 @@ const Submission = require('./behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
 });
-const existingReportCheck = require('./behaviours/existing-report-check');
 const saveReport = require('./behaviours/save-report');
 
 module.exports = {
@@ -32,19 +31,15 @@ module.exports = {
     '/token-invalid': 'token-invalid'
   },
   steps: {
+    '/continue-report': {
+      behaviours: require('./behaviours/check-save-report-token'),
+      next: '/check-answers-so-far'
+    },
+    '/check-answers-so-far': {
+    },
     '/start': {
       behaviours: checkEmailToken,
-      next: '/existing-report-check'
-    },
-    '/existing-report-check': {
-      backLink: false,
-      behaviours: [
-        existingReportCheck,
-      ],
-      fields: ['existing-report-check'],
-    },
-    '/enter-your-email': {
-      backLink: false,
+      next: '/fr-location'
     },
     '/fr-location': {
       backLink: false,

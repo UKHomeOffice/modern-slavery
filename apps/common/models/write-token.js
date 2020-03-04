@@ -3,16 +3,17 @@
 const {
   makeRequest,
   requestHeaders,
-} = require('../../common/data-service');
+} = require('../data-service');
 
 /**
  * API post - create cookie in the database
  *
  * @param {object} data - {created, uuid, userEmail} sent to the db
+ * @param {string} path -  either `cookies` or `short-life-tokens`
  *
  * @returns {Promise} response
  */
-const sendDataToBeStored = async(data) => {
+const sendDataToBeStored = async(data, path) => {
   // current date
   const created = (new Date()).toISOString();
   const uuid = data.uuid;
@@ -31,14 +32,18 @@ const sendDataToBeStored = async(data) => {
   };
 
   try {
-    const response = await makeRequest('/cookies', options);
-    if (response) {
+    // path: /cookies or /short-life-tokens
+    const response = await makeRequest(`/${path}`, options);
+    const responseString = JSON.stringify(response);
+    // this looks for an error in the response
+    // Api is not responding with 200 or 400 as expected
+    if (!response.code) {
       return uuid;
     }
     // eslint-disable-next-line no-console
     console.error(`Made a successful POST but did not get a proper response
-      ${response}`);
-      throw Error(response);
+      ${responseString}`);
+      throw Error(responseString);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(`Unable to make POST request to write cookie
