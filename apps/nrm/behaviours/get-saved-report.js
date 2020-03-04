@@ -42,20 +42,40 @@ const getReports = async(req) => {
 
       // This proves data has been retrieved from the data store
       req.sessionModel.set('report-read-success', savedData);
-      req.sessionModel.unset('no-report-found');
-      req.sessionModel.unset('report-read-error');
     } else {
-      // This proves data has been retrieved but no report was found
-      req.sessionModel.set('no-report-found');
       req.sessionModel.unset('report-read-success');
-      req.sessionModel.unset('report-read-error');
     }
   } catch (err) {
     // There was a problem reading the data
     req.sessionModel.unset('report-read-success');
-    req.sessionModel.unset('no-report-found');
-    req.sessionModel.set('report-read-error', err);
   }
+};
+
+/**
+ * Get local page data
+ *
+ * We need to feedback to the user the outcome of the read
+ * request. So we check the sessionModel variable 'report-read-success'
+ * to determine whether the request was successful.
+ *
+ * @const reportsRequestStatus - if true or false then user is sent to page and will see
+ * content related to a sucessful / failed read from their list of reports.
+ *
+ * Otherwise an object declaring that no records were found will be sent
+ *
+ * @param {object} req - request object
+ *
+ * @returns {object} - containing the outcome report
+ * save process
+ */
+const getLocalPageData = (req) => {
+  let reportsRequestStatus = {};
+
+  if (req.sessionModel.get('report-read-success')) {
+      reportsRequestStatus.hasReports = true;
+  }
+
+  return reportsRequestStatus;
 };
 
 module.exports = superclass => class extends superclass {
@@ -64,5 +84,17 @@ module.exports = superclass => class extends superclass {
     await getReports(req);
 
     super.getValues(req, res, next);
+  }
+
+  locals(req, res) {
+    const superlocals = super.locals(req, res);
+
+    /* Get relevant content to show on the page.
+    Dependent on the outcome of the getReports() request */
+    let data = getLocalPageData(req);
+
+    const locals = Object.assign({}, superlocals, data);
+
+    return locals;
   }
 };
