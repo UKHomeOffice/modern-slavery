@@ -14,17 +14,13 @@ const {
  * @returns {Promise} - response from data service (the row data)
  */
 const readDataFromStore = async(userEmail) => {
-  const body = {
-    userEmail,
-  };
-
   const options = {
     method: 'get',
-    body: JSON.stringify(body),
+    body: null,
     headers: requestHeaders,
   };
 
-  const response = await makeRequest('/reports/findByEmail', options);
+  const response = await makeRequest(`/reports/findByEmail/${userEmail}`, options);
 
   if (response) {
     // get the latest report saved by user for now
