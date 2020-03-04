@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    name: 'static-pages',
+    name: 'common',
     steps: {
       '/start': {
         next: '/verify/who-do-you-work-for'
