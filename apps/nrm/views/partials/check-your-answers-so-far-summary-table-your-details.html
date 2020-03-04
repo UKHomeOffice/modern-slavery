@@ -1,0 +1,73 @@
+{{^isDutyToNotifyPath}}
+{{#values.fr-details-first-name}}
+<h2 class="details-header">{{#t}}pages.confirm.sections.your-details.header{{/t}}</h2>
+<table id="your-details" class="table-details">
+  <tbody>
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-details-name.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.fr-details-first-name}} {{values.fr-details-last-name}}
+          </span>
+        </td>
+        <td>
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-details-organisation.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.user-organisation}}
+          </span>
+        </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-details-role.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.fr-details-role}}
+          </span>
+        </td>
+        <td>
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-details-email.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.user-email}}
+          </span>
+        </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-details-phone.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.fr-details-phone}}
+          </span>
+        </td>
+        <td>
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{#t}}pages.confirm.fields.fr-alternative-contact.label{{/t}}</td>
+        <td class="no-white-space">
+          <span>
+            {{values.fr-alternative-contact}}
+          </span>
+        </td>
+        <td>
+        </td>
+      </tr>
+
+  </tbody>
+</table>
+{{/values.fr-details-first-name}}
+{{/isDutyToNotifyPath}}
