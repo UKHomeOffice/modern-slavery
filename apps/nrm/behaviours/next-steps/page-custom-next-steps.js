@@ -229,4 +229,18 @@ module.exports = {
 
     return nextStep;
   },
+  checkYourAnswersSoFar: (req) => {
+    let nextStep = '/nrm/start';
+
+    const savedData = req.sessionModel.get('report-read-success');
+
+    if (savedData) {
+      const visitedPages = savedData.visited_pages.split(',');
+      const getLastSavedPage = visitedPages[visitedPages.length - 1].trim();
+
+      nextStep = `/nrm${getLastSavedPage}`;
+    }
+
+    return nextStep;
+  },
 };

@@ -29,9 +29,8 @@ const readDataFromStore = async(userEmail) => {
   if (response) {
     // get the latest report saved by user for now
     const latestReport = response[response.length - 1];
-    const savedData = latestReport ? JSON.parse(latestReport) : null;
 
-    return savedData;
+    return latestReport;
   }
 
   return response;

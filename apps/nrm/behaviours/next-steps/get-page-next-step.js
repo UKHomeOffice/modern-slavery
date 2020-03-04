@@ -28,6 +28,7 @@ const getPageNextStep = (req, pageName) => {
     'where-exploitation-happened': pageCustomNextSteps.whereExploitationHappened(req),
     'where-exploitation-happened-uk': pageCustomNextSteps.whereExploitationHappenedUk(req),
     'where-exploitation-happened-overseas': pageCustomNextSteps.whereExploitationHappenedOverseas(req),
+    'check-your-answers-so-far': pageCustomNextSteps.checkYourAnswersSoFar(req),
   };
 
   return pageNextSteps[pageName];
