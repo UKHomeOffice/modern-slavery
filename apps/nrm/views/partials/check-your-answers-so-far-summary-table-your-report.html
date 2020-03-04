@@ -1,0 +1,232 @@
+<h2 class="details-header">{{#t}}pages.confirm.sections.your-report.header{{/t}}</h2>
+<table id="your-report" class="table-details">
+  <tbody>
+    <tr>
+      <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.pv-under-age}}
+          {{formattedPvUnderAge}}
+        {{/values.pv-under-age}}
+      </td>
+      <td></td>
+    </tr>
+
+    {{#values.pv-under-age-at-time-of-exploitation}}
+      <tr>
+        <td>{{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}</td>
+        <td class="no-white-space">
+            {{formattedPvUnderAgeAtTimeOfExploitation}}
+        </td>
+        <td>
+        </td>
+      </tr>
+    {{/values.pv-under-age-at-time-of-exploitation}}
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.fr-location.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.fr-location}}
+          {{formattedFrLocation}}
+        {{/values.fr-location}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    {{#values.local-authority-contacted-about-child-local-authority-name}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-name}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-phone}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-phone}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-email}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-email}}
+
+      {{#values.local-authority-contacted-about-child-local-authority-first-name}}
+        <tr>
+          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}</td>
+          <td class="no-white-space">
+            <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
+          </td>
+          <td>
+          </td>
+        </tr>
+      {{/values.local-authority-contacted-about-child-local-authority-first-name}}
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}</td>
+      <td class="no-white-space types-of-exploitation">
+        {{#values.types-of-exploitation-forced-to-work}}
+          <span>{{#t}}fields.types-of-exploitation-forced-to-work.label{{/t}}.</span>
+        {{/values.types-of-exploitation-forced-to-work}}
+        {{#values.types-of-exploitation-wages-taken}}
+          <span>{{#t}}fields.types-of-exploitation-wages-taken.label{{/t}}.</span>
+        {{/values.types-of-exploitation-wages-taken}}
+        {{#values.types-of-exploitation-forced-to-commit-fraud}}
+          <span>{{#t}}fields.types-of-exploitation-forced-to-commit-fraud.label{{/t}}.</span>
+        {{/values.types-of-exploitation-forced-to-commit-fraud}}
+        {{#values.types-of-exploitation-prostitution}}
+          <span>{{#t}}fields.types-of-exploitation-prostitution.label{{/t}}.</span>
+        {{/values.types-of-exploitation-prostitution}}
+        {{#values.types-of-exploitation-child-exploitation}}
+          <span>{{#t}}fields.types-of-exploitation-child-exploitation.label{{/t}}.</span>
+        {{/values.types-of-exploitation-child-exploitation}}
+        {{#values.types-of-exploitation-taken-somewhere}}
+          <span>{{#t}}fields.types-of-exploitation-taken-somewhere.label{{/t}}.</span>
+        {{/values.types-of-exploitation-taken-somewhere}}
+        {{#values.types-of-exploitation-forced-to-commit-crime}}
+          <span>{{#t}}fields.types-of-exploitation-forced-to-commit-crime.label{{/t}}.</span>
+        {{/values.types-of-exploitation-forced-to-commit-crime}}
+        {{#values.types-of-exploitation-organs-removed}}
+          <span>{{#t}}fields.types-of-exploitation-organs-removed.label{{/t}}.</span>
+        {{/values.types-of-exploitation-organs-removed}}
+        {{#values.types-of-exploitation-unpaid-household-work}}
+          <span>{{#t}}fields.types-of-exploitation-unpaid-household-work.label{{/t}}.</span>
+        {{/values.types-of-exploitation-unpaid-household-work}}
+        {{#values.other-exploitation-details}}
+          <span>{{values.other-exploitation-details}}.</span>
+        {{/values.other-exploitation-details}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.where-exploitation-happened}}
+          {{formattedWhereExploitationHappened}}
+        {{/values.where-exploitation-happened}}
+      </td><td>
+      </td>
+    </tr>
+
+    {{#values.where-exploitation-happened-uk-city-1}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.where-exploitation-happened-uk.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{values.where-exploitation-happened-uk-city-1}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-2}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-3}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-4}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-5}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-6}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-7}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-8}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-9}}</span>
+          <span>{{values.where-exploitation-happened-uk-city-10}}</span>
+          <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
+      </td>
+      <td>
+      </td>
+    </tr>
+    {{/values.where-exploitation-happened-uk-city-1}}
+
+    {{#values.where-exploitation-happened-overseas-country-1}}
+    <tr>
+        <td>{{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}</td>
+        <td class="no-white-space">
+            <span>{{values.where-exploitation-happened-overseas-country-1}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-2}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-3}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-4}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-5}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-6}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-7}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-8}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-9}}</span>
+            <span>{{values.where-exploitation-happened-overseas-country-10}}</span>
+            <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
+        </td>
+        <td>
+        </td>
+      </tr>
+      {{/values.where-exploitation-happened-overseas-country-1}}
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.current-pv-location.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.current-pv-location-uk-city}}
+          <span>City: {{values.current-pv-location-uk-city}}</span>
+          <span>Region: {{values.current-pv-location-uk-region}}</span>
+        {{/values.current-pv-location-uk-city}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.who-exploited-pv.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.who-exploited-pv}}
+          <span>{{values.who-exploited-pv}}</span>
+        {{/values.who-exploited-pv}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.what-happened.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.what-happened}}
+          <span>{{values.what-happened}}</span>
+        {{/values.what-happened}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.any-other-pvs}}
+          <span>{{formattedAnyOtherPvs}}</span>
+        {{/values.any-other-pvs}}
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>{{#t}}pages.confirm.fields.reported-to-police.label{{/t}}</td>
+      <td class="no-white-space">
+        {{#values.reported-to-police}}
+          <span>{{formattedReportedToPolice}}</span>
+          {{#values.reported-to-police-police-forces}}
+            <span>{{values.reported-to-police-police-forces}}</span>
+          {{/values.reported-to-police-police-forces}}
+          {{#values.reported-to-police-crime-reference}}
+          <span>Reference: {{values.reported-to-police-crime-reference}}</span>
+          {{/values.reported-to-police-crime-reference}}
+        {{/values.reported-to-police}}
+      </td>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</table>
