@@ -92,6 +92,8 @@ describe.only('User path(s)', () => {
      */
     async function verifyUser() {
         await clickSelector(page, START_HOME_BUTTON);
+        await clickSelector(page, EXISTING_REPORT_NO_OPTION);
+        await clickSelector(page, CONTINUE_BUTTON);
         await page.$eval(ORGANISATION_INPUT, (element) => {
             element.value = 'Barnardos';
         });
@@ -162,8 +164,6 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
     async function completeForm1of2(typeOfPV, caseReferred) {
-        await clickSelector(page, CONTINUE_BUTTON);
-        await clickSelector(page, EXISTING_REPORT_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, LOCATION_ENGLAND_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
