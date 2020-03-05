@@ -9,17 +9,6 @@ const ukLocalAuthorities = require('ms-uk-local-authorities');
 const msNationalities = require('ms-nationalities');
 
 module.exports = {
-  'existing-report-check': {
-    mixin: 'radio-group',
-    validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [
-      'yes',
-      'no',
-    ],
-  },
   'fr-location': {
     mixin: 'radio-group',
     validate: ['required'],

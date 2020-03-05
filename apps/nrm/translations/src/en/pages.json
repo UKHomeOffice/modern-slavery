@@ -1,12 +1,15 @@
 {
+  "continue-report": {
+    "header": "Continue to the report"
+  },
+  "check-answers-so-far": {
+    "header": "Placeholder"
+  },
   "start": {
     "header": "Almost there"
   },
   "token-invalid": {
     "request-another": "Request a new link"
-  },
-  "existing-report-check": {
-    "header": "Have you got an existing modern slavery report?"
   },
   "enter-your-email": {
     "header": "Placeholder Page"

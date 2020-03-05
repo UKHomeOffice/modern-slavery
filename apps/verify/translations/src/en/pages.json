@@ -69,6 +69,12 @@
     "heading-3-sub-heading-2": "Belfast and Lisburn Women’s Aid",
     "heading-3-sub-heading-2-paragraph-1": "24hr number: 028 90662385"
   },
+  "existing-report-check": {
+    "header": "Have you got an existing modern slavery report?"
+  },
+  "check-saved-email": {
+    "header": "Placeholder page"
+  },
   "who-do-you-work-for": {
     "header": "Who do you work for?"
   },
