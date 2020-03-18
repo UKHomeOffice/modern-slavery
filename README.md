@@ -15,18 +15,16 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
 
 3. [Skip email verify step](#skip-email-verify-step)
 
-4. [PDF generation](#pdf-generation)
-
-5. [Acceptance tests](#acceptance-tests)
+4. [Acceptance tests](#acceptance-tests)
     - [Running local acceptance tests](#running-local-acceptance-tests)
     - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
         - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
-6. [Coverage Reporting](#coverage-reporting)
+5. [Coverage Reporting](#coverage-reporting)
 
-7. [Release Guidelines](#release-guidelines)
+6. [Release Guidelines](#release-guidelines)
 
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
@@ -97,12 +95,6 @@ $ npm run dev -- --env
 On dev, preprod and locally you can skip the email verify step by going to the following url
 
 http://localhost:8081/nrm/start?token=skip
-
-## PDF Generation <a name="pdf-generation"></a>
-
-We are currently working on a feature for pdf generation. In order for this not to affect development, this has been put on a different route on the app
-
-http://localhost:8081/pdf/
 
 ## Acceptance tests  <a name="acceptance-tests"></a>
 

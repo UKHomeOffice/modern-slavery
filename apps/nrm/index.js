@@ -4,8 +4,6 @@ const checkEmailToken = require('./behaviours/check-email-token');
 const supportingDocuments = require('./behaviours/supporting-documents');
 const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
-const dataToPdf = require('./behaviours/data-to-pdf');
-const generateSendPdf = require('./behaviours/generate-send-pdf');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
 const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
@@ -26,7 +24,6 @@ module.exports = {
   name: 'nrm',
   baseUrl: '/nrm',
   pages: {
-    '/template-pdf': 'pdf',
     '/token-invalid': 'token-invalid'
   },
   steps: {
@@ -618,16 +615,11 @@ module.exports = {
         formatAnswers,
         hideAndShowSummaryFields,
         getPageCustomBackLink('confirm'),
-        generateSendPdf,
         fullWidth,
         submission,
         'complete'
       ],
       next: '/confirmation'
-    },
-    // need this to check the formatting of the pdf
-    '/pdf': {
-      behaviours: dataToPdf
     },
     '/confirmation': {
       backLink: false,
