@@ -1,5 +1,5 @@
 'use strict';
-const emailDomainList = require('ms-email-domains');
+const emailDomainCheck = require('ms-email-domains');
 const config = require('../../../config');
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
@@ -8,26 +8,6 @@ const templateId = config.govukNotify.templateUserAuthId;
 const appPath = require('../../nrm/index').baseUrl;
 const firstStep = '/start/';
 const tokenGenerator = require('../models/save-token');
-
-const checkEmailExtension = require('../util/check-email-ext');
-// this will be an npm module in the future
-const emailExtensions = ['gov.uk', 'police.uk', 'pnn.police.uk', 'gov.scot', 'gov.wales'];
-
-const isRecognisedExtension = (email) => {
-  const extensionString = checkEmailExtension.getExtensionsString(emailExtensions);
-  return checkEmailExtension.isRecognised(email, extensionString);
-};
-
-const checkDomain = (userEmailDomain) => {
-  let flag = false;
-
-  emailDomainList.forEach((emailDomain) => {
-    if (userEmailDomain === emailDomain) {
-      flag = true;
-    }
-  });
-  return flag;
-};
 
 const getPersonalisation = (host, token) => {
   return {
@@ -60,7 +40,7 @@ module.exports = superclass => class extends superclass {
       const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
 
-      const isRecognisedEmail = isRecognisedExtension(email) || checkDomain(emailDomain);
+      const isRecognisedEmail = emailDomainCheck.isValidDomain(emailDomain);
 
       if (isRecognisedEmail === false) {
         req.sessionModel.set('recognised-email', false);
@@ -78,7 +58,7 @@ module.exports = superclass => class extends superclass {
   getNextStep(req, res) {
     if (req.sessionModel.get('recognised-email') === false) {
       req.sessionModel.unset('recognised-email');
-      return '/email-not-recognised';
+      return 'email-not-recognised';
     }
     return super.getNextStep(req, res);
   }
