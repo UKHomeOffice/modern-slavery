@@ -11,9 +11,7 @@
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways",
     "lint": "eslint .",
     "build": "hof-build",
-    "watch:sass": "nodemon -e scss -x 'npm run sass'",
-    "sass": "npm-sass ./assets/scss/pdf.scss > ./public/css/pdf.css",
-    "postinstall": "npm run build && npm run sass"
+    "postinstall": "npm run build"
   },
   "pre-commit": [
     "test"
@@ -32,13 +30,11 @@
     "hof-model": "^3.1.2",
     "hof-theme-govuk": "^4.3.0",
     "hof-util-countries": "^1.0.0",
-    "hogan.js": "^3.0.2",
     "ioredis": "^4.0.0",
     "jquery": "^3.3.1",
     "knex": "^0.20.6",
     "lodash": "^4.17.15",
     "mocha": "^7.0.1",
-    "moment": "^2.24.0",
     "ms-countries": "^1.0.0",
     "ms-email-domains": "^1.2.0",
     "ms-nationalities": "^1.0.1",
@@ -58,8 +54,7 @@
     "sqs-producer": "^1.6.3",
     "typeahead-aria": "^1.0.4",
     "url": "^0.11.0",
-    "uuid": "^3.3.3",
-    "wkhtmltopdf": "^0.3.4"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^5.12.1",

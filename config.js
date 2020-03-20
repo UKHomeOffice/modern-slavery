@@ -43,15 +43,9 @@ module.exports = {
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY || '',
     templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID || 'fe0408cb-24f0-4b5f-9bdb-6569834039fb',
-    templatePDF: process.env.TEMPLATE_PDF || 'd48b84c8-9350-4cf8-b31c-8cc4ef8237f1',
     templateFeedback: process.env.TEMPLATE_FEEDBACK || '92b314e9-8ed5-4762-a8e2-7f208cdf3836',
     caseworkerEmail: process.env.CASEWORKER_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk',
     feedbackEmail: process.env.FEEDBACK_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk'
-  },
-  pdf: {
-    template: './apps/nrm/views/pdf.html',
-    // problems with creating temp folder so use images folder
-    tempLocation: 'public/images'
   },
   selectors: {
     START_HOME_BUTTON: '#content > div > form > div > div.govuk-grid-column-two-thirds > input',
