@@ -58,7 +58,7 @@ module.exports = superclass => class extends superclass {
   getNextStep(req, res) {
     if (req.sessionModel.get('recognised-email') === false) {
       req.sessionModel.unset('recognised-email');
-      return '/email-not-recognised';
+      return 'email-not-recognised';
     }
     return super.getNextStep(req, res);
   }
