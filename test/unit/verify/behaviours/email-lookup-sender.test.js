@@ -4,12 +4,6 @@ const reqres = require('reqres');
 const proxyquire = require('proxyquire').noCallThru();
 const NotifyClient = require('notifications-node-client').NotifyClient;
 
-const emailDomainCheck = {
-  isValidDomain: sinon.stub(),
-  isOnDomainList: sinon.stub(),
-  isOnExtensionList: sinon.stub()
-};
-
 const tokenGenerator = {
   save: sinon.stub()
 };
@@ -20,8 +14,7 @@ const tokenGenerator = {
 // Therefore stub it before it gets to that
 const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-sender',
   { '../models/save-token': tokenGenerator,
-    '../../nrm/index': sinon.stub(),
-    'ms-email-domains': emailDomainCheck
+    '../../nrm/index': sinon.stub()
   });
 
 describe('apps/verify/behaviours/email-lookup-sender', () => {
@@ -89,7 +82,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
   describe('saveValues()', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'saveValues');
+      sinon.stub(Base.prototype, 'saveValues').yields();
       sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
     });
     afterEach(() => {
@@ -103,7 +96,6 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
           'confirm-email': 'hello@email.com'
         }
       };
-      emailDomainCheck.isValidDomain.withArgs('hello@email.com').returns(false);
       instance.saveValues(req, res, () => {
         req.sessionModel.set.should.be.calledWith('recognised-email', false);
         done();
