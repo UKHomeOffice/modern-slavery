@@ -67,7 +67,7 @@
   },
   "name": "modern-slavery",
   "description": "app for modern slavery",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "index.js",
   "repository": {
     "type": "git",
