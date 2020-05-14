@@ -36,7 +36,7 @@
     "lodash": "^4.17.15",
     "mocha": "^7.0.1",
     "ms-countries": "^1.0.0",
-    "ms-email-domains": "^2.0.0",
+    "ms-email-domains": "^2.1.0",
     "ms-nationalities": "^1.0.1",
     "ms-organisations": "^1.2.7",
     "ms-uk-cities-and-towns": "^2.0.2",
