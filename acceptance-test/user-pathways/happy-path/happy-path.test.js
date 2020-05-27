@@ -2,7 +2,7 @@
 const bootstrap = require('../../bootstrap/bootstrap');
 const config = require('../../../config');
 const pageActions = require('../util/page-actions');
-const { clickSelector, navigateTo } = pageActions;
+const { clickSelector, focusThenType, navigateTo } = pageActions;
 
 const {
     CONTINUE_BUTTON,
@@ -91,8 +91,7 @@ describe.only('User path(s)', () => {
      */
     async function verifyUser() {
         await clickSelector(page, START_HOME_BUTTON);
-        await page.focus(ORGANISATION_INPUT);
-        await page.keyboard.type('Barnardo\'s');
+        await focusThenType(page, ORGANISATION_INPUT, 'Barnardo\'s');
         await page.focus(EMAIL_INPUT);
         await page.keyboard.type('test.user@homeoffice.gov.uk');
         // Bypass user clicking email link - Notify Key will not be set during test runs
@@ -111,22 +110,15 @@ describe.only('User path(s)', () => {
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(PV_NATIONALITY);
-        await page.focus(PV_NATIONALITY);
-        await page.keyboard.type('French');
+        await focusThenType(page, PV_NATIONALITY, 'French');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(PV_NAME_FIRST_NAME);
-        await page.focus(PV_NAME_FIRST_NAME);
-        await page.keyboard.type('Robert');
-        await page.focus(PV_NAME_LAST_NAME);
-        await page.keyboard.type('Maxwell');
+        await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
+        await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-        await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
-        await page.focus(PV_CONTACT_DETAILS_EMAIL_INPUT);
-        await page.keyboard.type('robert.maxwell@pvrefuse.com');
+        await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
     }
@@ -162,35 +154,22 @@ describe.only('User path(s)', () => {
         } else {
             await clickSelector(page, PV_UNDER_AGE_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
-            await page.waitForSelector(LOCAL_AUTHORITY_NAME);
-            await page.focus(LOCAL_AUTHORITY_NAME);
-            await page.keyboard.type('Crawley Borough Council');
-            await page.focus(LOCAL_AUTHORITY_PHONE);
-            await page.keyboard.type('020878546453');
-            await page.focus(LOCAL_AUTHORITY_EMAIL);
-            await page.keyboard.type('test@authority.org');
+            await focusThenType(page, LOCAL_AUTHORITY_NAME, 'Crawley Borough Council');
+            await focusThenType(page, LOCAL_AUTHORITY_PHONE, '020878546453');
+            await focusThenType(page, LOCAL_AUTHORITY_EMAIL, 'test@authority.org');
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
-        await page.waitForSelector(WHAT_HAPPENED_INPUT);
-        await page.focus(WHAT_HAPPENED_INPUT);
-        await page.keyboard.type('Test input regarding details of exploitation');
+        await focusThenType(page, WHAT_HAPPENED_INPUT, 'Test input regarding details of exploitation');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(EXPLOITED_IN_UK_CITY_INPUT);
-        await page.focus(EXPLOITED_IN_UK_CITY_INPUT);
-        await page.keyboard.type('Croydon');
+        await focusThenType(page, EXPLOITED_IN_UK_CITY_INPUT, 'Croydon');
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.focus(CURRENT_PV_LOCATION_UK_CITY);
-        await page.keyboard.type('Bromley');
-        await page.focus(CURRENT_PV_LOCATION_UK_REGION);
-        await page.keyboard.type('Kent');
-        await page.focus(CONTINUE_BUTTON);
+        await focusThenType(page, CURRENT_PV_LOCATION_UK_CITY, 'Bromley');
+        await focusThenType(page, CURRENT_PV_LOCATION_UK_REGION, 'Kent');
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(WHO_EXPLOITED_PV);
-        await page.focus(WHO_EXPLOITED_PV);
-        await page.keyboard.type('Test details about exploiter(s)');
+        await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -226,20 +205,15 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
     async function completeForm2of2(typeOfPV) {
-        await page.waitForSelector(PV_NAME_FIRST_NAME);
-        await page.focus(PV_NAME_FIRST_NAME);
-        await page.keyboard.type('Paul');
-        await page.focus(PV_NAME_LAST_NAME);
-        await page.keyboard.type('Shortlands');
+        await focusThenType(page, PV_NAME_FIRST_NAME, 'Paul');
+        await focusThenType(page, PV_NAME_LAST_NAME, 'Shortlands');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, DOES_PV_HAVE_CHILDREN_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(PV_NATIONALITY);
-        await page.focus(PV_NATIONALITY);
-        await page.keyboard.type('English');
+        await focusThenType(page, PV_NATIONALITY, 'English');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, INTERPRETER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -252,9 +226,7 @@ describe.only('User path(s)', () => {
             await clickSelector(page, WHO_CONTACT_PV_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-            await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
-            await page.focus(PV_CONTACT_DETAILS_EMAIL_INPUT);
-            await page.keyboard.type('paul.shortlands@pv.com');
+            await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'paul.shortlands@pv.com');
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
@@ -263,19 +235,12 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
-        await page.waitForSelector(FR_DETAILS_FIRST_NAME_INPUT);
-        await page.focus(FR_DETAILS_FIRST_NAME_INPUT);
-        await page.keyboard.type('Jack');
-        await page.focus(FR_DETAILS_LAST_NAME_INPUT);
-        await page.keyboard.type('Smith');
-        await page.focus(FR_DETAILS_ROLE_INPUT);
-        await page.keyboard.type('Police Officer');
-        await page.focus(FR_DETAILS_PHONE_INPUT);
-        await page.keyboard.type('02086757436');
+        await focusThenType(page, FR_DETAILS_FIRST_NAME_INPUT, 'Jack');
+        await focusThenType(page, FR_DETAILS_LAST_NAME_INPUT, 'Smith');
+        await focusThenType(page, FR_DETAILS_ROLE_INPUT, 'Police Officer');
+        await focusThenType(page, FR_DETAILS_PHONE_INPUT, '02086757436');
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
-        await page.focus(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
-        await page.keyboard.type('jack.smith@police.com');
+        await focusThenType(page, FR_ALTERNATE_CONTACT_EMAIL_INPUT, 'jack.smith@police.com');
         await clickSelector(page, CONTINUE_BUTTON);
     }
 

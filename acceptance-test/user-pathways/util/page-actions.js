@@ -16,6 +16,12 @@ async function clickSelector(page, selector) {
     await page.click(selector);
 }
 
+async function focusThenType(page, selector, text) {
+    await page.waitForSelector(selector);
+    await page.focus(selector);
+    await page.keyboard.type(text);
+}
+
 /**
  * Navigate to a page
  *
@@ -46,6 +52,7 @@ async function uploadFile(page, selector, filePath) {
 
 module.exports = {
     clickSelector,
+    focusThenType,
     navigateTo,
     uploadFile,
 };
