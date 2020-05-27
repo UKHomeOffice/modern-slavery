@@ -17,6 +17,7 @@
     "test"
   ],
   "dependencies": {
+    "accessible-autocomplete": "^2.0.2",
     "busboy-body-parser": "^0.3.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",

@@ -12,7 +12,14 @@ const VIEWPORT = { width: 1920, height: 1080 };
  */
 async function clickSelector(page, selector) {
     await page.waitForSelector(selector);
+    await page.focus(selector);
     await page.click(selector);
+}
+
+async function focusThenType(page, selector, text) {
+    await page.waitForSelector(selector);
+    await page.focus(selector);
+    await page.keyboard.type(text);
 }
 
 /**
@@ -45,6 +52,7 @@ async function uploadFile(page, selector, filePath) {
 
 module.exports = {
     clickSelector,
+    focusThenType,
     navigateTo,
     uploadFile,
 };
