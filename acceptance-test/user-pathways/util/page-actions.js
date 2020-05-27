@@ -12,6 +12,7 @@ const VIEWPORT = { width: 1920, height: 1080 };
  */
 async function clickSelector(page, selector) {
     await page.waitForSelector(selector);
+    await page.focus(selector);
     await page.click(selector);
 }
 

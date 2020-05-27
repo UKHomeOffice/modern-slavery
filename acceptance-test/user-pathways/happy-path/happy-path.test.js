@@ -91,12 +91,10 @@ describe.only('User path(s)', () => {
      */
     async function verifyUser() {
         await clickSelector(page, START_HOME_BUTTON);
-        await page.$eval(ORGANISATION_INPUT, (element) => {
-            element.value = 'Barnardos';
-        });
-        await page.$eval(EMAIL_INPUT, (element) => {
-            element.value = 'test.user@homeoffice.gov.uk';
-        });
+        await page.focus(ORGANISATION_INPUT);
+        await page.keyboard.type('Barnardo\'s');
+        await page.focus(EMAIL_INPUT);
+        await page.keyboard.type('test.user@homeoffice.gov.uk');
         // Bypass user clicking email link - Notify Key will not be set during test runs
         await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
     }
@@ -114,25 +112,21 @@ describe.only('User path(s)', () => {
         await clickSelector(page, PV_GENDER_MALE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NATIONALITY);
-        await page.$eval(PV_NATIONALITY, (element) => {
-            element.value = 'French';
-        });
+        await page.focus(PV_NATIONALITY);
+        await page.keyboard.type('French');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, POLICE_CONTACT_YES_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NAME_FIRST_NAME);
-        await page.$eval(PV_NAME_FIRST_NAME, (element) => {
-            element.value = 'Robert';
-        });
-        await page.$eval(PV_NAME_LAST_NAME, (element) => {
-            element.value = 'Maxwell';
-        });
+        await page.focus(PV_NAME_FIRST_NAME);
+        await page.keyboard.type('Robert');
+        await page.focus(PV_NAME_LAST_NAME);
+        await page.keyboard.type('Maxwell');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
         await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
-        await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-            element.value = 'robert.maxwell@pvrefuse.com';
-        });
+        await page.focus(PV_CONTACT_DETAILS_EMAIL_INPUT);
+        await page.keyboard.type('robert.maxwell@pvrefuse.com');
         await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
     }
@@ -148,11 +142,6 @@ describe.only('User path(s)', () => {
      * For additional information:
      * @see https://eslint.org/docs/rules/max-statements
      *
-     * The method "page.$eval(param1, param2)" has a limitation such that we
-     * cannot pass a variable to param2 (function in the second parameter).
-     * This is because the function is excuted within the browser and cannot
-     * recognise any variables passed to it execept those that exist within the
-     * browser.
      *
      * @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
      * @param {bool} caseReferred - does the Potential Victim want their case
@@ -174,40 +163,34 @@ describe.only('User path(s)', () => {
             await clickSelector(page, PV_UNDER_AGE_YES_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
             await page.waitForSelector(LOCAL_AUTHORITY_NAME);
-            await page.$eval(LOCAL_AUTHORITY_NAME, (element) => {
-                element.value = 'Crawley Borough Council';
-            });
-            await page.$eval(LOCAL_AUTHORITY_PHONE, (element) => {
-                element.value = '020878546453';
-            });
-            await page.$eval(LOCAL_AUTHORITY_EMAIL, (element) => {
-                element.value = 'test@authority.org';
-            });
+            await page.focus(LOCAL_AUTHORITY_NAME);
+            await page.keyboard.type('Crawley Borough Council');
+            await page.focus(LOCAL_AUTHORITY_PHONE);
+            await page.keyboard.type('020878546453');
+            await page.focus(LOCAL_AUTHORITY_EMAIL);
+            await page.keyboard.type('test@authority.org');
             await clickSelector(page, CONTINUE_BUTTON);
         }
 
         await page.waitForSelector(WHAT_HAPPENED_INPUT);
-        await page.$eval(WHAT_HAPPENED_INPUT, (element) => {
-            element.value = 'Test input regarding details of exploitation';
-        });
+        await page.focus(WHAT_HAPPENED_INPUT);
+        await page.keyboard.type('Test input regarding details of exploitation');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, EXPLOITED_IN_UK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(EXPLOITED_IN_UK_CITY_INPUT);
-        await page.$eval(EXPLOITED_IN_UK_CITY_INPUT, (element) => {
-            element.value = 'Croydon';
-        });
+        await page.focus(EXPLOITED_IN_UK_CITY_INPUT);
+        await page.keyboard.type('Croydon');
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.$eval(CURRENT_PV_LOCATION_UK_CITY, (element) => {
-            element.value = 'Bromley';
-        });
-        await page.$eval(CURRENT_PV_LOCATION_UK_REGION, (element) => {
-            element.value = 'Kent';
-        });
+        await page.focus(CURRENT_PV_LOCATION_UK_CITY);
+        await page.keyboard.type('Bromley');
+        await page.focus(CURRENT_PV_LOCATION_UK_REGION);
+        await page.keyboard.type('Kent');
+        await page.focus(CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
-        await page.$eval(WHO_EXPLOITED_PV, (element) => {
-            element.value = 'Test details about exploiter(s)';
-        });
+        await page.waitForSelector(WHO_EXPLOITED_PV);
+        await page.focus(WHO_EXPLOITED_PV);
+        await page.keyboard.type('Test details about exploiter(s)');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -237,11 +220,6 @@ describe.only('User path(s)', () => {
      * For additional information:
      * @see https://eslint.org/docs/rules/max-statements
      *
-     * The method "page.$eval(param1, param2)" has a limitation such that we
-     * cannot pass a variable to param2 (function in the second parameter).
-     * This is because the function is excuted within the browser and cannot
-     * recognise any variables passed to it execept those that exist within the
-     * browser.
      *
      *  @param {string} typeOfPV - type of Potential Victim 'child' or 'adult'
      *
@@ -249,12 +227,10 @@ describe.only('User path(s)', () => {
      */
     async function completeForm2of2(typeOfPV) {
         await page.waitForSelector(PV_NAME_FIRST_NAME);
-        await page.$eval(PV_NAME_FIRST_NAME, (element) => {
-            element.value = 'Paul';
-        });
-        await page.$eval(PV_NAME_LAST_NAME, (element) => {
-            element.value = 'Shortlands';
-        });
+        await page.focus(PV_NAME_FIRST_NAME);
+        await page.keyboard.type('Paul');
+        await page.focus(PV_NAME_LAST_NAME);
+        await page.keyboard.type('Shortlands');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, PV_GENDER_MALE_OPTION);
@@ -262,9 +238,8 @@ describe.only('User path(s)', () => {
         await clickSelector(page, DOES_PV_HAVE_CHILDREN_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(PV_NATIONALITY);
-        await page.$eval(PV_NATIONALITY, (element) => {
-            element.value = 'English';
-        });
+        await page.focus(PV_NATIONALITY);
+        await page.keyboard.type('English');
         await clickSelector(page, CONTINUE_BUTTON);
         await clickSelector(page, INTERPRETER_NO_OPTION);
         await clickSelector(page, CONTINUE_BUTTON);
@@ -278,9 +253,8 @@ describe.only('User path(s)', () => {
             await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
             await page.waitForSelector(PV_CONTACT_DETAILS_EMAIL_INPUT);
-            await page.$eval(PV_CONTACT_DETAILS_EMAIL_INPUT, (element) => {
-                element.value = 'paul.shortlands@pv.com';
-            });
+            await page.focus(PV_CONTACT_DETAILS_EMAIL_INPUT);
+            await page.keyboard.type('paul.shortlands@pv.com');
             await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
             await clickSelector(page, CONTINUE_BUTTON);
             await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
@@ -290,23 +264,18 @@ describe.only('User path(s)', () => {
         }
 
         await page.waitForSelector(FR_DETAILS_FIRST_NAME_INPUT);
-        await page.$eval(FR_DETAILS_FIRST_NAME_INPUT, (element) => {
-            element.value = 'Jack';
-        });
-        await page.$eval(FR_DETAILS_LAST_NAME_INPUT, (element) => {
-            element.value = 'Smith';
-        });
-        await page.$eval(FR_DETAILS_ROLE_INPUT, (element) => {
-            element.value = 'Police Officer';
-        });
-        await page.$eval(FR_DETAILS_PHONE_INPUT, (element) => {
-            element.value = '02086757436';
-        });
+        await page.focus(FR_DETAILS_FIRST_NAME_INPUT);
+        await page.keyboard.type('Jack');
+        await page.focus(FR_DETAILS_LAST_NAME_INPUT);
+        await page.keyboard.type('Smith');
+        await page.focus(FR_DETAILS_ROLE_INPUT);
+        await page.keyboard.type('Police Officer');
+        await page.focus(FR_DETAILS_PHONE_INPUT);
+        await page.keyboard.type('02086757436');
         await clickSelector(page, CONTINUE_BUTTON);
         await page.waitForSelector(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
-        await page.$eval(FR_ALTERNATE_CONTACT_EMAIL_INPUT, (element) => {
-            element.value = 'jack.smith@police.com';
-        });
+        await page.focus(FR_ALTERNATE_CONTACT_EMAIL_INPUT);
+        await page.keyboard.type('jack.smith@police.com');
         await clickSelector(page, CONTINUE_BUTTON);
     }
 
