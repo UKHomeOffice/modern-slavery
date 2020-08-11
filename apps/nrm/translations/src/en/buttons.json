@@ -1,4 +1,7 @@
 {
   "upload-file": "Upload file",
-  "confirm-answers": "Accept and send report"
+  "confirm-answers": "Accept and send report",
+  "save-and-exit": "Save and exit",
+  "create-report": "Create report",
+  "continue-to-next-question": "Continue to next question"
 }

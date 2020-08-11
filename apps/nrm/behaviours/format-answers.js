@@ -14,9 +14,11 @@ const { removeDashesFromText, capitaliseText } = dataFormatter;
 const formatAnswers = (req) => {
   let data = {};
 
-  data = Object.assign({}, data, {
-    formattedPvUnderAge: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age'))),
-  });
+  if (req.sessionModel.get('pv-under-age')) {
+    data = Object.assign({}, data, {
+      formattedPvUnderAge: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age'))),
+    });
+  }
 
   if (req.sessionModel.get('does-pv-need-support')) {
     data = Object.assign({}, data, {
@@ -81,25 +83,33 @@ const formatAnswers = (req) => {
     });
   }
 
-  data = Object.assign({}, data, {
-    formattedFrLocation: capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
-  });
+  if (req.sessionModel.get('fr-location')) {
+    data = Object.assign({}, data, {
+      formattedFrLocation: capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
+    });
+  }
 
-  data = Object.assign({}, data, {
-    formattedAnyOtherPvs: removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs'))),
-  });
+  if (req.sessionModel.get('any-other-pvs')) {
+    data = Object.assign({}, data, {
+      formattedAnyOtherPvs: removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs'))),
+    });
+  }
 
-  data = Object.assign({}, data, {
-    formattedReportedToPolice: capitaliseText(req.sessionModel.get('reported-to-police')),
-  });
+  if (req.sessionModel.get('reported-to-police')) {
+    data = Object.assign({}, data, {
+      formattedReportedToPolice: capitaliseText(req.sessionModel.get('reported-to-police')),
+    });
+  }
 
-  data = Object.assign({}, data, {
-    formattedWhereExploitationHappened: capitaliseText(
-      removeDashesFromText(req.sessionModel.get('where-exploitation-happened')),
-      true,
-      [{ word: 'and', allCaps: false}, {word: 'uk', allCaps: true }]
-      ),
-  });
+  if (req.sessionModel.get('where-exploitation-happened')) {
+    data = Object.assign({}, data, {
+      formattedWhereExploitationHappened: capitaliseText(
+        removeDashesFromText(req.sessionModel.get('where-exploitation-happened')),
+        true,
+        [{ word: 'and', allCaps: false}, {word: 'uk', allCaps: true }]
+        ),
+    });
+  }
 
   return data;
 };

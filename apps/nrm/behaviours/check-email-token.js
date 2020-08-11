@@ -28,9 +28,8 @@ module.exports = superclass => class extends superclass {
          // store email & org to send to caseworker later
          req.sessionModel.set('user-email', user.email);
          req.sessionModel.set('user-organisation', user.organisation);
-         return super.saveValues(req, res, callback);
        }
-       return res.redirect('/nrm/token-invalid');
+       res.redirect('/nrm/token-invalid');
     })
     // eslint-disable-next-line no-console
     .catch(err => console.log(err));

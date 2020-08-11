@@ -12,7 +12,11 @@
           </span>
         </td>
         <td>
+          {{#hideChangeLink}}
+          {{/hideChangeLink}}
+          {{^hideChangeLink}}
           <a href="/nrm/someone-else/edit" class="button">Change</a>
+          {{/hideChangeLink}}
         </td>
       </tr>
       {{/values.someone-else-first-name}}
@@ -25,7 +29,11 @@
           <span>Permission to use granted</span>
         </td>
         <td>
+          {{#hideChangeLink}}
+          {{/hideChangeLink}}
+          {{^hideChangeLink}}
           <a href="/nrm/someone-else/edit" class="button">Change</a>
+          {{/hideChangeLink}}
         </td>
       </tr>
       {{/values.someone-else-email-input}}
@@ -41,7 +49,11 @@
             <span>Permission to use granted</span>
         </td>
         <td>
+          {{#hideChangeLink}}
+          {{/hideChangeLink}}
+          {{^hideChangeLink}}
           <a href="/nrm/someone-else/edit" class="button">Change</a>
+          {{/hideChangeLink}}
         </td>
       </tr>
       {{/values.someone-else-street}}

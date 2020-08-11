@@ -166,6 +166,13 @@
       }
     },
     "fields": {
+      "reference": {
+        "label": "Your reference",
+        "hint": "This will not be included in the report"
+      },
+      "user-organisation": {
+        "label": "Your organisaton"
+      },
       "pv-under-age": {
         "label": "Under 18"
       },
@@ -317,6 +324,21 @@
     "heading-3-paragraph-4-link-1": "What did you think of this service?",
     "heading-3-paragraph-4": "(takes 30 seconds)",
     "heading-3-paragraph-5-link-1": "Start a new report"
+  },
+  "save-and-exit": {
+    "header": "Your report has been saved"
+  },
+  "reports": {
+    "header": "Draft reports"
+  },
+  "reference": {
+    "header": "What’s your reference for this report?"
+  },
+  "continue-report": {
+    "header": "Current progress"
+  },
+  "organisation": {
+    "header": "What organisation do you work for?"
   },
   "send-pdf": {
     "header": "Enter the email to send the Pdf"

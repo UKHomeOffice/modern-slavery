@@ -85,8 +85,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       it('deletes the new token if we find it in our db', (done) => {
         const expected = {
           valid: 'match',
-          email: 's@mail.com',
-          organisation: 'Oxfam'
+          email: 's@mail.com'
         };
 
         checkTokenStub.read.withArgs('match').resolves(expected);
@@ -99,70 +98,6 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           // can't use eventually should have been called
           .then(() => {
             checkTokenStub.delete.should.have.been.calledWith('match');
-            done();
-          })
-          .catch(err=> console.log(err));
-      });
-
-      it('sets a valid-token to true when we find it in our db', (done) => {
-        const expected = {
-          valid: 'match',
-          email: 's@mail.com',
-          organisation: 'Oxfam'
-        };
-
-        req.query = {
-          token: 'match'
-        };
-        checkTokenStub.read.withArgs('match').resolves(expected);
-
-        instance.saveValues(req, res)
-          // wrapped in a promise because this function has a promise
-          // can't use eventually should have been called
-          .then(() => {
-            req.sessionModel.set.should.have.been.calledWith('valid-token', true);
-            done();
-          })
-          .catch(err=> console.log(err));
-      });
-      it('calls the parent when we find it', (done)=> {
-        const expected = {
-          valid: 'match',
-          email: 's@mail.com',
-          organisation: 'Oxfam'
-        };
-
-        req.query = {
-            token: 'match'
-          };
-        checkTokenStub.read.withArgs('match').resolves(expected);
-
-        instance.saveValues(req, res)
-            // wrapped in a promise because this function has a promise
-            // can't use eventually should have been called
-          .then(() => {
-            Base.prototype.saveValues.should.have.been.calledWith(req, res);
-            done();
-          })
-          .catch(err=> console.log(err));
-      });
-      it('goes to an error page if we can not match it in our db', (done) => {
-        const expected = {
-          valid: undefined,
-          email: undefined,
-          organisation: undefined
-        };
-
-        req.query = {
-            token: 'fail'
-          };
-        checkTokenStub.read.withArgs('fail').resolves(expected);
-
-        instance.saveValues(req, res)
-          // wrapped in a promise because this function has a promise
-          // can't use eventually should have been called
-          .then(() => {
-            Base.prototype.saveValues.should.not.have.been.calledWith(req, res);
             done();
           })
           .catch(err=> console.log(err));

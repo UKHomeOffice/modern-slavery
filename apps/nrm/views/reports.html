@@ -1,0 +1,46 @@
+{{<partials-page}}
+{{$page-content}}
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Your reference</th>
+            <th scope="col" class="govuk-table__header">Created on</th>
+            <th scope="col" class="govuk-table__header">Expires on</th>
+            <th scope="col" class="govuk-table__header">Days remaining</th>
+            <th scope="col" class="govuk-table__header">Next steps</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {{#previousReports}}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{reference}}</td>
+              <td class="govuk-table__cell">{{createdAt}}</td>
+              <td class="govuk-table__cell">{{expiresAt}}</td>
+              <td class="govuk-table__cell">{{daysRemaining}} days</td>
+              <td class="govuk-table__cell">
+                <button name="resume" value="{{id}}" class="govuk-button">Go to report</button>&nbsp;
+                <button class="govuk-button govuk-button--secondary" name="delete" value="{{id}}">Delete report</button>
+              </td>
+            </tr>
+          {{/previousReports}}
+          {{^previousReports}}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" colspan="5">You do not currently have any draft reports</td>
+          </tr>
+          {{/previousReports}}
+        </tbody>
+      </table>
+      <h2>Create a new report</h2>
+      <p>Create your report to notify the Home Office of modern slavery and refer potential victims for support.</p>
+      <p>You can save your work for 28 calendar days, after which it will be deleted. Remember to save your work as you go.</p>
+      <p>If you don't do anything for 1 hour, you will be logged out for security.</p>
+      {{#input-submit}}create-report{{/input-submit}}
+    </div>
+  </div>
+{{/page-content}}
+{{/partials-page}}

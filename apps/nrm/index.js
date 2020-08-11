@@ -11,6 +11,11 @@ const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-lin
 const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
 const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
+const saveFormSession = require('./behaviours/save-form-session');
+const resumeSession = require('./behaviours/resume-form-session');
+const continueReport = require('./behaviours/continue-report');
+const deleteFormSession = require('./behaviours/save-form-session');
+const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
 const fullWidth = require('./behaviours/full-width');
@@ -28,11 +33,37 @@ module.exports = {
   },
   steps: {
     '/start': {
-      behaviours: checkEmailToken,
+      behaviours: [
+        checkEmailToken
+      ],
+      next: '/reports'
+    },
+    '/reports': {
+      backLink: false,
+      behaviours: [
+        fullWidth,
+        resumeSession
+      ],
+      next: '/reference'
+    },
+    '/reference': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['reference'],
+      next: '/organisation'
+    },
+    '/organisation': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['user-organisation'],
       next: '/fr-location'
     },
     '/fr-location': {
-      backLink: false,
+      behaviours: [
+        saveFormSession
+      ],
       fields: ['fr-location'],
       next: '/pv-under-age'
     },
@@ -42,11 +73,15 @@ module.exports = {
         ResetOnChange({
           currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
         }),
+        saveFormSession
       ],
       fields: ['pv-under-age'],
     },
     '/local-authority-contacted-about-child': {
-      behaviours: getPageCustomBackLink('local-authority-contacted-about-child'),
+      behaviours: [
+        getPageCustomBackLink('local-authority-contacted-about-child'),
+        saveFormSession
+      ],
       fields: [
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
@@ -57,12 +92,18 @@ module.exports = {
       next: '/what-happened'
     },
     '/pv-under-age-at-time-of-exploitation': {
-      behaviours: getPageCustomBackLink('pv-under-age-at-time-of-exploitation'),
+      behaviours: [
+        getPageCustomBackLink('pv-under-age-at-time-of-exploitation'),
+        saveFormSession
+      ],
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-happened'
     },
     '/what-happened': {
-      behaviours: getPageCustomBackLink('what-happened'),
+      behaviours: [
+        getPageCustomBackLink('what-happened'),
+        saveFormSession
+      ],
       fields: ['what-happened'],
       next: '/where-exploitation-happened'
     },
@@ -86,7 +127,7 @@ module.exports = {
             'what-happened',
           ],
         }),
-
+        saveFormSession
       ],
       fields: [
         'where-exploitation-happened'
@@ -97,6 +138,7 @@ module.exports = {
         getPageCustomBackLink('where-exploitation-happened-uk'),
         getPageCustomNextStep('where-exploitation-happened-uk'),
         whereExploitationHappenedUk,
+        saveFormSession
       ],
       fields: [
         'where-exploitation-happened-uk-city-1',
@@ -116,6 +158,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('where-exploitation-happened-overseas'),
         getPageCustomNextStep('where-exploitation-happened-overseas'),
+        saveFormSession
       ],
       fields: [
         'where-exploitation-happened-overseas-country-1',
@@ -134,6 +177,7 @@ module.exports = {
     '/current-pv-location': {
       behaviours: [
         getPageCustomBackLink('current-pv-location'),
+        saveFormSession
       ],
       fields: [
         'current-pv-location-uk-city',
@@ -142,7 +186,10 @@ module.exports = {
       next: '/who-exploited-pv'
     },
     '/who-exploited-pv': {
-      behaviours: getPageCustomBackLink('default'),
+      behaviours: [
+        getPageCustomBackLink('default'),
+        saveFormSession
+      ],
       fields: ['who-exploited-pv'],
       next: '/types-of-exploitation'
     },
@@ -150,6 +197,7 @@ module.exports = {
       behaviours: [
         typesOfExploitation,
         getPageCustomBackLink('default'),
+        saveFormSession
       ],
       fields: [
         'types-of-exploitation-forced-to-work',
@@ -167,7 +215,10 @@ module.exports = {
       next: '/any-other-pvs'
     },
     '/any-other-pvs': {
-      behaviours: getPageCustomBackLink('default'),
+      behaviours: [
+        getPageCustomBackLink('default'),
+        saveFormSession
+      ],
       fields: ['any-other-pvs'],
       next: '/reported-to-police'
     },
@@ -175,6 +226,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('reported-to-police'),
         getPageCustomNextStep('reported-to-police'),
+        saveFormSession
       ],
       fields: [
         'reported-to-police',
@@ -219,13 +271,17 @@ module.exports = {
           'reported-to-police-police-forces',
           'reported-to-police-crime-reference',
           ]
-        })
+        }),
+        saveFormSession
       ],
       fields: ['pv-want-to-submit-nrm'],
       continueOnEdit: true,
     },
     '/refuse-nrm': {
-      behaviours: getPageCustomBackLink('refuse-nrm'),
+      behaviours: [
+        getPageCustomBackLink('refuse-nrm'),
+        saveFormSession
+      ],
       fields: ['refuse-nrm'],
       next: '/pv-gender'
     },
@@ -269,6 +325,7 @@ module.exports = {
           'pv-want-to-submit-nrm',
           ],
         }),
+        saveFormSession
       ],
       fields: ['does-pv-need-support'],
       continueOnEdit: true,
@@ -280,6 +337,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('pv-name'),
         getPageCustomNextStep('pv-name'),
+        saveFormSession
       ],
       fields: [
         'pv-name-first-name',
@@ -291,6 +349,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('pv-dob'),
         saveMissingData('pv-dob'),
+        saveFormSession
       ],
       fields: ['pv-dob'],
       next: '/pv-gender'
@@ -300,6 +359,7 @@ module.exports = {
         getPageCustomBackLink('pv-gender'),
         getPageCustomNextStep('pv-gender'),
         saveMissingData('pv-gender'),
+        saveFormSession
       ],
       fields: ['pv-gender'],
     },
@@ -311,6 +371,7 @@ module.exports = {
           'does-pv-have-children',
           'does-pv-have-children-yes-amount',
         ]),
+        saveFormSession
       ],
       fields: [
         'does-pv-have-children',
@@ -325,6 +386,7 @@ module.exports = {
           'pv-nationality',
           'pv-nationality-second',
         ]),
+        saveFormSession
       ],
       fields: [
         'pv-nationality',
@@ -339,6 +401,7 @@ module.exports = {
           'pv-interpreter-requirements',
           'pv-interpreter-requirements-language',
         ]),
+        saveFormSession
       ],
       fields: [
         'pv-interpreter-requirements',
@@ -352,6 +415,7 @@ module.exports = {
           'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
         ]),
         getPageCustomBackLink('default'),
+        saveFormSession
       ],
       fields: [
         'pv-other-help-with-communication',
@@ -367,6 +431,7 @@ module.exports = {
           'pv-ho-reference',
           'pv-ho-reference-type',
         ]),
+        saveFormSession
       ],
       fields: [
         'pv-ho-reference',
@@ -408,6 +473,7 @@ module.exports = {
             'fr-alternative-contact',
           ],
         }),
+        saveFormSession
       ],
       fields: ['who-contact'],
       continueOnEdit: true,
@@ -416,6 +482,7 @@ module.exports = {
       behaviours: [
         getPageCustomBackLink('someone-else'),
         getPageCustomNextStep('someone-else'),
+        saveFormSession
       ],
       fields: [
         'someone-else',
@@ -450,6 +517,7 @@ module.exports = {
           'pv-phone-number',
           'pv-phone-number-yes',
         ]),
+        saveFormSession
       ],
       fields: [
         'pv-contact-details',
@@ -469,6 +537,7 @@ module.exports = {
           'pv-phone-number',
           'pv-phone-number-yes',
         ]),
+        saveFormSession
       ],
       fields: [
         'pv-phone-number',
@@ -538,6 +607,7 @@ module.exports = {
             },
           ],
         }),
+        saveFormSession
       ],
     },
     '/supporting-documents-add': {
@@ -576,7 +646,10 @@ module.exports = {
       continueOnEdit: true,
     },
     '/fr-details': {
-      behaviours: getPageCustomBackLink('fr-details'),
+      behaviours: [
+        getPageCustomBackLink('fr-details'),
+        saveFormSession
+      ],
       fields: [
         'fr-details-first-name',
         'fr-details-last-name',
@@ -606,6 +679,7 @@ module.exports = {
           'pv-phone-number',
           'pv-phone-number-yes'
         ]),
+        saveFormSession
       ],
       fields: ['fr-alternative-contact'],
     },
@@ -617,6 +691,7 @@ module.exports = {
         getPageCustomBackLink('confirm'),
         fullWidth,
         submission,
+        deleteFormSession,
         'complete'
       ],
       next: '/confirmation'
@@ -626,6 +701,23 @@ module.exports = {
       behaviours: [
         confirmation,
       ],
+    },
+    '/continue-report': {
+      backLink: false,
+      behaviours: [
+        require('hof-behaviour-summary-page'),
+        formatAnswers,
+        hideAndShowSummaryFields,
+        fullWidth,
+        continueReport
+      ],
+      next: '/reference'
+    },
+    '/save-and-exit': {
+      backLink: false,
+      behaviours: [
+        saveAndExit
+      ]
     }
   }
 };

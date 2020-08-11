@@ -1,88 +1,149 @@
 <h2 class="details-header">{{#t}}pages.confirm.sections.your-report.header{{/t}}</h2>
 <table id="your-report" class="table-details">
   <tbody>
+    {{#values.reference}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.reference.label{{/t}}
+        <br />
+        <span class="govuk-hint">{{#t}}pages.confirm.fields.reference.hint{{/t}}</span>
+      </td>
+      <td class="no-white-space">
+          {{values.reference}}
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        <a href="/nrm/reference/change" class="button">Change</a>
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/reference/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.reference}}
+
+    {{#values.user-organisation}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.user-organisation.label{{/t}}</td>
+      <td class="no-white-space">
+          {{values.user-organisation}}
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/organisation/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.user-organisation}}
+
+    {{#values.pv-under-age}}
     <tr>
       <td>{{#t}}pages.confirm.fields.pv-under-age.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.pv-under-age}}
           {{formattedPvUnderAge}}
-        {{/values.pv-under-age}}
       </td>
       <td></td>
     </tr>
+    {{/values.pv-under-age}}
 
     {{#values.pv-under-age-at-time-of-exploitation}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}</td>
-        <td class="no-white-space">
-            {{formattedPvUnderAgeAtTimeOfExploitation}}
-        </td>
-        <td>
-          <a href="/nrm/pv-under-age-at-time-of-exploitation/edit" class="button">Change</a>
-        </td>
-      </tr>
+    <tr>
+      <td>{{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}</td>
+      <td class="no-white-space">
+          {{formattedPvUnderAgeAtTimeOfExploitation}}
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/pv-under-age-at-time-of-exploitation/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
     {{/values.pv-under-age-at-time-of-exploitation}}
 
+    {{#values.fr-location}}
     <tr>
       <td>{{#t}}pages.confirm.fields.fr-location.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.fr-location}}
           {{formattedFrLocation}}
-        {{/values.fr-location}}
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/fr-location/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.fr-location}}
 
     {{#values.local-authority-contacted-about-child-local-authority-name}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
-          </td>
-          <td>
-            <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-          </td>
-        </tr>
-      {{/values.local-authority-contacted-about-child-local-authority-name}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.local-authority-contacted-about-child-local-authority-name}}
 
-      {{#values.local-authority-contacted-about-child-local-authority-phone}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
-          </td>
-          <td>
-            <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-          </td>
-        </tr>
-      {{/values.local-authority-contacted-about-child-local-authority-phone}}
+    {{#values.local-authority-contacted-about-child-local-authority-phone}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.local-authority-contacted-about-child-local-authority-phone}}
 
-      {{#values.local-authority-contacted-about-child-local-authority-email}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
-          </td>
-          <td>
-            <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-          </td>
-        </tr>
-      {{/values.local-authority-contacted-about-child-local-authority-email}}
+    {{#values.local-authority-contacted-about-child-local-authority-email}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.local-authority-contacted-about-child-local-authority-email}}
 
-      {{#values.local-authority-contacted-about-child-local-authority-first-name}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
-          </td>
-          <td>
-            <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-          </td>
-        </tr>
-      {{/values.local-authority-contacted-about-child-local-authority-first-name}}
+    {{#values.local-authority-contacted-about-child-local-authority-first-name}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.local-authority-contacted-about-child-local-authority-first-name}}
 
+    {{#values.types-of-exploitation}}
     <tr>
       <td>{{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}</td>
       <td class="no-white-space types-of-exploitation">
@@ -118,19 +179,24 @@
         {{/values.other-exploitation-details}}
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/types-of-exploitation/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.types-of-exploitation}}
 
+    {{#values.where-exploitation-happened}}
     <tr>
       <td>{{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.where-exploitation-happened}}
           {{formattedWhereExploitationHappened}}
-        {{/values.where-exploitation-happened}}
       </td><td>
       </td>
     </tr>
+    {{/values.where-exploitation-happened}}
 
     {{#values.where-exploitation-happened-uk-city-1}}
     <tr>
@@ -149,86 +215,110 @@
           <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/where-exploitation-happened-uk/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
     {{/values.where-exploitation-happened-uk-city-1}}
 
     {{#values.where-exploitation-happened-overseas-country-1}}
     <tr>
-        <td>{{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}</td>
-        <td class="no-white-space">
-            <span>{{values.where-exploitation-happened-overseas-country-1}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-2}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-3}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-4}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-5}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-6}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-7}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-8}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-9}}</span>
-            <span>{{values.where-exploitation-happened-overseas-country-10}}</span>
-            <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
-        </td>
-        <td>
-          <a href="/nrm/where-exploitation-happened-overseas/edit" class="button">Change</a>
-        </td>
-      </tr>
-      {{/values.where-exploitation-happened-overseas-country-1}}
+      <td>{{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{values.where-exploitation-happened-overseas-country-1}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-2}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-3}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-4}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-5}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-6}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-7}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-8}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-9}}</span>
+          <span>{{values.where-exploitation-happened-overseas-country-10}}</span>
+          <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
+      </td>
+      <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
+        <a href="/nrm/where-exploitation-happened-overseas/edit" class="button">Change</a>
+        {{/hideChangeLink}}
+      </td>
+    </tr>
+    {{/values.where-exploitation-happened-overseas-country-1}}
 
+    {{#values.current-pv-location-uk-city}}
     <tr>
       <td>{{#t}}pages.confirm.fields.current-pv-location.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.current-pv-location-uk-city}}
           <span>City: {{values.current-pv-location-uk-city}}</span>
           <span>Region: {{values.current-pv-location-uk-region}}</span>
-        {{/values.current-pv-location-uk-city}}
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/current-pv-location/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.current-pv-location-uk-city}}
 
+    {{#values.who-exploited-pv}}
     <tr>
       <td>{{#t}}pages.confirm.fields.who-exploited-pv.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.who-exploited-pv}}
           <span>{{values.who-exploited-pv}}</span>
-        {{/values.who-exploited-pv}}
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/who-exploited-pv/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.who-exploited-pv}}
 
+    {{#values.what-happened}}
     <tr>
       <td>{{#t}}pages.confirm.fields.what-happened.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.what-happened}}
-          <span>{{values.what-happened}}</span>
-        {{/values.what-happened}}
+        <span>{{values.what-happened}}</span>
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/what-happened/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.what-happened}}
 
+    {{#values.any-other-pvs}}
     <tr>
       <td>{{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.any-other-pvs}}
-          <span>{{formattedAnyOtherPvs}}</span>
-        {{/values.any-other-pvs}}
+        <span>{{formattedAnyOtherPvs}}</span>
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/any-other-pvs/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.any-other-pvs}}
 
+    {{#values.reported-to-police}}
     <tr>
       <td>{{#t}}pages.confirm.fields.reported-to-police.label{{/t}}</td>
       <td class="no-white-space">
-        {{#values.reported-to-police}}
           <span>{{formattedReportedToPolice}}</span>
           {{#values.reported-to-police-police-forces}}
             <span>{{values.reported-to-police-police-forces}}</span>
@@ -236,11 +326,15 @@
           {{#values.reported-to-police-crime-reference}}
           <span>Reference: {{values.reported-to-police-crime-reference}}</span>
           {{/values.reported-to-police-crime-reference}}
-        {{/values.reported-to-police}}
       </td>
       <td>
+        {{#hideChangeLink}}
+        {{/hideChangeLink}}
+        {{^hideChangeLink}}
         <a href="/nrm/reported-to-police/edit" class="button">Change</a>
+        {{/hideChangeLink}}
       </td>
     </tr>
+    {{/values.reported-to-police}}
   </tbody>
 </table>
