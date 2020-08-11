@@ -12,29 +12,29 @@ pipeline:
 
   # Run acceptance tests using docker-compose only
   # Run this on pull_requests
-  acceptance_test:
-    image: docker/compose:1.23.2
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker-compose --verbose up -d --build chrome-browser app redis
-      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
-    when:
-      event:
-        - pull_request
+  # acceptance_test:
+  #   image: docker/compose:1.23.2
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker-compose --verbose up -d --build chrome-browser app redis
+  #     - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+  #   when:
+  #     event:
+  #       - pull_request
 
   # Run acceptance tests using docker-compose only
   # Run it on master branch as well
-  acceptance_test:
-    image: docker/compose:1.23.2
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker-compose --verbose up -d --build chrome-browser app redis
-      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
-    when:
-      branch: master
-      event: push
+  # acceptance_test:
+  #   image: docker/compose:1.23.2
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker-compose --verbose up -d --build chrome-browser app redis
+  #     - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+  #   when:
+  #     branch: master
+  #     event: push
 
   build_app:
     image: quay.io/ukhomeofficedigital/drone-docker

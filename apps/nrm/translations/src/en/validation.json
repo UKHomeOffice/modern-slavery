@@ -6,6 +6,9 @@
   "fr-location" : {
     "required": "You must enter a region"
   },
+  "reference" : {
+    "required": "You must enter a reference"
+  },
   "pv-under-age" : {
     "required": "You must select an option"
   },

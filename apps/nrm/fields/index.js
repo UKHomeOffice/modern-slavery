@@ -7,8 +7,22 @@ const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');
 const msNationalities = require('ms-nationalities');
+const organisations = require('ms-organisations');
 
 module.exports = {
+  'reference': {
+    mixin: 'input-text',
+    validate: ['required'],
+  },
+  'user-organisation': {
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.user-organisation.options.null'
+    }].concat(organisations)
+  },
   'fr-location': {
     mixin: 'radio-group',
     validate: ['required'],

@@ -7,7 +7,6 @@ const { clickSelector, focusThenType, navigateTo } = pageActions;
 const {
     CONTINUE_BUTTON,
     EMAIL_INPUT,
-    ORGANISATION_INPUT,
     WHAT_HAPPENED_INPUT,
     LOCATION_ENGLAND_OPTION,
     PV_UNDER_AGE_NO_OPTION,
@@ -91,7 +90,6 @@ describe.only('User path(s)', () => {
      */
     async function verifyUser() {
         await clickSelector(page, START_HOME_BUTTON);
-        await focusThenType(page, ORGANISATION_INPUT, 'Barnardo\'s');
         await page.focus(EMAIL_INPUT);
         await page.keyboard.type('test.user@homeoffice.gov.uk');
         // Bypass user clicking email link - Notify Key will not be set during test runs
