@@ -67,7 +67,7 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     super.saveValues(req, res, (err) => {
       if (req.body.delete) {
-        request.del(baseUrl + req.body.delete, () => {
+        request.del(baseUrl + req.sessionModel.get('user-email') + '/' + req.body.delete, () => {
           res.redirect('/nrm/reports');
         });
       } else if (req.body.resume) {
