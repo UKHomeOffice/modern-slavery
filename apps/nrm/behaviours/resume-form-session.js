@@ -17,11 +17,15 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    // eslint-disable-next-line no-console
+    console.log(baseUrl + req.sessionModel.get('user-email'));
     request.get(baseUrl + req.sessionModel.get('user-email'), (err, response, body) => {
         if (err) {
           next(err);
         }
         this.cleanSession(req);
+        // eslint-disable-next-line no-console
+        console.log(err, response, body);
         const resBody = JSON.parse(body);
 
         if (resBody && resBody.length && resBody[0].session) {
