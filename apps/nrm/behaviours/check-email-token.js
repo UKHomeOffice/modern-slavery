@@ -27,7 +27,7 @@ module.exports = superclass => class extends superclass {
         req.sessionModel.set('valid-token', true);
         // store email & org to send to caseworker later
         req.sessionModel.set('user-email', user.email);
-        return super.getValues(req, res, callback);
+        return res.redirect('/nrm/reports');
        }
        return res.redirect('/nrm/token-invalid');
     })
