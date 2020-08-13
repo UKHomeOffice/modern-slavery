@@ -21,15 +21,15 @@ module.exports = superclass => class extends superclass {
     return checkToken.read(token)
     .then(user => {
       if (user.valid) {
-         // delete the token once it's been used
-         checkToken.delete(token);
-         // this is so a user can go back without requesting a new token
-         req.sessionModel.set('valid-token', true);
-         // store email & org to send to caseworker later
-         req.sessionModel.set('user-email', user.email);
-         req.sessionModel.set('user-organisation', user.organisation);
+        // delete the token once it's been used
+        checkToken.delete(token);
+        // this is so a user can go back without requesting a new token
+        req.sessionModel.set('valid-token', true);
+        // store email & org to send to caseworker later
+        req.sessionModel.set('user-email', user.email);
+        return super.getValues(req, res, callback);
        }
-       res.redirect('/nrm/token-invalid');
+       return res.redirect('/nrm/token-invalid');
     })
     // eslint-disable-next-line no-console
     .catch(err => console.log(err));
