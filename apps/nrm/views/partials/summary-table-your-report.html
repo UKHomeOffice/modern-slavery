@@ -11,12 +11,7 @@
           {{values.reference}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        <a href="/nrm/reference/change" class="button">Change</a>
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/reference/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/reference/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.reference}}
@@ -28,11 +23,7 @@
           {{values.user-organisation}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/organisation/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/organisation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.user-organisation}}
@@ -54,11 +45,7 @@
           {{formattedPvUnderAgeAtTimeOfExploitation}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/pv-under-age-at-time-of-exploitation/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/pv-under-age-at-time-of-exploitation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.pv-under-age-at-time-of-exploitation}}
@@ -70,11 +57,7 @@
           {{formattedFrLocation}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/fr-location/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/fr-location/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.fr-location}}
@@ -86,11 +69,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-name}}
@@ -102,11 +81,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-phone}}
@@ -118,11 +93,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-email}}
@@ -134,11 +105,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/local-authority-contacted-about-child/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-first-name}}
@@ -179,11 +146,7 @@
         {{/values.other-exploitation-details}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/types-of-exploitation/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/types-of-exploitation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.types-of-exploitation}}
@@ -215,11 +178,7 @@
           <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/where-exploitation-happened-uk/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/where-exploitation-happened-uk/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.where-exploitation-happened-uk-city-1}}
@@ -241,11 +200,7 @@
           <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/where-exploitation-happened-overseas/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/where-exploitation-happened-overseas/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.where-exploitation-happened-overseas-country-1}}
@@ -258,11 +213,7 @@
           <span>Region: {{values.current-pv-location-uk-region}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/current-pv-location/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/current-pv-location/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.current-pv-location-uk-city}}
@@ -274,11 +225,7 @@
           <span>{{values.who-exploited-pv}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/who-exploited-pv/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/who-exploited-pv/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.who-exploited-pv}}
@@ -290,11 +237,7 @@
         <span>{{values.what-happened}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/what-happened/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/what-happened/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.what-happened}}
@@ -306,11 +249,7 @@
         <span>{{formattedAnyOtherPvs}}</span>
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/any-other-pvs/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/any-other-pvs/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.any-other-pvs}}
@@ -328,11 +267,7 @@
           {{/values.reported-to-police-crime-reference}}
       </td>
       <td>
-        {{#hideChangeLink}}
-        {{/hideChangeLink}}
-        {{^hideChangeLink}}
-        <a href="/nrm/reported-to-police/edit" class="button">Change</a>
-        {{/hideChangeLink}}
+        <a href="/nrm/reported-to-police/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button">Change</a>
       </td>
     </tr>
     {{/values.reported-to-police}}
