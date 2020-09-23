@@ -11,7 +11,6 @@ const read = async(token) => {
   const user = {};
   user.valid = await redis.get(`token:${token}`);
   user.email = await redis.get(`${token}:email`);
-  user.organisation = await redis.get(`${token}:organisation`);
 
   return user;
 };

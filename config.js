@@ -22,6 +22,11 @@ module.exports = {
   allowSkip: process.env.allowSkip,
   writeToCasework: (process.env.WRITE_TO_CASEWORK === 'true') ? true : false,
   hostUrl: process.env.HOST_URL || 'http://localhost:8081',
+  saveService: {
+    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '3000',
+    host: process.env.DATASERVICE_SERVICE_HOST &&
+      `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+  },
   redis: {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'

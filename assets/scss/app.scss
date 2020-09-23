@@ -111,6 +111,10 @@ textarea {
       box-shadow: none !important;
     }
 
+    .govuk-hint {
+      margin-bottom: 0;
+    }
+
     span {
       display: block;
     }
@@ -288,3 +292,29 @@ textarea {
     line-height: 1.31579;
   }
 }
+
+.govuk-button--secondary {
+  background-color: #f3f2f1;
+  box-shadow: 0 2px 0 #929191;
+}
+.govuk-button--secondary:hover {
+  background-color: #dbdad9;
+}
+.govuk-button--secondary, .govuk-button--secondary:link, .govuk-button--secondary:visited, .govuk-button--secondary:active, .govuk-button--secondary:hover {
+  color: #0b0c0c;
+}
+
+.secondary-link {
+  margin-top: 9px;
+  display: inline-block;
+  padding: 0px 1em;
+}
+
+
+.govuk-table__cell {
+  .govuk-button {
+    margin-bottom: 0;
+  }
+}
+
+

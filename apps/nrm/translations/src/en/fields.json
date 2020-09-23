@@ -3,6 +3,14 @@
     "label": "Email",
     "hint": "Use your work address so we can confirm who you work for"
   },
+  "reference": {
+    "label": "Your reference",
+    "hint": "We may refer to this in emails so be careful about using victims’ personal details. Use first names and not full names, for example."
+  },
+  "user-organisation": {
+    "label": "Organisation",
+    "hint": "Start typing the name of your organisation. It must appear on the list for you to be able to continue."
+  },
   "fr-location": {
     "legend": "Where are you making this report?",
     "options": {

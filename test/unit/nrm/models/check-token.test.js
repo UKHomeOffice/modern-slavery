@@ -25,12 +25,10 @@ describe('apps/nrm/models/check-token', () => {
       const token = 'test';
       redis.get.withArgs('token:test').returns(token);
       redis.get.withArgs('test:email').returns('s@mail.com');
-      redis.get.withArgs('test:organisation').returns('Oxfam');
 
       const expected = {
         valid: 'test',
-        email: 's@mail.com',
-        organisation: 'Oxfam'
+        email: 's@mail.com'
       };
 
       try {
@@ -46,8 +44,7 @@ describe('apps/nrm/models/check-token', () => {
 
       const expected = {
         valid: undefined,
-        email: undefined,
-        organisation: undefined
+        email: undefined
       };
 
       try {

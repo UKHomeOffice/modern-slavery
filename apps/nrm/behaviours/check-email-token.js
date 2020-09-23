@@ -5,7 +5,7 @@ const config = require('../../../config');
 /* eslint no-process-env: 0*/
 module.exports = superclass => class extends superclass {
 
-  saveValues(req, res, callback) {
+  getValues(req, res, callback) {
     const token = req.query.token;
     const dev = process.env.NODE_ENV === 'development';
     // required as some environments are not dev but need to skip
@@ -21,14 +21,13 @@ module.exports = superclass => class extends superclass {
     return checkToken.read(token)
     .then(user => {
       if (user.valid) {
-         // delete the token once it's been used
-         checkToken.delete(token);
-         // this is so a user can go back without requesting a new token
-         req.sessionModel.set('valid-token', true);
-         // store email & org to send to caseworker later
-         req.sessionModel.set('user-email', user.email);
-         req.sessionModel.set('user-organisation', user.organisation);
-         return super.saveValues(req, res, callback);
+        // delete the token once it's been used
+        checkToken.delete(token);
+        // this is so a user can go back without requesting a new token
+        req.sessionModel.set('valid-token', true);
+        // store email & org to send to caseworker later
+        req.sessionModel.set('user-email', user.email);
+        return res.redirect('/nrm/reports');
        }
        return res.redirect('/nrm/token-invalid');
     })
