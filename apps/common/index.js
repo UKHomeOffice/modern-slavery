@@ -17,6 +17,9 @@ module.exports = {
       },
       '/privacy': {
         backLink: false,
+      },
+      '/accessibility': {
+        backLink: false,
       }
     }
   };
