@@ -115,5 +115,8 @@
     "heading-8": "Private beta",
     "paragraph-17": "This service is currently in 'private beta'. This means you’re looking at the first version of it.",
     "paragraph-18": "Something that's in 'private beta' isn’t open to everyone or may not work for everyone. We do this so we can test and make improvements before releasing it to more people."
+  },
+  "accessibility": {
+    "header": "Accessibility statement"
   }
 }
