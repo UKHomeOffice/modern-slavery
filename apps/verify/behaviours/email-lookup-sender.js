@@ -36,13 +36,13 @@ module.exports = superclass => class extends superclass {
 
   saveValues(req, res, callback) {
     super.saveValues(req, res, err => {
-      const email = req.form.values['confirm-email'];
+      const email = req.form.values['user-email'];
       const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
 
       const isRecognisedEmail = emailDomainCheck.isValidDomain(emailDomain);
 
-      if (isRecognisedEmail === false && emailDomain !== 'nccgroup.com') {
+      if (isRecognisedEmail === false) {
         req.sessionModel.set('recognised-email', false);
         return callback(err);
       }

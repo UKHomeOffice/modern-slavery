@@ -4,9 +4,10 @@
     "message": "Something went wrong. Any text entered must only include letters a to z, hyphens, spaces and apostrophes. Please delete any special characters and try again."
   },
   "session": {
-    "title": "Session timed out",
-    "message-1": "Sorry, your session has timed out due to inactivity. Any information you may have entered has been deleted.",
-    "message-2": "To continue to use this service, you will need to",
-    "link-1": "start again"
+    "title": "Your report has been closed",
+    "message-1": "Your report doesn’t appear to have been worked on for 1 hour so we closed it for security.",
+    "message-2": "Any answers you saved have not been affected.",
+    "message-3": "You can return to your report via the report modern slavery",
+    "link-1": "start page on GOV.UK"
   }
 }
