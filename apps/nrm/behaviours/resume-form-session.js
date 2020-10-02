@@ -3,13 +3,14 @@ const request = require('request');
 const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
+const _ = require('lodash');
 
 module.exports = superclass => class extends superclass {
 
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
-      previousReports: req.previousReports
+      previousReports: _.sortBy(req.previousReports, 'id')
     });
     const locals = Object.assign({}, superlocals, data);
 

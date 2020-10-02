@@ -10,8 +10,7 @@ module.exports = superclass => class extends superclass {
           next(err);
         }
         request.del(config.saveService.host + ':' + config.saveService.port
-         + '/reports/' + req.sessionModel.get('id'), next);
+         + '/reports/' + req.sessionModel.get('user-email') + '/' + req.sessionModel.get('id'), next);
       });
     }
   };
-
