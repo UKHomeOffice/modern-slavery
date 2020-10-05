@@ -1,1 +1,1 @@
-We just need to check if that link has expired
+This completes your secure access to this service.
