@@ -38,10 +38,10 @@ module.exports = superclass => class extends superclass {
               reference: report.session.reference,
               createdAt: created.format('DD MMMM YYYY'),
               expiresAt: expires.format('DD MMMM YYYY'),
-              daysRemaining: remaining,
-              deletionTimeout: config.reports.deletionTimeout
+              daysRemaining: remaining
             };
             req.previousReports.push(rep);
+            req.deletionTimeout = config.reports.deletionTimeout;
           });
           super.getValues(req, res, next);
         } else {
