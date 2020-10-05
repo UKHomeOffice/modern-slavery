@@ -10,7 +10,8 @@ module.exports = superclass => class extends superclass {
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
-      previousReports: _.sortBy(req.previousReports, 'id')
+      previousReports: _.sortBy(req.previousReports, 'id'),
+      deletionTimeout: config.reports.deletionTimeout
     });
     const locals = Object.assign({}, superlocals, data);
 
@@ -41,7 +42,6 @@ module.exports = superclass => class extends superclass {
               daysRemaining: remaining
             };
             req.previousReports.push(rep);
-            req.deletionTimeout = config.reports.deletionTimeout;
           });
           super.getValues(req, res, next);
         } else {
