@@ -21,6 +21,7 @@ const deleteOnChange = require('./behaviours/delete-on-change');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
+const areYouSure = require('./behaviours/are-you-sure');
 const submission = Submission({
   prepare: require('./models/submission')
 });
@@ -45,6 +46,12 @@ module.exports = {
         resumeSession
       ],
       next: '/reference'
+    },
+    '/are-you-sure': {
+      backLink: false,
+      behaviours: [
+        areYouSure
+      ]
     },
     '/reference': {
       behaviours: [

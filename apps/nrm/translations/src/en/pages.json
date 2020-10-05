@@ -5,6 +5,9 @@
   "token-invalid": {
     "header": "That link has expired"
   },
+  "are-you-sure": {
+    "header": "Delete report"
+  },
   "fr-location": {
     "header": "Where are you making this report?"
   },
