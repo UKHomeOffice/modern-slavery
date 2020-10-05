@@ -1,3 +1,1 @@
-#Your link has expired
-
-The link we emailed you is no longer valid. You must request a new one to access the service.
+To start or return to a report, you’ll need to request secure access again via the report modern slavery start page on [GOV.UK](/start).
