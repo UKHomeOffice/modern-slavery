@@ -30,7 +30,7 @@ module.exports = superclass => class extends superclass {
 
           resBody.forEach(report => {
             let created = moment(report.created_at);
-            let expires = moment(report.created_at).add(28, 'days');
+            let expires = moment(report.created_at).add(config.reports.deletionTimeout, 'days');
             let remaining = expires.diff(moment(), 'days');
 
             let rep = {
@@ -38,7 +38,8 @@ module.exports = superclass => class extends superclass {
               reference: report.session.reference,
               createdAt: created.format('DD MMMM YYYY'),
               expiresAt: expires.format('DD MMMM YYYY'),
-              daysRemaining: remaining
+              daysRemaining: remaining,
+              deletionTimeout: config.reports.deletionTimeout
             };
             req.previousReports.push(rep);
           });

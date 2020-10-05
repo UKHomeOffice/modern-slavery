@@ -9,6 +9,10 @@ module.exports = {
   aws: {
     sqs: process.env.AWS_SQS
   },
+  reports: {
+    deletionTimeout: process.env.DELETION_TIMEOUT || 28,
+    alertTimeout: process.env.FIRST_ALERT_TIMEOUT || 7
+  },
   audit: {
     enabled: process.env.AUDIT_DATA || false,
     host: process.env.AUDIT_DB_HOST,
