@@ -1,7 +1,7 @@
 pipeline:
   # Runs unit tests & eslint only
-  build_8:
-    image: node:8
+  build_12:
+    image: node:12
     commands:
       - npm --loglevel warn install
       - npm run test
