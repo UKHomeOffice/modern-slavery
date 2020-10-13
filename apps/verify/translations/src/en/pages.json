@@ -1,4 +1,7 @@
 {
+  "email-not-recognised": {
+    "header": "Email not recognised"
+  },
   "who-do-you-work-for": {
     "header": "What is your work email address?"
   },
