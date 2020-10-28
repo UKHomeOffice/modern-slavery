@@ -33,6 +33,9 @@ module.exports = superclass => class extends superclass {
             session: session
           })
         }, (error, response, body) => {
+          if (error) {
+            next(error);
+          }
           const resBody = JSON.parse(body);
           if (resBody && resBody.length && resBody[0].id) {
             req.sessionModel.set('id', JSON.parse(body)[0].id);
@@ -48,7 +51,7 @@ module.exports = superclass => class extends superclass {
             return res.redirect('/nrm/continue-report');
           }
 
-          next(error);
+          next();
         });
       });
     }
