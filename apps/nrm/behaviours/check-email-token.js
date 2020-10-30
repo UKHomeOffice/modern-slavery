@@ -5,7 +5,7 @@ const config = require('../../../config');
 /* eslint no-process-env: 0*/
 module.exports = superclass => class extends superclass {
 
-  getValues(req, res, callback) {
+  saveValues(req, res, callback) {
     const token = req.query.token;
     const dev = process.env.NODE_ENV === 'development';
     // required as some environments are not dev but need to skip
