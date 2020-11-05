@@ -317,6 +317,10 @@ textarea {
   }
 }
 
+.js-enabled .add-another {
+  display: none;
+}
+
 .add-another {
   @media (min-width: 40.0625em) {
     .list-entry {

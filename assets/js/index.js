@@ -104,4 +104,6 @@ if ($('.add-another').length) {
     addAnotherButton.hide();
   }
   updateButtonAndText();
+
+  $('.add-another').show();
 }
