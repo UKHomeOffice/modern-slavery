@@ -41,7 +41,10 @@ if ($('.add-another').length) {
   var addAnotherButton = $('<button type="button" class="govuk-button govuk-button--secondary"></button>');
 
   // eslint-disable-next-line no-inner-declarations
-  function updateButtonText() {
+  function updateButtonAndText() {
+    // last item that's visible
+    var lastVisibleIndex = $('.add-another .form-group select').length - hiddenTotal.length;
+    $(ukOrOverseas + lastVisibleIndex + '-group button').show();
     addAnotherButton.text('Add another location (' + hiddenTotal.length + ' remaining)');
   }
 
@@ -49,14 +52,16 @@ if ($('.add-another').length) {
 
     if (index > 0) {
       var removeButton =
-        $('<button type="button" class="govuk-button govuk-button--secondary list-entry-button">Remove</button>');
+        $('<button type="button" class="govuk-button govuk-button--secondary list-entry-button">Remove</button>')
+          .hide();
       removeButton.click(function removeElement() {
         var removeIndex = index;
-        $(this).parent().hide();
-        $(this).parent().find('select').val('');
+        var parent = $(this).parent();
+        parent.hide();
+        parent.find('select').val('');
 
         hiddenTotal.push(removeIndex + 1);
-        updateButtonText();
+        updateButtonAndText();
 
         if (hiddenTotal.length > 0) {
           addAnotherButton.show();
@@ -77,8 +82,15 @@ if ($('.add-another').length) {
       return b - a;
     });
 
-    $(ukOrOverseas + hiddenTotal.pop() + '-group').show();
-    updateButtonText();
+    var index = hiddenTotal.pop();
+
+    for (var x = 2; x < index; x++) {
+      $(ukOrOverseas + x + '-group button').hide();
+    }
+    $(ukOrOverseas + index + '-group button').show();
+    $(ukOrOverseas + index + '-group').show();
+
+    updateButtonAndText();
 
     if (hiddenTotal.length === 0) {
       $(this).hide();
@@ -91,5 +103,5 @@ if ($('.add-another').length) {
   if (hiddenTotal.length === 0) {
     addAnotherButton.hide();
   }
-  updateButtonText();
+  updateButtonAndText();
 }
