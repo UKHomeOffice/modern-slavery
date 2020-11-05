@@ -317,4 +317,16 @@ textarea {
   }
 }
 
+.add-another {
+  @media (min-width: 40.0625em) {
+    .list-entry {
+      width: 80%;
+      float: left;
+      margin-right: 20px;
+    }
 
+    .list-entry-button {
+      margin: 0;
+    }
+  }
+}
