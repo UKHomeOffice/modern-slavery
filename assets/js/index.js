@@ -87,6 +87,10 @@ if ($('.add-another').length) {
     return false;
   });
 
+  
   addAnotherButton.insertAfter(ukOrOverseas + totalInputs + '-group');
+  if (hiddenTotal.length === 0) {
+    addAnotherButton.hide();
+  }
   updateButtonText();
 }
