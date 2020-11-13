@@ -8,8 +8,8 @@ module.exports = {
       'very-satisfied',
       'satisfied',
       'neutral',
-      'dissatisified',
-      'very-dissatisified'
+      'dissatisfied',
+      'very-dissatisfied'
     ]
   },
   'improvements': {

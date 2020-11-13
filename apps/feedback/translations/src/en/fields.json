@@ -9,13 +9,13 @@
         "label": "Satisfied"
       },
       "neutral": {
-        "label": "Neither satisfied or dissatisified"
+        "label": "Neither satisfied or dissatisfied"
       },
-      "dissatisified": {
-        "label": "Dissatisified"
+      "dissatisfied": {
+        "label": "Dissatisfied"
       },
-      "very-dissatisified": {
-        "label": "Very dissatisified"
+      "very-dissatisfied": {
+        "label": "Very dissatisfied"
       }
     }
   },
