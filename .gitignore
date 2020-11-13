@@ -9,3 +9,4 @@ node_modules/
 dump.rdb
 .scannerwork/
 .nyc_output/
+.idea
