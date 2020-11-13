@@ -11,12 +11,9 @@ module.exports = superclass => class extends superclass {
     });
     const locals = Object.assign({}, superlocals, data);
 
-    return locals;
-  }
-
-  getValues(req, res, next) {
     req.sessionModel.reset();
-    super.getValues(req, res, next);
+
+    return locals;
   }
 };
 

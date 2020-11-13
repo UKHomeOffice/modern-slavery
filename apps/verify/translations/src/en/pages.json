@@ -1,13 +1,16 @@
 {
+  "email-not-recognised": {
+    "header": "Email not recognised"
+  },
   "who-do-you-work-for": {
-    "header": "Who do you work for?"
+    "header": "What is your work email address?"
   },
   "confirm-email": {
     "header": "Confirm your email address"
   },
   "check-inbox": {
     "header": "Check your email",
-    "email": "We have sent a link to the email you entered, {{confirmEmail}}",
+    "email": "We have sent a link to the email you entered, {{confirmEmail}}.",
     "link-text": "Resubmit"
   },
   "privacy": {

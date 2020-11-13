@@ -3,13 +3,15 @@ const request = require('request');
 const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
+const _ = require('lodash');
 
 module.exports = superclass => class extends superclass {
 
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
-      previousReports: req.previousReports
+      previousReports: _.sortBy(req.previousReports, 'id').reverse(),
+      deletionTimeout: config.reports.deletionTimeout
     });
     const locals = Object.assign({}, superlocals, data);
 
@@ -29,7 +31,7 @@ module.exports = superclass => class extends superclass {
 
           resBody.forEach(report => {
             let created = moment(report.created_at);
-            let expires = moment(report.created_at).add(28, 'days');
+            let expires = moment(report.created_at).add(config.reports.deletionTimeout, 'days');
             let remaining = expires.diff(moment(), 'days');
 
             let rep = {
@@ -66,14 +68,19 @@ module.exports = superclass => class extends superclass {
 
   saveValues(req, res, next) {
     super.saveValues(req, res, (err) => {
-      if (req.body.delete) {
-        request.del(baseUrl + req.sessionModel.get('user-email') + '/' + req.body.delete, () => {
-          res.redirect('/nrm/reports');
-        });
-      } else if (req.body.resume) {
-        request.get(baseUrl + req.sessionModel.get('user-email') + '/' + req.body.resume, (error, response, body) => {
+      if (req.body.delete || req.body.resume) {
+        const id = req.body.resume || req.body.delete;
+        request.get(baseUrl + req.sessionModel.get('user-email') + '/' + id, (error, response, body) => {
             const resBody = JSON.parse(body);
             if (resBody && resBody.length && resBody[0].session) {
+
+              if (req.body.delete) {
+                req.sessionModel.set('toDelete', {
+                  id: req.body.delete,
+                  reference: resBody[0].session.reference
+                });
+                return res.redirect('/nrm/are-you-sure');
+              }
 
               if (resBody[0].session.hasOwnProperty('alertUser')) {
                 delete resBody[0].session.alertUser;
@@ -81,7 +88,6 @@ module.exports = superclass => class extends superclass {
 
               req.sessionModel.set(resBody[0].session);
               req.sessionModel.set('id', req.body.resume);
-
               return res.redirect('/nrm/continue-report');
             }
             next(error);

@@ -2,20 +2,17 @@
 
 module.exports = {
     name: 'common',
+    pages: {
+      '/privacy': 'privacy',
+      '/accessibility': 'accessibility',
+      '/support-organisations': 'support-organisations',
+      '/designated-organisations': 'designated-organisations'
+    },
     steps: {
       '/start': {
         next: '/verify/who-do-you-work-for'
       },
       '/paper-version-download': {
-        backLink: false,
-      },
-      '/designated-organisations': {
-        backLink: false,
-      },
-      '/support-organisations': {
-        backLink: false,
-      },
-      '/privacy': {
         backLink: false,
       }
     }

@@ -14,13 +14,14 @@ const formatAnswers = require('./behaviours/format-answers');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
-const deleteFormSession = require('./behaviours/save-form-session');
+const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
 const deleteOnChange = require('./behaviours/delete-on-change');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
+const areYouSure = require('./behaviours/are-you-sure');
 const submission = Submission({
   prepare: require('./models/submission')
 });
@@ -45,6 +46,12 @@ module.exports = {
         resumeSession
       ],
       next: '/reference'
+    },
+    '/are-you-sure': {
+      backLink: false,
+      behaviours: [
+        areYouSure
+      ]
     },
     '/reference': {
       behaviours: [
@@ -71,7 +78,14 @@ module.exports = {
       behaviours: [
         getPageCustomNextStep('pv-under-age'),
         ResetOnChange({
-          currentField: 'pv-under-age', storeFields: ['fr-location', 'user-organisation', 'user-email']
+          currentField: 'pv-under-age',
+          storeFields: [
+            'fr-location',
+            'user-organisation',
+            'user-email',
+            'reference',
+            'id'
+          ]
         }),
         saveFormSession
       ],
@@ -125,6 +139,8 @@ module.exports = {
             'local-authority-contacted-about-child-local-authority-last-name',
             'pv-under-age-at-time-of-exploitation',
             'what-happened',
+            'reference',
+            'id'
           ],
         }),
         saveFormSession
@@ -239,37 +255,40 @@ module.exports = {
         getPageCustomBackLink('pv-want-to-submit-nrm'),
         getPageCustomNextStep('pv-want-to-submit-nrm'),
         ResetOnChange({
-          currentField: 'pv-want-to-submit-nrm', storeFields: [
-          'fr-location',
-          'user-organisation',
-          'user-email',
-          'pv-under-age',
-          'pv-under-age-at-time-of-exploitation',
-          'what-happened',
-          'where-exploitation-happened',
-          'where-exploitation-happened-uk-city',
-          'where-exploitation-happened-uk-region',
-          'where-exploitation-happened-other-uk-other-location',
-          'where-exploitation-happened-overseas-country',
-          'where-exploitation-happened-other-overseas-other-location',
-          'current-pv-location-uk-city',
-          'current-pv-location-uk-region',
-          'who-exploited-pv',
-          'types-of-exploitation-forced-to-work',
-          'types-of-exploitation-wages-taken',
-          'types-of-exploitation-forced-to-commit-fraud',
-          'types-of-exploitation-prostitution',
-          'types-of-exploitation-child-exploitation',
-          'types-of-exploitation-taken-somewhere',
-          'types-of-exploitation-forced-to-commit-crime',
-          'types-of-exploitation-organs-removed',
-          'types-of-exploitation-unpaid-household-work',
-          'types-of-exploitation-other',
-          'other-exploitation-details',
-          'any-other-pvs',
-          'reported-to-police',
-          'reported-to-police-police-forces',
-          'reported-to-police-crime-reference',
+          currentField: 'pv-want-to-submit-nrm',
+          storeFields: [
+            'fr-location',
+            'user-organisation',
+            'user-email',
+            'pv-under-age',
+            'pv-under-age-at-time-of-exploitation',
+            'what-happened',
+            'where-exploitation-happened',
+            'where-exploitation-happened-uk-city',
+            'where-exploitation-happened-uk-region',
+            'where-exploitation-happened-other-uk-other-location',
+            'where-exploitation-happened-overseas-country',
+            'where-exploitation-happened-other-overseas-other-location',
+            'current-pv-location-uk-city',
+            'current-pv-location-uk-region',
+            'who-exploited-pv',
+            'types-of-exploitation-forced-to-work',
+            'types-of-exploitation-wages-taken',
+            'types-of-exploitation-forced-to-commit-fraud',
+            'types-of-exploitation-prostitution',
+            'types-of-exploitation-child-exploitation',
+            'types-of-exploitation-taken-somewhere',
+            'types-of-exploitation-forced-to-commit-crime',
+            'types-of-exploitation-organs-removed',
+            'types-of-exploitation-unpaid-household-work',
+            'types-of-exploitation-other',
+            'other-exploitation-details',
+            'any-other-pvs',
+            'reported-to-police',
+            'reported-to-police-police-forces',
+            'reported-to-police-crime-reference',
+            'reference',
+            'id'
           ]
         }),
         saveFormSession
@@ -292,37 +311,39 @@ module.exports = {
         ResetOnChange({
           currentField: 'does-pv-need-support',
           storeFields: [
-          'fr-location',
-          'user-organisation',
-          'user-email',
-          'pv-under-age',
-          'pv-under-age-at-time-of-exploitation',
-          'what-happened',
-          'where-exploitation-happened',
-          'where-exploitation-happened-uk-city',
-          'where-exploitation-happened-uk-region',
-          'where-exploitation-happened-other-uk-other-location',
-          'where-exploitation-happened-overseas-country',
-          'where-exploitation-happened-other-overseas-other-location',
-          'current-pv-location-uk-city',
-          'current-pv-location-uk-region',
-          'who-exploited-pv',
-          'types-of-exploitation-forced-to-work',
-          'types-of-exploitation-wages-taken',
-          'types-of-exploitation-forced-to-commit-fraud',
-          'types-of-exploitation-prostitution',
-          'types-of-exploitation-child-exploitation',
-          'types-of-exploitation-taken-somewhere',
-          'types-of-exploitation-forced-to-commit-crime',
-          'types-of-exploitation-organs-removed',
-          'types-of-exploitation-unpaid-household-work',
-          'types-of-exploitation-other',
-          'other-exploitation-details',
-          'any-other-pvs',
-          'reported-to-police',
-          'reported-to-police-police-forces',
-          'reported-to-police-crime-reference',
-          'pv-want-to-submit-nrm',
+            'fr-location',
+            'user-organisation',
+            'user-email',
+            'pv-under-age',
+            'pv-under-age-at-time-of-exploitation',
+            'what-happened',
+            'where-exploitation-happened',
+            'where-exploitation-happened-uk-city',
+            'where-exploitation-happened-uk-region',
+            'where-exploitation-happened-other-uk-other-location',
+            'where-exploitation-happened-overseas-country',
+            'where-exploitation-happened-other-overseas-other-location',
+            'current-pv-location-uk-city',
+            'current-pv-location-uk-region',
+            'who-exploited-pv',
+            'types-of-exploitation-forced-to-work',
+            'types-of-exploitation-wages-taken',
+            'types-of-exploitation-forced-to-commit-fraud',
+            'types-of-exploitation-prostitution',
+            'types-of-exploitation-child-exploitation',
+            'types-of-exploitation-taken-somewhere',
+            'types-of-exploitation-forced-to-commit-crime',
+            'types-of-exploitation-organs-removed',
+            'types-of-exploitation-unpaid-household-work',
+            'types-of-exploitation-other',
+            'other-exploitation-details',
+            'any-other-pvs',
+            'reported-to-police',
+            'reported-to-police-police-forces',
+            'reported-to-police-crime-reference',
+            'pv-want-to-submit-nrm',
+            'reference',
+            'id'
           ],
         }),
         saveFormSession

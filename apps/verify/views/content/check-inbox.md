@@ -1,3 +1,3 @@
-<br> Check your spam or junk folder if you can't find the email in your inbox
+<p>If you can't find the email, check your spam or junk folders.<p>
 
-If you haven't received the email, you can resubmit the email or a new email
+<p>If you haven't received the email, you can <a href="/start">resend the link or enter a new email address</a>.</p>

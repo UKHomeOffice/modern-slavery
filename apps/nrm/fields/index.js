@@ -8,6 +8,7 @@ const dateComponent = require('hof-component-date');
 const ukLocalAuthorities = require('ms-uk-local-authorities');
 const msNationalities = require('ms-nationalities');
 const organisations = require('ms-organisations');
+const path = require('path');
 
 module.exports = {
   'reference': {
@@ -526,6 +527,7 @@ module.exports = {
   'pv-dob': dateComponent('pv-dob', {
     labelClassName: 'visuallyhidden',
     validate: ['date', 'before', {type: 'after', arguments: '1900-01-01'}],
+    template: path.resolve(__dirname, '../views/date.html')
   }),
   'pv-gender': {
     mixin: 'radio-group',

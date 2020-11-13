@@ -1,23 +1,22 @@
 {
   "start": {
     "header": "Report modern slavery",
-    "paragraph-1": "First responders in the UK can use this service to:",
+    "paragraph-1-partial-1": "If you’re a first responder working for a",
+    "paragraph-1-link-text": "designated organisation",
+    "paragraph-1-partial-2": "like the police, you can use this service to:",
     "paragraph-1-bullet-1": "refer potential victims of any age to the National Referral Mechanism",
     "paragraph-1-bullet-2": "help potential victims receive support and medical care",
     "paragraph-1-bullet-3": "notify the Home Office of potential victims (Duty to Notify)",
-    "paragraph-2-partial-1": "First responders work for",
-    "paragraph-2-link-text-1": "designated organisations",
-    "paragraph-2-partial-2": "and help support potential victims of modern slavery.",
-    "button-1": "Start now",
-    "heading-2": "Before you start",
-    "paragraph-3": "You will need to complete the form in one go as you cannot save your progress.",
-    "paragraph-4": "If you don't do anything for 1 hour, your session will expire. This is for security reasons.",
-    "div-1": "You can still report modern slavery if you’re not a first responder. Call the modern slavery helpline on 0800 0121 700 or",
+    "paragraph-2": "You can save your progress for up to a month.",
+    "paragraph-3": "You’ll need to give your email address to securely access the service.",
+    "button-1": "Start or return to report",
+    "heading-2": "Report as a member of the public",
+    "div-1": "You can still report modern slavery as a member of the public. Call the modern slavery helpline on 0800 0121 700 or",
     "div-1-link-text-1": "report it online",
     "aside-heading-1": "First responder guidance",
-    "aside-link-text-1": "NRM guidance",
+    "aside-link-text-1": "Guidance on NRM and Duty to Notify",
     "aside-link-text-2": "Find a support provider",
-    "aside-link-text-3": "Prompt sheet for working offline"
+    "aside-link-text-3": "Download report questions"
   },
   "paper-version-download": {
     "heading-1": "Prompt sheet for working offline",
@@ -116,5 +115,8 @@
     "heading-8": "Private beta",
     "paragraph-17": "This service is currently in 'private beta'. This means you’re looking at the first version of it.",
     "paragraph-18": "Something that's in 'private beta' isn’t open to everyone or may not work for everyone. We do this so we can test and make improvements before releasing it to more people."
+  },
+  "accessibility": {
+    "header": "Accessibility statement"
   }
 }
