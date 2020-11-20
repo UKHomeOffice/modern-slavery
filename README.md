@@ -2,7 +2,7 @@
 
 An app for a first responder to submit a form for a possible victim of modern slavery.
 
-When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by a casework resolver service.
+When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by the casework resolver service.
 
 # Contents
 
