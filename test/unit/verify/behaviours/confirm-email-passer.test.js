@@ -47,7 +47,7 @@ describe('apps/behaviours/confirm-email-passer', () => {
       confirmEmail: 'test@mail.com'
     };
 
-    req.sessionModel.get.withArgs('confirm-email').returns(expected.confirmEmail);
+    req.sessionModel.get.withArgs('user-email').returns(expected.confirmEmail);
     const result = instance.locals(req, res);
     result.should.deep.equal(expected);
     });

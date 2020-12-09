@@ -74,7 +74,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
       const result = instance.getNextStep(req, res);
 
-      result.should.equal('/email-not-recognised');
+      result.should.equal('email-not-recognised');
     });
 
     it('calls the parent method when an email is on the whitelist', () => {
