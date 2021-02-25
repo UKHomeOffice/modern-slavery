@@ -35,9 +35,11 @@ steps:
     - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
     - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
     - docker tag $${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
-    - docker tag build-$${DRONE_BUILD_NUMBER} quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_BUILD_NUMBER}
-    - docker tag latest quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
+    - docker tag $${DRONE_BUILD_NUMBER} quay.io/ukhomeofficedigital/modern-slavery:build-$${DRONE_BUILD_NUMBER}
+    - docker tag $${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/modern-slavery:latest
     - docker push quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
+    - docker push quay.io/ukhomeofficedigital/modern-slavery:build-$${DRONE_BUILD_NUMBER}
+    - docker push quay.io/ukhomeofficedigital/modern-slavery:latest
     when:
       branch: master
       event: push
@@ -46,12 +48,12 @@ steps:
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   environment:
     DOCKER_PASSWORD:
-      from_secret: DOCKER_PASSWORD
-    DOCKER_USERNAME: ukhomeofficedigital+modern_slavery_bot
-  registry: quay.io
-  repo: quay.io/ukhomeofficedigital/modern-slavery
-  tags:
-    - ${DRONE_TAG}
+      from_secret: docker_password
+    commands:
+      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
+      - docker tag $${DRONE_TAG} quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_TAG}
+      - docker push quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_TAG}
   when:
     event: tag
 
