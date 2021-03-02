@@ -99,9 +99,9 @@ steps:
     - bin/deploy.sh
   environment:
     KUBE_SERVER_DEV:
-      from_secret: kube_server_dev
+      from_secret: KUBE_SERVER_DEV
     KUBE_TOKEN_DEV:
-      from_secret: kube_token_dev
+      from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-dev
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
@@ -116,9 +116,9 @@ steps:
     - bin/deploy.sh
   environment:
     KUBE_SERVER_DEV:
-      from_secret: kube_server_dev
+      from_secret: KUBE_SERVER_DEV
     KUBE_TOKEN_DEV:
-      from_secret: kube_token_dev
+      from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-uat
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
@@ -133,9 +133,9 @@ steps:
     - bin/deploy.sh
   environment:
     KUBE_SERVER_DEV:
-      from_secret: kube_server_dev
+      from_secret: KUBE_SERVER_DEV
     KUBE_TOKEN_DEV:
-      from_secret: kube_token_dev
+      from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-preprod
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
@@ -150,9 +150,9 @@ steps:
     - bin/deploy.sh
   environment:
     KUBE_SERVER_PROD:
-      from_secret: kube_server_prod
+      from_secret: KUBE_SERVER_PROD
     KUBE_TOKEN_PROD:
-      from_secret: kube_token_prod
+      from_secret: KUBE_TOKEN_PROD
     KUBE_NAMESPACE: ms-prod
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
