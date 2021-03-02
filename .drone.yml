@@ -89,7 +89,7 @@ steps:
     - git push origin --tags
   when:
     event: promote
-    target: [ preprod, prod ]
+    target: [ uat, preprod, prod ]
 
 - name: deploy_to_dev
   pull: if-not-exists
