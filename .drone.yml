@@ -122,7 +122,7 @@ steps:
     KUBE_NAMESPACE: ms-uat
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
-    branch: promote
+    event: promote
     target: uat
 
 - name: deploy_to_preprod
