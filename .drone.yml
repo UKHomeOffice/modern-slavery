@@ -40,9 +40,9 @@ steps:
     - docker push quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
     - docker push quay.io/ukhomeofficedigital/modern-slavery:build-$${DRONE_BUILD_NUMBER}
     - docker push quay.io/ukhomeofficedigital/modern-slavery:latest
-    when:
-      branch: master
-      event: push
+  when:
+    branch: master
+    event: push
 
 - name: tag_to_quay
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
