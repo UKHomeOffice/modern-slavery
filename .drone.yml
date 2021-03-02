@@ -122,8 +122,8 @@ steps:
     KUBE_NAMESPACE: ms-uat
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
-    branch: master
-    event: push
+    branch: promote
+    event: uat
 
 - name: deploy_to_preprod
   pull: if-not-exists
