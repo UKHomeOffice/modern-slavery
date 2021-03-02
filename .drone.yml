@@ -123,7 +123,7 @@ steps:
     APP_VERSION: ${DRONE_COMMIT_SHA}
   when:
     branch: promote
-    event: uat
+    target: uat
 
 - name: deploy_to_preprod
   pull: if-not-exists
