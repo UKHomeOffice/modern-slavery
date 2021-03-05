@@ -329,10 +329,10 @@
     "bullet-1": "access to support (for example, housing and legal advice)",
     "bullet-2": "a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit",
     "div-1-paragraph-1" : "We will need to share their personal details with organisations such as the police and the Home Office if they agree to their case being referred.",
-    "div-1-paragraph-2": "Please explain to the potential victim the ways in which the Home Office may use their personal information, including the purposes for which it will be used, the legal basis and who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms/privacy-information-notice-national-referral-mechanism\">Privacy Information Notice</a> and <a class=\"govuk-link\" href=\"https://www.gov.uk/government/organisations/home-office/about/personal-information-charter\">Personal Information Charter.</a>",
+    "div-1-paragraph-2": "Please explain to the potential victim the ways in which the Home Office may process their personal information, including the purposes for which it will be used, the legal basis and who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms/privacy-information-notice-national-referral-mechanism\">Privacy Information Notice</a> and <a class=\"govuk-link\" href=\"https://www.gov.uk/government/organisations/home-office/about/personal-information-charter\">Personal Information Charter.</a>",
     "options": {
       "yes": {
-        "label": "Yes – I have explained this to the potential victim and they want me to refer their case"
+        "label": "Yes - I have explained this to the potential victim along with the Privacy Information Notice and they want me to refer their case."
       },
       "no": {
         "label": "No – I have explained this to the potential victim and they do not want me to refer their case. They understand this means their case will not be referred to the NRM and they will not receive support or a formal decision."
