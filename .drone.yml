@@ -68,8 +68,7 @@ steps:
   commands:
     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
     - cd kube-modern-slavery
-    - git tag dev-${DRONE_COMMIT_SHA}
-    - git push origin --tags
+    - if ! [ $(git tag -l dev-${DRONE_COMMIT_SHA}) ]; then git tag dev-${DRONE_COMMIT_SHA} && git push origin --tags; fi
   when:
     branch: master
     event: push
