@@ -29,10 +29,15 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  // Overrides the Gov UK template to add alt tags to images
-  res.locals.partials['govuk-template'] = path.resolve(__dirname, './govuk_template');
   // Set HTML Language
   res.locals.htmlLang = 'en';
+  // Set feedback and footer links
+  res.locals.feedbackUrl = '/feedback';
+  res.locals.footerSupportLinks = [
+    { path: '/cookies', property: 'base.cookies' },
+    { path: '/terms-and-conditions', property: 'base.terms' },
+    { path: '/accessibility', property: 'base.accessibility' },
+  ];
   next();
 });
 
