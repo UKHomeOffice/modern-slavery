@@ -7,25 +7,11 @@ const busboyBodyParser = require('busboy-body-parser');
 const download = require('./download-file');
 const settings = require('./hof.settings');
 const path = require('path');
-const fs = require('fs');
 
 settings.routes = settings.routes.map(route => require(route));
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
 settings.start = false;
-
-// edit cookies.json from hof-template-partials so that the correct session cookies are shown on /cookies
-fs.readFile('node_modules/hof-template-partials/translations/src/en/cookies.json', 'utf8', (e, data) => {
-  const obj = JSON.parse(data);
-  obj['session-cookies-table'].rows[0][0] = 'modern-slavery.hof.sid';
-  fs.writeFile('node_modules/hof-template-partials/translations/src/en/cookies.json',
-      JSON.stringify(obj, null, 2), (err) => {
-        if (err) {
-          // eslint-disable-next-line no-console
-          console.err(err);
-        }
-      });
-});
 
 const app = hof(settings);
 
