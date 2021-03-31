@@ -28,7 +28,7 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
   download.responseFile('/assets/documents', 'nrm-form-offline-v2-19-09-2019.pdf', res);
 });
 
-app.use((req, res, next) => {
+const addGenericLocals = (req, res, next) => {
   // Set HTML Language
   res.locals.htmlLang = 'en';
   // Set feedback and footer links
@@ -38,6 +38,16 @@ app.use((req, res, next) => {
     { path: '/terms-and-conditions', property: 'base.terms' },
     { path: '/accessibility', property: 'base.accessibility' },
   ];
+  next();
+};
+
+app.use((req, res, next) => addGenericLocals(req, res, next));
+
+app.use('/cookies', (req, res, next) => {
+  res.locals = Object.assign({}, res.locals, req.translate('cookies'));
+   if (res.locals['session-cookies-table'].rows[0][0] === 'hmbrp.sid') {
+     res.locals['session-cookies-table'].rows[0][0] = 'modern-slavery.hof.sid';
+   }
   next();
 });
 
