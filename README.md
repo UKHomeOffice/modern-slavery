@@ -129,7 +129,7 @@ $ npm run test:docker-acceptance
 
 #### Running acceptance tests as part of Drone CI  <a name="running-acceptance-tests-as-part-of-drone-ci"></a>
 
-We use [Drone CI](#https://drone.io/) for our continious integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file
+We use [Drone CI](#https://drone.io/) for our continious integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file.
 
 ### Acceptance test scripts   <a name="acceptance-test-scripts"></a>
 Acceptance scripts
