@@ -6,7 +6,8 @@ module.exports = {
       '/privacy': 'privacy',
       '/accessibility': 'accessibility',
       '/support-organisations': 'support-organisations',
-      '/designated-organisations': 'designated-organisations'
+      '/designated-organisations': 'designated-organisations',
+      '/cookies': 'cookies'
     },
     steps: {
       '/start': {

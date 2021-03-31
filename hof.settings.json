@@ -11,6 +11,7 @@
     "./apps/nrm",
     "./apps/feedback"
   ],
+  "getCookies": "false,",
   "session": {
     "name": "modern-slavery.hof.sid"
   },
