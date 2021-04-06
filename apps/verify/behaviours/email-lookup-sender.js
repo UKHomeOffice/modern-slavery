@@ -6,7 +6,7 @@ const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.templateUserAuthId;
 const appPath = require('../../nrm/index').baseUrl;
-const firstStep = '/start/';
+const firstStep = '/start';
 const tokenGenerator = require('../models/save-token');
 
 const getPersonalisation = (host, token) => {
