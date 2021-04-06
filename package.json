@@ -2,6 +2,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
+    "debug": "node --inspect app.js",
     "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm-run-all test:unit lint",
     "test:unit": "_mocha",
