@@ -155,6 +155,7 @@ This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upl
 ## Coverage Reporting <a name="coverage-reporting"></a>
 For unit test coverage reporting we use the Istanbul `nyc' npm module. To generate a report run the following command:
 
+
 ```bash
 $ npm run test:coverage
 
