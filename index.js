@@ -8,6 +8,8 @@ const download = require('./download-file');
 const settings = require('./hof.settings');
 const path = require('path');
 
+const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
+
 settings.routes = settings.routes.map(route => require(route));
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
@@ -45,9 +47,7 @@ app.use((req, res, next) => addGenericLocals(req, res, next));
 
 app.use('/cookies', (req, res, next) => {
   res.locals = Object.assign({}, res.locals, req.translate('cookies'));
-   if (res.locals['session-cookies-table'].rows[0][0] === 'hmbrp.sid') {
-     res.locals['session-cookies-table'].rows[0][0] = 'modern-slavery.hof.sid';
-   }
+  res.locals['session-cookies-table'] = sessionCookiesTable['session-cookies-table'];
   next();
 });
 
