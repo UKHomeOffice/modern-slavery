@@ -40,6 +40,8 @@ const addGenericLocals = (req, res, next) => {
     { path: '/terms-and-conditions', property: 'base.terms' },
     { path: '/accessibility', property: 'base.accessibility' },
   ];
+  // Set service name for cookie-banner
+  res.locals.serviceName = 'Report Modern Slavery';
   next();
 };
 
