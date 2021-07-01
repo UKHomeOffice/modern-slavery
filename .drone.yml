@@ -102,6 +102,9 @@ steps:
       from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-dev
     APP_VERSION: ${DRONE_COMMIT_SHA}
+    DATA_SERVICE_VERSION: server-latest
+    ALERT_SERVICE_VERSION: alerts-latest
+    LOOKUP_SERVICE_VERSION: lookup-latest
   when:
     branch: master
     event: push
@@ -119,6 +122,9 @@ steps:
       from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-uat
     APP_VERSION: ${DRONE_COMMIT_SHA}
+    DATA_SERVICE_VERSION: server-latest
+    ALERT_SERVICE_VERSION: alerts-latest
+    LOOKUP_SERVICE_VERSION: lookup-latest
   when:
     event: promote
     target: uat
@@ -136,6 +142,9 @@ steps:
       from_secret: KUBE_TOKEN_DEV
     KUBE_NAMESPACE: ms-preprod
     APP_VERSION: ${DRONE_COMMIT_SHA}
+    DATA_SERVICE_VERSION: server-latest
+    ALERT_SERVICE_VERSION: alerts-latest
+    LOOKUP_SERVICE_VERSION: lookup-latest
   when:
     event: promote
     target: preprod
@@ -153,6 +162,9 @@ steps:
       from_secret: KUBE_TOKEN_PROD
     KUBE_NAMESPACE: ms-prod
     APP_VERSION: ${DRONE_COMMIT_SHA}
+    DATA_SERVICE_VERSION: server-latest
+    ALERT_SERVICE_VERSION: alerts-latest
+    LOOKUP_SERVICE_VERSION: lookup-latest
   when:
     event: promote
     target: prod
