@@ -1,0 +1,27 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .APP_NAME }}-external
+{{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
+spec:
+  tls:
+    - hosts:
+      {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+        - {{ .APP_NAME }}.uat.ms-notprod.homeoffice.gov.uk
+      {{ else }}
+        - {{ .PRODUCTION_URL }}
+      {{ end }}
+      secretName: {{ .APP_NAME }}-external
+  rules:
+    {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+    - host: {{ .APP_NAME }}.uat.ms-notprod.homeoffice.gov.uk
+    {{ else }}
+    - host: {{ .PRODUCTION_URL }}
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .APP_NAME }}
+              servicePort: 10443
