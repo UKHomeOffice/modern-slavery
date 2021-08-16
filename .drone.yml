@@ -34,7 +34,7 @@ unit_tests: &unit_tests
   commands:
   - npm run test:unit
 
-step:
+steps:
   - name: clone_repos
     image: alpine/git
     environment:
@@ -355,3 +355,169 @@ services:
 volumes:
   - name: dockersock
     temp: {}
+...
+# steps:
+# - name: build
+#   pull: if-not-exists
+#   image: node:12
+#   commands:
+#   - npm --loglevel warn install
+#   - npm run test
+#   when:
+#     branch: [ master, feature/* ]
+#     event: push
+
+# - name: build_modern_slavery
+#   pull: if-not-exists
+#   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+#   commands:
+#   - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+#   - docker build -t app-$${DRONE_COMMIT_SHA} .
+#   when:
+#     branch: [ master, feature/* ]
+#     event: push
+
+# - name: image_to_quay
+#   pull: if-not-exists
+#   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+#   environment:
+#     DOCKER_PASSWORD:
+#       from_secret: DOCKER_PASSWORD
+#     DOCKER_USERNAME: ukhomeofficedigital+modern_slavery_bot
+#   commands:
+#     - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+#     - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
+#     - docker tag app-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
+#     - docker tag app-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/modern-slavery:build-$${DRONE_BUILD_NUMBER}
+#     - docker tag app-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/modern-slavery:latest
+#     - docker push quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_COMMIT_SHA}
+#     - docker push quay.io/ukhomeofficedigital/modern-slavery:build-$${DRONE_BUILD_NUMBER}
+#     - docker push quay.io/ukhomeofficedigital/modern-slavery:latest
+#   when:
+#     branch: master
+#     event: push
+
+# - name: tag_to_quay
+#   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+#   environment:
+#     DOCKER_PASSWORD:
+#       from_secret: docker_password
+#   commands:
+#     - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+#     - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
+#     - docker tag $${DRONE_TAG} quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_TAG}
+#     - docker push quay.io/ukhomeofficedigital/modern-slavery:$${DRONE_TAG}
+#   when:
+#     event: tag
+
+# - name: clone_repo_build
+#   pull: if-not-exists
+#   image: docker:git
+#   environment:
+#     DRONE_GIT_USERNAME:
+#       from_secret: DRONE_GIT_USERNAME
+#     DRONE_GIT_TOKEN:
+#       from_secret: DRONE_GIT_TOKEN
+#   commands:
+#     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+#     - cd kube-modern-slavery
+#     - if ! [ $(git tag -l dev-${DRONE_COMMIT_SHA}) ]; then git tag dev-${DRONE_COMMIT_SHA} && git push origin --tags; fi
+#   when:
+#     branch: master
+#     event: push
+
+# - name: clone_repo_promote
+#   pull: if-not-exists
+#   image: docker:git
+#   environment:
+#     DRONE_GIT_USERNAME:
+#       from_secret: DRONE_GIT_USERNAME
+#     DRONE_GIT_TOKEN:
+#       from_secret: DRONE_GIT_TOKEN
+#   commands:
+#     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+#     - cd kube-modern-slavery
+#     - if ! [ $(git tag -l ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA}) ]; then git tag ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA} && git push origin --tags; fi
+#   when:
+#     event: promote
+#     target: [ uat, preprod, prod ]
+
+# - name: deploy_to_dev
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/kd:v1.14.0
+#   commands:
+#     - cd kube-modern-slavery
+#     - bin/deploy.sh
+#   environment:
+#     KUBE_SERVER_DEV:
+#       from_secret: KUBE_SERVER_DEV
+#     KUBE_TOKEN_DEV:
+#       from_secret: KUBE_TOKEN_DEV
+#     KUBE_NAMESPACE: ms-dev
+#     APP_VERSION: ${DRONE_COMMIT_SHA}
+#     DATA_SERVICE_VERSION: server-latest
+#     ALERT_SERVICE_VERSION: alerts-latest
+#     LOOKUP_SERVICE_VERSION: lookup-latest
+#   when:
+#     branch: master
+#     event: push
+
+# - name: deploy_to_uat
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/kd:v1.14.0
+#   commands:
+#     - cd kube-modern-slavery
+#     - bin/deploy.sh
+#   environment:
+#     KUBE_SERVER_DEV:
+#       from_secret: KUBE_SERVER_DEV
+#     KUBE_TOKEN_DEV:
+#       from_secret: KUBE_TOKEN_DEV
+#     KUBE_NAMESPACE: ms-uat
+#     APP_VERSION: ${DRONE_COMMIT_SHA}
+#   when:
+#     event: promote
+#     target: uat
+
+# - name: deploy_to_preprod
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/kd:v1.14.0
+#   commands:
+#     - cd kube-modern-slavery
+#     - bin/deploy.sh
+#   environment:
+#     KUBE_SERVER_DEV:
+#       from_secret: KUBE_SERVER_DEV
+#     KUBE_TOKEN_DEV:
+#       from_secret: KUBE_TOKEN_DEV
+#     KUBE_NAMESPACE: ms-preprod
+#     APP_VERSION: ${DRONE_COMMIT_SHA}
+#     DATA_SERVICE_VERSION: server-dd595377010cdc7417ac72a5ceec568611e99f39
+#     ALERT_SERVICE_VERSION: alerts-781c6b21bdd76589f0521e7ec924e8c2e96ac066
+#     LOOKUP_SERVICE_VERSION: lookup-5fe0fcdbef24a33c6b24bae83d04a2c7d0482d34
+#   when:
+#     event: promote
+#     target: preprod
+
+# - name: deploy_to_prod
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/kd:v1.14.0
+#   commands:
+#     - cd kube-modern-slavery
+#     - bin/deploy.sh
+#   environment:
+#     KUBE_SERVER_PROD:
+#       from_secret: KUBE_SERVER_PROD
+#     KUBE_TOKEN_PROD:
+#       from_secret: KUBE_TOKEN_PROD
+#     KUBE_NAMESPACE: ms-prod
+#     APP_VERSION: ${DRONE_COMMIT_SHA}
+#   when:
+#     event: promote
+#     target: prod
+
+# services:
+#   - name: docker
+#     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+
+# ...
