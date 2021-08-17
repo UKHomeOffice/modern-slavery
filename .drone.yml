@@ -38,12 +38,12 @@ steps:
   - name: clone_repos
     image: alpine/git
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
+      DRONE_GITHUB_USERNAME:
+        from_secret: DRONE_GITHUB_USERNAME
+      DRONE_GITHUB_TOKEN:
+        from_secret: DRONE_GITHUB_TOKEN
     commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone https://$${DRONE_GITHUB_USERNAME}:$${DRONE_GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
       branch:
         include:
@@ -248,12 +248,12 @@ steps:
   - name: clone_repos_prod
     image: alpine/git
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
+      DRONE_GITHUB_USERNAME:
+        from_secret: DRONE_GITHUB_USERNAME
+      DRONE_GITHUB_TOKEN:
+        from_secret: DRONE_GITHUB_TOKEN
     commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone https://$${DRONE_GITHUB_USERNAME}:$${DRONE_GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
       target: PROD
       event: promote
@@ -302,12 +302,12 @@ steps:
   - name: cron_clone_repos
     image: alpine/git
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
+      DRONE_GITHUB_USERNAME:
+        from_secret: DRONE_GITHUB_USERNAME
+      DRONE_GITHUB_TOKEN:
+        from_secret: DRONE_GITHUB_TOKEN
     commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone https://$${DRONE_GITHUB_USERNAME}:$${DRONE_GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
       cron: security_scans
       event: cron
@@ -414,12 +414,12 @@ volumes:
 #   pull: if-not-exists
 #   image: docker:git
 #   environment:
-#     DRONE_GIT_USERNAME:
-#       from_secret: DRONE_GIT_USERNAME
-#     DRONE_GIT_TOKEN:
-#       from_secret: DRONE_GIT_TOKEN
+#     DRONE_GITHUB_USERNAME:
+#       from_secret: DRONE_GITHUB_USERNAME
+#     DRONE_GITHUB_TOKEN:
+#       from_secret: DRONE_GITHUB_TOKEN
 #   commands:
-#     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+#     - git clone https://$${DRONE_GITHUB_USERNAME}:$${DRONE_GITHUB_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
 #     - cd kube-modern-slavery
 #     - if ! [ $(git tag -l dev-${DRONE_COMMIT_SHA}) ]; then git tag dev-${DRONE_COMMIT_SHA} && git push origin --tags; fi
 #   when:
@@ -430,12 +430,12 @@ volumes:
 #   pull: if-not-exists
 #   image: docker:git
 #   environment:
-#     DRONE_GIT_USERNAME:
-#       from_secret: DRONE_GIT_USERNAME
-#     DRONE_GIT_TOKEN:
-#       from_secret: DRONE_GIT_TOKEN
+#     DRONE_GITHUB_USERNAME:
+#       from_secret: DRONE_GITHUB_USERNAME
+#     DRONE_GITHUB_TOKEN:
+#       from_secret: DRONE_GITHUB_TOKEN
 #   commands:
-#     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+#     - git clone https://$${DRONE_GITHUB_USERNAME}:$${DRONE_GITHUB_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
 #     - cd kube-modern-slavery
 #     - if ! [ $(git tag -l ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA}) ]; then git tag ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA} && git push origin --tags; fi
 #   when:
