@@ -106,12 +106,12 @@ steps:
       KUBE_SERVER_DEV:
         from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN_DEV:
-        from_secret: DRONE_NOTPROD_TOKEN
+        from_secret: DRONE_KUBE_TOKEN
     commands:
-      - export KUBE_TOKEN=$${DRONE_NOTPROD_TOKEN}
+      - export KUBE_TOKEN=$${DRONE_KUBE_TOKEN}
       - export KUBE_NAMESPACE=$${BRANCH_ENV}
       - export KUBE_SERVER_DEV=$${KUBE_SERVER_DEV}
-      - export KUBE_TOKEN_DEV=$${DRONE_NOTPROD_TOKEN}
+      - export KUBE_TOKEN_DEV=$${DRONE_KUBE_TOKEN}
       - export INGRESS_INTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-internal-annotations.yaml
       - export CONFIGMAP_VALUES=$${HOF_CONFIG}/configmap-values.yaml
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
