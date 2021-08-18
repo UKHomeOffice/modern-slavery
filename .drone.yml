@@ -98,7 +98,7 @@ steps:
       branch: master
       event: [push, pull_request]
 
-  # Deploy to pull request UAT
+  # Deploy to a branch via a pull request
   - name: deploy_to_branch
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -108,8 +108,10 @@ steps:
       KUBE_TOKEN_DEV:
         from_secret: KUBE_TOKEN_DEV
     commands:
-      - export KUBE_TOKEN_DEV=$${KUBE_TOKEN_DEV}
+      - export KUBE_TOKEN=$${KUBE_TOKEN_DEV}
       - export KUBE_NAMESPACE=$${BRANCH_ENV}
+      - export KUBE_SERVER_DEV=$${KUBE_SERVER_DEV}
+      - export KUBE_TOKEN_DEV=$${KUBE_TOKEN_DEV}
       - export INGRESS_INTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-internal-annotations.yaml
       - export CONFIGMAP_VALUES=$${HOF_CONFIG}/configmap-values.yaml
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
@@ -140,9 +142,9 @@ steps:
       KUBE_SERVER:
         from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN_GRO_ACP_NOTPROD:
-        from_secret: KUBE_TOKEN_DEV
+        from_secret: DRONE_NOTPROD_TOKEN
     commands:
-      - export KUBE_TOKEN_DEV=$${KUBE_TOKEN_DEV}
+      - export KUBE_TOKEN=$${DRONE_NOTPROD_TOKEN}
       - export KUBE_NAMESPACE=$${UAT_ENV}
       - export INGRESS_INTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-internal-annotations.yaml
       - export INGRESS_EXTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-external-annotations.yaml
@@ -182,13 +184,13 @@ steps:
     environment:
       KUBE_SERVER_DEV:
         from_secret: KUBE_SERVER_DEV
-      KUBE_TOKEN_DEV:
-        from_secret: KUBE_TOKEN_DEV
+      DRONE_NOTPROD_TOKEN:
+        from_secret: DRONE_NOTPROD_TOKEN
     volumes:
       - name: dockersock
         path: /root/.dockersock
     commands:
-      - export KUBE_TOKEN=$${KUBE_TOKEN_GRO_ACP_NOTPROD}
+      - export KUBE_TOKEN=$${DRONE_NOTPROD_TOKEN}
       - export KUBE_NAMESPACE=$${BRANCH_ENV}
       - export INGRESS_INTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-internal-annotations.yaml
       - export CONFIGMAP_VALUES=$${HOF_CONFIG}/configmap-values.yaml
@@ -289,9 +291,9 @@ steps:
       KUBE_SERVER:
         from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN_GRO_ACP_NOTPROD:
-        from_secret: KUBE_TOKEN_DEV
+        from_secret: DRONE_NOTPROD_TOKEN
     commands:
-      - export KUBE_TOKEN=$${KUBE_TOKEN_DEV}
+      - export KUBE_TOKEN=$${DRONE_NOTPROD_TOKEN}
       - export KUBE_NAMESPACE=$${BRANCH_ENV}
       - ./clean_up.sh
     when:
@@ -471,8 +473,8 @@ volumes:
 #   environment:
 #     KUBE_SERVER_DEV:
 #       from_secret: KUBE_SERVER_DEV
-#     KUBE_TOKEN_DEV:
-#       from_secret: KUBE_TOKEN_DEV
+#     DRONE_NOTPROD_TOKEN:
+#       from_secret: DRONE_NOTPROD_TOKEN
 #     KUBE_NAMESPACE: ms-uat
 #     APP_VERSION: ${DRONE_COMMIT_SHA}
 #   when:
@@ -488,8 +490,8 @@ volumes:
 #   environment:
 #     KUBE_SERVER_DEV:
 #       from_secret: KUBE_SERVER_DEV
-#     KUBE_TOKEN_DEV:
-#       from_secret: KUBE_TOKEN_DEV
+#     DRONE_NOTPROD_TOKEN:
+#       from_secret: DRONE_NOTPROD_TOKEN
 #     KUBE_NAMESPACE: ms-preprod
 #     APP_VERSION: ${DRONE_COMMIT_SHA}
 #     DATA_SERVICE_VERSION: server-dd595377010cdc7417ac72a5ceec568611e99f39
