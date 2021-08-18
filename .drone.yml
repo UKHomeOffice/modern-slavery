@@ -157,7 +157,7 @@ steps:
       - sleep $${READY_FOR_TEST_DELAY}
     when:
       branch: master
-      event: push
+      event: [push, pull_request]
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
