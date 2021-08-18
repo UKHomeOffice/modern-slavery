@@ -109,7 +109,7 @@ steps:
         from_secret: KUBE_TOKEN_DEV
     commands:
       - export KUBE_TOKEN=$${KUBE_TOKEN_DEV}
-      - export KUBE_NAMESPACE=$${BRANCH_ENV}
+      - export KUBE_NAMESPACE=ms-dev
       - export KUBE_SERVER_DEV=$${KUBE_SERVER_DEV}
       - export KUBE_TOKEN_DEV=$${KUBE_TOKEN_DEV}
       - export INGRESS_INTERNAL_ANNOTATIONS=$${HOF_CONFIG}/ingress-internal-annotations.yaml
