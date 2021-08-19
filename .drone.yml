@@ -105,7 +105,7 @@ steps:
     environment:
       KUBE_SERVER_DEV:
         from_secret: KUBE_SERVER_DEV
-      KUBE_TOKEN_DEV:
+      DRONE_KUBE_TOKEN:
         from_secret: DRONE_KUBE_TOKEN
     commands:
       - export KUBE_TOKEN=$${DRONE_KUBE_TOKEN}
