@@ -120,10 +120,10 @@ steps:
       - kd --insecure-skip-tls-verify -f kube/ingress-external.yaml -f kube/networkpolicy-external.yaml
       - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/deployment.yaml
       - sleep $${READY_FOR_TEST_DELAY}
+      - echo "UAT Branch - $${APP_NAME}-$${DRONE_SOURCE_BRANCH}.branch.internal.ms-notprod.homeoffice.gov.uk"
     when:
       branch: master
       event: pull_request
-
 
   # Deploy to a branch via a pull request
   # - name: deploy_to_branch
