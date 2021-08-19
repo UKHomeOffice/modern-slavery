@@ -116,9 +116,10 @@ steps:
       - export CONFIGMAP_VALUES=$${HOF_CONFIG}/configmap-values.yaml
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
       - export DRONE_SOURCE_BRANCH=$(echo $${DRONE_SOURCE_BRANCH} | tr '[:upper:]' '[:lower:]')
-      - kd --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yaml -f kube/redis-network-policy.yaml -f kube/redis-deployment.yaml
-      - kd --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-internal.yaml -f kube/networkpolicy-internal.yaml -f kube/service.yaml
-      - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/deployment.yaml
+      - export KUBE_CERTIFICATE_AUTHORITY="https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-notprod.crt"
+      - kd --check-interval 10s -f kube/redis-service.yaml -f kube/redis-network-policy.yaml -f kube/redis-deployment.yaml
+      - kd -f kube/configmap.yaml -f kube/ingress-internal.yaml -f kube/networkpolicy-internal.yaml -f kube/service.yaml
+      - kd --timeout 10m --check-interval 10s -f kube/deployment.yaml
       - sleep $${READY_FOR_TEST_DELAY}
       - echo "UAT Branch - $${APP_NAME}-$${DRONE_SOURCE_BRANCH}.branch.internal.ms-notprod.homeoffice.gov.uk"
     when:
