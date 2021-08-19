@@ -102,11 +102,11 @@ steps:
   - name: deploy_to_branch
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
-    # environment:
-    #   KUBE_SERVER:
-    #     from_secret: KUBE_SERVER_DEV
-    #   DRONE_KUBE_TOKEN:
-    #     from_secret: DRONE_KUBE_TOKEN
+    environment:
+      KUBE_SERVER:
+        from_secret: KUBE_SERVER_DEV
+      DRONE_KUBE_TOKEN:
+        from_secret: DRONE_KUBE_TOKEN
     commands:
       - export KUBE_TOKEN=$${DRONE_KUBE_TOKEN}
       - export KUBE_NAMESPACE=$${BRANCH_ENV}
