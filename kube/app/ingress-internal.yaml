@@ -12,23 +12,23 @@ spec:
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        - {{ .DRONE_BUILD_NUMBER }}.internal.ms-branch.homeoffice.gov.uk
-        - {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.ms-branch.homeoffice.gov.uk
+        - {{ .DRONE_BUILD_NUMBER }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+        - {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-        - uat.internal.ms-notprod.homeoffice.gov.uk
+        - firearms.uat.internal.ms-notprod.homeoffice.gov.uk
         - {{ .APP_NAME }}.uat.internal.ms-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - stg.internal.ms.homeoffice.gov.uk
-        - stg.internal.{{ .APP_NAME }}.homeoffice.gov.uk
+        - stg.internal.{{ .APP_NAME }}.ms.homeoffice.gov.uk
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      secretName: {{ .APP_NAME }}-internal-{{ .DRONE_SOURCE_BRANCH }}
+      secretName: branch-tls-internal
       {{ else }}
       secretName: {{ .APP_NAME }}-internal
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    - host: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.ms-branch.homeoffice.gov.uk
+    - host: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
     - host: {{ .APP_NAME }}.uat.internal.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
