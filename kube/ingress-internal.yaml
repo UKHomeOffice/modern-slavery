@@ -12,14 +12,14 @@ spec:
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        - {{ .DRONE_BUILD_NUMBER }}.branch.internal.ms-notprod.homeoffice.gov.uk
-        - {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.branch.internal.ms-notprod.homeoffice.gov.uk
+        - {{ .DRONE_BUILD_NUMBER }}.internal.ms-branch.homeoffice.gov.uk
+        - {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.ms-branch.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-        - ms.uat.internal.ms-notprod.homeoffice.gov.uk
+        - uat.internal.ms-notprod.homeoffice.gov.uk
         - {{ .APP_NAME }}.uat.internal.ms-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-        - stg.internal.nrm.ms.homeoffice.gov.uk
-        - stg.internal.{{ .APP_NAME }}.nrm.homeoffice.gov.uk
+        - stg.internal.ms.homeoffice.gov.uk
+        - stg.internal.{{ .APP_NAME }}.homeoffice.gov.uk
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
       secretName: {{ .APP_NAME }}-internal-{{ .DRONE_SOURCE_BRANCH }}
@@ -28,7 +28,7 @@ spec:
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    - host: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.branch.internal.ms-notprod.homeoffice.gov.uk
+    - host: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.ms-branch.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
     - host: {{ .APP_NAME }}.uat.internal.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
