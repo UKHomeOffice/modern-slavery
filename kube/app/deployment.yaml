@@ -28,6 +28,10 @@ spec:
       {{ end }}
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8082"
+        prometheus.io/path: "/"
       labels:
         {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
         name: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}
@@ -46,7 +50,7 @@ spec:
           securityContext:
             runAsNonRoot: true
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -56,112 +60,155 @@ spec:
                 {{ end }}
           env:
             # because some internal services have self signed certs
-            - name: TZ
-              value: Europe/London
-            - name: NODE_TLS_REJECT_UNAUTHORIZED
-              value: "0"
+            - name: LISTEN_HOST
+              value: 127.0.0.1
             - name: REDIS_PORT
               value: "6379"
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
             - name: REDIS_HOST
-              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: redis-{{ .DRONE_SOURCE_BRANCH }}
-              {{ else }}
               value: redis
-              {{ end }}
-            - name: POSTCODE_AUTH
-              valueFrom:
-                secretKeyRef:
-                  name: postcode-auth
-                  key: token
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: redis
-                  key: pass
-            - name: USE_MOCKS
+            - name: WRITE_TO_CASEWORK
+              {{ if eq .KUBE_NAMESPACE "ms-dev" }}
               value: "false"
-            - name: AWS_USER
+              {{ end }}
+              {{if eq .KUBE_NAMESPACE "ms-uat"}}
+              value: "false"
+              {{end}}
+              {{if eq .KUBE_NAMESPACE "ms-preprod"}}
+              value: "true"
+              {{end}}
+              {{if eq .KUBE_NAMESPACE "ms-prod"}}
+              value: "true"
+              {{end}}
+            - name: LOG_LEVEL
               valueFrom:
-                secretKeyRef:
-                  name: ses
-                  key: user
-            - name: AWS_PASSWORD
+                configMapKeyRef:
+                  name: configmap
+                  key: log-level
+            - name: NODE_ENV
               valueFrom:
-                secretKeyRef:
-                  name: ses
-                  key: password
-            - name: KEYCLOAK_SECRET
+                configMapKeyRef:
+                  name: configmap
+                  key: node-env
+            - name: CASEWORKER_EMAIL
               valueFrom:
-                secretKeyRef:
-                  name: keycloak
-                  key: secret
-            - name: KEYCLOAK_CLIENT_ID
+                configMapKeyRef:
+                  name: configmap
+                  key: caseworker-email
+            - name: FEEDBACK_EMAIL
               valueFrom:
-                secretKeyRef:
-                  name: keycloak
-                  key: id
-            - name: KEYCLOAK_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-form
-                  key: username
-            - name: KEYCLOAK_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-form
-                  key: password
-            - name: ICASEWORK_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: icasework
-                  key: key
-            - name: ICASEWORK_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: icasework
-                  key: secret
+                configMapKeyRef:
+                  name: configmap
+                  key: feedback-email
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
                   name: session-secret
-                  key: token
-            - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
-            {{ end }}
-            - name: PDF_CONVERTER_URL
-              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}:10443/convert
-              {{ else }}
-              value: https://html-pdf-converter:10443/convert
+                  key: session-secret
+            - name: NOTIFY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: notify-key
+                  key: notify-key
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_access_key_id
+              {{if or (eq .KUBE_NAMESPACE "ms-prod") (eq .KUBE_NAMESPACE "ms-preprod")}}
+            - name: TEMPLATE_USER_AUTHORISATION_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: template-user-authorisation-id
+            - name: TEMPLATE_PDF
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: template-pdf
+            - name: TEMPLATE_FEEDBACK
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: template-feedback
               {{ end }}
-          {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
+            - name: FIRST_ALERT_TIMEOUT
+              value: "21"
+            - name: DELETION_TIMEOUT
+              value: "28"
+            - name: GA_TAG
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: ga-tag
+            - name: SESSION_TTL
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: session-ttl
+            {{if or (eq .KUBE_NAMESPACE "ms-prod") (eq .KUBE_NAMESPACE "ms-preprod")}}
+            - name: AUDIT_DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: endpoint
+            - name: AUDIT_DB_USER
+              value: hof
+            - name: AUDIT_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: users
+                  key: hof
+            - name: AUDIT_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
+            - name: AUDIT_DATA
+              value: "true"
+              {{ end }}
           livenessProbe:
+            failureThreshold: 3
             httpGet:
+              httpHeaders:
+              - name: X-probe
+                value: kubelet
               path: /healthz/ping
-              port: 8080
+              port: 8081
             initialDelaySeconds: 10
             periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 15
           readinessProbe:
+            failureThreshold: 3
             httpGet:
+              httpHeaders:
+              - name: X-probe
+                value: kubelet
               path: /healthz/readiness
-              port: 8080
+              port: 8081
             initialDelaySeconds: 15
             periodSeconds: 5
-          {{ end }}
+            successThreshold: 1
+            timeoutSeconds: 15
           resources:
             requests:
-              memory: 10Mi
-              cpu: 10m
+              memory: 30Mi
+              cpu: 30m
             limits:
-              memory: 256Mi
-              cpu: 300m
+              memory: 512Mi
+              cpu: 600m
           volumeMounts:
             - mountPath: /public
               name: public
