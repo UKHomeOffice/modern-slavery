@@ -81,26 +81,6 @@ spec:
               {{if eq .KUBE_NAMESPACE "ms-prod"}}
               value: "true"
               {{end}}
-            - name: LOG_LEVEL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: log-level
-            - name: NODE_ENV
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: node-env
-            - name: CASEWORKER_EMAIL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: caseworker-email
-            - name: FEEDBACK_EMAIL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: feedback-email
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
@@ -126,37 +106,10 @@ spec:
                 secretKeyRef:
                   name: aws-sqs
                   key: aws_access_key_id
-              {{if or (eq .KUBE_NAMESPACE "ms-prod") (eq .KUBE_NAMESPACE "ms-preprod")}}
-            - name: TEMPLATE_USER_AUTHORISATION_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: template-user-authorisation-id
-            - name: TEMPLATE_PDF
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: template-pdf
-            - name: TEMPLATE_FEEDBACK
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: template-feedback
-              {{ end }}
             - name: FIRST_ALERT_TIMEOUT
               value: "21"
             - name: DELETION_TIMEOUT
               value: "28"
-            - name: GA_TAG
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: ga-tag
-            - name: SESSION_TTL
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: session-ttl
             {{if or (eq .KUBE_NAMESPACE "ms-prod") (eq .KUBE_NAMESPACE "ms-preprod")}}
             - name: AUDIT_DB_HOST
               valueFrom:
