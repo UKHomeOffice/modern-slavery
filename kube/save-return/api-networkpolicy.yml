@@ -17,9 +17,7 @@ spec:
           name: app
           {{ end }}
     ports:
-    - port: 10080
-      protocol: TCP
-    - port: 10443
+    - port: 10445
       protocol: TCP
   podSelector:
     matchLabels:

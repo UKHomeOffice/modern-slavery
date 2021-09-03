@@ -229,11 +229,12 @@ spec:
               memory: 256Mi
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
+            - name: HTTPS_LISTEN_PORT
+              value: "10445"
             - name: PROXY_SERVICE_PORT
               value: "3000"
           ports:
-            - containerPort: 10080
-            - containerPort: 10443
+            - containerPort: 10445
           volumeMounts:
             - mountPath: /public
               name: public
@@ -259,17 +260,10 @@ spec:
             - name: STATSD_METRICS
               value: "FALSE"
           ports:
-            - containerPort: 10080
-            - containerPort: 10443
+            - containerPort: 10444
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /usr/local/openresty/nginx/html/418-request-denied.shtml
-              name: configmap
-              subPath: 418.shtml
-            - mountPath: /usr/local/openresty/nginx/html/partials/418-partial.shtml
-              name: configmap
-              subPath: 418-partial.shtml
           securityContext:
             runAsNonRoot: true
 
@@ -308,8 +302,6 @@ spec:
             - --tls-cert=/certs/tls.crt
             - --tls-private-key=/certs/tls.key
           ports:
-            - containerPort: 10080
-              protocol: TCP
             - containerPort: 10443
               protocol: TCP
           securityContext:
@@ -325,13 +317,6 @@ spec:
       volumes:
         - name: public
           emptyDir: {}
-        - name: configmap
-          configMap:
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-            {{ else }}
-            name: configmap
-            {{ end }}
         - name: certs
           secret:
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
