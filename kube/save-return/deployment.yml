@@ -113,7 +113,7 @@ spec:
                 name: configmap
                 {{ end }}
           env:
-            {{ if not or (eq. .KUBE_NAMESPACE .STG_ENV) (eq. .KUBE_NAMESPACE .PROD_ENV) }}
+            {{ if or (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
             - name: APP_ID
               valueFrom:
                 secretKeyRef:
