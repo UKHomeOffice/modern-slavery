@@ -8,7 +8,7 @@ export NGINX_SETTINGS=$HOF_CONFIG/nginx-settings.yaml
 export DATA_SERVICE_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/data-service-external-annotations.yaml
 export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-notprod.crt
 
-kd='kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s'
+kd='kd --timeout 5m --check-interval 5s'
 
 if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
@@ -34,7 +34,7 @@ elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/redis -f kube/save-return -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-prod.crt
-  
+
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
   $kd -f kube/redis -f kube/save-return -f kube/app/deployment.yml
