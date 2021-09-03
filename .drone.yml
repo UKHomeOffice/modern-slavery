@@ -29,7 +29,7 @@ linting: &linting
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
-    - yarn run test:lint
+    - npm run lint
 
 unit_tests: &unit_tests
   pull: if-not-exists
@@ -37,17 +37,13 @@ unit_tests: &unit_tests
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
-    - yarn run test:unit
+    - npm run test:unit
 
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
   image: quay.io/ukhomeofficedigital/sonar-scanner-node:549b75f593f28da1c4a0a6f79877ec69d3b21037
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
-
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
 
 steps:
   - name: clone_repos
@@ -71,8 +67,8 @@ steps:
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
+      - npm ci
+      - npm run postinstall
     when:
       branch:
         include:
@@ -138,7 +134,7 @@ steps:
       KUBE_SERVER:
         from_secret: kube_server_dev
       KUBE_TOKEN:
-        from_secret: kube_token_sas_dev
+        from_secret: kube_token_dev
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -151,8 +147,8 @@ steps:
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
+      - npm ci
+      - npm run postinstall
     when:
       branch:
         include:
@@ -187,58 +183,33 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: build_acceptance_branch
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: pull_request
-
-  - name: test_acceptance_branch
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-    - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
-    - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-    - sleep 5
-    - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-    - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      branch: master
-      event: pull_request
-
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
-  - name: snyk_scan
-    pull: if-not-exists
-    image: node:14
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn run test:snyk
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: anchore_scan
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-    pull: always
-    environment:
-      IMAGE_NAME: firearms:${DRONE_COMMIT_SHA}
-      LOCAL_IMAGE: true
-      TOLERATE: medium
-      WHITELIST_FILE: hof-services-config/Firearms_Licensing/anchore-cve-exceptions.txt
-    when:
-      branch: master
-      event: pull_request
+  # - name: snyk_scan
+  #   pull: if-not-exists
+  #   image: node:14
+  #   environment:
+  #     SNYK_TOKEN:
+  #       from_secret: snyk_token
+  #   commands:
+  #     - yarn run test:snyk
+  #   when:
+  #     branch:
+  #       include:
+  #         - master
+  #         - feature/*
+  #     event: pull_request
+  #
+  # - name: anchore_scan
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
+  #   pull: always
+  #   environment:
+  #     IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
+  #     LOCAL_IMAGE: true
+  #     TOLERATE: medium
+  #     WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
+  #   when:
+  #     branch: master
+  #     event: pull_request
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -251,31 +222,6 @@ steps:
         from_secret: kube_token_dev
     commands:
       - bin/deploy.sh $${UAT_ENV}
-    when:
-      branch: master
-      event: push
-
-  - name: build_acceptance_uat
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: push
-
-  - name: test_acceptance_uat
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-    - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
-    - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-    - sleep 5
-    - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-    - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       branch: master
       event: push
@@ -306,7 +252,7 @@ steps:
       KUBE_SERVER:
         from_secret: kube_server_dev
       KUBE_TOKEN:
-        from_secret: kube_token_sas_dev
+        from_secret: kube_token_dev
     volumes:
       - name: dockersock
         path: /root/.dockersock
@@ -388,91 +334,91 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Snyk & Anchore
-  - name: cron_clone_repos
-    image: alpine/git
-    environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-    when:
-      cron: security_scans
-      event: cron
-
-  - name: cron_build_image
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
-    volumes:
-      - name: dockersock
-        path: /var/run
-    when:
-      cron: security_scans
-      event: cron
-
-  - name: cron_snyk_scan
-    pull: if-not-exists
-    image: node:14
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
-      - yarn run test:snyk
-    when:
-      cron: security_scans
-      event: cron
-
-  - name: cron_anchore_scan
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-    pull: always
-    environment:
-      IMAGE_NAME: firearms:${DRONE_COMMIT_SHA}
-      LOCAL_IMAGE: true
-      TOLERATE: medium
-      WHITELIST_FILE: hof-services-config/Firearms_Licensing/anchore-cve-exceptions.txt
-    when:
-      cron: security_scans
-      event: cron
-
-  # Slack notification upon a CRON job fail
-  - name: cron_notify_slack_tear_down_pr_envs
-    pull: if-not-exists
-    image: plugins/slack
-    settings:
-      channel: sas-build
-      failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of Firearms has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
-      webhook:
-        from_secret: slack_webhook
-    when:
-      cron: tear_down_pr_envs
-      event: cron
-      status: failure
-
-  - name: cron_notify_slack_security_scans
-    pull: if-not-exists
-    image: plugins/slack
-    settings:
-      channel: sas-build
-      failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of Firearms has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
-      webhook:
-        from_secret: slack_webhook
-    when:
-      cron: security_scans
-      event: cron
-      status: failure
+  # # CRON job steps that runs security scans using Snyk & Anchore
+  # - name: cron_clone_repos
+  #   image: alpine/git
+  #   environment:
+  #     DRONE_GIT_USERNAME:
+  #       from_secret: drone_git_username
+  #     DRONE_GIT_TOKEN:
+  #       from_secret: drone_git_token
+  #   commands:
+  #     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+  #   when:
+  #     cron: security_scans
+  #     event: cron
+  #
+  # - name: cron_build_image
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #   commands:
+  #     - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+  #   volumes:
+  #     - name: dockersock
+  #       path: /var/run
+  #   when:
+  #     cron: security_scans
+  #     event: cron
+  #
+  # - name: cron_snyk_scan
+  #   pull: if-not-exists
+  #   image: node:14
+  #   environment:
+  #     SNYK_TOKEN:
+  #       from_secret: snyk_token
+  #   commands:
+  #     - yarn install --frozen-lockfile
+  #     - yarn run postinstall
+  #     - yarn run test:snyk
+  #   when:
+  #     cron: security_scans
+  #     event: cron
+  #
+  # - name: cron_anchore_scan
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
+  #   pull: always
+  #   environment:
+  #     IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
+  #     LOCAL_IMAGE: true
+  #     TOLERATE: medium
+  #     WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
+  #   when:
+  #     cron: security_scans
+  #     event: cron
+  #
+  # # Slack notification upon a CRON job fail
+  # - name: cron_notify_slack_tear_down_pr_envs
+  #   pull: if-not-exists
+  #   image: plugins/slack
+  #   settings:
+  #     channel: sas-build
+  #     failure: ignore
+  #     icon_url: http://readme.drone.io/0.5/logo_dark.svg
+  #     icon.url: http://readme.drone.io/0.5/logo_dark.svg
+  #     template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
+  #     username: Drone
+  #     webhook:
+  #       from_secret: slack_webhook
+  #   when:
+  #     cron: tear_down_pr_envs
+  #     event: cron
+  #     status: failure
+  #
+  # - name: cron_notify_slack_security_scans
+  #   pull: if-not-exists
+  #   image: plugins/slack
+  #   settings:
+  #     channel: sas-build
+  #     failure: ignore
+  #     icon_url: http://readme.drone.io/0.5/logo_dark.svg
+  #     icon.url: http://readme.drone.io/0.5/logo_dark.svg
+  #     template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
+  #     username: Drone
+  #     webhook:
+  #       from_secret: slack_webhook
+  #   when:
+  #     cron: security_scans
+  #     event: cron
+  #     status: failure
 
 services:
   - name: docker
