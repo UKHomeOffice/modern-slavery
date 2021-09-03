@@ -229,6 +229,8 @@ spec:
               memory: 256Mi
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
+            - name: HTTP_LISTEN_PORT
+              value: "10082"
             - name: HTTPS_LISTEN_PORT
               value: "10445"
             - name: PROXY_SERVICE_PORT
@@ -255,6 +257,8 @@ spec:
 {{ file .NGINX_SETTINGS | indent 12 }}
             - name: PROXY_SERVICE_PORT
               value: "8080"
+            - name: HTTP_LISTEN_PORT
+              value: "10081"
             - name: HTTPS_LISTEN_PORT
               value: "10444"
             - name: STATSD_METRICS
