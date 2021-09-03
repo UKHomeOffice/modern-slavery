@@ -161,7 +161,7 @@ spec:
             runAsNonRoot: true
 
         - name: lookup
-          image: quay.io/ukhomeofficedigital/save-return-lookup-ui:6d7d5f46806989b35cc9300cdbb7600c60480fad
+          image: quay.io/ukhomeofficedigital/save-return-lookup-ui:5c91581ad2e5c599290278b38ff8cf7aea0f880c
           imagePullPolicy: Always
           resources:
             requests:
