@@ -24,5 +24,7 @@ spec:
   ports:
   - name: http
     port: 10080
-  - name: https
+  - name: https-lookup
     port: 10443
+  - name: https-api
+    port: 10445
