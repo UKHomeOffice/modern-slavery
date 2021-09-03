@@ -1,0 +1,337 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: data-service
+  {{ end }}
+spec:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  replicas: 1
+  {{ else }}
+  replicas: 2
+  {{ end }}
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: data-service
+      service: data-service
+      {{ end }}
+  template:
+    metadata:
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: data-service
+        service: data-service
+        {{ end }}
+        build: "{{.DRONE_BUILD_NUMBER}}"
+        commit: "{{.DRONE_COMMIT_SHA}}"
+    spec:
+      containers:
+        - name: alert-service
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:c29537c8af15beec168de081d055137111c24cfe
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: NOTIFY_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: notify-key
+                  name: notify-key
+            {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+            - name: DB_USER
+              value: reports
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: audit-database
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: audit-database
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: reports
+                  name: users
+            {{ else }}
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: ms-dev-rds
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: ms-dev-rds
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: ms-dev-rds
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: ms-dev-rds
+            {{ end }}
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          securityContext:
+            runAsNonRoot: true
+
+        - name: data-service
+          image: quay.io/ukhomeofficedigital/save-return-api:5a59a0a51a63c3ae704b723041cbf89543f9806c
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            {{ if not or (eq. .KUBE_NAMESPACE .STG_ENV) (eq. .KUBE_NAMESPACE .PROD_ENV) }}
+            - name: APP_ID
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: data-service
+            - name: APP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: data-service
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: port
+                  name: ms-dev-rds
+            {{ end }}
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: audit-database
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: audit-database
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: audit-database
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: audit-database
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          securityContext:
+            runAsNonRoot: true
+
+        - name: lookup
+          image: quay.io/ukhomeofficedigital/save-return-lookup-ui:6d7d5f46806989b35cc9300cdbb7600c60480fad
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 30Mi
+              cpu: 30m
+            limits:
+              memory: 512Mi
+              cpu: 600m
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: LISTEN_HOST
+              value: 127.0.0.1
+            - name: REDIS_PORT
+              value: "6379"
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+            - name: REDIS_HOST
+              value: redis
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: endpoint
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: password
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: session-secret
+                  key: session-secret
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy-save-return-api
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+{{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "3000"
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy-lookup-ui
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          env:
+{{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "8080"
+            - name: HTTPS_LISTEN_PORT
+              value: "10444"
+            - name: STATSD_METRICS
+              value: "FALSE"
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          volumeMounts:
+            - mountPath: /public
+              name: public
+            - mountPath: /usr/local/openresty/nginx/html/418-request-denied.shtml
+              name: configmap
+              subPath: 418.shtml
+            - mountPath: /usr/local/openresty/nginx/html/partials/418-partial.shtml
+              name: configmap
+              subPath: 418-partial.shtml
+          securityContext:
+            runAsNonRoot: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/keycloak-gatekeeper:8.0.2
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: 200m
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-lookup-secret
+                  key: keycloak-lookup-secret
+            - name: PROXY_REDIRECTION_URL
+              {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://lookup.modernslavery.homeoffice.gov.uk/
+              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://preprod-lookup.ms-notprod.homeoffice.gov.uk/
+              {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://dev-lookup.ms-notprod.homeoffice.gov.uk/
+              {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/
+              {{ end }}
+          args:
+            - --listen=:10443
+            # specififes which client is used
+            - --client-id=lookup
+            # the url which is used to retrieve the OpenID configuration
+            - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
+            # the endpoint where requests are proxied to
+            - --upstream-url=https://127.0.0.1:10444
+            # URls that you wish to protect.
+            - --resources=uri=/*|roles=lookup
+            - --tls-cert=/certs/tls.crt
+            - --tls-private-key=/certs/tls.key
+          ports:
+            - containerPort: 10080
+              protocol: TCP
+            - containerPort: 10443
+              protocol: TCP
+          securityContext:
+            runAsNonRoot: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /certs
+              name: certs
+            - mountPath: /etc/ssl/certs
+              name: bundle
+              readOnly: true
+      volumes:
+        - name: public
+          emptyDir: {}
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else }}
+            secretName: lookup-cert-cmio
+            {{ end }}
+        - name: bundle
+          configMap:
+            name: bundle

@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: lookup-allow-ingress-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: lookup-allow-ingress
+  {{ end }}
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          name: ingress-external-{{ .DRONE_SOURCE_BRANCH }}
+          {{ else }}
+          name: ingress-external
+          {{ end }}
+    ports:
+    - port: 10080
+      protocol: TCP
+    - port: 10443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: data-service
+      {{ end }}
+  policyTypes:
+  - Ingress

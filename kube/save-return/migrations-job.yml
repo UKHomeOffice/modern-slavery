@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: modern-slavery-data-service-migrations
+spec:
+  template:
+    spec:
+      containers:
+        - name: modern-slavery-data-service-migrations
+          image: quay.io/ukhomeofficedigital/save-return-api:ms-migrations-03058c39a26ee7b6b3eb4b939907f44d917b5980
+          # command: ["npm",  "run", "db:rollback"]
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: audit-database
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: password
+            - name: NODE_ENV
+              value: production
+      restartPolicy: Never
+  backoffLimit: 0

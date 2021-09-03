@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: data-service-permit-access-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: data-service-permit-access
+  {{ end }}
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          name: app-{{ .DRONE_SOURCE_BRANCH }}
+          {{ else }}
+          name: app
+          {{ end }}
+    ports:
+    - port: 10080
+      protocol: TCP
+    - port: 10443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: data-service
+      {{ end }}

@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1alpha3
+kind: Certificate
+metadata:
+  name: tls
+spec:
+  secretName: tls
+  issuerRef:
+    name: platform-ca
+    kind: ClusterIssuer
+  dnsNames:
+  - app
+  - app.ms-dev
+  - app.ms-dev.svc
+  - app.ms-dev.svc.cluster.local
+  - localhost
+  ipAddresses:
+  - 127.0.0.1
