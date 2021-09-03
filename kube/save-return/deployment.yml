@@ -325,6 +325,13 @@ spec:
       volumes:
         - name: public
           emptyDir: {}
+        - name: configmap
+          configMap:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else }}
+            name: configmap
+            {{ end }}
         - name: certs
           secret:
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
