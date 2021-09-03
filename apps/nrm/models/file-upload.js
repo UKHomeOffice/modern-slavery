@@ -2,7 +2,7 @@
 
 const url = require('url');
 
-const Model = require('hof-model');
+const Model = require('hof').model;
 const config = require('../../../config');
 
 module.exports = class UploadModel extends Model {

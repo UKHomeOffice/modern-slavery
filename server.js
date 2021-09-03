@@ -13,7 +13,6 @@ const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.j
 settings.routes = settings.routes.map(route => require(route));
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
-settings.start = false;
 
 const app = hof(settings);
 
@@ -40,8 +39,6 @@ const addGenericLocals = (req, res, next) => {
     { path: '/terms-and-conditions', property: 'base.terms' },
     { path: '/accessibility', property: 'base.accessibility' },
   ];
-  // Set service name for cookie-banner
-  res.locals.serviceName = 'Report Modern Slavery';
   next();
 };
 

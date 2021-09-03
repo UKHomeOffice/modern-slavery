@@ -1,6 +1,6 @@
 'use strict';
 // eslint-disable-next-line implicit-dependencies/no-implicit
-require('$$theme');
+require('hof/frontend/themes/gov-uk/client-js');
 var $ = require('jquery');
 
 var accessibleAutocomplete = require('accessible-autocomplete');

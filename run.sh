@@ -8,4 +8,4 @@
 # sharing directiries between containers
 cp -r /app/public/* /public/
 
-node app.js
+node server.js

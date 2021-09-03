@@ -29,7 +29,7 @@ linting: &linting
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
-    - npm run lint
+    - yarn run lint
 
 unit_tests: &unit_tests
   pull: if-not-exists
@@ -37,7 +37,7 @@ unit_tests: &unit_tests
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
-    - npm run test:unit
+    - yarn run test:unit
 
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
@@ -67,8 +67,8 @@ steps:
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
-      - npm ci
-      - npm run postinstall
+      - yarn install --frozen-lockfile
+      - yarn run postinstall
     when:
       branch:
         include:
@@ -147,8 +147,8 @@ steps:
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
-      - npm ci
-      - npm run postinstall
+      - yarn install --frozen-lockfile
+      - yarn run postinstall
     when:
       branch:
         include:

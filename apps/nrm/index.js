@@ -706,7 +706,7 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page'),
+        require('hof').components.summary,
         formatAnswers,
         hideAndShowSummaryFields,
         getPageCustomBackLink('confirm'),
@@ -726,7 +726,7 @@ module.exports = {
     '/continue-report': {
       backLink: false,
       behaviours: [
-        require('hof-behaviour-summary-page'),
+        require('hof').components.summary,
         formatAnswers,
         hideAndShowSummaryFields,
         fullWidth,
