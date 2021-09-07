@@ -61,12 +61,12 @@ steps:
   pull: if-not-exists
   image: docker:git
   environment:
-    DRONE_GIT_USERNAME:
-      from_secret: DRONE_GIT_USERNAME
-    DRONE_GIT_TOKEN:
-      from_secret: DRONE_GIT_TOKEN
+    GITLAB_USERNAME:
+      from_secret: GITLAB_USERNAME
+    GITLAB_TOKEN:
+      from_secret: GITLAB_TOKEN
   commands:
-    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+    - git clone https://$${GITLAB_USERNAME}:$${GITLAB_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
     - cd kube-modern-slavery
     - if ! [ $(git tag -l dev-${DRONE_COMMIT_SHA}) ]; then git tag dev-${DRONE_COMMIT_SHA} && git push origin --tags; fi
   when:
@@ -77,12 +77,12 @@ steps:
   pull: if-not-exists
   image: docker:git
   environment:
-    DRONE_GIT_USERNAME:
-      from_secret: DRONE_GIT_USERNAME
-    DRONE_GIT_TOKEN:
-      from_secret: DRONE_GIT_TOKEN
+    GITLAB_USERNAME:
+      from_secret: GITLAB_USERNAME
+    GITLAB_TOKEN:
+      from_secret: GITLAB_TOKEN
   commands:
-    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
+    - git clone https://$${GITLAB_USERNAME}:$${GITLAB_TOKEN}@gitlab.digital.homeoffice.gov.uk/modern-slavery/kube-modern-slavery.git
     - cd kube-modern-slavery
     - if ! [ $(git tag -l ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA}) ]; then git tag ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA} && git push origin --tags; fi
   when:
