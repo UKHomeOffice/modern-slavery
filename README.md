@@ -152,7 +152,6 @@ The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 
-
 ## Coverage Reporting <a name="coverage-reporting"></a>
 For unit test coverage reporting we use the Istanbul `nyc' npm module. To generate a report run the following command:
 
