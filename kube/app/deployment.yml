@@ -156,7 +156,7 @@ spec:
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.2
-          image: quay.io/ukhomeofficedigital/nginx-proxy:v4.1.2
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:d243454096f1646d86f02c447f58fd6670ef527554cdf1646f24a47f6bd0cabf
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
             - name: PROXY_SERVICE_PORT
