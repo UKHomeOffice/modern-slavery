@@ -155,8 +155,8 @@ spec:
             timeoutSeconds: 15
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+          # nginx-proxy-govuk:v4.1.1
+          image: quay.io/ukhomeofficedigital/nginx-proxy@sha256:517bcb2beff4797adf7a1f2bc23a0bc8c80b9d519187ba683f5055b516f72350
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
             - name: PROXY_SERVICE_PORT
@@ -169,12 +169,6 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            # - mountPath: /usr/local/openresty/nginx/html/418-request-denied.shtml
-            #   name: configmap
-            #   subPath: 418.shtml
-            # - mountPath: /usr/local/openresty/nginx/html/partials/418-partial.shtml
-            #   name: configmap
-            #   subPath: 418-partial.shtml
           securityContext:
             runAsNonRoot: true
           resources:
