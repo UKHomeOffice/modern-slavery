@@ -4,7 +4,6 @@ An app for a first responder to submit a form for a possible victim of modern sl
 
 When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by the casework resolver service.
 
-
 # Contents
 
 1. [Install & Run](#install-and-run)
