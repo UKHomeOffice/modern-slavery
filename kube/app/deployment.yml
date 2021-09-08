@@ -155,8 +155,8 @@ spec:
             timeoutSeconds: 15
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:8be2b92f24fe21ee1523a7b9635e2b4a263bff40dc3c3fd08068288e53451f9a
+          # nginx-proxy-govuk:v4.1.2
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v4.1.2
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
             - name: PROXY_SERVICE_PORT
