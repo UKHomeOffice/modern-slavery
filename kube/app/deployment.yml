@@ -169,12 +169,12 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /usr/local/openresty/nginx/html/418-request-denied.shtml
-              name: configmap
-              subPath: 418.shtml
-            - mountPath: /usr/local/openresty/nginx/html/partials/418-partial.shtml
-              name: configmap
-              subPath: 418-partial.shtml
+            # - mountPath: /usr/local/openresty/nginx/html/418-request-denied.shtml
+            #   name: configmap
+            #   subPath: 418.shtml
+            # - mountPath: /usr/local/openresty/nginx/html/partials/418-partial.shtml
+            #   name: configmap
+            #   subPath: 418-partial.shtml
           securityContext:
             runAsNonRoot: true
           resources:
