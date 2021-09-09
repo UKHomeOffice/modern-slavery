@@ -17,14 +17,16 @@ spec:
           name: ingress-external
           {{ end }}
     ports:
+    - port: 10080
+      protocol: TCP
     - port: 10443
       protocol: TCP
   podSelector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      name: lookup-{{ .DRONE_SOURCE_BRANCH }}
       {{ else }}
-      name: data-service
+      name: lookup
       {{ end }}
   policyTypes:
   - Ingress

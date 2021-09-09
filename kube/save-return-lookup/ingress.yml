@@ -41,8 +41,8 @@ spec:
       - path: /
         backend:
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-          serviceName: data-service-{{ .DRONE_SOURCE_BRANCH }}
+          serviceName: lookup-{{ .DRONE_SOURCE_BRANCH }}
           {{ else }}
-          serviceName: data-service
+          serviceName: lookup
           {{ end }}
           servicePort: 10443

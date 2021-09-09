@@ -45,4 +45,4 @@ spec:
           {{ else }}
           serviceName: data-service
           {{ end }}
-          servicePort: 10445
+          servicePort: 10443

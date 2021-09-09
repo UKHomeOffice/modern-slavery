@@ -15,7 +15,7 @@ if [[ $1 == 'tear_down' ]]; then
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
 
   $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/save-return -f kube/app
+  $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/app
   echo "Torn Down UAT Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   exit 0
 fi
@@ -25,19 +25,23 @@ export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/redis -f kube/save-return -f kube/app
+  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/save-return -f kube/app
+  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/save-return -f kube/app
+  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-prod.crt
 
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
-  $kd -f kube/redis -f kube/save-return -f kube/app/deployment.yml
+  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/app/deployment.yml
 fi
 
 sleep $READY_FOR_TEST_DELAY
