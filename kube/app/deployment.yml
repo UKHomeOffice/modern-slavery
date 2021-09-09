@@ -70,6 +70,12 @@ spec:
               {{ else }}
               value: redis
               {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DATASERVICE_SERVICE_HOST
+              value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
+            - name: DATASERVICE_SERVICE_PORT_HTTPS
+              value: "10443"
+            {{ end }}
             - name: WRITE_TO_CASEWORK
             {{if or (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .STG_ENV) }}
               value: "true"
