@@ -14,6 +14,8 @@ spec:
     - dashboard.modernslavery.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - dashboard.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    - dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ end }}
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     secretName: branch-tls-external
@@ -25,6 +27,8 @@ spec:
   - host: dashboard.modernslavery.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   - host: dashboard.ms-notprod.homeoffice.gov.uk
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  - host: dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ end }}
     http:
       paths:
