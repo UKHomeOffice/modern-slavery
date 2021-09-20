@@ -8,7 +8,7 @@ export NGINX_SETTINGS=$HOF_CONFIG/nginx-settings.yaml
 export DATA_SERVICE_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/data-service-external-annotations.yaml
 export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-notprod.crt
 
-kd='kd --timeout 5m --check-interval 5s'
+kd='kd --timeout 10m --check-interval 5s'
 
 if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
