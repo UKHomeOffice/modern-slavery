@@ -27,6 +27,7 @@
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways",
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
+    "test:snyk": "snyk config set api=SNYK_TOKEN && snyk test",
     "build": "hof-build",
     "postinstall": "yarn run build"
   },
@@ -69,7 +70,8 @@
     "reqres": "^2.1.0",
     "request-promise-native": "^1.0.7",
     "sinon": "^7.2.7",
-    "sinon-chai": "^3.3.0"
+    "sinon-chai": "^3.3.0",
+    "snyk": "^1.717.0"
   },
   "resolutions": {
     "underscore": "^1.12.1"

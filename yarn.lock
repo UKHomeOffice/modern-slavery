@@ -6022,6 +6022,11 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+snyk@^1.717.0:
+  version "1.717.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.717.0.tgz#4ea0b5388e6bff658b3f09a7aaf48c97eb5c25bd"
+  integrity sha512-OWVUEr1F24isElAGG7nxjEQnE6xaxpmgj3vDGLLz3ma2mvtgaUxjWT2fx5EopeEhe9tSk7uF6SUrgudCzrjUgQ==
+
 source-map-resolve@^0.5.0:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.3.tgz#190866bece7553e1f8f267a2ee82c606b5509a1a"

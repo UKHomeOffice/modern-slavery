@@ -184,32 +184,32 @@ steps:
       event: pull_request
 
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
-  # - name: snyk_scan
-  #   pull: if-not-exists
-  #   image: node:14
-  #   environment:
-  #     SNYK_TOKEN:
-  #       from_secret: snyk_token
-  #   commands:
-  #     - yarn run test:snyk
-  #   when:
-  #     branch:
-  #       include:
-  #         - master
-  #         - feature/*
-  #     event: pull_request
-  #
-  # - name: anchore_scan
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-  #   pull: always
-  #   environment:
-  #     IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
-  #     LOCAL_IMAGE: true
-  #     TOLERATE: medium
-  #     WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
-  #   when:
-  #     branch: master
-  #     event: pull_request
+  - name: snyk_scan
+    pull: if-not-exists
+    image: node:14
+    environment:
+      SNYK_TOKEN:
+        from_secret: snyk_token
+    commands:
+      - yarn run test:snyk
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
+  - name: anchore_scan
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
+    pull: always
+    environment:
+      IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
+      LOCAL_IMAGE: true
+      TOLERATE: medium
+      WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
+    when:
+      branch: master
+      event: pull_request
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -334,91 +334,91 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # # CRON job steps that runs security scans using Snyk & Anchore
-  # - name: cron_clone_repos
-  #   image: alpine/git
-  #   environment:
-  #     DRONE_GIT_USERNAME:
-  #       from_secret: drone_git_username
-  #     DRONE_GIT_TOKEN:
-  #       from_secret: drone_git_token
-  #   commands:
-  #     - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-  #   when:
-  #     cron: security_scans
-  #     event: cron
-  #
-  # - name: cron_build_image
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-  #   commands:
-  #     - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
-  #   volumes:
-  #     - name: dockersock
-  #       path: /var/run
-  #   when:
-  #     cron: security_scans
-  #     event: cron
-  #
-  # - name: cron_snyk_scan
-  #   pull: if-not-exists
-  #   image: node:14
-  #   environment:
-  #     SNYK_TOKEN:
-  #       from_secret: snyk_token
-  #   commands:
-  #     - yarn install --frozen-lockfile
-  #     - yarn run postinstall
-  #     - yarn run test:snyk
-  #   when:
-  #     cron: security_scans
-  #     event: cron
-  #
-  # - name: cron_anchore_scan
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
-  #   pull: always
-  #   environment:
-  #     IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
-  #     LOCAL_IMAGE: true
-  #     TOLERATE: medium
-  #     WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
-  #   when:
-  #     cron: security_scans
-  #     event: cron
-  #
-  # # Slack notification upon a CRON job fail
-  # - name: cron_notify_slack_tear_down_pr_envs
-  #   pull: if-not-exists
-  #   image: plugins/slack
-  #   settings:
-  #     channel: sas-build
-  #     failure: ignore
-  #     icon_url: http://readme.drone.io/0.5/logo_dark.svg
-  #     icon.url: http://readme.drone.io/0.5/logo_dark.svg
-  #     template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-  #     username: Drone
-  #     webhook:
-  #       from_secret: slack_webhook
-  #   when:
-  #     cron: tear_down_pr_envs
-  #     event: cron
-  #     status: failure
-  #
-  # - name: cron_notify_slack_security_scans
-  #   pull: if-not-exists
-  #   image: plugins/slack
-  #   settings:
-  #     channel: sas-build
-  #     failure: ignore
-  #     icon_url: http://readme.drone.io/0.5/logo_dark.svg
-  #     icon.url: http://readme.drone.io/0.5/logo_dark.svg
-  #     template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-  #     username: Drone
-  #     webhook:
-  #       from_secret: slack_webhook
-  #   when:
-  #     cron: security_scans
-  #     event: cron
-  #     status: failure
+  # CRON job steps that runs security scans using Snyk & Anchore
+  - name: cron_clone_repos
+    image: alpine/git
+    environment:
+      DRONE_GIT_USERNAME:
+        from_secret: drone_git_username
+      DRONE_GIT_TOKEN:
+        from_secret: drone_git_token
+    commands:
+      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+    when:
+      cron: security_scans
+      event: cron
+
+  - name: cron_build_image
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    commands:
+      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      cron: security_scans
+      event: cron
+
+  - name: cron_snyk_scan
+    pull: if-not-exists
+    image: node:14
+    environment:
+      SNYK_TOKEN:
+        from_secret: snyk_token
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn run postinstall
+      - yarn run test:snyk
+    when:
+      cron: security_scans
+      event: cron
+
+  - name: cron_anchore_scan
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/anchore-submission:latest
+    pull: always
+    environment:
+      IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
+      LOCAL_IMAGE: true
+      TOLERATE: medium
+      WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
+    when:
+      cron: security_scans
+      event: cron
+
+  # Slack notification upon a CRON job fail
+  - name: cron_notify_slack_tear_down_pr_envs
+    pull: if-not-exists
+    image: plugins/slack
+    settings:
+      channel: sas-build
+      failure: ignore
+      icon_url: http://readme.drone.io/0.5/logo_dark.svg
+      icon.url: http://readme.drone.io/0.5/logo_dark.svg
+      template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
+      username: Drone
+      webhook:
+        from_secret: slack_webhook
+    when:
+      cron: tear_down_pr_envs
+      event: cron
+      status: failure
+
+  - name: cron_notify_slack_security_scans
+    pull: if-not-exists
+    image: plugins/slack
+    settings:
+      channel: sas-build
+      failure: ignore
+      icon_url: http://readme.drone.io/0.5/logo_dark.svg
+      icon.url: http://readme.drone.io/0.5/logo_dark.svg
+      template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
+      username: Drone
+      webhook:
+        from_secret: slack_webhook
+    when:
+      cron: security_scans
+      event: cron
+      status: failure
 
 services:
   - name: docker
