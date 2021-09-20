@@ -29,7 +29,7 @@ linting: &linting
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
-    - yarn run lint
+    - yarn run test:lint
 
 unit_tests: &unit_tests
   pull: if-not-exists
