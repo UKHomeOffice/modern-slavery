@@ -19,9 +19,9 @@ spec:
     - podSelector:
         matchLabels:
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-          name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+          name: lookup-{{ .DRONE_SOURCE_BRANCH }}
           {{ else }}
-          name: data-service
+          name: lookup
           {{ end }}
     ports:
     - port: 6379
