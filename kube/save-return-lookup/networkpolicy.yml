@@ -11,11 +11,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-          name: ingress-external-{{ .DRONE_SOURCE_BRANCH }}
-          {{ else }}
           name: ingress-external
-          {{ end }}
     ports:
     - port: 10080
       protocol: TCP
