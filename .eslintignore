@@ -1,1 +1,7 @@
 public
+apps/nrm/behaviours/save-missing-data.js
+apps/nrm/behaviours/transfer-missing-data.js
+apps/verify/behaviours/email-lookup-sender.js
+apps/verify/models/save-token.js
+apps/verify/util/check-email-ext.js
+config.js

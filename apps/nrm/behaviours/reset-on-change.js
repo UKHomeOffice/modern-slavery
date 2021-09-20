@@ -6,7 +6,7 @@ module.exports = config => superclass => class extends superclass {
     const fields = [].concat(config.storeFields);
     if (visited && visited.indexOf(req.form.options.route) > -1) {
       if (req.form.values[config.currentField] !== req.sessionModel.get(config.currentField)) {
-        let items = [];
+        const items = [];
         // temp store each field from the session
         fields.forEach(field => {
           items.push({[field]: req.sessionModel.get(field)});

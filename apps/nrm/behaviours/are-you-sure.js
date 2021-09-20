@@ -4,7 +4,6 @@ const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
 module.exports = superclass => class extends superclass {
-
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
@@ -24,7 +23,7 @@ module.exports = superclass => class extends superclass {
   }
 
   saveValues(req, res, next) {
-    super.saveValues(req, res, (err) => {
+    super.saveValues(req, res, err => {
       if (req.body.confirm) {
         request.del(baseUrl + req.sessionModel.get('user-email') + '/' + req.sessionModel.get('toDelete').id, () => {
           req.sessionModel.unset('toDelete');
@@ -38,5 +37,3 @@ module.exports = superclass => class extends superclass {
     });
   }
 };
-
-

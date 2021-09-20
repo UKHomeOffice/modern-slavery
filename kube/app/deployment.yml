@@ -76,12 +76,6 @@ spec:
             - name: DATASERVICE_SERVICE_PORT_HTTPS
               value: "10443"
             {{ end }}
-            - name: WRITE_TO_CASEWORK
-            {{if or (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .STG_ENV) }}
-              value: "true"
-            {{ else }}
-              value: "false"
-            {{ end }}
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:

@@ -121,12 +121,6 @@
   "co-operate-with-police": {
     "header": "Can the police contact them about their case?"
   },
-  "supporting-documents": {
-    "header": "Upload supporting documents"
-  },
-  "supporting-documents-add-another": {
-    "list-header": "Documents added"
-  },
   "fr-details": {
     "header": "What are your contact details?",
     "read-only-field-1-label": "Email",

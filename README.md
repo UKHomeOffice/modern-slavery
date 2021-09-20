@@ -38,7 +38,7 @@ NOTIFY_KEY            | Your GOV.UK notify key
 AWS_SQS               | AWS SQS URL
 AWS_SECRET_ACCESS_KEY | AWS Secret Access Key
 AWS_ACCESS_KEY_ID     | AWS Access Key ID
-WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false)
+WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false if NODE_ENV not set)
 AUDIT_DATA            | Enable/Disable sending audit data to postgres (defaults to false)
 AUDIT_DB_HOST         | Postgres host for audit data
 AUDIT_DB_USER         | Postgres audit user

@@ -4,11 +4,10 @@ const config = require('../../../config');
 
 const calculateExpiryDate = createdAtDate => {
   return moment(createdAtDate).add(config.reports.deletionTimeout, 'days')
-      .format('DD MMMM YYYY');
+    .format('DD MMMM YYYY');
 };
 
 module.exports = superclass => class extends superclass {
-
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
@@ -22,4 +21,3 @@ module.exports = superclass => class extends superclass {
     return locals;
   }
 };
-

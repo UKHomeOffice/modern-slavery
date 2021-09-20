@@ -1,5 +1,6 @@
+/* eslint-disable no-var, vars-on-top */
 'use strict';
-// eslint-disable-next-line implicit-dependencies/no-implicit
+
 require('hof/frontend/themes/gov-uk/client-js');
 var $ = require('jquery');
 
@@ -24,10 +25,10 @@ if (window.location.pathname === '/start' || window.location.pathname === '/pape
  */
 // eslint-disable-next-line no-undef
 if (window.location.pathname === '/nrm/confirm') {
- $('input[value="Accept and send report"]').on('click', function disableDoubleClick() {
-   $('input[value="Accept and send report"]').prop('disabled', true);
-   $('form').submit();
- });
+  $('input[value="Accept and send report"]').on('click', function disableDoubleClick() {
+    $('input[value="Accept and send report"]').prop('disabled', true);
+    $('form').submit();
+  });
 }
 
 // list-entry pattern
@@ -49,7 +50,6 @@ if ($('.add-another').length) {
   }
 
   $('.add-another .form-group select').each(function hideAdditional(index) {
-
     if (index > 0) {
       var removeButton =
         $('<button type="button" class="govuk-button govuk-button--secondary list-entry-button">Remove</button>')

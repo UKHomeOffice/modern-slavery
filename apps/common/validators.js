@@ -8,9 +8,9 @@
  */
 
 module.exports = {
-  isValidEmail: (email) => [
+  isValidEmail: email => [
     typeof email === 'string',
     email.split('@').length === 2,
-    /^[^\s@]+@[^\.\s]+\.[^\s]+$/i.test(email),
-  ].every((x) => x),
+    /^[^\s@]+@[^\.\s]+\.[^\s]+$/i.test(email)
+  ].every(x => x)
 };

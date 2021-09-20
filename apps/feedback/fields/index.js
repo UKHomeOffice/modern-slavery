@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'feedback': {
+  feedback: {
     mixin: 'radio-group',
     validate: 'required',
     options: [
@@ -12,7 +12,7 @@ module.exports = {
       'very-dissatisfied'
     ]
   },
-  'improvements': {
+  improvements: {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [1200]}],
     legend: {
@@ -24,11 +24,11 @@ module.exports = {
       value: 5
     }]
   },
-  'email': {
+  email: {
     mixin: 'input-text',
     validate: ['email', {type: 'maxlength', arguments: [1200]}],
     legend: {
       className: 'visuallyhidden'
     }
-  },
+  }
 };

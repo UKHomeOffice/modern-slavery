@@ -7,7 +7,7 @@
  *
  * @returns {bool} - has the user followed the adult path
  */
-const isAdultPath = (req) => {
+const isAdultPath = req => {
   return (
     req.sessionModel.get('pv-under-age') === 'no' &&
     req.sessionModel.get('pv-want-to-submit-nrm') === 'yes'
@@ -21,7 +21,7 @@ const isAdultPath = (req) => {
  *
  * @returns {bool} - has the user followed the duty to notify path
  */
-const isDutyToNotifyPath = (req) => {
+const isDutyToNotifyPath = req => {
   return (
     req.sessionModel.get('pv-under-age') === 'no' &&
     req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
@@ -48,15 +48,15 @@ module.exports = superclass => class extends superclass {
         }
       }
     } else if (isDutyToNotifyPath(req)) {
-        if (req.sessionModel.get('co-operate-with-police') === 'yes') {
-          const additionalData = {
-            isDutyToNotifyPath: true,
-            showContactDetails: true,
-          };
-          data = Object.assign({}, data, additionalData);
-        } else {
-          data = Object.assign({}, data, {isDutyToNotifyPath: true});
-        }
+      if (req.sessionModel.get('co-operate-with-police') === 'yes') {
+        const additionalData = {
+          isDutyToNotifyPath: true,
+          showContactDetails: true
+        };
+        data = Object.assign({}, data, additionalData);
+      } else {
+        data = Object.assign({}, data, {isDutyToNotifyPath: true});
+      }
     }
 
     const locals = Object.assign({}, superlocals, data);

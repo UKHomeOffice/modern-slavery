@@ -14,19 +14,19 @@ const getContainerIP = require('../user-pathways/util/get-container-ip');
  * @returns {object} - object containing the test environment options
  */
 const getTestEnvironmentOptions = () => {
-    const { BROWSER_TYPE, BROWSER_DEMO } = process.env;
+  const { BROWSER_TYPE, BROWSER_DEMO } = process.env;
 
-    let isLocalTest = true;
-    let isDemo = BROWSER_DEMO ? true : false;
+  let isLocalTest = true;
+  let isDemo = BROWSER_DEMO ? true : false;
 
-    if (BROWSER_TYPE && BROWSER_TYPE === 'remote') {
-        isLocalTest = false;
-        isDemo = false;
-
-        return { isLocalTest, isDemo };
-    }
+  if (BROWSER_TYPE && BROWSER_TYPE === 'remote') {
+    isLocalTest = false;
+    isDemo = false;
 
     return { isLocalTest, isDemo };
+  }
+
+  return { isLocalTest, isDemo };
 };
 
 /**
@@ -39,21 +39,21 @@ const getTestEnvironmentOptions = () => {
  * @return {Object} - with the browser object, page object and localhost IP
  *
  */
-const buildBrowser = async() => {
-    const { isLocalTest, isDemo } = getTestEnvironmentOptions();
+const buildBrowser = async () => {
+  const { isLocalTest, isDemo } = getTestEnvironmentOptions();
 
-    const browser = await BrowserHandler.getBrowser(isLocalTest, isDemo);
-    const page = await BrowserHandler.getBrowserPage(browser);
-    let hostIP = 'localhost';
+  const browser = await BrowserHandler.getBrowser(isLocalTest, isDemo);
+  const page = await BrowserHandler.getBrowserPage(browser);
+  let hostIP = 'localhost';
 
-    if (!isLocalTest) {
-        hostIP = await getContainerIP('app');
-    }
+  if (!isLocalTest) {
+    hostIP = await getContainerIP('app');
+  }
 
-    return { browser, page, hostIP };
+  return { browser, page, hostIP };
 };
 
 module.exports = {
-    buildBrowser,
-    getTestEnvironmentOptions,
+  buildBrowser,
+  getTestEnvironmentOptions
 };

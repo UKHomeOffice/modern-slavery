@@ -26,9 +26,9 @@ module.exports = data => {
     response['Customer.DOB'] = data['pv-dob'];
   }
   const genderMap = {
-    'female': 'Female',
-    'male': 'Male',
-    'unknown': 'Other'
+    female: 'Female',
+    male: 'Male',
+    unknown: 'Other'
   };
   // Gender
   response['Customer.Custom17'] = genderMap[data['pv-gender']];
@@ -52,16 +52,16 @@ module.exports = data => {
   // Communication Aid
   response['Customer.Custom16'] = data['pv-other-help-with-communication-aid'];
   const underAgeMap = {
-    'yes': 'Child',
-    'no': 'Adult',
+    yes: 'Child',
+    no: 'Adult',
     'not-sure': 'Unknown'
   };
   response.AdultOrChild = underAgeMap[data['pv-under-age']];
   response.AdultOrChildDuringExploitation = underAgeMap[data['pv-under-age-at-time-of-exploitation']];
   response.VictimAccount = data['what-happened'];
   const locationMap = {
-    'uk': 'UK',
-    'overseas': 'OVERSEAS',
+    uk: 'UK',
+    overseas: 'OVERSEAS',
     'uk-and-overseas': 'BOTH'
   };
   response.ExploitationLocationPresented = locationMap[data['where-exploitation-happened']];
@@ -142,9 +142,9 @@ module.exports = data => {
   }
 
   const countryKey = {
-    'england': 'ENG',
-    'wales': 'WAL',
-    'scotland': 'SCOT',
+    england: 'ENG',
+    wales: 'WAL',
+    scotland: 'SCOT',
     'northern-ireland': 'NI'
   };
   response.Country = countryKey[data['fr-location']];

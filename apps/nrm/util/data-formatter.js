@@ -9,7 +9,7 @@
  *
  * @returns {string} - string with the supplied capitalisation formatting applied
  */
-const capitaliseWord = (wordAttributes) => {
+const capitaliseWord = wordAttributes => {
   const { word, allCaps } = wordAttributes;
 
   if (allCaps) {
@@ -35,7 +35,7 @@ const capitaliseText = (text, all = false, exceptions = []) => {
   const capitalisedText = text.charAt(0).toUpperCase() + text.slice(1);
 
   if (all) {
-    let splitString = text.toLowerCase().split(' ');
+    const splitString = text.toLowerCase().split(' ');
 
     for (let splitStringIndex = 0; splitStringIndex < splitString.length; splitStringIndex++) {
       let matchedException = false;
@@ -51,9 +51,9 @@ const capitaliseText = (text, all = false, exceptions = []) => {
       // Capitalise first letter
       if (!matchedException) {
         splitString[splitStringIndex] = splitString[splitStringIndex]
-        .charAt(0)
-        .toUpperCase() + splitString[splitStringIndex]
-        .substring(1);
+          .charAt(0)
+          .toUpperCase() + splitString[splitStringIndex]
+          .substring(1);
       }
     }
 
@@ -70,7 +70,7 @@ const capitaliseText = (text, all = false, exceptions = []) => {
  *
  * @returns {string} - the text without dashes
  */
-const removeDashesFromText = (text) => {
+const removeDashesFromText = text => {
   const strippedDashes = text.replace(/-/g, ' ');
 
   return strippedDashes;
@@ -78,5 +78,5 @@ const removeDashesFromText = (text) => {
 
 module.exports = {
   capitaliseText,
-  removeDashesFromText,
+  removeDashesFromText
 };
