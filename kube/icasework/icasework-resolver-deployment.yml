@@ -38,7 +38,7 @@ spec:
       containers:
         - name: icasework-resolver
           # Release v3.0.1
-          image: quay.io/ukhomeofficedigital/icasework-resolver:2
+          image: quay.io/ukhomeofficedigital/icasework-resolver:d6b9c5ceac3116cfcc5a2767278dddc5aceae005
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -48,6 +48,39 @@ spec:
                 name: configmap
                 {{ end }}
           env:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: access_key_id
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: access_key_id
+            {{ else }}
             - name: AWS_SQS
               valueFrom:
                 secretKeyRef:
@@ -63,6 +96,7 @@ spec:
                 secretKeyRef:
                   name: aws-sqs
                   key: aws_access_key_id
+            {{ end }}
             - name: ICASEWORK_KEY
               valueFrom:
                 secretKeyRef:
