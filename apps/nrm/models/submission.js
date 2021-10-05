@@ -3,6 +3,7 @@
 /* eslint complexity: 0 max-statements: 0 */
 
 const _ = require('lodash');
+const uuid = require('uuid/v4');
 
 module.exports = data => {
   const response = {};
@@ -64,7 +65,6 @@ module.exports = data => {
     'uk-and-overseas': 'BOTH'
   };
   response.ExploitationLocationPresented = locationMap[data['where-exploitation-happened']];
-
   response.City1 = data['where-exploitation-happened-uk-city-1'];
   response.City2 = data['where-exploitation-happened-uk-city-2'];
   response.City3 = data['where-exploitation-happened-uk-city-3'];
@@ -75,9 +75,7 @@ module.exports = data => {
   response.City8 = data['where-exploitation-happened-uk-city-8'];
   response.City9 = data['where-exploitation-happened-uk-city-9'];
   response.City10 = data['where-exploitation-happened-uk-city-10'];
-
   response.ExploitationUKAddress = data['where-exploitation-happened-other-uk-other-location'];
-
   response.Country1 = data['where-exploitation-happened-overseas-country-1'];
   response.Country2 = data['where-exploitation-happened-overseas-country-2'];
   response.Country3 = data['where-exploitation-happened-overseas-country-3'];
@@ -88,12 +86,9 @@ module.exports = data => {
   response.Country8 = data['where-exploitation-happened-overseas-country-8'];
   response.Country9 = data['where-exploitation-happened-overseas-country-9'];
   response.Country10 = data['where-exploitation-happened-overseas-country-10'];
-
   response.ExploitationOverseasAddress = data['where-exploitation-happened-other-overseas-other-location'];
-
   response.PVCurrentCityTown = data['current-pv-location-uk-city'];
   response.PVCurrentCounty = data['current-pv-location-uk-region'];
-
   response.ExploiterDetails = data['who-exploited-pv'];
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
@@ -131,10 +126,8 @@ module.exports = data => {
   }
 
   response.OtherVictims = data['any-other-pvs'];
-
   response.ReportedCase = _.upperFirst(data['reported-to-police']);
   response.PoliceForce = data['reported-to-police-police-forces'];
-
   response.LocalAuthority = data['local-authority-contacted-about-child-local-authority-name'];
   response.LAFirstName = data['local-authority-contacted-about-child-local-authority-first-name'];
   response.LALastName = data['local-authority-contacted-about-child-local-authority-last-name'];
@@ -156,8 +149,6 @@ module.exports = data => {
   };
   response.Country = countryKey[data['fr-location']];
   response.CountryLabel = _.upperFirst(data['fr-location']);
-
-
   response.HowToNotify = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
   response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
@@ -168,7 +159,6 @@ module.exports = data => {
     response.NRMOrDuty = data['pv-want-to-submit-nrm'] === 'no' ? 'DTN' : 'NRM';
   }
 
-
   response.DTNReason = data['refuse-nrm'];
   response.NeedSupport = _.upperFirst(data['does-pv-need-support']);
 
@@ -176,16 +166,13 @@ module.exports = data => {
     response.WhoToSendDecisionTo = data['who-contact'] === 'potential-victim' ? 'PV' : 'Someone else';
   }
 
-
   response['Agent.Forename1'] = data['fr-details-first-name'];
   response['Agent.Name'] = data['fr-details-last-name'];
   response['Agent.Email'] = data['user-email'];
   response['Agent.Phone'] = data['fr-details-phone'];
   response['Agent.Jobtitle'] = data['fr-details-role'];
   response['Agent.Organisation'] = data['user-organisation'];
-
   response.AlternateFREmail = data['fr-alternative-contact'];
-
   response.AltContactFirstName = data['someone-else-first-name'];
   response.AltContactName = data['someone-else-last-name'];
   response.AltContactAddress = data['someone-else-street'];
@@ -198,6 +185,8 @@ module.exports = data => {
   }
 
   response.SupportProviderContactByPhone = data['pv-phone-number-yes'];
+  // icw resolver will look for any existing case before submitting a report to prevent duplicates
+  response.ExternalId = uuid();
 
   return response;
 };
