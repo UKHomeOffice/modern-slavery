@@ -19,7 +19,8 @@ module.exports = {
     }
   },
   production: {
-    client: 'postgresql',
+    client: 'pg',
+    version: '8.7.1',
     connection: {
       host: config.audit.host,
       user: config.audit.user,
