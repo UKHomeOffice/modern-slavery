@@ -135,7 +135,6 @@ spec:
                   name: aws-sqs
                   key: aws_access_key_id
             {{ end }}
-            {{ if or (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .STG_ENV) }}
             - name: AUDIT_DB_HOST
               valueFrom:
                 secretKeyRef:
@@ -155,7 +154,6 @@ spec:
                   key: default_db
             - name: AUDIT_DATA
               value: "true"
-            {{ end }}
           volumeMounts:
             - mountPath: /public
               name: public

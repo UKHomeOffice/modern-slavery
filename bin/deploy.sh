@@ -31,18 +31,24 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/redis -f kube/save-return-data-alerts
+  $kd -f kube/save-return-lookup
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/redis -f kube/save-return-data-alerts
+  $kd -f kube/save-return-lookup
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-prod.crt
 
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
-  $kd -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup
+  $kd -f kube/redis -f kube/save-return-data-alerts
+  $kd -f kube/save-return-lookup
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/app/deployment.yml
 fi
 

@@ -44,9 +44,28 @@ spec:
               value: https://dashboard.modernslavery.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://dashboard.ms-notprod.homeoffice.gov.uk
+              {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://dashboard.{{ .UAT_ENV }}.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
               {{ end }}
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: endpoint
+            - name: POSTGRES_USER
+              value: grafana
+            - name: POSTGRES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: users
+                  key: grafana
+            - name: POSTGRES_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
             - name: ADMIN_USER
               valueFrom:
                 secretKeyRef:
@@ -1284,23 +1303,6 @@ spec:
                   "uid": "Qtv4svxZk",
                   "version": 1
                 }]
-            - name: POSTGRES_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: audit-database
-                  key: endpoint
-            - name: POSTGRES_USER
-              value: grafana
-            - name: POSTGRES_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: users
-                  key: grafana
-            - name: POSTGRES_DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: audit-database
-                  key: default_db
           securityContext:
             runAsNonRoot: true
 
