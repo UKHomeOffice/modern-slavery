@@ -37,7 +37,8 @@ spec:
     spec:
       containers:
         - name: alert-service
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:1aada6a7488596c3c895d38b02c29f7be2d2306e
+          # release v2.0.0
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:da399c8ae391bc8cac52f4b84450fd99b90397ad
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -103,7 +104,8 @@ spec:
             runAsNonRoot: true
 
         - name: data-service
-          image: quay.io/ukhomeofficedigital/save-return-api:4e6ec5a3a994067cfe5cdc9dcef9ccfb5431b65c
+          # release v2.0.0
+          image: quay.io/ukhomeofficedigital/save-return-api:e04cad6cf26854fd55dee73acfd4f119d37c71a9
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

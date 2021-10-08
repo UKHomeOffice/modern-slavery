@@ -37,7 +37,8 @@ spec:
     spec:
       containers:
         - name: lookup
-          image: quay.io/ukhomeofficedigital/save-return-lookup-ui:fe532ef0b36b02b72cf4c44f01d097c6b779d2be
+          # release v2.0.0
+          image: quay.io/ukhomeofficedigital/save-return-lookup-ui:499fd49725d42fd63ad8c0838e731511917f097f
           imagePullPolicy: Always
           resources:
             requests:
