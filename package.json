@@ -34,7 +34,7 @@
   "dependencies": {
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
-    "hof": "^19.10.0",
+    "hof": "^19.11.11",
     "ioredis": "^4.0.0",
     "jquery": "^3.3.1",
     "knex": "^0.95.11",
