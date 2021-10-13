@@ -98,7 +98,7 @@ spec:
                   key: aws_access_key_id
             {{ end }}
             - name: ICASEWORK_TIMEOUT
-              value: 1000
+              value: '1000'
             - name: ICASEWORK_KEY
               valueFrom:
                 secretKeyRef:
