@@ -87,24 +87,29 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
   });
 
   describe('saveValues()', () => {
+    let sandbox;
+
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'saveValues');
-      sinon.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
+      sandbox = sinon.createSandbox();
+      sandbox.stub(Base.prototype, 'saveValues').yields();
+      sandbox.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
+
+      emailDomainCheck.isValidDomain.withArgs('homeoffice.gov.uk').returns(true);
     });
-    afterEach(() => {
-      Base.prototype.saveValues.restore();
-      NotifyClient.prototype.sendEmail.restore();
+
+    afterEach(function () {
+      sandbox.restore();
     });
 
     it('sets a `recognised-email` to false when an email is not on the whitelist', done => {
       req.form = {
         values: {
-          'confirm-email': 'hello@email.com'
+          'user-email': 'hello@email.com'
         }
       };
       emailDomainCheck.isValidDomain.withArgs('hello@email.com').returns(false);
       instance.saveValues(req, res, () => {
-        req.sessionModel.set.should.be.calledWith('recognised-email', false);
+        req.sessionModel.set.should.have.been.calledOnce.calledWithExactly('recognised-email', false);
         done();
       });
     });
@@ -112,12 +117,12 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
     it('calls tokenGenerator if an email is on the whitelist', done => {
       req.form = {
         values: {
-          'confirm-email': 'test@homeoffice.gov.uk'
+          'user-email': 'test@homeoffice.gov.uk'
         }
       };
 
       instance.saveValues(req, res, () => {
-        tokenGenerator.save.should.have.been.called;
+        tokenGenerator.save.should.have.been.calledOnce;
         done();
       });
     });
@@ -125,12 +130,12 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
     it('sends an email if an email is on the whitelist', done => {
       req.form = {
         values: {
-          'confirm-email': 'test@homeoffice.gov.uk'
+          'user-email': 'test@homeoffice.gov.uk'
         }
       };
 
       instance.saveValues(req, res, () => {
-        NotifyClient.prototype.sendEmail.should.have.been.called;
+        NotifyClient.prototype.sendEmail.should.have.been.calledOnce;
         done();
       });
     });

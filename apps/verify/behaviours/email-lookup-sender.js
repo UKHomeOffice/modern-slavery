@@ -42,7 +42,7 @@ module.exports = superclass => class extends superclass {
 
       const isRecognisedEmail = emailDomainCheck.isValidDomain(emailDomain);
 
-      if (isRecognisedEmail === false) {
+      if (!isRecognisedEmail) {
         req.sessionModel.set('recognised-email', false);
         return callback(err);
       }
