@@ -1,7 +1,7 @@
 'use strict';
 
 const hof = require('hof');
-const download = require('./download-file');
+const download = require('./lib/download-file');
 const settings = require('./hof.settings');
 const path = require('path');
 

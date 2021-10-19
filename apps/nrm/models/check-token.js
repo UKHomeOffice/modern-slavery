@@ -1,6 +1,6 @@
 'use strict';
 
-const redis = require('../../../redis');
+const redis = require('../../../lib/redis');
 
 /**
  * Read token from redis

@@ -4,7 +4,7 @@ const redis = sinon.stub();
 const proxyquire = require('proxyquire').noCallThru();
 const Model = proxyquire('../../../../apps/nrm/models/check-token',
   {
-    '../../../redis': redis
+    '../../../lib/redis': redis
   });
 
 describe('apps/nrm/models/check-token', () => {
