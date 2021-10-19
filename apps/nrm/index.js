@@ -712,8 +712,8 @@ module.exports = {
         getPageCustomBackLink('confirm'),
         fullWidth,
         submission,
-        deleteFormSession,
-        'complete'
+        deleteFormSession
+        // 'complete'
       ],
       next: '/confirmation'
     },
