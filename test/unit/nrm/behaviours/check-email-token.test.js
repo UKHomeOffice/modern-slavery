@@ -54,9 +54,9 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       Base.prototype.saveValues.restore();
     });
 
-    describe.only('bypass email auth', () => {
-      describe('when we provide a skip token, allowSkip, & skip email environment variable', () => {
-        it('whatever', () => {
+    describe.only('email auth', () => {
+      describe('bypasses', () => {
+        it('when we provide a skip token, allowSkip, & skip email environment variable', () => {
           req.query = {
             token: 'skip'
           };
@@ -66,10 +66,13 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           Base.prototype.saveValues.should.have.been.calledWith(req, res);
         });
         it('sets the user email based on the skipEmail environment variable', () => {
+          req.query = {
+            token: 'skip'
+          };
+          configStub.allowSkip = true;
+          configStub.skipEmail = 'mo@gmail.com';
           instance.saveValues(req, res);
-          const email = req.sessionModel.get('user-email');
-          console.log('===========> email', email)
-          email.should.deep.equal('mo@gmail.com');
+          expect(sessionModel.set).to.have.been.calledWith('user-email', 'mo@gmail.com');
         })
       });
     });
