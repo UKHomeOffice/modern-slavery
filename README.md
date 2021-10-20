@@ -123,7 +123,7 @@ This will open up an instance of [Google Chrome](#https://www.google.com/chrome/
 
 ### Running acceptance tests inside a docker container  <a name="running-acceptance-tests-inside-a-docker-container"></a>
 
-[Install & Run](#install-and-run-on-docker-container)  the application within a docker conatiner then you can run the acceptance tests using the commands below:
+[Install & Run](#install-and-run-on-docker-container)  the application within a docker container then you can run the acceptance tests using the commands below:
 
 
 Enter into the docker container with the Node JS application running
@@ -138,7 +138,7 @@ $ npm run test:docker-acceptance
 
 #### Running acceptance tests as part of Drone CI  <a name="running-acceptance-tests-as-part-of-drone-ci"></a>
 
-We use [Drone CI](#https://drone.io/) for our continious integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file.
+We use [Drone CI](#https://drone.io/) for our continuous integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file.
 
 ### Acceptance test scripts   <a name="acceptance-test-scripts"></a>
 Acceptance scripts

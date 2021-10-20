@@ -2,7 +2,9 @@ version: "2"
 services:
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-acceptance
     environment:
       - NODE_ENV=development
       - IGNORE_TLS=true
