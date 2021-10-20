@@ -142,7 +142,9 @@ describe.only('User path(s)', () => {
      */
   async function completeForm1of2(typeOfPV, caseReferred) {
     await clickSelector(page, CONTINUE_BUTTON);
+    console.log('location');
     await clickSelector(page, LOCATION_ENGLAND_OPTION);
+    console.log('continue');
     await clickSelector(page, CONTINUE_BUTTON);
 
     if (typeOfPV === 'adult') {
