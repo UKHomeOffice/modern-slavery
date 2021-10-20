@@ -1,7 +1,5 @@
 'use strict';
 
-process.env.NODE_ENV = 'test';
-
 global.chai = require('chai')
   .use(require('sinon-chai'))
   .use(require('chai-as-promised'));
