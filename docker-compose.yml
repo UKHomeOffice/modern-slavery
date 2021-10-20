@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile-acceptance
     environment:
       - allowSkip=true
+      - skipEmail=mo@email.com
       - IGNORE_TLS=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379
