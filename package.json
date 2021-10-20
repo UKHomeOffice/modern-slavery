@@ -40,7 +40,7 @@
     "mocha": "^7.0.1",
     "moment": "^2.27.0",
     "ms-countries": "^1.0.0",
-    "ms-email-domains": "^2.2.5",
+    "ms-email-domains": "^2.2.6",
     "ms-nationalities": "^1.0.1",
     "ms-organisations": "^1.5.2",
     "ms-uk-cities-and-towns": "^2.0.2",
