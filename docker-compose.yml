@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile-acceptance
     environment:
+      - allowSkip=true
       - IGNORE_TLS=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379
