@@ -7,10 +7,7 @@ const checkTokenStub = {
   read: sinon.stub(),
   delete: sinon.stub()
 };
-
-const configStub = {
-  allowSkip: true
-};
+const configStub = {};
 
 // we need to proxyquire checkToken model rather than requiring and then using sinon.
 // As soon as you require the checkToken it tries to create a Redis connection. We do not
@@ -54,44 +51,83 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       Base.prototype.saveValues.restore();
     });
 
-    describe.only('email auth', () => {
-      describe('bypasses', () => {
-        it('when we provide a skip token, allowSkip, & skip email environment variable', () => {
-          req.query = {
-            token: 'skip'
-          };
-          configStub.allowSkip = true;
-          configStub.skipEmail = 'mo@gmail.com';
-          instance.saveValues(req, res);
-          Base.prototype.saveValues.should.have.been.calledWith(req, res);
-        });
-        it('sets the user email based on the skipEmail environment variable', () => {
-          req.query = {
-            token: 'skip'
-          };
-          configStub.allowSkip = true;
-          configStub.skipEmail = 'mo@gmail.com';
-          instance.saveValues(req, res);
-          expect(sessionModel.set).to.have.been.calledWith('user-email', 'mo@gmail.com');
-        })
+    describe('does NOT bypass email authentication', ()=> {
+      it('has NO allowSkip flag', () => {
+
+        checkTokenStub.read.withArgs('skip').resolves({});
+        req.query = {
+          token: 'skip'
+        };
+        configStub.skipEmail = 'omar@gmail.com';
+        configStub.allowSkip = false;
+        instance.saveValues(req, res);
+        Base.prototype.saveValues.should.not.have.been.calledWith(req, res);
+      });
+
+      it('has allowSkip flag set to TRUE but no email environment variable or email params', () => {
+
+        checkTokenStub.read.withArgs('skip').resolves({});
+        req.query = {
+          token: 'skip'
+        };
+        configStub.allowSkip = true;
+        configStub.skipEmail = '';
+        instance.saveValues(req, res);
+        Base.prototype.saveValues.should.not.have.been.calledWith(req, res);
       });
     });
 
-    it('calls the parent when we provide a skip token & allowSkip flag', () => {
+    describe('bypasses email authentication', () => {
+      it('when we provide a skip token, allowSkip, & skip email environment variable', () => {
       req.query = {
         token: 'skip'
       };
+      configStub.allowSkip = true;
+      configStub.skipEmail = 'mo@gmail.com';
       instance.saveValues(req, res);
-
       Base.prototype.saveValues.should.have.been.calledWith(req, res);
     });
 
-    it('calls the parent when there is already a valid token', () => {
-      req.sessionModel.get.withArgs('valid-token').returns(true);
+      it('when we provide a skip token, allowSkip flag & skip email params', () => {
+        req.query = {
+          token: 'skip',
+          email: 'ali@gmail.com'
+        };
+        configStub.allowSkip = true;
+        instance.saveValues(req, res);
 
-      instance.saveValues(req, res);
+        Base.prototype.saveValues.should.have.been.calledWith(req, res);
+      });
 
-      Base.prototype.saveValues.should.have.been.calledWith(req, res);
+      it('bypasses email authentication when there is already a valid token', () => {
+        req.sessionModel.get.withArgs('valid-token').returns(true);
+
+        instance.saveValues(req, res);
+
+        Base.prototype.saveValues.should.have.been.calledWith(req, res);
+      });
+    });
+
+    describe('when it bypasses the email authentication', () => {
+      it('sets the user email based on the email params if it bypasses the email authentication', () => {
+        req.query = {
+          token: 'skip',
+          email: 'aisha@mail.com'
+        };
+        configStub.allowSkip = true;
+        instance.saveValues(req, res);
+        expect(sessionModel.set).to.have.been.calledWith('user-email', 'aisha@mail.com');
+      });
+
+      it('sets the user email based on the skipEmail environment variable if', () => {
+        req.query = {
+          token: 'skip'
+        };
+        configStub.allowSkip = true;
+        configStub.skipEmail = 'ahmed@gmail.com';
+        instance.saveValues(req, res);
+        expect(sessionModel.set).to.have.been.calledWith('user-email', 'ahmed@gmail.com');
+      });
     });
 
     describe('we get the token from the url & we look it up in our DB', () => {
