@@ -13,8 +13,6 @@ module.exports = superclass => class extends superclass {
     // skips if it goes to /nrm/start?token=skip
     // skips if a session is already present.
     // skips if email params if provided /nrm/start?token=skip&email=s@
-    console.log(email);
-    console.log(skipEmailAuth || validEmailToken);
     if (skipEmailAuth || validEmailToken) {
       req.sessionModel.set('user-email', email);
       return super.saveValues(req, res, callback);
