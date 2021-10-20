@@ -24,6 +24,7 @@ module.exports = {
   env: env,
   useMocks: useMocks,
   allowSkip: process.env.allowSkip,
+  skipEmail: process.env.skipEmail,
   writeToCasework: (process.env.WRITE_TO_CASEWORK === 'true') ? true : false,
   hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   saveService: {

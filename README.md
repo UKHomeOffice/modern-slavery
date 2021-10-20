@@ -92,9 +92,18 @@ $ npm run dev -- --env
 
 ## Skip email verify step  <a name="skip-email-verify-step"></a>
 
-On dev, preprod and locally you can skip the email verify step by going to the following url
+You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value paramenter in the url; or both.
 
-http://localhost:8081/nrm/start?token=skip
+1. To use an email environment variable, you'll need to set it like so `skipEmail=mo@email.com`. You can then go to the following url.
+
+    http://localhost:8081/nrm/start?token=skip`
+
+
+2. Set the email in the url to whatever email you like.
+
+    http://localhost:8081/nrm/start?token=skip&email=mo@email.com
+
+3. If you do both, then the app will always use what you've set in the url parameter as the first responder's email.
 
 ## Acceptance tests  <a name="acceptance-tests"></a>
 

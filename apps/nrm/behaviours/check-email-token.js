@@ -7,16 +7,18 @@ module.exports = superclass => class extends superclass {
 
   saveValues(req, res, callback) {
     const token = req.query.token;
-    const dev = process.env.NODE_ENV === 'development';
-    // required as some environments are not dev but need to skip
+    const emailParam = req.query.email;
     const allowSkip = config.allowSkip;
+    const skipEmail = config.skipEmail;
     // skips if it goes to /nrm/start?token=skip
-    // skips if a session is already present
-    if (token === 'skip' && dev || token === 'skip' && allowSkip
-      || (req.sessionModel.get('valid-token')) === true) {
-     return super.saveValues(req, res, callback);
+    // skips if a session is already present.
+    // skips if email params if provided /nrm/start?token=skip&email=s@
+    if (token === 'skip' && allowSkip && emailParam || token === 'skip' && allowSkip && skipEmail
+                                  || (req.sessionModel.get('valid-token')) === true) {
+      const email = emailParam || skipEmail;
+      req.sessionModel.set('user-email', email);
+      return super.saveValues(req, res, callback);
     }
-
     // returns a Promise
     return checkToken.read(token)
     .then(user => {
