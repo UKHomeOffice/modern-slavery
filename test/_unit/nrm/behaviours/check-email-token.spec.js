@@ -52,9 +52,8 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       Base.prototype.saveValues.restore();
     });
 
-    describe('does NOT bypass email authentication', ()=> {
+    describe('does NOT bypass email authentication', () => {
       it('has NO allowSkip flag', () => {
-
         checkTokenStub.read.withArgs('skip').resolves({});
         req.query = {
           token: 'skip'
@@ -66,7 +65,6 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       });
 
       it('has allowSkip flag set to TRUE but no email environment variable or email params', () => {
-
         checkTokenStub.read.withArgs('skip').resolves({});
         req.query = {
           token: 'skip'
@@ -80,14 +78,14 @@ describe('apps/nrm/behaviours/check-email-token', () => {
 
     describe('bypasses email authentication', () => {
       it('when we provide a skip token, allowSkip, & skip email environment variable', () => {
-      req.query = {
-        token: 'skip'
-      };
-      configStub.allowSkip = true;
-      configStub.skipEmail = 'mo@gmail.com';
-      instance.saveValues(req, res);
-      Base.prototype.saveValues.should.have.been.calledWith(req, res);
-    });
+        req.query = {
+          token: 'skip'
+        };
+        configStub.allowSkip = true;
+        configStub.skipEmail = 'mo@gmail.com';
+        instance.saveValues(req, res);
+        Base.prototype.saveValues.should.have.been.calledWith(req, res);
+      });
 
       it('when we provide a skip token, allowSkip flag & skip email params', () => {
         req.query = {
