@@ -90,16 +90,11 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
   async function verifyUser() {
-    console.log('start verify');
     await clickSelector(page, START_HOME_BUTTON);
-    console.log('clicked button');
     await page.focus(EMAIL_INPUT);
-    console.log('focus');
     await page.keyboard.type('test.user@homeoffice.gov.uk');
-    console.log('typed');
     // Bypass user clicking email link - Notify Key will not be set during test runs
     await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
-    console.log('navigated');
   }
 
   /**
@@ -146,21 +141,14 @@ describe.only('User path(s)', () => {
      * @returns {Promise}
      */
   async function completeForm1of2(typeOfPV, caseReferred) {
-    console.log('continue1');
     await clickSelector(page, CONTINUE_BUTTON);
-    console.log('location');
     await clickSelector(page, LOCATION_ENGLAND_OPTION);
-    console.log('continue2');
     await clickSelector(page, CONTINUE_BUTTON);
 
     if (typeOfPV === 'adult') {
-      console.log('adult');
       await clickSelector(page, PV_UNDER_AGE_NO_OPTION);
-      console.log('continue3');
       await clickSelector(page, CONTINUE_BUTTON);
-      console.log('under-age');
       await clickSelector(page, PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION);
-      console.log('continue4');
       await clickSelector(page, CONTINUE_BUTTON);
     } else {
       await clickSelector(page, PV_UNDER_AGE_YES_OPTION);
@@ -170,9 +158,8 @@ describe.only('User path(s)', () => {
       await focusThenType(page, LOCAL_AUTHORITY_EMAIL, 'test@authority.org');
       await clickSelector(page, CONTINUE_BUTTON);
     }
-    console.log('focus');
+
     await focusThenType(page, WHAT_HAPPENED_INPUT, 'Test input regarding details of exploitation');
-    console.log('continue5');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, EXPLOITED_IN_UK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
