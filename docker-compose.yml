@@ -8,6 +8,7 @@ services:
     environment:
       - allowSkip=true
       - skipEmail=mo@email.com
+      - NODE_ENV=local
       - IGNORE_TLS=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379

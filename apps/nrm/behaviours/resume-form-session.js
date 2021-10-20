@@ -20,6 +20,10 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    if (config.env === 'local') {
+      return super.getValues(req, res, next);
+    }
+
     request.get(baseUrl + req.sessionModel.get('user-email'), (err, response, body) => {
       if (err) {
         return next(err);
