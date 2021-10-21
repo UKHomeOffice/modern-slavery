@@ -20,7 +20,7 @@
   "scripts": {
     "start": "node server.js",
     "debug": "node -r dotenv/config --inspect app.js",
-    "start:dev": "NODE_ENV=development hof-build watch",
+    "start:dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch",
     "test": "NODE_ENV=test yarn run test:unit && yarn run test:lint",
     "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",

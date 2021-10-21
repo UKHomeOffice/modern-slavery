@@ -6,7 +6,10 @@ const pageActions = require('../util/page-actions');
 const { clickSelector, focusThenType, navigateTo } = pageActions;
 
 const {
+  START_REPORT,
   CONTINUE_BUTTON,
+  REFERENCE_INPUT,
+  ORGANISATION_INPUT,
   EMAIL_INPUT,
   WHAT_HAPPENED_INPUT,
   LOCATION_ENGLAND_OPTION,
@@ -92,7 +95,7 @@ describe.only('User path(s)', () => {
   async function verifyUser() {
     await clickSelector(page, START_HOME_BUTTON);
     await page.focus(EMAIL_INPUT);
-    await page.keyboard.type('test.user@homeoffice.gov.uk');
+    await page.keyboard.type('sas-hof-test@digital.homeoffice.gov.uk');
     // Bypass user clicking email link - Notify Key will not be set during test runs
     await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
   }
@@ -142,7 +145,11 @@ describe.only('User path(s)', () => {
      */
   async function completeForm1of2(typeOfPV, caseReferred) {
     await clickSelector(page, CONTINUE_BUTTON);
-    console.log(page);
+    await clickSelector(page, START_REPORT);
+    await focusThenType(page, REFERENCE_INPUT, 'REF12345');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, ORGANISATION_INPUT, 'Home Office - UK Border Force UKBF');
+    await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, LOCATION_ENGLAND_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
 
@@ -244,6 +251,9 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
   }
 
+  const timeoutInMins = num => num * 60000;
+  const defaultTimeout = timeoutInMins(5);
+
   it('Happy path - Adult', async () => {
     try {
       await verifyUser();
@@ -252,7 +262,7 @@ describe.only('User path(s)', () => {
     } catch (err) {
       throw new Error(err);
     }
-  });
+  }).timeout(defaultTimeout);
 
   it('User path - Child', async () => {
     try {
@@ -262,7 +272,7 @@ describe.only('User path(s)', () => {
     } catch (err) {
       throw new Error(err);
     }
-  });
+  }).timeout(defaultTimeout);
 
   it('User path - Duty to Notify (Adult)', async () => {
     try {
@@ -271,5 +281,5 @@ describe.only('User path(s)', () => {
     } catch (err) {
       throw new Error(err);
     }
-  });
+  }).timeout(defaultTimeout);
 });

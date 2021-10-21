@@ -158,6 +158,7 @@ const getBrowser = async (localBrowser, demoMode) => {
 const getBrowserPage = async browser => {
   const page = await browser.newPage();
   await page.setViewport(VIEWPORT);
+  await page.setDefaultTimeout(5000); 
 
   return page;
 };

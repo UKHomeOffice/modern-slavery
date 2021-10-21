@@ -3,7 +3,9 @@
 module.exports = {
   selectors: {
     START_HOME_BUTTON: '#content > div > form > div > div.govuk-grid-column-two-thirds > input',
+    START_REPORT: '#content > div > form > div > div > input',
     CONTINUE_BUTTON: '#content > div > form > input.button',
+    REFERENCE_INPUT: '#reference',
     EMAIL_INPUT: '#user-email',
     ORGANISATION_INPUT: '#user-organisation',
     WHAT_HAPPENED_INPUT: '#what-happened',

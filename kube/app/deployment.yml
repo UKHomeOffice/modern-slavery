@@ -75,6 +75,10 @@ spec:
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
             - name: DATASERVICE_SERVICE_PORT_HTTPS
               value: "10443"
+            - name: ALLOW_SKIP
+              value: "true"
+            - name: SKIP_EMAIL
+              value: "sas-hof-test@digital.homeoffice.gov.uk"
             {{ end }}
             - name: SESSION_SECRET
               valueFrom:

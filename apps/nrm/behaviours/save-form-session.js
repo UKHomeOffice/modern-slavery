@@ -25,6 +25,11 @@ module.exports = superclass => class extends superclass {
         session.alertUser = true;
       }
 
+      // skip requesting data service api when running in local mode
+      if (config.env === 'local') {
+        return next();
+      }
+
       request.post({
         headers: {'content-type': 'application/json'},
         url: config.saveService.host + ':' + config.saveService.port + '/reports',

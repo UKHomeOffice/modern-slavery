@@ -20,6 +20,7 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    // skip requesting data service api when running in local mode
     if (config.env === 'local') {
       return super.getValues(req, res, next);
     }

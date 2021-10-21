@@ -94,7 +94,7 @@ $ npm run dev -- --env
 
 You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value paramenter in the url; or both.
 
-1. To use an email environment variable, you'll need to set it like so `skipEmail=mo@email.com`. You can then go to the following url.
+1. To use an email environment variable, you'll need to set it like so `skipEmail=test@digital.homeoffice.gov.uk`. You can then go to the following url.
 
     http://localhost:8081/nrm/start?token=skip`
 

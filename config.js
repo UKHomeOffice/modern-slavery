@@ -12,7 +12,7 @@ module.exports = {
     alertTimeout: process.env.FIRST_ALERT_TIMEOUT || 7
   },
   audit: {
-    enabled: process.env.AUDIT_DATA || false,
+    enabled: String(process.env.AUDIT_DATA) === 'true',
     host: process.env.AUDIT_DB_HOST,
     user: process.env.AUDIT_DB_USER,
     password: process.env.AUDIT_DB_PASS,
@@ -20,8 +20,8 @@ module.exports = {
   },
   prometheusPort: 8082,
   env,
-  allowSkip: process.env.allowSkip,
-  skipEmail: process.env.skipEmail,
+  allowSkip: String(process.env.ALLOW_SKIP) === 'true',
+  skipEmail: process.env.SKIP_EMAIL,
   writeToCasework: env !== 'local',
   hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   saveService: {

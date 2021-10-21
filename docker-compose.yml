@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile-acceptance
     environment:
-      - allowSkip=true
-      - skipEmail=mo@email.com
+      - ALLOW_SKIP=true
+      - SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
       - NODE_ENV=local
       - IGNORE_TLS=true
       - REDIS_HOST=redis
