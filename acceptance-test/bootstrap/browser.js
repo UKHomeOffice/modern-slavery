@@ -1,4 +1,6 @@
 'use strict';
+
+const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const request = require('request-promise-native');
 const getContainerIP = require('../user-pathways/util/get-container-ip');
@@ -158,7 +160,25 @@ const getBrowser = async (localBrowser, demoMode) => {
 const getBrowserPage = async browser => {
   const page = await browser.newPage();
   await page.setViewport(VIEWPORT);
-  await page.setDefaultTimeout(5000); 
+  await page.setDefaultTimeout(5000);
+
+  page
+    .on('console', message => {
+      const type = message.type().substr(0, 3).toUpperCase()
+      const colors = {
+        LOG: text => text,
+        ERR: chalk.red,
+        WAR: chalk.yellow,
+        INF: chalk.cyan
+      }
+      const color = colors[type] || chalk.blue
+      console.log(color(`${type} ${message.text()}`))
+    })
+    .on('pageerror', ({ message }) => console.log(chalk.red(message)))
+    .on('response', response =>
+      console.log(chalk.green(`${response.status()} ${response.url()}`)))
+    .on('requestfailed', request =>
+      console.log(chalk.magenta(`${request.failure().errorText} ${request.url()}`)))
 
   return page;
 };
