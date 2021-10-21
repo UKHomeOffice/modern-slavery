@@ -61,21 +61,6 @@ steps:
         - master
       event: [push, pull_request]
 
-  - name: acceptance_test
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    volumes:
-      - name: dockersock
-        path: /var/run
-    commands:
-      - apk add --no-cache docker-compose
-      - docker-compose --verbose up -d --build chrome-browser app redis
-      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
-    when:
-      branch:
-        include:
-        - master
-      event: [push, pull_request]
-
   - name: setup_deploy
     pull: if-not-exists
     image: node:14
@@ -112,6 +97,21 @@ steps:
       branch:
         include:
           - master
+      event: push
+
+  - name: acceptance_tests_deploy
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands:
+      - apk add --no-cache docker-compose
+      - docker-compose --verbose up -d --build chrome-browser app redis
+      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+    when:
+      branch:
+        include:
+        - master
       event: push
 
   - name: build_image
@@ -191,6 +191,22 @@ steps:
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
+  - name: acceptance_tests_branch
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands:
+      - apk add --no-cache docker-compose
+      - docker-compose --verbose up -d --build chrome-browser app redis
+      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
     when:
       branch:
         include:

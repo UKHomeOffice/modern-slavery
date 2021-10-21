@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../../../../config');
 const reqres = require('reqres');
 const proxyquire = require('proxyquire').noCallThru();
 const NotifyClient = require('notifications-node-client').NotifyClient;
@@ -21,7 +22,10 @@ const tokenGenerator = {
 const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-sender',
   { '../models/save-token': tokenGenerator,
     '../../nrm/index': sinon.stub(),
-    'ms-email-domains': emailDomainCheck
+    'ms-email-domains': emailDomainCheck,
+    '../../../config': Object.assign({}, config, {
+      allowSkip: true, skipEmail: 'sas-hof-test@digital.homeoffice.gov.uk'
+    })
   });
 
 describe('apps/verify/behaviours/email-lookup-sender', () => {
@@ -49,6 +53,9 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
     };
     res = reqres.res();
     req = reqres.req({sessionModel});
+    req.form = { values: {} };
+    res.redirect = sinon.stub();
+
     EmailLookUpSender = Behaviour(Base);
     instance = new EmailLookUpSender();
   });
@@ -83,6 +90,26 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
       instance.getNextStep(req, res);
 
       Base.prototype.getNextStep.should.have.been.calledWith(req, res);
+    });
+
+    it('does not call the parent method when email auth is skipped with correct email', () => {
+      req.sessionModel.get.withArgs('recognised-email').returns(undefined);
+      req.form.values['user-email'] = 'sas-hof-test@digital.homeoffice.gov.uk';
+
+      instance.getNextStep(req, res);
+
+      Base.prototype.getNextStep.should.not.have.been.called;
+      res.redirect.should.have.been.calledOnce.calledWithExactly('/nrm/start?token=skip');
+    });
+
+    it('calls the parent method when skip email auth is allowed but with incorrect email', () => {
+      req.sessionModel.get.withArgs('recognised-email').returns(undefined);
+      req.form.values['user-email'] = 'bad-email@digital.homeoffice.gov.uk';
+
+      instance.getNextStep(req, res);
+
+      Base.prototype.getNextStep.should.have.been.calledWith(req, res);
+      res.redirect.should.not.have.been.called;
     });
   });
 
@@ -136,6 +163,19 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
       instance.saveValues(req, res, () => {
         NotifyClient.prototype.sendEmail.should.have.been.calledOnce;
+        done();
+      });
+    });
+
+    it('skips calling data service when email auth skip is allowed with correct email', done => {
+      req.form = {
+        values: {
+          'user-email': 'sas-hof-test@digital.homeoffice.gov.uk'
+        }
+      };
+
+      instance.saveValues(req, res, () => {
+        NotifyClient.prototype.sendEmail.should.not.have.been.called;
         done();
       });
     });
