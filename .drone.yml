@@ -7,7 +7,7 @@ environment:
   APP_NAME: modern-slavery
   PROD_ENV: ms-prod
   STG_ENV: ms-preprod
-  UAT_ENV: ms-dev
+  UAT_ENV: ms-uat
   BRANCH_ENV: ms-branch
   PRODUCTION_URL: www.modernslavery.homeoffice.gov.uk
   IMAGE_URL: quay.io/ukhomeofficedigital
