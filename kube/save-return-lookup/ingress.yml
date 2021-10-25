@@ -1,0 +1,48 @@
+# Ingress controller- Used to expose services outside the cluster.
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: lookup-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: lookup
+  {{ end }}
+{{ file .DATA_SERVICE_EXTERNAL_ANNOTATIONS | indent 2 }}
+spec:
+  tls:
+  - hosts:
+    {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+    - lookup.modernslavery.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+    - preprod-lookup.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+    - dev-lookup.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    - lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+    {{ end }}
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    secretName: branch-tls-external
+    {{ else }}
+    secretName: lookup-cert-cmio
+    {{ end }}
+  rules:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  - host: lookup.modernslavery.homeoffice.gov.uk
+  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+  - host: preprod-lookup.ms-notprod.homeoffice.gov.uk
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  - host: dev-lookup.ms-notprod.homeoffice.gov.uk
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  - host: lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+  {{ end }}
+    http:
+      paths:
+      - path: /
+        backend:
+          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          serviceName: lookup-{{ .DRONE_SOURCE_BRANCH }}
+          {{ else }}
+          serviceName: lookup
+          {{ end }}
+          servicePort: 10443

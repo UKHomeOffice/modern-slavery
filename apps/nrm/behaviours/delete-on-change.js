@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 'use strict';
 
 /**
@@ -21,7 +22,7 @@
  * @returns {array} - a new array of fields to be deleted
  */
 const getDeleteFieldsWithoutExceptions = (req, deleteFields, exceptions) => {
-  const exemptFieldsArray = exceptions.map((exception) => {
+  const exemptFieldsArray = exceptions.map(exception => {
     // check if condition is met
     const { field, value, exemptFields } = exception;
     if (req.sessionModel.get(field) === value) {
@@ -32,7 +33,7 @@ const getDeleteFieldsWithoutExceptions = (req, deleteFields, exceptions) => {
   const exemptFields = [].concat.apply([], exemptFieldsArray);
 
   // filter out the exempt fields
-  const newDeleteFieldsArray = deleteFields.filter((fieldName) => {
+  const newDeleteFieldsArray = deleteFields.filter(fieldName => {
     return (exemptFields.indexOf(fieldName) === -1);
   });
 
@@ -53,19 +54,19 @@ const deleteFieldsFromSession = (req, config) => {
   const currentValue = req.sessionModel.get(currentField);
   let fieldsForRemoval = deleteFields;
 
-    if (currentValue) {
-      if (req.form.values[config.currentField] !== req.sessionModel.get(currentField)) {
-        // If there are exceptions for a certain condition remove those fields
-        // from the default array of 'deleteFields'
-        if (exceptions) {
-          fieldsForRemoval = getDeleteFieldsWithoutExceptions(req, deleteFields, exceptions);
-        }
-          // delete each field from the session
-          fieldsForRemoval.forEach(field => {
-            req.sessionModel.unset(field);
-          });
+  if (currentValue) {
+    if (req.form.values[config.currentField] !== req.sessionModel.get(currentField)) {
+      // If there are exceptions for a certain condition remove those fields
+      // from the default array of 'deleteFields'
+      if (exceptions) {
+        fieldsForRemoval = getDeleteFieldsWithoutExceptions(req, deleteFields, exceptions);
       }
+      // delete each field from the session
+      fieldsForRemoval.forEach(field => {
+        req.sessionModel.unset(field);
+      });
     }
+  }
 };
 
 module.exports = config => superclass => class extends superclass {

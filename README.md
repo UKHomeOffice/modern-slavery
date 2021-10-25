@@ -38,7 +38,7 @@ NOTIFY_KEY            | Your GOV.UK notify key
 AWS_SQS               | AWS SQS URL
 AWS_SECRET_ACCESS_KEY | AWS Secret Access Key
 AWS_ACCESS_KEY_ID     | AWS Access Key ID
-WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false)
+WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false if NODE_ENV not set)
 AUDIT_DATA            | Enable/Disable sending audit data to postgres (defaults to false)
 AUDIT_DB_HOST         | Postgres host for audit data
 AUDIT_DB_USER         | Postgres audit user
@@ -69,11 +69,11 @@ Then go to http://localhost:8081
 
 ### Install & Run on docker container <a name="install-and-run-on-docker-container"></a>
 
-Build the docker containers containing an instance of the Chrome browser `chrome-browser` the Node JS application `app` and an instance of Redis `redis`
+Build the docker containers containing an instance of the Chrome browser `chrome-browser` the Node JS application `app` and an instance of Redis `redis`. Then you can exec into the docker container and run the tests which is how it is done on the Drone pipeline.
 ```bash
-$ docker-compose up -d --build chrome-browser app redis
+$ docker-compose --verbose up -d --build chrome-browser app redis
+$ docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
 ```
-
 
 ## Email functionality  <a name="email-functionality"></a>
 
@@ -94,14 +94,14 @@ $ npm run dev -- --env
 
 You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value paramenter in the url; or both.
 
-1. To use an email environment variable, you'll need to set it like so `skipEmail=mo@email.com`. You can then go to the following url.
+1. To use an email environment variable, you'll need to set it like so `skipEmail=sas-hof-test@digital.homeoffice.gov.uk`. You can then go to the following url.
 
     http://localhost:8081/nrm/start?token=skip`
 
 
 2. Set the email in the url to whatever email you like.
 
-    http://localhost:8081/nrm/start?token=skip&email=mo@email.com
+    http://localhost:8081/nrm/start?token=skip&email=sas-hof-test@digital.homeoffice.gov.uk
 
 3. If you do both, then the app will always use what you've set in the url parameter as the first responder's email.
 
@@ -112,7 +112,12 @@ You can skip the email authentication locally or in some of the testing environm
 You can run acceptance tests either on your local machine via the [Chrome](#https://www.google.com/chrome/) browser or within a docker container
 
 ### Running local acceptance tests  <a name="running-local-acceptance-tests"></a>
-[Install & Run](#install-and-run-on-local-machine)  the application locally then you can run the acceptance tests using the command below:
+[Install & Run](#install-and-run-on-local-machine)  the application locally using the NODE_ENV=local environment variable if you don't have the save-and-return-api running locally.
+
+```bash
+$ NODE_ENV=local yarn run start:dev
+```
+Then you can run the acceptance tests using the command below:
 
 ```bash
 $ npm run test:local-acceptance
@@ -123,7 +128,7 @@ This will open up an instance of [Google Chrome](#https://www.google.com/chrome/
 
 ### Running acceptance tests inside a docker container  <a name="running-acceptance-tests-inside-a-docker-container"></a>
 
-[Install & Run](#install-and-run-on-docker-container)  the application within a docker conatiner then you can run the acceptance tests using the commands below:
+[Install & Run](#install-and-run-on-docker-container)  the application within a docker container then you can run the acceptance tests using the commands below:
 
 
 Enter into the docker container with the Node JS application running
@@ -138,7 +143,7 @@ $ npm run test:docker-acceptance
 
 #### Running acceptance tests as part of Drone CI  <a name="running-acceptance-tests-as-part-of-drone-ci"></a>
 
-We use [Drone CI](#https://drone.io/) for our continious integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file.
+We use [Drone CI](#https://drone.io/) for our continuous integration testing. For each Push and Pull Request to the Github repository we run our acceptance tests using a docker image with docker-compose pre-installed. The configuration can be found within the `drone.yml` file.
 
 ### Acceptance test scripts   <a name="acceptance-test-scripts"></a>
 Acceptance scripts

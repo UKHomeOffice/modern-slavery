@@ -14,11 +14,11 @@ const notifyClient = new NotifyClient(notifyApiKey);
  * @param {object} data - data to be used within email body
  */
 const sendEmail = (email, data) => {
-    notifyClient.sendEmail(templateId, email, {
-      personalisation: data,
-    }).then(response => console.log(response.body)).catch(error => console.error(error));
+  notifyClient.sendEmail(templateId, email, {
+    personalisation: data
+  }).then(response => console.log(response.body)).catch(error => console.error(error));
 };
 
 module.exports = {
-  sendEmail,
+  sendEmail
 };

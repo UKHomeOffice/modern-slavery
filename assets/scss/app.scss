@@ -1,5 +1,5 @@
-@import "$$theme";
-@import "node_modules/govuk-frontend/all.scss";
+@import "hof/frontend/themes/gov-uk/styles/govuk";
+@import "govuk-frontend/all.scss";
 
 html {
   font-size:16px;
@@ -43,40 +43,6 @@ html {
 }
 textarea {
   font-size: 19px !important;
-}
-#supporting-documents-list {
-  border: 5px solid #dee0e2;
-  margin-top: 30px;
-  padding: 20px 15px 20px 15px;
-
-  h2 {
-    margin-top: 0;
-  }
-
-  .supporting-documents-list {
-    font-size: 16px;
-    border-bottom: 1px solid #bfc1c3;
-    padding-bottom: 5px;
-
-    .button-delete {
-      @include bold-24;
-      font-size: 16px !important;
-      background: $red url("../images/icons/icon-cross-remove-sign.png") no-repeat 90% 50% / 14px 14px;
-      float: right;
-      box-shadow: 0 2px 0 darken( $red, 10% );
-      padding: em(7) em(41) em(4) em(16);
-      -webkit-box-shadow: 0 2px 0 darken( $red, 10% );
-      -moz-box-shadow: 0 2px 0 darken( $red, 10% );
-
-      &:hover, &:active {
-        background-color: darken( $red, 10% );
-      }
-
-      &:visited {
-        background-color: $red;
-      }
-    }
-  }
 }
 
 #types-of-exploitation-forced-to-work-group > .validation-error {

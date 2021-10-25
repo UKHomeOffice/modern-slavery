@@ -30,13 +30,13 @@ const getPageBackLink = (req, pageName) => {
     'someone-else': pageCustomBackLinks.someoneElse(req),
     'what-happened': pageCustomBackLinks.whatHappened(req),
     'who-contact': pageCustomBackLinks.whoContact(req),
-    'confirm': pageCustomBackLinks.confirm(req),
+    confirm: pageCustomBackLinks.confirm(req),
     'fr-details': pageCustomBackLinks.frDetails(req),
     'local-authority-contacted-about-child': pageCustomBackLinks.localAuthorityContactedAboutChild(req),
     'where-exploitation-happened': pageCustomBackLinks.whereExploitationHappened(req),
     'where-exploitation-happened-uk': pageCustomBackLinks.whereExploitationHappenedUk(req),
     'where-exploitation-happened-overseas': pageCustomBackLinks.whereExploitationHappenedOverseas(req),
-    'current-pv-location': pageCustomBackLinks.currentPvLocation(req),
+    'current-pv-location': pageCustomBackLinks.currentPvLocation(req)
   };
 
   return pageBackLinks[pageName];

@@ -14,7 +14,7 @@ const { capitaliseText, removeDashesFromText } = formatter;
  *
  * @returns {object} - feedback data
  */
-const getFeedbackData = (req) => {
+const getFeedbackData = req => {
   const feedbackRating = capitaliseText(removeDashesFromText(req.form.values.feedback));
   const feedbackMessage = req.form.values.improvements;
 
@@ -23,7 +23,7 @@ const getFeedbackData = (req) => {
   const data = {
     rating: feedbackRating,
     message: feedbackMessage,
-    email: feedbackReplyEmail,
+    email: feedbackReplyEmail
   };
 
   return data;
@@ -39,7 +39,7 @@ module.exports = superclass => class extends superclass {
       console.error(err);
     }
 
-    super.saveValues(req, res, (err) => {
+    super.saveValues(req, res, err => {
       next(err);
     });
   }

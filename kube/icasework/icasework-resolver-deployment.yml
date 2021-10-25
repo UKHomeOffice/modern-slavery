@@ -1,0 +1,137 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: icasework-resolver
+  {{ end }}
+spec:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  replicas: 1
+  {{ else }}
+  replicas: 2
+  {{ end }}
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: icasework-resolver
+      {{ end }}
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/"
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
+        service: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: icasework-resolver
+        service: icasework-resolver
+        {{ end }}
+    spec:
+      containers:
+        - name: icasework-resolver
+          # Release v4.0.1
+          image: quay.io/ukhomeofficedigital/icasework-resolver:1fe7b36d1ca5a1caf35ab3d323e762830c3ddaf5
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: access_key_id
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: access_key_id
+            {{ else }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_access_key_id
+            {{ end }}
+            - name: ICASEWORK_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: icasework
+                  key: key
+            - name: ICASEWORK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: icasework
+                  key: secret
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: endpoint
+            - name: DB_USER
+              value: resolver
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: users
+                  key: resolver
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
+            - name: AUDIT_DATA
+              value: "true"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m

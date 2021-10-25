@@ -11,30 +11,30 @@ const { removeDashesFromText, capitaliseText } = dataFormatter;
  * @returns {Object} - additional formatted data for display on UI
  */
 // eslint-disable-next-line complexity
-const formatAnswers = (req) => {
+const formatAnswers = req => {
   let data = {};
 
   if (req.sessionModel.get('pv-under-age')) {
     data = Object.assign({}, data, {
-      formattedPvUnderAge: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age'))),
+      formattedPvUnderAge: removeDashesFromText(capitaliseText(req.sessionModel.get('pv-under-age')))
     });
   }
 
   if (req.sessionModel.get('does-pv-need-support')) {
     data = Object.assign({}, data, {
-      formattedDoesPvNeedSupport: capitaliseText(req.sessionModel.get('does-pv-need-support')),
+      formattedDoesPvNeedSupport: capitaliseText(req.sessionModel.get('does-pv-need-support'))
     });
   }
 
   if (req.sessionModel.get('pv-want-to-submit-nrm')) {
     data = Object.assign({}, data, {
-      formattedPvWnatToSubmitNrm: capitaliseText(req.sessionModel.get('pv-want-to-submit-nrm')),
+      formattedPvWnatToSubmitNrm: capitaliseText(req.sessionModel.get('pv-want-to-submit-nrm'))
     });
   }
 
   if (req.sessionModel.get('co-operate-with-police')) {
     data = Object.assign({}, data, {
-      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police')),
+      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police'))
     });
   }
 
@@ -46,26 +46,26 @@ const formatAnswers = (req) => {
     }
 
     data = Object.assign({}, data, {
-      formattedPvGender: formattedPvGenderValue,
+      formattedPvGender: formattedPvGenderValue
     });
   }
 
   if (req.sessionModel.get('does-pv-have-children')) {
     data = Object.assign({}, data, {
-      formattedDoesPvHaveChildren: capitaliseText(req.sessionModel.get('does-pv-have-children')),
+      formattedDoesPvHaveChildren: capitaliseText(req.sessionModel.get('does-pv-have-children'))
     });
   }
 
 
   if (req.sessionModel.get('pv-interpreter-requirements')) {
     data = Object.assign({}, data, {
-      formattedPvInterpreterRequirements: capitaliseText(req.sessionModel.get('pv-interpreter-requirements')),
+      formattedPvInterpreterRequirements: capitaliseText(req.sessionModel.get('pv-interpreter-requirements'))
     });
   }
 
   if (req.sessionModel.get('pv-other-help-with-communication')) {
     data = Object.assign({}, data, {
-      formattedPvOtherHelpWithCommunication: capitaliseText(req.sessionModel.get('pv-other-help-with-communication')),
+      formattedPvOtherHelpWithCommunication: capitaliseText(req.sessionModel.get('pv-other-help-with-communication'))
     });
   }
 
@@ -73,31 +73,31 @@ const formatAnswers = (req) => {
     data = Object.assign({}, data, {
       formattedPvUnderAgeAtTimeOfExploitation: removeDashesFromText(
         capitaliseText(req.sessionModel.get('pv-under-age-at-time-of-exploitation'))
-        ),
+      )
     });
   }
 
   if (req.sessionModel.get('pv-phone-number')) {
     data = Object.assign({}, data, {
-      formattedPvPhoneNumber: capitaliseText(req.sessionModel.get('pv-phone-number')),
+      formattedPvPhoneNumber: capitaliseText(req.sessionModel.get('pv-phone-number'))
     });
   }
 
   if (req.sessionModel.get('fr-location')) {
     data = Object.assign({}, data, {
-      formattedFrLocation: capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true),
+      formattedFrLocation: capitaliseText(removeDashesFromText(req.sessionModel.get('fr-location')), true)
     });
   }
 
   if (req.sessionModel.get('any-other-pvs')) {
     data = Object.assign({}, data, {
-      formattedAnyOtherPvs: removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs'))),
+      formattedAnyOtherPvs: removeDashesFromText(capitaliseText(req.sessionModel.get('any-other-pvs')))
     });
   }
 
   if (req.sessionModel.get('reported-to-police')) {
     data = Object.assign({}, data, {
-      formattedReportedToPolice: capitaliseText(req.sessionModel.get('reported-to-police')),
+      formattedReportedToPolice: capitaliseText(req.sessionModel.get('reported-to-police'))
     });
   }
 
@@ -107,7 +107,7 @@ const formatAnswers = (req) => {
         removeDashesFromText(req.sessionModel.get('where-exploitation-happened')),
         true,
         [{ word: 'and', allCaps: false}, {word: 'uk', allCaps: true }]
-        ),
+      )
     });
   }
 

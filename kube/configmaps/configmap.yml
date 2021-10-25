@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: configmap
+  {{ end }}
+data:
+{{ file .CONFIGMAP_VALUES | indent 2 }}

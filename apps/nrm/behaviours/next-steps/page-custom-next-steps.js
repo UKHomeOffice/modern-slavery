@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  coOperateWithPolice: (req) => {
+  coOperateWithPolice: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'yes') {
@@ -18,13 +18,13 @@ module.exports = {
       req.params.action === 'edit' &&
       nextStep !== '/nrm/confirm' &&
       nextStep !== '/nrm/fr-details'
-      ) {
+    ) {
       nextStep += '/edit';
     }
 
     return nextStep;
   },
-  doesPvHaveChildren: (req) => {
+  doesPvHaveChildren: req => {
     let nextStep = '/nrm/pv-nationality';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -34,22 +34,22 @@ module.exports = {
     return nextStep;
   },
   doesPvNeedSupport: () => {
-    let nextStep = '/nrm/pv-name';
+    const nextStep = '/nrm/pv-name';
 
     return nextStep;
   },
   frAlternativeContact: () => {
-    let nextStep = '/nrm/confirm';
+    const nextStep = '/nrm/confirm';
 
     return nextStep;
   },
-  pvContactDetails: (req) => {
+  pvContactDetails: req => {
     let nextStep;
 
     if (
       req.sessionModel.get('pv-want-to-submit-nrm') === 'no' ||
       (req.params && req.params.action && req.params.action === 'edit')
-      ) {
+    ) {
       nextStep = '/nrm/confirm';
     } else if (req.sessionModel.get('does-pv-need-support') === 'no') {
       nextStep = '/nrm/co-operate-with-police';
@@ -59,7 +59,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvGender: (req) => {
+  pvGender: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -74,7 +74,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvHoReference: (req) => {
+  pvHoReference: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -89,7 +89,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvName: (req) => {
+  pvName: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'yes' || req.sessionModel.get('pv-under-age') !== 'no') {
@@ -104,7 +104,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvNationality: (req) => {
+  pvNationality: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -119,7 +119,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvUnderAge: (req) => {
+  pvUnderAge: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -134,7 +134,7 @@ module.exports = {
 
     return nextStep;
   },
-  pvWantToSubmitNrm: (req) => {
+  pvWantToSubmitNrm: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -145,7 +145,7 @@ module.exports = {
 
     return nextStep;
   },
-  reportedToPolice: (req) => {
+  reportedToPolice: req => {
     let nextStep;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -160,7 +160,7 @@ module.exports = {
 
     return nextStep;
   },
-  someoneElse: (req) => {
+  someoneElse: req => {
     let nextStep;
 
     if (req.sessionModel.get('does-pv-need-support') === 'no') {
@@ -175,7 +175,7 @@ module.exports = {
 
     return nextStep;
   },
-  whoContact: (req) => {
+  whoContact: req => {
     let nextStep;
 
     if (req.sessionModel.get('who-contact') === 'someone-else') {
@@ -190,7 +190,7 @@ module.exports = {
 
     return nextStep;
   },
-  whereExploitationHappened: (req) => {
+  whereExploitationHappened: req => {
     let nextStep;
 
     if (req.sessionModel.get('where-exploitation-happened') === 'overseas') {
@@ -205,7 +205,7 @@ module.exports = {
 
     return nextStep;
   },
-  whereExploitationHappenedUk: (req) => {
+  whereExploitationHappenedUk: req => {
     let nextStep;
 
     if (req.sessionModel.get('where-exploitation-happened') === 'uk-and-overseas') {
@@ -220,7 +220,7 @@ module.exports = {
 
     return nextStep;
   },
-  whereExploitationHappenedOverseas: (req) => {
+  whereExploitationHappenedOverseas: req => {
     let nextStep = '/nrm/current-pv-location';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -228,5 +228,5 @@ module.exports = {
     }
 
     return nextStep;
-  },
+  }
 };

@@ -1,10 +1,6 @@
 {
-  "build": {
-    "translate": {
-      "shared": "./apps/common/translations/src"
-    }
-  },
-  "theme": "govuk",
+  "appName": "Report Modern Slavery",
+  "theme": "govUK",
   "routes": [
     "./apps/common",
     "./apps/verify",

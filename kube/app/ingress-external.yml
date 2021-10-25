@@ -1,0 +1,48 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: ingress-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: ingress
+  {{ end }}
+{{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
+spec:
+  tls:
+    - hosts:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        - {{ .DRONE_BUILD_NUMBER }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+        - ms-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+        - dev.ms-notprod.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+        - preprod.ms-notprod.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+        - {{ .PRODUCTION_URL }}
+      {{ end }}
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      secretName: branch-tls-external
+      {{ else }}
+      secretName: cert-cmio
+      {{ end }}
+  rules:
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    - host: ms-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+    - host: dev.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+    - host: preprod.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+    - host: {{ .PRODUCTION_URL }}
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            backend:
+              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              serviceName: app-{{ .DRONE_SOURCE_BRANCH }}
+              {{ else }}
+              serviceName: app
+              {{ end }}
+              servicePort: 10443

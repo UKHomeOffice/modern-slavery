@@ -2,13 +2,17 @@ version: "2"
 services:
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-acceptance
     environment:
-      - NODE_ENV=development
+      - ALLOW_SKIP=true
+      - SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
+      - NODE_ENV=local
       - IGNORE_TLS=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - CASEWORKER_EMAIL=serviceopstesting@digital.homeoffice.gov.uk
+      - CASEWORKER_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
     links:
       - redis
       - chrome-browser:chrome

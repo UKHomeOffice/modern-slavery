@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  coOperateWithPolice: (req) => {
+  coOperateWithPolice: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -20,7 +20,7 @@ module.exports = {
 
     return backLink;
   },
-  confirm: (req) => {
+  confirm: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'yes' || req.sessionModel.get('pv-under-age') !== 'no') {
@@ -33,7 +33,7 @@ module.exports = {
 
     return backLink;
   },
-  doesPvHaveChildren: (req) => {
+  doesPvHaveChildren: req => {
     let backLink = '/nrm/pv-gender';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -42,7 +42,7 @@ module.exports = {
 
     return backLink;
   },
-  doesPvNeedSupport: (req) => {
+  doesPvNeedSupport: req => {
     let backLink = '/nrm/pv-want-to-submit-nrm';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -51,7 +51,7 @@ module.exports = {
 
     return backLink;
   },
-  frAlternativeContact: (req) => {
+  frAlternativeContact: req => {
     let backLink = '/nrm/fr-details';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -60,7 +60,7 @@ module.exports = {
 
     return backLink;
   },
-  frDetails: (req) => {
+  frDetails: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -75,7 +75,7 @@ module.exports = {
 
     return backLink;
   },
-  localAuthorityContactedAboutChild: (req) => {
+  localAuthorityContactedAboutChild: req => {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -86,7 +86,7 @@ module.exports = {
 
     return backLink;
   },
-  pvContactDetails: (req) => {
+  pvContactDetails: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -101,7 +101,7 @@ module.exports = {
 
     return backLink;
   },
-  pvDob: (req) => {
+  pvDob: req => {
     let backLink = '/nrm/pv-name';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -110,7 +110,7 @@ module.exports = {
 
     return backLink;
   },
-  pvGender: (req) => {
+  pvGender: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -125,7 +125,7 @@ module.exports = {
 
     return backLink;
   },
-  pvHoReference: (req) => {
+  pvHoReference: req => {
     let backLink = '/nrm/pv-other-help-with-communication';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -134,7 +134,7 @@ module.exports = {
 
     return backLink;
   },
-  pvInterpreterRequirements: (req) => {
+  pvInterpreterRequirements: req => {
     let backLink = '/nrm/pv-nationality';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -143,7 +143,7 @@ module.exports = {
 
     return backLink;
   },
-  pvName: (req) => {
+  pvName: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -160,7 +160,7 @@ module.exports = {
 
     return backLink;
   },
-  pvNationality: (req) => {
+  pvNationality: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-want-to-submit-nrm') === 'no') {
@@ -175,7 +175,7 @@ module.exports = {
 
     return backLink;
   },
-  pvPhoneNumber: (req) => {
+  pvPhoneNumber: req => {
     let backLink;
 
     if (req.sessionModel.get('who-contact') === 'someone-else') {
@@ -190,7 +190,7 @@ module.exports = {
 
     return backLink;
   },
-  pvUnderAgeAtTimeOfExploitation: (req) => {
+  pvUnderAgeAtTimeOfExploitation: req => {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -201,7 +201,7 @@ module.exports = {
 
     return backLink;
   },
-  pvWantToSubmitNrm: (req) => {
+  pvWantToSubmitNrm: req => {
     let backLink = '/nrm/reported-to-police';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -210,7 +210,7 @@ module.exports = {
 
     return backLink;
   },
-  refuseNrm: (req) => {
+  refuseNrm: req => {
     let backLink = '/nrm/pv-want-to-submit-nrm';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -219,7 +219,7 @@ module.exports = {
 
     return backLink;
   },
-  reportedToPolice: (req) => {
+  reportedToPolice: req => {
     let backLink = '/nrm/any-other-pvs';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -228,7 +228,7 @@ module.exports = {
 
     return backLink;
   },
-  someoneElse: (req) => {
+  someoneElse: req => {
     let backLink = '/nrm/who-contact';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -237,7 +237,7 @@ module.exports = {
 
     return backLink;
   },
-  whatHappened: (req) => {
+  whatHappened: req => {
     let backLink;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
@@ -252,7 +252,7 @@ module.exports = {
 
     return backLink;
   },
-  whoContact: (req) => {
+  whoContact: req => {
     let backLink = '/nrm/pv-ho-reference';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -261,7 +261,7 @@ module.exports = {
 
     return backLink;
   },
-  whereExploitationHappened: (req) => {
+  whereExploitationHappened: req => {
     let backLink = '/nrm/what-happened';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -270,7 +270,7 @@ module.exports = {
 
     return backLink;
   },
-  whereExploitationHappenedUk: (req) => {
+  whereExploitationHappenedUk: req => {
     let backLink = '/nrm/where-exploitation-happened';
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -279,7 +279,7 @@ module.exports = {
 
     return backLink;
   },
-  whereExploitationHappenedOverseas: (req) => {
+  whereExploitationHappenedOverseas: req => {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -292,7 +292,7 @@ module.exports = {
 
     return backLink;
   },
-  currentPvLocation: (req) => {
+  currentPvLocation: req => {
     let backLink;
 
     if (req.params && req.params.action && req.params.action === 'edit') {
@@ -304,5 +304,5 @@ module.exports = {
     }
 
     return backLink;
-  },
+  }
 };

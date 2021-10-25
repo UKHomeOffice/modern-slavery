@@ -557,34 +557,6 @@
       }
     }
   },
-  "supporting-document-upload": {
-    "label": "Upload a file"
-  },
-  "supporting-document-description": {
-    "label": "Description (optional)"
-  },
-  "supporting-documents-add": {
-    "legend": "Do you want to upload supporting documents?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "supporting-documents-add-another": {
-    "legend": "Do you want to upload any additional documents to support your application?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
   "fr-details-first-name": {
     "label": "First name"
   },

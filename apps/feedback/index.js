@@ -13,7 +13,7 @@ module.exports = {
       next: '/complete'
     },
     '/complete': {
-      backLink: false,
+      backLink: false
     }
   }
 };

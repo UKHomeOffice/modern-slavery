@@ -203,10 +203,6 @@
   "co-operate-with-police" : {
     "required": "You must select an option"
   },
-  "supporting-document-upload": {
-    "filesize": "That file is too big. We only accept files smaller than 100mb",
-    "required": "Upload a document"
-  },
   "fr-details-first-name" : {
     "required": "You must enter your first name ",
     "maxlength": "You must enter no more than 15,000 characters"

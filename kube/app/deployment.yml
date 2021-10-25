@@ -1,0 +1,219 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: app-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: app
+  {{ end }}
+spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 3
+  {{ else }}
+  replicas: 1
+  {{ end }}
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: app-{{ .DRONE_SOURCE_BRANCH }}
+      service: app-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: app
+      service: app
+      {{ end }}
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8082"
+        prometheus.io/path: "/"
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: app-{{ .DRONE_SOURCE_BRANCH }}
+        service: app-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: app
+        service: app
+        {{ end }}
+        build: "{{.DRONE_BUILD_NUMBER}}"
+        commit: "{{.DRONE_COMMIT_SHA}}"
+    spec:
+      containers:
+        - name: app
+          image: {{ .IMAGE_URL }}/{{ .IMAGE_REPO }}:{{ .DRONE_COMMIT_SHA }}
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 30Mi
+              cpu: 30m
+            limits:
+              memory: 512Mi
+              cpu: 600m
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: LISTEN_HOST
+              value: 127.0.0.1
+            - name: REDIS_PORT
+              value: "6379"
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+            - name: REDIS_HOST
+              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: redis-{{ .DRONE_SOURCE_BRANCH }}
+              {{ else }}
+              value: redis
+              {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DATASERVICE_SERVICE_HOST
+              value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
+            - name: DATASERVICE_SERVICE_PORT_HTTPS
+              value: "10443"
+            - name: ALLOW_SKIP
+              value: "true"
+            - name: SKIP_EMAIL
+              value: "sas-hof-test@digital.homeoffice.gov.uk"
+            {{ end }}
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: session-secret
+                  key: session-secret
+            - name: NOTIFY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: notify-key
+                  key: notify-key
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-branch-sqs
+                  key: access_key_id
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: sqs_url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sas-ms-uat-sqs
+                  key: access_key_id
+            {{ else }}
+            - name: AWS_SQS
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: url
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-sqs
+                  key: aws_access_key_id
+            {{ end }}
+            - name: AUDIT_DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: endpoint
+            - name: AUDIT_DB_USER
+              value: hof
+            - name: AUDIT_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: users
+                  key: hof
+            - name: AUDIT_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: audit-database
+                  key: default_db
+            - name: AUDIT_DATA
+              value: "true"
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              httpHeaders:
+              - name: X-probe
+                value: kubelet
+              path: /healthz/ping
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 15
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              httpHeaders:
+              - name: X-probe
+                value: kubelet
+              path: /healthz/readiness
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 40
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 15
+
+        - name: nginx-proxy
+          # nginx-proxy-govuk:v4.1.4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+          env:
+{{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "8081"
+            - name: STATSD_METRICS
+              value: "FALSE"
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+      volumes:
+        - name: public
+          emptyDir: {}

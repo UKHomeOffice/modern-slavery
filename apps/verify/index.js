@@ -14,7 +14,7 @@ module.exports = {
       next: '/check-inbox'
     },
     '/check-inbox': {
-      behaviours: require('./behaviours/confirm-email-passer'),
+      behaviours: require('./behaviours/confirm-email-passer')
     }
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 'use strict';
 
 const appConfig = require('../../../config');
@@ -9,9 +10,8 @@ if (appConfig.audit.enabled) {
   db = require('./../../common/db');
 }
 
-module.exports = config => {
-
-  config = config || {};
+module.exports = conf => {
+  const config = conf || {};
   let producer;
 
   if (appConfig.writeToCasework) {
@@ -22,14 +22,13 @@ module.exports = config => {
   }
 
   return superclass => class extends superclass {
-
     saveValues(req, res, next) {
       req.log('debug', 'Submitting case to message queue');
       super.saveValues(req, res, err => {
         if (err) {
           return next(err);
         }
-        let caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON()) :
+        const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON()) :
           { info: 'No submission was made to icasework' };
 
         req.sessionModel.set('jsonPayload', caseWorkPayload);
@@ -41,8 +40,8 @@ module.exports = config => {
           // send casework model to AWS SQS
           const caseworkModel = config.prepare(req.sessionModel.toJSON());
           producer.send([{
-              id: uuid(),
-              body: JSON.stringify(caseworkModel)
+            id: uuid(),
+            body: JSON.stringify(caseworkModel)
           }], error => {
             if (appConfig.audit.enabled) {
               db('hof').insert({
@@ -59,7 +58,5 @@ module.exports = config => {
         }
       });
     }
-
   };
-
 };

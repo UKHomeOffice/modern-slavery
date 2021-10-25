@@ -1,0 +1,191 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: data-service
+  {{ end }}
+spec:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  replicas: 1
+  {{ else }}
+  replicas: 2
+  {{ end }}
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: data-service
+      service: data-service
+      {{ end }}
+  template:
+    metadata:
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: data-service
+        service: data-service
+        {{ end }}
+        build: "{{.DRONE_BUILD_NUMBER}}"
+        commit: "{{.DRONE_COMMIT_SHA}}"
+    spec:
+      containers:
+        - name: alert-service
+          # release v2.0.0
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:da399c8ae391bc8cac52f4b84450fd99b90397ad
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: NOTIFY_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: notify-key
+                  name: notify-key
+            {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+            - name: DB_USER
+              value: reports
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: audit-database
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: audit-database
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: reports
+                  name: users
+            {{ else }}
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: ms-dev-rds
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: ms-dev-rds
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: ms-dev-rds
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: ms-dev-rds
+            {{ end }}
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          securityContext:
+            runAsNonRoot: true
+
+        - name: data-service
+          # release v2.0.0
+          image: quay.io/ukhomeofficedigital/save-return-api:e04cad6cf26854fd55dee73acfd4f119d37c71a9
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            {{ if or (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
+            - name: APP_ID
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: data-service
+            - name: APP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: data-service
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: port
+                  name: ms-dev-rds
+            {{ end }}
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: audit-database
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: default_db
+                  name: audit-database
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: audit-database
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: audit-database
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy
+          # nginx-proxy-govuk:v4.1.4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+{{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "3000"
+          ports:
+            - containerPort: 10080
+              protocol: TCP
+            - containerPort: 10443
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+      volumes:
+        - name: public
+          emptyDir: {}

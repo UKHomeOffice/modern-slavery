@@ -1,8 +1,6 @@
 'use strict';
 
 const checkEmailToken = require('./behaviours/check-email-token');
-const supportingDocuments = require('./behaviours/supporting-documents');
-const supportingDocumentsAddAnother = require('./behaviours/supporting-documents-add-another');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
 const saveMissingData = require('./behaviours/save-missing-data');
 const transferMissingData = require('./behaviours/transfer-missing-data');
@@ -89,7 +87,7 @@ module.exports = {
         }),
         saveFormSession
       ],
-      fields: ['pv-under-age'],
+      fields: ['pv-under-age']
     },
     '/local-authority-contacted-about-child': {
       behaviours: [
@@ -101,7 +99,7 @@ module.exports = {
         'local-authority-contacted-about-child-local-authority-phone',
         'local-authority-contacted-about-child-local-authority-email',
         'local-authority-contacted-about-child-local-authority-first-name',
-        'local-authority-contacted-about-child-local-authority-last-name',
+        'local-authority-contacted-about-child-local-authority-last-name'
       ],
       next: '/what-happened'
     },
@@ -141,13 +139,13 @@ module.exports = {
             'what-happened',
             'reference',
             'id'
-          ],
+          ]
         }),
         saveFormSession
       ],
       fields: [
         'where-exploitation-happened'
-      ],
+      ]
     },
     '/where-exploitation-happened-uk': {
       behaviours: [
@@ -167,8 +165,8 @@ module.exports = {
         'where-exploitation-happened-uk-city-8',
         'where-exploitation-happened-uk-city-9',
         'where-exploitation-happened-uk-city-10',
-        'where-exploitation-happened-other-uk-other-location',
-      ],
+        'where-exploitation-happened-other-uk-other-location'
+      ]
     },
     '/where-exploitation-happened-overseas': {
       behaviours: [
@@ -187,8 +185,8 @@ module.exports = {
         'where-exploitation-happened-overseas-country-8',
         'where-exploitation-happened-overseas-country-9',
         'where-exploitation-happened-overseas-country-10',
-        'where-exploitation-happened-other-overseas-other-location',
-      ],
+        'where-exploitation-happened-other-overseas-other-location'
+      ]
     },
     '/current-pv-location': {
       behaviours: [
@@ -197,7 +195,7 @@ module.exports = {
       ],
       fields: [
         'current-pv-location-uk-city',
-        'current-pv-location-uk-region',
+        'current-pv-location-uk-region'
       ],
       next: '/who-exploited-pv'
     },
@@ -226,7 +224,7 @@ module.exports = {
         'types-of-exploitation-organs-removed',
         'types-of-exploitation-unpaid-household-work',
         'types-of-exploitation-other',
-        'other-exploitation-details',
+        'other-exploitation-details'
       ],
       next: '/any-other-pvs'
     },
@@ -247,7 +245,7 @@ module.exports = {
       fields: [
         'reported-to-police',
         'reported-to-police-police-forces',
-        'reported-to-police-crime-reference',
+        'reported-to-police-crime-reference'
       ]
     },
     '/pv-want-to-submit-nrm': {
@@ -294,7 +292,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['pv-want-to-submit-nrm'],
-      continueOnEdit: true,
+      continueOnEdit: true
     },
     '/refuse-nrm': {
       behaviours: [
@@ -344,15 +342,15 @@ module.exports = {
             'pv-want-to-submit-nrm',
             'reference',
             'id'
-          ],
+          ]
         }),
         saveFormSession
       ],
       fields: ['does-pv-need-support'],
-      continueOnEdit: true,
+      continueOnEdit: true
     },
     '/support-organisations': {
-      backLink: false,
+      backLink: false
     },
     '/pv-name': {
       behaviours: [
@@ -363,7 +361,7 @@ module.exports = {
       fields: [
         'pv-name-first-name',
         'pv-name-last-name',
-        'pv-name-nickname',
+        'pv-name-nickname'
       ]
     },
     '/pv-dob': {
@@ -382,7 +380,7 @@ module.exports = {
         saveMissingData('pv-gender'),
         saveFormSession
       ],
-      fields: ['pv-gender'],
+      fields: ['pv-gender']
     },
     '/does-pv-have-children': {
       behaviours: [
@@ -390,14 +388,14 @@ module.exports = {
         getPageCustomNextStep('does-pv-have-children'),
         saveMissingData([
           'does-pv-have-children',
-          'does-pv-have-children-yes-amount',
+          'does-pv-have-children-yes-amount'
         ]),
         saveFormSession
       ],
       fields: [
         'does-pv-have-children',
-        'does-pv-have-children-yes-amount',
-      ],
+        'does-pv-have-children-yes-amount'
+      ]
     },
     '/pv-nationality': {
       behaviours: [
@@ -405,13 +403,13 @@ module.exports = {
         getPageCustomNextStep('pv-nationality'),
         saveMissingData([
           'pv-nationality',
-          'pv-nationality-second',
+          'pv-nationality-second'
         ]),
         saveFormSession
       ],
       fields: [
         'pv-nationality',
-        'pv-nationality-second',
+        'pv-nationality-second'
       ],
       next: '/co-operate-with-police'
     },
@@ -420,27 +418,27 @@ module.exports = {
         getPageCustomBackLink('pv-interpreter-requirements'),
         saveMissingData([
           'pv-interpreter-requirements',
-          'pv-interpreter-requirements-language',
+          'pv-interpreter-requirements-language'
         ]),
         saveFormSession
       ],
       fields: [
         'pv-interpreter-requirements',
-        'pv-interpreter-requirements-language',
+        'pv-interpreter-requirements-language'
       ],
       next: '/pv-other-help-with-communication'
     },
     '/pv-other-help-with-communication': {
       behaviours: [
         saveMissingData([
-          'pv-other-help-with-communication', 'pv-other-help-with-communication-aid',
+          'pv-other-help-with-communication', 'pv-other-help-with-communication-aid'
         ]),
         getPageCustomBackLink('default'),
         saveFormSession
       ],
       fields: [
         'pv-other-help-with-communication',
-        'pv-other-help-with-communication-aid',
+        'pv-other-help-with-communication-aid'
       ],
       next: '/pv-ho-reference'
     },
@@ -450,14 +448,14 @@ module.exports = {
         getPageCustomNextStep('pv-ho-reference'),
         saveMissingData([
           'pv-ho-reference',
-          'pv-ho-reference-type',
+          'pv-ho-reference-type'
         ]),
         saveFormSession
       ],
       fields: [
         'pv-ho-reference',
-        'pv-ho-reference-type',
-      ],
+        'pv-ho-reference-type'
+      ]
     },
     '/who-contact': {
       behaviours: [
@@ -491,13 +489,13 @@ module.exports = {
             'fr-details-last-name',
             'fr-details-role',
             'fr-details-phone',
-            'fr-alternative-contact',
-          ],
+            'fr-alternative-contact'
+          ]
         }),
         saveFormSession
       ],
       fields: ['who-contact'],
-      continueOnEdit: true,
+      continueOnEdit: true
     },
     '/someone-else': {
       behaviours: [
@@ -514,8 +512,8 @@ module.exports = {
         'someone-else-town',
         'someone-else-county',
         'someone-else-postcode',
-        'someone-else-permission-check',
-      ],
+        'someone-else-permission-check'
+      ]
     },
     '/pv-contact-details': {
       behaviours: [
@@ -536,7 +534,7 @@ module.exports = {
           'pv-other-help-with-communication-aid',
           'who-contact',
           'pv-phone-number',
-          'pv-phone-number-yes',
+          'pv-phone-number-yes'
         ]),
         saveFormSession
       ],
@@ -548,21 +546,21 @@ module.exports = {
         'pv-contact-details-town',
         'pv-contact-details-county',
         'pv-contact-details-postcode',
-        'pv-contact-details-post-check',
-      ],
+        'pv-contact-details-post-check'
+      ]
     },
     '/pv-phone-number': {
       behaviours: [
         getPageCustomBackLink('pv-phone-number'),
         saveMissingData([
           'pv-phone-number',
-          'pv-phone-number-yes',
+          'pv-phone-number-yes'
         ]),
         saveFormSession
       ],
       fields: [
         'pv-phone-number',
-        'pv-phone-number-yes',
+        'pv-phone-number-yes'
       ],
       next: '/co-operate-with-police'
     },
@@ -586,7 +584,7 @@ module.exports = {
           'pv-other-help-with-communication-aid',
           'pv-phone-number',
           'pv-phone-number-yes',
-          'who-contact',
+          'who-contact'
         ]),
         deleteOnChange({
           currentField: 'co-operate-with-police',
@@ -606,7 +604,7 @@ module.exports = {
             'fr-details-last-name',
             'fr-details-role',
             'fr-details-phone',
-            'fr-alternative-contact',
+            'fr-alternative-contact'
           ],
           exceptions: [
             {
@@ -623,48 +621,13 @@ module.exports = {
                 'pv-contact-details-town',
                 'pv-contact-details-county',
                 'pv-contact-details-postcode',
-                'pv-contact-details-post-check',
-              ],
-            },
-          ],
+                'pv-contact-details-post-check'
+              ]
+            }
+          ]
         }),
         saveFormSession
-      ],
-    },
-    '/supporting-documents-add': {
-      fields: [
-        'supporting-documents-add'
-      ],
-      forks: [{
-        target: '/supporting-documents',
-        condition: {
-          field: 'supporting-documents-add',
-          value: 'yes'
-        }
-      }],
-    },
-    '/supporting-documents': {
-      behaviours: supportingDocuments,
-      fields: [
-      'supporting-document-upload',
-      'supporting-document-description'
-      ],
-      continueOnEdit: true,
-      next: '/supporting-documents-add-another'
-    },
-    '/supporting-documents-add-another': {
-      fields: [
-        'supporting-documents-add-another'
-      ],
-      behaviours: supportingDocumentsAddAnother,
-      forks: [{
-        target: '/supporting-documents',
-        condition: {
-          field: 'supporting-documents-add-another',
-          value: 'yes'
-        }
-      }],
-      continueOnEdit: true,
+      ]
     },
     '/fr-details': {
       behaviours: [
@@ -675,7 +638,7 @@ module.exports = {
         'fr-details-first-name',
         'fr-details-last-name',
         'fr-details-role',
-        'fr-details-phone',
+        'fr-details-phone'
       ],
       next: '/fr-alternative-contact'
     },
@@ -702,11 +665,11 @@ module.exports = {
         ]),
         saveFormSession
       ],
-      fields: ['fr-alternative-contact'],
+      fields: ['fr-alternative-contact']
     },
     '/confirm': {
       behaviours: [
-        require('hof-behaviour-summary-page'),
+        require('hof').components.summary,
         formatAnswers,
         hideAndShowSummaryFields,
         getPageCustomBackLink('confirm'),
@@ -720,13 +683,13 @@ module.exports = {
     '/confirmation': {
       backLink: false,
       behaviours: [
-        confirmation,
-      ],
+        confirmation
+      ]
     },
     '/continue-report': {
       backLink: false,
       behaviours: [
-        require('hof-behaviour-summary-page'),
+        require('hof').components.summary,
         formatAnswers,
         hideAndShowSummaryFields,
         fullWidth,

@@ -34,15 +34,24 @@ const sendEmail = (email, host, token) => {
 
 module.exports = superclass => class extends superclass {
 
+  skipEmailVerification(email) {
+    return config.allowSkip && email === config.skipEmail;
+  }
+
   saveValues(req, res, callback) {
+    const email = req.form.values['user-email'];
+
+    if (this.skipEmailVerification(email)) {
+      return callback();
+    }
+
     super.saveValues(req, res, err => {
-      const email = req.form.values['user-email'];
       const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
 
       const isRecognisedEmail = emailDomainCheck.isValidDomain(emailDomain);
 
-      if (isRecognisedEmail === false) {
+      if (!isRecognisedEmail) {
         req.sessionModel.set('recognised-email', false);
         return callback(err);
       }
@@ -60,6 +69,13 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.unset('recognised-email');
       return 'email-not-recognised';
     }
+
+    const email = req.form.values['user-email'];
+
+    if (this.skipEmailVerification(email)) {
+      return res.redirect('/nrm/start?token=skip');
+    }
+
     return super.getNextStep(req, res);
   }
 };

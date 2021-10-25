@@ -12,15 +12,14 @@ const capitaliseText = (text, all = false) => {
   const capitalisedText = text.charAt(0).toUpperCase() + text.slice(1);
 
   if (all) {
-    var splitString = text.toLowerCase().split(' ');
-    for (var i = 0; i < splitString.length; i++) {
+    const splitString = text.toLowerCase().split(' ');
+    for (let i = 0; i < splitString.length; i++) {
       splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
     }
     return splitString.join(' ');
   }
 
   return capitalisedText;
-
 };
 
 /**
@@ -30,7 +29,7 @@ const capitaliseText = (text, all = false) => {
  *
  * @returns {string} - the text without dashes
  */
-const removeDashesFromText = (text) => {
+const removeDashesFromText = text => {
   const strippedDashes = text.replace('-', ' ');
 
   return strippedDashes;
@@ -38,5 +37,5 @@ const removeDashesFromText = (text) => {
 
 module.exports = {
   capitaliseText,
-  removeDashesFromText,
+  removeDashesFromText
 };

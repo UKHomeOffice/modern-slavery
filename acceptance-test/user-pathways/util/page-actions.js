@@ -11,15 +11,15 @@ const VIEWPORT = { width: 1920, height: 1080 };
  * @returns {Promise}
  */
 async function clickSelector(page, selector) {
-    await page.waitForSelector(selector);
-    await page.focus(selector);
-    await page.click(selector);
+  await page.waitForSelector(selector);
+  await page.focus(selector);
+  await page.click(selector);
 }
 
 async function focusThenType(page, selector, text) {
-    await page.waitForSelector(selector);
-    await page.focus(selector);
-    await page.keyboard.type(text);
+  await page.waitForSelector(selector);
+  await page.focus(selector);
+  await page.keyboard.type(text);
 }
 
 /**
@@ -31,8 +31,8 @@ async function focusThenType(page, selector, text) {
  * @returns {Promise}
  */
 async function navigateTo(page, urlString) {
-    await page.goto(urlString);
-    await page.setViewport(VIEWPORT);
+  await page.goto(urlString);
+  await page.setViewport(VIEWPORT);
 }
 
 /**
@@ -45,14 +45,14 @@ async function navigateTo(page, urlString) {
  * @returns {void}
  */
 async function uploadFile(page, selector, filePath) {
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
-    await input.uploadFile(filePath);
+  await page.waitForSelector(selector);
+  const input = await page.$(selector);
+  await input.uploadFile(filePath);
 }
 
 module.exports = {
-    clickSelector,
-    focusThenType,
-    navigateTo,
-    uploadFile,
+  clickSelector,
+  focusThenType,
+  navigateTo,
+  uploadFile
 };
