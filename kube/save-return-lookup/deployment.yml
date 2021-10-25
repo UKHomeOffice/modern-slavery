@@ -140,7 +140,7 @@ spec:
               {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://preprod-lookup.ms-notprod.homeoffice.gov.uk/
               {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://dev-lookup.ms-notprod.homeoffice.gov.uk/
+              value: https://uat-lookup.ms-notprod.homeoffice.gov.uk/
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/
               {{ end }}
