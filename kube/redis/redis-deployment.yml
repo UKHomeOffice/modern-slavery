@@ -12,9 +12,9 @@ spec:
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      app: redis-{{ .DRONE_SOURCE_BRANCH }}
+      name: redis-{{ .DRONE_SOURCE_BRANCH }}
       {{ else }}
-      app: redis
+      name: redis
       {{ end }}
   template:
     metadata:
@@ -22,11 +22,9 @@ spec:
         {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
         name: redis-{{ .DRONE_SOURCE_BRANCH }}
         service: redis-{{ .DRONE_SOURCE_BRANCH }}
-        app: redis-{{ .DRONE_SOURCE_BRANCH }}
         {{ else }}
         name: redis
         service: redis
-        app: redis
         {{ end }}
     spec:
       containers:
