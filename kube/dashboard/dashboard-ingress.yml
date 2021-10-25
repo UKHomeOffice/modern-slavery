@@ -15,7 +15,7 @@ spec:
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - dashboard.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - dashboard.{{ .UAT_ENV }}.homeoffice.gov.uk
+    - uat-dashboard.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ end }}
@@ -30,7 +30,7 @@ spec:
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   - host: dashboard.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  - host: dashboard.{{ .UAT_ENV }}.homeoffice.gov.uk
+  - host: uat-dashboard.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   - host: dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ end }}

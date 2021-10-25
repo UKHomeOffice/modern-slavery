@@ -17,7 +17,7 @@ spec:
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - preprod-data-service.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - dev-data-service.ms-notprod.homeoffice.gov.uk
+    - uat-data-service.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - data-service-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ end }}
@@ -32,7 +32,7 @@ spec:
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   - host: preprod-data-service.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  - host: dev-data-service.ms-notprod.homeoffice.gov.uk
+  - host: uat-data-service.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   - host: data-service-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ end }}

@@ -17,7 +17,7 @@ spec:
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - preprod-lookup.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - dev-lookup.ms-notprod.homeoffice.gov.uk
+    - uat-lookup.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ end }}
@@ -32,7 +32,7 @@ spec:
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   - host: preprod-lookup.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  - host: dev-lookup.ms-notprod.homeoffice.gov.uk
+  - host: uat-lookup.ms-notprod.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   - host: lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ end }}

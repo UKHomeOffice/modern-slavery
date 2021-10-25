@@ -15,7 +15,7 @@ spec:
         - {{ .DRONE_BUILD_NUMBER }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
         - ms-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-        - dev.internal.ms-notprod.homeoffice.gov.uk
+        - uat.internal.ms-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - preprod.internal.ms-notprod.homeoffice.gov.uk
       {{ end }}
@@ -28,7 +28,7 @@ spec:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - host: ms-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - host: dev.internal.ms-notprod.homeoffice.gov.uk
+    - host: uat.internal.ms-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - host: preprod.internal.ms-notprod.homeoffice.gov.uk
     {{ end }}
