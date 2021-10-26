@@ -45,7 +45,7 @@ spec:
               {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://dashboard.ms-notprod.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://dashboard.{{ .UAT_ENV }}.homeoffice.gov.uk
+              value: https://uat-dashboard.ms-notprod.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://dashboard-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
               {{ end }}
