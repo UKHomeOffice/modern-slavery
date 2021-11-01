@@ -24,28 +24,28 @@ export KUBE_NAMESPACE=$1
 export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
-  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/configmaps -f kube/certs
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
-  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
-  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-prod.crt
 
-  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
