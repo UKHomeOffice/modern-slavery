@@ -39,7 +39,7 @@ spec:
         - name: icasework-resolver
           # Release v4.0.1
           # DO NOT MERGE: Changing this to point to branch for iCw resolver
-          image: quay.io/ukhomeofficedigital/icasework-resolver:0acb865590b2a21b2ed7b41da7685d266085657b039daca2ae6abe3500bb7f6f
+          image: quay.io/ukhomeofficedigital/icasework-resolver:ed4433a5b4364656544434dc544b1eb642cab758
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
