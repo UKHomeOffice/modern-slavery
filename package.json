@@ -73,7 +73,8 @@
     "snyk": "^1.717.0"
   },
   "resolutions": {
-    "underscore": "^1.12.1"
+    "underscore": "^1.12.1",
+    "hof/browserify/shell-quote": "^1.7.3"
   },
   "mocha": {
     "reporter": "spec",
