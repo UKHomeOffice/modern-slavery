@@ -38,7 +38,8 @@ spec:
       containers:
         - name: icasework-resolver
           # Release v4.0.1
-          image: quay.io/ukhomeofficedigital/icasework-resolver:1fe7b36d1ca5a1caf35ab3d323e762830c3ddaf5
+          # DO NOT MERGE: Changing this to point to branch for iCw resolver
+          image: quay.io/ukhomeofficedigital/icasework-resolver:0acb865590b2a21b2ed7b41da7685d266085657b039daca2ae6abe3500bb7f6f
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
