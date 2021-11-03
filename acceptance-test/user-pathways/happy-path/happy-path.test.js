@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 const path = require('path');
-const fs = require('fs');
 const downloadPath = path.resolve('./acceptance-test/temp-downloads');
-const promptSheet = require('../../../config').promptSheet;
 const bootstrap = require('../../bootstrap/bootstrap');
 const config = require('../../test-config');
 const pageActions = require('../util/page-actions');
@@ -289,8 +287,6 @@ describe.only('User path(s)', () => {
   }).timeout(defaultTimeout);
 
   it('downloads the prompt sheet', async () => {
-    let fileExists;
-    const filePath = `${downloadPath}/${promptSheet}`
     try {
       await page._client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
@@ -300,7 +296,7 @@ describe.only('User path(s)', () => {
       await clickSelector(page, DOWNLOAD_REPORT);
       await clickSelector(page, DOWNLOAD_REPORT);
       const pageContent = await page.content();
-      const result = pageContent.includes('Not found')
+      const result = pageContent.includes('Not found');
       expect(result).to.be.false;
     } catch (err) {
       throw new Error(err);
