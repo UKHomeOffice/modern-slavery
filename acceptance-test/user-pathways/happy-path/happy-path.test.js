@@ -288,7 +288,7 @@ describe.only('User path(s)', () => {
     }
   }).timeout(defaultTimeout);
 
-  it.only('downloads the prompt sheet', async () => {
+  it('downloads the prompt sheet', async () => {
     let fileExists;
     const filePath = `${downloadPath}/${promptSheet}`
     try {
@@ -299,15 +299,9 @@ describe.only('User path(s)', () => {
 
       await clickSelector(page, DOWNLOAD_REPORT);
       await clickSelector(page, DOWNLOAD_REPORT);
-      await fs.access(filePath, fs.F_OK, (err) => {
-        if (err) {
-          fileExists = false;
-        } else {
-          fileExists = true;
-        }
-        expect(fileExists).to.deep.equal(true);
-      })
-
+      const pageContent = await page.content();
+      const result = pageContent.includes('Not found')
+      expect(result).to.be.false;
     } catch (err) {
       throw new Error(err);
     }
