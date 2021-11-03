@@ -13,3 +13,4 @@ dump.rdb
 .DS_Store
 coverage
 anchore-reports/
+acceptance-test/temp-downloads/
