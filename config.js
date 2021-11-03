@@ -47,5 +47,6 @@ module.exports = {
     templateFeedback: process.env.TEMPLATE_FEEDBACK || '92b314e9-8ed5-4762-a8e2-7f208cdf3836',
     caseworkerEmail: process.env.CASEWORKER_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk',
     feedbackEmail: process.env.FEEDBACK_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk'
-  }
+  },
+  promptSheet: 'nrm-form-offline-v2-19-09-2019.pdf'
 };

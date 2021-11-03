@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
+const path = require('path');
+const downloadPath = path.resolve('./acceptance-test/temp-downloads');
 const bootstrap = require('../../bootstrap/bootstrap');
 const config = require('../../test-config');
 const pageActions = require('../util/page-actions');
@@ -8,6 +10,7 @@ const { clickSelector, focusThenType, navigateTo } = pageActions;
 const {
   START_REPORT,
   CONTINUE_BUTTON,
+  DOWNLOAD_REPORT,
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
   EMAIL_INPUT,
@@ -278,6 +281,23 @@ describe.only('User path(s)', () => {
     try {
       await verifyUser();
       await completeForm1of2('adult', false);
+    } catch (err) {
+      throw new Error(err);
+    }
+  }).timeout(defaultTimeout);
+
+  it('downloads the prompt sheet', async () => {
+    try {
+      await page._client.send('Page.setDownloadBehavior', {
+        behavior: 'allow',
+        downloadPath: downloadPath
+      });
+
+      await clickSelector(page, DOWNLOAD_REPORT);
+      await clickSelector(page, DOWNLOAD_REPORT);
+      const pageContent = await page.content();
+      const result = pageContent.includes('Not found');
+      expect(result).to.be.false;
     } catch (err) {
       throw new Error(err);
     }

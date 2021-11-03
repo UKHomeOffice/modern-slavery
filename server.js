@@ -4,6 +4,7 @@ const hof = require('hof');
 const download = require('./lib/download-file');
 const settings = require('./hof.settings');
 const path = require('path');
+const promptSheet = require('./config').promptSheet;
 
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
@@ -15,7 +16,7 @@ const app = hof(settings);
 
 // Downloads the offline form to client side
 app.use('/prompt-sheet-for-working-offline', (req, res) => {
-  download.responseFile('/assets/documents', 'nrm-form-offline-v2-19-09-2019.pdf', res);
+  download.responseFile('/assets/documents', promptSheet, res);
 });
 
 const addGenericLocals = (req, res, next) => {
