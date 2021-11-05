@@ -3818,10 +3818,10 @@ ms-countries@^1.0.0:
   resolved "https://registry.yarnpkg.com/ms-countries/-/ms-countries-1.0.0.tgz#6ca15f9f9db332e0e1e502c93496e81ca2d8410e"
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
-ms-email-domains@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.2.5.tgz#02654b13cf51c63466a1118adebdda8f950fef91"
-  integrity sha512-s8a8ryUGB2Sojg5JZc60JmdJHyG8azfq6PhznGcO10daJT3d3Bs3Dh589XsTtjM/RIFR9FuO5u0lWyDQHrpBGw==
+ms-email-domains@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.2.6.tgz#38fb065e56509381b3e33ee51eb61980b8193b9f"
+  integrity sha512-URsiUKx7azotwbLm+y6iT1t6gZ687j2DnvHXM6gTAFGKjjwruONpy73BiTwNZoObd6bQ21+6N46V33i13IeMaA==
 
 ms-nationalities@^1.0.1:
   version "1.0.1"
