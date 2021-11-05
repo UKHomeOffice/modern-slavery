@@ -7,14 +7,12 @@ module.exports = {
     '/accessibility': 'accessibility',
     '/support-organisations': 'support-organisations',
     '/designated-organisations': 'designated-organisations',
-    '/cookies': 'cookies'
+    '/cookies': 'cookies',
+    '/paper-version-download': 'paper-version-download'
   },
   steps: {
     '/start': {
       next: '/verify/who-do-you-work-for'
-    },
-    '/paper-version-download': {
-      backLink: false
     }
   }
 };
