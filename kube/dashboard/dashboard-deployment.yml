@@ -1162,20 +1162,131 @@ spec:
                           "timeAggregation": "sum"
                         }
                       ],
-                      "thresholds": "",
                       "timeFrom": null,
                       "timeShift": null,
                       "title": "Number of SQS Messages Recieved",
-                      "type": "singlestat",
-                      "valueFontSize": "200%",
-                      "valueMaps": [
+                      "type": "stat"
+                    },
+                    {
+                      "cacheTimeout": null,
+                      "datasource": "Postgres",
+                      "description": "",
+                      "fieldConfig": {
+                        "defaults": {
+                          "color": {
+                            "mode": "thresholds"
+                          },
+                          "mappings": [
+                            {
+                              "options": {
+                                "match": "null",
+                                "result": {
+                                  "text": "N/A"
+                                }
+                              },
+                              "type": "special"
+                            }
+                          ],
+                          "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                              {
+                                "color": "green",
+                                "value": null
+                              },
+                              {
+                                "color": "red",
+                                "value": 80
+                              }
+                            ]
+                          },
+                          "unit": "short"
+                        },
+                        "overrides": []
+                      },
+                      "gridPos": {
+                        "h": 5,
+                        "w": 12,
+                        "x": 0,
+                        "y": 19
+                      },
+                      "id": 17,
+                      "interval": null,
+                      "links": [],
+                      "maxDataPoints": 100,
+                      "options": {
+                        "colorMode": "value",
+                        "graphMode": "none",
+                        "justifyMode": "auto",
+                        "orientation": "horizontal",
+                        "reduceOptions": {
+                          "calcs": [
+                            "sum"
+                          ],
+                          "fields": "",
+                          "values": false
+                        },
+                        "text": {},
+                        "textMode": "auto"
+                      },
+                      "pluginVersion": "8.0.6",
+                      "targets": [
                         {
-                          "op": "=",
-                          "text": "N/A",
-                          "value": "null"
+                          "format": "time_series",
+                          "group": [
+                            {
+                              "params": [
+                                "$__interval",
+                                "none"
+                              ],
+                              "type": "time"
+                            }
+                          ],
+                          "metricColumn": "none",
+                          "rawQuery": false,
+                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(duplicate) AS \"duplicate\"\nFROM duplicates\nWHERE\n  duplicate = true\nGROUP BY 1\nORDER BY 1",
+                          "refId": "A",
+                          "select": [
+                            [
+                              {
+                                "params": [
+                                  "duplicate"
+                                ],
+                                "type": "column"
+                              },
+                              {
+                                "params": [
+                                  "count"
+                                ],
+                                "type": "aggregate"
+                              },
+                              {
+                                "params": [
+                                  "duplicate"
+                                ],
+                                "type": "alias"
+                              }
+                            ]
+                          ],
+                          "table": "duplicates",
+                          "timeColumn": "created_at",
+                          "timeColumnType": "timestamptz",
+                          "where": [
+                            {
+                              "datatype": "bool",
+                              "name": "",
+                              "params": [
+                                "duplicate",
+                                "=",
+                                "true"
+                              ],
+                              "type": "expression"
+                            }
+                          ]
                         }
                       ],
-                      "valueName": "avg"
+                      "title": "Duplicates",
+                      "type": "stat"
                     },
                     {
                       "aliasColors": {},
@@ -1183,13 +1294,19 @@ spec:
                       "dashLength": 10,
                       "dashes": false,
                       "datasource": "Sysdig",
+                      "fieldConfig": {
+                        "defaults": {
+                          "links": []
+                        },
+                        "overrides": []
+                      },
                       "fill": 7,
                       "fillGradient": 0,
                       "gridPos": {
                         "h": 5,
                         "w": 24,
                         "x": 0,
-                        "y": 19
+                        "y": 24
                       },
                       "id": 1,
                       "legend": {
