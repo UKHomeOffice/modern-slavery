@@ -1178,98 +1178,6 @@ spec:
                       "valueName": "avg"
                     },
                     {
-                      "aliasColors": {},
-                      "bars": true,
-                      "dashLength": 10,
-                      "dashes": false,
-                      "datasource": "Sysdig",
-                      "fill": 7,
-                      "fillGradient": 0,
-                      "gridPos": {
-                        "h": 5,
-                        "w": 24,
-                        "x": 0,
-                        "y": 24
-                      },
-                      "id": 1,
-                      "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": false,
-                        "total": false,
-                        "values": false
-                      },
-                      "lines": false,
-                      "linewidth": 1,
-                      "nullPointMode": "null",
-                      "options": {
-                        "dataLinks": []
-                      },
-                      "percentage": false,
-                      "pointradius": 2,
-                      "points": false,
-                      "renderer": "flot",
-                      "seriesOverrides": [],
-                      "spaceLength": 10,
-                      "stack": true,
-                      "steppedLine": false,
-                      "targets": [
-                        {
-                          "filter": "cloudProvider.id=\"ms-sqs-dlq\"",
-                          "groupAggregation": "max",
-                          "isSingleDataPoint": false,
-                          "isTabularFormat": false,
-                          "pageLimit": 10,
-                          "refId": "0",
-                          "segmentBy": [],
-                          "sortDirection": "desc",
-                          "target": "aws.sqs.ApproximateNumberOfMessagesVisible",
-                          "timeAggregation": "max"
-                        }
-                      ],
-                      "thresholds": [],
-                      "timeFrom": null,
-                      "timeRegions": [],
-                      "timeShift": null,
-                      "title": "Number of message in Dead Letter Queue 😵",
-                      "tooltip": {
-                        "shared": true,
-                        "sort": 0,
-                        "value_type": "individual"
-                      },
-                      "type": "graph",
-                      "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                      },
-                      "yaxes": [
-                        {
-                          "format": "short",
-                          "label": "Total cases in queue",
-                          "logBase": 1,
-                          "max": null,
-                          "min": 0,
-                          "show": true
-                        },
-                        {
-                          "label": null,
-                          "logBase": 1,
-                          "max": null,
-                          "min": null,
-                          "show": false
-                        }
-                      ],
-                      "yaxis": {
-                        "align": false,
-                        "alignLevel": null
-                      }
-                    },
-                    {
                       "datasource": "Postgres",
                       "cacheTimeout": null,
                       "colorBackground": false,
@@ -1293,7 +1201,7 @@ spec:
                         "x": 0,
                         "y": 19
                       },
-                      "id": 4,
+                      "id": 10,
                       "interval": null,
                       "links": [],
                       "mappingType": 1,
@@ -1403,6 +1311,98 @@ spec:
                         }
                       ],
                       "valueName": "total"
+                    }
+                    {
+                      "aliasColors": {},
+                      "bars": true,
+                      "dashLength": 10,
+                      "dashes": false,
+                      "datasource": "Sysdig",
+                      "fill": 7,
+                      "fillGradient": 0,
+                      "gridPos": {
+                        "h": 5,
+                        "w": 24,
+                        "x": 0,
+                        "y": 24
+                      },
+                      "id": 1,
+                      "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": false,
+                        "total": false,
+                        "values": false
+                      },
+                      "lines": false,
+                      "linewidth": 1,
+                      "nullPointMode": "null",
+                      "options": {
+                        "dataLinks": []
+                      },
+                      "percentage": false,
+                      "pointradius": 2,
+                      "points": false,
+                      "renderer": "flot",
+                      "seriesOverrides": [],
+                      "spaceLength": 10,
+                      "stack": true,
+                      "steppedLine": false,
+                      "targets": [
+                        {
+                          "filter": "cloudProvider.id=\"ms-sqs-dlq\"",
+                          "groupAggregation": "max",
+                          "isSingleDataPoint": false,
+                          "isTabularFormat": false,
+                          "pageLimit": 10,
+                          "refId": "0",
+                          "segmentBy": [],
+                          "sortDirection": "desc",
+                          "target": "aws.sqs.ApproximateNumberOfMessagesVisible",
+                          "timeAggregation": "max"
+                        }
+                      ],
+                      "thresholds": [],
+                      "timeFrom": null,
+                      "timeRegions": [],
+                      "timeShift": null,
+                      "title": "Number of message in Dead Letter Queue 😵",
+                      "tooltip": {
+                        "shared": true,
+                        "sort": 0,
+                        "value_type": "individual"
+                      },
+                      "type": "graph",
+                      "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                      },
+                      "yaxes": [
+                        {
+                          "format": "short",
+                          "label": "Total cases in queue",
+                          "logBase": 1,
+                          "max": null,
+                          "min": 0,
+                          "show": true
+                        },
+                        {
+                          "label": null,
+                          "logBase": 1,
+                          "max": null,
+                          "min": null,
+                          "show": false
+                        }
+                      ],
+                      "yaxis": {
+                        "align": false,
+                        "alignLevel": null
+                      }
                     }
                   ],
                   "refresh": false,
