@@ -22,9 +22,11 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
-5. [Coverage Reporting](#coverage-reporting)
+5. [Microservices/ Repos](#microservices-repos)
 
-6. [Release Guidelines](#release-guidelines)
+6. [Coverage Reporting](#coverage-reporting)
+
+7. [Release Guidelines](#release-guidelines)
 
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
@@ -62,7 +64,7 @@ $ redis-server
 
 Start the server in development mode
 ```bash
-$ npm run dev
+$ yarn start:dev
 ```
 
 Then go to http://localhost:8081
@@ -87,7 +89,7 @@ In order to run the email functionality, you'll need the API Gov Notify Key call
 This can be obtained from a developer in the team.  It is recommended to have a `.env` file with the environment variable and then run the app like so:
 
 ```bash
-$ npm run dev -- --env
+$ yarn devenv
 ```
 
 ## Skip email verify step  <a name="skip-email-verify-step"></a>
@@ -120,7 +122,7 @@ $ NODE_ENV=local yarn run start:dev
 Then you can run the acceptance tests using the command below:
 
 ```bash
-$ npm run test:local-acceptance
+$ yarn test:local-acceptance
 ```
 
 This will open up an instance of [Google Chrome](#https://www.google.com/chrome/) on your local machine for each test.
@@ -165,14 +167,14 @@ The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 
-## Coverage Reporting <a name="coverage-reporting"></a>
-For unit test coverage reporting we use the Istanbul `nyc' npm module. To generate a report run the following command:
+### Microservices / Repos <a name="micrososervices-repos"></a>
 
+There are a bunch of microservices as part of modernslavery:
 
-```bash
-$ npm run test:coverage
-
-```
+* https://github.com/UKHomeOffice/save-return-api
+* https://github.com/UKHomeOffice/save-return-lookup-ui
+* https://github.com/UKHomeOffice/save-return-email-alerts
+* https://github.com/UKHomeOffice/icasework-resolver
 
 ## Release Guidelines <a name="release-guidelines"></a>
 <a href="https://github.com/UKHomeOffice/modern-slavery/tree/master/documents/release-guidelines.md">More Details</a>
