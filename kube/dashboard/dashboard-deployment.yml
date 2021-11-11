@@ -1162,131 +1162,20 @@ spec:
                           "timeAggregation": "sum"
                         }
                       ],
+                      "thresholds": "",
                       "timeFrom": null,
                       "timeShift": null,
                       "title": "Number of SQS Messages Recieved",
-                      "type": "stat"
-                    },
-                    {
-                      "cacheTimeout": null,
-                      "datasource": "Postgres",
-                      "description": "",
-                      "fieldConfig": {
-                        "defaults": {
-                          "color": {
-                            "mode": "thresholds"
-                          },
-                          "mappings": [
-                            {
-                              "options": {
-                                "match": "null",
-                                "result": {
-                                  "text": "N/A"
-                                }
-                              },
-                              "type": "special"
-                            }
-                          ],
-                          "thresholds": {
-                            "mode": "absolute",
-                            "steps": [
-                              {
-                                "color": "green",
-                                "value": null
-                              },
-                              {
-                                "color": "red",
-                                "value": 80
-                              }
-                            ]
-                          },
-                          "unit": "short"
-                        },
-                        "overrides": []
-                      },
-                      "gridPos": {
-                        "h": 5,
-                        "w": 12,
-                        "x": 0,
-                        "y": 19
-                      },
-                      "id": 17,
-                      "interval": null,
-                      "links": [],
-                      "maxDataPoints": 100,
-                      "options": {
-                        "colorMode": "value",
-                        "graphMode": "none",
-                        "justifyMode": "auto",
-                        "orientation": "horizontal",
-                        "reduceOptions": {
-                          "calcs": [
-                            "sum"
-                          ],
-                          "fields": "",
-                          "values": false
-                        },
-                        "text": {},
-                        "textMode": "auto"
-                      },
-                      "pluginVersion": "8.0.6",
-                      "targets": [
+                      "type": "singlestat",
+                      "valueFontSize": "200%",
+                      "valueMaps": [
                         {
-                          "format": "time_series",
-                          "group": [
-                            {
-                              "params": [
-                                "$__interval",
-                                "none"
-                              ],
-                              "type": "time"
-                            }
-                          ],
-                          "metricColumn": "none",
-                          "rawQuery": false,
-                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(duplicate) AS \"duplicate\"\nFROM duplicates\nWHERE\n  duplicate = true\nGROUP BY 1\nORDER BY 1",
-                          "refId": "A",
-                          "select": [
-                            [
-                              {
-                                "params": [
-                                  "duplicate"
-                                ],
-                                "type": "column"
-                              },
-                              {
-                                "params": [
-                                  "count"
-                                ],
-                                "type": "aggregate"
-                              },
-                              {
-                                "params": [
-                                  "duplicate"
-                                ],
-                                "type": "alias"
-                              }
-                            ]
-                          ],
-                          "table": "duplicates",
-                          "timeColumn": "created_at",
-                          "timeColumnType": "timestamptz",
-                          "where": [
-                            {
-                              "datatype": "bool",
-                              "name": "",
-                              "params": [
-                                "duplicate",
-                                "=",
-                                "true"
-                              ],
-                              "type": "expression"
-                            }
-                          ]
+                          "op": "=",
+                          "text": "N/A",
+                          "value": "null"
                         }
                       ],
-                      "title": "Duplicates",
-                      "type": "stat"
+                      "valueName": "avg"
                     },
                     {
                       "aliasColors": {},
@@ -1294,19 +1183,13 @@ spec:
                       "dashLength": 10,
                       "dashes": false,
                       "datasource": "Sysdig",
-                      "fieldConfig": {
-                        "defaults": {
-                          "links": []
-                        },
-                        "overrides": []
-                      },
                       "fill": 7,
                       "fillGradient": 0,
                       "gridPos": {
                         "h": 5,
                         "w": 24,
                         "x": 0,
-                        "y": 24
+                        "y": 19
                       },
                       "id": 1,
                       "legend": {
@@ -1385,6 +1268,141 @@ spec:
                         "align": false,
                         "alignLevel": null
                       }
+                    },
+                    {
+                      "datasource": "Postgres",
+                      "cacheTimeout": null,
+                      "colorBackground": false,
+                      "colorValue": true,
+                      "colors": [
+                        "#73BF69",
+                        "#73BF69",
+                        "#73BF69"
+                      ],
+                      "format": "short",
+                      "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                      },
+                      "gridPos": {
+                        "h": 5,
+                        "w": 12,
+                        "x": 0,
+                        "y": 19
+                      },
+                      "id": 4,
+                      "interval": null,
+                      "links": [],
+                      "mappingType": 1,
+                      "mappingTypes": [
+                        {
+                          "name": "value to text",
+                          "value": 1
+                        },
+                        {
+                          "name": "range to text",
+                          "value": 2
+                        }
+                      ],
+                      "maxDataPoints": 100,
+                      "nullPointMode": "connected",
+                      "nullText": null,
+                      "options": {},
+                      "postfix": "",
+                      "postfixFontSize": "200%",
+                      "prefix": "",
+                      "prefixFontSize": "200%",
+                      "rangeMaps": [
+                        {
+                          "from": "null",
+                          "text": "N/A",
+                          "to": "null"
+                        }
+                      ],
+                      "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": false,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false,
+                        "ymax": null,
+                        "ymin": null
+                      },
+                      "tableColumn": "",
+                      "targets": [
+                        {
+                          "format": "time_series",
+                          "group": [
+                            {
+                              "params": [
+                                "$__interval",
+                                "none"
+                              ],
+                              "type": "time"
+                            }
+                          ],
+                          "metricColumn": "none",
+                          "rawQuery": false,
+                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(id) AS \"id\"\nFROM duplicates\nWHERE\n  $__timeFilter(created_at) AND\n  duplicate = 'true'\nGROUP BY 1\nORDER BY 1",
+                          "refId": "A",
+                          "select": [
+                            [
+                              {
+                                "params": [
+                                  "id"
+                                ],
+                                "type": "column"
+                              },
+                              {
+                                "params": [
+                                  "count"
+                                ],
+                                "type": "aggregate"
+                              },
+                              {
+                                "params": [
+                                  "id"
+                                ],
+                                "type": "alias"
+                              }
+                            ]
+                          ],
+                          "table": "duplicates",
+                          "timeColumn": "created_at",
+                          "timeColumnType": "timestamptz",
+                          "where": [
+                            {
+                              "name": "$__timeFilter",
+                              "params": [],
+                              "type": "macro"
+                            },
+                            {
+                              "datatype": "bool",
+                              "name": "",
+                              "params": [
+                                "duplicate",
+                                "=",
+                                "'true'"
+                              ],
+                              "type": "expression"
+                            }
+                          ]
+                        }
+                      ],
+                      "thresholds": "",
+                      "title": "Duplicates",
+                      "type": "singlestat",
+                      "valueFontSize": "200%",
+                      "valueMaps": [
+                        {
+                          "op": "=",
+                          "text": "N/A",
+                          "value": "null"
+                        }
+                      ],
+                      "valueName": "total"
                     }
                   ],
                   "refresh": false,
