@@ -1311,7 +1311,7 @@ spec:
                         }
                       ],
                       "valueName": "total"
-                    }
+                    },
                     {
                       "aliasColors": {},
                       "bars": true,
