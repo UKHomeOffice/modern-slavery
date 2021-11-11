@@ -175,6 +175,7 @@ There are a bunch of microservices as part of modernslavery:
 * https://github.com/UKHomeOffice/save-return-lookup-ui
 * https://github.com/UKHomeOffice/save-return-email-alerts
 * https://github.com/UKHomeOffice/icasework-resolver
+* https://github.com/UKHomeOffice/digmygrafana
 
 ## Release Guidelines <a name="release-guidelines"></a>
 <a href="https://github.com/UKHomeOffice/modern-slavery/tree/master/documents/release-guidelines.md">More Details</a>
