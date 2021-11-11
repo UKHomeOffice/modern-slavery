@@ -167,7 +167,7 @@ The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 
-### Microservices / Repos <a name="micrososervices-repos"></a>
+### Microservices / Repos <a name="microservices-repos"></a>
 
 There are a bunch of microservices as part of modernslavery:
 
