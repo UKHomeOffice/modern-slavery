@@ -7,8 +7,8 @@ spec:
     spec:
       containers:
         - name: ms-schema
-          # release v1.3.0
-          image: quay.io/ukhomeofficedigital/ms-schema:dff59ff688cba3491863526d67bad9935b241544
+          # release v1.4.0
+          image: quay.io/ukhomeofficedigital/ms-schema:2168b36fc269942544daf401f0abdac38b090a33
           command: ["npm",  "run", "db:{{ .SCHEMA_ACTION }}"]
           env:
             - name: HOF_USER_PASS
