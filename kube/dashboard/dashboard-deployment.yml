@@ -39,6 +39,8 @@ spec:
               memory: 256Mi
               cpu: 300m
           env:
+            - name: TZ
+              value: Europe/London
             - name: GF_SERVER_ROOT_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://dashboard.modernslavery.homeoffice.gov.uk
