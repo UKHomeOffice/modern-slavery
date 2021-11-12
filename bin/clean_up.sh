@@ -10,6 +10,7 @@ export kubectl="kubectl --insecure-skip-tls-verify --server=$KUBE_SERVER --names
 $kubectl delete --all deploy
 $kubectl delete --all svc
 $kubectl delete --all ing
+$kubectl delete --all jobs
 
 for each in $($kubectl get netpol -o jsonpath="{.items[*].metadata.name}");
 do
