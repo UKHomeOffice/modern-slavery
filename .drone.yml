@@ -237,6 +237,7 @@ steps:
       IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
       LOCAL_IMAGE: true
       TOLERATE: medium
+      SHOW_ALL_VULNERABILITIES: true
       WHITELIST_FILE: hof-services-config/Modern_Slavery_Nrm/anchore-cve-exceptions.txt
     when:
       branch: master
