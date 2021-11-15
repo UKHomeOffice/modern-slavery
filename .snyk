@@ -10,7 +10,7 @@ ignore:
     - hof > request:
         reason: Need to replace request in HOF
         expires: '2022-09-18T14:58:46.388Z'
-  SNYK-JS-JSONSCHEMA-1920922
+  SNYK-JS-JSONSCHEMA-1920922:
     - NRM > request:
         reason: Need to replace request in NRM
         expires: '2022-09-18T14:58:46.388Z'
