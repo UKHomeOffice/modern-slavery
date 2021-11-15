@@ -49,7 +49,7 @@
     "ms-uk-local-authorities": "^2.2.3",
     "ms-uk-police-forces": "^2.0.0",
     "ms-uk-regions": "^2.1.1",
-    "notifications-node-client": "^4.5.1",
+    "notifications-node-client": "^5.1.0",
     "pg": "^8.7.1",
     "request": "^2.88.0",
     "sqs-producer": "^1.6.3",
