@@ -11,7 +11,7 @@ ignore:
         reason: Need to replace request in HOF
         expires: '2022-09-18T14:58:46.388Z'
   SNYK-JS-JSONSCHEMA-1920922:
-    - NRM > request:
-        reason: Need to replace request in NRM
+    - modern-slavery > json-schema:
+        reason: Need to replace request in modern-slavery
         expires: '2022-09-18T14:58:46.388Z'
 patch: {}
