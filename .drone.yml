@@ -180,39 +180,39 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: unit_tests_branch
-    <<: *unit_tests
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: sonar_scanner_branch
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: acceptance_tests_branch
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    volumes:
-      - name: dockersock
-        path: /var/run
-    commands:
-      - apk add --no-cache docker-compose
-      - docker-compose --verbose up -d --build chrome-browser app redis
-      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
+#  - name: unit_tests_branch
+#    <<: *unit_tests
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
+#
+#  - name: sonar_scanner_branch
+#    <<: *sonar_scanner
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
+#
+#  - name: acceptance_tests_branch
+#    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+#    volumes:
+#      - name: dockersock
+#        path: /var/run
+#    commands:
+#      - apk add --no-cache docker-compose
+#      - docker-compose --verbose up -d --build chrome-browser app redis
+#      - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
 
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
 #  - name: snyk_scan
