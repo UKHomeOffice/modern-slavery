@@ -51,6 +51,8 @@ spec:
             - name: TZ
               value: Europe/London
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: ICASEWORK_TIMEOUT
+              value: '2000'
             - name: AWS_SQS
               valueFrom:
                 secretKeyRef:
