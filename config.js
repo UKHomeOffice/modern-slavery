@@ -23,7 +23,6 @@ module.exports = {
   allowSkip: String(process.env.ALLOW_SKIP) === 'true',
   skipEmail: process.env.SKIP_EMAIL,
   writeToCasework: process.env.WRITE_TO_CASEWORK || env !== 'local',
-  // writeToCasework: true,
   hostUrl: process.env.HOST_URL || 'http://localhost:8081',
   saveService: {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '3000',

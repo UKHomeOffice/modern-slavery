@@ -48,6 +48,8 @@ spec:
                 name: configmap
                 {{ end }}
           env:
+            - name: TZ
+              value: Europe/London
             - name: NOTIFY_KEY
               valueFrom:
                 secretKeyRef:

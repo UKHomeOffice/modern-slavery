@@ -75,6 +75,19 @@ $ docker-compose --verbose up -d --build chrome-browser app redis
 $ docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
 ```
 
+## Migrations
+Migrations will auto deploy using the kube job in `kube/jobs/ms-schema-job.yml`. This is automated to use the latest from the [ms-schema repo](https://github.com/UKHomeOffice/ms-schema) to automate updates to our notprod and prod RDS instances. Any new migrations in this repo can be incoporated into the project by updating the digest in the kube job file.
+
+If there are any issues with any automated migrations, a manual migration bash script has been created in `bin/manual_migration.sh`. This can be run in two ways which will affect the kube namespace you have setup your local machine to access:
+- Manually deploy a migration
+```
+bin/manual_migration.sh migrate
+```
+- Manually rollback a migration where necessary
+```
+bin/manual_migration.sh rollback
+```
+
 ## Email functionality  <a name="email-functionality"></a>
 
 We use [Gov Notify](https://notifications.service.gov.uk/sign-in) to send emails. We have two accounts:

@@ -48,6 +48,8 @@ spec:
                 name: configmap
                 {{ end }}
           env:
+            - name: TZ
+              value: Europe/London
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: AWS_SQS
               valueFrom:
