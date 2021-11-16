@@ -1255,7 +1255,7 @@ spec:
                           ],
                           "metricColumn": "none",
                           "rawQuery": false,
-                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(id) AS \"id\"\nFROM duplicates\nWHERE\n  $__timeFilter(created_at) AND\n  duplicate = 'true'\nGROUP BY 1\nORDER BY 1",
+                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(id) AS \"id\"\nFROM duplicates\nWHERE\n  $__timeFilter(created_at)\nGROUP BY 1\nORDER BY 1",
                           "refId": "A",
                           "select": [
                             [
@@ -1287,16 +1287,6 @@ spec:
                               "name": "$__timeFilter",
                               "params": [],
                               "type": "macro"
-                            },
-                            {
-                              "datatype": "bool",
-                              "name": "",
-                              "params": [
-                                "duplicate",
-                                "=",
-                                "'true'"
-                              ],
-                              "type": "expression"
                             }
                           ]
                         }
