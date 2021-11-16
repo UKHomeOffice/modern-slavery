@@ -53,16 +53,16 @@
     }
   },
   "local-authority-contacted-about-child-local-authority-phone": {
-    "label": "Enter phone number"
+    "label": "Enter phone number of local authority"
   },
   "local-authority-contacted-about-child-local-authority-email": {
-    "label": "Enter email address"
+    "label": "Enter email address of local authority"
   },
   "local-authority-contacted-about-child-local-authority-first-name": {
-    "label": "Enter first name (if known)"
+    "label": "Enter first name of local authority contact (if known)"
   },
   "local-authority-contacted-about-child-local-authority-last-name": {
-    "label": "Enter last name (if known)"
+    "label": "Enter last name of local authority contact (if known)"
   },
   "pv-under-age-at-time-of-exploitation": {
     "legend": "Were they under 18 at any time during the exploitation?",
