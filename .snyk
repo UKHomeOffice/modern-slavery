@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.22.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-USERAGENT-174737:
@@ -10,4 +10,9 @@ ignore:
     - hof > request:
         reason: Need to replace request in HOF
         expires: '2022-09-18T14:58:46.388Z'
+  SNYK-JS-JSONSCHEMA-1920922:
+    - '*':
+        reason: Need to replace request in modern-slavery
+        expires: 2022-09-18T00:00:00.000Z
+        created: 2021-11-17T13:41:22.224Z
 patch: {}
