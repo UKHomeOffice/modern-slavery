@@ -37,8 +37,8 @@ spec:
     spec:
       containers:
         - name: icasework-resolver
-          # Release v4.0.1
-          image: quay.io/ukhomeofficedigital/icasework-resolver:1fe7b36d1ca5a1caf35ab3d323e762830c3ddaf5
+          # release v4.1.0
+          image: quay.io/ukhomeofficedigital/icasework-resolver:c15a285f3aa18f5197ecd775fa12c45b1361d44e
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -48,6 +48,8 @@ spec:
                 name: configmap
                 {{ end }}
           env:
+            - name: TZ
+              value: Europe/London
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: AWS_SQS
               valueFrom:

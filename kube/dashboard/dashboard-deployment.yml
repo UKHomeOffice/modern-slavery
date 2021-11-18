@@ -39,6 +39,8 @@ spec:
               memory: 256Mi
               cpu: 300m
           env:
+            - name: TZ
+              value: Europe/London
             - name: GF_SERVER_ROOT_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://dashboard.modernslavery.homeoffice.gov.uk
@@ -1178,6 +1180,131 @@ spec:
                       "valueName": "avg"
                     },
                     {
+                      "datasource": "Postgres",
+                      "cacheTimeout": null,
+                      "colorBackground": false,
+                      "colorValue": true,
+                      "colors": [
+                        "#73BF69",
+                        "#73BF69",
+                        "#73BF69"
+                      ],
+                      "format": "short",
+                      "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                      },
+                      "gridPos": {
+                        "h": 5,
+                        "w": 12,
+                        "x": 0,
+                        "y": 19
+                      },
+                      "id": 10,
+                      "interval": null,
+                      "links": [],
+                      "mappingType": 1,
+                      "mappingTypes": [
+                        {
+                          "name": "value to text",
+                          "value": 1
+                        },
+                        {
+                          "name": "range to text",
+                          "value": 2
+                        }
+                      ],
+                      "maxDataPoints": 100,
+                      "nullPointMode": "connected",
+                      "nullText": null,
+                      "options": {},
+                      "postfix": "",
+                      "postfixFontSize": "200%",
+                      "prefix": "",
+                      "prefixFontSize": "200%",
+                      "rangeMaps": [
+                        {
+                          "from": "null",
+                          "text": "N/A",
+                          "to": "null"
+                        }
+                      ],
+                      "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": false,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false,
+                        "ymax": null,
+                        "ymin": null
+                      },
+                      "tableColumn": "",
+                      "targets": [
+                        {
+                          "format": "time_series",
+                          "group": [
+                            {
+                              "params": [
+                                "$__interval",
+                                "none"
+                              ],
+                              "type": "time"
+                            }
+                          ],
+                          "metricColumn": "none",
+                          "rawQuery": false,
+                          "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval),\n  count(id) AS \"id\"\nFROM duplicates\nWHERE\n  $__timeFilter(created_at)\nGROUP BY 1\nORDER BY 1",
+                          "refId": "A",
+                          "select": [
+                            [
+                              {
+                                "params": [
+                                  "id"
+                                ],
+                                "type": "column"
+                              },
+                              {
+                                "params": [
+                                  "count"
+                                ],
+                                "type": "aggregate"
+                              },
+                              {
+                                "params": [
+                                  "id"
+                                ],
+                                "type": "alias"
+                              }
+                            ]
+                          ],
+                          "table": "duplicates",
+                          "timeColumn": "created_at",
+                          "timeColumnType": "timestamptz",
+                          "where": [
+                            {
+                              "name": "$__timeFilter",
+                              "params": [],
+                              "type": "macro"
+                            }
+                          ]
+                        }
+                      ],
+                      "thresholds": "",
+                      "title": "Duplicates",
+                      "type": "singlestat",
+                      "valueFontSize": "200%",
+                      "valueMaps": [
+                        {
+                          "op": "=",
+                          "text": "N/A",
+                          "value": "null"
+                        }
+                      ],
+                      "valueName": "total"
+                    },
+                    {
                       "aliasColors": {},
                       "bars": true,
                       "dashLength": 10,
@@ -1189,7 +1316,7 @@ spec:
                         "h": 5,
                         "w": 24,
                         "x": 0,
-                        "y": 19
+                        "y": 24
                       },
                       "id": 1,
                       "legend": {

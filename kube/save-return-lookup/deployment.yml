@@ -55,6 +55,8 @@ spec:
                 name: configmap
                 {{ end }}
           env:
+            - name: TZ
+              value: Europe/London
             - name: LISTEN_HOST
               value: 127.0.0.1
             - name: REDIS_PORT
