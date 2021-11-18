@@ -37,8 +37,8 @@ spec:
     spec:
       containers:
         - name: icasework-resolver
-          # WIP - DO NOT MERGE - need to amend from Release v4.0.1
-          image: quay.io/ukhomeofficedigital/icasework-resolver:157c95321c39d3f592bd1719ec9da600286cafc8
+          # release v4.1.0
+          image: quay.io/ukhomeofficedigital/icasework-resolver:c15a285f3aa18f5197ecd775fa12c45b1361d44e
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -51,8 +51,6 @@ spec:
             - name: TZ
               value: Europe/London
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            - name: ICASEWORK_TIMEOUT
-              value: '2000'
             - name: AWS_SQS
               valueFrom:
                 secretKeyRef:
