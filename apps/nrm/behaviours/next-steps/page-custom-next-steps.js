@@ -123,6 +123,7 @@ module.exports = {
     let nextStep;
 
     if (req.sessionModel.get('pv-under-age') !== 'no') {
+      req.sessionModel.set('pv-want-to-submit-nrm', 'yes');
       nextStep = '/nrm/local-authority-contacted-about-child';
     } else {
       nextStep = '/nrm/pv-under-age-at-time-of-exploitation';
