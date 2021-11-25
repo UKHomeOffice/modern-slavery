@@ -2,6 +2,8 @@
 const request = require('request');
 const config = require('../../../config');
 
+const encodeEmail = email => Buffer.from(email).toString('hex');
+
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     super.saveValues(req, res, err => {
@@ -9,7 +11,7 @@ module.exports = superclass => class extends superclass {
         next(err);
       }
       request.del(config.saveService.host + ':' + config.saveService.port
-         + '/reports/' + req.sessionModel.get('user-email') + '/' + req.sessionModel.get('id'), next);
+         + '/reports/' + encodeEmail(req.sessionModel.get('user-email')) + '/' + req.sessionModel.get('id'), next);
     });
   }
 };

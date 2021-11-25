@@ -3,6 +3,8 @@ const request = require('request');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
+const encodeEmail = email => Buffer.from(email).toString('hex');
+
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const superlocals = super.locals(req, res);
@@ -25,7 +27,9 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     super.saveValues(req, res, err => {
       if (req.body.confirm) {
-        request.del(baseUrl + req.sessionModel.get('user-email') + '/' + req.sessionModel.get('toDelete').id, () => {
+        const email = encodeEmail(req.sessionModel.get('user-email'));
+
+        request.del(baseUrl + email + '/' + req.sessionModel.get('toDelete').id, () => {
           req.sessionModel.unset('toDelete');
           res.redirect('/nrm/reports');
         });
