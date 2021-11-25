@@ -106,8 +106,8 @@ spec:
             runAsNonRoot: true
 
         - name: data-service
-          # release v2.0.0
-          image: quay.io/ukhomeofficedigital/save-return-api:e04cad6cf26854fd55dee73acfd4f119d37c71a9
+          # release v2.0.1
+          image: quay.io/ukhomeofficedigital/save-return-api:9ae616c7d36c6e42ec8c6556f063ca2210ac5b6e
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
