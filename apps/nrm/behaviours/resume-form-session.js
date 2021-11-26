@@ -7,6 +7,8 @@ const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 const _ = require('lodash');
 
+const encodeEmail = email => Buffer.from(email).toString('hex');
+
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const superlocals = super.locals(req, res);
@@ -25,7 +27,7 @@ module.exports = superclass => class extends superclass {
       return super.getValues(req, res, next);
     }
 
-    request.get(baseUrl + req.sessionModel.get('user-email'), (err, response, body) => {
+    request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
       if (err) {
         return next(err);
       }
@@ -74,7 +76,7 @@ module.exports = superclass => class extends superclass {
     super.saveValues(req, res, err => {
       if (req.body.delete || req.body.resume) {
         const id = req.body.resume || req.body.delete;
-        request.get(baseUrl + req.sessionModel.get('user-email') + '/' + id, (error, response, body) => {
+        request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id, (error, response, body) => {
           const resBody = JSON.parse(body);
           if (resBody && resBody.length && resBody[0].session) {
             if (req.body.delete) {
