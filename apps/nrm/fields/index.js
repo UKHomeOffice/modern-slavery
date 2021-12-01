@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
 const countries = require('ms-countries');
@@ -21,8 +22,8 @@ module.exports = {
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
-      label: 'fields.user-organisation.options.null'
-    }].concat(organisations)
+      label: 'fields.user-organisation.options.none_selected'
+    }].concat(_.sortBy(organisations, o => o.label))
   },
   'fr-location': {
     mixin: 'radio-group',

@@ -1,4 +1,7 @@
 {
+  "user-organisation": {
+    "required": "You must select the organisation"
+  },
   "user-email": {
     "wrongEmail": "this is not a first responder email we recognise",
     "maxlength": "You must enter no more than 15,000 characters"
