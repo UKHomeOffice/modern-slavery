@@ -1,4 +1,5 @@
 'use strict';
+
 const request = require('request');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
@@ -6,38 +7,32 @@ const baseUrl = config.saveService.host + ':' + config.saveService.port + '/repo
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
 module.exports = superclass => class extends superclass {
-  locals(req, res) {
-    const superlocals = super.locals(req, res);
-    const data = Object.assign({}, {
-      reference: req.sessionModel.get('toDelete').reference
-    });
-    const locals = Object.assign({}, superlocals, data);
-
-    return locals;
+  getValues(req, res, next) {
+    return req.query.id && req.query.reference ?
+      super.getValues(req, res, next) :
+      res.redirect('/nrm/reports');
   }
 
-  getValues(req, res, next) {
-    if (!req.sessionModel.get('toDelete')) {
-      res.redirect('/nrm/reports');
-    }
-
-    super.getValues(req, res, next);
+  locals(req, res) {
+    return Object.assign({}, super.locals(req, res), {
+      id: req.query.id,
+      reference: req.query.reference
+    });
   }
 
   saveValues(req, res, next) {
-    super.saveValues(req, res, err => {
-      if (req.body.confirm) {
-        const email = encodeEmail(req.sessionModel.get('user-email'));
+    const id = req.body.confirm;
 
-        request.del(baseUrl + email + '/' + req.sessionModel.get('toDelete').id, () => {
-          req.sessionModel.unset('toDelete');
-          res.redirect('/nrm/reports');
-        });
-      } else {
-        req.sessionModel.unset('toDelete');
-        res.redirect('/nrm/reports');
-        next(err);
-      }
-    });
+    if (id) {
+      const email = encodeEmail(req.sessionModel.get('user-email'));
+
+      return request.del(baseUrl + email + '/' + id, err => {
+        if (err) {
+          return next(err);
+        }
+        return super.saveValues(req, res, next);
+      });
+    }
+    return super.saveValues(req, res, next);
   }
 };

@@ -11,8 +11,11 @@ module.exports = superclass => class extends superclass {
         next(err);
       }
 
-      // not sure why the current step hasn't been added to the steps at this point?
+      // extract csrf secret and errors from session data so they do not overrite session later on
       const session = req.sessionModel.toJSON();
+      delete session['csrf-secret'];
+      delete session.errors;
+
       if (session.steps.indexOf(req.path) === -1) {
         session.steps.push(req.path);
       }

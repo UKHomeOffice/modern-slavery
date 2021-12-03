@@ -23,8 +23,8 @@
               <td class="govuk-table__cell">{{expiresAt}}</td>
               <td class="govuk-table__cell">{{daysRemaining}} days</td>
               <td class="govuk-table__cell">
-                <button name="resume" value="{{id}}" class="govuk-button">Go to report</button>&nbsp;
-                <button class="govuk-button govuk-button--secondary" name="delete" value="{{id}}">Delete report</button>
+                <a href="/nrm/continue-report?id={{id}}" name="resume" class="govuk-button" >Go to report</a>&nbsp;
+                <a href="/nrm/are-you-sure?id={{id}}&reference={{reference}}" name="delete" class="govuk-button govuk-button--secondary">Delete report</a>
               </td>
             </tr>
           {{/previousReports}}

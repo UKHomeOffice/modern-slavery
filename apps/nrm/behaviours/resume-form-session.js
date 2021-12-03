@@ -27,7 +27,7 @@ module.exports = superclass => class extends superclass {
       return super.getValues(req, res, next);
     }
 
-    request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
+    return request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
       if (err) {
         return next(err);
       }
@@ -53,8 +53,7 @@ module.exports = superclass => class extends superclass {
         });
       }
       return super.getValues(req, res, next);
-    }
-    );
+    });
   }
 
   cleanSession(req) {
@@ -73,34 +72,7 @@ module.exports = superclass => class extends superclass {
   }
 
   saveValues(req, res, next) {
-    super.saveValues(req, res, err => {
-      if (req.body.delete || req.body.resume) {
-        const id = req.body.resume || req.body.delete;
-        request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id, (error, response, body) => {
-          const resBody = JSON.parse(body);
-          if (resBody && resBody.length && resBody[0].session) {
-            if (req.body.delete) {
-              req.sessionModel.set('toDelete', {
-                id: req.body.delete,
-                reference: resBody[0].session.reference
-              });
-              return res.redirect('/nrm/are-you-sure');
-            }
-
-            if (resBody[0].session.hasOwnProperty('alertUser')) {
-              delete resBody[0].session.alertUser;
-            }
-
-            req.sessionModel.set(resBody[0].session);
-            req.sessionModel.set('id', req.body.resume);
-            return res.redirect('/nrm/continue-report');
-          }
-          next(error);
-        });
-      } else {
-        this.cleanSession(req);
-        next(err);
-      }
-    });
+    this.cleanSession(req);
+    return super.saveValues(req, res, next);
   }
 };
