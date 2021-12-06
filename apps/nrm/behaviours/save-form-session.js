@@ -11,7 +11,7 @@ module.exports = superclass => class extends superclass {
         next(err);
       }
 
-      // extract csrf secret and errors from session data so they do not overrite session later on
+      // remove csrf secret and errors from session data to prevent CSRF Secret issues in the session
       const session = req.sessionModel.toJSON();
       delete session['csrf-secret'];
       delete session.errors;
