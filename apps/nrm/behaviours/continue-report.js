@@ -41,12 +41,17 @@ module.exports = superclass => class extends superclass {
         if (resBody[0].session.hasOwnProperty('alertUser')) {
           delete resBody[0].session.alertUser;
         }
-        const data = resBody[0].session;
+        const session = resBody[0].session;
 
-        delete data['csrf-secret'];
-        delete data.errors;
+        delete session['csrf-secret'];
+        delete session.errors;
 
-        req.sessionModel.set(data);
+        // ensure no /edit steps are add to the steps property when session resumed
+        session.steps = session.steps.filter(step => {
+          return (step.indexOf('/edit') === -1 || step.indexOf('/change') === -1);
+        });
+
+        req.sessionModel.set(session);
         req.sessionModel.set('id', id);
       }
       return super.getValues(req, res, next);
@@ -66,6 +71,8 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
+      console.log(req.sessionModel.attributes);
+
       return res.redirect('/nrm' + req.sessionModel.get('steps').pop());
     });
   }
