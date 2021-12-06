@@ -41,8 +41,12 @@ module.exports = superclass => class extends superclass {
         if (resBody[0].session.hasOwnProperty('alertUser')) {
           delete resBody[0].session.alertUser;
         }
+        const data = resBody[0].session;
 
-        req.sessionModel.set(resBody[0].session);
+        delete data['csrf-secret'];
+        delete data.errors;
+
+        req.sessionModel.set(data);
         req.sessionModel.set('id', id);
       }
       return super.getValues(req, res, next);

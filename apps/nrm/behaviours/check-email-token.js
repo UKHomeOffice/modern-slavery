@@ -29,8 +29,7 @@ module.exports = superclass => class extends superclass {
           req.sessionModel.set('user-email', user.email);
           return super.saveValues(req, res, next);
         }
-        req.sessionModel.set('valid-token', false);
-        return super.saveValues(req, res, next);
+        return res.redirect('/nrm/token-invalid');
       })
     // eslint-disable-next-line no-console
       .catch(err => console.log(err));
