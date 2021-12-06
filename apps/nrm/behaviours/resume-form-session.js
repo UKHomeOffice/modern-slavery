@@ -10,6 +10,21 @@ const _ = require('lodash');
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
 module.exports = superclass => class extends superclass {
+  cleanSession(req) {
+    let cleanList = Object.keys(req.sessionModel.attributes);
+    const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
+
+
+    cleanList = cleanList.filter(item => {
+      if (keepList.indexOf(item) === -1) {
+        return item;
+      }
+    });
+
+    req.sessionModel.unset(cleanList);
+    req.sessionModel.set('steps', ['/start', '/reports']);
+  }
+  
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
@@ -22,6 +37,8 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    this.cleanSession(req);
+
     // skip requesting data service api when running in local mode
     if (config.env === 'local') {
       return super.getValues(req, res, next);
@@ -31,7 +48,7 @@ module.exports = superclass => class extends superclass {
       if (err) {
         return next(err);
       }
-      this.cleanSession(req);
+
       const resBody = JSON.parse(body);
 
       if (resBody && resBody.length && resBody[0].session) {
@@ -54,25 +71,5 @@ module.exports = superclass => class extends superclass {
       }
       return super.getValues(req, res, next);
     });
-  }
-
-  cleanSession(req) {
-    let cleanList = Object.keys(req.sessionModel.attributes);
-    const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
-
-
-    cleanList = cleanList.filter(item => {
-      if (keepList.indexOf(item) === -1) {
-        return item;
-      }
-    });
-
-    req.sessionModel.unset(cleanList);
-    req.sessionModel.set('steps', ['/start', '/reports']);
-  }
-
-  saveValues(req, res, next) {
-    this.cleanSession(req);
-    return super.saveValues(req, res, next);
   }
 };

@@ -35,7 +35,11 @@ module.exports = {
       behaviours: [
         checkEmailToken
       ],
-      next: '/reports'
+      next: '/reports',
+      forks: [{
+        target: '/token-invalid',
+        condition: req => !req.sessionModel.get('valid-token')
+      }]
     },
     '/reports': {
       backLink: false,
