@@ -11,12 +11,7 @@ module.exports = superclass => class extends superclass {
     let cleanList = Object.keys(req.sessionModel.attributes);
     const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
 
-
-    cleanList = cleanList.filter(item => {
-      if (keepList.indexOf(item) === -1) {
-        return item;
-      }
-    });
+    cleanList = cleanList.filter(item => keepList.indexOf(item) === -1);
 
     req.sessionModel.unset(cleanList);
     req.sessionModel.set('steps', ['/start', '/reports']);
@@ -31,7 +26,9 @@ module.exports = superclass => class extends superclass {
 
     this.cleanSession(req);
 
-    return request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id, (error, response, body) => {
+    const getUrl = baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id;
+
+    return request.get(getUrl, (error, response, body) => {
       if (error) {
         return next(error);
       }

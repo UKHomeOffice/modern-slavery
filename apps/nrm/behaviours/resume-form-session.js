@@ -15,16 +15,12 @@ module.exports = superclass => class extends superclass {
     const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
 
 
-    cleanList = cleanList.filter(item => {
-      if (keepList.indexOf(item) === -1) {
-        return item;
-      }
-    });
+    cleanList = cleanList.filter(item => keepList.indexOf(item) === -1);
 
     req.sessionModel.unset(cleanList);
     req.sessionModel.set('steps', ['/start', '/reports']);
   }
-  
+
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
