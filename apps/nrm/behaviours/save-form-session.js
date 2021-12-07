@@ -54,7 +54,7 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/nrm/save-and-exit');
         }
 
-        if (req.path.indexOf('/change') !== -1) {
+        if (req.path.match(/\/change$/)) {
           return res.redirect('/nrm/continue-report');
         }
 
