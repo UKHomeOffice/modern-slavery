@@ -20,9 +20,7 @@ module.exports = superclass => class extends superclass {
         session.steps.push(req.path);
       }
       // ensure no /edit steps are add to the steps property when we save to the store
-      session.steps = session.steps.filter(step => {
-        return (step.indexOf('/edit') === -1 || step.indexOf('/change') === -1);
-      });
+      session.steps = session.steps.filter(step => step.match(/\/change|edit$/));
 
       if (req.body['save-and-exit']) {
         session.alertUser = true;
