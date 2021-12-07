@@ -47,7 +47,7 @@ module.exports = superclass => class extends superclass {
         delete session.errors;
 
         // ensure no /edit steps are add to the steps property when session resumed
-        session.steps = session.steps.filter(step => step.match(/\/change|edit$/));
+        session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
 
         req.sessionModel.set(session);
         req.sessionModel.set('id', id);
@@ -69,7 +69,6 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
-      console.log(req.sessionModel.attributes);
 
       return res.redirect('/nrm' + req.sessionModel.get('steps').pop());
     });
