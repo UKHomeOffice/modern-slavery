@@ -38,14 +38,14 @@ module.exports = superclass => class extends superclass {
     return config.allowSkip && email === config.skipEmail;
   }
 
-  saveValues(req, res, callback) {
+  saveValues(req, res, next) {
     const email = req.form.values['user-email'];
 
     if (this.skipEmailVerification(email)) {
-      return callback();
+      return super.saveValues(req, res, next);
     }
 
-    super.saveValues(req, res, err => {
+    return super.saveValues(req, res, err => {
       const organisation = req.sessionModel.get('user-organisation');
       const emailDomain = email.replace(/.*@/, '');
 
@@ -53,13 +53,13 @@ module.exports = superclass => class extends superclass {
 
       if (!isRecognisedEmail) {
         req.sessionModel.set('recognised-email', false);
-        return callback(err);
+        return next(err);
       }
 
       const host = req.get('host');
       const token = tokenGenerator.save(email, organisation);
       sendEmail(email, host, token);
-      return callback(err);
+      return next(err);
     });
   }
 

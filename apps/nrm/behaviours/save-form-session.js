@@ -11,15 +11,16 @@ module.exports = superclass => class extends superclass {
         next(err);
       }
 
-      // not sure why the current step hasn't been added to the steps at this point?
+      // remove csrf secret and errors from session data to prevent CSRF Secret issues in the session
       const session = req.sessionModel.toJSON();
+      delete session['csrf-secret'];
+      delete session.errors;
+
       if (session.steps.indexOf(req.path) === -1) {
         session.steps.push(req.path);
       }
       // ensure no /edit steps are add to the steps property when we save to the store
-      session.steps = session.steps.filter(step => {
-        return (step.indexOf('/edit') === -1 || step.indexOf('/change'));
-      });
+      session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
 
       if (req.body['save-and-exit']) {
         session.alertUser = true;
@@ -53,7 +54,7 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/nrm/save-and-exit');
         }
 
-        if (req.path.indexOf('/change') !== -1) {
+        if (req.path.match(/\/change$/)) {
           return res.redirect('/nrm/continue-report');
         }
 

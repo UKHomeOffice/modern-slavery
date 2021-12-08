@@ -8,6 +8,9 @@
     "hint": "We may refer to this in emails so be careful about using victims’ personal details. Use first names and not full names, for example."
   },
   "user-organisation": {
+    "options": {
+      "none_selected": "Please select an option"
+    },
     "label": "Organisation",
     "hint": "Start typing the name of your organisation. It must appear on the list for you to be able to continue."
   },

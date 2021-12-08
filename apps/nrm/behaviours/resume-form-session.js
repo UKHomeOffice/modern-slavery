@@ -10,6 +10,17 @@ const _ = require('lodash');
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
 module.exports = superclass => class extends superclass {
+  cleanSession(req) {
+    let cleanList = Object.keys(req.sessionModel.attributes);
+    const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
+
+
+    cleanList = cleanList.filter(item => keepList.indexOf(item) === -1);
+
+    req.sessionModel.unset(cleanList);
+    req.sessionModel.set('steps', ['/start', '/reports']);
+  }
+
   locals(req, res) {
     const superlocals = super.locals(req, res);
     const data = Object.assign({}, {
@@ -22,16 +33,18 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    this.cleanSession(req);
+
     // skip requesting data service api when running in local mode
     if (config.env === 'local') {
       return super.getValues(req, res, next);
     }
 
-    request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
+    return request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
       if (err) {
         return next(err);
       }
-      this.cleanSession(req);
+
       const resBody = JSON.parse(body);
 
       if (resBody && resBody.length && resBody[0].session) {
@@ -53,54 +66,6 @@ module.exports = superclass => class extends superclass {
         });
       }
       return super.getValues(req, res, next);
-    }
-    );
-  }
-
-  cleanSession(req) {
-    let cleanList = Object.keys(req.sessionModel.attributes);
-    const keepList = ['user-email', 'user-organisation', 'csrf-secret'];
-
-
-    cleanList = cleanList.filter(item => {
-      if (keepList.indexOf(item) === -1) {
-        return item;
-      }
-    });
-
-    req.sessionModel.unset(cleanList);
-    req.sessionModel.set('steps', ['/start', '/reports']);
-  }
-
-  saveValues(req, res, next) {
-    super.saveValues(req, res, err => {
-      if (req.body.delete || req.body.resume) {
-        const id = req.body.resume || req.body.delete;
-        request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id, (error, response, body) => {
-          const resBody = JSON.parse(body);
-          if (resBody && resBody.length && resBody[0].session) {
-            if (req.body.delete) {
-              req.sessionModel.set('toDelete', {
-                id: req.body.delete,
-                reference: resBody[0].session.reference
-              });
-              return res.redirect('/nrm/are-you-sure');
-            }
-
-            if (resBody[0].session.hasOwnProperty('alertUser')) {
-              delete resBody[0].session.alertUser;
-            }
-
-            req.sessionModel.set(resBody[0].session);
-            req.sessionModel.set('id', req.body.resume);
-            return res.redirect('/nrm/continue-report');
-          }
-          next(error);
-        });
-      } else {
-        this.cleanSession(req);
-        next(err);
-      }
     });
   }
 };
