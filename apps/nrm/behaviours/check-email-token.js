@@ -4,7 +4,7 @@ const config = require('../../../config');
 
 /* eslint no-process-env: 0*/
 module.exports = superclass => class extends superclass {
-  saveValues(req, res, callback) {
+  saveValues(req, res, next) {
     const token = req.query.token;
     const email = req.query.email || config.skipEmail;
 
@@ -15,7 +15,7 @@ module.exports = superclass => class extends superclass {
     // skips if email params if provided /nrm/start?token=skip&email=s@
     if (skipEmailAuth || validEmailToken) {
       req.sessionModel.set('user-email', email);
-      return super.saveValues(req, res, callback);
+      return super.saveValues(req, res, next);
     }
     // returns a Promise
     return checkToken.read(token)
@@ -27,7 +27,7 @@ module.exports = superclass => class extends superclass {
           req.sessionModel.set('valid-token', true);
           // store email & org to send to caseworker later
           req.sessionModel.set('user-email', user.email);
-          return super.saveValues(req, res, callback);
+          return super.saveValues(req, res, next);
         }
         return res.redirect('/nrm/token-invalid');
       })

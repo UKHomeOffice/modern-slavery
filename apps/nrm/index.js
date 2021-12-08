@@ -49,7 +49,8 @@ module.exports = {
       backLink: false,
       behaviours: [
         areYouSure
-      ]
+      ],
+      next: '/reports'
     },
     '/reference': {
       behaviours: [
