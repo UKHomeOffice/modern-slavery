@@ -55,7 +55,7 @@ module.exports = superclass => class extends superclass {
         }
 
         if (req.path.match(/\/change$/)) {
-          return res.redirect('/nrm/continue-report');
+          return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
         }
 
         next();
