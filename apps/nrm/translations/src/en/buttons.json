@@ -3,5 +3,6 @@
   "confirm-answers": "Accept and send report",
   "save-and-exit": "Save and exit",
   "create-report": "Create report",
-  "continue-to-next-question": "Continue to next question"
+  "continue-to-next-question": "Continue to next question",
+  "back-to-reports": "Back to the Reports Dashboard"
 }
