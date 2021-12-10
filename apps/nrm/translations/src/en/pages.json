@@ -209,7 +209,7 @@
       },
       "pv-want-to-submit-nrm": {
         "label": "Case referred to NRM",
-        "automatic-referral": "Automatic referral when potential victims under 18 years old"
+        "automatic-referral": "Automatic referral when potential victim under 18 years old"
       },
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"

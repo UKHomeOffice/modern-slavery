@@ -220,7 +220,6 @@ module.exports = {
     },
     '/reported-to-police': {
       behaviours: [
-        automaticReferral,
         saveFormSession
       ],
       fields: [
@@ -228,19 +227,22 @@ module.exports = {
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
       ],
-      next: '/pv-want-to-submit-nrm',
-      forks: [{
-        target: '/pv-name',
-        condition: req => req.sessionModel.get('automatic-referral')
-      }]
+      next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {
       behaviours: [
+        automaticReferral,
         saveFormSession
       ],
       fields: ['pv-want-to-submit-nrm'],
       next: '/does-pv-need-support',
       forks: [{
+        target: '/pv-name-referral',
+        condition: req => {
+          return req.sessionModel.get('pv-want-to-submit-nrm') === 'yes' &&
+            req.sessionModel.get('automatic-referral');
+        }
+      }, {
         target: '/refuse-nrm',
         condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
       }],
@@ -251,19 +253,41 @@ module.exports = {
         saveFormSession
       ],
       fields: ['refuse-nrm'],
-      next: '/pv-gender'
+      next: '/pv-gender-dtn'
     },
-    '/does-pv-need-support': {
+    '/pv-gender-dtn': {
+      template: 'pv-gender',
       behaviours: [
         saveFormSession
       ],
-      fields: ['does-pv-need-support'],
-      next: '/pv-name'
+      fields: ['pv-gender'],
+      next: '/pv-nationality-dtn',
     },
-    '/support-organisations': {
-      backLink: false
+    '/pv-nationality-dtn': {
+      template: 'pv-nationality',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-nationality',
+        'pv-nationality-second'
+      ],
+      next: '/co-operate-with-police-dtn'
     },
-    '/pv-name': {
+    '/co-operate-with-police-dtn': {
+      template: 'co-operate-with-police',
+      fields: ['co-operate-with-police'],
+      behaviours: [
+        saveFormSession
+      ],
+      next: '/confirm',
+      forks: [{
+        target: '/pv-name-dtn',
+        condition: req => req.sessionModel.get('co-operate-with-police') === 'yes'
+      }]
+    },
+    '/pv-name-dtn': {
+      template: 'pv-name',
       behaviours: [
         saveFormSession
       ],
@@ -272,29 +296,61 @@ module.exports = {
         'pv-name-last-name',
         'pv-name-nickname'
       ],
-      next: '/pv-contact-details',
-      forks: [{
-        target: '/pv-dob',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'yes'
-      }]
+      next: '/pv-contact-details-dtn'
+    },
+    '/pv-contact-details-dtn': {
+      template: 'pv-contact-details',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-contact-details',
+        'pv-contact-details-email-input',
+        'pv-contact-details-email-check',
+        'pv-contact-details-street',
+        'pv-contact-details-town',
+        'pv-contact-details-county',
+        'pv-contact-details-postcode',
+        'pv-contact-details-post-check'
+      ],
+      next: '/confirm'
+    },
+    '/does-pv-need-support': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['does-pv-need-support'],
+      next: '/pv-name-referral'
+    },
+    '/support-organisations': {
+      backLink: false
+    },
+    '/pv-name-referral': {
+      template: 'pv-name',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-name-first-name',
+        'pv-name-last-name',
+        'pv-name-nickname'
+      ],
+      next: '/pv-dob'
     },
     '/pv-dob': {
       behaviours: [
         saveFormSession
       ],
       fields: ['pv-dob'],
-      next: '/pv-gender'
+      next: '/pv-gender-referral'
     },
-    '/pv-gender': {
+    '/pv-gender-referral': {
+      template: 'pv-gender',
       behaviours: [
         saveFormSession
       ],
       fields: ['pv-gender'],
       next: '/does-pv-have-children',
-      forks: [{
-        target: '/pv-nationality',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
-      }]
     },
     '/does-pv-have-children': {
       behaviours: [
@@ -304,9 +360,10 @@ module.exports = {
         'does-pv-have-children',
         'does-pv-have-children-yes-amount'
       ],
-      next: '/pv-nationality'
+      next: '/pv-nationality-referral'
     },
-    '/pv-nationality': {
+    '/pv-nationality-referral': {
+      template: 'pv-nationality',
       behaviours: [
         saveFormSession
       ],
@@ -314,11 +371,7 @@ module.exports = {
         'pv-nationality',
         'pv-nationality-second'
       ],
-      next: '/pv-interpreter-requirements',
-      forks: [{
-        target: '/co-operate-with-police',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
-      }]
+      next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
       behaviours: [
@@ -359,7 +412,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['who-contact'],
-      next: '/pv-contact-details',
+      next: '/pv-contact-details-referral',
       forks: [{
         target: '/someone-else',
         condition: req => req.sessionModel.get('who-contact') === 'someone-else'
@@ -383,11 +436,12 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/co-operate-with-police',
+        target: '/co-operate-with-police-referral',
         condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
-    '/pv-contact-details': {
+    '/pv-contact-details-referral': {
+      template: 'pv-contact-details',
       behaviours: [
         saveFormSession
       ],
@@ -403,14 +457,8 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/confirm',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
-      }, {
-        target: '/co-operate-with-police',
-        condition: req => {
-          return req.sessionModel.get('does-pv-need-support') === 'no' &&
-            req.sessionModel.get('pv-want-to-submit-nrm') === 'yes'
-        }
+        target: '/co-operate-with-police-referral',
+        condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
     '/pv-phone-number': {
@@ -421,24 +469,15 @@ module.exports = {
         'pv-phone-number',
         'pv-phone-number-yes'
       ],
-      next: '/co-operate-with-police'
+      next: '/co-operate-with-police-referral'
     },
-    '/co-operate-with-police': {
+    '/co-operate-with-police-referral': {
+      template: 'co-operate-with-police',
       fields: ['co-operate-with-police'],
       behaviours: [
         saveFormSession
       ],
-      next: '/pv-name',
-      forks: [{
-        target: '/fr-details',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'yes'
-      }, {
-        target: '/confirm',
-        condition: req => {
-          return req.sessionModel.get('co-operate-with-police') === 'no' &&
-            req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
-        }
-      }]
+      next: '/fr-details'
     },
     '/fr-details': {
       behaviours: [

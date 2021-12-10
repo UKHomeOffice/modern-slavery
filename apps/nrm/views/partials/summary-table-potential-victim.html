@@ -25,16 +25,11 @@
         <tr>
           <td class="wrap-table-cell">
             {{#t}}pages.confirm.fields.does-pv-need-support.label{{/t}}
-            {{#values.automatic-referral}}
-              <p>{{#t}}pages.confirm.fields.does-pv-need-support.automatic-referral{{/t}}</p>
-            {{/values.automatic-referral}}</td>
           <td class="no-white-space">
             <span>{{formattedDoesPvNeedSupport}}</span>
           </td>
           <td>
-            {{^values.automatic-referral}}
-              <a href="/nrm/does-pv-need-support/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
-            {{/values.automatic-referral}}
+            <a href="/nrm/does-pv-need-support/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
           </td>
         </tr>
       {{/values.does-pv-need-support}}
