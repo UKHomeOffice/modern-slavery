@@ -11,7 +11,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/fr-details/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-name.label{{/t}}">Change</a>
+          <a href="/nrm/fr-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-name.label{{/t}}">Change</a>
         </td>
       </tr>
 
@@ -22,7 +22,9 @@
             {{values.user-organisation}}
           </span>
         </td>
-        <td></td>
+        <td>
+          <a href="/nrm/organisation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+        </td>
       </tr>
 
       <tr>
@@ -33,18 +35,22 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/fr-details/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-role.label{{/t}}">Change</a>
+          <a href="/nrm/fr-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-role.label{{/t}}">Change</a>
         </td>
       </tr>
 
       <tr>
-        <td>{{#t}}pages.confirm.fields.fr-details-email.label{{/t}}</td>
+        <td class="wrap-table-cell">
+          {{#t}}pages.confirm.fields.fr-details-email.label{{/t}}
+          <p>{{#t}}pages.confirm.fields.fr-details-email.info{{/t}}</p>
+        </td>
         <td class="no-white-space">
           <span>
             {{values.user-email}}
           </span>
         </td>
-        <td></td>
+        <td>
+        </td>
       </tr>
 
       <tr>
@@ -55,7 +61,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/fr-details/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-phone.label{{/t}}">Change</a>
+          <a href="/nrm/fr-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-details-phone.label{{/t}}">Change</a>
         </td>
       </tr>
 
@@ -67,7 +73,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/fr-alternative-contact/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-alternative-contact.label{{/t}}">Change</a>
+          <a href="/nrm/fr-alternative-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-alternative-contact.label{{/t}}">Change</a>
         </td>
       </tr>
 

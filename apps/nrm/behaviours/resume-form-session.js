@@ -65,6 +65,7 @@ module.exports = superclass => class extends superclass {
           req.previousReports.push(rep);
         });
       }
+      req.sessionModel.set('redirect-to-reports', false);
       return super.getValues(req, res, next);
     });
   }

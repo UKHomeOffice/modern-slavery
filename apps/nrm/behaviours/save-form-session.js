@@ -10,7 +10,7 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
-
+    console.log(req.sessionModel.attributes);
       // remove csrf secret and errors from session data to prevent CSRF Secret issues in the session
       const session = req.sessionModel.toJSON();
       delete session['csrf-secret'];
@@ -54,7 +54,9 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/nrm/save-and-exit');
         }
 
-        if (req.path.match(/\/change$/)) {
+        const noEditContinue = !req.form.options.continueOnEdit;
+
+        if (req.sessionModel.get('redirect-to-reports') && noEditContinue) {
           return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
         }
 

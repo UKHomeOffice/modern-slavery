@@ -204,10 +204,12 @@
         "label": "Reported to police"
       },
       "does-pv-need-support": {
-        "label": "Support requested"
+        "label": "Support requested",
+        "automatic-referral": "Support can not be requested when potential victims under 18 years old"
       },
       "pv-want-to-submit-nrm": {
-        "label": "Case referred to NRM"
+        "label": "Case referred to NRM",
+        "automatic-referral": "Automatic referral when potential victims under 18 years old"
       },
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"
@@ -276,7 +278,8 @@
         "label": "Job title"
       },
       "fr-details-email": {
-        "label": "Email"
+        "label": "Email",
+        "info": "Logged in user email"
       },
       "fr-details-phone": {
         "label": "Telephone"
