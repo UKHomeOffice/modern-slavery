@@ -272,10 +272,10 @@ module.exports = {
         'pv-name-last-name',
         'pv-name-nickname'
       ],
-      next: '/pv-dob',
+      next: '/pv-contact-details',
       forks: [{
-        target: '/pv-contact-details',
-        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
+        target: '/pv-dob',
+        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'yes'
       }]
     },
     '/pv-dob': {
