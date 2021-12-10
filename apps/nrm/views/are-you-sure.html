@@ -1,6 +1,7 @@
 {{<partials-page}}
-{{$page-content}}
-  <p>Are you sure you wish to delete report with reference: {{reference}}?</p>
-  <button name="confirm" value="{{id}}" class="govuk-button">Delete this report</button>&nbsp; <button class="govuk-button govuk-button--secondary" name="cancel">Cancel</button>
-{{/page-content}}
+  {{$back}}<a class="link-back" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
+  {{$page-content}}
+    <p>Are you sure you wish to delete report with reference: {{reference}}?</p>
+    <button name="confirm" value="{{id}}" class="govuk-button">Delete this report</button>&nbsp; <button class="govuk-button govuk-button--secondary" name="cancel">Cancel</button>
+  {{/page-content}}
 {{/partials-page}}
