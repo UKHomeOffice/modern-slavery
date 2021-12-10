@@ -58,7 +58,7 @@
             <span>{{formattedCoOperateWithPolice}}</span>
           </td>
           <td>
-            <a href="/nrm/co-operate-with-police/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+            <a href="/nrm/co-operate-with-police-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
           </td>
         </tr>
       {{/values.co-operate-with-police}}
@@ -72,7 +72,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-name/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name.label{{/t}}">Change</a>
+          <a href="/nrm/pv-name-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-name-first-name}}
@@ -86,7 +86,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-name/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}">Change</a>
+          <a href="/nrm/pv-name-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-name-nickname}}
@@ -116,7 +116,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-gender/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-gender.label{{/t}}">Change</a>
+          <a href="/nrm/pv-gender-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-gender.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-gender}}
@@ -150,7 +150,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-nationality/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-nationality.label{{/t}}">Change</a>
+          <a href="/nrm/pv-nationality-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-nationality.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-nationality}}
@@ -200,7 +200,7 @@
           <span>Safe to use</span>
         </td>
         <td>
-          <a href="/nrm/pv-contact-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details-email.label{{/t}}">Change</a>
+          <a href="/nrm/pv-contact-details-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details-email.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-contact-details-email-check}}
@@ -216,7 +216,7 @@
           <span>Safe to use</span>
         </td>
         <td>
-          <a href="/nrm/pv-contact-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}">Change</a>
+          <a href="/nrm/pv-contact-details-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-contact-details-post-check}}
