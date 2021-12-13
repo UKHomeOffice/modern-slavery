@@ -4,10 +4,7 @@ const automaticReferral = require('./behaviours/automatic-referral');
 const setReferralState = require('./behaviours/set-referral-state');
 const checkEmailToken = require('./behaviours/check-email-token');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
-const saveMissingData = require('./behaviours/save-missing-data');
-const transferMissingData = require('./behaviours/transfer-missing-data');
 const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
-const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
@@ -15,7 +12,6 @@ const continueReport = require('./behaviours/continue-report');
 const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
-const deleteOnChange = require('./behaviours/delete-on-change');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
@@ -261,7 +257,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['pv-gender'],
-      next: '/pv-nationality-dtn',
+      next: '/pv-nationality-dtn'
     },
     '/pv-nationality-dtn': {
       template: 'pv-nationality',
@@ -350,7 +346,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['pv-gender'],
-      next: '/does-pv-have-children',
+      next: '/does-pv-have-children'
     },
     '/does-pv-have-children': {
       behaviours: [
