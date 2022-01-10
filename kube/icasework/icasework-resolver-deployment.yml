@@ -8,11 +8,7 @@ metadata:
   name: icasework-resolver
   {{ end }}
 spec:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   replicas: 1
-  {{ else }}
-  replicas: 2
-  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
