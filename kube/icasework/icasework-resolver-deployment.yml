@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   name: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
+  annotations:
+    downscaler/downtime: Thu-Thu 15:30-16:00 Europe/London
   {{ else }}
   name: icasework-resolver
   {{ end }}
