@@ -288,7 +288,6 @@
   },
   "confirmation": {
     "header": "Confirmation",
-    "casework-downtime-alert": "ATTENTION. The caseworking system has scheduled downtime this weekend. Reports submitted after 5pm on Friday 14th will not receive confirmation until the morning of Monday 17th",
     "dtn-message": "Duty to Notify (DtN) sent",
     "nrm-message": "NRM referral sent",
     "paragraph-1": "You will shortly receive a confirmation email with a reference number. You will also receive a copy of your report for your records.",
