@@ -6,8 +6,6 @@ metadata:
   name: icasework-resolver-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
   name: icasework-resolver
-  annotations:
-    downscaler/downtime: Sat-Sun 00:00-24:00 Europe/London,Fri-Fri 17:00-24:00 Europe/London
   {{ end }}
 spec:
   replicas: 1
