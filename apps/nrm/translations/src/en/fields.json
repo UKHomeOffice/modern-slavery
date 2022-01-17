@@ -105,6 +105,16 @@
       }
     }
   },
+  "where-exploitation-happened-uk-city": {
+    "options": {
+      "null": "Please select an option"
+    }
+  },
+  "where-exploitation-happened-overseas-country": {
+    "options": {
+      "null": "Please select an option"
+    }
+  },
   "where-exploitation-happened-uk-city-1": {
     "label": "Select city or town (Type Unknown if they are unsure)",
     "hint": "Start typing the city. It must appear on the list for you to be able to continue.",

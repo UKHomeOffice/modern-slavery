@@ -279,7 +279,7 @@
       },
       "fr-details-email": {
         "label": "Email",
-        "info": "Logged in user email"
+        "info": "The email you are using for this report"
       },
       "fr-details-phone": {
         "label": "Telephone"
