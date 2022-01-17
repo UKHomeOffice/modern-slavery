@@ -10,7 +10,11 @@ metadata:
     downscaler/downtime: Sat-Sun 00:00-24:00 Europe/London,Fri-Fri 17:00-24:00 Europe/London
   {{ end }}
 spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 3
+  {{ else }}
   replicas: 1
+  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -48,6 +52,10 @@ spec:
           env:
             - name: TZ
               value: Europe/London
+            - name: ICASEWORK_TIMEOUT
+              value: "900000"
+            - name: ICASEWORK_FETCH_TIMEOUT
+              value: "15000"
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: AWS_SQS
               valueFrom:
