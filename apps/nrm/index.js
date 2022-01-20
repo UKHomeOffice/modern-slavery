@@ -2,6 +2,7 @@
 
 const automaticReferral = require('./behaviours/automatic-referral');
 const setReferralState = require('./behaviours/set-referral-state');
+const resetJourneyToSubmitNRM = require('./behaviours/reset-journey-to-submit-nrm');
 const checkEmailToken = require('./behaviours/check-email-token');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
 const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
@@ -72,6 +73,7 @@ module.exports = {
     '/pv-under-age': {
       behaviours: [
         setReferralState,
+        resetJourneyToSubmitNRM,
         saveFormSession
       ],
       fields: ['pv-under-age'],
@@ -228,6 +230,7 @@ module.exports = {
     '/pv-want-to-submit-nrm': {
       behaviours: [
         automaticReferral,
+        resetJourneyToSubmitNRM,
         saveFormSession
       ],
       fields: ['pv-want-to-submit-nrm'],
