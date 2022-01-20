@@ -7,6 +7,7 @@ module.exports = superclass => class extends superclass {
     const previouslyAnsweredSubmitToNRM = currentSteps.includes('/pv-want-to-submit-nrm');
 
     req.sessionModel.set('automatic-referral', pvUnderAge);
+
     if (pvUnderAge) {
       req.sessionModel.set('pv-want-to-submit-nrm', 'yes');
       req.sessionModel.set('is-referral', true);
