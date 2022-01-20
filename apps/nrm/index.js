@@ -72,7 +72,7 @@ module.exports = {
     },
     '/pv-under-age': {
       behaviours: [
-        setReferralState,
+        automaticReferral,
         resetJourneyToSubmitNRM,
         saveFormSession
       ],
@@ -229,7 +229,7 @@ module.exports = {
     },
     '/pv-want-to-submit-nrm': {
       behaviours: [
-        automaticReferral,
+        setReferralState,
         resetJourneyToSubmitNRM,
         saveFormSession
       ],
