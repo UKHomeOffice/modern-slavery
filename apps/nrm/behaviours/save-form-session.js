@@ -54,7 +54,9 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/nrm/save-and-exit');
         }
 
-        if (req.path.match(/\/change$/)) {
+        const noEditContinue = !req.form.options.continueOnEdit;
+
+        if (req.sessionModel.get('redirect-to-reports') && noEditContinue) {
           return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
         }
 
