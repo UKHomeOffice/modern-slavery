@@ -40,7 +40,7 @@ module.exports = {
     clientId: process.env.KEYCLOAK_CLIENT_ID,
     secret: process.env.KEYCLOAK_SECRET
   },
-  tokenExpiry: 86400,
+  tokenExpiry: 1800,
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY || '',
     templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID || 'fe0408cb-24f0-4b5f-9bdb-6569834039fb',

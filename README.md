@@ -92,7 +92,7 @@ bin/manual_migration.sh rollback
 
 ## Email functionality  <a name="email-functionality"></a>
 
-We use [Gov Notify](https://notifications.service.gov.uk/sign-in) to send emails. We have two accounts:
+We use [Gov Notify](https://www.notifications.service.gov.uk/sign-in) to send emails. We have two accounts:
 
 1. Modern slavery for our Live service. This is on our production environment
 2. Modern slavery test for testing. This is on our dev, uat and preprod environments
