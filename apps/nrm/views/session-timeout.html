@@ -1,4 +1,7 @@
 {{<partials-page}}
+  {{$back}}
+    <a class="link-back" href="{{#url}}{{backLink}}{{/url}}">{{#t}}buttons.back{{/t}}</a>
+  {{/back}}
   {{$page-content}}
     {{#markdown}}session-timeout{{/markdown}}
   {{/page-content}}

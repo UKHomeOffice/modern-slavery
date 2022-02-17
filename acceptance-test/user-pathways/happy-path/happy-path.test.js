@@ -195,6 +195,8 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
     } else if (!caseReferred && typeOfPV === 'adult') {
       await completeDutyToNotifyForm();
+    } else {
+      await clickSelector(page, CONTINUE_BUTTON);
     }
   }
 

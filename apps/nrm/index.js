@@ -1,13 +1,11 @@
 'use strict';
 
+const automaticReferral = require('./behaviours/automatic-referral');
+const setReferralState = require('./behaviours/set-referral-state');
+const resetJourneyToSubmitNRM = require('./behaviours/reset-journey-to-submit-nrm');
 const checkEmailToken = require('./behaviours/check-email-token');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
-const saveMissingData = require('./behaviours/save-missing-data');
-const transferMissingData = require('./behaviours/transfer-missing-data');
 const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
-const getPageCustomBackLink = require('./behaviours/back-links/get-page-back-link');
-const getPageCustomNextStep = require('./behaviours/next-steps/get-page-next-step');
-const ResetOnChange = require('./behaviours/reset-on-change');
 const formatAnswers = require('./behaviours/format-answers');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
@@ -15,7 +13,6 @@ const continueReport = require('./behaviours/continue-report');
 const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
-const deleteOnChange = require('./behaviours/delete-on-change');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const Submission = require('./behaviours/casework-submission');
@@ -75,24 +72,23 @@ module.exports = {
     },
     '/pv-under-age': {
       behaviours: [
-        getPageCustomNextStep('pv-under-age'),
-        ResetOnChange({
-          currentField: 'pv-under-age',
-          storeFields: [
-            'fr-location',
-            'user-organisation',
-            'user-email',
-            'reference',
-            'id'
-          ]
-        }),
+        automaticReferral,
+        resetJourneyToSubmitNRM,
         saveFormSession
       ],
-      fields: ['pv-under-age']
+      fields: ['pv-under-age'],
+      next: '/local-authority-contacted-about-child',
+      forks: [{
+        target: '/pv-under-age-at-time-of-exploitation',
+        condition: {
+          field: 'pv-under-age',
+          value: 'no'
+        }
+      }],
+      continueOnEdit: true
     },
     '/local-authority-contacted-about-child': {
       behaviours: [
-        getPageCustomBackLink('local-authority-contacted-about-child'),
         saveFormSession
       ],
       fields: [
@@ -106,7 +102,6 @@ module.exports = {
     },
     '/pv-under-age-at-time-of-exploitation': {
       behaviours: [
-        getPageCustomBackLink('pv-under-age-at-time-of-exploitation'),
         saveFormSession
       ],
       fields: ['pv-under-age-at-time-of-exploitation'],
@@ -114,7 +109,6 @@ module.exports = {
     },
     '/what-happened': {
       behaviours: [
-        getPageCustomBackLink('what-happened'),
         saveFormSession
       ],
       fields: ['what-happened'],
@@ -122,36 +116,21 @@ module.exports = {
     },
     '/where-exploitation-happened': {
       behaviours: [
-        getPageCustomBackLink('where-exploitation-happened'),
-        getPageCustomNextStep('where-exploitation-happened'),
-        ResetOnChange({
-          currentField: 'where-exploitation-happened',
-          storeFields: [
-            'fr-location',
-            'user-organisation',
-            'user-email',
-            'pv-under-age',
-            'local-authority-contacted-about-child-local-authority-name',
-            'local-authority-contacted-about-child-local-authority-phone',
-            'local-authority-contacted-about-child-local-authority-email',
-            'local-authority-contacted-about-child-local-authority-first-name',
-            'local-authority-contacted-about-child-local-authority-last-name',
-            'pv-under-age-at-time-of-exploitation',
-            'what-happened',
-            'reference',
-            'id'
-          ]
-        }),
         saveFormSession
       ],
-      fields: [
-        'where-exploitation-happened'
-      ]
+      fields: ['where-exploitation-happened'],
+      next: '/where-exploitation-happened-uk',
+      forks: [{
+        target: '/where-exploitation-happened-overseas',
+        condition: {
+          field: 'where-exploitation-happened',
+          value: 'overseas'
+        }
+      }],
+      continueOnEdit: true
     },
     '/where-exploitation-happened-uk': {
       behaviours: [
-        getPageCustomBackLink('where-exploitation-happened-uk'),
-        getPageCustomNextStep('where-exploitation-happened-uk'),
         whereExploitationHappenedUk,
         saveFormSession
       ],
@@ -167,12 +146,15 @@ module.exports = {
         'where-exploitation-happened-uk-city-9',
         'where-exploitation-happened-uk-city-10',
         'where-exploitation-happened-other-uk-other-location'
-      ]
+      ],
+      next: '/current-pv-location',
+      forks: [{
+        target: '/where-exploitation-happened-overseas',
+        condition: req => req.sessionModel.get('where-exploitation-happened') === 'uk-and-overseas'
+      }]
     },
     '/where-exploitation-happened-overseas': {
       behaviours: [
-        getPageCustomBackLink('where-exploitation-happened-overseas'),
-        getPageCustomNextStep('where-exploitation-happened-overseas'),
         saveFormSession
       ],
       fields: [
@@ -187,11 +169,11 @@ module.exports = {
         'where-exploitation-happened-overseas-country-9',
         'where-exploitation-happened-overseas-country-10',
         'where-exploitation-happened-other-overseas-other-location'
-      ]
+      ],
+      next: '/current-pv-location'
     },
     '/current-pv-location': {
       behaviours: [
-        getPageCustomBackLink('current-pv-location'),
         saveFormSession
       ],
       fields: [
@@ -202,7 +184,6 @@ module.exports = {
     },
     '/who-exploited-pv': {
       behaviours: [
-        getPageCustomBackLink('default'),
         saveFormSession
       ],
       fields: ['who-exploited-pv'],
@@ -211,7 +192,6 @@ module.exports = {
     '/types-of-exploitation': {
       behaviours: [
         typesOfExploitation,
-        getPageCustomBackLink('default'),
         saveFormSession
       ],
       fields: [
@@ -231,7 +211,6 @@ module.exports = {
     },
     '/any-other-pvs': {
       behaviours: [
-        getPageCustomBackLink('default'),
         saveFormSession
       ],
       fields: ['any-other-pvs'],
@@ -239,188 +218,162 @@ module.exports = {
     },
     '/reported-to-police': {
       behaviours: [
-        getPageCustomBackLink('reported-to-police'),
-        getPageCustomNextStep('reported-to-police'),
         saveFormSession
       ],
       fields: [
         'reported-to-police',
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
-      ]
+      ],
+      next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {
       behaviours: [
-        getPageCustomBackLink('pv-want-to-submit-nrm'),
-        getPageCustomNextStep('pv-want-to-submit-nrm'),
-        ResetOnChange({
-          currentField: 'pv-want-to-submit-nrm',
-          storeFields: [
-            'fr-location',
-            'user-organisation',
-            'user-email',
-            'pv-under-age',
-            'pv-under-age-at-time-of-exploitation',
-            'what-happened',
-            'where-exploitation-happened',
-            'where-exploitation-happened-uk-city',
-            'where-exploitation-happened-uk-region',
-            'where-exploitation-happened-other-uk-other-location',
-            'where-exploitation-happened-overseas-country',
-            'where-exploitation-happened-other-overseas-other-location',
-            'current-pv-location-uk-city',
-            'current-pv-location-uk-region',
-            'who-exploited-pv',
-            'types-of-exploitation-forced-to-work',
-            'types-of-exploitation-wages-taken',
-            'types-of-exploitation-forced-to-commit-fraud',
-            'types-of-exploitation-prostitution',
-            'types-of-exploitation-child-exploitation',
-            'types-of-exploitation-taken-somewhere',
-            'types-of-exploitation-forced-to-commit-crime',
-            'types-of-exploitation-organs-removed',
-            'types-of-exploitation-unpaid-household-work',
-            'types-of-exploitation-other',
-            'other-exploitation-details',
-            'any-other-pvs',
-            'reported-to-police',
-            'reported-to-police-police-forces',
-            'reported-to-police-crime-reference',
-            'reference',
-            'id'
-          ]
-        }),
+        setReferralState,
+        resetJourneyToSubmitNRM,
         saveFormSession
       ],
       fields: ['pv-want-to-submit-nrm'],
+      next: '/does-pv-need-support',
+      forks: [{
+        target: '/pv-name-referral',
+        condition: req => {
+          return req.sessionModel.get('pv-want-to-submit-nrm') === 'yes' &&
+            req.sessionModel.get('automatic-referral');
+        }
+      }, {
+        target: '/refuse-nrm',
+        condition: req => req.sessionModel.get('pv-want-to-submit-nrm') === 'no'
+      }],
       continueOnEdit: true
     },
     '/refuse-nrm': {
       behaviours: [
-        getPageCustomBackLink('refuse-nrm'),
         saveFormSession
       ],
       fields: ['refuse-nrm'],
-      next: '/pv-gender'
+      next: '/pv-gender-dtn'
     },
-    '/does-pv-need-support': {
+    '/pv-gender-dtn': {
+      template: 'pv-gender',
       behaviours: [
-        getPageCustomBackLink('does-pv-need-support'),
-        getPageCustomNextStep('does-pv-need-support'),
-        ResetOnChange({
-          currentField: 'does-pv-need-support',
-          storeFields: [
-            'fr-location',
-            'user-organisation',
-            'user-email',
-            'pv-under-age',
-            'pv-under-age-at-time-of-exploitation',
-            'what-happened',
-            'where-exploitation-happened',
-            'where-exploitation-happened-uk-city',
-            'where-exploitation-happened-uk-region',
-            'where-exploitation-happened-other-uk-other-location',
-            'where-exploitation-happened-overseas-country',
-            'where-exploitation-happened-other-overseas-other-location',
-            'current-pv-location-uk-city',
-            'current-pv-location-uk-region',
-            'who-exploited-pv',
-            'types-of-exploitation-forced-to-work',
-            'types-of-exploitation-wages-taken',
-            'types-of-exploitation-forced-to-commit-fraud',
-            'types-of-exploitation-prostitution',
-            'types-of-exploitation-child-exploitation',
-            'types-of-exploitation-taken-somewhere',
-            'types-of-exploitation-forced-to-commit-crime',
-            'types-of-exploitation-organs-removed',
-            'types-of-exploitation-unpaid-household-work',
-            'types-of-exploitation-other',
-            'other-exploitation-details',
-            'any-other-pvs',
-            'reported-to-police',
-            'reported-to-police-police-forces',
-            'reported-to-police-crime-reference',
-            'pv-want-to-submit-nrm',
-            'reference',
-            'id'
-          ]
-        }),
         saveFormSession
       ],
-      fields: ['does-pv-need-support'],
-      continueOnEdit: true
+      fields: ['pv-gender'],
+      next: '/pv-nationality-dtn'
     },
-    '/support-organisations': {
-      backLink: false
-    },
-    '/pv-name': {
+    '/pv-nationality-dtn': {
+      template: 'pv-nationality',
       behaviours: [
-        getPageCustomBackLink('pv-name'),
-        getPageCustomNextStep('pv-name'),
-        saveFormSession
-      ],
-      fields: [
-        'pv-name-first-name',
-        'pv-name-last-name',
-        'pv-name-nickname'
-      ]
-    },
-    '/pv-dob': {
-      behaviours: [
-        getPageCustomBackLink('pv-dob'),
-        saveMissingData('pv-dob'),
-        saveFormSession
-      ],
-      fields: ['pv-dob'],
-      next: '/pv-gender'
-    },
-    '/pv-gender': {
-      behaviours: [
-        getPageCustomBackLink('pv-gender'),
-        getPageCustomNextStep('pv-gender'),
-        saveMissingData('pv-gender'),
-        saveFormSession
-      ],
-      fields: ['pv-gender']
-    },
-    '/does-pv-have-children': {
-      behaviours: [
-        getPageCustomBackLink('does-pv-have-children'),
-        getPageCustomNextStep('does-pv-have-children'),
-        saveMissingData([
-          'does-pv-have-children',
-          'does-pv-have-children-yes-amount'
-        ]),
-        saveFormSession
-      ],
-      fields: [
-        'does-pv-have-children',
-        'does-pv-have-children-yes-amount'
-      ]
-    },
-    '/pv-nationality': {
-      behaviours: [
-        getPageCustomBackLink('pv-nationality'),
-        getPageCustomNextStep('pv-nationality'),
-        saveMissingData([
-          'pv-nationality',
-          'pv-nationality-second'
-        ]),
         saveFormSession
       ],
       fields: [
         'pv-nationality',
         'pv-nationality-second'
       ],
-      next: '/co-operate-with-police'
+      next: '/co-operate-with-police-dtn'
+    },
+    '/co-operate-with-police-dtn': {
+      template: 'co-operate-with-police',
+      fields: ['co-operate-with-police'],
+      behaviours: [
+        saveFormSession
+      ],
+      next: '/confirm',
+      forks: [{
+        target: '/pv-name-dtn',
+        condition: req => req.sessionModel.get('co-operate-with-police') === 'yes'
+      }]
+    },
+    '/pv-name-dtn': {
+      template: 'pv-name',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-name-first-name',
+        'pv-name-last-name',
+        'pv-name-nickname'
+      ],
+      next: '/pv-contact-details-dtn'
+    },
+    '/pv-contact-details-dtn': {
+      template: 'pv-contact-details',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-contact-details',
+        'pv-contact-details-email-input',
+        'pv-contact-details-email-check',
+        'pv-contact-details-street',
+        'pv-contact-details-town',
+        'pv-contact-details-county',
+        'pv-contact-details-postcode',
+        'pv-contact-details-post-check'
+      ],
+      next: '/confirm'
+    },
+    '/does-pv-need-support': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['does-pv-need-support'],
+      next: '/pv-name-referral'
+    },
+    '/support-organisations': {
+      backLink: false
+    },
+    '/pv-name-referral': {
+      template: 'pv-name',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-name-first-name',
+        'pv-name-last-name',
+        'pv-name-nickname'
+      ],
+      next: '/pv-dob'
+    },
+    '/pv-dob': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['pv-dob'],
+      next: '/pv-gender-referral'
+    },
+    '/pv-gender-referral': {
+      template: 'pv-gender',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['pv-gender'],
+      next: '/does-pv-have-children'
+    },
+    '/does-pv-have-children': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'does-pv-have-children',
+        'does-pv-have-children-yes-amount'
+      ],
+      next: '/pv-nationality-referral'
+    },
+    '/pv-nationality-referral': {
+      template: 'pv-nationality',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'pv-nationality',
+        'pv-nationality-second'
+      ],
+      next: '/pv-interpreter-requirements'
     },
     '/pv-interpreter-requirements': {
       behaviours: [
-        getPageCustomBackLink('pv-interpreter-requirements'),
-        saveMissingData([
-          'pv-interpreter-requirements',
-          'pv-interpreter-requirements-language'
-        ]),
         saveFormSession
       ],
       fields: [
@@ -431,10 +384,6 @@ module.exports = {
     },
     '/pv-other-help-with-communication': {
       behaviours: [
-        saveMissingData([
-          'pv-other-help-with-communication', 'pv-other-help-with-communication-aid'
-        ]),
-        getPageCustomBackLink('default'),
         saveFormSession
       ],
       fields: [
@@ -445,63 +394,32 @@ module.exports = {
     },
     '/pv-ho-reference': {
       behaviours: [
-        getPageCustomBackLink('pv-ho-reference'),
-        getPageCustomNextStep('pv-ho-reference'),
-        saveMissingData([
-          'pv-ho-reference',
-          'pv-ho-reference-type'
-        ]),
         saveFormSession
       ],
       fields: [
         'pv-ho-reference',
         'pv-ho-reference-type'
-      ]
+      ],
+      next: '/who-contact',
+      forks: [{
+        target: '/fr-details',
+        condition: req => req.sessionModel.get('pv-under-age') !== 'no'
+      }]
     },
     '/who-contact': {
       behaviours: [
-        getPageCustomBackLink('who-contact'),
-        getPageCustomNextStep('who-contact'),
-        saveMissingData('who-contact'),
-        deleteOnChange({
-          currentField: 'who-contact',
-          deleteFields: [
-            'pv-contact-details',
-            'pv-contact-details-email-input',
-            'pv-contact-details-email-check',
-            'pv-contact-details-street',
-            'pv-contact-details-town',
-            'pv-contact-details-county',
-            'pv-contact-details-postcode',
-            'pv-contact-details-post-check',
-            'someone-else',
-            'someone-else-first-name',
-            'someone-else-last-name',
-            'someone-else-email-input',
-            'someone-else-street',
-            'someone-else-town',
-            'someone-else-county',
-            'someone-else-postcode',
-            'someone-else-permission-check',
-            'pv-phone-number',
-            'pv-phone-number-yes',
-            'co-operate-with-police',
-            'fr-details-first-name',
-            'fr-details-last-name',
-            'fr-details-role',
-            'fr-details-phone',
-            'fr-alternative-contact'
-          ]
-        }),
         saveFormSession
       ],
       fields: ['who-contact'],
+      next: '/pv-contact-details-referral',
+      forks: [{
+        target: '/someone-else',
+        condition: req => req.sessionModel.get('who-contact') === 'someone-else'
+      }],
       continueOnEdit: true
     },
     '/someone-else': {
       behaviours: [
-        getPageCustomBackLink('someone-else'),
-        getPageCustomNextStep('someone-else'),
         saveFormSession
       ],
       fields: [
@@ -514,29 +432,16 @@ module.exports = {
         'someone-else-county',
         'someone-else-postcode',
         'someone-else-permission-check'
-      ]
+      ],
+      next: '/pv-phone-number',
+      forks: [{
+        target: '/co-operate-with-police-referral',
+        condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
+      }]
     },
-    '/pv-contact-details': {
+    '/pv-contact-details-referral': {
+      template: 'pv-contact-details',
       behaviours: [
-        getPageCustomBackLink('pv-contact-details'),
-        getPageCustomNextStep('pv-contact-details'),
-        transferMissingData([
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'does-pv-have-children-yes-amount',
-          'pv-nationality',
-          'pv-nationality-second',
-          'pv-ho-reference',
-          'pv-ho-reference-type',
-          'pv-interpreter-requirements',
-          'pv-interpreter-requirements-language',
-          'pv-other-help-with-communication',
-          'pv-other-help-with-communication-aid',
-          'who-contact',
-          'pv-phone-number',
-          'pv-phone-number-yes'
-        ]),
         saveFormSession
       ],
       fields: [
@@ -548,91 +453,33 @@ module.exports = {
         'pv-contact-details-county',
         'pv-contact-details-postcode',
         'pv-contact-details-post-check'
-      ]
+      ],
+      next: '/pv-phone-number',
+      forks: [{
+        target: '/co-operate-with-police-referral',
+        condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
+      }]
     },
     '/pv-phone-number': {
       behaviours: [
-        getPageCustomBackLink('pv-phone-number'),
-        saveMissingData([
-          'pv-phone-number',
-          'pv-phone-number-yes'
-        ]),
         saveFormSession
       ],
       fields: [
         'pv-phone-number',
         'pv-phone-number-yes'
       ],
-      next: '/co-operate-with-police'
+      next: '/co-operate-with-police-referral'
     },
-    '/co-operate-with-police': {
+    '/co-operate-with-police-referral': {
+      template: 'co-operate-with-police',
       fields: ['co-operate-with-police'],
       behaviours: [
-        getPageCustomBackLink('co-operate-with-police'),
-        getPageCustomNextStep('co-operate-with-police'),
-        transferMissingData([
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'does-pv-have-children-yes-amount',
-          'pv-nationality',
-          'pv-nationality-second',
-          'pv-ho-reference',
-          'pv-ho-reference-type',
-          'pv-interpreter-requirements',
-          'pv-interpreter-requirements-language',
-          'pv-other-help-with-communication',
-          'pv-other-help-with-communication-aid',
-          'pv-phone-number',
-          'pv-phone-number-yes',
-          'who-contact'
-        ]),
-        deleteOnChange({
-          currentField: 'co-operate-with-police',
-          deleteFields: [
-            'pv-name-first-name',
-            'pv-name-last-name',
-            'pv-name-nickname',
-            'pv-contact-details',
-            'pv-contact-details-email-input',
-            'pv-contact-details-email-check',
-            'pv-contact-details-street',
-            'pv-contact-details-town',
-            'pv-contact-details-county',
-            'pv-contact-details-postcode',
-            'pv-contact-details-post-check',
-            'fr-details-first-name',
-            'fr-details-last-name',
-            'fr-details-role',
-            'fr-details-phone',
-            'fr-alternative-contact'
-          ],
-          exceptions: [
-            {
-              field: 'pv-want-to-submit-nrm',
-              value: 'yes',
-              exemptFields: [
-                'pv-name-first-name',
-                'pv-name-last-name',
-                'pv-name-nickname',
-                'pv-contact-details',
-                'pv-contact-details-email-input',
-                'pv-contact-details-email-check',
-                'pv-contact-details-street',
-                'pv-contact-details-town',
-                'pv-contact-details-county',
-                'pv-contact-details-postcode',
-                'pv-contact-details-post-check'
-              ]
-            }
-          ]
-        }),
         saveFormSession
-      ]
+      ],
+      next: '/fr-details'
     },
     '/fr-details': {
       behaviours: [
-        getPageCustomBackLink('fr-details'),
         saveFormSession
       ],
       fields: [
@@ -645,35 +492,16 @@ module.exports = {
     },
     '/fr-alternative-contact': {
       behaviours: [
-        getPageCustomBackLink('fr-alternative-contact'),
-        getPageCustomNextStep('fr-alternative-contact'),
-        transferMissingData([
-          'pv-dob',
-          'pv-gender',
-          'does-pv-have-children',
-          'does-pv-have-children-yes-amount',
-          'pv-nationality',
-          'pv-nationality-second',
-          'pv-ho-reference',
-          'pv-ho-reference-type',
-          'pv-interpreter-requirements',
-          'pv-interpreter-requirements-language',
-          'pv-other-help-with-communication',
-          'pv-other-help-with-communication-aid',
-          'who-contact',
-          'pv-phone-number',
-          'pv-phone-number-yes'
-        ]),
         saveFormSession
       ],
-      fields: ['fr-alternative-contact']
+      fields: ['fr-alternative-contact'],
+      next: '/confirm'
     },
     '/confirm': {
       behaviours: [
         require('hof').components.summary,
         formatAnswers,
         hideAndShowSummaryFields,
-        getPageCustomBackLink('confirm'),
         fullWidth,
         submission,
         deleteFormSession,
