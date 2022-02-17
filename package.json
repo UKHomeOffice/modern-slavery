@@ -21,7 +21,7 @@
     "start": "node server.js",
     "start:dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch",
     "debug": "node -r dotenv/config --inspect server.js",
-    "devenv": "hof-build watch --env",
+    "dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
     "test": "NODE_ENV=test yarn run test:unit && yarn run test:lint",
     "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
@@ -35,7 +35,7 @@
   "dependencies": {
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
-    "hof": "^19.11.23",
+    "hof": "^19.11.25",
     "ioredis": "^4.0.0",
     "jquery": "^3.3.1",
     "knex": "^0.95.11",

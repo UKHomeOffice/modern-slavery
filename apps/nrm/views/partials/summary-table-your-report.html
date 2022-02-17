@@ -11,7 +11,7 @@
           {{values.reference}}
       </td>
       <td>
-        <a href="/nrm/reference/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.reference.label{{/t}}">Change</a>
+        <a href="/nrm/reference/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.reference.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.reference}}
@@ -23,7 +23,7 @@
           {{values.user-organisation}}
       </td>
       <td>
-        <a href="/nrm/organisation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.user-organisation.label{{/t}}">Change</a>
+        <a href="/nrm/organisation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.user-organisation.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.user-organisation}}
@@ -34,7 +34,9 @@
       <td class="no-white-space">
           {{formattedPvUnderAge}}
       </td>
-      <td></td>
+      <td>
+        <a href="/nrm/pv-under-age/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-under-age.label{{/t}}">Change</a>
+      </td>
     </tr>
     {{/values.pv-under-age}}
 
@@ -45,7 +47,7 @@
           {{formattedPvUnderAgeAtTimeOfExploitation}}
       </td>
       <td>
-        <a href="/nrm/pv-under-age-at-time-of-exploitation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}">Change</a>
+        <a href="/nrm/pv-under-age-at-time-of-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-under-age-at-time-of-exploitation.table-data{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.pv-under-age-at-time-of-exploitation}}
@@ -57,7 +59,7 @@
           {{formattedFrLocation}}
       </td>
       <td>
-        <a href="/nrm/fr-location/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-location.label{{/t}}">Change</a>
+        <a href="/nrm/fr-location/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.fr-location.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.fr-location}}
@@ -69,7 +71,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-name}}</span>
       </td>
       <td>
-        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}">Change</a>
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-name.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-name}}
@@ -81,7 +83,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-phone}}</span>
       </td>
       <td>
-        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}">Change</a>
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-phone.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-phone}}
@@ -93,7 +95,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-email}}</span>
       </td>
       <td>
-        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}">Change</a>
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-email.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-email}}
@@ -105,7 +107,7 @@
         <span>{{values.local-authority-contacted-about-child-local-authority-first-name}} {{values.local-authority-contacted-about-child-local-authority-last-name}}</span>
       </td>
       <td>
-        <a href="/nrm/local-authority-contacted-about-child/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}">Change</a>
+        <a href="/nrm/local-authority-contacted-about-child/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.local-authority-contacted-about-child-local-authority-contact.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.local-authority-contacted-about-child-local-authority-first-name}}
@@ -146,7 +148,7 @@
         {{/values.other-exploitation-details}}
       </td>
       <td>
-        <a href="/nrm/types-of-exploitation/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}">Change</a>
+        <a href="/nrm/types-of-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.types-of-exploitation.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.types-of-exploitation}}
@@ -156,7 +158,9 @@
       <td>{{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}</td>
       <td class="no-white-space">
           {{formattedWhereExploitationHappened}}
-      </td><td>
+      </td>
+      <td>
+        <a href="/nrm/where-exploitation-happened/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.where-exploitation-happened.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.where-exploitation-happened}}
@@ -178,7 +182,7 @@
           <span>{{values.where-exploitation-happened-other-uk-other-location}}</span>
       </td>
       <td>
-        <a href="/nrm/where-exploitation-happened-uk/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.where-exploitation-happened-uk.label{{/t}}">Change</a>
+        <a href="/nrm/where-exploitation-happened-uk/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.where-exploitation-happened-uk.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.where-exploitation-happened-uk-city-1}}
@@ -200,7 +204,7 @@
           <span>{{values.where-exploitation-happened-other-overseas-other-location}}</span>
       </td>
       <td>
-        <a href="/nrm/where-exploitation-happened-overseas/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}">Change</a>
+        <a href="/nrm/where-exploitation-happened-overseas/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.where-exploitation-happened-overseas.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.where-exploitation-happened-overseas-country-1}}
@@ -213,7 +217,7 @@
           <span>Region: {{values.current-pv-location-uk-region}}</span>
       </td>
       <td>
-        <a href="/nrm/current-pv-location/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.current-pv-location.label{{/t}}">Change</a>
+        <a href="/nrm/current-pv-location/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.current-pv-location.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.current-pv-location-uk-city}}
@@ -225,7 +229,7 @@
           <span>{{values.who-exploited-pv}}</span>
       </td>
       <td>
-        <a href="/nrm/who-exploited-pv/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.who-exploited-pv.label{{/t}}">Change</a>
+        <a href="/nrm/who-exploited-pv/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.who-exploited-pv.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.who-exploited-pv}}
@@ -237,7 +241,7 @@
         <span>{{values.what-happened}}</span>
       </td>
       <td>
-        <a href="/nrm/what-happened/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.what-happened.label{{/t}}">Change</a>
+        <a href="/nrm/what-happened/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.what-happened.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.what-happened}}
@@ -249,7 +253,7 @@
         <span>{{formattedAnyOtherPvs}}</span>
       </td>
       <td>
-        <a href="/nrm/any-other-pvs/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}">Change</a>
+        <a href="/nrm/any-other-pvs/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.any-other-pvs.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.any-other-pvs}}
@@ -267,7 +271,7 @@
           {{/values.reported-to-police-crime-reference}}
       </td>
       <td>
-        <a href="/nrm/reported-to-police/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.reported-to-police.label{{/t}}">Change</a>
+        <a href="/nrm/reported-to-police/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.reported-to-police.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.reported-to-police}}

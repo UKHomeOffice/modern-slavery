@@ -2,27 +2,38 @@
 <h2 class="details-header">{{#t}}pages.confirm.sections.potential-victim.header{{/t}}</h2>
 <table id="potential-victim" class="table-details">
   <tbody>
-      {{^isDutyToNotifyPath}}
-      {{#values.does-pv-need-support}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.does-pv-need-support.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{formattedDoesPvNeedSupport}}</span>
-          </td>
-          <td></td>
-        </tr>
-      {{/values.does-pv-need-support}}
-      {{/isDutyToNotifyPath}}
-
       {{#values.pv-want-to-submit-nrm}}
         <tr>
-          <td>{{#t}}pages.confirm.fields.pv-want-to-submit-nrm.label{{/t}}</td>
+          <td class="wrap-table-cell">
+            {{#t}}pages.confirm.fields.pv-want-to-submit-nrm.label{{/t}}
+            {{#values.automatic-referral}}
+              <p>{{#t}}pages.confirm.fields.pv-want-to-submit-nrm.automatic-referral{{/t}}</p>
+            {{/values.automatic-referral}}</td>
           <td class="no-white-space">
             <span>{{formattedPvWnatToSubmitNrm}}</span>
           </td>
-          <td></td>
+          <td>
+            {{^values.automatic-referral}}
+              <a href="/nrm/pv-want-to-submit-nrm/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+            {{/values.automatic-referral}}
+          </td>
         </tr>
       {{/values.pv-want-to-submit-nrm}}
+
+      {{^isDutyToNotifyPath}}
+      {{#values.does-pv-need-support}}
+        <tr>
+          <td class="wrap-table-cell">
+            {{#t}}pages.confirm.fields.does-pv-need-support.label{{/t}}
+          <td class="no-white-space">
+            <span>{{formattedDoesPvNeedSupport}}</span>
+          </td>
+          <td>
+            <a href="/nrm/does-pv-need-support/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+          </td>
+        </tr>
+      {{/values.does-pv-need-support}}
+      {{/isDutyToNotifyPath}}
 
       {{#isDutyToNotifyPath}}
       {{#values.refuse-nrm}}
@@ -34,7 +45,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/refuse-nrm/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+          <a href="/nrm/refuse-nrm/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.refuse-nrm}}
@@ -46,7 +57,9 @@
           <td class="no-white-space">
             <span>{{formattedCoOperateWithPolice}}</span>
           </td>
-          <td></td>
+          <td>
+            <a href="/nrm/co-operate-with-police-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
+          </td>
         </tr>
       {{/values.co-operate-with-police}}
 
@@ -59,7 +72,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-name/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name.label{{/t}}">Change</a>
+          <a href="/nrm/pv-name-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-name-first-name}}
@@ -73,7 +86,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-name/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}">Change</a>
+          <a href="/nrm/pv-name-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-name-nickname.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-name-nickname}}
@@ -88,7 +101,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-dob/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-dob.label{{/t}}">Change</a>
+          <a href="/nrm/pv-dob/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-dob.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-dob}}
@@ -103,7 +116,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-gender/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-gender.label{{/t}}">Change</a>
+          <a href="/nrm/pv-gender-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-gender.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-gender}}
@@ -121,7 +134,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/does-pv-have-children/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.does-pv-have-children.label{{/t}}">Change</a>
+          <a href="/nrm/does-pv-have-children/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.does-pv-have-children.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.does-pv-have-children}}
@@ -137,7 +150,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-nationality/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-nationality.label{{/t}}">Change</a>
+          <a href="/nrm/pv-nationality-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-nationality.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-nationality}}
@@ -155,7 +168,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-interpreter-requirements/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-interpreter-requirements.label{{/t}}">Change</a>
+          <a href="/nrm/pv-interpreter-requirements/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-interpreter-requirements.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-interpreter-requirements}}
@@ -172,7 +185,7 @@
           </span>
         </td>
         <td>
-          <a href="/nrm/pv-other-help-with-communication/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-other-help-with-communication.label{{/t}}">Change</a>
+          <a href="/nrm/pv-other-help-with-communication/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-other-help-with-communication.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-other-help-with-communication}}
@@ -187,7 +200,7 @@
           <span>Safe to use</span>
         </td>
         <td>
-          <a href="/nrm/pv-contact-details/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details-email.label{{/t}}">Change</a>
+          <a href="/nrm/pv-contact-details-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details-email.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-contact-details-email-check}}
@@ -203,7 +216,7 @@
           <span>Safe to use</span>
         </td>
         <td>
-          <a href="/nrm/pv-contact-details/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}">Change</a>
+          <a href="/nrm/pv-contact-details-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-contact-details.label{{/t}}">Change</a>
         </td>
       </tr>
       {{/values.pv-contact-details-post-check}}
@@ -217,7 +230,7 @@
             <span>{{formattedPvPhoneNumber}}</span>
           </td>
           <td>
-            <a href="/nrm/pv-phone-number/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number.label{{/t}}">Change</a>
+            <a href="/nrm/pv-phone-number/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number.label{{/t}}">Change</a>
           </td>
         </tr>
       {{/values.pv-phone-number}}
@@ -228,7 +241,7 @@
             <span>{{values.pv-phone-number-yes}}</span>
           </td>
           <td>
-            <a href="/nrm/pv-phone-number/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}">Change</a>
+            <a href="/nrm/pv-phone-number/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}">Change</a>
           </td>
         </tr>
       {{/values.pv-phone-number-yes}}
@@ -239,30 +252,31 @@
             <span>{{formattedPvPhoneNumber}}</span>
           </td>
           <td>
-            <a href="/nrm/pv-phone-number/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}">Change</a>
+            <a href="/nrm/pv-phone-number/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-phone-number-yes.label{{/t}}">Change</a>
           </td>
         </tr>
       {{/showPvPhoneNumberNoOption}}
       {{/showPvPhoneNumber}}
 
-
       {{^isDutyToNotifyPath}}
-      <tr>
-        <td>{{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}</td>
-        <td class="no-white-space">
-          <span>
-            {{#values.pv-ho-reference-type}}
-              {{values.pv-ho-reference-type}}
-            {{/values.pv-ho-reference-type}}
-            {{^values.pv-ho-reference-type}}
-              No information
-            {{/values.pv-ho-reference-type}}
-          </span>
-        </td>
-        <td>
-          <a href="/nrm/pv-ho-reference/{{#hideChangeLink}}change{{/hideChangeLink}}{{^hideChangeLink}}edit{{/hideChangeLink}}" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}">Change</a>
-        </td>
-      </tr>
+        {{#values.pv-other-help-with-communication}}
+          <tr>
+            <td>{{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}</td>
+            <td class="no-white-space">
+              <span>
+                {{#values.pv-ho-reference-type}}
+                  {{values.pv-ho-reference-type}}
+                {{/values.pv-ho-reference-type}}
+                {{^values.pv-ho-reference-type}}
+                  No information
+                {{/values.pv-ho-reference-type}}
+              </span>
+            </td>
+            <td>
+              <a href="/nrm/pv-ho-reference/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.pv-ho-reference.label{{/t}}">Change</a>
+            </td>
+          </tr>
+        {{/values.pv-other-help-with-communication}}
       {{/isDutyToNotifyPath}}
   </tbody>
 </table>

@@ -1,17 +1,26 @@
 {{<partials-page}}
   {{$page-content}}
-    <p>{{#t}}fields.pv-want-to-submit-nrm.paragraph-1{{/t}}</p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-1{{/t}}</li>
-        <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-2{{/t}}</li>
-    </ul>
-    <div class="govuk-inset-text">
-        <p>{{#t}}fields.pv-want-to-submit-nrm.div-1-paragraph-1{{/t}}</p>
-        <p>{{#t}}fields.pv-want-to-submit-nrm.div-1-paragraph-2{{/t}}</p>
-    </div>
-    {{#fields}}
-      {{#renderField}}{{/renderField}}
-    {{/fields}}
+    {{^values.automatic-referral}}
+      <p>{{#t}}fields.pv-want-to-submit-nrm.paragraph-1{{/t}}</p>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-1{{/t}}</li>
+          <li>{{#t}}fields.pv-want-to-submit-nrm.bullet-2{{/t}}</li>
+      </ul>
+      <div class="govuk-inset-text">
+          <p>{{#t}}fields.pv-want-to-submit-nrm.div-1-paragraph-1{{/t}}</p>
+          <p>{{#t}}fields.pv-want-to-submit-nrm.div-1-paragraph-2{{/t}}</p>
+      </div>
+      {{#fields}}
+        {{#renderField}}{{/renderField}}
+      {{/fields}}
+    {{/values.automatic-referral}}
+    {{#values.automatic-referral}}
+      <p><strong>{{#t}}fields.pv-want-to-submit-nrm.automatic-referral{{/t}}</strong></p>
+      <div class="govuk-inset-text">
+          <p>{{#t}}fields.pv-want-to-submit-nrm.automatic-referral-div-1-paragraph-1{{/t}}</p>
+          <p>{{#t}}fields.pv-want-to-submit-nrm.automatic-referral-div-1-paragraph-2{{/t}}</p>
+      </div>
+    {{/values.automatic-referral}}
     {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
   {{/page-content}}
 {{/partials-page}}
