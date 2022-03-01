@@ -33,7 +33,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "accessible-autocomplete": "^2.0.2",
+    "accessible-autocomplete": "^2.0.4",
     "govuk-frontend": "^2.7.0",
     "hof": "^19.11.25",
     "ioredis": "^4.0.0",
