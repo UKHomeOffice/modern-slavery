@@ -3758,19 +3758,19 @@ ms-countries@^1.0.0:
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
 ms-email-domains@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.4.0.tgz#40724b0c77e3c8f17835ebddb3444e1c875b4892"
-  integrity sha512-x5/qfMhKZIBmjI0NkphJDc3P87vXFGOwyLSgEcXYidKsvOtsfhRXxGapEuMPqKO4bHiy4xAn+PmcXW6gXZCFSw==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.5.0.tgz#47c0ec7570bcbb6bea6f63b314115f18a9b8cec6"
+  integrity sha512-TXB3H5+nZh0HZdICCNIrPZSFaWW6ZpSXxnSq6+bIN7/khj9xM+uNvBytHnNV/haBjwnz5uZeFron4Roby4FXiA==
 
 ms-nationalities@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ms-nationalities/-/ms-nationalities-1.0.1.tgz#7dbbc9002ff5c8aef166c268bdf6c031d10cbd69"
   integrity sha512-jpeVXa7qYYT69ZC3iq59GNihGqFAcjbSYXhFKSFeJSxAvSky9THFXRFQtGm7ZwzBvl+NtfKBomegs3ubRdAOAA==
 
-ms-organisations@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.5.2.tgz#2e2f3ab79e4c0fdc041907cbd1c46aa85a7eca29"
-  integrity sha512-Q9HJL6vTZtphICrjElZdeJpiicFs1IZZ304r4sP4odMLsw1InNAtnfc+Q9dmiaw7EsKk89bRbXDQAN1/F6j9hA==
+ms-organisations@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.6.0.tgz#019829a239712bb1c4576fbb12cfa14121999444"
+  integrity sha512-HJTCx6fcA/28MwhhkModFHbLTZiFIC1CoCTs7rdLi0NHIgJ54J3jbsqkVvtaz7Y0mFUQ7b+5VO/MGGB4LtGS+A==
 
 ms-uk-cities-and-towns@^2.0.2:
   version "2.0.2"
