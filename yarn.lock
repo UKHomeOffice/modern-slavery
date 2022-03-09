@@ -683,9 +683,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.2.36:
-  version "2.1083.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1083.0.tgz#afdc3d99d035b84b1dc75437f7670af0078ed2ab"
-  integrity sha512-o9pOC3LrkJRKLwSumdFrNWzGAVRNPGt4EFS48/917BaFafvnOAzOG/DM8cl5yguz3wT7eylj92I4pP2TE3qZIQ==
+  version "2.1087.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1087.0.tgz#bb00dbac5c6bf415040ad00e7c95462b34c26ddf"
+  integrity sha512-m5EERT29Fwh2cv3SaSdygeAjJBXnjSaXRRERy70bf6PQ7KgmASJouBxY11g5G7LTEPK/yfB0TGshujKh3hEtPA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2554,9 +2554,9 @@ has-flag@^4.0.0:
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
 has-symbols@^1.0.1, has-symbols@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.2.tgz#165d3070c00309752a1236a479331e3ac56f1423"
-  integrity sha512-chXa79rL/UC2KlX17jo3vRGz0azaWEx5tGqZg5pO3NUyEJVB17dMruQlzCCOfUvElghKcm5194+BCRvi2Rv/Gw==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.3.tgz#bb7b2c4349251dce87b125f7bdf874aa7c8b39f8"
+  integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
 
 has-tostringtag@^1.0.0:
   version "1.0.0"
@@ -2650,9 +2650,9 @@ hmac-drbg@^1.0.1:
 
 
 hof@^19.11.25:
-  version "19.13.2"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.2.tgz#9d4cfdbf781df367a118ce9206e690398cda3849"
-  integrity sha512-ZDsfeDOkRo0AQ/uv140/MW4bBXayU4RTszkPis1PSPP3wPP52s6LF2GKhxGdp6N6boTFLDea82zbsfquBxZupw==
+  version "19.13.4"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.4.tgz#c372ad3d633bfd578d998fdc2f2a3e5c221a0cb1"
+  integrity sha512-lE0sPstSyF4InjHMMxBkEm4yB+OqsM9YDJCQnlVAEp3usyDB2v5ODDw1wwmXR4UGnwFBCiL8EnwOJuEhv9icVg==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -2706,7 +2706,7 @@ hof@^19.11.25:
     serve-static "^1.14.1"
     uglify-js "^3.14.3"
     underscore "^1.12.1"
-    urijs "^1.19.8"
+    urijs "^1.19.10"
     winston "^3.3.3"
 
 hogan-express-strict@^0.5.4:
@@ -3774,19 +3774,19 @@ ms-countries@^1.0.0:
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
 ms-email-domains@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.4.0.tgz#40724b0c77e3c8f17835ebddb3444e1c875b4892"
-  integrity sha512-x5/qfMhKZIBmjI0NkphJDc3P87vXFGOwyLSgEcXYidKsvOtsfhRXxGapEuMPqKO4bHiy4xAn+PmcXW6gXZCFSw==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.5.0.tgz#47c0ec7570bcbb6bea6f63b314115f18a9b8cec6"
+  integrity sha512-TXB3H5+nZh0HZdICCNIrPZSFaWW6ZpSXxnSq6+bIN7/khj9xM+uNvBytHnNV/haBjwnz5uZeFron4Roby4FXiA==
 
 ms-nationalities@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ms-nationalities/-/ms-nationalities-1.0.1.tgz#7dbbc9002ff5c8aef166c268bdf6c031d10cbd69"
   integrity sha512-jpeVXa7qYYT69ZC3iq59GNihGqFAcjbSYXhFKSFeJSxAvSky9THFXRFQtGm7ZwzBvl+NtfKBomegs3ubRdAOAA==
 
-ms-organisations@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.5.2.tgz#2e2f3ab79e4c0fdc041907cbd1c46aa85a7eca29"
-  integrity sha512-Q9HJL6vTZtphICrjElZdeJpiicFs1IZZ304r4sP4odMLsw1InNAtnfc+Q9dmiaw7EsKk89bRbXDQAN1/F6j9hA==
+ms-organisations@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.6.0.tgz#019829a239712bb1c4576fbb12cfa14121999444"
+  integrity sha512-HJTCx6fcA/28MwhhkModFHbLTZiFIC1CoCTs7rdLi0NHIgJ54J3jbsqkVvtaz7Y0mFUQ7b+5VO/MGGB4LtGS+A==
 
 ms-uk-cities-and-towns@^2.0.2:
   version "2.0.2"
@@ -5508,10 +5508,10 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-urijs@^1.19.8:
-  version "1.19.8"
-  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.8.tgz#ee0407a18528934d3c383e691912f47043a58feb"
-  integrity sha512-iIXHrjomQ0ZCuDRy44wRbyTZVnfVNLVo3Ksz1yxNyE5wV1IDZW2S5Jszy45DTlw/UdsnRT7DyDhIz7Gy+vJumw==
+urijs@^1.19.10:
+  version "1.19.10"
+  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.10.tgz#8e2fe70a8192845c180f75074884278f1eea26cb"
+  integrity sha512-EzauQlgKuJgsXOqoMrCiePBf4At5jVqRhXykF3Wfb8ZsOBMxPcfiVBcsHXug4Aepb/ICm2PIgqAUGMelgdrWEg==
 
 url@0.10.3:
   version "0.10.3"
