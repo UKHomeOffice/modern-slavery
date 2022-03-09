@@ -2648,6 +2648,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+
 hof@^19.11.25:
   version "19.13.4"
   resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.4.tgz#c372ad3d633bfd578d998fdc2f2a3e5c221a0cb1"
