@@ -316,7 +316,7 @@
     }
   },
   "reported-to-police": {
-    "legend": "Do they have a crime or CAD reference?",
+    "legend": "Do they have a crime or CAD reference in respect of their status as a potential victim?",
     "options": {
       "yes": {
         "label": "Yes"
