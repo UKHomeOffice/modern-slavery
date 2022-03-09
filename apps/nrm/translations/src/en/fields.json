@@ -520,7 +520,8 @@
     "hint": "Select all that apply.",
     "options": {
       "email": {
-        "label": "Email"
+        "label": "Email",
+        "hint": "Only enter an email address that is specific to the potential victim"
       },
       "post": {
         "label": "Post"
