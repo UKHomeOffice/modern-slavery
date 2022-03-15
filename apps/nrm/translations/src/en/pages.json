@@ -82,7 +82,10 @@
   "support-organisations": {
     "header": "Find a support provider"
   },
-  "pv-name": {
+  "pv-name-referral": {
+    "header": "What is the name of the Potential Victim?"
+  },
+  "pv-name-dtn": {
     "header": "What is the name of the Potential Victim?"
   },
   "pv-dob": {
