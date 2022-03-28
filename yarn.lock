@@ -3746,9 +3746,9 @@ ms-countries@^1.0.0:
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
 ms-email-domains@^2.4.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.5.0.tgz#47c0ec7570bcbb6bea6f63b314115f18a9b8cec6"
-  integrity sha512-TXB3H5+nZh0HZdICCNIrPZSFaWW6ZpSXxnSq6+bIN7/khj9xM+uNvBytHnNV/haBjwnz5uZeFron4Roby4FXiA==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.6.0.tgz#1dcb7e714699ccab18f535c4b9046aa5700746dc"
+  integrity sha512-CA8uVJJ5o5kcqwVy5cTR+29zpf1qiPrCUXVcZCd9ORe17H3EnZMVPIckaQK//hOd7IfXyP/hrT2kV4pMyjOIFQ==
 
 ms-nationalities@^1.0.1:
   version "1.0.1"
