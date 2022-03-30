@@ -36,4 +36,14 @@ describe('apps/common/validators', () => {
     ].map(validators.isValidEmail);
     result.should.not.contain(false);
   });
+
+  it('should accept emails with domain portions with capital letters', () => {
+    const result = [
+      'test@Example.com',
+      'test@examplE.gov.uk',
+      'test@subdomain.exaMple.com',
+      'test@example.InternaTional'
+    ].map(validators.isValidEmail);
+    result.should.not.contain(false);
+  });
 });
