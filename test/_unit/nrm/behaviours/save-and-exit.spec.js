@@ -3,7 +3,9 @@
 const reqres = require('reqres');
 const Behaviour = require('../../../../apps/nrm/behaviours/save-and-exit');
 const TestDate = 'Mon 05 Jul 2021 13:28:56 +0100';
+const UpdatedTestDate = 'Mon 05 Jul 2021 14:10:26 +0100';
 const TestDateFeb = 'Sat 29 Feb 2020 13:28:56 +0100';
+const UpdatedTestDateFeb = 'Sat 29 Feb 2020 14:18:52 +0100';
 const CorrectDate = '02 August 2021';
 const CorrectDateFeb = '28 March 2020';
 const Route = 'save-and-exit';
@@ -27,6 +29,7 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
   const superLocals = {
     route: Route,
     created_at: TestDate,
+    updated_at: UpdatedTestDate,
     'user-email': UserEmail
   };
 
@@ -53,6 +56,7 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       locals = {
         route: Route,
         created_at: TestDate,
+        updated_at: UpdatedTestDate,
         'user-email': UserEmail
       };
 
@@ -63,12 +67,13 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       const expected = {
         route: Route,
         created_at: TestDate,
+        updated_at: UpdatedTestDate,
         'user-email': UserEmail,
         reportExpiration: CorrectDate,
         userEmail: UserEmail
       };
 
-      req.sessionModel.get.withArgs('created_at').returns(TestDate);
+      req.sessionModel.get.withArgs('updated_at').returns(UpdatedTestDate);
       req.sessionModel.get.withArgs('user-email').returns(UserEmail);
 
       const result = instance.locals(req, res);
@@ -80,14 +85,16 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       const expected = {
         route: Route,
         created_at: TestDateFeb,
+        updated_at: UpdatedTestDateFeb,
         'user-email': UserEmail,
         reportExpiration: CorrectDateFeb,
         userEmail: UserEmail
       };
       // eslint-disable-next-line camelcase
       locals.created_at = TestDateFeb;
+      locals.updated_at = UpdatedTestDateFeb;
 
-      req.sessionModel.get.withArgs('created_at').returns(TestDateFeb);
+      req.sessionModel.get.withArgs('updated_at').returns(UpdatedTestDateFeb);
       req.sessionModel.get.withArgs('user-email').returns(UserEmail);
 
       const result = instance.locals(req, res);
@@ -95,18 +102,19 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       expect(sessionModel.reset).to.have.been.called;
     });
 
-    it('returns an Invalid date when given an empty created_at date', async () => {
+    it('returns an Invalid date when given an empty updated date', async () => {
       const expected = {
         route: Route,
-        created_at: '',
+        created_at: TestDate,
+        updated_at: '',
         'user-email': UserEmail,
         reportExpiration: 'Invalid date',
         userEmail: UserEmail
       };
       // eslint-disable-next-line camelcase
-      locals.created_at = '';
+      locals.updated_at = '';
 
-      req.sessionModel.get.withArgs('created_at').returns('');
+      req.sessionModel.get.withArgs('updated_at').returns('');
       req.sessionModel.get.withArgs('user-email').returns(UserEmail);
 
       const result = instance.locals(req, res);
@@ -120,10 +128,10 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       expect(sessionModel.reset).to.have.been.called;
     });
 
-    it('gets the users email and report creation date from the previous page', () => {
+    it('gets the users email and report updated date from the previous page', () => {
       instance.locals(req, res);
       expect(sessionModel.get).to.have.been.calledWith('user-email');
-      expect(sessionModel.get).to.have.been.calledWith('created_at');
+      expect(sessionModel.get).to.have.been.calledWith('updated_at');
     });
   });
 });
