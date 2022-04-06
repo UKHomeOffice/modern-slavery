@@ -22,6 +22,7 @@
     "start:dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch",
     "debug": "node -r dotenv/config --inspect server.js",
     "dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
+    "dev:api": "NODE_ENV=test ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch", 
     "test": "NODE_ENV=test yarn run test:unit && yarn run test:lint",
     "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",

@@ -124,17 +124,12 @@ You can skip the email authentication locally or in some of the testing environm
 
 ## Save and return feature <a name="save-and-return-feature"></a>
 
-You can develop and test the save and return feature on you local machine. You will need to set up the [save-and-return-api](https://github.com/UKHomeOffice/save-return-api) so it is running on your local machine. The following code in resume-for-sessions.js and save-form-session.js located in /modern-slavery/apps/nrm/behaviours will need to be commented out:
+You can develop and test the save and return feature on you local machine. You will need to set up the [save-and-return-api](https://github.com/UKHomeOffice/save-return-api) so it is running on your local machine.
 
-```js script
-    if (config.env === 'local') {
-      return super.getValues(req, res, next);
-    }
-```
-You can then start the server in development mode.
+You can then start the server in the api development mode.
 
 ```bash
-$ yarn start:dev
+$ yarn dev:api
 ```
 To skip the email verification follow the [Skip email verify step](#skip-email-verify-step) instructions. 
 
