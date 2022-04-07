@@ -15,18 +15,20 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
 
 3. [Skip email verify step](#skip-email-verify-step)
 
-4. [Acceptance tests](#acceptance-tests)
+4. [Save and return feature](#save-and-return-feature)
+
+5. [Acceptance tests](#acceptance-tests)
     - [Running local acceptance tests](#running-local-acceptance-tests)
     - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
         - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
-5. [Microservices/ Repos](#microservices-repos)
+6. [Microservices/ Repos](#microservices-repos)
 
-6. [Coverage Reporting](#coverage-reporting)
+7. [Coverage Reporting](#coverage-reporting)
 
-7. [Release Guidelines](#release-guidelines)
+8. [Release Guidelines](#release-guidelines)
 
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
@@ -120,6 +122,15 @@ You can skip the email authentication locally or in some of the testing environm
 
 3. If you do both, then the app will always use what you've set in the url parameter as the first responder's email.
 
+## Save and return feature <a name="save-and-return-feature"></a>
+
+You can develop and test the save and return feature on you local machine. You will need to set up the [save-and-return-api](https://github.com/UKHomeOffice/save-return-api) so it is running on your local machine.
+
+You can then start the server in the api development mode.
+
+```bash
+$ yarn dev:api
+```
 ## Acceptance tests  <a name="acceptance-tests"></a>
 
 [Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is our automated browser testing. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
