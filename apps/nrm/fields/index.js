@@ -14,7 +14,7 @@ const path = require('path');
 module.exports = {
   reference: {
     mixin: 'input-text',
-    validate: ['required']
+    validate: ['required', 'notUrl']
   },
   'user-organisation': {
     mixin: 'select',

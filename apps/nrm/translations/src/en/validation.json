@@ -10,7 +10,8 @@
     "required": "You must enter a region"
   },
   "reference" : {
-    "required": "You must enter a reference"
+    "required": "You must enter a reference",
+    "notUrl": "Hello Martin"
   },
   "pv-under-age" : {
     "required": "You must select an option"
