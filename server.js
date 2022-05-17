@@ -5,6 +5,8 @@ const download = require('./lib/download-file');
 const settings = require('./hof.settings');
 const path = require('path');
 const promptSheet = require('./config').promptSheet;
+const config = require('./config');
+const _ = require('lodash');
 
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
@@ -40,4 +42,23 @@ app.use('/cookies', (req, res, next) => {
   next();
 });
 
+if (config.env === 'development' || config.env === 'test') {
+  app.use('/test/bootstrap-session', (req, res) => {
+    const appName = req.body.appName;
+
+    if (!_.get(req, 'session[`hof-wizard-${appName}`]')) {
+      if (!req.session) {
+        throw new Error('Redis is not running!');
+      }
+
+      req.session[`hof-wizard-${appName}`] = {};
+    }
+
+    Object.keys(req.body.sessionProperties || {}).forEach(key => {
+      req.session[`hof-wizard-${appName}`][key] = req.body.sessionProperties[key];
+    });
+
+    res.send('Session populate complete');
+  });
+}
 module.exports = app;

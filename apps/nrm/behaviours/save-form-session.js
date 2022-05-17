@@ -26,8 +26,8 @@ module.exports = superclass => class extends superclass {
         session.alertUser = true;
       }
 
-      // skip requesting data service api when running in local mode
-      if (config.env === 'local') {
+      // skip requesting data service api when running in local and test mode
+      if (config.env === 'local' || config.env === 'test') {
         return next();
       }
 
