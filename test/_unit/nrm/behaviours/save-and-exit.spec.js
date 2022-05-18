@@ -1,13 +1,14 @@
 'use strict';
 
+const moment = require('moment');
 const reqres = require('reqres');
 const Behaviour = require('../../../../apps/nrm/behaviours/save-and-exit');
-const TestDate = 'Mon 05 Jul 2021 13:28:56 +0100';
-const TestDateFeb = 'Sat 29 Feb 2020 13:28:56 +0100';
-const CorrectDate = '02 August 2021';
-const CorrectDateFeb = '28 March 2020';
+
 const Route = 'save-and-exit';
 const UserEmail = 'mary-jane-parker@homeoffice.gov.uk';
+const DeletionTimeout = 28;
+const ExpectedExpiryDate = moment(new Date()).add(DeletionTimeout, 'days')
+  .format('DD MMMM YYYY');
 
 describe('/apps/nrm/behaviours/save-and-exit', () => {
   it('exports a function', () => {
@@ -25,13 +26,11 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
   let SaveAndExit;
 
   const superLocals = {
-    route: Route,
-    created_at: TestDate,
-    'user-email': UserEmail
+    route: Route
   };
 
   const data = Object.assign({}, {
-    reportExpiration: CorrectDate,
+    reportExpiration: ExpectedExpiryDate,
     userEmail: UserEmail
   });
 
@@ -51,9 +50,7 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
     });
     afterEach(() => {
       locals = {
-        route: Route,
-        created_at: TestDate,
-        'user-email': UserEmail
+        route: Route
       };
 
       Base.prototype.locals.restore();
@@ -62,68 +59,25 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
     it('returns an extended locals with expiry date calculated', async () => {
       const expected = {
         route: Route,
-        created_at: TestDate,
-        'user-email': UserEmail,
-        reportExpiration: CorrectDate,
+        reportExpiration: ExpectedExpiryDate,
         userEmail: UserEmail
       };
 
-      req.sessionModel.get.withArgs('created_at').returns(TestDate);
       req.sessionModel.get.withArgs('user-email').returns(UserEmail);
 
       const result = instance.locals(req, res);
       result.should.deep.equal(expected);
       expect(sessionModel.reset).to.have.been.called;
     });
-
-    it('returns an extended locals with expiry date calculated for 29th Feb', async () => {
-      const expected = {
-        route: Route,
-        created_at: TestDateFeb,
-        'user-email': UserEmail,
-        reportExpiration: CorrectDateFeb,
-        userEmail: UserEmail
-      };
-      // eslint-disable-next-line camelcase
-      locals.created_at = TestDateFeb;
-
-      req.sessionModel.get.withArgs('created_at').returns(TestDateFeb);
-      req.sessionModel.get.withArgs('user-email').returns(UserEmail);
-
-      const result = instance.locals(req, res);
-      result.should.deep.equal(expected);
-      expect(sessionModel.reset).to.have.been.called;
-    });
-
-    it('returns an Invalid date when given an empty created_at date', async () => {
-      const expected = {
-        route: Route,
-        created_at: '',
-        'user-email': UserEmail,
-        reportExpiration: 'Invalid date',
-        userEmail: UserEmail
-      };
-      // eslint-disable-next-line camelcase
-      locals.created_at = '';
-
-      req.sessionModel.get.withArgs('created_at').returns('');
-      req.sessionModel.get.withArgs('user-email').returns(UserEmail);
-
-      const result = instance.locals(req, res);
-      result.should.deep.equal(expected);
-      expect(sessionModel.reset).to.have.been.called;
-    });
-
 
     it('resets the session', () => {
       instance.locals(req, res);
       expect(sessionModel.reset).to.have.been.called;
     });
 
-    it('gets the users email and report creation date from the previous page', () => {
+    it('gets the users email from the previous page', () => {
       instance.locals(req, res);
       expect(sessionModel.get).to.have.been.calledWith('user-email');
-      expect(sessionModel.get).to.have.been.calledWith('created_at');
     });
   });
 });
