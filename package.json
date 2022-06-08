@@ -43,7 +43,7 @@
     "lodash": "^4.17.15",
     "moment": "2.29.2",
     "ms-countries": "^1.0.0",
-    "ms-email-domains": "^2.9.0",
+    "ms-email-domains": "^2.10.0",
     "ms-nationalities": "^1.0.1",
     "ms-organisations": "^1.6.0",
     "ms-uk-cities-and-towns": "^2.0.2",
