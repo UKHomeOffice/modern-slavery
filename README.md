@@ -187,7 +187,7 @@ The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEM
 
 #### Uploading files   <a name="uploading-files"></a>
 
-The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
+The acceptance test script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 
