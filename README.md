@@ -15,18 +15,20 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
 
 3. [Skip email verify step](#skip-email-verify-step)
 
-4. [Acceptance tests](#acceptance-tests)
+4. [Save and return feature](#save-and-return-feature)
+
+5. [Acceptance tests](#acceptance-tests)
     - [Running local acceptance tests](#running-local-acceptance-tests)
     - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
         - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
     - [Acceptance test scripts](#acceptance-test-scripts)
         - [Uploading files](#uploading-files)
 
-5. [Microservices/ Repos](#microservices-repos)
+6. [Microservices/ Repos](#microservices-repos)
 
-6. [Coverage Reporting](#coverage-reporting)
+7. [Coverage Reporting](#coverage-reporting)
 
-7. [Release Guidelines](#release-guidelines)
+8. [Release Guidelines](#release-guidelines)
 
 ## Install & Run <a name="install-and-run"></a>
 The application can either be run on your local machine or built inside a docker container using [docker-compose](https://docs.docker.com/compose/)
@@ -113,12 +115,21 @@ You can skip the email authentication locally or in some of the testing environm
 
     http://localhost:8081/nrm/start?token=skip`
 
-
 2. Set the email in the url to whatever email you like.
 
     http://localhost:8081/nrm/start?token=skip&email=sas-hof-test@digital.homeoffice.gov.uk
 
 3. If you do both, then the app will always use what you've set in the url parameter as the first responder's email.
+
+## Save and return feature <a name="save-and-return-feature"></a>
+
+You can develop and test the save and return feature on you local machine. You will need to set up the [save-and-return-api](https://github.com/UKHomeOffice/save-return-api) so it is running on your local machine.
+
+You can then start the server in the api development mode.
+
+```bash
+$ yarn dev:api
+```
 
 ## Acceptance tests  <a name="acceptance-tests"></a>
 
@@ -176,7 +187,7 @@ The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEM
 
 #### Uploading files   <a name="uploading-files"></a>
 
-The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
+The acceptance test script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 

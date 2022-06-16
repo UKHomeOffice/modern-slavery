@@ -316,7 +316,7 @@
     }
   },
   "reported-to-police": {
-    "legend": "Do they have a crime or CAD reference in respect of their status as a potential victim?",
+    "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",
     "options": {
       "yes": {
         "label": "Yes"

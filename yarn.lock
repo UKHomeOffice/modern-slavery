@@ -2621,10 +2621,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@^19.13.6:
-  version "19.13.6"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.6.tgz#0ff4c2d58910883a393c07e14b1ac8491043d625"
-  integrity sha512-LRZU0pQg39e1wZ6YH8iDoVJp8uyHRW4VqO/CMMgv82hgaRdRTZCTeW8hoebNWf7WLQosqwPqMqk4ejc+N5FmSA==
+hof@19.13.12:
+  version "19.13.12"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.12.tgz#c272d31a4195df38b442fa56165b383edc3a2e77"
+  integrity sha512-o70AocJfn4AC4TmQYAzG+CGeRCCXySAVQXi7YduJTPqV1y6WdccZ5fxhQepCV4l9yBW9qgHI8vycbbQvxkDs5g==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -2663,7 +2663,7 @@ hof@^19.13.6:
     minimist "^1.2.0"
     mixwith "^0.1.1"
     mkdirp "^0.5.1"
-    moment "^2.24.0"
+    moment "^2.29.2"
     morgan "^1.10.0"
     mustache "^2.3.0"
     nodemailer "^6.6.3"
@@ -2678,7 +2678,7 @@ hof@^19.13.6:
     serve-static "^1.14.1"
     uglify-js "^3.14.3"
     underscore "^1.12.1"
-    urijs "^1.19.10"
+    urijs "^1.19.11"
     winston "^3.3.3"
 
 hogan-express-strict@^0.5.4:
@@ -3094,6 +3094,13 @@ is-unicode-supported@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
+
+is-valid-domain@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/is-valid-domain/-/is-valid-domain-0.1.6.tgz#3c85469d2938f170c8f82ce6e52df8ad9fca8105"
+  integrity sha512-ZKtq737eFkZr71At8NxOFcP9O1K89gW3DkdrGMpp1upr/ueWjj+Weh4l9AI4rN0Gt8W2M1w7jrG2b/Yv83Ljpg==
+  dependencies:
+    punycode "^2.1.1"
 
 is-weakref@^1.0.1:
   version "1.0.2"
@@ -3642,9 +3649,9 @@ minimatch@3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mixwith@^0.1.1:
   version "0.1.1"
@@ -3724,10 +3731,10 @@ module-not-found-error@^1.0.1:
   resolved "https://registry.yarnpkg.com/module-not-found-error/-/module-not-found-error-1.0.1.tgz#cf8b4ff4f29640674d6cdd02b0e3bc523c2bbdc0"
   integrity sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
 
-moment@^2.24.0, moment@^2.27.0:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+moment@2.29.2, moment@^2.29.2:
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 morgan@^1.10.0:
   version "1.10.0"
@@ -3745,20 +3752,10 @@ ms-countries@^1.0.0:
   resolved "https://registry.yarnpkg.com/ms-countries/-/ms-countries-1.0.0.tgz#6ca15f9f9db332e0e1e502c93496e81ca2d8410e"
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
-ms-email-domains@^2.4.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.5.0.tgz#47c0ec7570bcbb6bea6f63b314115f18a9b8cec6"
-  integrity sha512-TXB3H5+nZh0HZdICCNIrPZSFaWW6ZpSXxnSq6+bIN7/khj9xM+uNvBytHnNV/haBjwnz5uZeFron4Roby4FXiA==
-
 ms-nationalities@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ms-nationalities/-/ms-nationalities-1.0.1.tgz#7dbbc9002ff5c8aef166c268bdf6c031d10cbd69"
   integrity sha512-jpeVXa7qYYT69ZC3iq59GNihGqFAcjbSYXhFKSFeJSxAvSky9THFXRFQtGm7ZwzBvl+NtfKBomegs3ubRdAOAA==
-
-ms-organisations@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.6.0.tgz#019829a239712bb1c4576fbb12cfa14121999444"
-  integrity sha512-HJTCx6fcA/28MwhhkModFHbLTZiFIC1CoCTs7rdLi0NHIgJ54J3jbsqkVvtaz7Y0mFUQ7b+5VO/MGGB4LtGS+A==
 
 ms-uk-cities-and-towns@^2.0.2:
   version "2.0.2"
@@ -5480,10 +5477,10 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-urijs@^1.19.10:
-  version "1.19.10"
-  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.10.tgz#8e2fe70a8192845c180f75074884278f1eea26cb"
-  integrity sha512-EzauQlgKuJgsXOqoMrCiePBf4At5jVqRhXykF3Wfb8ZsOBMxPcfiVBcsHXug4Aepb/ICm2PIgqAUGMelgdrWEg==
+urijs@^1.19.11:
+  version "1.19.11"
+  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.11.tgz#204b0d6b605ae80bea54bea39280cdb7c9f923cc"
+  integrity sha512-HXgFDgDommxn5/bIv0cnQZsPhHDA90NPHD6+c/v21U5+Sx5hoP8+dP9IZXBU1gIfvdRfhG8cel9QNPeionfcCQ==
 
 url@0.10.3:
   version "0.10.3"

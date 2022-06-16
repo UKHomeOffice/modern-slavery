@@ -3,12 +3,12 @@
 const _ = require('lodash');
 const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
 const ukRegions = require('ms-uk-regions');
-const countries = require('ms-countries');
+const countriesExcludingUK = require('../util/filtered-countries').countriesExcludingUK;
 const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof').components.date;
 const ukLocalAuthorities = require('ms-uk-local-authorities');
 const msNationalities = require('ms-nationalities');
-const organisations = require('ms-organisations');
+const organisations = require('../../../ms-lists/ms_organisations');
 const path = require('path');
 
 module.exports = {
@@ -224,7 +224,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-2': {
     mixin: 'select',
@@ -232,7 +232,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-3': {
     mixin: 'select',
@@ -240,7 +240,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-4': {
     mixin: 'select',
@@ -248,7 +248,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-5': {
     mixin: 'select',
@@ -256,7 +256,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-6': {
     mixin: 'select',
@@ -264,7 +264,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-7': {
     mixin: 'select',
@@ -272,7 +272,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-8': {
     mixin: 'select',
@@ -280,7 +280,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-9': {
     mixin: 'select',
@@ -288,7 +288,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-overseas-country-10': {
     mixin: 'select',
@@ -296,7 +296,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countries)
+    }].concat(countriesExcludingUK)
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
