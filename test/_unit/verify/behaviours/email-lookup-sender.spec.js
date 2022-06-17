@@ -22,7 +22,7 @@ const tokenGenerator = {
 const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-sender',
   { '../models/save-token': tokenGenerator,
     '../../nrm/index': sinon.stub(),
-    'ms-email-domains': emailDomainCheck,
+    '../../../ms-lists/ms_email_domains': emailDomainCheck,
     '../../../config': Object.assign({}, config, {
       allowSkip: true, skipEmail: 'sas-hof-test@digital.homeoffice.gov.uk'
     })

@@ -8,7 +8,7 @@ const ukPoliceForces = require('ms-uk-police-forces');
 const dateComponent = require('hof').components.date;
 const ukLocalAuthorities = require('ms-uk-local-authorities');
 const msNationalities = require('ms-nationalities');
-const organisations = require('ms-organisations');
+const organisations = require('../../../ms-lists/ms_organisations');
 const path = require('path');
 
 module.exports = {
