@@ -1,5 +1,5 @@
 'use strict';
-const emailDomainCheck = require('ms-email-domains');
+const emailDomainCheck = require('../../../ms-lists/ms_email_domains');
 const config = require('../../../config');
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const NotifyClient = require('notifications-node-client').NotifyClient;
