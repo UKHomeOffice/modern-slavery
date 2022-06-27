@@ -460,7 +460,7 @@ services:
     image: owasp/zap2docker-stable
     environment:
       ZAP_PORT: 8090 # change with actual port
-    commands: "zap.sh -daemon -port {zap port} -host 0.0.0.0 -config api.key={api key here} -config api.addrs.addr.name={kube machine able to access api (where steps are hosted)}"
+    commands: zap.sh -daemon -port {zap port} -host 0.0.0.0 -config api.key=test -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
 
   # Anchore scanning needs background service to run
   - name: anchore-submission-server
