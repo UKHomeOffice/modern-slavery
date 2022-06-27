@@ -97,7 +97,7 @@ const getBrowserOptions = async (isLocalBrowser, isDemo) => {
   let browserOptions = {
     headless: !isDemo,
     slowMo: getBrowserRunSpeed(isDemo),
-    args: ['--ash-host-window-bounds=1920x1080', '--window-size=1920,1048', '--window-position=0,0']
+    args: ['--ash-host-window-bounds=1920x1080', '--window-size=1920,1048', '--window-position=0,0', '--proxy-server=http://localhost:8090','--proxy-bypass-list=<-loopback>']
   };
 
   if (!isLocalBrowser) {

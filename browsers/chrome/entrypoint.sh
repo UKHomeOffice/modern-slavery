@@ -21,6 +21,7 @@ nohup google-chrome \
 	--ignore-certificate-errors-spki-list \
 	--user-data-dir=/tmp \
 	--remote-debugging-port=9222 \
-	--remote-debugging-address=0.0.0.0
+	--remote-debugging-address=0.0.0.0 \
+	--proxy-server=http://zap:8090
 
 # chromedriver --whitelisted-ips=''

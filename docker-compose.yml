@@ -50,3 +50,13 @@ services:
       - "80:10080"
     links:
       - app
+
+  zap:
+    image: owasp/zap2docker-stable
+    environment:
+      ZAP_PROXY: 8090
+    ports:
+      - "8090:8090"
+    links:
+      - app
+    command: 'zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true'
