@@ -200,6 +200,8 @@ steps:
 
   - name: acceptance_tests_branch
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    links:
+      - owasp_zap_start
     volumes:
       - name: dockersock
         path: /var/run
