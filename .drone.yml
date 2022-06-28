@@ -205,7 +205,7 @@ steps:
         path: /var/run
     commands:
       - apk add --no-cache docker-compose
-      - docker-compose --verbose up -d --build chrome-browser app redis
+      - docker-compose --verbose up -d --build chrome-browser app redis zap
       - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
     when:
       branch:
@@ -213,6 +213,24 @@ steps:
           - master
           - feature/*
       event: pull_request
+
+ # - name: zap_tests_branch
+  #  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #  volumes:
+  #    - name: dockersock
+  #      path: /var/run
+  #  commands:
+  #    - apk add --no-cache docker-compose
+  #    - docker-compose build chrome-browser app redis zap
+   #   - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+    #  - 
+    #when:
+     # branch:
+      #  include:
+       #   - master
+        #  - feature/*
+      #event: pull_request
+
 
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
@@ -454,16 +472,6 @@ steps:
 services:
   - name: docker
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-
-  - name: zap
-    pull: always
-    image: owasp/zap2docker-stable
-    environment:
-      ZAP_PORT: 8090 # change with actual port
-    links:
-      - acceptance_tests_branch
-    commands: 
-      - zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.key=test -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
 
   # Anchore scanning needs background service to run
   - name: anchore-submission-server
