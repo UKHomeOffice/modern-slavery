@@ -462,8 +462,6 @@ services:
       ZAP_PORT: 8090 # change with actual port
     links:
       - acceptance_tests_branch
-    ports:
-      - "8090:8090"
     commands: 
       - zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.key=test -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
 
