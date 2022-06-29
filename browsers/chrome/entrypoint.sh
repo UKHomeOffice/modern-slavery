@@ -22,6 +22,6 @@ nohup google-chrome \
 	--user-data-dir=/tmp \
 	--remote-debugging-port=9222 \
 	--remote-debugging-address=0.0.0.0 \
-	--proxy-server=http://zap:8090
+	#--proxy-server=http://zap:8090
 
 # chromedriver --whitelisted-ips=''

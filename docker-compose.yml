@@ -25,6 +25,9 @@ services:
   chrome-browser:
     build: ./browsers/chrome
     shm_size: '1gb'
+    environment:
+      - HTTP_PROXY=http://zap:8090
+      - HTTPS_PROXY=http://zap:8090
     cap_add:
       - SYS_ADMIN
     ports:
