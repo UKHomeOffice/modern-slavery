@@ -13,9 +13,8 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - CASEWORKER_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
-    links:
-      - redis
-      - chrome-browser:chrome
+    networks:
+      - app
     ports:
       - "8081:8081"
     volumes:
@@ -30,6 +29,8 @@ services:
       - SYS_ADMIN
     ports:
       - '9222:9222'
+    networks:
+      - app
     volumes:
       - ./acceptance-test/user-pathways/upload-file/images:/app/public/images
     container_name: modern-slavery-chrome-browser
@@ -37,6 +38,8 @@ services:
   redis:
     image: redis
     container_name: modern-slavery-redis
+    networks:
+      - app
 
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy:v3
@@ -48,9 +51,8 @@ services:
     ports:
       - "443:10443"
       - "80:10080"
-    links:
+    networks:
       - app
-      - chrome-browser
 
   zap:
     image: owasp/zap2docker-stable
@@ -60,9 +62,12 @@ services:
       - "8090:8090"
     expose:
       - "8090"
-    links:
+    networks:
       - app
-      - chrome-browser
     command: 'zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config anticsrf.tokens.token.name=x-csrf-token'
     #volumes:
     #  - ${PWD}/zap:/home/zap:rw
+
+networks:
+  app:
+    driver: bridge
