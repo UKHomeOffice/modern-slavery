@@ -205,7 +205,7 @@ steps:
         path: /var/run
     commands:
       - apk add --no-cache docker-compose
-      - docker-compose --verbose up -d --build chrome-browser app redis zap
+      - docker-compose --verbose up -d --build zap chrome-browser app redis
       - docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
     when:
       branch:
