@@ -487,6 +487,16 @@ services:
       - name: dockersock
         path: /var/run
 
+  - name: owasp_zap
+    image: zap2docker
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands: 'zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config anticsrf.tokens.token.name=x-csrf-token'
+    environment:
+      ZAP_PORT: 8090
+    ports: "8090:8090"
+
 volumes:
   - name: dockersock
     temp: {}
