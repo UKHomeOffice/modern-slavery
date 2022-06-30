@@ -491,7 +491,8 @@ services:
     image: zap2docker
     environment:
       ZAP_PORT: 8090
-    ports: "8090:8090"
+    ports: 
+    - "8090:8090"
     volumes:
       - name: dockersock
         path: /var/run
