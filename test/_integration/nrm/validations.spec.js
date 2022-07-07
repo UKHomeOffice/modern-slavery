@@ -153,7 +153,7 @@ describe('validation checks of the nrm journey', () => {
   });
 
   describe('Where Exploitation Happened UK Validation', () => {
-    it('does not pass the where-exploitation-happened page if nothing entered', async () => {
+    it('does not pass the where-exploitation-happened-uk page if nothing entered', async () => {
       const URI = '/where-exploitation-happened-uk';
       await initSession(URI);
       await passStep(URI, {});
@@ -169,7 +169,7 @@ describe('validation checks of the nrm journey', () => {
   });
 
   describe('Where Exploitation Happened Overseas Validation', () => {
-    it('does not pass the where-exploitation-happened page if nothing entered', async () => {
+    it('does not pass the where-exploitation-happened-overseas page if nothing entered', async () => {
       const URI = '/where-exploitation-happened-overseas';
       await initSession(URI);
       await passStep(URI, {});
