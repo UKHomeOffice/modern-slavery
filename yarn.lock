@@ -3244,6 +3244,13 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
+is-valid-domain@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/is-valid-domain/-/is-valid-domain-0.1.6.tgz#3c85469d2938f170c8f82ce6e52df8ad9fca8105"
+  integrity sha512-ZKtq737eFkZr71At8NxOFcP9O1K89gW3DkdrGMpp1upr/ueWjj+Weh4l9AI4rN0Gt8W2M1w7jrG2b/Yv83Ljpg==
+  dependencies:
+    punycode "^2.1.1"
+
 is-weakref@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-weakref/-/is-weakref-1.0.2.tgz#9529f383a9338205e89765e0392efc2f100f06f2"
@@ -3940,20 +3947,10 @@ ms-countries@^1.0.0:
   resolved "https://registry.yarnpkg.com/ms-countries/-/ms-countries-1.0.0.tgz#6ca15f9f9db332e0e1e502c93496e81ca2d8410e"
   integrity sha512-t+wlqwKFJl0yUNtwLbUWBd0irrsBBrTbHAK22dDN9Ut9H0zOf6iVKNz0DAINDtE2rgf+8hmzGt7SSmXAN7Im/A==
 
-ms-email-domains@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/ms-email-domains/-/ms-email-domains-2.9.0.tgz#a9639ce63e0878b717b467f8a74fe6213ba3208c"
-  integrity sha512-4/Ng9gfV/0MnFVZrq0U92yIT8K+y3pSAtMjCkeReEDdtglL+VzHVLROxGYK+pvFC0Cdwmg0TikFNw42CslbbHg==
-
 ms-nationalities@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ms-nationalities/-/ms-nationalities-1.0.1.tgz#7dbbc9002ff5c8aef166c268bdf6c031d10cbd69"
   integrity sha512-jpeVXa7qYYT69ZC3iq59GNihGqFAcjbSYXhFKSFeJSxAvSky9THFXRFQtGm7ZwzBvl+NtfKBomegs3ubRdAOAA==
-
-ms-organisations@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/ms-organisations/-/ms-organisations-1.6.0.tgz#019829a239712bb1c4576fbb12cfa14121999444"
-  integrity sha512-HJTCx6fcA/28MwhhkModFHbLTZiFIC1CoCTs7rdLi0NHIgJ54J3jbsqkVvtaz7Y0mFUQ7b+5VO/MGGB4LtGS+A==
 
 ms-uk-cities-and-towns@^2.0.2:
   version "2.0.2"

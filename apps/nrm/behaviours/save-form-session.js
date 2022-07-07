@@ -26,6 +26,11 @@ module.exports = superclass => class extends superclass {
         session.alertUser = true;
       }
 
+      // remove the firstAlert property added when the user has a week to complete the report
+      if (session.hasOwnProperty('firstAlert')) {
+        delete session.firstAlert;
+      }
+
       // skip requesting data service api when running in local and test mode
       if (config.env === 'local' || config.env === 'test') {
         return next();

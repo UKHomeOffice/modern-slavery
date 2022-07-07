@@ -52,7 +52,7 @@ module.exports = superclass => class extends superclass {
 
         resBody.forEach(report => {
           const created = moment(report.created_at);
-          const expires = moment(report.created_at).add(config.reports.deletionTimeout, 'days');
+          const expires = moment(report.updated_at).add(config.reports.deletionTimeout, 'days').endOf('day');
           const remaining = expires.diff(moment(), 'days');
 
           const rep = {
