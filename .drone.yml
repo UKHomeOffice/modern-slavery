@@ -16,7 +16,6 @@ environment:
   HOF_CONFIG: hof-services-config/Modern_Slavery_Nrm
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
-  NOTIFY_STUB: stub
 
 trigger:
   branch:
@@ -27,7 +26,7 @@ linting: &linting
   pull: if-not-exists
   image: node:14
   environment:
-    NOTIFY_KEY: USE_MOCK
+    NOTIFY_STUB: true
   commands:
     - yarn run test:lint
 
@@ -35,7 +34,7 @@ unit_tests: &unit_tests
   pull: if-not-exists
   image: node:14
   environment:
-    NOTIFY_KEY: USE_MOCK
+    NOTIFY_STUB: true
   commands:
     - yarn run test:unit
 
@@ -43,7 +42,7 @@ integration_tests: &integration_tests
   pull: if-not-exists
   image: node:14
   environment:
-    NOTIFY_KEY: USE_MOCK
+    NOTIFY_STUB: true
   commands:
     - yarn run test:integration   
 
@@ -73,7 +72,7 @@ steps:
     pull: if-not-exists
     image: node:14
     environment:
-      NOTIFY_KEY: USE_MOCK
+      NOTIFY_STUB: true
     commands:
       - yarn install --frozen-lockfile
       - yarn run postinstall
@@ -176,7 +175,7 @@ steps:
     pull: if-not-exists
     image: node:14
     environment:
-      NOTIFY_KEY: USE_MOCK
+      NOTIFY_STUB: true
     commands:
       - yarn install --frozen-lockfile
       - yarn run postinstall

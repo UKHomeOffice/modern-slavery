@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 global.chai = require('chai')
   .use(require('sinon-chai'))
   .use(require('chai-as-promised'));
