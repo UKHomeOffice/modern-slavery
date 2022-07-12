@@ -19,7 +19,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch",
+    "start:dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
     "debug": "node -r dotenv/config --inspect server.js",
     "dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
     "dev:api": "NODE_ENV=test ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch",

@@ -8,6 +8,7 @@ services:
     environment:
       - ALLOW_SKIP=true
       - SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
+      - NOTIFY_STUB=true
       - NODE_ENV=local
       - IGNORE_TLS=true
       - REDIS_HOST=redis
