@@ -14,3 +14,4 @@ dump.rdb
 coverage
 anchore-reports/
 acceptance-test/temp-downloads/
+zap/*
