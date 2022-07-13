@@ -350,6 +350,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     validation: 'at-least-one-option-selected',
     legend: {
       className: 'visuallyhidden'
@@ -357,54 +358,63 @@ module.exports = {
   },
   'types-of-exploitation-wages-taken': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-forced-to-commit-fraud': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-prostitution': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-child-exploitation': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-taken-somewhere': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-forced-to-commit-crime': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-organs-removed': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-unpaid-household-work': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-other': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     },
