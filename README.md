@@ -38,16 +38,20 @@ The application can either be run on your local machine or built inside a docker
 You'll need to set the following env vars to run the application:
 
 ```
-NOTIFY_KEY            | Your GOV.UK notify key
-AWS_SQS               | AWS SQS URL
-AWS_SECRET_ACCESS_KEY | AWS Secret Access Key
-AWS_ACCESS_KEY_ID     | AWS Access Key ID
-WRITE_TO_CASEWORK     | Enable/Disable sending the case to iCasework (defaults to false if NODE_ENV not set)
-AUDIT_DATA            | Enable/Disable sending audit data to postgres (defaults to false)
-AUDIT_DB_HOST         | Postgres host for audit data
-AUDIT_DB_USER         | Postgres audit user
-AUDIT_DB_PASS         | Postgres audit password
-AUDIT_DB_NAME         | Postgres database name for audit data (writes to table named hof)
+NOTIFY_KEY                     | Your GOV.UK notify key
+TEMPLATE_USER_AUTHORISATION_ID | GOV.UK notify template ID for user authorisation email
+TEMPLATE_FEEDBACK              | GOV.UK notify template ID for feedback email
+CASEWORKER_EMAIL               | Caseworker email
+FEEDBACK_EMAIL                 | Feedback email
+AWS_SQS                        | AWS SQS URL
+AWS_SECRET_ACCESS_KEY          | AWS Secret Access Key
+AWS_ACCESS_KEY_ID              | AWS Access Key ID
+WRITE_TO_CASEWORK              | Enable/Disable sending the case to iCasework (defaults to false if NODE_ENV not set)
+AUDIT_DATA                     | Enable/Disable sending audit data to postgres (defaults to false)
+AUDIT_DB_HOST                  | Postgres host for audit data
+AUDIT_DB_USER                  | Postgres audit user
+AUDIT_DB_PASS                  | Postgres audit password
+AUDIT_DB_NAME                  | Postgres database name for audit data (writes to table named hof)
 ```
 
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
@@ -130,8 +134,22 @@ You can then start the server in the api development mode.
 ```bash
 $ yarn dev:api
 ```
+## Testing  <a name="testing"></a>
 
-## Acceptance tests  <a name="acceptance-tests"></a>
+### Unit tests  <a name="unit-tests"></a>
+You can run unit tests using the command below:
+
+```bash
+$ yarn test:unit
+```
+### Integration tests  <a name="integration-tests"></a>
+You can run integration tests using the command below:
+
+```bash
+$ yarn test:integration
+```
+
+### Acceptance tests  <a name="acceptance-tests"></a>
 
 [Google Puppeteer](https://developers.google.com/web/tools/puppeteer/) is our automated browser testing. It is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. It can also be configured to use full (non-headless) Chrome or Chromium.
 
