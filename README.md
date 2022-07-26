@@ -115,7 +115,6 @@ You can skip the email authentication locally or in some of the testing environm
 
     http://localhost:8081/nrm/start?token=skip`
 
-
 2. Set the email in the url to whatever email you like.
 
     http://localhost:8081/nrm/start?token=skip&email=sas-hof-test@digital.homeoffice.gov.uk
@@ -188,7 +187,7 @@ The test scripts utilise the environment variables `BROWSER_TYPE` & `BROWSER_DEM
 
 #### Uploading files   <a name="uploading-files"></a>
 
-The acceptance script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
+The acceptance test script `/modern-slavery/acceptance-test/user-pathways/upload-file/upload-file.test.js` currently tests 1 aspect of the upload functionality; a single file upload. This will be expanded in future to test other functionalities of the application.
 
 This test suite uses the file `/modern-slavery/acceptance-test/user-pathways/upload-file/images/test.png` to complete the upload action on behalf of the user for local browser acceptance tests. The file `/modern-slavery/browsers/chrome/test.png` is used for remote browser acceptance tests.
 
@@ -200,6 +199,7 @@ There are a bunch of microservices as part of modernslavery:
 * https://github.com/UKHomeOffice/save-return-lookup-ui
 * https://github.com/UKHomeOffice/save-return-email-alerts
 * https://github.com/UKHomeOffice/icasework-resolver
+* https://github.com/UKHomeOffice/ms-schema
 * https://github.com/UKHomeOffice/digmygrafana
 
 ## Release Guidelines <a name="release-guidelines"></a>
