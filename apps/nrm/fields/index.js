@@ -14,6 +14,7 @@ const path = require('path');
 module.exports = {
   reference: {
     mixin: 'input-text',
+    className: ['govuk-input govuk-!-width-one-half'],
     validate: ['required']
   },
   'user-organisation': {
@@ -61,19 +62,22 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
+    className: ['govuk-input govuk-!-width-one-half'],
     validate: ['required', {type: 'maxlength', arguments: [15000]}]
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
-    className: ['form-control form-control-3-4'],
+    className: ['govuk-input govuk-!-width-two-thirds'],
     validate: ['required', 'email', {type: 'maxlength', arguments: [15000]}]
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
+    className: ['govuk-input govuk-!-width-one-half'],
     validate: [{type: 'maxlength', arguments: [15000]}]
   },
   'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
+    className: ['govuk-input govuk-!-width-one-half'],
     validate: [{type: 'maxlength', arguments: [15000]}]
   },
   'pv-under-age-at-time-of-exploitation': {
@@ -350,6 +354,7 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     validation: 'at-least-one-option-selected',
     legend: {
       className: 'visuallyhidden'
@@ -357,59 +362,69 @@ module.exports = {
   },
   'types-of-exploitation-wages-taken': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-forced-to-commit-fraud': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-prostitution': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-child-exploitation': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-taken-somewhere': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-forced-to-commit-crime': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-organs-removed': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-unpaid-household-work': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     }
   },
   'types-of-exploitation-other': {
     mixin: 'checkbox',
+    className: ['govuk-label govuk-checkboxes__label'],
     legend: {
       className: 'visuallyhidden'
     },
     toggle: 'other-exploitation-fieldset',
-    child: 'partials/other-exploitation-fieldset'
+    child: 'partials/other-exploitation-fieldset',
+    // options: [ 'other']
   },
   'other-exploitation-details': {
     mixin: 'textarea',
@@ -444,12 +459,13 @@ module.exports = {
   'reported-to-police': {
     mixin: 'radio-group',
     validate: ['required'],
+    isPageHeading: 'true',
     legend: {
       className: 'visuallyhidden'
     },
     options: [{
       value: 'yes',
-      toggle: 'yes-crime-reference-fieldset',
+      toggle: 'yes-crime-reference-input',
       child: 'partials/reported-to-police-yes'
     }, {
       value: 'no'
@@ -515,14 +531,17 @@ module.exports = {
   },
   'pv-name-first-name': {
     mixin: 'input-text',
+    className: 'govuk-input govuk-!-width-one-half',
     validate: ['required', {type: 'maxlength', arguments: [15000]}]
   },
   'pv-name-last-name': {
     mixin: 'input-text',
+    className: 'govuk-input govuk-!-width-one-half',
     validate: ['required', {type: 'maxlength', arguments: [15000]}]
   },
   'pv-name-nickname': {
     mixin: 'input-text',
+    className: 'govuk-input govuk-!-width-one-half',
     validate: [{type: 'maxlength', arguments: [15000]}]
   },
   'pv-dob': dateComponent('pv-dob', {
@@ -550,7 +569,7 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'does-pv-have-children-yes-fieldset',
+      toggle: 'does-pv-have-children-yes-input',
       child: 'partials/does-pv-have-children-yes-amount'
     }, {
       value: 'no'
@@ -589,7 +608,7 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'pv-interpreter-requirements-language-fieldset',
+      toggle: 'pv-interpreter-requirements-language-input',
       child: 'partials/pv-interpreter-requirements-language'
     }, {
       value: 'no'
@@ -597,6 +616,7 @@ module.exports = {
   },
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
+    className: 'govuk-input govuk-!-width-one-half',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       value: 'yes',
@@ -611,7 +631,7 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'pv-other-help-with-communication-aid-fieldset',
+      toggle: 'pv-other-help-with-communication-aid-input',
       child: 'partials/pv-other-help-with-communication-aid'
     }, {
       value: 'no'
@@ -619,6 +639,7 @@ module.exports = {
   },
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
+    className: 'govuk-input govuk-!-width-one-half',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       value: 'yes',
@@ -633,7 +654,7 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'pv-ho-reference-type-fieldset',
+      toggle: 'pv-ho-reference-type-input',
       child: 'partials/pv-ho-reference-type'
     }, {
       value: 'no'
