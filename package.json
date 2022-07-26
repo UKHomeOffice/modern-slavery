@@ -36,7 +36,7 @@
   "dependencies": {
     "accessible-autocomplete": "^2.0.2",
     "ioredis": "^4.0.0",
-    "hof": "20.0.0-beta.11",
+    "hof": "20.0.0-beta.13",
     "jquery": "^3.3.1",
     "knex": "^0.95.11",
     "lodash": "^4.17.15",

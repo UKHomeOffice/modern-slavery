@@ -58,9 +58,6 @@
   "any-other-pvs": {
     "header": "Were there any other potential victims?"
   },
-  "reported-to-police": {
-    "header": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?"
-  },
   "pv-want-to-submit-nrm": {
     "header": "Do they want their case referred to the NRM?"
   },
