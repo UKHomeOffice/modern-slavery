@@ -4,7 +4,7 @@ metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   name: app-allow-ingress-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: app-allow-ingress
+  name: modern-slavery-main-allow-ingress
   {{ end }}
 spec:
   ingress:
@@ -22,7 +22,7 @@ spec:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
       name: app-{{ .DRONE_SOURCE_BRANCH }}
       {{ else }}
-      name: app
+      name: modern-slavery-main
       {{ end }}
   policyTypes:
   - Ingress

@@ -8,9 +8,9 @@ metadata:
     name: app-{{ .DRONE_SOURCE_BRANCH }}
     role: service-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: app
+  name: modern-slavery-main
   labels:
-    name: app
+    name: modern-slavery-main
     role: service
   {{ end }}
 spec:
@@ -18,7 +18,7 @@ spec:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     name: app-{{ .DRONE_SOURCE_BRANCH }}
     {{ else }}
-    name: app
+    name: modern-slavery-main
     {{ end }}
   type: ClusterIP
   ports:

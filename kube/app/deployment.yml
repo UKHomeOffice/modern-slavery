@@ -5,7 +5,7 @@ metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   name: app-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: app
+  name: modern-slavery-main
   {{ end }}
 spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
@@ -19,8 +19,8 @@ spec:
       name: app-{{ .DRONE_SOURCE_BRANCH }}
       service: app-{{ .DRONE_SOURCE_BRANCH }}
       {{ else }}
-      name: app
-      service: app
+      name: modern-slavery-main
+      service: modern-slavery-main
       {{ end }}
   template:
     metadata:
@@ -33,14 +33,14 @@ spec:
         name: app-{{ .DRONE_SOURCE_BRANCH }}
         service: app-{{ .DRONE_SOURCE_BRANCH }}
         {{ else }}
-        name: app
-        service: app
+        name: modern-slavery-main
+        service: modern-slavery-main
         {{ end }}
         build: "{{.DRONE_BUILD_NUMBER}}"
         commit: "{{.DRONE_COMMIT_SHA}}"
     spec:
       containers:
-        - name: app
+        - name: modern-slavery-main
           image: {{ .IMAGE_URL }}/{{ .IMAGE_REPO }}:{{ .DRONE_COMMIT_SHA }}
           imagePullPolicy: Always
           resources:
