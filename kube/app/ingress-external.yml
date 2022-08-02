@@ -41,8 +41,8 @@ spec:
           - path: /
             backend:
               {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              serviceName: app-{{ .DRONE_SOURCE_BRANCH }}
+              serviceName: modern-slavery-main-{{ .DRONE_SOURCE_BRANCH }}
               {{ else }}
-              serviceName: app
+              serviceName: modern-slavery-main
               {{ end }}
               servicePort: 10443

@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  app:
+  modern-slavery-main:
     build:
       context: .
       dockerfile: Dockerfile-acceptance
@@ -49,4 +49,4 @@ services:
       - "443:10443"
       - "80:10080"
     links:
-      - app
+      - modern-slavery-main
