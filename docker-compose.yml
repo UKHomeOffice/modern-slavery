@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  app:
+  modern-slavery-main:
     build:
       context: .
       dockerfile: Dockerfile-acceptance
@@ -41,7 +41,7 @@ services:
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy:v3
     environment:
-      - PROXY_SERVICE_HOST=app
+      - PROXY_SERVICE_HOST=modern-slavery-main
       - PROXY_SERVICE_PORT=8081
       - NAXSI_USE_DEFAULT_RULES=FALSE
       - ERROR_REDIRECT_CODES=599
@@ -49,4 +49,4 @@ services:
       - "443:10443"
       - "80:10080"
     links:
-      - app
+      - modern-slavery-main

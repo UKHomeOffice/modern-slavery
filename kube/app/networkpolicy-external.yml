@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: app-allow-ingress-{{ .DRONE_SOURCE_BRANCH }}
+  name: modern-slavery-main-allow-ingress-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
-  name: app-allow-ingress
+  name: modern-slavery-main-allow-ingress
   {{ end }}
 spec:
   ingress:
@@ -20,9 +20,9 @@ spec:
   podSelector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      name: app-{{ .DRONE_SOURCE_BRANCH }}
+      name: modern-slavery-main-{{ .DRONE_SOURCE_BRANCH }}
       {{ else }}
-      name: app
+      name: modern-slavery-main
       {{ end }}
   policyTypes:
   - Ingress

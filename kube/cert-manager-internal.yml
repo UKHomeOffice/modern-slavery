@@ -8,10 +8,10 @@ spec:
     name: platform-ca
     kind: ClusterIssuer
   dnsNames:
-  - app
-  - app.ms-dev
-  - app.ms-dev.svc
-  - app.ms-dev.svc.cluster.local
+  - modern-slavery-main
+  - modern-slavery-main.ms-dev
+  - modern-slavery-main.ms-dev.svc
+  - modern-slavery-main.ms-dev.svc.cluster.local
   - localhost
   ipAddresses:
   - 127.0.0.1
