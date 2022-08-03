@@ -929,7 +929,7 @@ const ukCitiesAndTowns = [
 {value:"Newbridge / Trecceln",label:"Newbridge / Trecceln"},
 {value:"Newburgh",label:"Newburgh"},
 {value:"Newbury",label:"Newbury"},
-{value:"Newcastle",label:"Newcastle"},
+{value:"Newcastle County Down",label:"Newcastle County Down"},
 {value:"Newcastle Emlyn / Castell Newydd Emlyn",label:"Newcastle Emlyn / Castell Newydd Emlyn"},
 {value:"Newcastle-under-Lyme",label:"Newcastle-under-Lyme"},
 {value:"Newcastle upon Tyne",label:"Newcastle upon Tyne"},
