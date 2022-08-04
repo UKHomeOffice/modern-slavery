@@ -142,11 +142,11 @@ You can run unit tests using the command below:
 ```bash
 $ yarn test:unit
 ```
-### Integration tests  <a name="integration-tests"></a>
-You can run integration tests using the command below:
+### UI Integration tests  <a name="ui-integration-tests"></a>
+You can run UI integration tests using the command below:
 
 ```bash
-$ yarn test:integration
+$ yarn test:ui-integration
 ```
 
 ### Acceptance tests  <a name="acceptance-tests"></a>

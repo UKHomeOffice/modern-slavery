@@ -38,13 +38,13 @@ unit_tests: &unit_tests
   commands:
     - yarn run test:unit
 
-integration_tests: &integration_tests
+ui_integration_tests: &ui_integration_tests
   pull: if-not-exists
   image: node:14
   environment:
     NOTIFY_STUB: true
   commands:
-    - yarn run test:integration   
+    - yarn run test:ui-integration   
 
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
@@ -98,8 +98,8 @@ steps:
           - master
       event: push
 
-  - name: integration_tests_deploy
-    <<: *integration_tests
+  - name: ui_integration_tests_deploy
+    <<: *ui_integration_tests
     when:
       branch:
         include:
@@ -204,8 +204,8 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: integration_tests_branch
-    <<: *integration_tests
+  - name: ui_integration_tests_branch
+    <<: *ui_integration_tests
     when:
       branch:
         include:
