@@ -1,13 +1,13 @@
 'use strict';
 
 const _ = require('lodash');
-const ukCitiesAndTowns = require('ms-uk-cities-and-towns');
-const ukRegions = require('ms-uk-regions');
+const ukCitiesAndTowns = require('../../../ms-lists/ms_uk_cities_and_towns');
+const ukRegions = require('../../../ms-lists/ms_uk_regions');
 const countriesExcludingUK = require('../util/filtered-countries').countriesExcludingUK;
-const ukPoliceForces = require('ms-uk-police-forces');
+const ukPoliceForces = require('../../../ms-lists/ms_uk_police_forces');
 const dateComponent = require('hof').components.date;
-const ukLocalAuthorities = require('ms-uk-local-authorities');
-const msNationalities = require('ms-nationalities');
+const ukLocalAuthorities = require('../../../ms-lists/ms_uk_local_authorities');
+const msNationalities = require('../../../ms-lists/ms_nationalities');
 const organisations = require('../../../ms-lists/ms_organisations');
 const path = require('path');
 
