@@ -42,11 +42,11 @@ module.exports = {
   },
   tokenExpiry: 1800,
   govukNotify: {
-    notifyApiKey: process.env.NOTIFY_KEY || '',
-    templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID || 'fe0408cb-24f0-4b5f-9bdb-6569834039fb',
-    templateFeedback: process.env.TEMPLATE_FEEDBACK || '92b314e9-8ed5-4762-a8e2-7f208cdf3836',
-    caseworkerEmail: process.env.CASEWORKER_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk',
-    feedbackEmail: process.env.FEEDBACK_EMAIL || 'serviceopstesting@digital.homeoffice.gov.uk'
+    notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
+    templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID,
+    templateFeedback: process.env.TEMPLATE_FEEDBACK,
+    caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    feedbackEmail: process.env.FEEDBACK_EMAIL
   },
   promptSheet: 'nrm-form-offline-v2-19-09-2019.pdf'
 };
