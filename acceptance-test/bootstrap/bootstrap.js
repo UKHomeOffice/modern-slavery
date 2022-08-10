@@ -47,7 +47,7 @@ const buildBrowser = async () => {
   let hostIP = 'localhost';
 
   if (!isLocalTest) {
-    hostIP = await getContainerIP('app');
+    hostIP = await getContainerIP('modern-slavery-main');
   }
 
   return { browser, page, hostIP };

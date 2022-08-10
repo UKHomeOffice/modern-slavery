@@ -10,7 +10,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: app
+          serviceName: modern-slavery-main
           servicePort: 10443
         path: /
   tls:

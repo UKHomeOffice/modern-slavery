@@ -12,9 +12,9 @@ spec:
     - podSelector:
         matchLabels:
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-          name: app-{{ .DRONE_SOURCE_BRANCH }}
+          name: modern-slavery-main-{{ .DRONE_SOURCE_BRANCH }}
           {{ else }}
-          name: app
+          name: modern-slavery-main
           {{ end }}
     - podSelector:
         matchLabels:
