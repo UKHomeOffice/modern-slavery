@@ -23,11 +23,13 @@ module.exports = conf => {
 
   return superclass => class extends superclass {
     saveValues(req, res, next) {
-      req.log('debug', 'Submitting case to message queue');
+      const externalID = req.sessionModel.get('externalID');
+
       super.saveValues(req, res, err => {
         if (err) {
           return next(err);
         }
+
         const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON()) :
           { info: 'No submission was made to icasework' };
 
@@ -39,10 +41,14 @@ module.exports = conf => {
         } else {
           // send casework model to AWS SQS
           const caseworkModel = config.prepare(req.sessionModel.toJSON());
+          const caseworkID = uuid();
+          req.log('info', `External ID: ${externalID}, Submitting Case to Queue ${caseworkID}`);
           producer.send([{
-            id: uuid(),
+            id: caseworkID,
             body: JSON.stringify(caseworkModel)
           }], error => {
+            const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
+            req.log('info', `External ID: ${externalID}, Queue Submission Status: ${errorSubmitting}`);
             if (appConfig.audit.enabled) {
               db('hof').insert({
                 ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),

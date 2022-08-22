@@ -36,6 +36,9 @@ module.exports = superclass => class extends superclass {
         return next();
       }
 
+      const externalID = req.sessionModel.get('externalID');
+      req.log('info', `External ID: ${externalID}, Saving Form Session: ${req.sessionModel.get('id')}`);
+
       request.post({
         headers: {'content-type': 'application/json'},
         url: config.saveService.host + ':' + config.saveService.port + '/reports',
@@ -46,6 +49,7 @@ module.exports = superclass => class extends superclass {
         })
       }, (error, response, body) => {
         if (error) {
+          req.log('info', `External ID: ${externalID}, Error Saving Session: ${error}`);
           next(error);
         }
         const resBody = JSON.parse(body);
