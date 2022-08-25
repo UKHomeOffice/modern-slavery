@@ -21,7 +21,7 @@ module.exports = superclass => class extends superclass {
     return checkToken.read(token)
       .then(user => {
         if (user.valid) {
-        // delete the token once it's been used
+          // delete the token once it's been used
           checkToken.delete(token);
           // this is so a user can go back without requesting a new token
           req.sessionModel.set('valid-token', true);
@@ -31,7 +31,7 @@ module.exports = superclass => class extends superclass {
         }
         return res.redirect('/nrm/token-invalid');
       })
-    // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch(err => req.log('info', `Check Token Error: ${err}`)
+      );
   }
 };
