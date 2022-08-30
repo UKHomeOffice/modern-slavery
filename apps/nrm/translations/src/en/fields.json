@@ -296,7 +296,13 @@
     "hint": "Victims who are exploited by relatives may have been forced into an arranged marriage and abused in other ways."
   },
   "types-of-exploitation-other": {
-    "label": "Other"
+    "legend": "Other",
+    "label": "Other",
+    "options": {
+      "other": {
+        "label": "Other"
+      }
+    }
   },
   "other-exploitation-details": {
     "label": "Enter other type of exploitation:"
