@@ -18,7 +18,6 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'govuk-textarea',
     attributes: [{
       attribute: 'rows',
       value: 5
