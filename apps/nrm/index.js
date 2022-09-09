@@ -30,7 +30,7 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: [
-        checkEmailToken
+        // checkEmailToken
       ],
       next: '/reports'
     },
