@@ -31,7 +31,8 @@ module.exports = {
   },
   redis: {
     port: process.env.REDIS_PORT || '6379',
-    host: process.env.REDIS_HOST || '127.0.0.1'
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    connectiontimeout: process.env.REDIS_CONNECTION_TIMEOUT || 10000
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
