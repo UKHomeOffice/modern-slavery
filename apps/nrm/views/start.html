@@ -1,7 +1,32 @@
 {{<partials-page}}
+  {{$head}}
+    {{> partials-head}}
+      <noscript>
+        <meta http-equiv="refresh" content="{{sessionTimeOut}};url='/session-timeout'"/>
+      </noscript>
+  {{/head}}
+<!--  {{$timeout}}{{/timeout}}-->
   {{$back}}{{/back}}
   {{$page-content}}
+    <h1>Timeout Test Page</h1>
     {{#markdown}}start{{/markdown}}
     {{#input-submit}}start{{/input-submit}}
+    {{>partials-session-timeout-popup}}
   {{/page-content}}
 {{/partials-page}}
+
+<!--{{<partials-page}}-->
+<!--{{$head}}-->
+<!--{{> partials-head}}-->
+<!--<noscript>-->
+<!--  <meta http-equiv="refresh" content="{{sessionTimeOut}};url='/session-timeout'"/>-->
+<!--</noscript>-->
+<!--{{/head}}-->
+<!--{{$encoding}}enctype="multipart/form-data"{{/encoding}}-->
+<!--{{$page-content}}-->
+<!--{{#markdown}}start{{/markdown}}-->
+<!--{{#input-submit}}start{{/input-submit}}-->
+<!--{{>partials-session-timeout-popup}}-->
+<!--{{/page-content}}-->
+<!--{{/partials-page}}-->
+

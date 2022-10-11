@@ -1,8 +1,15 @@
 {{<partials-page}}
+  {{$head}}
+    {{> partials-head}}
+      <noscript>
+        <meta http-equiv="refresh" content="{{sessionTimeOut}};url='/session-timeout'"/>
+      </noscript>
+  {{/head}}
 {{$back}}<a class="link-back" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
 {{$page-content}}
   {{#markdown}}reference{{/markdown}}
   {{#renderField}}reference{{/renderField}}
   {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
+  {{>partials-session-timeout-popup}}
 {{/page-content}}
 {{/partials-page}}

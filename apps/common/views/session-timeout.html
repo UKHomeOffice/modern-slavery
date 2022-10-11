@@ -1,7 +1,16 @@
-{{<error}}
-  {{$content}}
-    <p>{{#t}}errors.session.message-1{{/t}}</p>
-    <p>{{#t}}errors.session.message-2{{/t}}</p>
-    <p>{{#t}}errors.session.message-3{{/t}} <a href="/start">{{#t}}errors.session.link-1{{/t}}</a>.</p>
-  {{/content}}
-{{/error}}
+<!--{{<error}}-->
+<!--  {{$content}}-->
+<!--    <p>{{#t}}errors.session.message-1{{/t}}</p>-->
+<!--    <p>{{#t}}errors.session.message-2{{/t}}</p>-->
+<!--    <p>{{#t}}errors.session.message-3{{/t}} <a href="/start">{{#t}}errors.session.link-1{{/t}}</a>.</p>-->
+<!--  {{/content}}-->
+<!--{{/error}}-->
+
+{{<partials-page}}
+  {{$back}}
+    <a class="link-back" href="{{#url}}{{backLink}}{{/url}}">{{#t}}buttons.back{{/t}}</a>
+  {{/back}}
+  {{$page-content}}
+    {{#markdown}}session-timeout{{/markdown}}
+  {{/page-content}}
+{{/partials-page}}

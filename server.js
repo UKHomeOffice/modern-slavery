@@ -8,6 +8,8 @@ const promptSheet = require('./config').promptSheet;
 const config = require('./config');
 const _ = require('lodash');
 
+const { sessionTimeOut, sessionTimeOutWarning, finalSessionTimeOutWarning} = require('./apps/common/constants/session-timeout');
+
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
 settings.routes = settings.routes.map(route => require(route));
@@ -16,7 +18,7 @@ settings.root = __dirname;
 
 const app = hof(settings);
 
-// Downloads the offline form to client side
+//Downloads the offline form to client side
 app.use('/prompt-sheet-for-working-offline', (req, res) => {
   download.responseFile('/assets/documents', promptSheet, res);
 });
@@ -24,6 +26,10 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
 const addGenericLocals = (req, res, next) => {
   // Set HTML Language
   res.locals.htmlLang = 'en';
+  // session timeout configs
+  res.locals.sessionTimeOut = sessionTimeOut;
+  res.locals.sessionTimeOutWarning = sessionTimeOutWarning;
+  res.locals.finalSessionTimeOutWarning = finalSessionTimeOutWarning;
   // Set feedback and footer links
   res.locals.feedbackUrl = '/feedback';
   res.locals.footerSupportLinks = [
@@ -40,6 +46,10 @@ app.use('/cookies', (req, res, next) => {
   res.locals = Object.assign({}, res.locals, req.translate('cookies'));
   res.locals['session-cookies-table'] = sessionCookiesTable['session-cookies-table'];
   next();
+});
+
+app.use('/session-timeout', (req, res) => {
+  res.render('session-timeout', res.locals);
 });
 
 if (config.env === 'development' || config.env === 'test') {
@@ -61,4 +71,5 @@ if (config.env === 'development' || config.env === 'test') {
     res.send('Session populate complete');
   });
 }
+
 module.exports = app;

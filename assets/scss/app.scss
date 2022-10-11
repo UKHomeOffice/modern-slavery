@@ -1,4 +1,6 @@
+@import "node_modules/govuk-frontend/govuk/all";
 @import "hof/frontend/themes/gov-uk/styles/govuk";
+@import "session-dialog";
 
 html {
   font-size:16px;
@@ -92,11 +94,11 @@ textarea {
     &:not(.no-white-space) {
       white-space: normal;
     }
-    }
   }
-  .types-of-exploitation {
-    span {
-      margin-bottom: 10px;
+}
+.types-of-exploitation {
+  span {
+    margin-bottom: 10px;
   }
 }
 
@@ -366,4 +368,73 @@ textarea {
 
 .govuk-main-wrapper {
   padding-bottom: 200px;
+}
+
+
+.delete-dependant-link {
+  margin-left: 45px;
+  font-size: 1.1875rem;
+}
+
+.govuk-banner--success {
+  border-color: #00703c;
+  color: #00703c;
+}
+
+.govuk-banner {
+  border: 5px solid #1d70b8;
+  font-size: 0;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.govuk-banner__icon {
+  display: inline-block;
+}
+
+.govuk-banner__message {
+  font-family: "GDS Transport", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #0b0c0c;
+  display: block;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.govuk-banner__assistive {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.cookie-table-holder>table>tbody>tr>td:first-child {
+  font-weight: bold;
+}
+
+.js-enabled #global-cookie-message {
+  display: none;
+}
+
+.claim-email-dialog-div {
+  display: none;
+}
+
+.govuk-banner--success:focus {
+  outline: 3px solid #ffdd00;
+}
+
+.govuk-date-input {
+  font-size: 0;
+  display: flex;
 }

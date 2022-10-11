@@ -1,4 +1,10 @@
 {{<partials-page}}
+  {{$head}}
+    {{> partials-head}}
+    <noscript>
+      <meta http-equiv="refresh" content="{{sessionTimeOut}};url='/session-timeout'"/>
+    </noscript>
+  {{/head}}
 {{$back}}{{/back}}
 {{$page-content}}
   {{#fields}}
@@ -43,5 +49,6 @@
       {{#input-submit}}create-report{{/input-submit}}
     </div>
   </div>
+{{>partials-session-timeout-popup}}
 {{/page-content}}
 {{/partials-page}}
