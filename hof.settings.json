@@ -13,7 +13,8 @@
   "getAccessibility": true,
   "views": ["./apps/common/views"],
   "session": {
-    "name": "modern-slavery.hof.sid"
+    "name": "modern-slavery.hof.sid",
+    "ttl": 30
   },
   "port": 8081
 }

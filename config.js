@@ -41,9 +41,6 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   tokenExpiry: 30,
-  session: {
-    ttl: 30
-  },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
     templateUserAuthId: process.env.TEMPLATE_USER_AUTHORISATION_ID,
