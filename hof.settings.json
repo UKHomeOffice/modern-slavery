@@ -8,6 +8,9 @@
     "./apps/feedback"
   ],
   "getCookies": false,
+  "translations": "./apps/common/translations",
+  "getTerms": true,
+  "getAccessibility": true,
   "views": ["./apps/common/views"],
   "session": {
     "name": "modern-slavery.hof.sid"

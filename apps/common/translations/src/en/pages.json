@@ -119,5 +119,13 @@
   },
   "accessibility": {
     "header": "Accessibility statement"
+  },
+  "session": {
+    "title": "Your report has been closed",
+    "message-1": "Your report doesn’t appear to have been worked on for 1 hour so we closed it for security.",
+    "message-2": "Any answers you saved have not been affected.",
+    "message-3": "You can return to your report via the report modern slavery start page on GOV.UK",
+    "link-1": "start page on GOV.UK",
+    "startAgain": "Start again "
   }
 }

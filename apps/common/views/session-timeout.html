@@ -1,16 +1,15 @@
-<!--{{<error}}-->
-<!--  {{$content}}-->
-<!--    <p>{{#t}}errors.session.message-1{{/t}}</p>-->
-<!--    <p>{{#t}}errors.session.message-2{{/t}}</p>-->
-<!--    <p>{{#t}}errors.session.message-3{{/t}} <a href="/start">{{#t}}errors.session.link-1{{/t}}</a>.</p>-->
-<!--  {{/content}}-->
-<!--{{/error}}-->
+{{<error}}
+    {{$content}}
+        <h1 class="govuk-heading-l">{{#t}}errors.session.title{{/t}}</h1>
+        <p class="govuk-body">{{#t}}pages.session.message-1{{/t}}</p>
 
-{{<partials-page}}
-  {{$back}}
-    <a class="link-back" href="{{#url}}{{backLink}}{{/url}}">{{#t}}buttons.back{{/t}}</a>
-  {{/back}}
-  {{$page-content}}
-    {{#markdown}}session-timeout{{/markdown}}
-  {{/page-content}}
-{{/partials-page}}
+        <div class="govuk-inset-text">
+            {{#t}}pages.session.message-2{{/t}}
+            <br>{{#t}}pages.session.message-3{{/t}}</br>
+        </div>
+
+        <a href="/start" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+            {{#t}}pages.session.startAgain{{/t}}
+        </a>
+    {{/content}}
+{{/error}}
