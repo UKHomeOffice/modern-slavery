@@ -1,6 +1,6 @@
 // all timeout values in seconds
 // 30 minutes
-const sessionTimeOut = 1800; //1800;
+const sessionTimeOut = 30; //1800;
 // 5 minutes
 const sessionTimeOutWarning = 20; //300;
 // 10 seconds

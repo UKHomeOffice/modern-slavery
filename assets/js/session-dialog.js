@@ -243,11 +243,11 @@ window.GOVUK.sessionDialog = {
 
         if (!timerExpired) {
 
-          var minutesLeft = parseInt(secondsUntilSessionTimeout / 60, 10)
-          var secondsLeft = parseInt(secondsUntilSessionTimeout % 60, 10)
+          var minutesLeft = parseInt(secondsUntilSessionTimeout / 60, 10);
+          var secondsLeft = parseInt(secondsUntilSessionTimeout % 60, 10);
 
-          var atMinutesText = window.GOVUK.sessionDialog.timeToWords(minutesLeft, 'minute')
-          var atSecondsText = window.GOVUK.sessionDialog.timeToWords(secondsLeft, 'second')
+          var atMinutesText = window.GOVUK.sessionDialog.timeToWords(minutesLeft, 'minute');
+          var atSecondsText = window.GOVUK.sessionDialog.timeToWords(secondsLeft, 'second');
 
           // Below string will get read out by screen readers every time
           // the timeout refreshes (every 15 secs. See below).
