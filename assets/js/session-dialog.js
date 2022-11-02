@@ -5,7 +5,8 @@ window.GOVUK.sessionDialog = {
   el: document.getElementById('js-modal-dialog'),
   $el: $('#js-modal-dialog'),
   $lastFocusedEl: null,
-  $closeButton: $('.modal-dialog .js-dialog-close'),
+  $closeButton: $('#timeout-continue-button'),
+  //$closeButton: $('.modal-dialog .js-dialog-close'),
   dialogIsOpenClass: 'dialog-is-open',
   timers: [],
   warningTextPrefix: 'We will reset your application if you do not respond in ',
@@ -24,7 +25,7 @@ window.GOVUK.sessionDialog = {
 
   bindUIElements: function () {
     window.GOVUK.sessionDialog.$closeButton.on('click', function (e) {
-      e.preventDefault();
+      //e.preventDefault(); // meaning that the default action that belongs to the event will not occur.
       window.GOVUK.sessionDialog.closeDialog()
     });
 
