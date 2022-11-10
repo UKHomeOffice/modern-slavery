@@ -34,7 +34,7 @@ spec:
       containers:
         - name: icasework-resolver
           # testing new icw
-          image: quay.io/ukhomeofficedigital/icasework-resolver:06e61d783e3b4b0981fd911a426cde03de8048a2
+          image: quay.io/ukhomeofficedigital/icasework-resolver:69c048f13ee253c88a65d511a35a0e9c4d2c436a
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -105,6 +105,11 @@ spec:
                 secretKeyRef:
                   name: icasework-new
                   key: secret
+            - name: ICASEWORK_DB
+              valueFrom:
+                secretKeyRef:
+                  name: icasework-new-db
+                  key: db
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
