@@ -16,10 +16,10 @@ if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
 
-  $kd --delete -f kube/jobs/ms-schema-job.yml
-  $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/icasework -f kube/app
-  echo "Torn Down UAT Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
+  # $kd --delete -f kube/jobs/ms-schema-job.yml
+  # $kd --delete -f kube/configmaps/configmap.yml
+  # $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/icasework -f kube/app
+  echo "Not Torn Down UAT Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   exit 0
 fi
 
