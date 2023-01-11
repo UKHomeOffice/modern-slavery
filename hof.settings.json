@@ -11,5 +11,11 @@
   "session": {
     "name": "modern-slavery.hof.sid"
   },
+  "build" : {
+    "sass": {
+      "quietDeps": true,
+      "outputStyle": "compressed"
+    }
+  },
   "port": 8081
 }

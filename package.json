@@ -8,7 +8,7 @@
     "url": "git+https://github.com/UKHomeOffice/modern-slavery.git"
   },
   "engines": {
-    "node": "^14.15.0"
+    "node": ">=14.15.0"
   },
   "keywords": [],
   "author": "",
@@ -37,7 +37,7 @@
   "dependencies": {
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
-    "hof": "^19.14.13",
+    "hof": "20.2.0-sass-config-additions-beta",
     "ioredis": "^4.0.0",
     "jquery": "^3.3.1",
     "knex": "^0.95.11",
