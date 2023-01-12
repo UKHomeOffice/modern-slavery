@@ -175,7 +175,7 @@ This will open up an instance of [Google Chrome](#https://www.google.com/chrome/
 [Install & Run](#install-and-run-on-docker-container)  the application within a docker container then you can run the acceptance tests using the commands below:
 
 
-Enter into the docker container with the Node JS application running
+Enter into the docker container with the Node JS application running:
 ```bash
 $ docker exec -i -t modern-slavery-app /bin/bash
 ```
