@@ -91,6 +91,27 @@
     "bullet-3": "where they were recruited and who arranged the journey",
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
+  "whats-their-background": {
+    "legend": "What is their background?",
+    "label": "What is their background?",
+    "paragraph-1": "Include facts about:",
+    "bullet-1": "where they were born (town or village)",
+    "bullet-2": "their family (parents and siblings)",
+    "bullet-3": "their education and what they did after leaving school",
+    "bullet-4": "details of their journey, including if they travelled with anyone"
+  },
+  "birthplace": {
+    "label": "Place of birth"
+  },
+  "family": {
+    "label": "Family (parents and siblings)"
+  },
+  "education": {
+    "label": "Education and what they did after leaving school"
+  },
+  "employment-history": {
+    "label": "Employment history and working conditions"
+  },
   "where-exploitation-happened": {
     "legend": "Where were they last exploited?",
     "options": {
