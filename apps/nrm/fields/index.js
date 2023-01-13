@@ -88,6 +88,7 @@ module.exports = {
       'not-sure'
     ]
   },
+  // TODO- delete later when feature is merged
   'what-happened': {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
@@ -98,7 +99,35 @@ module.exports = {
     attributes: [
       {
         attribute: 'rows',
-        value: 14
+        value: 7
+      }
+    ]
+  },
+  'education':{
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'employment-history': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
       }
     ]
   },

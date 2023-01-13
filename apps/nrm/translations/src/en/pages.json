@@ -27,6 +27,9 @@
   "what-happened": {
     "header": "What did they say happened?"
   },
+  "whats-their-background": {
+    "header": "What is their background?"
+  },
   "where-exploitation-happened": {
     "header": "Where were they exploited?"
   },
