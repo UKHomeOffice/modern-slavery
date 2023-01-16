@@ -27,11 +27,70 @@
   "what-happened": {
     "header": "What did they say happened?"
   },
-  "whats-their-background": {
+  "what-is-their-background": {
     "header": "What is their background?"
+  },
+  "when-did-the-exploitation-take-place": {
+    "header": "When did the exploitation take place?",
+    "paragraph": "If they know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident. If multiple incidents, list the dates or timeframe of each."
+  },
+  "more-than-one-exploitation-situation": {
+    "header": "Have they been in more than one exploitative situation?",
+    "paragraph-1": "If yes, please make sure that details from all exploitative situations are captured in the following questions."
+  },
+  "how-did-the-exploitation-start": {
+    "header": "How did the exploitation start?",
+    "paragraph": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
   "where-exploitation-happened": {
     "header": "Where were they exploited?"
+  },
+  "how-they-were-treated": {
+    "header": "How were they treated during their exploitation?"
+  },
+  "how-why-did-they-leave-the-situation": {
+    "header": "How and why did they leave the situation?"
+  },
+  "is-this-the-first-chance-to-report": {
+    "header": "Is this the first chance they have had to report this?"
+  },
+  "why-report-now": {
+    "header": "Why are they reporting this now?"
+  },
+  "why-are-you-making-the-referral": {
+    "header": "Why are you making the referral?",
+    "paragraph-1": "Include relevant evidence or information, such as:",
+    "paragraph-2": "The information you enter is disclosable",
+    "bullet-1": "your professional insight",
+    "bullet-2": "modern slavery indicators",
+    "bullet-3": "an intention to exploit the individual",
+    "bullet-4": "circumstances which put the individual at a heightened level of vulnerability",
+    "bullet-5": "safeguarding issues",
+    "bullet-6": "physical and mental health",
+    "bullet-7": "support needs",
+    "bullet-8": "current support being received"
+  },
+  "where-how-interview-carried-out": {
+    "header": "Where and how was the interview carried out? "
+  },
+  "are-others-involved": {
+    "header": "Are there other professionals or organisations involved with this case?",
+    "paragraph-1": "This could be a:",
+    "bullet-1": "legal team",
+    "bullet-2": "GP",
+    "bullet-3": "Support worker",
+    "bullet-4": "Mental health worker",
+    "bullet-5": "Social worker"
+  },
+  "evidence-of-dishonesty": {
+    "header": "Are there indicators or evidence that they could be acting dishonestly?",
+    "paragraph-1": "Do not include examples of them withholding or changing their information if you think they have done this because they:",
+    "bullet-1": "have fears for their safety",
+    "bullet-2": "are trying to avoid reliving their trauma"
+  },
+  "what-evidence-you-will-submit": {
+    "header": "What documents or evidence will you submit with this referral?",
+    "paragraph-1": "After submitting this referral, you will receive an email with instructions on how to submit documents or evidence about this case."
   },
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
@@ -163,6 +222,72 @@
       },
       "pv-under-age": {
         "label": "Under 18"
+      },
+      "birthplace": {
+        "label": "Place of birth"
+      },
+      "family": {
+        "label": "Family"
+      },
+      "education": {
+        "label": "Education"
+      },
+      "employment-history": {
+        "label": "Employment history"
+      },
+      "when-did-the-exploitation-take-place": {
+        "label": "When did exploitation take place"
+       },
+      "more-than-one-exploitation-situation": {
+        "label": "More than one exploitation situation"
+      },
+      "how-did-the-exploitation-start": {
+        "label": "How they came to be exploited"
+      },
+      "were-they-taken-somewhere-by-their-exploiter": {
+        "label": "Taken somewhere by their exploiter(s)"
+      },
+      "were-they-taken-somewhere-by-their-exploiter-journey-details": {
+        "label": "Journey details"
+      },
+      "what-were-they-required-to-do": {
+        "label": "An average day"
+      },
+      "how-they-were-treated": {
+        "label": "Their treatment"
+      },
+      "why-they-stayed": {
+        "label": "Why they stayed"
+      },
+      "how-why-did-they-leave-the-situation": {
+        "label": "How and why they left the situation"
+      },
+      "is-this-the-first-chance-to-report": {
+        "label": "Is this the first chance they have had to report this?"
+      },
+      "why-report-now": {
+        "label": "Reason for reporting now"
+      },
+      "why-are-you-making-the-referral": {
+        "label": "Reason for referral"
+      },
+      "where-how-interview-carried-out": {
+        "label": "Details about the interview"
+      },
+      "are-others-involved": {
+        "label": "Are others involved"
+      },
+      "are-others-involved-details": {
+        "label": "Details of other people involved"
+      },
+      "evidence-of-dishonesty": {
+        "label": "Evidence of Dishonesty"
+      },
+      "evidence-of-dishonesty-details": {
+        "label": "Indicators or evidence of dishonesty"
+      },
+      "what-evidence-you-will-submit": {
+        "label": "List of documents or evidence to be submitted"
       },
       "local-authority-contacted-about-child-local-authority-name" : {
         "label": "Local authority name"

@@ -91,6 +91,103 @@
     "bullet-3": "where they were recruited and who arranged the journey",
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
+  "when-did-the-exploitation-take-place": {
+    "label": "Date(s) of exploitation",
+    "hint": "If they don’t know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident."
+  },
+  "more-than-one-exploitation-situation": {
+    "label": "Date(s) of exploitation",
+    "hint": "The individual should be encouraged to disclose any other periods of exploitation and the length of time, and any specific dates. This can be any form of exploitation (sexual, labour, domestic servitude) and may be of a different type to the one that initiated the referral."
+  },
+  "how-did-the-exploitation-start": {
+    "label": "How they came to be exploited",
+    "hint": "Explore what promises were made, what they were expecting to do, and what pay was promised."
+  },
+  "were-they-taken-somewhere-by-their-exploiter": {
+    "legend": "Were they taken somewhere by their exploiter(s)?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "were-they-taken-somewhere-by-their-exploiter-journey-details": {
+    "label": "Journey details",
+    "hint": "Describe how the journey began and what transport was used. Note any routes, places, landmark features, or times."
+  },
+  "what-were-they-required-to-do": {
+    "label": "An average day",
+    "hint": "Detail what were they required to do, how many hours a day they worked and whether any breaks were allowed."
+  },
+  "how-they-were-treated": {
+    "label": "Their treatment",
+    "hint": "Detail how they were treated by the person or people who exploited them, details of the accommodation and whether there was access to necessary facilities, such as bathroom, sleeping arrangements, food."
+  },
+  "why-they-stayed": {
+    "label": "Why they stayed",
+    "hint": "Explain whether they were forcibly detained, whether threats, force or coercion were used against them, whether their documents were removed from them."
+  },
+  "how-why-did-they-leave-the-situation": {
+    "label": "How and why they left",
+    "hint": "Ask if it was their decision to leave and if anyone helped them. "
+  },
+  "is-this-the-first-chance-to-report": {
+    "legend": "Is this the first chance they have had to report this?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      },
+      "not-sure": {
+        "label": "Not sure"
+      }
+    }
+  },
+  "why-report-now": {
+    "label": "Reason for reporting"
+  },
+  "why-are-you-making-the-referral": {
+    "label": "Reason for referral"
+  },
+  "where-how-interview-carried-out": {
+    "label": "Details about the interview",
+    "hint": "Include whether they needed to take breaks (and why), the number of sessions over which the interview took place and whether there were any safeguarding concerns."
+  },
+  "are-others-involved": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-others-involved-details": {
+    "label": "Other people involved",
+    "hint": "Include any referrals made, actions already taken, reference numbers, or contact details"
+  },
+  "evidence-of-dishonesty": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "evidence-of-dishonesty-details": {
+    "label": "Indicators or evidence of dishonesty"
+  },
+  "what-evidence-you-will-submit": {
+    "label": "List of documents or evidence to be submitted"
+  },
   "whats-their-background": {
     "legend": "What is their background?",
     "label": "What is their background?",
@@ -101,7 +198,7 @@
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
   "birthplace": {
-    "label": "Place of birth"
+    "label": "Place of birth (town or village)"
   },
   "family": {
     "label": "Family (parents and siblings)"

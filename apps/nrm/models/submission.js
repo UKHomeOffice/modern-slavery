@@ -189,5 +189,34 @@ module.exports = data => {
   // icw resolver will look for any existing case before submitting a report to prevent duplicates
   response.ExternalId = data['externalID'] ? data['externalID'] : uuid();
 
+  response.PVBirthplace = data['birthplace'];
+  response.PVFamily = data['family'];
+  response.PVEducation = data['education'];
+  response.PVEmploymentHistory = data['employment-history'];
+  response.ExploitationDates = data['when-did-the-exploitation-take-place'];
+  response.MultipleExploitationSituations = data['more-than-one-exploitation-situation'];
+  response.HowExploitationStarted = data['how-did-the-exploitation-start'];
+  response.ExploitationTakenSomewhere = _.upperFirst(data['were-they-taken-somewhere-by-their-exploiter']);
+  response.ExploitationJourneyDetails = data['were-they-taken-somewhere-by-their-exploiter-journey-details'];
+  response.ExploitationAverageDay = data['what-were-they-required-to-do'];
+  response.ExploitationTreatment = data['how-they-were-treated'];
+  response.ExploitationWhyTheyStayed = data['why-they-stayed'];
+  response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
+
+  const firstChangeToReport = {
+    yes: 'Yes',
+    no: 'No',
+    'not-sure': 'Not sure'
+  };
+  response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
+  response.ReasonForReportingNow = data['why-report-now'];
+  response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
+  response.DetailsAboutInterview = data['where-how-interview-carried-out'];
+  response.ProfessionalsInvolved = _.upperFirst(data['are-others-involved']);
+  response.DetailsOfProfessionalsInvolved = data['are-others-involved-details'];
+  response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
+  response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
+  response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
+
   return response;
 };
