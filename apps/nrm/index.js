@@ -105,7 +105,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['pv-under-age-at-time-of-exploitation'],
-      next: '/whats-their-background'
+      next: '/what-is-their-background'
     },
     // ignoring this for now-eventually delete
     '/what-happened': {
@@ -116,32 +116,32 @@ module.exports = {
       next: '/where-exploitation-happened'
     },
     // this is the new fields
-    '/whats-their-background': {
+    '/what-is-their-background': {
       behaviours: [
         saveFormSession
       ],
       fields: ['birthplace', 'family', 'education', 'employment-history'],
-      next: '/when-exploitation-took-place'
+      next: '/when-did-the-exploitation-take-place'
     },
-    '/when-exploitation-took-place': {
+    '/when-did-the-exploitation-take-place':{
       behaviours: [
         saveFormSession
       ],
-      fields: ['when-exploitation-take-place'],
-      next: '/how-exploitation-started'
+      fields: ['when-did-the-exploitation-take-place'],
+      next: '/how-did-the-exploitation-start'
     },
-    '/how-exploitation-started': {
+    '/how-did-the-exploitation-start': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['how-exploitation-started'],
-      next: '/taken-somewhere-by-exploiters'
+      fields: ['how-did-the-exploitation-start'],
+      next: '/were-they-taken-somewhere-by-their-exploiter'
     },
-    '/taken-somewhere-by-exploiters': {
+    '/were-they-taken-somewhere-by-their-exploiter': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['taken-somewhere-by-exploiters'],
+      fields: ['were-they-taken-somewhere-by-their-exploiter', 'were-they-taken-somewhere-by-their-exploiter-yes'],
       next: '/how-they-were-treated'
     },
     '/how-they-were-treated': {

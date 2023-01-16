@@ -27,8 +27,16 @@
   "what-happened": {
     "header": "What did they say happened?"
   },
-  "whats-their-background": {
+  "what-is-their-background": {
     "header": "What is their background?"
+  },
+  "when-did-the-exploitation-take-place": {
+    "header": "When did the exploitation take place?",
+    "paragraph": "If they know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident. If multiple incidents, list the dates or timeframe of each."
+  },
+  "how-did-the-exploitation-start": {
+    "header": "How did the exploitation start?",
+    "paragraph": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
   "where-exploitation-happened": {
     "header": "Where were they exploited?"

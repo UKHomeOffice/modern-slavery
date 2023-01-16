@@ -35,6 +35,30 @@
     "required": "You must enter details of the exploitation",
     "maxlength": "You must enter no more than 15,000 characters"
   },
+  "birthplace" : {
+    "required": "Enter the birthplace",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "family" : {
+    "required": "Enter the family details",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "education" : {
+    "required": "Enter the education history",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "employment-history" : {
+    "required": "Enter the employment history",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "when-did-the-exploitation-take-place" : {
+    "required": "Enter when the exploitation took place",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "how-did-the-exploitation-start" : {
+    "required": "Enter when the exploitation started",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
   "where-exploitation-happened" : {
     "required": "You must select an option"
   },

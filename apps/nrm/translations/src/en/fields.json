@@ -91,6 +91,23 @@
     "bullet-3": "where they were recruited and who arranged the journey",
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
+  "when-did-the-exploitation-take-place": {
+    "label": "Date(s) of exploitation"
+  },
+  "how-did-the-exploitation-start": {
+    "label": "How they came to be exploited"
+  },
+  "were-they-taken-somewhere-by-their-exploiter": {
+    "legend": "Were they taken somewhere by their exploiter(s)?",
+    "options": {
+      "yes": {
+        "label": "yes"
+      },
+      "no": {
+        "label": "no"
+      }
+    }
+  },
   "whats-their-background": {
     "legend": "What is their background?",
     "label": "What is their background?",

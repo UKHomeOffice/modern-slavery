@@ -103,6 +103,24 @@ module.exports = {
       }
     ]
   },
+  // new fields
+  'birthplace':{
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+  },
+  'family': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
   'education':{
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
@@ -130,6 +148,63 @@ module.exports = {
         value: 7
       }
     ]
+  },
+  'when-did-the-exploitation-take-place': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'how-did-the-exploitation-start': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
+  'were-they-taken-somewhere-by-their-exploiter': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'were-they-taken-somewhere-by-their-exploiter-yes': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'were-they-taken-somewhere-by-their-exploiter'
+    }
   },
   'where-exploitation-happened': {
     mixin: 'radio-group',
