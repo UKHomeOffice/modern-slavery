@@ -107,15 +107,9 @@ module.exports = {
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-is-their-background'
     },
-    // ignoring this for now-eventually delete
-    '/what-happened': {
-      behaviours: [
-        saveFormSession
-      ],
-      fields: ['what-happened'],
-      next: '/where-exploitation-happened'
-    },
-    // this is the new fields
+
+/* These are the new fields */
+
     '/what-is-their-background': {
       behaviours: [
         saveFormSession
@@ -128,6 +122,13 @@ module.exports = {
         saveFormSession
       ],
       fields: ['when-did-the-exploitation-take-place'],
+      next: '/more-than-one-exploitation-situation'
+    },
+    '/more-than-one-exploitation-situation':{
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['more-than-one-exploitation-situation'],
       next: '/how-did-the-exploitation-start'
     },
     '/how-did-the-exploitation-start': {
@@ -141,14 +142,14 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
-      fields: ['were-they-taken-somewhere-by-their-exploiter', 'were-they-taken-somewhere-by-their-exploiter-yes'],
+      fields: ['were-they-taken-somewhere-by-their-exploiter', 'were-they-taken-somewhere-by-their-exploiter-journey-details'],
       next: '/how-they-were-treated'
     },
     '/how-they-were-treated': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['how-they-were-treated'],
+      fields: ['what-were-they-required-to-do', 'how-they-were-treated', 'why-they-stayed'],
       next: '/how-why-did-they-leave-the-situation'
     },
     '/how-why-did-they-leave-the-situation': {
@@ -163,42 +164,50 @@ module.exports = {
         saveFormSession
       ],
       fields: ['is-this-the-first-chance-to-report'],
-      next: '/why-report-now'
+      forks: [{
+        target: '/why-report-now',
+        condition: {
+          field: 'is-this-the-first-chance-to-report',
+          value: 'no'
+        }
+      }],
+      next: '/why-are-you-making-the-referral',
+      continueOnEdit: true
     },
     '/why-report-now': {
       behaviours: [
         saveFormSession
       ],
       fields: ['why-report-now'],
-      next: '/where-exploitation-happened'
+      next: '/why-are-you-making-the-referral'
     },
-    '/why-are-you-making-the-referrel': {
+    '/why-are-you-making-the-referral': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['why-are-you-making-the-referrel'],
-      next: '/where-exploitation-happened'
+      fields: ['why-are-you-making-the-referral'],
+      next: '/where-how-interview-carried-out'
     },
     '/where-how-interview-carried-out': {
       behaviours: [
         saveFormSession
       ],
       fields: ['where-how-interview-carried-out'],
-      next: '/where-exploitation-happened'
+      next: '/are-others-involved'
     },
     '/are-others-involved': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['are-others-involved'],
-      next: '/where-exploitation-happened'
+      fields: ['are-others-involved', 'are-others-involved-details'],
+      next: '/evidence-of-dishonesty'
     },
     '/evidence-of-dishonesty': {
       behaviours: [
         saveFormSession
       ],
-      fields: ['evidence-of-dishonesty'],
-      next: '/where-exploitation-happened'
+      fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
+      next: '/what-evidence-you-will-submit'
     },
     '/what-evidence-you-will-submit': {
       behaviours: [
@@ -207,6 +216,10 @@ module.exports = {
       fields: ['what-evidence-you-will-submit'],
       next: '/where-exploitation-happened'
     },
+
+/* End of new fields */
+
+
     '/where-exploitation-happened': {
       behaviours: [
         saveFormSession

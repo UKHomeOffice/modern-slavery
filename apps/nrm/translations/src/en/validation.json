@@ -31,6 +31,9 @@
   "pv-under-age-at-time-of-exploitation" : {
     "required": "You must select an option"
   },
+  "were-they-taken-somewhere-by-their-exploiter" : {
+    "required": "You must select an option"
+  },
   "what-happened" : {
     "required": "You must enter details of the exploitation",
     "maxlength": "You must enter no more than 15,000 characters"
@@ -55,8 +58,65 @@
     "required": "Enter when the exploitation took place",
     "maxlength": "Enter no more than 15,000 characters"
   },
+  "more-than-one-exploitation-situation" : {
+    "required": "Enter Date(s) of exploitation",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
   "how-did-the-exploitation-start" : {
     "required": "Enter when the exploitation started",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "were-they-taken-somewhere-by-their-exploiter-journey-details" : {
+    "required": "Enter the journey's details",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "what-were-they-required-to-do" : {
+    "required": "Enter what were they required to do",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "how-they-were-treated" : {
+    "required": "Enter how they were treated",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "why-they-stayed" : {
+    "required": "Enter why they stayed",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "how-why-did-they-leave-the-situation": {
+    "required": "Enter how and why they left",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "is-this-the-first-chance-to-report" : {
+    "required": "You must select an option"
+  },
+  "why-report-now": {
+    "required": "Enter reason for reporting",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "why-are-you-making-the-referral": {
+    "required": "Enter reason for referral",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "where-how-interview-carried-out": {
+    "required": "Enter details about the interview",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "are-others-involved" : {
+    "required": "You must select an option"
+  },
+  "are-others-involved-details": {
+    "required": "Enter other people involved",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "evidence-of-dishonesty" : {
+    "required": "You must select an option"
+  },
+  "evidence-of-dishonesty-details": {
+    "required": "Enter indicators or evidence of dishonesty",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "what-evidence-you-will-submit": {
+    "required": "Enter list of documents or evidence to be submitted",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "where-exploitation-happened" : {

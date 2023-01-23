@@ -189,5 +189,53 @@ module.exports = data => {
   // icw resolver will look for any existing case before submitting a report to prevent duplicates
   response.ExternalId = data['externalID'] ? data['externalID'] : uuid();
 
+  /* New Fields To Be added into the correct places in the list above */
+  // response.PVBirthplace = data['birthplace'];
+  // response.PVFamily = data['family'];
+  // response.PVEducation = data['education'];
+  // response.PVEmploymentHistory = data['employment-history'];
+  // response.ExploitationDates = data['when-did-the-exploitation-take-place'];
+  // response.MultipleExploitationSituations = data['more-than-one-exploitation-situation'];
+  // response.HowExploitationStarted = data['how-did-the-exploitation-start'];
+  // response.ExploitationTakenSomewhere = _.upperFirst(data['were-they-taken-somewhere-by-their-exploiter']);
+  // response.ExploitationJourneyDetails= data['were-they-taken-somewhere-by-their-exploiter-journey-details'];
+  // response.ExploitationAverageDay = data['what-were-they-required-to-do'];
+  // response.ExploitationTreatment = data['how-they-were-treated'];
+  // response.ExploitationWhyTheyStayed = data['why-they-stayed'];
+  // response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
+  // response.FirstChanceToReport = _.upperFirst(data['is-this-the-first-chance-to-report']);
+  // response.ReasonForReportingNow = data['why-report-now'];
+  // response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
+  // response.DetailsAboutInterview = data['where-how-interview-carried-out'];
+  // response.ProfessionalsInvolved = _.upperFirst(data['are-others-involved']);
+  // response.DetailsOfProfessionalsInvolved= data['are-others-involved-details'];
+  // response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
+  // response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
+  // response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
+
+  /* New Fields To Be added into the correct places in the list above */
+  response.PVBirthplace = 'TEST BIRTHPLACE';
+  response.PVFamily = 'TEST FAMILY';
+  response.PVEducation = 'TEST EDUCATION';
+  response.PVEmploymentHistory = 'TEST EMPLOYMENT HISTORY';
+  response.ExploitationDates = 'TEST EXPLOITATION DATES';
+  response.MultipleExploitationSituations = 'TEST MULTIPLE EXPLOITATION SITUATIONS';
+  response.HowExploitationStarted = 'TEST EXPLOITATION STARTED';
+  response.ExploitationTakenSomewhere = 'YES';
+  response.ExploitationJourneyDetails = 'TEST EXPLOITATION JOURNEY DETAILS';
+  response.ExploitationAverageDay = 'TEST EXPLOITATION AVERAGE DAY';
+  response.ExploitationTreatment = 'TEST EXPLOITATION TREATMENT';
+  response.ExploitationWhyTheyStayed = 'TEST EXPLOITATION WHY THEY STAYED';
+  response.ExploitationReasonTheyLeft = 'TEST EXPLOITATION REASON THEY LEFT';
+  response.FirstChanceToReport = 'NOT SURE';
+  response.ReasonForReportingNow = 'TEST REASON FOR REPORTING NOW';
+  response.ReasonForMakingReferral = 'TEST REASON FOR MAKING REFERRAL';
+  response.DetailsAboutInterview = 'TEST DETAILS ABOUT INTERVIEW';
+  response.ProfessionalsInvolved = 'YES';
+  response.DetailsOfProfessionalsInvolved = 'TEST DETAILS OF PROFESSIONALS INVOLVED';
+  response.EvidenceOfDishonesty = 'YES';
+  response.DetailsOfEvidenceOfDishonesty = 'TEST DETAILS OF EVIDENCE OF DISHONESTY';
+  response.EvidenceSubmitted = 'TEST EVIDENCE SUBMITTED';
+
   return response;
 };
