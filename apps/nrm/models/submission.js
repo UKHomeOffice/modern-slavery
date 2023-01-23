@@ -126,6 +126,7 @@ module.exports = data => {
     response.ExploitationOther = data['other-exploitation-details'];
   }
 
+  /* NEED TO UNCOMMENT THIS */
   response.OtherVictims = data['any-other-pvs'];
   response.ReportedCase = _.upperFirst(data['reported-to-police']);
   response.PoliceForce = data['reported-to-police-police-forces'];
@@ -203,7 +204,14 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
-  response.FirstChanceToReport = 'not-sure'; //_.upperFirst(data['is-this-the-first-chance-to-report']);
+
+  const firstChangeToReport = {
+    yes: 'Yes',
+    no: 'No',
+    'not-sure': 'Unknown'
+  };
+
+  response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
   response.DetailsAboutInterview = data['where-how-interview-carried-out'];
