@@ -208,7 +208,7 @@ module.exports = data => {
   const firstChangeToReport = {
     yes: 'Yes',
     no: 'No',
-    'not-sure': 'Unknown'
+    'not-sure': 'Not sure'
   };
 
   response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
