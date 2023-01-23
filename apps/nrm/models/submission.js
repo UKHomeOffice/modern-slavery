@@ -203,7 +203,7 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
-  response.FirstChanceToReport = _.upperFirst(data['is-this-the-first-chance-to-report']);
+  response.FirstChanceToReport = 'not-sure'; //_.upperFirst(data['is-this-the-first-chance-to-report']);
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
   response.DetailsAboutInterview = data['where-how-interview-carried-out'];
