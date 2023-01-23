@@ -98,7 +98,7 @@ module.exports = {
         'local-authority-contacted-about-child-local-authority-first-name',
         'local-authority-contacted-about-child-local-authority-last-name'
       ],
-      next: '/what-happened'
+      next: '/what-is-their-background'
     },
     '/pv-under-age-at-time-of-exploitation': {
       behaviours: [
