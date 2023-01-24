@@ -190,7 +190,6 @@ module.exports = data => {
   // icw resolver will look for any existing case before submitting a report to prevent duplicates
   response.ExternalId = data['externalID'] ? data['externalID'] : uuid();
 
-  /* New Fields To Be added into the correct places in the list above */
   response.PVBirthplace = data['birthplace'];
   response.PVFamily = data['family'];
   response.PVEducation = data['education'];
@@ -210,7 +209,6 @@ module.exports = data => {
     no: 'No',
     'not-sure': 'Not sure'
   };
-
   response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
@@ -220,30 +218,6 @@ module.exports = data => {
   response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
   response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
-
-  /* New Fields To Be added into the correct places in the list above */
-  // response.PVBirthplace = 'TEST BIRTHPLACE';
-  // response.PVFamily = 'TEST FAMILY';
-  // response.PVEducation = 'TEST EDUCATION';
-  // response.PVEmploymentHistory = 'TEST EMPLOYMENT HISTORY';
-  // response.ExploitationDates = 'TEST EXPLOITATION DATES';
-  // response.MultipleExploitationSituations = 'TEST MULTIPLE EXPLOITATION SITUATIONS';
-  // response.HowExploitationStarted = 'TEST EXPLOITATION STARTED';
-  // response.ExploitationTakenSomewhere = 'YES';
-  // response.ExploitationJourneyDetails = 'TEST EXPLOITATION JOURNEY DETAILS';
-  // response.ExploitationAverageDay = 'TEST EXPLOITATION AVERAGE DAY';
-  // response.ExploitationTreatment = 'TEST EXPLOITATION TREATMENT';
-  // response.ExploitationWhyTheyStayed = 'TEST EXPLOITATION WHY THEY STAYED';
-  // response.ExploitationReasonTheyLeft = 'TEST EXPLOITATION REASON THEY LEFT';
-  // response.FirstChanceToReport = 'NOT SURE';
-  // response.ReasonForReportingNow = 'TEST REASON FOR REPORTING NOW';
-  // response.ReasonForMakingReferral = 'TEST REASON FOR MAKING REFERRAL';
-  // response.DetailsAboutInterview = 'TEST DETAILS ABOUT INTERVIEW';
-  // response.ProfessionalsInvolved = 'YES';
-  // response.DetailsOfProfessionalsInvolved = 'TEST DETAILS OF PROFESSIONALS INVOLVED';
-  // response.EvidenceOfDishonesty = 'YES';
-  // response.DetailsOfEvidenceOfDishonesty = 'TEST DETAILS OF EVIDENCE OF DISHONESTY';
-  // response.EvidenceSubmitted = 'TEST EVIDENCE SUBMITTED';
 
   return response;
 };

@@ -223,6 +223,72 @@
       "pv-under-age": {
         "label": "Under 18"
       },
+      "birthplace": {
+        "label": "Place of birth"
+      },
+      "family": {
+        "label": "Family"
+      },
+      "education": {
+        "label": "Education"
+      },
+      "employment-history": {
+        "label": "Employment history"
+      },
+      "when-did-the-exploitation-take-place": {
+        "label": "When did exploitation take place"
+       },
+      "more-than-one-exploitation-situation": {
+        "label": "More than one exploitation situation"
+      },
+      "how-did-the-exploitation-start": {
+        "label": "How they came to be exploited"
+      },
+      "were-they-taken-somewhere-by-their-exploiter": {
+        "label": "Taken somewhere by their exploiter(s)"
+      },
+      "were-they-taken-somewhere-by-their-exploiter-journey-details": {
+        "label": "Journey details"
+      },
+      "what-were-they-required-to-do": {
+        "label": "An average day"
+      },
+      "how-they-were-treated": {
+        "label": "Their treatment"
+      },
+      "why-they-stayed": {
+        "label": "Why they stayed"
+      },
+      "how-why-did-they-leave-the-situation": {
+        "label": "How and why they left the situation"
+      },
+      "is-this-the-first-chance-to-report": {
+        "label": "Is this the first chance they have had to report this?"
+      },
+      "why-report-now": {
+        "label": "Reason for reporting now"
+      },
+      "why-are-you-making-the-referral": {
+        "label": "Reason for referral"
+      },
+      "where-how-interview-carried-out": {
+        "label": "Details about the interview"
+      },
+      "are-others-involved": {
+        "label": "Are others involved"
+      },
+      "are-others-involved-details": {
+        "label": "Details of other people involved"
+      },
+      "evidence-of-dishonesty": {
+        "label": "Evidence of Dishonesty"
+      },
+      "evidence-of-dishonesty-details": {
+        "label": "Indicators or evidence of dishonesty"
+      },
+      "what-evidence-you-will-submit": {
+        "label": "List of documents or evidence to be submitted"
+      },
       "local-authority-contacted-about-child-local-authority-name" : {
         "label": "Local authority name"
       },

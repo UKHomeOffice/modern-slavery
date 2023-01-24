@@ -135,7 +135,7 @@
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
   "is-this-the-first-chance-to-report": {
-    "legend": "Were they taken somewhere by their exploiter(s)?",
+    "legend": "Is this the first chance they have had to report this?",
     "options": {
       "yes": {
         "label": "Yes"

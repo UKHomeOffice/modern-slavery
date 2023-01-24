@@ -111,6 +111,30 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('were-they-taken-somewhere-by-their-exploiter')) {
+    data = Object.assign({}, data, {
+      formattedWereTheyTakenSomewhereByTheirExploiter: removeDashesFromText(capitaliseText(req.sessionModel.get('were-they-taken-somewhere-by-their-exploiter')))
+    });
+  }
+
+  if (req.sessionModel.get('is-this-the-first-chance-to-report')) {
+    data = Object.assign({}, data, {
+      formattedIsThisTheFirstChanceToReport: removeDashesFromText(capitaliseText(req.sessionModel.get('is-this-the-first-chance-to-report')))
+    });
+  }
+
+  if (req.sessionModel.get('are-others-involved')) {
+    data = Object.assign({}, data, {
+      formattedAreOthersInvolved: removeDashesFromText(capitaliseText(req.sessionModel.get('are-others-involved')))
+    });
+  }
+
+  if (req.sessionModel.get('evidence-of-dishonesty')) {
+    data = Object.assign({}, data, {
+      formattedEvidenceOfDishonesty: removeDashesFromText(capitaliseText(req.sessionModel.get('evidence-of-dishonesty')))
+    });
+  }
+
   return data;
 };
 
