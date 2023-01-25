@@ -31,9 +31,6 @@
   "pv-under-age-at-time-of-exploitation" : {
     "required": "You must select an option"
   },
-  "were-they-taken-somewhere-by-their-exploiter" : {
-    "required": "You must select an option"
-  },
   "what-happened" : {
     "required": "You must enter details of the exploitation",
     "maxlength": "You must enter no more than 15,000 characters"
@@ -65,6 +62,9 @@
   "how-did-the-exploitation-start" : {
     "required": "Enter when the exploitation started",
     "maxlength": "Enter no more than 15,000 characters"
+  },
+  "were-they-taken-somewhere-by-their-exploiter" : {
+    "required": "You must select an option"
   },
   "were-they-taken-somewhere-by-their-exploiter-journey-details" : {
     "required": "Enter the journey's details",
