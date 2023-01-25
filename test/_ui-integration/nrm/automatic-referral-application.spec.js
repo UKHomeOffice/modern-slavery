@@ -93,9 +93,9 @@ describe('the journey of a nrm automatic referral application', () => {
     const URI = '/what-is-their-background';
     await initSession(URI);
     const response = await passStep(URI, {
-      'birthplace': 'Test',
-      'family': 'Test',
-      'education': 'Test',
+      birthplace: 'Test',
+      family: 'Test',
+      education: 'Test',
       'employment-history': 'Test'
     });
     expect(response.text).to.contain('Found. Redirecting to /nrm/when-did-the-exploitation-take-place');

@@ -78,9 +78,9 @@ describe('the journey of a nrm application', () => {
     const URI = '/what-is-their-background';
     await initSession(URI);
     const response = await passStep(URI, {
-      'birthplace': 'Test',
-      'family': 'Test',
-      'education': 'Test',
+      birthplace: 'Test',
+      family: 'Test',
+      education: 'Test',
       'employment-history': 'Test'
     });
     expect(response.text).to.contain('Found. Redirecting to /nrm/when-did-the-exploitation-take-place');
@@ -126,35 +126,35 @@ describe('the journey of a nrm application', () => {
 
   it('goes to the how-they-were-treated page when user enters how were they treated during their exploitation',
     async () => {
-    const URI = '/how-they-were-treated';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'what-were-they-required-to-do': 'Test',
-      'how-they-were-treated': 'Test',
-      'why-they-stayed': 'Test'
+      const URI = '/how-they-were-treated';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'what-were-they-required-to-do': 'Test',
+        'how-they-were-treated': 'Test',
+        'why-they-stayed': 'Test'
+      });
+      expect(response.text).to.contain('Found. Redirecting to /nrm/how-why-did-they-leave-the-situation');
     });
-    expect(response.text).to.contain('Found. Redirecting to /nrm/how-why-did-they-leave-the-situation');
-  });
 
   it('goes to the how-why-did-they-leave-the-situation page when user enters how and why did they leave the situation',
     async () => {
-    const URI = '/how-why-did-they-leave-the-situation';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'how-why-did-they-leave-the-situation': 'Test'
+      const URI = '/how-why-did-they-leave-the-situation';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'how-why-did-they-leave-the-situation': 'Test'
+      });
+      expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
     });
-    expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
-  });
 
   it('goes to the is-this-the-first-chance-to-report page when user enters Is this the first chance they have ' +
     'had to report this?', async () => {
-      const URI = '/is-this-the-first-chance-to-report';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'is-this-the-first-chance-to-report': 'no'
-      });
-      expect(response.text).to.contain('Found. Redirecting to /nrm/why-report-now');
+    const URI = '/is-this-the-first-chance-to-report';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'is-this-the-first-chance-to-report': 'no'
     });
+    expect(response.text).to.contain('Found. Redirecting to /nrm/why-report-now');
+  });
 
   it('goes to the why-report-now page when user enters why are they reporting this now?', async () => {
     const URI = '/why-report-now';
@@ -176,24 +176,24 @@ describe('the journey of a nrm application', () => {
 
   it('goes to the where-how-interview-carried-out page when user enters where and how was the interview carried out?',
     async () => {
-    const URI = '/where-how-interview-carried-out';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'where-how-interview-carried-out': 'Test'
+      const URI = '/where-how-interview-carried-out';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'where-how-interview-carried-out': 'Test'
+      });
+      expect(response.text).to.contain('Found. Redirecting to /nrm/are-others-involved');
     });
-    expect(response.text).to.contain('Found. Redirecting to /nrm/are-others-involved');
-  });
 
   it('goes to the are-others-involved page when user enters are there other professionals or organisations ' +
     'involved with this case?', async () => {
-      const URI = '/are-others-involved';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'are-others-involved': 'yes',
-        'are-others-involved-details': 'Test'
-      });
-      expect(response.text).to.contain('Found. Redirecting to /nrm/evidence-of-dishonesty');
+    const URI = '/are-others-involved';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'are-others-involved': 'yes',
+      'are-others-involved-details': 'Test'
     });
+    expect(response.text).to.contain('Found. Redirecting to /nrm/evidence-of-dishonesty');
+  });
 
   it('goes to the evidence-of-dishonesty page are there indicators or evidence that they could be acting ' +
     'dishonestly?', async () => {

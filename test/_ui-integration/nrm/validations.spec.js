@@ -306,18 +306,18 @@ describe('validation checks of the nrm journey', () => {
   describe('User enters where and how was the interview carried out Validation', () => {
     it('does not pass where and how was the interview carried out page if nothing entered',
       async () => {
-      const URI = '/where-how-interview-carried-out';
-      await initSession(URI);
-      await passStep(URI, {});
+        const URI = '/where-how-interview-carried-out';
+        await initSession(URI);
+        await passStep(URI, {});
 
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+        const res = await getUrl(URI);
+        const docu = await parseHtml(res);
+        const validationSummary = docu.find('.validation-summary');
 
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/Enter details about the interview/);
-    });
+        expect(validationSummary.length === 1).to.be.true;
+        expect(validationSummary.html())
+          .to.match(/Enter details about the interview/);
+      });
   });
 
   describe('User enters are others involved Validation', () => {
