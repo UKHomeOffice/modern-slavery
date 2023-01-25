@@ -106,7 +106,7 @@ module.exports = {
       }
     ]
   },
-  education:{
+  education: {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     legend: {
@@ -288,7 +288,7 @@ module.exports = {
         attribute: 'rows',
         value: 7
       }
-    ],
+    ]
   },
   'why-are-you-making-the-referral': {
     mixin: 'textarea',
@@ -302,7 +302,7 @@ module.exports = {
         attribute: 'rows',
         value: 14
       }
-    ],
+    ]
   },
   'where-how-interview-carried-out': {
     mixin: 'textarea',
@@ -316,7 +316,7 @@ module.exports = {
         attribute: 'rows',
         value: 14
       }
-    ],
+    ]
   },
   'are-others-involved': {
     mixin: 'radio-group',
@@ -330,7 +330,7 @@ module.exports = {
       child: 'partials/are-others-involved'
     }, {
       value: 'no'
-    }],
+    }]
   },
   'are-others-involved-details': {
     mixin: 'textarea',
@@ -362,7 +362,7 @@ module.exports = {
       child: 'partials/evidence-of-dishonesty'
     }, {
       value: 'no'
-    }],
+    }]
   },
   'evidence-of-dishonesty-details': {
     mixin: 'textarea',

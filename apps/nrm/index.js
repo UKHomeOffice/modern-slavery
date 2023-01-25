@@ -114,14 +114,14 @@ module.exports = {
       fields: ['birthplace', 'family', 'education', 'employment-history'],
       next: '/when-did-the-exploitation-take-place'
     },
-    '/when-did-the-exploitation-take-place':{
+    '/when-did-the-exploitation-take-place': {
       behaviours: [
         saveFormSession
       ],
       fields: ['when-did-the-exploitation-take-place'],
       next: '/more-than-one-exploitation-situation'
     },
-    '/more-than-one-exploitation-situation':{
+    '/more-than-one-exploitation-situation': {
       behaviours: [
         saveFormSession
       ],
@@ -140,7 +140,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['were-they-taken-somewhere-by-their-exploiter',
-               'were-they-taken-somewhere-by-their-exploiter-journey-details'],
+        'were-they-taken-somewhere-by-their-exploiter-journey-details'],
       next: '/how-they-were-treated'
     },
     '/how-they-were-treated': {
