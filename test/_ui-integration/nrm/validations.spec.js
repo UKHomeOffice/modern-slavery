@@ -167,7 +167,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter Date(s) of exploitation/);
+        .to.match(/Enter Date\(s\) of exploitation/);
     });
   });
 
