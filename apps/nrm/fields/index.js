@@ -88,15 +88,11 @@ module.exports = {
       'not-sure'
     ]
   },
-
-
-/* New Fields */
-
-  'birthplace':{
+  birthplace: {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}]
   },
-  'family': {
+  family: {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     legend: {
@@ -110,7 +106,7 @@ module.exports = {
       }
     ]
   },
-  'education':{
+  education:{
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     legend: {
@@ -192,7 +188,7 @@ module.exports = {
       child: 'partials/were-they-taken-somewhere-by-their-exploiter'
     }, {
       value: 'no'
-    }],
+    }]
   },
   'were-they-taken-somewhere-by-their-exploiter-journey-details': {
     mixin: 'textarea',
@@ -400,11 +396,6 @@ module.exports = {
       }
     ]
   },
-
-
-/* End of New Fields */
-
-
   'where-exploitation-happened': {
     mixin: 'radio-group',
     validate: ['required'],

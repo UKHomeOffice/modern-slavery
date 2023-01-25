@@ -107,9 +107,6 @@ module.exports = {
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-is-their-background'
     },
-
-/* These are the new fields */
-
     '/what-is-their-background': {
       behaviours: [
         saveFormSession
@@ -142,7 +139,8 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
-      fields: ['were-they-taken-somewhere-by-their-exploiter', 'were-they-taken-somewhere-by-their-exploiter-journey-details'],
+      fields: ['were-they-taken-somewhere-by-their-exploiter',
+               'were-they-taken-somewhere-by-their-exploiter-journey-details'],
       next: '/how-they-were-treated'
     },
     '/how-they-were-treated': {
@@ -216,10 +214,6 @@ module.exports = {
       fields: ['what-evidence-you-will-submit'],
       next: '/where-exploitation-happened'
     },
-
-/* End of new fields */
-
-
     '/where-exploitation-happened': {
       behaviours: [
         saveFormSession
