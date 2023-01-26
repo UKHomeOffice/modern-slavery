@@ -126,7 +126,6 @@ module.exports = data => {
     response.ExploitationOther = data['other-exploitation-details'];
   }
 
-  /* NEED TO UNCOMMENT THIS */
   response.OtherVictims = data['any-other-pvs'];
   response.ReportedCase = _.upperFirst(data['reported-to-police']);
   response.PoliceForce = data['reported-to-police-police-forces'];
