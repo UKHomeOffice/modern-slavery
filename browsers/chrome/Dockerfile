@@ -1,4 +1,6 @@
-FROM krallin/ubuntu-tini:xenial
+#FROM krallin/ubuntu-tini:xenial
+#FROM rubensa/ubuntu-tini-dev-chrome
+FROM rubensa/ubuntu-tini-x11
 
 EXPOSE 9222
 
@@ -13,8 +15,9 @@ RUN apt-get update && \
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main' >> /etc/apt/sources.list.d/google-chrome.list && \
   apt-get update --allow-unauthenticated && \
-  apt-get upgrade -y --allow-unauthenticated && \
-  apt-get --fix-broken install -y google-chrome-stable --allow-downgrades --allow-unauthenticated && \
+  #apt-get upgrade -y --allow-unauthenticated && \
+  #apt-get --fix-broken install -y google-chrome-stable --allow-downgrades --allow-unauthenticated && \
+  apt-get install -y google-chrome-stable --allow-unauthenticated && \
   rm -fr /var/lib/apt/lists/* && \
   # Uninstall Curl, it's configuration files and the installation file from Ubuntu
   apt-get purge --auto-remove -y curl && \
