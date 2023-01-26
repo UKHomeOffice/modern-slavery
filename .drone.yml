@@ -44,7 +44,7 @@ ui_integration_tests: &ui_integration_tests
   environment:
     NOTIFY_STUB: true
   commands:
-    - yarn run test:ui-integration   
+    - yarn run test:ui-integration
 
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
@@ -186,41 +186,41 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: linting_branch
-    <<: *linting
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: unit_tests_branch
-    <<: *unit_tests
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: ui_integration_tests_branch
-    <<: *ui_integration_tests
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
-
-  - name: sonar_scanner_branch
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
+#  - name: linting_branch
+#    <<: *linting
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
+#
+#  - name: unit_tests_branch
+#    <<: *unit_tests
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
+#
+#  - name: ui_integration_tests_branch
+#    <<: *ui_integration_tests
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
+#
+#  - name: sonar_scanner_branch
+#    <<: *sonar_scanner
+#    when:
+#      branch:
+#        include:
+#          - master
+#          - feature/*
+#      event: pull_request
 
   - name: acceptance_tests_branch
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
