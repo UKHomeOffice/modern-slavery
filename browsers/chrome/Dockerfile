@@ -2,6 +2,7 @@
 #FROM rubensa/ubuntu-tini-dev-chrome
 #FROM rubensa/ubuntu-tini-x11
 #FROM rubensa/ubuntu-tini-dev-chrome
+
 FROM node:16.16.0 as base
 
 EXPOSE 9222
@@ -38,4 +39,5 @@ COPY test.png .
 
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/tini", "--", "./entrypoint.sh"]
+#ENTRYPOINT ["/usr/local/bin/tini", "--", "./entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "./entrypoint.sh"]
