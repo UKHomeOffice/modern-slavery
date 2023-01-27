@@ -27,7 +27,7 @@ const {
   HOW_WERE_THEY_TREATED,
   WHY_THEY_STAYED,
   WHY_DID_THEY_LEAVE,
-  FIRST_CHANCE_TO_REPORT_YES,
+  FIRST_CHANCE_TO_REPORT_NO,
   WHY_REPORT_NOW,
   WHY_ARE_YOU_MAKING_REFERRAL,
   INTERVIEW_CARRIED_OUT,
@@ -211,7 +211,7 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHY_DID_THEY_LEAVE, 'Test input of why they left');
     await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, FIRST_CHANCE_TO_REPORT_YES);
+    await clickSelector(page, FIRST_CHANCE_TO_REPORT_NO);
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHY_REPORT_NOW, 'Test input of why report now');
     await clickSelector(page, CONTINUE_BUTTON);

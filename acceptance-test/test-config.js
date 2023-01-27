@@ -22,7 +22,7 @@ module.exports = {
     HOW_WERE_THEY_TREATED: '#how-they-were-treated',
     WHY_THEY_STAYED: '#why-they-stayed',
     WHY_DID_THEY_LEAVE: '#how-why-did-they-leave-the-situation',
-    FIRST_CHANCE_TO_REPORT_YES: '#is-this-the-first-chance-to-report-yes',
+    FIRST_CHANCE_TO_REPORT_NO: '#is-this-the-first-chance-to-report-no',
     WHY_REPORT_NOW: '#why-report-now',
     WHY_ARE_YOU_MAKING_REFERRAL: '#why-are-you-making-the-referral',
     INTERVIEW_CARRIED_OUT: '#where-how-interview-carried-out',
