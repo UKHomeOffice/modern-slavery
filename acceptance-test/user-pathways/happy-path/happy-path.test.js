@@ -14,7 +14,28 @@ const {
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
   EMAIL_INPUT,
-  WHAT_HAPPENED_INPUT,
+  PV_BIRTHPLACE,
+  PV_FAMILY,
+  PV_EDUCATION,
+  PV_EMPLOYMENT_HISTORY,
+  EXPLOITATION_TAKE_PLACE,
+  MORE_THAN_ONE_SITUATION,
+  HOW_DID_EXPLOITATION_START,
+  WERE_TAKEN_SOMEWHERE_YES,
+  WERE_TAKEN_SOMEWHERE_DETAILS,
+  WHAT_WERE_THEY_REQUIRED_TO_DO,
+  HOW_WERE_THEY_TREATED,
+  WHY_THEY_STAYED,
+  WHY_DID_THEY_LEAVE,
+  FIRST_CHANCE_TO_REPORT_NO,
+  WHY_REPORT_NOW,
+  WHY_ARE_YOU_MAKING_REFERRAL,
+  INTERVIEW_CARRIED_OUT,
+  ARE_OTHERS_INVOLVED_YES,
+  ARE_OTHERS_INVOLVED_DETAILS,
+  EVIDENCE_OF_DISHONESTY_YES,
+  EVIDENCE_OF_DISHONESTY_DETAILS,
+  EVIDENCE_TO_SUBMIT,
   LOCATION_ENGLAND_OPTION,
   PV_UNDER_AGE_NO_OPTION,
   PV_UNDER_AGE_AT_TIME_OF_EXPLOITATION_NO_OPTION,
@@ -170,7 +191,41 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
     }
 
-    await focusThenType(page, WHAT_HAPPENED_INPUT, 'Test input regarding details of exploitation');
+    await focusThenType(page, PV_BIRTHPLACE, 'Test input of birthplace');
+    await focusThenType(page, PV_FAMILY, 'Test input of familty');
+    await focusThenType(page, PV_EDUCATION, 'Test input of education');
+    await focusThenType(page, PV_EMPLOYMENT_HISTORY, 'Test input of employment history');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, EXPLOITATION_TAKE_PLACE, 'Test input of exploitation location');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, MORE_THAN_ONE_SITUATION, 'Test input of more than on situation');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, HOW_DID_EXPLOITATION_START, 'Test input of start date');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, WERE_TAKEN_SOMEWHERE_YES);
+    await focusThenType(page, WERE_TAKEN_SOMEWHERE_DETAILS, 'Test input of location details');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, WHAT_WERE_THEY_REQUIRED_TO_DO, 'Test input of what they were required to do');
+    await focusThenType(page, HOW_WERE_THEY_TREATED, 'Test input of how they were treated');
+    await focusThenType(page, WHY_THEY_STAYED, 'Test input of why they stayed');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, WHY_DID_THEY_LEAVE, 'Test input of why they left');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, FIRST_CHANCE_TO_REPORT_NO);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, WHY_REPORT_NOW, 'Test input of why reporting now');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, WHY_ARE_YOU_MAKING_REFERRAL, 'Test input of reason for referral');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, INTERVIEW_CARRIED_OUT, 'Test input of interview information');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, ARE_OTHERS_INVOLVED_YES);
+    await focusThenType(page, ARE_OTHERS_INVOLVED_DETAILS, 'Test input of other involved details');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, EVIDENCE_OF_DISHONESTY_YES);
+    await focusThenType(page, EVIDENCE_OF_DISHONESTY_DETAILS, 'Test input of evidence of dishonesty details');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, EVIDENCE_TO_SUBMIT, 'Test input of evidence to submit');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, EXPLOITED_IN_UK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);

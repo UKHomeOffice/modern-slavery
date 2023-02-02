@@ -88,13 +88,307 @@ module.exports = {
       'not-sure'
     ]
   },
-  'what-happened': {
+  birthplace: {
+    mixin: 'input-text',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+  },
+  family: {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'govuk-textarea',
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  education: {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'employment-history': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'when-did-the-exploitation-take-place': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'more-than-one-exploitation-situation': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'how-did-the-exploitation-start': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
+  'were-they-taken-somewhere-by-their-exploiter': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'were-they-taken-somewhere-by-their-exploiter-details-fieldset',
+      child: 'partials/were-they-taken-somewhere-by-their-exploiter'
+    }, {
+      value: 'no'
+    }]
+  },
+  'were-they-taken-somewhere-by-their-exploiter-journey-details': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'were-they-taken-somewhere-by-their-exploiter'
+    }
+  },
+  'what-were-they-required-to-do': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'how-they-were-treated': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'why-they-stayed': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'how-why-did-they-leave-the-situation': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
+  'is-this-the-first-chance-to-report': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no',
+      'not-sure'
+    ]
+  },
+  'why-report-now': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'why-are-you-making-the-referral': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
+  'where-how-interview-carried-out': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
+  'are-others-involved': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'are-others-involved-details-fieldset',
+      child: 'partials/are-others-involved'
+    }, {
+      value: 'no'
+    }]
+  },
+  'are-others-involved-details': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'are-others-involved'
+    }
+  },
+  'evidence-of-dishonesty': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'evidence-of-dishonesty-details-fieldset',
+      child: 'partials/evidence-of-dishonesty'
+    }, {
+      value: 'no'
+    }]
+  },
+  'evidence-of-dishonesty-details': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'evidence-of-dishonesty'
+    }
+  },
+  'what-evidence-you-will-submit': {
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'form-control-100',
     attributes: [
       {
         attribute: 'rows',
