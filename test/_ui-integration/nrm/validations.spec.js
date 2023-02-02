@@ -120,9 +120,9 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('What Happened Validation', () => {
-    it('does not pass the what happened page if nothing entered', async () => {
-      const URI = '/what-happened';
+  describe('User enters their background Validation', () => {
+    it('does not pass what is their background page if nothing entered', async () => {
+      const URI = '/what-is-their-background';
       await initSession(URI);
       await passStep(URI, {});
 
@@ -132,7 +132,275 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/You must enter details of the exploitation/);
+        .to.match(/Enter the birthplace/)
+        .to.match(/Enter the family details/)
+        .to.match(/Enter the education history/)
+        .to.match(/Enter the employment history/);
+    });
+  });
+
+  describe('User enters when did the exploitation take place Validation', () => {
+    it('does not pass when did the exploitation take place page if nothing entered', async () => {
+      const URI = '/when-did-the-exploitation-take-place';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter when the exploitation took place/);
+    });
+  });
+
+  describe('User enters more than one exploitation situation Validation', () => {
+    it('does not pass more than one exploitation situation page if nothing entered', async () => {
+      const URI = '/more-than-one-exploitation-situation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter Date\(s\) of exploitation/);
+    });
+  });
+
+  describe('User enters how did the exploitation start Validation', () => {
+    it('does not pass how did the exploitation start page if nothing entered', async () => {
+      const URI = '/how-did-the-exploitation-start';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter when the exploitation started/);
+    });
+  });
+
+  describe('User enters were they taken somewhere Validation', () => {
+    it('does not pass where they taken somewhere page if nothing entered', async () => {
+      const URI = '/were-they-taken-somewhere-by-their-exploiter';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/You must select an option/);
+    });
+  });
+
+  describe('User enters were they taken somewhere journey details Validation', () => {
+    it('does not pass where they taken somewhere page if journey details page if nothing entered', async () => {
+      const URI = '/were-they-taken-somewhere-by-their-exploiter';
+      await initSession(URI);
+      await passStep(URI, {
+        'were-they-taken-somewhere-by-their-exploiter': 'yes'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter the journey's details/);
+    });
+  });
+
+  describe('User enters how were they treated Validation', () => {
+    it('does not pass how were they treated page if nothing entered', async () => {
+      const URI = '/how-they-were-treated';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter what were they required to do/)
+        .to.match(/Enter how they were treated/)
+        .to.match(/Enter why they stayed/);
+    });
+  });
+
+  describe('User enters how and why did they leave the situation Validation', () => {
+    it('does not pass how and why did they leave the situation page if nothing entered', async () => {
+      const URI = '/how-why-did-they-leave-the-situation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter how and why they left/);
+    });
+  });
+
+  describe('User enters is this the first chance to report Validation', () => {
+    it('does not pass is this the first chance to report page if nothing entered', async () => {
+      const URI = '/is-this-the-first-chance-to-report';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/You must select an option/);
+    });
+  });
+
+  describe('User enters why are they reporting this now Validation', () => {
+    it('does not pass why are they reporting this now page if nothing entered', async () => {
+      const URI = '/why-report-now';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter reason for reporting/);
+    });
+  });
+
+  describe('User enters why are you making the referral Validation', () => {
+    it('does not pass why are you making the referral page if nothing entered', async () => {
+      const URI = '/why-are-you-making-the-referral';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter reason for referral/);
+    });
+  });
+
+  describe('User enters where and how was the interview carried out Validation', () => {
+    it('does not pass where and how was the interview carried out page if nothing entered',
+      async () => {
+        const URI = '/where-how-interview-carried-out';
+        await initSession(URI);
+        await passStep(URI, {});
+
+        const res = await getUrl(URI);
+        const docu = await parseHtml(res);
+        const validationSummary = docu.find('.validation-summary');
+
+        expect(validationSummary.length === 1).to.be.true;
+        expect(validationSummary.html())
+          .to.match(/Enter details about the interview/);
+      });
+  });
+
+  describe('User enters are others involved Validation', () => {
+    it('does not pass are others involved page if nothing entered', async () => {
+      const URI = '/are-others-involved';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/You must select an option/);
+    });
+  });
+
+  describe('User enters are others involved details Validation', () => {
+    it('does not pass are others involved page if nothing entered', async () => {
+      const URI = '/are-others-involved';
+      await initSession(URI);
+      await passStep(URI, {
+        'are-others-involved': 'yes'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter other people involved/);
+    });
+  });
+
+  describe('User enters evidence of dishonesty Validation', () => {
+    it('does not pass evidence of dishonesty page if nothing entered', async () => {
+      const URI = '/evidence-of-dishonesty';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/You must select an option/);
+    });
+  });
+
+  describe('User enters evidence of dishonesty details Validation', () => {
+    it('does not pass evidence of dishonesty page if nothing entered', async () => {
+      const URI = '/evidence-of-dishonesty';
+      await initSession(URI);
+      await passStep(URI, {
+        'evidence-of-dishonesty': 'yes'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter indicators or evidence of dishonesty/);
+    });
+  });
+
+  describe('User enters what documents or evidence will you submit Validation', () => {
+    it('does not pass what documents or evidence will you submit page if nothing entered', async () => {
+      const URI = '/what-evidence-you-will-submit';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter list of documents or evidence to be submitted/);
     });
   });
 

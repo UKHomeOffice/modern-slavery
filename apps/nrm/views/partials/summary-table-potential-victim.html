@@ -1,4 +1,4 @@
-{{#values.pv-want-to-submit-nrm}}
+{{#values.family}}
 <h2 class="details-header">{{#t}}pages.confirm.sections.potential-victim.header{{/t}}</h2>
 <table id="potential-victim" class="table-details">
   <tbody>
@@ -120,6 +120,62 @@
         </td>
       </tr>
       {{/values.pv-gender}}
+
+      {{#values.birthplace}}
+      <tr>
+          <td>{{#t}}pages.confirm.fields.birthplace.label{{/t}}</td>
+          <td class="no-white-space">
+          <span>
+            {{values.birthplace}}
+          </span>
+          </td>
+          <td>
+              <a href="/nrm/what-is-their-background/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.birthplace.label{{/t}}">Change</a>
+          </td>
+      </tr>
+      {{/values.birthplace}}
+
+      {{#values.family}}
+      <tr>
+          <td>{{#t}}pages.confirm.fields.family.label{{/t}}</td>
+          <td class="no-white-space">
+          <span>
+            {{values.family}}
+          </span>
+          </td>
+          <td>
+              <a href="/nrm/what-is-their-background/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.family.label{{/t}}">Change</a>
+          </td>
+      </tr>
+      {{/values.family}}
+
+      {{#values.education}}
+      <tr>
+          <td>{{#t}}pages.confirm.fields.education.label{{/t}}</td>
+          <td class="no-white-space">
+          <span>
+            {{values.education}}
+          </span>
+          </td>
+          <td>
+              <a href="/nrm/what-is-their-background/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.education.label{{/t}}">Change</a>
+          </td>
+      </tr>
+      {{/values.education}}
+
+      {{#values.employment-history}}
+      <tr>
+          <td>{{#t}}pages.confirm.fields.employment-history.label{{/t}}</td>
+          <td class="no-white-space">
+          <span>
+            {{values.employment-history}}
+          </span>
+          </td>
+          <td>
+              <a href="/nrm/what-is-their-background/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.employment-history.label{{/t}}">Change</a>
+          </td>
+      </tr>
+      {{/values.employment-history}}
 
       {{^isDutyToNotifyPath}}
       {{#values.does-pv-have-children}}
@@ -280,4 +336,4 @@
       {{/isDutyToNotifyPath}}
   </tbody>
 </table>
-{{/values.pv-want-to-submit-nrm}}
+{{/values.family}}
