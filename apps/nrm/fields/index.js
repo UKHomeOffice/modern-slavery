@@ -98,7 +98,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea no-margin',
     attributes: [
       {
         attribute: 'rows',
@@ -112,7 +112,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea no-margin',
     attributes: [
       {
         attribute: 'rows',
@@ -126,7 +126,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea no-margin',
     attributes: [
       {
         attribute: 'rows',
@@ -140,7 +140,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -154,7 +154,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -168,7 +168,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -196,7 +196,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -214,7 +214,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -228,7 +228,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -242,7 +242,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -256,7 +256,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -282,7 +282,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -296,7 +296,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -310,7 +310,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -338,7 +338,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -370,7 +370,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -388,7 +388,7 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    className: 'form-control-100',
+    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
