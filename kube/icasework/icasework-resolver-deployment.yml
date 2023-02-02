@@ -98,12 +98,12 @@ spec:
             - name: ICASEWORK_KEY
               valueFrom:
                 secretKeyRef:
-                  name: icasework-new
+                  name: icasework
                   key: key
             - name: ICASEWORK_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: icasework-new
+                  name: icasework
                   key: secret
             - name: DB_HOST
               valueFrom:
