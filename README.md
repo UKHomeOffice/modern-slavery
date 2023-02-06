@@ -17,12 +17,15 @@ When the environment variable `WRITE_TO_CASEWORK` is true the app will post case
 
 4. [Save and return feature](#save-and-return-feature)
 
-5. [Acceptance tests](#acceptance-tests)
-    - [Running local acceptance tests](#running-local-acceptance-tests)
-    - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
-        - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
-    - [Acceptance test scripts](#acceptance-test-scripts)
-        - [Uploading files](#uploading-files)
+5. [Testing](#testing)
+    - [Unit tests](#unit-tests)
+    - [UI Integration tests](#ui-integration-tests)
+    - [Acceptance tests](#acceptance-tests)
+        - [Running local acceptance tests](#running-local-acceptance-tests)
+        - [Running acceptance tests inside a docker container](#running-acceptance-tests-inside-a-docker-container)
+            - [Running acceptance tests as part of Drone CI](#running-acceptance-tests-as-part-of-drone-ci)
+        - [Acceptance test scripts](#acceptance-test-scripts)
+            - [Uploading files](#uploading-files)
 
 6. [Microservices/ Repos](#microservices-repos)
 
@@ -134,6 +137,7 @@ You can then start the server in the api development mode.
 ```bash
 $ yarn dev:api
 ```
+
 ## Testing  <a name="testing"></a>
 
 ### Unit tests  <a name="unit-tests"></a>
@@ -142,6 +146,7 @@ You can run unit tests using the command below:
 ```bash
 $ yarn test:unit
 ```
+
 ### UI Integration tests  <a name="ui-integration-tests"></a>
 You can run UI integration tests using the command below:
 

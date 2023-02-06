@@ -33,7 +33,8 @@ module.exports = conf => {
 
         const externalID = req.sessionModel.get('externalID')  || caseWorkPayload.ExternalId;
 
-        const reportReference = req.sessionModel.get('reference');
+        // Report ID from save and return to make logs clearer
+        const reportID = req.sessionModel.get('id');
 
         req.sessionModel.set('jsonPayload', caseWorkPayload);
 
@@ -44,14 +45,15 @@ module.exports = conf => {
           // send casework model to AWS SQS
           const caseworkModel = config.prepare(req.sessionModel.toJSON());
           const caseworkID = uuid();
-          req.log('info', `External ID: ${externalID}, Report Reference: ${reportReference},
+          req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
           producer.send([{
             id: caseworkID,
             body: JSON.stringify(caseworkModel)
           }], error => {
             const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
-            req.log('info', `External ID: ${externalID}, Queue Submission Status: ${errorSubmitting}`);
+            req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
+              Queue Submission Status: ${errorSubmitting}`);
             if (appConfig.audit.enabled) {
               db('hof').insert({
                 ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
