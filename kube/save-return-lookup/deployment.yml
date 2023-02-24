@@ -2,9 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: lookup
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: lookup-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: lookup
   {{ end }}
 spec:

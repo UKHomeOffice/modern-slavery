@@ -2,9 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: redis
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: redis-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: redis
   {{ end }}
 spec:
