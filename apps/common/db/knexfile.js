@@ -20,7 +20,7 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    version: '8.7.1',
+    version: '8.8.0',
     connection: {
       host: config.audit.host,
       user: config.audit.user,
