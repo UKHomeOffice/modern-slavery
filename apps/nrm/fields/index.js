@@ -88,6 +88,20 @@ module.exports = {
       'not-sure'
     ]
   },
+  'what-happened': {
+    backLink: false,
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'govuk-textarea no-margin'
+    },
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
   birthplace: {
     mixin: 'input-text',
     validate: ['required', {type: 'maxlength', arguments: [15000]}]

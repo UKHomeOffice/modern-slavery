@@ -107,7 +107,16 @@ module.exports = {
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-is-their-background'
     },
+    '/what-happened': {
+      backLink: 'pv-under-age-at-time-of-exploitation',
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['what-happened'],
+      next: '/what-is-their-background'
+    },
     '/what-is-their-background': {
+      backLink: 'pv-under-age-at-time-of-exploitation',
       behaviours: [
         saveFormSession
       ],
