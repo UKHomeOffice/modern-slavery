@@ -1,8 +1,10 @@
 version: "2"
 services:
 
-  app:
-    build: .
+  modern-slavery-main:
+    build:
+      context: .
+      dockerfile: Dockerfile-acceptance
     environment:
       - ALLOW_SKIP=true
       - SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
