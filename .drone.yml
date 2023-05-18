@@ -186,32 +186,32 @@ steps:
           - feature/*
       event: pull_request
 
-#  - name: linting_branch
-#    <<: *linting
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
-#
-#  - name: unit_tests_branch
-#    <<: *unit_tests
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
-#
-#  - name: ui_integration_tests_branch
-#    <<: *ui_integration_tests
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
+  - name: linting_branch
+    <<: *linting
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
+  - name: unit_tests_branch
+    <<: *unit_tests
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
+  - name: ui_integration_tests_branch
+    <<: *ui_integration_tests
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
