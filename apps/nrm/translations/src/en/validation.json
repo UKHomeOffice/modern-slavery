@@ -128,6 +128,12 @@
   "where-exploitation-happened-overseas-country-1" : {
     "required": "You must select a country from the list"
   },
+  "where-exploitation-happened-other-overseas-other-location": {
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "where-exploitation-happened-other-uk-other-location": {
+    "maxlength": "Enter no more than 15,000 characters"
+  },
   "current-pv-location-uk-city" : {
     "required": "You must select a city from the list",
     "equal": "You must select a city from the list"
