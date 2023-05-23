@@ -6,7 +6,8 @@ module.exports = {
   'user-email': {
     mixin: 'input-text',
     className: ['form-control form-control-3-4'],
-    validate: ['required', isValidEmail, {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', isValidEmail, {type: 'maxlength', arguments: [15000]}],
+    formatter: ['lowercase']
   },
   'confirm-email': {
     mixin: 'input-text',
