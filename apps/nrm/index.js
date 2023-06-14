@@ -61,7 +61,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['user-organisation'],
-      next: '/fr-location'
+      next: '/fr-details'
     },
     '/fr-location': {
       behaviours: [
