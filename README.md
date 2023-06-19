@@ -120,7 +120,7 @@ You can skip the email authentication locally or in some of the testing environm
 
 1. To use an email environment variable, you'll need to set it like so `skipEmail=sas-hof-test@digital.homeoffice.gov.uk`. You can then go to the following url.
 
-    http://localhost:8081/nrm/start?token=skip`
+    http://localhost:8081/nrm/start?token=skip
 
 2. Set the email in the url to whatever email you like.
 
