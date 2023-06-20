@@ -2,7 +2,7 @@
 
 const hof = require('hof');
 const download = require('./lib/download-file');
-const settings = require('./hof.settings');
+let settings = require('./hof.settings');
 const path = require('path');
 const promptSheet = require('./config').promptSheet;
 const config = require('./config');
@@ -13,6 +13,21 @@ const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.j
 settings.routes = settings.routes.map(route => require(route));
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
+
+settings = Object.assign({}, settings, {
+  csp: {
+    imgSrc: [
+      'www.google-analytics.com',
+      'ssl.gstatic.com',
+      'www.google.co.uk/ads/ga-audiences'
+    ],
+    connectSrc: [
+      'https://www.google-analytics.com',
+      'https://region1.google-analytics.com',
+      'https://region1.analytics.google.com'
+    ]
+  }
+})
 
 const app = hof(settings);
 
