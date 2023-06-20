@@ -27,7 +27,7 @@ settings = Object.assign({}, settings, {
       'https://region1.analytics.google.com'
     ]
   }
-})
+});
 
 const app = hof(settings);
 
