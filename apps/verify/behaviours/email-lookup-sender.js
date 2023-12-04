@@ -13,8 +13,8 @@ const getPersonalisation = (host, token) => {
   return {
     // pass in `&` at the end in case there is another
     // query e.g. ?hof-cookie-check
-    'link': `http://${host + appPath + firstStep}?token=${token}&`,
-    'host': `http://${host}`,
+    'link': `https://${host + appPath + firstStep}?token=${token}&`,
+    'host': `https://${host}`,
   };
 };
 
