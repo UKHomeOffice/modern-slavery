@@ -2,7 +2,7 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const request = require('request-promise-native');
+const axios = require('axios');
 const getContainerIP = require('../user-pathways/util/get-container-ip');
 
 /* Constants */
@@ -42,7 +42,7 @@ const getBrowserContainerResponse = async () => {
     resolveWithFullResponse: true
   };
 
-  const response = await request(options);
+  const response = await axios(options);
   return response;
 };
 

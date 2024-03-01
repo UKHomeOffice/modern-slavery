@@ -1,8 +1,9 @@
 'use strict';
 
-const request = require('request');
+const { model: Model } = require('hof');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
+const logger = require('hof/lib/logger')({ env: config.env });
 
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
@@ -20,18 +21,20 @@ module.exports = superclass => class extends superclass {
     });
   }
 
-  saveValues(req, res, next) {
+  async saveValues(req, res, next) {
     const id = req.body.confirm;
-
-    if (id) {
+    try {
       const email = encodeEmail(req.sessionModel.get('user-email'));
+      const model = new Model();
+      const params = {
+        url: baseUrl + email + '/' + id,
+        method: 'DELETE'
+      };
 
-      return request.del(baseUrl + email + '/' + id, err => {
-        if (err) {
-          return next(err);
-        }
-        return super.saveValues(req, res, next);
-      });
+      await model._request(params);
+    } catch (err) {
+      logger.error(`Error deleting data: ${err.message}`);
+      return next(new Error(err.body || ''));
     }
     return super.saveValues(req, res, next);
   }

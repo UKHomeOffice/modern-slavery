@@ -1,8 +1,9 @@
 'use strict';
 
-const request = require('request');
+const { model: Model } = require('hof');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
+const logger = require('hof/lib/logger')({ env: config.env });
 
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
@@ -17,22 +18,21 @@ module.exports = superclass => class extends superclass {
     req.sessionModel.set('steps', ['/start', '/reports']);
   }
 
-  getValues(req, res, next) {
+  async getValues(req, res, next) {
     const id = req.query.id;
-
     if (!id) {
       return res.redirect('/nrm/reports');
     }
-
     this.cleanSession(req);
 
-    const getUrl = baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id;
-
-    return request.get(getUrl, (error, response, body) => {
-      if (error) {
-        return next(error);
-      }
-      const resBody = JSON.parse(body);
+    try {
+      const model = new Model();
+      const params = {
+        url: baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id,
+        method: 'GET'
+      };
+      const response = await model._request(params);
+      const resBody = response.data;
 
       if (resBody && resBody.length && resBody[0].session) {
         if (resBody[0].session.hasOwnProperty('alertUser')) {
@@ -50,9 +50,11 @@ module.exports = superclass => class extends superclass {
         req.sessionModel.set('id', id);
         req.sessionModel.set('redirect-to-reports', true);
       }
-
-      return super.getValues(req, res, next);
-    });
+    } catch (error) {
+      logger.error(`Error getting data: ${error.message}`);
+      return next(error);
+    }
+    return super.getValues(req, res, next);
   }
 
   saveValues(req, res, next) {
