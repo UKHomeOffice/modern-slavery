@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 'use strict';
 
-const request = require('request');
+const { model: Model } = require('hof');
 const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
@@ -36,7 +36,7 @@ module.exports = superclass => class extends superclass {
     return locals;
   }
 
-  getValues(req, res, next) {
+  async getValues(req, res, next) {
     this.cleanSession(req);
 
     const externalID = req.sessionModel.get('externalID');
@@ -46,12 +46,14 @@ module.exports = superclass => class extends superclass {
       return super.getValues(req, res, next);
     }
 
-    return request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
-      if (err) {
-        return next(err);
-      }
-
-      const resBody = JSON.parse(body);
+    try {
+      const model = new Model();
+      const params = {
+        url: `${baseUrl}${encodeEmail(req.sessionModel.get('user-email'))}`,
+        method: 'GET'
+      };
+      const response = await model._request(params);
+      const resBody = response.data;
 
       if (resBody && resBody.length && resBody[0].session) {
         req.previousReports = [];
@@ -78,6 +80,9 @@ module.exports = superclass => class extends superclass {
       }
       req.sessionModel.set('redirect-to-reports', false);
       return super.getValues(req, res, next);
-    });
+    } catch (error) {
+      req.log('info', `External ID: ${externalID}, Error Saving Session: ${error}`);
+      return next(error);
+    }
   }
 };
