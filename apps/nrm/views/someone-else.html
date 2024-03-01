@@ -1,9 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
-    {{#renderField}}someone-else-first-name{{/renderField}}
-    {{#renderField}}someone-else-last-name{{/renderField}}
+    {{#input-text}}someone-else-first-name{{/input-text}}
+    {{#input-text}}someone-else-last-name{{/input-text}}
     {{#renderField}}someone-else{{/renderField}}
-    {{#renderField}}someone-else-permission-check{{/renderField}}
+    {{#checkbox}}someone-else-permission-check{{/checkbox}}
     {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
   {{/page-content}}
 {{/partials-page}}
