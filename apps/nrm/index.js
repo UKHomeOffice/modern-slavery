@@ -149,7 +149,8 @@ module.exports = {
         saveFormSession
       ],
       fields: ['were-they-taken-somewhere-by-their-exploiter',
-        'were-they-taken-somewhere-by-their-exploiter-journey-details'],
+        'were-they-taken-somewhere-by-their-exploiter-journey-details'
+      ],
       next: '/how-they-were-treated'
     },
     '/how-they-were-treated': {
