@@ -2,8 +2,9 @@
 
 module.exports = {
   selectors: {
-    START_HOME_BUTTON: '#content > div > form > div > div.govuk-grid-column-two-thirds > input',
-    START_REPORT: '#gds-button',
+    //START_HOME_BUTTON: '#content > div > form > div > div.govuk-grid-column-two-thirds > input',
+    START_HOME_BUTTON: '#gds-button',
+    START_REPORT: '#content > div > form > div > div > input',
     CONTINUE_BUTTON: '#content > div > form > input.button',
     DOWNLOAD_REPORT: '#paper-version-download',
     REFERENCE_INPUT: '#reference',
