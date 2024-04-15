@@ -1,7 +1,6 @@
 # Modern slavery
 
 An app for a first responder to submit a form for a possible victim of modern slavery.
-Test on branch, need to rebuild pipeline.
 
 When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by the casework resolver service.
 
