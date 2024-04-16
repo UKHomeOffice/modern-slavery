@@ -14,7 +14,7 @@ ignore:
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
 
-  SNYK-JS-AXIO-6144788:
+  SNYK-JS-AXIOS-6144788:
     - '*':
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
@@ -39,7 +39,7 @@ ignore:
         created: 2024-04-16T11:0522.224Z
   
   SNYK-JS-TOUGHCOOKIE-5672873:
-    - request@2.88.2 > tough-cookie@2.5.0:
+    - '*':
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
