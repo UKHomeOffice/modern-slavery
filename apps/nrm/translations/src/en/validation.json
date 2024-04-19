@@ -146,6 +146,16 @@
     "required": "You must enter details about the exploiter(s)",
     "maxlength": "You must enter no more than 15,000 characters"
   },
+  "exploiters-location" : {
+    "required": "Tell us if you have information about where the exploiters are"
+  },
+  "are-exploiters-in-the-uk" : {
+    "required": "Tell us if the exploiters are in the UK"
+  },
+  "exploiters-current-location-details" : {
+    "required": "Tell us what information you have about the exploiters' location",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
   "types-of-exploitation-forced-to-work" : {
     "at-least-one-option-selected" : "You must select an exploitation type"
   },

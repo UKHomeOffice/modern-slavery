@@ -107,6 +107,21 @@
   "who-exploited-pv": {
     "header": "Who exploited them?"
   },
+  "information-exploiters-location": {
+    "header": "Do you have information about where the exploiters are?",
+    "hint": "Provide any information you can, even if you think it is outdated."
+  },
+  
+  "exploiters-uk":{
+    "header":"Are the exploiters in the UK?",
+    "hint": "If you are unsure, answer based on the last known location of the exploiters."
+  },
+  
+  "where-are-exploiters":{
+    "header":"What information do you have about where the exploiters are now?",
+    "hint": "This can be a general or specific location, or even a contact from another organisation who has this information."
+  },
+
   "types-of-exploitation": {
     "header": "How were they exploited?",
     "hint": "Select all that apply.",
@@ -325,6 +340,18 @@
       "who-exploited-pv": {
         "label": "Details of exploiter(s)"
       },
+
+      "exploiters-location": {
+        "label": "Do you have information about where the exploiters are?"
+      },
+
+      "are-exploiters-in-the-uk": {
+        "label": "Are the exploiter(s) in the UK?"
+      },
+      "exploiters-current-location-details":{
+        "label": "What information do you have about where the exploiters are now?"
+      },
+
       "what-happened": {
         "label": "Victim's account"
       },

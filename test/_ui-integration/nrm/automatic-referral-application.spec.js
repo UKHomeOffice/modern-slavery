@@ -272,11 +272,43 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/who-exploited-pv');
   });
 
-  it('goes to the types-of-exploitation page when user enters who-exploited-pv', async () => {
+  it('goes to the information-exploiters-location page when user enters who-exploited-pv', async () => {
     const URI = '/who-exploited-pv';
     await initSession(URI);
     const response = await passStep(URI, {
       'who-exploited-pv': 'Ronald Testman'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/information-exploiters-location');
+  });
+
+
+  it('goes to the exploiters-uk page when user enter exploiters-location', async () => {
+    const URI = '/information-exploiters-location';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'exploiters-location': 'yes'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/exploiters-uk');
+  });
+
+  it('goes to the where-are-exploiters page when user enter are-exploiters-in-the-uk', async () => {
+    const URI = '/exploiters-uk';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'are-exploiters-in-the-uk': 'yes'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/where-are-exploiters');
+  });
+  
+
+  it('goes to the types-of-exploitation page when user enters exploiters-current-location-details', async () => {
+    const URI = '/where-are-exploiters';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'exploiters-current-location-details': 'Some details where actual exploiters location is'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/types-of-exploitation');

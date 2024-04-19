@@ -291,13 +291,40 @@ module.exports = {
       ],
       next: '/who-exploited-pv'
     },
+
     '/who-exploited-pv': {
       behaviours: [
         saveFormSession
       ],
       fields: ['who-exploited-pv'],
+      next: '/information-exploiters-location'
+    },
+
+    '/information-exploiters-location': {
+      behaviours: saveFormSession,
+      fields:['exploiters-location'],
+      forks:[{
+        target: '/exploiters-uk',
+        condition: {
+          field:'exploiters-location',
+          value: 'yes'
+        }
+      }],
       next: '/types-of-exploitation'
     },
+
+    '/exploiters-uk': {
+      behaviours: saveFormSession,
+      fields:['are-exploiters-in-the-uk'],
+      next: '/where-are-exploiters',
+    },
+    
+    '/where-are-exploiters': {
+      behaviours: saveFormSession,
+      fields:['exploiters-current-location-details'],
+      next: '/types-of-exploitation',
+    },
+
     '/types-of-exploitation': {
       behaviours: [
         typesOfExploitation,
@@ -318,6 +345,7 @@ module.exports = {
       ],
       next: '/any-other-pvs'
     },
+
     '/any-other-pvs': {
       behaviours: [
         saveFormSession

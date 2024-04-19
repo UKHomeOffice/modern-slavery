@@ -91,6 +91,9 @@ module.exports = data => {
   response.PVCurrentCityTown = data['current-pv-location-uk-city'];
   response.PVCurrentCounty = data['current-pv-location-uk-region'];
   response.ExploiterDetails = data['who-exploited-pv'];
+  response.CurrentExploitersLocationInformation = data['exploiters-location'];
+  response.AreExploitersInUk = data['are-exploiters-in-the-uk'];
+  response.CurrentExploitersLocationDetails = data['exploiters-current-location-details'];
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';
