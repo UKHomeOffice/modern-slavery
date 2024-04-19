@@ -656,6 +656,40 @@ module.exports = {
       }
     ]
   },
+  'exploiters-location': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'are-exploiters-in-the-uk': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'exploiters-current-location-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 5
+      }
+    ]
+  },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
     validation: 'at-least-one-option-selected',
