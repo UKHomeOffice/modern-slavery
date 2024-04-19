@@ -19,7 +19,6 @@
     "paragraph-1": "You must contact the relevant local authority to safeguard the child before continuing.",
     "paragraph-2": "If the child is in an Independent Child Trafficking Guardian (ICTG) area you will also need to refer them to the",
     "paragraph-2-link-1": "ICTG service."
-
   },
   "pv-under-age-at-time-of-exploitation": {
     "header": "Were they under 18 at any time during the exploitation?"
@@ -107,6 +106,16 @@
   "who-exploited-pv": {
     "header": "Who exploited them?"
   },
+  "exploiters-location": {
+    "header": "Do you have information about where the exploiters are?"
+  },
+  "are-exploiters-in-the-uk":{
+    "header":"Are the exploiters in the UK?"
+  },
+  "exploiters-current-location-details":{
+    "hint": "This can be a general or specific location, or even a contact from another organisation who has this information."
+  },
+  
   "types-of-exploitation": {
     "header": "How were they exploited?",
     "hint": "Select all that apply.",
@@ -324,6 +333,15 @@
       },
       "who-exploited-pv": {
         "label": "Details of exploiter(s)"
+      },
+      "exploiters-location": {
+        "label": "Do you have information about where the exploiters are?"
+      },
+      "are-exploiters-in-the-uk": {
+        "label": "Are the exploiter(s) in the UK?"
+      },
+      "exploiters-current-location-details":{
+        "label": "What information do you have about where the exploiters are now?"
       },
       "what-happened": {
         "label": "Victim's account"

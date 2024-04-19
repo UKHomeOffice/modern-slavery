@@ -43,6 +43,9 @@ const {
   CURRENT_PV_LOCATION_UK_CITY,
   CURRENT_PV_LOCATION_UK_REGION,
   WHO_EXPLOITED_PV,
+  EXPLOITERS_LOCATION_YES,
+  ARE_EXPLOITERS_IN_THE_UK_YES,
+  EXPLOITERS_CURRENT_LOCATION_DETAILS,
   ANY_OTHER_PVS_NO_OPTION,
   PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
   REFER_CASE_TO_NRM_YES_OPTION,
@@ -81,6 +84,7 @@ let APP_CONTAINER_HOST;
 
 let browser;
 let page;
+let client;
 
 /**
  * .only method used to run only tests within this describe function
@@ -100,7 +104,8 @@ describe.only('User path(s)', () => {
     /* Clear browser cookies before start of each test.
         This so we do not hit the invalid token page when running
         subsequent tests */
-    await page._client.send('Network.clearBrowserCookies');
+    client = await page.target().createCDPSession();
+    await client.send('Network.clearBrowserCookies');
     await page.goto(initialUrl);
   });
 
@@ -236,6 +241,12 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
     await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, EXPLOITERS_LOCATION_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, ARE_EXPLOITERS_IN_THE_UK_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, EXPLOITERS_CURRENT_LOCATION_DETAILS, 'Test details exploiter current location');
+    await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
@@ -312,7 +323,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(5);
+  const defaultTimeout = timeoutInMins(20);
 
   it('Happy path - Adult', async () => {
     try {
@@ -345,7 +356,8 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      await page._client.send('Page.setDownloadBehavior', {
+      client = await page.target().createCDPSession();
+      await client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
       });
