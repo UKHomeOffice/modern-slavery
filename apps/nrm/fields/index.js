@@ -278,6 +278,32 @@ module.exports = {
       }
     ]
   },
+  'when-last-contact': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'last-week',
+      'last-month',
+      'last-3-months',
+      'last-6-months',
+      'year-ago',
+      'Not-sure'
+    ]
+  },
+  'details-last-contact': {
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
   'is-this-the-first-chance-to-report': {
     mixin: 'radio-group',
     validate: ['required'],

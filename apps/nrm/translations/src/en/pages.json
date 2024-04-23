@@ -51,6 +51,16 @@
   "how-why-did-they-leave-the-situation": {
     "header": "How and why did they leave the situation?"
   },
+  "when-last-contact": {
+    "header": "When were the potential victim and exploiters last in contact?"
+  },
+  "details-last-contact": {
+    "header" : "Last contact between the potential victim and their exploiters",
+    "paragraph-1" : "To assess the risk that the potential victim may be exploited or trafficked again, we need to know about any communication between them and their exploiters.",
+    "paragraph-2" : "You can provide information about how they communicated, what was said and who was involved.",
+    "paragraph-3": "Include details about any threats the exploiters have made. If applicable, describe any steps the potential victim has taken to prevent contact with their exploiters.",
+    "second-header": "Details of the last contact (optional)"
+  },
   "is-this-the-first-chance-to-report": {
     "header": "Is this the first chance they have had to report this?"
   },
@@ -261,6 +271,12 @@
       },
       "how-why-did-they-leave-the-situation": {
         "label": "How and why they left the situation"
+      },
+      "when-last-contact": {
+        "label": "Victim and exploiters last in contact?"
+      },
+      "details-last-contact": {
+        "label": "Details of last contact"
       },
       "is-this-the-first-chance-to-report": {
         "label": "Is this the first chance they have had to report this?"
