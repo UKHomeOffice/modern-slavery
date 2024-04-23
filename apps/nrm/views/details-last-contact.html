@@ -1,0 +1,18 @@
+{{<partials-page}}
+{{$page-content}}
+<p class="govuk-body">{{#t}}pages.details-last-contact.paragraph-1{{/t}}</p>
+<p class="govuk-body">{{#t}}pages.details-last-contact.paragraph-2{{/t}}</p>
+<p class="govuk-body">{{#t}}pages.details-last-contact.paragraph-3{{/t}}</p>
+
+<div id="details-last-contact-group" class="form-group form-group">
+    <div>
+        <h2>Details of the last contact (optional)</h2>
+        <span id="details-last-contact-hint" class="form-hint">You can email any files as evidence to us after you have submitted the report</span>
+    </div>
+    <textarea name="details-last-contact" id="details-last-contact" class="form-control govuk-textarea maxlength" aria-required="true" aria-describedby="details-last-contact-maxlength-hint details-last-contact-hint"></textarea>
+    <span id="details-last-contact-maxlength-hint" class="maxlength-hint form-hint" aria-live="polite">You have 15,000 characters remaining</span>
+</div>
+
+  {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
+{{/page-content}}
+{{/partials-page}}

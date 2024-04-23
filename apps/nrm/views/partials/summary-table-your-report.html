@@ -378,6 +378,18 @@
     </tr>
     {{/values.is-this-the-first-chance-to-report}}
 
+    {{#values.when-last-contact}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.when-last-contact.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedwhenLastContact}}</span>
+      </td>
+      <td>
+        <a href="/nrm/when-last-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.when-last-contact.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.when-last-contact}}
+
     {{#values.why-report-now}}
     <tr>
       <td>{{#t}}pages.confirm.fields.why-report-now.label{{/t}}</td>
