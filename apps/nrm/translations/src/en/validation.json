@@ -86,6 +86,9 @@
     "required": "Enter how and why they left",
     "maxlength": "Enter no more than 15,000 characters"
   },
+  "when-last-contact": {
+    "required": "Tell us when they were last in contact"
+  },
   "is-this-the-first-chance-to-report" : {
     "required": "You must select an option"
   },

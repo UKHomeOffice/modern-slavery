@@ -134,6 +134,35 @@
     "label": "How and why they left",
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
+  "when-last-contact":{
+    "legend": "when victim and exploiters last in contact",
+    "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
+    "options": {
+      "last-week": {
+        "label": "Within the last week"
+      },
+      "last-month": {
+        "label": "Within the last month"
+      },
+      "last-3-months": {
+        "label": "Within the last 3 months"
+      },
+      "last-6-months": {
+        "label": "Within the last 6 months"
+      },
+      "year-ago": {
+        "label": "Over a year ago"
+      },
+      "Not-sure": {
+        "label": "Not sure"
+      }
+    }
+  },
+  "details-last-contact": {
+    "label": "",
+    "legend": "Details of last contact",
+    "hint": "You can email any files as evidence to us after you have submitted the report"
+  },
   "is-this-the-first-chance-to-report": {
     "legend": "Is this the first chance they have had to report this?",
     "options": {
