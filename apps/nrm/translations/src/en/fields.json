@@ -414,13 +414,7 @@
     "hint": "Victims who are exploited by relatives may have been forced into an arranged marriage and abused in other ways."
   },
   "types-of-exploitation-other": {
-    "legend": "Other",
-    "label": "Other",
-    "options": {
-      "other": {
-        "label": "Other"
-      }
-    }
+    "label": "Other"
   },
   "other-exploitation-details": {
     "label": "Enter other type of exploitation:"
@@ -504,7 +498,7 @@
     "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
-    "hint": "For example,"
+    "hint": "For example, 31 3 1980."
   },
   "pv-gender": {
     "legend": "What is their gender?",

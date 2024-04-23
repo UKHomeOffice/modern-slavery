@@ -1,9 +1,5 @@
 {
   "user-email": {
     "label": "Work email address"
-  },
-  "confirm-email": {
-    "label": "Email",
-    "hint": "If your email is wrong just change it"
   }
 }

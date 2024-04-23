@@ -4,6 +4,15 @@ html {
   font-size:16px;
 }
 
+a {
+  @extend .govuk-link;
+}
+
+ul {
+  @extend .govuk-list;
+  @extend .govuk-list--bullet;
+}
+
 .phase-banner {
   @include phase-banner(beta);
 }
@@ -58,7 +67,7 @@ textarea {
 .validation-error-override {
   box-sizing: border-box;
   padding-left: 12px;
-  border-left: 4px solid #D4351C;
+  border-left: 4px solid #b10e1e;
 }
 
 .error-message-override {
@@ -258,10 +267,6 @@ textarea {
     font-size: 19px;
     line-height: 1.31579;
   }
-  .govuk-main-wrapper {
-    padding-top: 10px;
-    padding-bottom: 40px;
-  }
 }
 
 .govuk-button--secondary {
@@ -366,32 +371,12 @@ textarea {
   margin-bottom: 0.75em;
 }
 
-.govuk-hint {
-  padding-top: 0.75em;
-}
-
 // Text Field Widths
-.field-width-3-4 {
-  width: 75%;
-  @include media(tablet) {
-    width: 75%;
-  }
-}
-
-.field-width-1-2 {
-  width: 50%;
-  @include media(tablet) {
-    width: 50%;
-  }
-}
-
 .field-width-1-8 {
-  width: 150%;
-  @include media(tablet) {
+  @media (min-width: 768px) {
     width: 150%;
+    @include media(tablet) {
+      width: 150%;
+    }
   }
-}
-
-.govuk-main-wrapper {
-  padding-bottom: 200px;
 }

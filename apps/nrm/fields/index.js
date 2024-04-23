@@ -19,7 +19,7 @@ module.exports = {
   'user-organisation': {
     mixin: 'select',
     validate: 'required',
-    className: ['typeahead', 'js-hidden'],
+    // className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
       label: 'fields.user-organisation.options.none_selected'
