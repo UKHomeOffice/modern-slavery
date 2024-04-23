@@ -7,37 +7,31 @@ ignore:
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
   SNYK-JS-AXIOS-6124857:
     - '*':
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
   SNYK-JS-AXIOS-6144788:
     - '*':
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
   SNYK-JS-MARKDOWNIT-6483324:
     - '*':
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-      
   SNYK-JS-INFLIGHT-6095116:
     - '*':
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
   SNYK-JS-REQUEST-3361831:
     - '*':
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
   SNYK-JS-TOUGHCOOKIE-5672873:
     - '*':
         reason: will be resolved with HOFF-659 
@@ -48,5 +42,34 @@ ignore:
         reason: No upgrade or patch available
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
+  SNYK-JS-BROWSERIFYSIGN-6037026:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-EXPRESS-6474509:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-FOLLOWREDIRECTS-6141137:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-FOLLOWREDIRECTS-6444610:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-NODEMAILER-6219989:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-XML2JS-5414874:
+    - '*':
+      reason: No direct upgrade or patch
+      expires: 2024-07-25T00:00:00.000Z
+      created: 2024-04-25T13:41:22.224Z
 patch: {}

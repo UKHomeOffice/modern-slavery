@@ -2,9 +2,10 @@
 'use strict';
 
 require('hof/frontend/themes/gov-uk/client-js');
-var $ = require('jquery');
+const $ = require('jquery');
+const govuk = require('govuk-frontend');
+const accessibleAutocomplete = require('accessible-autocomplete');
 
-var accessibleAutocomplete = require('accessible-autocomplete');
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({
     defaultValue: '',
@@ -107,3 +108,5 @@ if ($('.add-another').length) {
 
   $('.add-another').show();
 }
+
+govuk.initAll();
