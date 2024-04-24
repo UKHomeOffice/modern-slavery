@@ -17,6 +17,8 @@ module.exports = [
   '/were-they-taken-somewhere-by-their-exploiter',
   '/how-they-were-treated',
   '/how-why-did-they-leave-the-situation',
+  '/when-last-contact',
+  '/details-last-contact',
   '/is-this-the-first-chance-to-report',
   '/why-report-now',
   '/why-are-you-making-the-referral',

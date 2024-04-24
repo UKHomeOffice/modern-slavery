@@ -183,7 +183,6 @@ module.exports = {
       ],
       fields: ['details-last-contact'],
       next: '/is-this-the-first-chance-to-report',
-      continueOnEdit: true
     },
     '/is-this-the-first-chance-to-report': {
       behaviours: [
