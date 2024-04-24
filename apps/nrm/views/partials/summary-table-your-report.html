@@ -390,6 +390,18 @@
     </tr>
     {{/values.when-last-contact}}
 
+    {{#values.details-last-contact}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.details-last-contact.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.details-last-contact}}</span>
+      </td>
+      <td>
+        <a href="/nrm/details-last-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.values.details-last-contact.legend{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.details-last-contact}}
+
     {{#values.why-report-now}}
     <tr>
       <td>{{#t}}pages.confirm.fields.why-report-now.label{{/t}}</td>

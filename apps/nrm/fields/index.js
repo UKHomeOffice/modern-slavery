@@ -296,10 +296,13 @@ module.exports = {
   'details-last-contact': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
-    legend: {
-      className: 'visuallyhidden'
-    },
     className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
   },
   'is-this-the-first-chance-to-report': {
     mixin: 'radio-group',

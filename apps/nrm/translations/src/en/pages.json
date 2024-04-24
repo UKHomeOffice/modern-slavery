@@ -272,6 +272,9 @@
       "when-last-contact": {
         "label": "Victim and exploiters last in contact?"
       },
+      "details-last-contact": {
+        "label": "Details of last contact"
+      },
       "is-this-the-first-chance-to-report": {
         "label": "Is this the first chance they have had to report this?"
       },
