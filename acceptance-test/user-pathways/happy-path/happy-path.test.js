@@ -11,6 +11,7 @@ const {
   START_REPORT,
   CONTINUE_BUTTON,
   DOWNLOAD_REPORT,
+  DETAILS_LAST_CONTACT,
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
   EMAIL_INPUT,
@@ -43,6 +44,7 @@ const {
   CURRENT_PV_LOCATION_UK_CITY,
   CURRENT_PV_LOCATION_UK_REGION,
   WHO_EXPLOITED_PV,
+  WHEN_LAST_CONTACT_LAST_WEEK,
   ANY_OTHER_PVS_NO_OPTION,
   PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
   REFER_CASE_TO_NRM_YES_OPTION,
@@ -210,6 +212,10 @@ describe.only('User path(s)', () => {
     await focusThenType(page, WHY_THEY_STAYED, 'Test input of why they stayed');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHY_DID_THEY_LEAVE, 'Test input of why they left');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, WHEN_LAST_CONTACT_LAST_WEEK);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, DETAILS_LAST_CONTACT, 'Test input of details last contact');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, FIRST_CHANCE_TO_REPORT_NO);
     await clickSelector(page, CONTINUE_BUTTON);
