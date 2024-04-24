@@ -158,8 +158,28 @@ describe('the journey of a nrm automatic referral application', () => {
       const response = await passStep(URI, {
         'how-why-did-they-leave-the-situation': 'Test'
       });
-      expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
+      expect(response.text).to.contain('Found. Redirecting to /nrm/when-last-contact');
     });
+
+    it('goes to the when-last-contact page when user enters how and why the last contact was',
+  async () => {
+    const URI = '/when-last-contact';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'when-last-contact': 'last-week'
+    });
+    expect(response.text).to.contain('Found. Redirecting to /nrm/details-last-contact');
+  });
+
+  it('goes to the is-this-the-first-chance-to-report page when user enters optional details of last contact',
+  async () => {
+    const URI = '/details-last-contact';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'details-last-contact': 'optional text'
+    });
+    expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
+  });
 
   it('goes to the is-this-the-first-chance-to-report page when user enters Is this the first chance they have ' +
     'had to report this?', async () => {
