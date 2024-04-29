@@ -120,7 +120,7 @@ const formatAnswers = req => {
 
   if (req.sessionModel.get('when-last-contact')) {
     data = Object.assign({}, data, {
-      formattedwhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
+      formattedWhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
     });
   }
 
