@@ -326,7 +326,7 @@ describe('the journey of a nrm application', () => {
       'reported-to-police-crime-reference': '123'
     });
 
-    expect(response.text).to.contain('Found. Redirecting to /nrm/pv-want-to-submit-nrm');
+    expect(response.text).to.contain('Found. Redirecting to /nrm/authorities-cooperation');
   });
 
   it('goes to the pv-want-to-submit-nrm page when user enters reported-to-police', async () => {
@@ -334,6 +334,17 @@ describe('the journey of a nrm application', () => {
     await initSession(URI);
     const response = await passStep(URI, {
       'reported-to-police': 'no'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/authorities-cooperation');
+  });
+
+  it('goes to the authorities-cooperation page when user selects ', async () => {
+    const URI = '/authorities-cooperation';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'authorities-cooperation': 'yes',
+      'authorities-cooperation-details': 'some co-operation details'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/pv-want-to-submit-nrm');

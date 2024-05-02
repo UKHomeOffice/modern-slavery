@@ -334,6 +334,16 @@ module.exports = {
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
       ],
+      next: '/authorities-cooperation'
+    },
+    '/authorities-cooperation': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'authorities-cooperation',
+        'authorities-cooperation-details'
+      ],
       next: '/pv-want-to-submit-nrm'
     },
     '/pv-want-to-submit-nrm': {
