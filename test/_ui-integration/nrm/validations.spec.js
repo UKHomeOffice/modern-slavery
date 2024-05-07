@@ -1001,22 +1001,6 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('Cooperate with Police Referral Validation', () => {
-    it('does not pass the cooperate with police referral page if nothing is selected', async () => {
-      const URI = '/co-operate-with-police-referral';
-      await initSession(URI);
-      await passStep(URI, {});
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/You must select an option/);
-    });
-  });
-
   describe('First Responder Contact Details Validations', () => {
     it('does not pass the fr details page if nothing is entered', async () => {
       const URI = '/fr-details';

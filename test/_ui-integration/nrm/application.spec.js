@@ -547,17 +547,17 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/pv-phone-number');
     });
 
-    it('goes to the co-operate-with-police-referral page when user selects no phone number', async () => {
+    it('goes to the fr-details page when user selects no phone number', async () => {
       const URI = '/pv-phone-number';
       await initSession(URI);
       const response = await passStep(URI, {
         'pv-phone-number': 'no'
       });
 
-      expect(response.text).to.contain('Found. Redirecting to /nrm/co-operate-with-police-referral');
+      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
     });
 
-    it('goes to the co-operate-with-police-referral page when user enters pv phone number', async () => {
+    it('goes to the fr-details page when user enters pv phone number', async () => {
       const URI = '/pv-phone-number';
       await initSession(URI);
       const response = await passStep(URI, {
@@ -565,7 +565,7 @@ describe('the journey of a nrm application', () => {
         'pv-phone-number-yes': '01234567890'
       });
 
-      expect(response.text).to.contain('Found. Redirecting to /nrm/co-operate-with-police-referral');
+      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
     });
 
     it('goes to the someone-else page when user enters who-contact', async () => {
@@ -599,42 +599,22 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/pv-phone-number');
     });
 
-    it('goes to the co-operate-with-police-referral page when user selects no phone number', async () => {
+    it('goes to the fr-details page when user selects no phone number', async () => {
       const URI = '/pv-phone-number';
       await initSession(URI);
       const response = await passStep(URI, {
         'pv-phone-number': 'no'
       });
 
-      expect(response.text).to.contain('Found. Redirecting to /nrm/co-operate-with-police-referral');
+      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
     });
 
-    it('goes to the co-operate-with-police-referral page when user enters pv phone number', async () => {
+    it('goes to the fr-details page when user enters pv phone number', async () => {
       const URI = '/pv-phone-number';
       await initSession(URI);
       const response = await passStep(URI, {
         'pv-phone-number': 'yes',
         'pv-phone-number-yes': '01234567890'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/co-operate-with-police-referral');
-    });
-
-    it('goes to the fr-details page when user selects yes cooperate-with-police-referral', async () => {
-      const URI = '/co-operate-with-police-referral';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'co-operate-with-police': 'yes'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
-    });
-
-    it('goes to the fr-details page when user selects not to cooperate-with-police-referral', async () => {
-      const URI = '/co-operate-with-police-referral';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'co-operate-with-police': 'no'
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');

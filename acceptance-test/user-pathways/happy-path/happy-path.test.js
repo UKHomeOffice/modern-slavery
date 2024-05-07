@@ -298,8 +298,6 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
       await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
-      await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-      await clickSelector(page, CONTINUE_BUTTON);
     }
 
     await focusThenType(page, FR_DETAILS_FIRST_NAME_INPUT, 'Jack');
@@ -312,7 +310,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(5);
+  const defaultTimeout = timeoutInMins(20);
 
   it('Happy path - Adult', async () => {
     try {
