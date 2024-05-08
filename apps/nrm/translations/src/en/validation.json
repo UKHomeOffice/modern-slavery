@@ -160,7 +160,8 @@
     "required":"Tell us if there are concerns about re-exploitation in the future"
   },
   "future-exploitation-reasons":{
-    "required":"Tell us why there are concerns"
+    "required":"Tell us why there are concerns",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "reported-to-police" : {
     "required": "You must select an option"
