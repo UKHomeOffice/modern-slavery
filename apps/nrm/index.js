@@ -325,6 +325,17 @@ module.exports = {
       fields: ['any-other-pvs'],
       next: '/reported-to-police'
     },
+    "/future-exploitation": {
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation'],
+      forks: [{
+        target: '/concerns-future-exploitation',
+        condition: req => req.sessionModel.get('future-exploitation') === 'yes'
+      }],
+      next: '/reported-to-police'
+    },
     '/reported-to-police': {
       behaviours: [
         saveFormSession
