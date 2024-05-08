@@ -336,6 +336,13 @@ module.exports = {
       }],
       next: '/reported-to-police'
     },
+    '/concerns-future-exploitation'{
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation-reasons'],
+      next:'/reported-to-police'
+    },
     '/reported-to-police': {
       behaviours: [
         saveFormSession

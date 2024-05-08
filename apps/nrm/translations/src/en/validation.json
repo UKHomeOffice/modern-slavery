@@ -156,6 +156,12 @@
   "any-other-pvs" : {
     "required": "You must select an option"
   },
+  "concerns-future-exploitation":{
+    "required":"Tell us if there are concerns about re-exploitation in the future"
+  },
+  "future-exploitation-reasons":{
+    "required":"Tell us why there are concerns"
+  },
   "reported-to-police" : {
     "required": "You must select an option"
   },

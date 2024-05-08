@@ -749,7 +749,7 @@ module.exports = {
       'not-sure'
     ]
   },
-  'future-exploitation': {
+  'concerns-future-exploitation': {
     mixin: 'radio-group',
     validate: ['required'],
     legend: {
@@ -758,6 +758,20 @@ module.exports = {
     options: [
       'yes',
       'no'
+    ]
+  },
+  'future-exploitation-reasons':{
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 3
+      }
     ]
   },
   'reported-to-police': {

@@ -445,6 +445,9 @@
       }
     }
   },
+  "future-exploitation-reasons":{
+    "legend": "Why are there concerns about exploitation in the future?"
+  },
   "reported-to-police": {
     "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",
     "options": {
