@@ -433,8 +433,9 @@
       }
     }
   },
-  "future-exploitation": {
+  "concerns-future-exploitation": {
     "legend": "Are there concerns that the potential victim could be exploited again in the future?",
+    "hint": "Provide any information you can, even if you think it is outdated",
     "options": {
       "yes": {
         "label": "Yes"
