@@ -433,6 +433,17 @@
       }
     }
   },
+  "future-exploitation": {
+    "legend": "Are there concerns that the potential victim could be exploited again in the future?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "reported-to-police": {
     "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",
     "options": {

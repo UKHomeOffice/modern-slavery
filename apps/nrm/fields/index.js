@@ -749,6 +749,17 @@ module.exports = {
       'not-sure'
     ]
   },
+  'future-exploitation': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
   'reported-to-police': {
     mixin: 'radio-group',
     validate: ['required'],
