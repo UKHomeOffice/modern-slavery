@@ -433,7 +433,7 @@
       }
     }
   },
-  "concerns-future-exploitation": {
+  "future-exploitation-concerns": {
     "legend": "Are there concerns that the potential victim could be exploited again in the future?",
     "hint": "Provide any information you can, even if you think it is outdated",
     "options": {
@@ -445,8 +445,8 @@
       }
     }
   },
-  "future-exploitation-reasons":{
-    "legend": "Why are there concerns about exploitation in the future?",
+  "future-exploitation-reasons": {
+    "label": " ",
     "hint": "Give any evidence or reasons for the concerns. If you have file-based evidence, this can be sent to us once the report is submitted"
   },
   "reported-to-police": {

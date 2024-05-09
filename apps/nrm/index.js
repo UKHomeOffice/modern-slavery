@@ -329,10 +329,10 @@ module.exports = {
       behaviours:[
         saveFormSession
       ],
-      fields: ['concerns-future-exploitation'],
+      fields: ['future-exploitation-concerns'],
       forks: [{
         target: '/concerns-future-exploitation',
-        condition: req => req.sessionModel.get('concerns-future-exploitation') === 'yes'
+        condition: req => req.sessionModel.get('future-exploitation-concerns') === 'yes'
       }],
       next: '/reported-to-police'
     },

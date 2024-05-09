@@ -120,13 +120,12 @@
   "any-other-pvs": {
     "header": "Were there any other potential victims?"
   },
-  "concerns-future-exploitation": {
+  "future-exploitation": {
     "header": "Are there concerns that the potential victim could be exploited again in the future?"
   },
-  "future-exploitation-reasons":{
-    "header": "Why are there concerns about exploitation in the future?",
-    "hint": "Give any evidence or reasons for the concerns. If you have file-based evidence, this can be sent to us once the report is submitted"
-  },
+  "concerns-future-exploitation":{
+    "header": "Why are there concerns about exploitation in the future?"
+   },
   "reported-to-police": {
     "header": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?"
   },
@@ -338,7 +337,7 @@
       "any-other-pvs": {
         "label": "Other potential victims"
       },
-      "concerns-future-exploitation": {
+      "future-exploitation-concerns": {
         "label": "Are there concerns that the potential victim could be exploited again in the future?"
       },
       "future-exploitation-reasons":{
