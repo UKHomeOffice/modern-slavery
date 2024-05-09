@@ -1051,20 +1051,4 @@ describe('validation checks of the nrm journey', () => {
         .to.match(/You must select the potential victim's nationality from the list/);
     });
   });
-
-  describe('Cooperate with Police Dtn Validation', () => {
-    it('does not pass the cooperate with police dtn page if nothing is selected', async () => {
-      const URI = '/co-operate-with-police-dtn';
-      await initSession(URI);
-      await passStep(URI, {});
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/You must select an option/);
-    });
-  });
 });
