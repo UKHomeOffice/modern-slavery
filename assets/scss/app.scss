@@ -283,6 +283,25 @@ textarea {
   }
 }
 
+.govuk-button--start {
+  padding-right: 15px;
+}
+
+.govuk-button__start-icon {
+
+  margin-left: 5px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  align-self: center;
+  forced-color-adjust: auto;
+}
+
+.govuk-button__start-icon {
+  @media (min-width: 48.0625em) {
+    margin-left: 10px;
+  }    
+}
+
 .js-enabled .add-another {
   display: none;
 }
