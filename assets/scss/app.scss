@@ -1,5 +1,4 @@
 @import "hof/frontend/themes/gov-uk/styles/govuk";
-@import "govuk-frontend/all.scss";
 
 html {
   font-size:16px;
@@ -41,6 +40,7 @@ html {
   list-style: disc;
   margin-left: 20px;
 }
+
 textarea {
   font-size: 19px !important;
 }
@@ -58,7 +58,7 @@ textarea {
 .validation-error-override {
   box-sizing: border-box;
   padding-left: 12px;
-  border-left: 4px solid #b10e1e;
+  border-left: 4px solid #D4351C;
 }
 
 .error-message-override {
@@ -69,7 +69,7 @@ textarea {
 #your-report, #potential-victim, #your-details, #someone-else {
   td {
     a[href*="nrm"] {
-      color: #005ea5 !important;
+      color: #1D70B8 !important;
       background-color: white !important;
       text-decoration: underline;
       -webkit-box-shadow: none !important;
@@ -110,6 +110,7 @@ textarea {
   margin-top: 0px !important;
   font-weight: bold;
 }
+
 .breadcrumb-custom {
   margin-top: -30px;
   margin-bottom: 30px;
@@ -257,6 +258,10 @@ textarea {
     font-size: 19px;
     line-height: 1.31579;
   }
+  .govuk-main-wrapper {
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
 }
 
 .govuk-button--secondary {
@@ -306,6 +311,10 @@ textarea {
   display: none;
 }
 
+#main-content {
+  padding-top: 10px;
+}
+
 .add-another {
   @media (min-width: 40.0625em) {
     .list-entry {
@@ -316,6 +325,13 @@ textarea {
 
     .list-entry-button {
       margin: 0;
+    }
+    .govuk-main-wrapper {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+    .govuk-hint {
+      padding-top: 0.75em;
     }
   }
 }
@@ -341,4 +357,41 @@ textarea {
 .govuk-list--bullet {
   margin-left: 15px;
   padding-left: 20px;
+}
+
+// GovUK Corrections
+
+#reference-hint.govuk-hint {
+  padding-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.govuk-hint {
+  padding-top: 0.75em;
+}
+
+// Text Field Widths
+.field-width-3-4 {
+  width: 75%;
+  @include media(tablet) {
+    width: 75%;
+  }
+}
+
+.field-width-1-2 {
+  width: 50%;
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+.field-width-1-8 {
+  width: 150%;
+  @include media(tablet) {
+    width: 150%;
+  }
+}
+
+.govuk-main-wrapper {
+  padding-bottom: 200px;
 }
