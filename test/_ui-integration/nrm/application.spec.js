@@ -695,16 +695,6 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/pv-nationality-dtn');
     });
 
-    it('goes to the co-operate-with-police-dtn page when user selects nationality', async () => {
-      const URI = '/pv-nationality-dtn';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'pv-nationality': 'French'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/confirm');
-    });
-
     it('goes to the pv-contact-details-dtn page when user enters an organisation', async () => {
       const URI = '/pv-name-dtn';
       await initSession(URI);

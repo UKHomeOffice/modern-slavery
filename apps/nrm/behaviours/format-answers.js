@@ -32,12 +32,7 @@ const formatAnswers = req => {
     });
   }
 
-  if (req.sessionModel.get('co-operate-with-police')) {
-    data = Object.assign({}, data, {
-      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police'))
-    });
-  }
-
+  
   if (req.sessionModel.get('pv-gender')) {
     let formattedPvGenderValue = removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender')));
 

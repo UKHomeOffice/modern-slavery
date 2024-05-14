@@ -382,18 +382,6 @@ module.exports = {
       ],
       next: '/confirm'
     },
-    // '/co-operate-with-police-dtn': {
-    //   template: 'co-operate-with-police',
-    //   fields: ['co-operate-with-police'],
-    //   behaviours: [
-    //     saveFormSession
-    //   ],
-    //   next: '/confirm',
-    //   forks: [{
-    //     target: '/pv-name-dtn',
-    //     condition: req => req.sessionModel.get('co-operate-with-police') === 'yes'
-    //   }]
-    // },
     '/pv-name-dtn': {
       template: 'pv-name',
       behaviours: [

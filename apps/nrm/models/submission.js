@@ -152,7 +152,6 @@ module.exports = data => {
   response.CountryLabel = _.upperFirst(data['fr-location']);
   response.HowToNotify = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
-  response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.CIDReference = data['pv-ho-reference-type'];
 
