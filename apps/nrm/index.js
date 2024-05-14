@@ -176,6 +176,7 @@ module.exports = {
         condition: req=> req.sessionModel.get('when-last-contact') === 'Not-sure'
       }],
       next: '/details-last-contact',
+      continueOnEdit: true
     },
     '/details-last-contact': {
       behaviours: [
