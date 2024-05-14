@@ -1,8 +1,16 @@
 @import "hof/frontend/themes/gov-uk/styles/govuk";
-@import "govuk-frontend/all.scss";
 
 html {
   font-size:16px;
+}
+
+a {
+  @extend .govuk-link;
+}
+
+ul {
+  @extend .govuk-list;
+  @extend .govuk-list--bullet;
 }
 
 .phase-banner {
@@ -41,6 +49,7 @@ html {
   list-style: disc;
   margin-left: 20px;
 }
+
 textarea {
   font-size: 19px !important;
 }
@@ -69,7 +78,7 @@ textarea {
 #your-report, #potential-victim, #your-details, #someone-else {
   td {
     a[href*="nrm"] {
-      color: #005ea5 !important;
+      color: #1D70B8 !important;
       background-color: white !important;
       text-decoration: underline;
       -webkit-box-shadow: none !important;
@@ -110,6 +119,7 @@ textarea {
   margin-top: 0px !important;
   font-weight: bold;
 }
+
 .breadcrumb-custom {
   margin-top: -30px;
   margin-bottom: 30px;
@@ -306,6 +316,10 @@ textarea {
   display: none;
 }
 
+#main-content {
+  padding-top: 10px;
+}
+
 .add-another {
   @media (min-width: 40.0625em) {
     .list-entry {
@@ -316,6 +330,13 @@ textarea {
 
     .list-entry-button {
       margin: 0;
+    }
+    .govuk-main-wrapper {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+    .govuk-hint {
+      padding-top: 0.75em;
     }
   }
 }
@@ -341,4 +362,21 @@ textarea {
 .govuk-list--bullet {
   margin-left: 15px;
   padding-left: 20px;
+}
+
+// GovUK Corrections
+
+#reference-hint.govuk-hint {
+  padding-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+// Text Field Widths
+.field-width-1-8 {
+  @media (min-width: 768px) {
+    width: 150%;
+    @include media(tablet) {
+      width: 150%;
+    }
+  }
 }
