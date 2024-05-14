@@ -585,7 +585,7 @@
     "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
-    "hint": "For example,"
+    "hint": "For example, 31 3 1980."
   },
   "pv-gender": {
     "legend": "What is their gender?",

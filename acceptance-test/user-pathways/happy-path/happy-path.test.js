@@ -10,6 +10,7 @@ const { clickSelector, focusThenType, navigateTo } = pageActions;
 const {
   START_REPORT,
   CONTINUE_BUTTON,
+  CONTINUE_BUTTON_EXPLOITATION_PAGE,
   DOWNLOAD_REPORT,
   DETAILS_LAST_CONTACT,
   REFERENCE_INPUT,
@@ -256,7 +257,7 @@ describe.only('User path(s)', () => {
     await focusThenType(page, EXPLOITERS_CURRENT_LOCATION_DETAILS, 'Test details exploiter current location');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, CONTINUE_BUTTON_EXPLOITATION_PAGE);
     await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, FUTURE_EXPLOITATION_CONCERNS_YES);
