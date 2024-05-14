@@ -1,6 +1,6 @@
 {{<partials-page}}
   {{$page-content}}
-    <div id="confirm-email-group" class="form-group{{#compound}} form-group-compound{{/compound}}{{#formGroupClassName}} {{formGroupClassName}}{{/formGroupClassName}}{{^date}}{{#error}} validation-error{{/error}}{{/date}}">
+    <div id="confirm-email-group" class="govuk-form-group{{#compound}} govuk-form-group-compound{{/compound}}{{#formGroupClassName}} {{formGroupClassName}}{{/formGroupClassName}}{{^date}}{{#error}} validation-error{{/error}}{{/date}}">
       <label for="confirm-email" class="{{labelClassName}}">
           {{{label}}}
           {{^date}}{{#error}}<span class="error-message">{{error.message}}</span>{{/error}}{{/date}}
@@ -13,7 +13,7 @@
           type="text"
           name="confirm-email"
           id="confirm-email"
-          class="form-control form-control-3-4 {{#className}} {{className}}{{/className}}{{#error}} invalid-input{{/error}}"
+          class="govuk-input govuk-form-control govuk-form-control-3-4 {{#className}} {{className}}{{/className}}{{#error}} invalid-input{{/error}}"
           aria-required="{{required}}"
           value={{userEmail}}
           {{#min}} min="{{min}}"{{/min}}
