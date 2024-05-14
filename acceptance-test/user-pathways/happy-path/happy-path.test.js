@@ -83,6 +83,7 @@ let APP_CONTAINER_HOST;
 let browser;
 let page;
 let client;
+let client;
 
 /**
  * .only method used to run only tests within this describe function
@@ -350,10 +351,7 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      client = await page.target().createCDPSession();
-      await client.send('Page.setDownloadBehavior', {
-      client = await page.target().createCDPSession();
-      await client.send('Page.setDownloadBehavior', {
+      await page._client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
       });
