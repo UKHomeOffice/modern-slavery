@@ -7,10 +7,5 @@
     "required": "Enter a valid email address",
     "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "confirm-email": {
-    "required": "Enter a valid email address",
-    "email": "Enter a valid email address",
-    "maxlength": "You must enter no more than 15,000 characters"
   }
 }

@@ -1,7 +1,28 @@
-{{> partials-summary-table-your-report}}
-
-{{> partials-summary-table-potential-victim}}
-
-{{> partials-summary-table-someone-else}}
-
-{{> partials-summary-table-your-details}}
+<div>
+  <h2 class="section-header" data-content="{{section}}">{{section}}</h2>
+</div>
+<dl>
+{{#fields}}
+  {{^omitFromSummary}}
+    <div class="confirm-row">
+      {{#isSeparator}}
+      {{/isSeparator}}
+      {{^isSeparator}}
+        <dt class="confirm-label">{{label}}{{#referenceLabelHint}}<span class="govuk-hint">{{#t}}pages.confirm.fields.reference.hint{{/t}}</span>{{/referenceLabelHint}}{{#automaticReferral}}<p class="label-info">{{#t}}pages.confirm.fields.pv-want-to-submit-nrm.automatic-referral{{/t}}</p>{{/automaticReferral}}{{#emailInfo}}<p class="label-info">{{#t}}pages.confirm.fields.fr-details-email.info{{/t}}</p>{{/emailInfo}}</dt>
+        <dd class="confirm-value">{{#additionalInfoSpace}}<br>{{/additionalInfoSpace}}{{value}}</dd>
+      {{^omitChangeLink}}
+        {{#changeLink}}
+          <dd><span><a class="govuk-link" href="{{changeLink}}" id="{{field}}-change-{{index}}">{{#t}}buttons.change{{/t}}<span class="visuallyhidden">{{changeLinkDescription}} from {{value}}</span></a></span></dd>
+        {{/changeLink}}
+        {{^changeLink}}
+          <dd>{{#additionalInfoSpace}}<br>{{/additionalInfoSpace}}<span><a class="govuk-link" href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">{{#t}}buttons.change{{/t}}<span class="visuallyhidden">{{changeLinkDescription}} from {{value}}</span></a></span></dd>
+        {{/changeLink}}
+        {{/omitChangeLink}}
+        {{#omitChangeLink}}
+          <dd> </dd>
+        {{/omitChangeLink}}
+      {{/isSeparator}}
+    </div>
+  {{/omitFromSummary}}
+{{/fields}}
+</dl>

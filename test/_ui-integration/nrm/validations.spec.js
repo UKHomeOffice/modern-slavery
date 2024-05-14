@@ -32,7 +32,7 @@ describe('validation checks of the nrm journey', () => {
       await passStep(URI, {});
       const result = await getUrl(URI);
       const docu = await parseHtml(result);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -47,7 +47,7 @@ describe('validation checks of the nrm journey', () => {
       await passStep(URI, {});
       const result = await getUrl(URI);
       const docu = await parseHtml(result);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -62,7 +62,7 @@ describe('validation checks of the nrm journey', () => {
       await passStep(URI, {});
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -78,7 +78,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -94,7 +94,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -112,7 +112,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -128,7 +128,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -147,7 +147,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -163,7 +163,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -179,7 +179,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -195,7 +195,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -213,7 +213,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -229,7 +229,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -247,7 +247,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -262,7 +262,7 @@ describe('validation checks of the nrm journey', () => {
       await passStep(URI, {});
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -278,7 +278,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -294,7 +294,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -310,7 +310,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -327,7 +327,7 @@ describe('validation checks of the nrm journey', () => {
 
         const res = await getUrl(URI);
         const docu = await parseHtml(res);
-        const validationSummary = docu.find('.validation-summary');
+        const validationSummary = docu.find('.govuk-error-summary');
 
         expect(validationSummary.length === 1).to.be.true;
         expect(validationSummary.html())
@@ -343,7 +343,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -361,7 +361,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -377,7 +377,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -395,7 +395,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -411,7 +411,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -427,7 +427,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -443,7 +443,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -459,7 +459,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -475,7 +475,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -493,7 +493,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -509,7 +509,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -525,7 +525,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -541,7 +541,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -557,7 +557,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -573,7 +573,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -589,7 +589,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -606,7 +606,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -623,7 +623,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -639,7 +639,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -655,7 +655,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -671,7 +671,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -687,7 +687,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -706,7 +706,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -722,7 +722,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -738,7 +738,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -754,7 +754,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -770,7 +770,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -788,7 +788,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -802,7 +802,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -818,7 +818,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -834,7 +834,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -850,7 +850,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -866,7 +866,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -882,7 +882,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -900,7 +900,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -919,7 +919,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -938,7 +938,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -956,7 +956,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -980,7 +980,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -996,7 +996,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1015,7 +1015,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1034,7 +1034,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1052,7 +1052,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1072,7 +1072,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1088,7 +1088,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1107,7 +1107,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
@@ -1123,7 +1123,7 @@ describe('validation checks of the nrm journey', () => {
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
+      const validationSummary = docu.find('.govuk-error-summary');
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())

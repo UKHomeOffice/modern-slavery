@@ -18,8 +18,7 @@ describe('apps/behaviours/confirm-email-passer', () => {
   let instance;
 
   const superLocals = {
-    route: 'confirm-email',
-    backLink: '/who-do-you-work-for',
+    route: 'who-do-you-work-for',
     nextPage: '/check-inbox'
   };
 
@@ -41,8 +40,7 @@ describe('apps/behaviours/confirm-email-passer', () => {
   describe('locals', () => {
     it('returns an extended locals with the confirmEmail', () => {
       const expected = {
-        route: 'confirm-email',
-        backLink: '/who-do-you-work-for',
+        route: 'who-do-you-work-for',
         nextPage: '/check-inbox',
         confirmEmail: 'test@mail.com'
       };

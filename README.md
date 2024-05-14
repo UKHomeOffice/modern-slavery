@@ -62,7 +62,7 @@ Please note if you are using IP whitelisting in the iCasework backend you will a
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
 ```bash
-$ npm install
+$ yarn install
 ```
 
 Install [Redis](https://redis.io/) and make sure you have a running redis instance in the background.
@@ -80,10 +80,10 @@ Then go to http://localhost:8081
 
 ### Install & Run on docker container <a name="install-and-run-on-docker-container"></a>
 
-Build the docker containers containing an instance of the Chrome browser `chrome-browser` the Node JS application `app` and an instance of Redis `redis`. Then you can exec into the docker container and run the tests which is how it is done on the Drone pipeline.
+Build the docker containers containing an instance of the Chrome browser `chrome-browser` the Node JS application `<app-name>` and an instance of Redis `redis`. Then you can exec into the docker container and run the tests which is how it is done on the Drone pipeline.
 ```bash
-$ docker-compose --verbose up -d --build chrome-browser app redis
-$ docker-compose exec -T app sh -c 'npm run test:docker-acceptance'
+$ docker-compose --verbose up -d --build chrome-browser <app-name> redis
+$ docker-compose exec -T <app-name> sh -c 'yarn run test:docker-acceptance'
 ```
 
 ## Migrations
@@ -116,7 +116,7 @@ $ yarn devenv
 
 ## Skip email verify step  <a name="skip-email-verify-step"></a>
 
-You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value paramenter in the url; or both.
+You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value parameter in the url; or both.
 
 1. To use an email environment variable, you'll need to set it like so `skipEmail=sas-hof-test@digital.homeoffice.gov.uk`. You can then go to the following url.
 
@@ -187,7 +187,7 @@ $ docker exec -i -t modern-slavery-app /bin/bash
 
 Run acceptance tests
 ```bash
-$ npm run test:docker-acceptance
+$ yarn run test:docker-acceptance
 ```
 
 #### Running acceptance tests as part of Drone CI  <a name="running-acceptance-tests-as-part-of-drone-ci"></a>
@@ -233,7 +233,7 @@ There are a bunch of microservices as part of modernslavery:
 'what-happened' page has been removed from the main journey through the form as it no longer required. Its present only 
 for legacy information saved as part of the 'save and return' process, so users can update if required before submission. 
 This page should be reviewed within 12 months to see if any active cases in the 'save and return' feature are using this
-field before the page can be permanently removed. 
+field before the page can be permanently removed.
 
 
 

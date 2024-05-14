@@ -5,8 +5,6 @@ const setReferralState = require('./behaviours/set-referral-state');
 const resetJourneyToSubmitNRM = require('./behaviours/reset-journey-to-submit-nrm');
 const checkEmailToken = require('./behaviours/check-email-token');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
-const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
-const formatAnswers = require('./behaviours/format-answers');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
@@ -15,8 +13,11 @@ const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
+const whereExploitationHappenedOverseas = require('./behaviours/where-exploitation-happened-overseas');
+const authoritiesCooperation = require('./behaviours/authorities-cooperation-edit');
 const Submission = require('./behaviours/casework-submission');
 const areYouSure = require('./behaviours/are-you-sure');
+const modifySummaryPage = require('./behaviours/modify-summary-page');
 const submission = Submission({
   prepare: require('./models/submission')
 });
@@ -24,9 +25,6 @@ const submission = Submission({
 module.exports = {
   name: 'nrm',
   baseUrl: '/nrm',
-  pages: {
-    '/token-invalid': 'token-invalid'
-  },
   steps: {
     '/start': {
       behaviours: [
@@ -53,6 +51,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['reference'],
       next: '/organisation'
     },
@@ -60,6 +59,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['user-organisation'],
       next: '/fr-location'
     },
@@ -67,6 +67,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['fr-location'],
       next: '/pv-under-age'
     },
@@ -76,6 +77,7 @@ module.exports = {
         resetJourneyToSubmitNRM,
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-under-age'],
       next: '/local-authority-contacted-about-child',
       forks: [{
@@ -91,6 +93,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'local-authority-contacted-about-child-local-authority-name',
         'local-authority-contacted-about-child-local-authority-phone',
@@ -104,6 +107,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-under-age-at-time-of-exploitation'],
       next: '/what-is-their-background'
     },
@@ -112,6 +116,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['what-happened'],
       next: '/what-is-their-background'
     },
@@ -120,6 +125,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['birthplace', 'family', 'education', 'employment-history'],
       next: '/when-did-the-exploitation-take-place'
     },
@@ -127,6 +133,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['when-did-the-exploitation-take-place'],
       next: '/more-than-one-exploitation-situation'
     },
@@ -134,6 +141,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['more-than-one-exploitation-situation'],
       next: '/how-did-the-exploitation-start'
     },
@@ -141,6 +149,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['how-did-the-exploitation-start'],
       next: '/were-they-taken-somewhere-by-their-exploiter'
     },
@@ -148,6 +157,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['were-they-taken-somewhere-by-their-exploiter',
         'were-they-taken-somewhere-by-their-exploiter-journey-details'],
       next: '/how-they-were-treated'
@@ -156,6 +166,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['what-were-they-required-to-do', 'how-they-were-treated', 'why-they-stayed'],
       next: '/how-why-did-they-leave-the-situation'
     },
@@ -163,6 +174,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['how-why-did-they-leave-the-situation'],
       next: '/when-last-contact'
     },
@@ -173,15 +185,17 @@ module.exports = {
       fields: ['when-last-contact'],
       forks: [{
         target: '/is-this-the-first-chance-to-report',
-        condition: req => req.sessionModel.get('when-last-contact') === 'Not-sure'
+        condition: req => req.sessionModel.get('when-last-contact') === 'not-sure'
       }],
       next: '/details-last-contact',
+      locals: { showSaveAndExit: true },
       continueOnEdit: true
     },
     '/details-last-contact': {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['details-last-contact'],
       next: '/is-this-the-first-chance-to-report'
     },
@@ -189,6 +203,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['is-this-the-first-chance-to-report'],
       forks: [{
         target: '/why-report-now',
@@ -204,6 +219,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['why-report-now'],
       next: '/why-are-you-making-the-referral'
     },
@@ -211,6 +227,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['why-are-you-making-the-referral'],
       next: '/where-how-interview-carried-out'
     },
@@ -218,6 +235,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['where-how-interview-carried-out'],
       next: '/are-others-involved'
     },
@@ -225,6 +243,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['are-others-involved', 'are-others-involved-details'],
       next: '/evidence-of-dishonesty'
     },
@@ -232,6 +251,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
       next: '/what-evidence-you-will-submit'
     },
@@ -239,6 +259,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['what-evidence-you-will-submit'],
       next: '/where-exploitation-happened'
     },
@@ -246,6 +267,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['where-exploitation-happened'],
       next: '/where-exploitation-happened-uk',
       forks: [{
@@ -262,6 +284,7 @@ module.exports = {
         whereExploitationHappenedUk,
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'where-exploitation-happened-uk-city-1',
         'where-exploitation-happened-uk-city-2',
@@ -283,8 +306,10 @@ module.exports = {
     },
     '/where-exploitation-happened-overseas': {
       behaviours: [
+        whereExploitationHappenedOverseas,
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'where-exploitation-happened-overseas-country-1',
         'where-exploitation-happened-overseas-country-2',
@@ -304,6 +329,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'current-pv-location-uk-city',
         'current-pv-location-uk-region'
@@ -314,6 +340,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['who-exploited-pv'],
       next: '/exploiters-location'
     },
@@ -327,18 +354,21 @@ module.exports = {
           value: 'yes'
         }
       }],
+      locals: { showSaveAndExit: true },
       next: '/types-of-exploitation',
       continueOnEdit: true
     },
     '/are-exploiters-in-the-uk': {
       behaviours: saveFormSession,
       fields: ['are-exploiters-in-the-uk'],
+      locals: { showSaveAndExit: true },
       next: '/exploiters-current-location-details',
       continueOnEdit: true
     },
     '/exploiters-current-location-details': {
       behaviours: saveFormSession,
       fields: ['exploiters-current-location-details'],
+      locals: { showSaveAndExit: true },
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
@@ -346,6 +376,7 @@ module.exports = {
         typesOfExploitation,
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'types-of-exploitation-forced-to-work',
         'types-of-exploitation-wages-taken',
@@ -365,6 +396,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['any-other-pvs'],
       next: '/future-exploitation'
     },
@@ -372,6 +404,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['future-exploitation-concerns'],
       forks: [{
         target: '/concerns-future-exploitation',
@@ -387,6 +420,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['future-exploitation-reasons'],
       next: '/reported-to-police'
     },
@@ -394,6 +428,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'reported-to-police',
         'reported-to-police-police-forces',
@@ -403,8 +438,10 @@ module.exports = {
     },
     '/authorities-cooperation': {
       behaviours: [
-        saveFormSession
+        saveFormSession,
+        authoritiesCooperation
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'authorities-cooperation',
         'authorities-cooperation-details'
@@ -417,6 +454,7 @@ module.exports = {
         resetJourneyToSubmitNRM,
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-want-to-submit-nrm'],
       next: '/does-pv-need-support',
       forks: [{
@@ -435,6 +473,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['refuse-nrm'],
       next: '/pv-gender-dtn'
     },
@@ -443,6 +482,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-gender'],
       next: '/pv-nationality-dtn'
     },
@@ -451,6 +491,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-nationality',
         'pv-nationality-second'
@@ -461,6 +502,7 @@ module.exports = {
           field: 'authorities-cooperation',
           value: 'yes'
         }
+        // condition: req => req.sessionModel.get('authorities-cooperation') === 'yes'
       }],
       next: '/confirm'
     },
@@ -469,6 +511,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-name-first-name',
         'pv-name-last-name',
@@ -481,6 +524,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -497,6 +541,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['does-pv-need-support'],
       next: '/pv-name-referral'
     },
@@ -508,6 +553,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-name-first-name',
         'pv-name-last-name',
@@ -519,6 +565,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-dob'],
       next: '/pv-gender-referral'
     },
@@ -527,6 +574,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['pv-gender'],
       next: '/does-pv-have-children'
     },
@@ -534,6 +582,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'does-pv-have-children',
         'does-pv-have-children-yes-amount'
@@ -545,6 +594,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-nationality',
         'pv-nationality-second'
@@ -555,6 +605,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-interpreter-requirements',
         'pv-interpreter-requirements-language'
@@ -565,6 +616,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-other-help-with-communication',
         'pv-other-help-with-communication-aid'
@@ -575,6 +627,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-ho-reference',
         'pv-ho-reference-type'
@@ -589,6 +642,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['who-contact'],
       next: '/pv-contact-details-referral',
       forks: [{
@@ -601,6 +655,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'someone-else',
         'someone-else-first-name',
@@ -623,6 +678,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-contact-details',
         'pv-contact-details-email-input',
@@ -643,6 +699,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'pv-phone-number',
         'pv-phone-number-yes'
@@ -653,6 +710,7 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: [
         'fr-details-first-name',
         'fr-details-last-name',
@@ -665,14 +723,15 @@ module.exports = {
       behaviours: [
         saveFormSession
       ],
+      locals: { showSaveAndExit: true },
       fields: ['fr-alternative-contact'],
       next: '/confirm'
     },
     '/confirm': {
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
-        formatAnswers,
-        hideAndShowSummaryFields,
+        modifySummaryPage,
         fullWidth,
         submission,
         deleteFormSession,
@@ -688,10 +747,10 @@ module.exports = {
     },
     '/continue-report': {
       backLink: false,
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
-        formatAnswers,
-        hideAndShowSummaryFields,
+        modifySummaryPage,
         fullWidth,
         continueReport
       ],
@@ -702,6 +761,9 @@ module.exports = {
       behaviours: [
         saveAndExit
       ]
+    },
+    '/token-invalid': {
+      clearSession: true
     }
   }
 };

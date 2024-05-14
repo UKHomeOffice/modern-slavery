@@ -1,5 +1,3 @@
-<div class="govuk-!-padding-bottom-3"></div>
-
 <p class="govuk-body">If the potential victim needs support you'll need to contact the relevant provider for more information.</p>
 
 <div class="govuk-!-padding-bottom-3"></div>

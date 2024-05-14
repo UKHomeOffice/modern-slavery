@@ -1,8 +1,8 @@
 {{<partials-page}}
-{{$back}}<a class="link-back" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
-{{$page-content}}
-  {{#markdown}}reference{{/markdown}}
-  {{#renderField}}reference{{/renderField}}
-  {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
-{{/page-content}}
+  {{$back}}<a class="govuk-back-link" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
+  {{$page-content}}
+    {{#markdown}}reference{{/markdown}}
+    {{#renderField}}reference{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
 {{/partials-page}}
