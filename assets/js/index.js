@@ -13,6 +13,14 @@ $('.typeahead').each(function applyTypeahead() {
   });
 });
 
+// add error styling for select fields that are using accessible-autocomplete
+const autocompleteDiv = $('.autocomplete__wrapper').parent();
+if (autocompleteDiv.parent().hasClass('govuk-form-group--error')) {
+  $('.autocomplete__input').addClass('autocomplete__input--error');
+} else if (!autocompleteDiv.parent().hasClass('govuk-form-group--error')) {
+  $('.autocomplete__input').removeClass('autocomplete__input--error');
+}
+
 /**
  * Override for Start Page width
  */

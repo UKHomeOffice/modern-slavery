@@ -5,8 +5,6 @@ const setReferralState = require('./behaviours/set-referral-state');
 const resetJourneyToSubmitNRM = require('./behaviours/reset-journey-to-submit-nrm');
 const checkEmailToken = require('./behaviours/check-email-token');
 const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
-const hideAndShowSummaryFields = require('./behaviours/hide-and-show-summary-fields');
-const formatAnswers = require('./behaviours/format-answers');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
@@ -15,8 +13,10 @@ const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
+const whereExploitationHappenedOverseas = require('./behaviours/where-exploitation-happened-overseas');
 const Submission = require('./behaviours/casework-submission');
 const areYouSure = require('./behaviours/are-you-sure');
+const modifySummaryPage = require('./behaviours/modify-summary-page');
 const submission = Submission({
   prepare: require('./models/submission')
 });
@@ -24,9 +24,6 @@ const submission = Submission({
 module.exports = {
   name: 'nrm',
   baseUrl: '/nrm',
-  pages: {
-    '/token-invalid': 'token-invalid'
-  },
   steps: {
     '/start': {
       behaviours: [
@@ -264,6 +261,7 @@ module.exports = {
     },
     '/where-exploitation-happened-overseas': {
       behaviours: [
+        whereExploitationHappenedOverseas,
         saveFormSession
       ],
       fields: [
@@ -607,10 +605,10 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
-        formatAnswers,
-        hideAndShowSummaryFields,
+        modifySummaryPage,
         fullWidth,
         submission,
         deleteFormSession,
@@ -626,10 +624,10 @@ module.exports = {
     },
     '/continue-report': {
       backLink: false,
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
-        formatAnswers,
-        hideAndShowSummaryFields,
+        modifySummaryPage,
         fullWidth,
         continueReport
       ],
@@ -640,6 +638,9 @@ module.exports = {
       behaviours: [
         saveAndExit
       ]
+    },
+    '/token-invalid': {
+      clearSession: true
     }
   }
 };

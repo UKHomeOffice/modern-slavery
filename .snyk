@@ -72,4 +72,9 @@ ignore:
       reason: No direct upgrade or patch
       expires: 2024-07-25T00:00:00.000Z
       created: 2024-04-25T13:41:22.224Z
+  SNYK-JS-BRACES-6838727:
+    - '*':
+        reason: No direct upgrade or patch
+        expires: 2024-08-21T00:00:00.000Z
+        created: 2024-05-21T13:41:22.224Z
 patch: {}

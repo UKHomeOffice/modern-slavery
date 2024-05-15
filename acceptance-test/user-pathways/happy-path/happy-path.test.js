@@ -10,7 +10,6 @@ const { clickSelector, focusThenType, navigateTo } = pageActions;
 const {
   START_REPORT,
   CONTINUE_BUTTON,
-  CONTINUE_BUTTON_EXPLOITATION_PAGE,
   DOWNLOAD_REPORT,
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
@@ -240,7 +239,7 @@ describe.only('User path(s)', () => {
     await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON_EXPLOITATION_PAGE);
+    await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION);
