@@ -1,9 +1,8 @@
 {{<partials-page}}
     {{$page-content}}
-        {{#renderField}}birthplace{{/renderField}}
-        {{#renderField}}family{{/renderField}}
-        {{#renderField}}education{{/renderField}}
-        {{#renderField}}employment-history{{/renderField}}
+        {{#fields}}
+            {{#renderField}}{{/renderField}}
+        {{/fields}}
         {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
     {{/page-content}}
 {{/partials-page}}
