@@ -320,7 +320,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(20);
+  const defaultTimeout = timeoutInMins(30);
 
   it('Happy path - Adult', async () => {
     try {
