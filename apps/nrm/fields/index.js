@@ -423,89 +423,99 @@ module.exports = {
     ]
   },
   'where-exploitation-happened-uk-city-1': {
-    mixin: 'select',
-    validate: 'required',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // validate: 'required',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-2': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-3': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-4': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-5': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-6': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-7': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns),
-    dependent: {
-      value: 'uk',
-      field: 'where-exploitation-happened'
-    }
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns),
+    // dependent: {
+    //   value: 'uk',
+    //   field: 'where-exploitation-happened'
+    // }
   },
   'where-exploitation-happened-uk-city-8': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-9': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-10': {
-    mixin: 'select',
-    className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    mixin: 'input-text'
+    // mixin: 'select',
+    // className: ['typeahead', 'js-hidden'],
+    // options: [{
+    //   value: '',
+    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
+    // }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
