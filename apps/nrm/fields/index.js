@@ -423,14 +423,14 @@ module.exports = {
     ]
   },
   'where-exploitation-happened-uk-city-1': {
-    mixin: 'input-text'
-    // mixin: 'select',
-    // validate: 'required',
-    // className: ['typeahead', 'js-hidden'],
-    // options: [{
-    //   value: '',
-    //   label: 'fields.where-exploitation-happened-uk-city.options.null'
-    // }].concat(ukCitiesAndTowns)
+    // mixin: 'input-text'
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.where-exploitation-happened-uk-city.options.null'
+    }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-2': {
     // mixin: 'input-text'
