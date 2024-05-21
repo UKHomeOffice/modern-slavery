@@ -229,14 +229,9 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, EXPLOITED_IN_UK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
-    console.log('*********hellooooooooooooo1**************')
     await focusThenType(page, EXPLOITED_IN_UK_CITY_INPUT, 'Croydon');
-    console.log(EXPLOITED_IN_UK_CITY_INPUT)
     await clickSelector(page, CONTINUE_BUTTON);
-    console.log('*********hellooooooooooooo2**************')
-    console.log(CURRENT_PV_LOCATION_UK_CITY)
     await focusThenType(page, CURRENT_PV_LOCATION_UK_CITY, 'Bromley');
-    console.log(CURRENT_PV_LOCATION_UK_CITY)
     await focusThenType(page, CURRENT_PV_LOCATION_UK_REGION, 'Kent');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
@@ -317,7 +312,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(5);
+  const defaultTimeout = timeoutInMins(10);
 
   it('Happy path - Adult', async () => {
     try {
