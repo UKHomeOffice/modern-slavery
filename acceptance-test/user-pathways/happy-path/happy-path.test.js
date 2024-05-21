@@ -234,6 +234,7 @@ describe.only('User path(s)', () => {
     console.log(EXPLOITED_IN_UK_CITY_INPUT)
     await clickSelector(page, CONTINUE_BUTTON);
     console.log('*********hellooooooooooooo2**************')
+    console.log(CURRENT_PV_LOCATION_UK_CITY)
     await focusThenType(page, CURRENT_PV_LOCATION_UK_CITY, 'Bromley');
     console.log(CURRENT_PV_LOCATION_UK_CITY)
     await focusThenType(page, CURRENT_PV_LOCATION_UK_REGION, 'Kent');
