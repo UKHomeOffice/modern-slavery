@@ -335,7 +335,7 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      client = await page.target().createCPDSession();
+      client = await page.target().createCDPSession();
       await client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
