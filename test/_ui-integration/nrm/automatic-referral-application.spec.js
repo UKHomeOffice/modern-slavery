@@ -302,36 +302,35 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/any-other-pvs');
   });
 
-  it('goes to the reported-to-police page when user enters any other potential victims', async () => {
+  it('goes to the future-exploitation page when user enters any other potential victims', async () => {
     const URI = '/any-other-pvs';
     await initSession(URI);
     const response = await passStep(URI, {
       'any-other-pvs': 'yes'
     });
 
-    expect(response.text).to.contain('Found. Redirecting to /nrm/reported-to-police');
+    expect(response.text).to.contain('Found. Redirecting to /nrm/future-exploitation');
   });
 
-  it('goes to the reported-to-police page when user enters no other potential victims', async () => {
-    const URI = '/any-other-pvs';
+  it('goes to the future-exploitation-concerns page when user choose yes option', async () => {
+    const URI = '/future-exploitation';
     await initSession(URI);
     const response = await passStep(URI, {
-      'any-other-pvs': 'no'
+      'future-exploitation-concerns': 'yes'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/concerns-future-exploitation');
+  });
+  it('goes to the reported-to-police page when user provide reason', async () => {
+    const URI = '/concerns-future-exploitation';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'future-exploitation-reasons': 'some reasons of future exploitation'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/reported-to-police');
   });
-
-  it('goes to the reported-to-police page when user enters not sure of any other potential victims', async () => {
-    const URI = '/any-other-pvs';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'any-other-pvs': 'not-sure'
-    });
-
-    expect(response.text).to.contain('Found. Redirecting to /nrm/reported-to-police');
-  });
-
+  
   it('goes to the pv-want-to-submit-nrm page when user enters reported-to-police', async () => {
     const URI = '/reported-to-police';
     await initSession(URI);

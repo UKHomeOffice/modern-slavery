@@ -125,6 +125,13 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('future-exploitation-concerns')) {
+    data = Object.assign({}, data, {
+      formattedConcernsFutureExploitation: removeDashesFromText(capitaliseText(
+        req.sessionModel.get('future-exploitation-concerns')))
+    });
+  }
+
   if (req.sessionModel.get('are-others-involved')) {
     data = Object.assign({}, data, {
       formattedAreOthersInvolved: removeDashesFromText(capitaliseText(
