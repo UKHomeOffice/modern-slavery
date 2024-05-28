@@ -435,7 +435,7 @@
   },
   "future-exploitation-concerns": {
     "legend": "Are there concerns that the potential victim could be exploited again in the future?",
-    "hint": "Provide any information you can, even if you think it is outdated",
+    "hint": "This includes concerns from other professionals or organisations involved. You must have reasons or evidence for these concerns",
     "options": {
       "yes": {
         "label": "Yes"

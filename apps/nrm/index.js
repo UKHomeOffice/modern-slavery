@@ -332,9 +332,13 @@ module.exports = {
       fields: ['future-exploitation-concerns'],
       forks: [{
         target: '/concerns-future-exploitation',
-        condition: req => req.sessionModel.get('future-exploitation-concerns') === 'yes'
+        condition: {
+          field: 'future-exploitation-concerns',
+          value: 'yes'
+        }
       }],
-      next: '/reported-to-police'
+      next: '/reported-to-police',
+      continueOnEdit: true
     },
     '/concerns-future-exploitation':{
       behaviours:[
