@@ -21,7 +21,6 @@ describe('Footer links', () => {
     const docu = await parseHtml(res);
 
     const header = docu.find('h1.govuk-heading-l');
-    console.log(header.html());
 
     header.html().should.match(/Cookies/);
   });

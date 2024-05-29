@@ -56,7 +56,8 @@ describe('/apps/nrm/behaviours/modify-summary-page', () => {
             value: 'local test 2',
             step: '/reference',
             field: 'reference',
-            referenceLabelHint: true
+            referenceLabelHint: true,
+            additionalInfoSpace: true
           }],
           omitFromPdf: false
         }
@@ -89,7 +90,8 @@ describe('/apps/nrm/behaviours/modify-summary-page', () => {
             field: 'pv-want-to-submit-nrm',
             changeLink: '/nrm/pv-want-to-submit-nrm/edit#pv-want-to-submit-nrm-yes',
             omitChangeLink: true,
-            automaticReferral: true
+            automaticReferral: true,
+            additionalInfoSpace: true
           }],
           omitFromPdf: false
         }
@@ -196,7 +198,8 @@ describe('/apps/nrm/behaviours/modify-summary-page', () => {
             step: '/fr-details',
             field: 'user-email',
             omitChangeLink: true,
-            emailInfo: true
+            emailInfo: true,
+            additionalInfoSpace: true
           }],
           omitFromPdf: false
         }
@@ -241,7 +244,8 @@ describe('/apps/nrm/behaviours/modify-summary-page', () => {
             step: '/fr-details',
             field: 'user-email',
             omitChangeLink: true,
-            emailInfo: true
+            emailInfo: true,
+            additionalInfoSpace: true
           }],
           omitFromPdf: false
         }

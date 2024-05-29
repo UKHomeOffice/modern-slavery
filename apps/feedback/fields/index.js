@@ -14,7 +14,7 @@ module.exports = {
   },
   improvements: {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [1200]}],
+    validate: ['required', { type: 'maxlength', arguments: [1200] }],
     legend: {
       className: 'visuallyhidden'
     },
@@ -25,9 +25,10 @@ module.exports = {
   },
   email: {
     mixin: 'input-text',
-    validate: ['email', {type: 'maxlength', arguments: [1200]}],
+    validate: ['email', { type: 'maxlength', arguments: [1200] }],
     legend: {
       className: 'visuallyhidden'
-    }
+    },
+    type: 'email'
   }
 };
