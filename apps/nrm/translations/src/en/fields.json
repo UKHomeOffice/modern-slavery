@@ -135,7 +135,7 @@
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
   "when-last-contact":{
-    "legend": "when victim and exploiters last in contact",
+    "legend": "When were the potential victim and exploiters last in contact?",
     "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
     "options": {
       "within-the-last-week": {
@@ -527,6 +527,7 @@
     "label": "Enter crime or CAD reference"
   },
   "authorities-cooperation": {
+    "legend": "Is the potential victim willing to help with investigations or criminal proceedings into their exploitation?",
     "hint": "If you are unsure, save your progress and check with them",
     "options": {
       "yes": {

@@ -59,11 +59,13 @@ module.exports = {
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-input--width-20'],
-    validate: ['required', { type: 'maxlength', arguments: [15000] }]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    type: 'tel'
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
-    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }]
+    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }],
+    type: 'email'
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
@@ -228,11 +230,9 @@ module.exports = {
     ]
   },
   'when-last-contact': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'within-the-last-week',
       'within-the-last-month',
@@ -245,7 +245,6 @@ module.exports = {
   'details-last-contact': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -580,22 +579,18 @@ module.exports = {
     ]
   },
   'exploiters-location': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
     ]
   },
   'are-exploiters-in-the-uk': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
@@ -603,9 +598,7 @@ module.exports = {
   },
   'exploiters-current-location-details': {
     mixin: 'textarea',
-    isPageHeading: true,
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -671,11 +664,9 @@ module.exports = {
     ]
   },
   'future-exploitation-concerns': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
@@ -684,7 +675,6 @@ module.exports = {
   'future-exploitation-reasons': {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -735,8 +725,8 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'authorities-cooperation-details-fieldset',
-      child: 'partials/authorities-cooperation-yes'
+      toggle: 'authorities-cooperation-details',
+      child: 'textarea'
     }, {
       value: 'no'
     }]
@@ -744,7 +734,6 @@ module.exports = {
   'authorities-cooperation-details': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -944,7 +933,8 @@ module.exports = {
     validationLink: {
       value: 'email',
       field: 'pv-contact-details'
-    }
+    },
+    type: 'email'
   },
   'pv-contact-details-email-check': {
     mixin: 'checkbox',
@@ -1028,7 +1018,8 @@ module.exports = {
     dependent: {
       value: 'email',
       field: 'someone-else'
-    }
+    },
+    type: 'email'
   },
   'someone-else-street': {
     mixin: 'input-text',
@@ -1085,10 +1076,11 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-input--width-20'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    validationLink: {
+    dependent: {
       value: 'yes',
       field: 'pv-phone-number'
-    }
+    },
+    type: 'tel'
   },
   'fr-details-first-name': {
     mixin: 'input-text',
@@ -1105,11 +1097,13 @@ module.exports = {
   'fr-details-phone': {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-input--width-20'],
-    validate: ['required', { type: 'maxlength', arguments: [15000] }]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    type: 'tel'
   },
   'fr-alternative-contact': {
     mixin: 'input-text',
     className: ['govuk-input'],
-    validate: ['email', { type: 'maxlength', arguments: [15000] }]
+    validate: ['email', { type: 'maxlength', arguments: [15000] }],
+    type: 'email'
   }
 };

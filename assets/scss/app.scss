@@ -414,11 +414,13 @@ textarea {
 }
 
 .confirm-label>span.govuk-hint {
-  margin-top: -20px;
-  margin-bottom: -50px;
+  padding-top: -20px;
+  padding-bottom: -50px;
+  margin-bottom: 0;
 }
 
 .confirm-label>p.label-info {
-  margin-top: -20px;
-  margin-bottom: -45px;
+  padding-top: -20px;
+  padding-bottom: -50px;
+  margin-bottom: 0;
 }

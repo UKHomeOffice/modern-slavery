@@ -95,12 +95,28 @@ module.exports = {
         field: 'who-exploited-pv'
       },
       {
-        step: '/what-happened',
-        field: 'what-happened'
+        step: '/exploiters-location',
+        field: 'exploiters-location'
+      },
+      {
+        step: '/are-exploiters-in-the-uk',
+        field: 'are-exploiters-in-the-uk'
+      },
+      {
+        step: '/exploiters-current-location-details',
+        field: 'exploiters-current-location-details'
       },
       {
         step: '/any-other-pvs',
         field: 'any-other-pvs'
+      },
+      {
+        step: '/future-exploitation',
+        field: 'future-exploitation-concerns'
+      },
+      {
+        step: '/concerns-future-exploitation',
+        field: 'future-exploitation-reasons'
       },
       {
         step: '/when-did-the-exploitation-take-place',
@@ -137,6 +153,14 @@ module.exports = {
       {
         step: '/how-why-did-they-leave-the-situation',
         field: 'how-why-did-they-leave-the-situation'
+      },
+      {
+        step: '/when-last-contact',
+        field: 'when-last-contact'
+      },
+      {
+        step: '/details-last-contact',
+        field: 'details-last-contact'
       },
       {
         step: '/is-this-the-first-chance-to-report',
@@ -183,6 +207,14 @@ module.exports = {
           }
           return list;
         }
+      },
+      {
+        step: '/authorities-cooperation',
+        field: 'authorities-cooperation'
+      },
+      {
+        step: '/authorities-cooperation',
+        field: 'authorities-cooperation-details'
       }
     ]
   },
@@ -192,6 +224,9 @@ module.exports = {
         step: '/pv-want-to-submit-nrm',
         field: 'pv-want-to-submit-nrm',
         parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-want-to-submit-nrm')) {
+            return null;
+          }
           return req.sessionModel.get('pv-want-to-submit-nrm') === 'no' ? 'No' : 'Yes';
         }
       },
@@ -204,26 +239,6 @@ module.exports = {
         field: 'refuse-nrm'
       },
       {
-        step: '/co-operate-with-police-referral',
-        field: 'co-operate-with-police',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/co-operate-with-police-referral')) {
-            return null;
-          }
-          return list;
-        }
-      },
-      {
-        step: '/co-operate-with-police-dtn',
-        field: 'co-operate-with-police',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/co-operate-with-police-dtn')) {
-            return null;
-          }
-          return list;
-        }
-      },
-      {
         step: '/pv-name-referral',
         field: 'pv-name-first-name',
         parse: (list, req) => {
@@ -237,7 +252,7 @@ module.exports = {
         step: '/pv-name-dtn',
         field: 'pv-name-first-name',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-name-dtn')) {
+          if (!req.sessionModel.get('steps').includes('/pv-name-dtn') || req.sessionModel.get('authorities-cooperation') === 'no') {
             return null;
           }
           return `${list} ${req.sessionModel.get('pv-name-last-name')}`;
@@ -257,7 +272,7 @@ module.exports = {
         step: '/pv-name-dtn',
         field: 'pv-name-nickname',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-name-dtn')) {
+          if (!req.sessionModel.get('steps').includes('/pv-name-dtn') || req.sessionModel.get('authorities-cooperation') === 'no') {
             return null;
           }
           return list;
@@ -371,7 +386,7 @@ module.exports = {
         step: '/pv-contact-details-dtn',
         field: 'pv-contact-details-email-check',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-contact-details-dtn') || !req.sessionModel.get('pv-contact-details-email-check')) {
+          if (!req.sessionModel.get('steps').includes('/pv-contact-details-dtn') || !req.sessionModel.get('pv-contact-details-email-check') || req.sessionModel.get('authorities-cooperation') === 'no') {
             return null;
           }
           return `${req.sessionModel.get('pv-contact-details-email-input')}\nSafe to use`;
@@ -391,7 +406,7 @@ module.exports = {
         step: '/pv-contact-details-dtn',
         field: 'pv-contact-details-post-check',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-contact-details-dtn') || !req.sessionModel.get('pv-contact-details-post-check')) {
+          if (!req.sessionModel.get('steps').includes('/pv-contact-details-dtn') || !req.sessionModel.get('pv-contact-details-post-check') || req.sessionModel.get('authorities-cooperation') === 'no') {
             return null;
           }
           return `${req.sessionModel.get('pv-contact-details-street')}\n${req.sessionModel.get('pv-contact-details-town')}\n${req.sessionModel.get('pv-contact-details-county')}\n${req.sessionModel.get('pv-contact-details-postcode')}\nSafe to use`;
@@ -399,19 +414,25 @@ module.exports = {
       },
       {
         step: '/pv-phone-number',
-        field: 'pv-phone-number',
+        field: 'pv-phone-number'
+      },
+      {
+        step: '/pv-phone-number',
+        field: 'pv-phone-number-yes',
         parse: (list, req) => {
-          if (req.sessionModel.get('pv-phone-number') === 'yes') {
+          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
+            return null;
+          } else if (req.sessionModel.get('pv-phone-number') === 'yes') {
             return req.sessionModel.get('pv-phone-number-yes');
           }
-          return list;
+          return 'No';
         }
       },
       {
         step: '/pv-ho-reference',
         field: 'pv-ho-reference',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-ho-reference') || !req.sessionModel.get('pv-contact-details-post-check')) {
+          if (!req.sessionModel.get('steps').includes('/pv-ho-reference')) {
             return null;
           } else if (req.sessionModel.get('pv-ho-reference') === 'yes') {
             return req.sessionModel.get('pv-ho-reference-type');
