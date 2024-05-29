@@ -974,7 +974,7 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-input--width-20'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    validationLink: {
+    dependent: {
       value: 'yes',
       field: 'pv-phone-number'
     }
