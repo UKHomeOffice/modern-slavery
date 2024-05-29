@@ -43,7 +43,7 @@ describe('/apps/nrm/behaviours/authorities-cooperation-edit', () => {
     afterEach(() => {
       Base.prototype.saveValues.restore();
     });
-
+    
     it('sets continueOnEdit to true if authorities-cooperation value is yes', () => {
       instance.saveValues(req, res);
       Base.prototype.saveValues.should.have.been.calledWith(req, res);
