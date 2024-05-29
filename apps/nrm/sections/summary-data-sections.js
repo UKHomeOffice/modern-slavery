@@ -192,6 +192,9 @@ module.exports = {
         step: '/pv-want-to-submit-nrm',
         field: 'pv-want-to-submit-nrm',
         parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-want-to-submit-nrm')) {
+            return null;
+          }
           return req.sessionModel.get('pv-want-to-submit-nrm') === 'no' ? 'No' : 'Yes';
         }
       },
