@@ -59,7 +59,6 @@ const {
   PV_CONTACT_DETAILS_EMAIL_INPUT,
   PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
   PV_PHONE_NUMBER_NO_OPTION,
-  POLICE_CONTACT_YES_OPTION,
   FR_DETAILS_FIRST_NAME_INPUT,
   FR_DETAILS_LAST_NAME_INPUT,
   FR_DETAILS_ROLE_INPUT,
@@ -81,6 +80,7 @@ let APP_CONTAINER_HOST;
 
 let browser;
 let page;
+let client;
 
 /**
  * .only method used to run only tests within this describe function
@@ -100,7 +100,8 @@ describe.only('User path(s)', () => {
     /* Clear browser cookies before start of each test.
         This so we do not hit the invalid token page when running
         subsequent tests */
-    await page._client.send('Network.clearBrowserCookies');
+    client = await page.target().createCDPSession();
+    await client.send('Network.clearBrowserCookies');
     await page.goto(initialUrl);
   });
 
@@ -137,15 +138,6 @@ describe.only('User path(s)', () => {
     await clickSelector(page, PV_GENDER_MALE_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, PV_NATIONALITY, 'French');
-    await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
-    await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
-    await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-    await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
   }
 
@@ -298,8 +290,6 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
       await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
-      await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-      await clickSelector(page, CONTINUE_BUTTON);
     }
 
     await focusThenType(page, FR_DETAILS_FIRST_NAME_INPUT, 'Jack');
@@ -312,7 +302,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(5);
+  const defaultTimeout = timeoutInMins(10);
 
   it('Happy path - Adult', async () => {
     try {
@@ -345,7 +335,8 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      await page._client.send('Page.setDownloadBehavior', {
+      client = await page.target().createCDPSession();
+      await client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
       });

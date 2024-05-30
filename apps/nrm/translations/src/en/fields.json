@@ -681,17 +681,6 @@
   "pv-phone-number-yes": {
     "label": "Enter potential victim's phone number"
   },
-  "co-operate-with-police": {
-    "legend": "Can the police contact them about their case?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
   "fr-details-first-name": {
     "label": "First name"
   },
