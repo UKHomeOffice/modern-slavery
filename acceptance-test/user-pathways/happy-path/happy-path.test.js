@@ -59,7 +59,6 @@ const {
   PV_CONTACT_DETAILS_EMAIL_INPUT,
   PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
   PV_PHONE_NUMBER_NO_OPTION,
-  POLICE_CONTACT_YES_OPTION,
   FR_DETAILS_FIRST_NAME_INPUT,
   FR_DETAILS_LAST_NAME_INPUT,
   FR_DETAILS_ROLE_INPUT,
@@ -82,7 +81,6 @@ let APP_CONTAINER_HOST;
 let browser;
 let page;
 let client;
-
 /**
  * .only method used to run only tests within this describe function
  * block. This can be removed if we wish to incorporate other tests in external
@@ -140,15 +138,15 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, PV_NATIONALITY, 'French');
     await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
-    await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
-    await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-    await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
+    /**  once merged with  Cooperation with Authorities add test back in
+    // await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
+    // await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
+    // await clickSelector(page, CONTINUE_BUTTON);
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+    // await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+    // await clickSelector(page, CONTINUE_BUTTON);
+    */
   }
 
   /**
@@ -299,8 +297,6 @@ describe.only('User path(s)', () => {
       await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
       await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
-      await clickSelector(page, CONTINUE_BUTTON);
-      await clickSelector(page, POLICE_CONTACT_YES_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
     }
 
