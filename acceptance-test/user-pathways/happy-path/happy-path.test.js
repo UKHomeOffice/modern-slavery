@@ -320,11 +320,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-<<<<<<< HEAD
   const defaultTimeout = timeoutInMins(10);
-=======
-  const defaultTimeout = timeoutInMins(20);
->>>>>>> ac6eae8 (NRM-259 last contact PV and exploiters pages)
 
   it('Happy path - Adult', async () => {
     try {
