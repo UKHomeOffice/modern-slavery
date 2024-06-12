@@ -30,7 +30,7 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd --delete -f kube/jobs/ms-schema-job.yml
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/icasework -f kube/dashboard
+  # $kd -f kube/icasework -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/app
