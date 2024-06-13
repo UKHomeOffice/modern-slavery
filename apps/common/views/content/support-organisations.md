@@ -24,7 +24,7 @@
 
 <p class="govuk-body">Telephone: 0141 884 7900 (male and female victims) and 0141 212 8553 (out of hours-for urgent needs/emergencies only)</p>
 
-<p class="govuk-body">Email: <a href="mailto:traffickingscotland@migranthelpuk.org">traffickingscotland@migranthelpuk.org</a></p>
+<p class="govuk-body">Email: <a href="mailto:scotland@migranthelpuk.org">scotland@migranthelpuk.org</a></p>
 
 <div class="govuk-!-padding-bottom-3"></div>
 
@@ -40,6 +40,6 @@
 
 <p class="govuk-body">Telephone: 028 90662385 (female victims of sexual exploitation or domestic servitude)</p>
 
-<p class="govuk-body">Email: <a href="mailto:heather.woods@blwa.cjsm.net">heather.woods@blwa.cjsm.net</a></p>
+<p class="govuk-body">Email: <a href="mailto:noelle.collins@blwa.cjsm.net">noelle.collins@blwa.cjsm.net</a></p>
 
 <div class="govuk-!-padding-bottom-1"></div>
