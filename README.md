@@ -62,7 +62,7 @@ Please note if you are using IP whitelisting in the iCasework backend you will a
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
 ```bash
-$ npm install
+$ yarn install
 ```
 
 Install [Redis](https://redis.io/) and make sure you have a running redis instance in the background.
