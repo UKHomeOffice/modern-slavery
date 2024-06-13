@@ -81,8 +81,6 @@ let APP_CONTAINER_HOST;
 
 let browser;
 let page;
-let client;
-
 /**
  * .only method used to run only tests within this describe function
  * block. This can be removed if we wish to incorporate other tests in external
@@ -101,8 +99,7 @@ describe.only('User path(s)', () => {
     /* Clear browser cookies before start of each test.
         This so we do not hit the invalid token page when running
         subsequent tests */
-    client = await page.target().createCDPSession();
-    await client.send('Network.clearBrowserCookies');
+    await page._client.send('Network.clearBrowserCookies');
     await page.goto(initialUrl);
   });
 
@@ -314,7 +311,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(10);
+  const defaultTimeout = timeoutInMins(5);
 
   it('Happy path - Adult', async () => {
     try {
@@ -347,8 +344,7 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      client = await page.target().createCDPSession();
-      await client.send('Page.setDownloadBehavior', {
+      await page._client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
       });
