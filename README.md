@@ -62,7 +62,7 @@ Please note if you are using IP whitelisting in the iCasework backend you will a
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
 ```bash
-$ npm install
+$ yarn install
 ```
 
 Install [Redis](https://redis.io/) and make sure you have a running redis instance in the background.
@@ -234,6 +234,7 @@ There are a bunch of microservices as part of modernslavery:
 for legacy information saved as part of the 'save and return' process, so users can update if required before submission. 
 This page should be reviewed within 12 months to see if any active cases in the 'save and return' feature are using this
 field before the page can be permanently removed. 
+
 
 
 
