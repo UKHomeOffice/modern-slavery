@@ -255,6 +255,21 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('First Responder exploiters last in contact Validation', () => {
+    it('does not pass the when-last-contact page if nothing entered', async () => {
+      const URI = '/when-last-contact';
+      await initSession(URI);
+      await passStep(URI, {});
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us when they were last in contact/);
+    });
+  });
+
   describe('User enters is this the first chance to report Validation', () => {
     it('does not pass is this the first chance to report page if nothing entered', async () => {
       const URI = '/is-this-the-first-chance-to-report';

@@ -202,6 +202,8 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
+  response.PVExploitersLastContact = data['when-last-contact'];
+  response.DetailsLastContact  = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',

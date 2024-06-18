@@ -22,6 +22,8 @@ module.exports = {
     HOW_WERE_THEY_TREATED: '#how-they-were-treated',
     WHY_THEY_STAYED: '#why-they-stayed',
     WHY_DID_THEY_LEAVE: '#how-why-did-they-leave-the-situation',
+    WHEN_LAST_CONTACT_LAST_WEEK: '#when-last-contact-last-week',
+    DETAILS_LAST_CONTACT: '#details-last-contact',
     FIRST_CHANCE_TO_REPORT_NO: '#is-this-the-first-chance-to-report-no',
     WHY_REPORT_NOW: '#why-report-now',
     WHY_ARE_YOU_MAKING_REFERRAL: '#why-are-you-making-the-referral',
