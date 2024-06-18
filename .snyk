@@ -7,12 +7,8 @@ ignore:
         reason: will be resolved with HOFF-659 
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-<<<<<<< HEAD
 
 
-=======
-  
->>>>>>> 2e64aec (NRM-259-New-Pages fixing snyk test)
   SNYK-JS-AXIOS-6124857:
     - '*':
         reason: will be resolved with HOFF-659 
@@ -20,7 +16,6 @@ ignore:
         created: 2024-04-16T11:0522.224Z
 
   SNYK-JS-AXIOS-6144788:
-<<<<<<< HEAD
     - "*":
         reason: will be resolved with HOFF-659
         expires: 2024-07-16T00:00:00.000Z
@@ -50,10 +45,6 @@ ignore:
   SNYK-JS-TOUGHCOOKIE-5672873:
     - "*":
         reason: will be resolved with HOFF-659
-=======
-    - '*':
-        reason: will be resolved with HOFF-659 
->>>>>>> 2e64aec (NRM-259-New-Pages fixing snyk test)
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
   
