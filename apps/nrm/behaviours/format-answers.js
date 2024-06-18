@@ -101,6 +101,12 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('authorities-cooperation')) {
+    data = Object.assign({}, data, {
+      formattedAuthoritiesCooperation: capitaliseText(req.sessionModel.get('authorities-cooperation'))
+    });
+  }
+
   if (req.sessionModel.get('where-exploitation-happened')) {
     data = Object.assign({}, data, {
       formattedWhereExploitationHappened: capitaliseText(

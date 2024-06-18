@@ -32,6 +32,7 @@ module.exports = [
   '/types-of-exploitation',
   '/any-other-pvs',
   '/reported-to-police',
+  '/authorities-cooperation',
   '/pv-want-to-submit-nrm',
   '/refuse-nrm',
   '/pv-gender-dtn',

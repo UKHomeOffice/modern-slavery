@@ -167,6 +167,9 @@
     "required": "You must enter a crime or CAD reference",
     "maxlength": "You must enter no more than 15,000 characters"
   },
+  "authorities-cooperation": {
+    "required": "Tell us if the potential victim will co-operate with public authorities"
+  },
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
   },

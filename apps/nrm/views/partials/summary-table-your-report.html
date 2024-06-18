@@ -491,5 +491,20 @@
       </td>
     </tr>
     {{/values.reported-to-police}}
+
+    {{#values.authorities-cooperation}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{formattedAuthoritiesCooperation}}</span>
+          {{#values.authorities-cooperation-details}}
+            <span>{{values.authorities-cooperation-details}}</span>
+          {{/values.authorities-cooperation-details}}
+      </td>
+      <td>
+        <a href="/nrm/authorities-cooperation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.authorities-cooperation}}
   </tbody>
 </table>
