@@ -118,6 +118,12 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('when-last-contact')) {
+    data = Object.assign({}, data, {
+      formattedWhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
+    });
+  }
+
   if (req.sessionModel.get('is-this-the-first-chance-to-report')) {
     data = Object.assign({}, data, {
       formattedIsThisTheFirstChanceToReport: removeDashesFromText(capitaliseText(
