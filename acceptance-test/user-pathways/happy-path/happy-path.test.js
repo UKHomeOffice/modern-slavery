@@ -83,7 +83,6 @@ let APP_CONTAINER_HOST;
 let browser;
 let page;
 let client;
-let client;
 
 /**
  * .only method used to run only tests within this describe function
