@@ -32,12 +32,6 @@ const formatAnswers = req => {
     });
   }
 
-  if (req.sessionModel.get('co-operate-with-police')) {
-    data = Object.assign({}, data, {
-      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police'))
-    });
-  }
-
   if (req.sessionModel.get('pv-gender')) {
     let formattedPvGenderValue = removeDashesFromText(capitaliseText(req.sessionModel.get('pv-gender')));
 
@@ -115,6 +109,12 @@ const formatAnswers = req => {
     data = Object.assign({}, data, {
       formattedWereTheyTakenSomewhereByTheirExploiter: removeDashesFromText(
         capitaliseText(req.sessionModel.get('were-they-taken-somewhere-by-their-exploiter')))
+    });
+  }
+
+  if (req.sessionModel.get('when-last-contact')) {
+    data = Object.assign({}, data, {
+      formattedWhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
     });
   }
 

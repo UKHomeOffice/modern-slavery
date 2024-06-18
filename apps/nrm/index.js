@@ -164,7 +164,26 @@ module.exports = {
         saveFormSession
       ],
       fields: ['how-why-did-they-leave-the-situation'],
-      next: '/is-this-the-first-chance-to-report'
+      next: '/when-last-contact'
+    },
+    '/when-last-contact': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['when-last-contact'],
+      forks: [{
+        target: '/is-this-the-first-chance-to-report',
+        condition: req=> req.sessionModel.get('when-last-contact') === 'Not-sure'
+      }],
+      next: '/details-last-contact',
+      continueOnEdit: true
+    },
+    '/details-last-contact': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['details-last-contact'],
+      next: '/is-this-the-first-chance-to-report',
     },
     '/is-this-the-first-chance-to-report': {
       behaviours: [
@@ -380,19 +399,14 @@ module.exports = {
         'pv-nationality',
         'pv-nationality-second'
       ],
-      next: '/co-operate-with-police-dtn'
-    },
-    '/co-operate-with-police-dtn': {
-      template: 'co-operate-with-police',
-      fields: ['co-operate-with-police'],
-      behaviours: [
-        saveFormSession
-      ],
-      next: '/confirm',
       forks: [{
         target: '/pv-name-dtn',
-        condition: req => req.sessionModel.get('co-operate-with-police') === 'yes'
-      }]
+        condition: {
+          field: 'authorities-cooperation',
+          value: 'yes'
+        }
+      }],
+      next: '/confirm'
     },
     '/pv-name-dtn': {
       template: 'pv-name',
@@ -544,7 +558,7 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/co-operate-with-police-referral',
+        target: '/fr-details',
         condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
@@ -565,7 +579,7 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/co-operate-with-police-referral',
+        target: '/fr-details',
         condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
@@ -576,14 +590,6 @@ module.exports = {
       fields: [
         'pv-phone-number',
         'pv-phone-number-yes'
-      ],
-      next: '/co-operate-with-police-referral'
-    },
-    '/co-operate-with-police-referral': {
-      template: 'co-operate-with-police',
-      fields: ['co-operate-with-police'],
-      behaviours: [
-        saveFormSession
       ],
       next: '/fr-details'
     },

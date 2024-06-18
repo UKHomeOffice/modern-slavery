@@ -152,7 +152,6 @@ module.exports = data => {
   response.CountryLabel = _.upperFirst(data['fr-location']);
   response.HowToNotify = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
-  response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.CIDReference = data['pv-ho-reference-type'];
 
@@ -202,6 +201,8 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
+  response.PVExploitersLastContact = data['when-last-contact'];
+  response.DetailsLastContact  = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',

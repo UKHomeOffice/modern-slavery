@@ -11,6 +11,7 @@ const {
   START_REPORT,
   CONTINUE_BUTTON,
   DOWNLOAD_REPORT,
+  DETAILS_LAST_CONTACT,
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
   EMAIL_INPUT,
@@ -43,6 +44,7 @@ const {
   CURRENT_PV_LOCATION_UK_CITY,
   CURRENT_PV_LOCATION_UK_REGION,
   WHO_EXPLOITED_PV,
+  WHEN_LAST_CONTACT_LAST_WEEK,
   ANY_OTHER_PVS_NO_OPTION,
   PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
   REFER_CASE_TO_NRM_YES_OPTION,
@@ -59,7 +61,6 @@ const {
   PV_CONTACT_DETAILS_EMAIL_INPUT,
   PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
   PV_PHONE_NUMBER_NO_OPTION,
-  POLICE_CONTACT_YES_OPTION,
   FR_DETAILS_FIRST_NAME_INPUT,
   FR_DETAILS_LAST_NAME_INPUT,
   FR_DETAILS_ROLE_INPUT,
@@ -140,15 +141,15 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, PV_NATIONALITY, 'French');
     await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
-    await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
-    await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-    await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
+    /**  once merged with  Cooperation with Authorities add test back in
+    // await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
+    // await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
+    // await clickSelector(page, CONTINUE_BUTTON);
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+    // await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+    // await clickSelector(page, CONTINUE_BUTTON);
+    */
   }
 
   /**
@@ -212,6 +213,10 @@ describe.only('User path(s)', () => {
     await focusThenType(page, WHY_THEY_STAYED, 'Test input of why they stayed');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHY_DID_THEY_LEAVE, 'Test input of why they left');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, WHEN_LAST_CONTACT_LAST_WEEK);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, DETAILS_LAST_CONTACT, 'Test input of details last contact');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, FIRST_CHANCE_TO_REPORT_NO);
     await clickSelector(page, CONTINUE_BUTTON);
@@ -300,8 +305,6 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
       await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
-      await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-      await clickSelector(page, CONTINUE_BUTTON);
     }
 
     await focusThenType(page, FR_DETAILS_FIRST_NAME_INPUT, 'Jack');
@@ -314,7 +317,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(10);
+  const defaultTimeout = timeoutInMins(20);
 
   it('Happy path - Adult', async () => {
     try {
@@ -347,8 +350,7 @@ describe.only('User path(s)', () => {
 
   it('downloads the prompt sheet', async () => {
     try {
-      client = await page.target().createCDPSession();
-      await client.send('Page.setDownloadBehavior', {
+      await page._client.send('Page.setDownloadBehavior', {
         behavior: 'allow',
         downloadPath: downloadPath
       });
