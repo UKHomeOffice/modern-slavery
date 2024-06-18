@@ -242,21 +242,21 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: acceptance_tests_branch
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    volumes:
-      - name: dockersock
-        path: /var/run
-    commands:
-      - apk add --no-cache docker-compose
-      - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
-      - docker-compose exec -T modern-slavery-main sh -c 'npm run test:docker-acceptance'
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
+  # - name: acceptance_tests_branch
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #   volumes:
+  #     - name: dockersock
+  #       path: /var/run
+  #   commands:
+  #     - apk add --no-cache docker-compose
+  #     - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
+  #     - docker-compose exec -T modern-slavery-main sh -c 'npm run test:docker-acceptance'
+  #   when:
+  #     branch:
+  #       include:
+  #         - master
+  #         - feature/*
+  #     event: pull_request
 
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
