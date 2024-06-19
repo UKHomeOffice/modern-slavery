@@ -775,6 +775,28 @@ module.exports = {
       'not-sure'
     ]
   },
+  'future-exploitation-concerns': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'future-exploitation-reasons':{
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 3
+      }
+    ]
+  },
   'reported-to-police': {
     mixin: 'radio-group',
     validate: ['required'],

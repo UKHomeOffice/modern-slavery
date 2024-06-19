@@ -534,7 +534,7 @@ describe('validation checks of the nrm journey', () => {
   });
 
   describe('Reported to Police Validations', () => {
-    it('does not pass the reported to policee page if nothing entered', async () => {
+    it('does not pass the reported to police page if nothing entered', async () => {
       const URI = '/reported-to-police';
       await initSession(URI);
       await passStep(URI, {});

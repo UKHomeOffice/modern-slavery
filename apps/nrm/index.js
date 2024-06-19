@@ -342,7 +342,29 @@ module.exports = {
         saveFormSession
       ],
       fields: ['any-other-pvs'],
-      next: '/reported-to-police'
+      next: '/future-exploitation'
+    },
+    "/future-exploitation": {
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation-concerns'],
+      forks: [{
+        target: '/concerns-future-exploitation',
+        condition: {
+          field: 'future-exploitation-concerns',
+          value: 'yes'
+        }
+      }],
+      next: '/reported-to-police',
+      continueOnEdit: true
+    },
+    '/concerns-future-exploitation':{
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation-reasons'],
+      next:'/reported-to-police'
     },
     '/reported-to-police': {
       behaviours: [

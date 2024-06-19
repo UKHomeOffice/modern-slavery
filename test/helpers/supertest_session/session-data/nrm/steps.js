@@ -33,6 +33,8 @@ module.exports = [
   '/who-exploited-pv',
   '/types-of-exploitation',
   '/any-other-pvs',
+  '/future-exploitation',
+  '/concerns-future-exploitation',
   '/reported-to-police',
   '/authorities-cooperation',
   '/pv-want-to-submit-nrm',

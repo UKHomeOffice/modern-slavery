@@ -41,6 +41,8 @@ module.exports = {
     CURRENT_PV_LOCATION_UK_REGION: '#current-pv-location-uk-region',
     WHO_EXPLOITED_PV: '#who-exploited-pv',
     ANY_OTHER_PVS_NO_OPTION: '#any-other-pvs-no',
+    FUTURE_EXPLOITATION_CONCERNS_YES : '#future-exploitation-concerns-yes',
+    FUTURE_EXPLOITATION_REASONS : "#future-exploitation-reasons",
     PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION: '#reported-to-police-no',
     COOPERATION_WITH_AUTHORITIES_NO_OPTION: '#authorities-cooperation-no',
     REFER_CASE_TO_NRM_YES_OPTION: '#pv-want-to-submit-nrm-yes',

@@ -258,6 +258,30 @@
     </tr>
     {{/values.any-other-pvs}}
 
+    {{#values.future-exploitation-concerns}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.future-exploitation-concerns.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedConcernsFutureExploitation}}</span>
+      </td>
+      <td>
+        <a href="/nrm/future-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.future-exploitation-concerns.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.future-exploitation-concerns}}
+
+    {{#values.future-exploitation-reasons}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{values.future-exploitation-reasons}}</span>
+      </td>
+      <td>
+        <a href="/nrm/concerns-future-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.future-exploitation-reasons}}
+
     {{#values.when-did-the-exploitation-take-place}}
     <tr>
       <td>{{#t}}pages.confirm.fields.when-did-the-exploitation-take-place.label{{/t}}</td>
