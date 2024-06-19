@@ -50,19 +50,7 @@
       </tr>
       {{/values.refuse-nrm}}
       {{/isDutyToNotifyPath}}
-
-      {{#values.co-operate-with-police}}
-        <tr>
-          <td>{{#t}}pages.confirm.fields.co-operate-with-police.label{{/t}}</td>
-          <td class="no-white-space">
-            <span>{{formattedCoOperateWithPolice}}</span>
-          </td>
-          <td>
-            <a href="/nrm/co-operate-with-police-{{#values.is-referral}}referral{{/values.is-referral}}{{^values.is-referral}}dtn{{/values.is-referral}}/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.refuse-nrm.label{{/t}}">Change</a>
-          </td>
-        </tr>
-      {{/values.co-operate-with-police}}
-
+      
       {{#values.pv-name-first-name}}
       <tr>
         <td>{{#t}}pages.confirm.fields.pv-name.label{{/t}}</td>

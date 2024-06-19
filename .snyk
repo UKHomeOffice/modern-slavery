@@ -3,50 +3,50 @@ version: v1.22.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-AXIOS-6032459:
-    - '*':
-        reason: will be resolved with HOFF-659 
+    - "*":
+        reason: will be resolved with HOFF-659
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
+  
   SNYK-JS-AXIOS-6124857:
-    - '*':
-        reason: will be resolved with HOFF-659 
+    - "*":
+        reason: will be resolved with HOFF-659
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
 
   SNYK-JS-AXIOS-6144788:
-    - '*':
-        reason: will be resolved with HOFF-659 
+    - "*":
+        reason: will be resolved with HOFF-659
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
 
   SNYK-JS-MARKDOWNIT-6483324:
-    - '*':
+    - "*":
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-      
+
   SNYK-JS-INFLIGHT-6095116:
-    - '*':
+    - "*":
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
 
   SNYK-JS-REQUEST-3361831:
-    - '*':
+    - "*":
         reason: No upgrade or patch available yet
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
 
   SNYK-JS-TOUGHCOOKIE-5672873:
-    - '*':
-        reason: will be resolved with HOFF-659 
+    - "*":
+        reason: will be resolved with HOFF-659
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
+ 
   SNYK-JS-BRACES-6838727:
-    - '*':
+    - "*":
         reason: No upgrade or patch available
         expires: 2024-07-16T00:00:00.000Z
         created: 2024-04-16T11:0522.224Z
-
 patch: {}

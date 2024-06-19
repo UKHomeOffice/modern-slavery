@@ -183,9 +183,6 @@
   "pv-phone-number": {
     "header": "Can the support provider contact them by phone?"
   },
-  "co-operate-with-police": {
-    "header": "Can the police contact them about their case?"
-  },
   "fr-details": {
     "header": "What are your contact details?",
     "read-only-field-1-label": "Email",
