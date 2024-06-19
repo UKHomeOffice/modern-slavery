@@ -299,9 +299,6 @@
     "required": "You must enter the potential victim's phone number",
     "maxlength": "You must enter no more than 15,000 characters"
   },
-  "co-operate-with-police" : {
-    "required": "You must select an option"
-  },
   "fr-details-first-name" : {
     "required": "You must enter your first name ",
     "maxlength": "You must enter no more than 15,000 characters"

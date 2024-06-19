@@ -1185,17 +1185,6 @@ module.exports = {
       field: 'pv-phone-number'
     }
   },
-  'co-operate-with-police': {
-    mixin: 'radio-group',
-    validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [
-      'yes',
-      'no'
-    ]
-  },
   'fr-details-first-name': {
     mixin: 'input-text',
     validate: ['required', {type: 'maxlength', arguments: [15000]}]

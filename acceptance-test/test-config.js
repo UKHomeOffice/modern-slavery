@@ -57,7 +57,6 @@ module.exports = {
     PV_CONTACT_DETAILS_EMAIL_INPUT: '#pv-contact-details-email-input',
     PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION: '#pv-contact-details-email-check',
     PV_PHONE_NUMBER_NO_OPTION: '#pv-phone-number-no',
-    POLICE_CONTACT_YES_OPTION: '#co-operate-with-police-yes',
     FR_DETAILS_NAME_INPUT: '#fr-details-name',
     FR_DETAILS_ROLE_INPUT: '#fr-details-role',
     FR_DETAILS_PHONE_INPUT: '#fr-details-phone',

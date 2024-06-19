@@ -39,7 +39,6 @@ module.exports = [
   '/refuse-nrm',
   '/pv-gender-dtn',
   '/pv-nationality-dtn',
-  '/co-operate-with-police-dtn',
   '/pv-name-dtn',
   '/pv-contact-details-dtn',
   '/does-pv-need-support',
@@ -56,7 +55,6 @@ module.exports = [
   '/someone-else',
   '/pv-contact-details-referral',
   '/pv-phone-number',
-  '/co-operate-with-police-referral',
   '/fr-details',
   '/fr-alternative-contact',
   '/confirm'
