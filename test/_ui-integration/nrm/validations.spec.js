@@ -583,6 +583,23 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('Authorities co-operation', () => {
+    it('does not pass the Authorities Co-operation page if no option is selected', async () => {
+      const URI = '/authorities-cooperation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if the potential victim will co-operate with public authorities/);
+    });
+
+  });
+
   describe('PV Want to Submit NRM Validation', () => {
     it('does not pass the pv want to submit nrm page if nothing entered', async () => {
       const URI = '/pv-want-to-submit-nrm';

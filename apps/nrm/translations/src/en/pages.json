@@ -133,6 +133,10 @@
   "reported-to-police": {
     "header": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?"
   },
+  "authorities-cooperation": {
+    "header": "Co-operation with public authorities",
+    "paragraph-1": "The UK public authorities (such as law enforcement agencies) may investigate or undertake criminal proceedings into any incidents you’ve reported in this referral."
+  },
   "pv-want-to-submit-nrm": {
     "header": "Do they want their case referred to the NRM?"
   },
@@ -349,6 +353,9 @@
       },
       "reported-to-police": {
         "label": "Reported to police"
+      },
+      "authorities-cooperation": {
+        "label": "Co-operation with public authorities"
       },
       "does-pv-need-support": {
         "label": "Support requested",

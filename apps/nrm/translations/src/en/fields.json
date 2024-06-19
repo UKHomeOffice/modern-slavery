@@ -482,6 +482,21 @@
   "reported-to-police-crime-reference": {
     "label": "Enter crime or CAD reference"
   },
+  "authorities-cooperation": {
+    "hint": "If you are unsure, save your progress and check with them",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "authorities-cooperation-details": {
+    "label": "Details of co-operation with authorities",
+    "hint": "Details about the individual’s existing or planned co-operation (optional)"
+  },
   "pv-want-to-submit-nrm": {
     "legend": "Do they have a crime reference number?",
     "paragraph-1": "If a potential victim wants you to refer their case, they can get:",

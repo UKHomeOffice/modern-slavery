@@ -47,6 +47,7 @@ const {
   WHEN_LAST_CONTACT_LAST_WEEK,
   ANY_OTHER_PVS_NO_OPTION,
   PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
+  COOPERATION_WITH_AUTHORITIES_NO_OPTION,
   REFER_CASE_TO_NRM_YES_OPTION,
   DOES_PV_NEED_SUPPORT_YES_OPTION,
   PV_NAME_FIRST_NAME,
@@ -249,6 +250,8 @@ describe.only('User path(s)', () => {
     await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, COOPERATION_WITH_AUTHORITIES_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
 
     if (caseReferred && typeOfPV === 'adult') {

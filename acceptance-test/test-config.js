@@ -42,6 +42,7 @@ module.exports = {
     WHO_EXPLOITED_PV: '#who-exploited-pv',
     ANY_OTHER_PVS_NO_OPTION: '#any-other-pvs-no',
     PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION: '#reported-to-police-no',
+    COOPERATION_WITH_AUTHORITIES_NO_OPTION: '#authorities-cooperation-no',
     REFER_CASE_TO_NRM_YES_OPTION: '#pv-want-to-submit-nrm-yes',
     DOES_PV_NEED_SUPPORT_YES_OPTION: '#does-pv-need-support-yes',
     PV_NAME_FIRST_NAME: '#pv-name-first-name',

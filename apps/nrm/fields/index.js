@@ -810,6 +810,35 @@ module.exports = {
       field: 'reported-to-police'
     }
   },
+  'authorities-cooperation': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'authorities-cooperation-details-fieldset',
+      child: 'partials/authorities-cooperation-yes'
+    }, {
+      value: 'no'
+    }]
+  },
+  "authorities-cooperation-details": {
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'authorities-cooperation'
+    }
+  },
   'pv-want-to-submit-nrm': {
     mixin: 'radio-group',
     validate: ['required'],
