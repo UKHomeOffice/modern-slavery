@@ -1,7 +1,9 @@
 {{<partials-page}}
-  {{$back}}<a class="link-back" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
+  {{$back}}<a class="govuk-back-link" href="/nrm/reports">{{#t}}buttons.back-to-reports{{/t}}</a><br>{{/back}}
   {{$page-content}}
-    {{> partials-summary-table}}
+    {{#rows}}
+      {{> partials-summary-table}}
+    {{/rows}}
     {{#input-submit}}continue-to-next-question{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}
