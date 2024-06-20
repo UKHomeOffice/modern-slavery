@@ -2,15 +2,24 @@
 'use strict';
 
 require('hof/frontend/themes/gov-uk/client-js');
-var $ = require('jquery');
+const $ = require('jquery');
+const govuk = require('govuk-frontend');
+const accessibleAutocomplete = require('accessible-autocomplete');
 
-var accessibleAutocomplete = require('accessible-autocomplete');
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({
     defaultValue: '',
     selectElement: this
   });
 });
+
+// add error styling for select fields that are using accessible-autocomplete
+const autocompleteDiv = $('.autocomplete__wrapper').parent();
+if (autocompleteDiv.parent().hasClass('govuk-form-group--error')) {
+  $('.autocomplete__input').addClass('autocomplete__input--error');
+} else if (!autocompleteDiv.parent().hasClass('govuk-form-group--error')) {
+  $('.autocomplete__input').removeClass('autocomplete__input--error');
+}
 
 /**
  * Override for Start Page width
@@ -36,7 +45,7 @@ if ($('.add-another').length) {
   var ukOrOverseas = $('.uk').length ?
     '#where-exploitation-happened-uk-city-' : '#where-exploitation-happened-overseas-country-';
   $('.autocomplete__wrapper').parent().addClass('list-entry');
-  var totalInputs = $('.add-another .form-group input').length;
+  var totalInputs = $('.add-another .govuk-form-group input').length;
   var hiddenTotal = [];
 
   var addAnotherButton = $('<button type="button" class="govuk-button govuk-button--secondary"></button>');
@@ -44,12 +53,12 @@ if ($('.add-another').length) {
   // eslint-disable-next-line no-inner-declarations
   function updateButtonAndText() {
     // last item that's visible
-    var lastVisibleIndex = $('.add-another .form-group select').length - hiddenTotal.length;
+    var lastVisibleIndex = $('.add-another .govuk-form-group select').length - hiddenTotal.length;
     $(ukOrOverseas + lastVisibleIndex + '-group button').show();
     addAnotherButton.text('Add another location (' + hiddenTotal.length + ' remaining)');
   }
 
-  $('.add-another .form-group select').each(function hideAdditional(index) {
+  $('.add-another .govuk-form-group select').each(function hideAdditional(index) {
     if (index > 0) {
       var removeButton =
         $('<button type="button" class="govuk-button govuk-button--secondary list-entry-button">Remove</button>')
@@ -72,7 +81,7 @@ if ($('.add-another').length) {
     }
 
     if (index > 0 && $(this).val() === '') {
-      $(this).parents('.form-group').hide();
+      $(this).parents('.govuk-form-group').hide();
       hiddenTotal.push(index + 1);
     }
   });
@@ -107,3 +116,5 @@ if ($('.add-another').length) {
 
   $('.add-another').show();
 }
+
+govuk.initAll();

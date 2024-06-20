@@ -1,15 +1,15 @@
 'use strict';
 
-const env = process.env.NODE_ENV || 'local';
+const env = process.env.NODE_ENV;
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8081}`;
 
 module.exports = {
   aws: {
-    sqs: process.env.AWS_SQS || 'test-queue'
+    sqs: process.env.AWS_SQS
   },
   reports: {
-    deletionTimeout: process.env.DELETION_TIMEOUT || 28,
-    alertTimeout: process.env.FIRST_ALERT_TIMEOUT || 7
+    deletionTimeout: process.env.DELETION_TIMEOUT,
+    alertTimeout: process.env.FIRST_ALERT_TIMEOUT
   },
   audit: {
     enabled: String(process.env.AUDIT_DATA) === 'true',
@@ -23,15 +23,15 @@ module.exports = {
   allowSkip: String(process.env.ALLOW_SKIP) === 'true',
   skipEmail: process.env.SKIP_EMAIL,
   writeToCasework: process.env.WRITE_TO_CASEWORK || env !== 'local',
-  hostUrl: process.env.HOST_URL || 'http://localhost:8081',
+  hostUrl: process.env.HOST_URL,
   saveService: {
-    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '3000',
+    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
     host: process.env.DATASERVICE_SERVICE_HOST &&
       `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
   },
   redis: {
-    port: process.env.REDIS_PORT || '6379',
-    host: process.env.REDIS_HOST || '127.0.0.1'
+    port: process.env.REDIS_PORT,
+    host: process.env.REDIS_HOST
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
