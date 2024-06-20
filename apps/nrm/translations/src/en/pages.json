@@ -280,7 +280,7 @@
         "label": "How and why they left the situation"
       },
       "when-last-contact": {
-        "label": "Victim and exploiters last in contact?"
+        "label": "When were they last in contact with exploiters"
       },
       "details-last-contact": {
         "label": "Details of last contact"
@@ -355,16 +355,19 @@
         "label": "Other potential victims"
       },
       "future-exploitation-concerns": {
-        "label": "Are there concerns that the potential victim could be exploited again in the future?"
+        "label": "Concerns of re-exploitation"
       },
       "future-exploitation-reasons":{
-        "label":"Why are there concerns about exploitation in the future?"
+        "label":"Reasons for concerns"
        },
       "reported-to-police": {
         "label": "Reported to police"
       },
       "authorities-cooperation": {
         "label": "Co-operation with public authorities"
+      },
+      "authorities-cooperation-details": {
+        "label": "Details about co-operation"
       },
       "does-pv-need-support": {
         "label": "Support requested",

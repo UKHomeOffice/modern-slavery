@@ -159,7 +159,7 @@
     }
   },
   "details-last-contact": {
-    "label": "Details of last contact",
+    "label": "Details of last contact (optional)",
     "hint": "You can email any files as evidence to us after you have submitted the report"
   },
   "is-this-the-first-chance-to-report": {
@@ -474,8 +474,8 @@
     }
   },
   "future-exploitation-reasons": {
-    "label": " ",
-    "hint": "Give any evidence or reasons for the concerns. If you have file-based evidence, this can be sent to us once the report is submitted"
+    "label": "Explain why there are concerns",
+    "hint": "If you have file-based evidence, this can be sent to us once the report is submitted"
   },
   "reported-to-police": {
     "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",

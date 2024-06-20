@@ -274,7 +274,7 @@
     <tr>
       <td>{{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}</td>
       <td class="no-white-space">
-        <span>{{values.future-exploitation-reasons}}</span>
+        <span>{{formattedFutureExploitationReasons}}</span>
       </td>
       <td>
         <a href="/nrm/concerns-future-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}">Change</a>
@@ -418,7 +418,7 @@
     <tr>
       <td>{{#t}}pages.confirm.fields.details-last-contact.label{{/t}}</td>
       <td class="no-white-space">
-        <span>{{values.details-last-contact}}</span>
+        <span>{{formattedDetailsLastContact}}</span>
       </td>
       <td>
         <a href="/nrm/details-last-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.values.details-last-contact.legend{{/t}}">Change</a>
@@ -545,14 +545,25 @@
       <td>{{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}</td>
       <td class="no-white-space">
           <span>{{formattedAuthoritiesCooperation}}</span>
-          {{#values.authorities-cooperation-details}}
-            <span>{{values.authorities-cooperation-details}}</span>
-          {{/values.authorities-cooperation-details}}
       </td>
       <td>
         <a href="/nrm/authorities-cooperation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}">Change</a>
       </td>
     </tr>
     {{/values.authorities-cooperation}}
+
+    {{#values.authorities-cooperation-details}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.authorities-cooperation-details.label{{/t}}</td>
+      <td class="no-white-space">
+          {{#values.authorities-cooperation-details}}
+            <span>{{formattedAuthoritiesCooperationDetails}}</span>
+          {{/values.authorities-cooperation-details}}
+      </td>
+      <td>
+        <a href="/nrm/authorities-cooperation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.authorities-cooperation-details}}
   </tbody>
 </table>

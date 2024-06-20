@@ -1,7 +1,7 @@
 'use strict';
 
 const dataFormatter = require('../util/data-formatter');
-const { removeDashesFromText, capitaliseText } = dataFormatter;
+const { removeDashesFromText, capitaliseText, truncateText } = dataFormatter;
 
 /**
  * Format session answers for display purposes
@@ -121,6 +121,24 @@ const formatAnswers = req => {
   if (req.sessionModel.get('when-last-contact')) {
     data = Object.assign({}, data, {
       formattedWhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
+    });
+  }
+
+  if (req.sessionModel.get('details-last-contact')) {
+    data = Object.assign({}, data, {
+      formattedDetailsLastContact: truncateText(req.sessionModel.get('details-last-contact'))
+    });
+  }
+
+  if (req.sessionModel.get('authorities-cooperation-details')) {
+    data = Object.assign({}, data, {
+      formattedAuthoritiesCooperationDetails: truncateText(req.sessionModel.get('authorities-cooperation-details'))
+    });
+  }
+
+  if (req.sessionModel.get('future-exploitation-reasons')) {
+    data = Object.assign({}, data, {
+      formattedFutureExploitationReasons: truncateText(req.sessionModel.get('future-exploitation-reasons'))
     });
   }
 
