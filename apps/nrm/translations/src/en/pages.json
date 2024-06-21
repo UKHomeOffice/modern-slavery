@@ -358,13 +358,13 @@
         "label": "Details of exploiter(s)"
       },
       "exploiters-location": {
-        "label": "Do you have information about where the exploiters are?"
+        "label": "Information about exploiters location’"
       },
       "are-exploiters-in-the-uk": {
-        "label": "Are the exploiter(s) in the UK?"
+        "label": "Exploiters in UK?"
       },
       "exploiters-current-location-details":{
-        "label": "What information do you have about where the exploiters are now?"
+        "label": "Information about where exploiters are now"
       },
       "what-happened": {
         "label": "Victim's account"

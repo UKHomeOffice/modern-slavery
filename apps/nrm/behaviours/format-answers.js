@@ -142,6 +142,12 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('exploiters-current-location-details')) {
+    data = Object.assign({}, data, {
+      formattedExploitersCurrentLocationDetails: truncateText(req.sessionModel.get('exploiters-current-location-details'))
+    });
+  }
+
   if (req.sessionModel.get('is-this-the-first-chance-to-report')) {
     data = Object.assign({}, data, {
       formattedIsThisTheFirstChanceToReport: removeDashesFromText(capitaliseText(
