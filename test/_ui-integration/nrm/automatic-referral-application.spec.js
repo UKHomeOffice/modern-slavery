@@ -166,7 +166,7 @@ describe('the journey of a nrm automatic referral application', () => {
     const URI = '/when-last-contact';
     await initSession(URI);
     const response = await passStep(URI, {
-      'when-last-contact': 'last-week'
+      'when-last-contact': 'within-the-last-week'
     });
     expect(response.text).to.contain('Found. Redirecting to /nrm/details-last-contact');
   });

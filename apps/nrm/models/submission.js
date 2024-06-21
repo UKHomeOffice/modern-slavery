@@ -91,9 +91,13 @@ module.exports = data => {
   response.PVCurrentCityTown = data['current-pv-location-uk-city'];
   response.PVCurrentCounty = data['current-pv-location-uk-region'];
   response.ExploiterDetails = data['who-exploited-pv'];
-  response.CurrentExploitersLocationInformation = data['exploiters-location'];
-  response.AreExploitersInUk = data['are-exploiters-in-the-uk'];
-  response.CurrentExploitersLocationDetails = data['exploiters-current-location-details'];
+  response.ExploitersLocationInformationPresent = _.upperFirst(data['exploiters-location']);
+  response.ExploitersInUK = _.upperFirst(data['are-exploiters-in-the-uk']);
+  response.InformationOnExploitersCurrentLocation = data['exploiters-current-location-details'];
+  response.ConcernsOfFurtherExploitationToPV = _.upperFirst(data['future-exploitation-concerns']);
+  response.ReasonForConcernsReFurtherExploitation = data['future-exploitation-reasons'];
+  response.WillingToCooperate = _.upperFirst(data['authorities-cooperation']);
+  response.CollaborationInfo = data['authorities-cooperation-details']
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';

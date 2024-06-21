@@ -101,6 +101,18 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('exploiters-location')) {
+    data = Object.assign({}, data, {
+      formattedExploitersLocation: capitaliseText(req.sessionModel.get('exploiters-location'))
+    });
+  }
+
+  if (req.sessionModel.get('are-exploiters-in-the-uk')) {
+    data = Object.assign({}, data, {
+      formattedExploitersInUk: capitaliseText(req.sessionModel.get('are-exploiters-in-the-uk'))
+    });
+  }
+
   if (req.sessionModel.get('where-exploitation-happened')) {
     data = Object.assign({}, data, {
       formattedWhereExploitationHappened: capitaliseText(
@@ -139,6 +151,12 @@ const formatAnswers = req => {
   if (req.sessionModel.get('future-exploitation-reasons')) {
     data = Object.assign({}, data, {
       formattedFutureExploitationReasons: truncateText(req.sessionModel.get('future-exploitation-reasons'))
+    });
+  }
+
+  if (req.sessionModel.get('exploiters-current-location-details')) {
+    data = Object.assign({}, data, {
+      formattedExploitersCurrentLocationDetails: truncateText(req.sessionModel.get('exploiters-current-location-details'))
     });
   }
 

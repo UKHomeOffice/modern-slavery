@@ -285,12 +285,12 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [
-      'last-week',
-      'last-month',
-      'last-3-months',
-      'last-6-months',
-      'year-ago',
-      'Not-sure'
+      'within-the-last-week',
+      'within-the-last-month',
+      'within-the-last-3-month',
+      'within-the-last-6-month',
+      'over-a-year-ago',
+      'not-sure'
     ]
   },
   'details-last-contact': {

@@ -138,22 +138,22 @@
     "legend": "when victim and exploiters last in contact",
     "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
     "options": {
-      "last-week": {
+      "within-the-last-week": {
         "label": "Within the last week"
       },
-      "last-month": {
+      "within-the-last-month": {
         "label": "Within the last month"
       },
-      "last-3-months": {
+      "within-the-last-3-month": {
         "label": "Within the last 3 months"
       },
-      "last-6-months": {
+      "within-the-last-6-month": {
         "label": "Within the last 6 months"
       },
-      "year-ago": {
+      "over-a-year-ago": {
         "label": "Over a year ago"
       },
-      "Not-sure": {
+      "not-sure": {
         "label": "Not sure"
       }
     }
@@ -410,8 +410,8 @@
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
   "exploiters-location": {
-    "legend":"Do you have information about where the exploiters are?",
-    "hint":"Provide any information you can, even if you think it is outdated",
+    "legend": "Do you have information about where the exploiters are?",
+    "hint": "Provide any information you can, even if you think it is outdated",
     "options": {
       "yes": {
         "label": "Yes"
@@ -422,7 +422,7 @@
     }
   },
   "are-exploiters-in-the-uk": {
-    "legend":"Are the exploiters in the UK?",
+    "legend": "Are the exploiters in the UK?",
     "hint": "If you are unsure, answer based on the last known location of the exploiters",
     "options": {
       "yes": {
