@@ -409,6 +409,34 @@
     "label": "Details about the exploiter(s)",
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
+  "exploiters-location": {
+    "legend":"Do you have information about where the exploiters are?",
+    "hint":"Provide any information you can, even if you think it is outdated",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-exploiters-in-the-uk": {
+    "legend":"Are the exploiters in the UK?",
+    "hint": "If you are unsure, answer based on the last known location of the exploiters",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "exploiters-current-location-details": {
+    "label": "Information about the exploiters' location",
+    "hint": "This can be a general or specific location, or even a contact from another organisation who has this information."
+  },
   "types-of-exploitation-forced-to-work": {
     "label": "Forced to work for nothing or almost nothing",
     "hint": "Victims may live in isolated areas or poor conditions, such as in squats or at their place of work. They may be unable to leave and threatened with violence."

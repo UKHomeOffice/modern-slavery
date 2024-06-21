@@ -501,6 +501,54 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('Have information about exploiters current location Validation', () => {
+    it('does not pass the information exploiters location page if nothing entered', async () => {
+      const URI = '/exploiters-location';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if you have information about where the exploiters are/);
+    });
+  });
+
+  describe('Are exploiters in the Uk Validation', () => {
+    it('does not pass the are exploiters in the UK page if nothing entered', async () => {
+      const URI = '/are-exploiters-in-the-uk';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if the exploiters are in the UK/);
+    });
+  });
+
+  describe('Details about exploiters current location Validation', () => {
+    it('does not pass what information you have exploiters current location page if nothing entered', async () => {
+      const URI = '/exploiters-current-location-details';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us what information you have about the exploiters' location/);
+    });
+  });
+
   describe('Types of Exploitation Validations', () => {
     it('does not pass the types of exploitation page if nothing entered', async () => {
       const URI = '/types-of-exploitation';

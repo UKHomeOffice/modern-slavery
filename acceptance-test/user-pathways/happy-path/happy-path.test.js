@@ -45,6 +45,9 @@ const {
   CURRENT_PV_LOCATION_UK_REGION,
   WHO_EXPLOITED_PV,
   WHEN_LAST_CONTACT_LAST_WEEK,
+  EXPLOITERS_LOCATION_YES,
+  ARE_EXPLOITERS_IN_THE_UK_YES,
+  EXPLOITERS_CURRENT_LOCATION_DETAILS,
   ANY_OTHER_PVS_NO_OPTION,
   FUTURE_EXPLOITATION_CONCERNS_YES,
   FUTURE_EXPLOITATION_REASONS,
@@ -245,6 +248,12 @@ describe.only('User path(s)', () => {
     await focusThenType(page, CURRENT_PV_LOCATION_UK_REGION, 'Kent');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, EXPLOITERS_LOCATION_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, ARE_EXPLOITERS_IN_THE_UK_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, EXPLOITERS_CURRENT_LOCATION_DETAILS, 'Test details exploiter current location');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
