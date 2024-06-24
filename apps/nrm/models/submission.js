@@ -94,6 +94,10 @@ module.exports = data => {
   response.CurrentExploitersLocationInformation = data['exploiters-location'];
   response.AreExploitersInUk = data['are-exploiters-in-the-uk'];
   response.CurrentExploitersLocationDetails = data['exploiters-current-location-details'];
+  response.ConcernsPVExploitedInFuture = data['future-exploitation-concerns'];
+  response.FuturePVExploitationReasons = data['future-exploitation-reasons'];
+  response.CoOperationWithAuthorities = data['authorities-cooperation'];
+  response.CoOperationWithAuthoritiesDetails = data['authorities-cooperation-details']
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';
