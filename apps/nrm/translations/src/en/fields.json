@@ -410,8 +410,8 @@
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
   "exploiters-location": {
-    "legend":"Do you have information about where the exploiters are?",
-    "hint":"Provide any information you can, even if you think it is outdated",
+    "legend": "Do you have information about where the exploiters are?",
+    "hint": "Provide any information you can, even if you think it is outdated",
     "options": {
       "yes": {
         "label": "Yes"
@@ -422,7 +422,7 @@
     }
   },
   "are-exploiters-in-the-uk": {
-    "legend":"Are the exploiters in the UK?",
+    "legend": "Are the exploiters in the UK?",
     "hint": "If you are unsure, answer based on the last known location of the exploiters",
     "options": {
       "yes": {
