@@ -91,13 +91,13 @@ module.exports = data => {
   response.PVCurrentCityTown = data['current-pv-location-uk-city'];
   response.PVCurrentCounty = data['current-pv-location-uk-region'];
   response.ExploiterDetails = data['who-exploited-pv'];
-  response.CurrentExploitersLocationInformation = data['exploiters-location'];
-  response.AreExploitersInUk = data['are-exploiters-in-the-uk'];
-  response.CurrentExploitersLocationDetails = data['exploiters-current-location-details'];
-  response.ConcernsPVExploitedInFuture = data['future-exploitation-concerns'];
-  response.FuturePVExploitationReasons = data['future-exploitation-reasons'];
-  response.CoOperationWithAuthorities = data['authorities-cooperation'];
-  response.CoOperationWithAuthoritiesDetails = data['authorities-cooperation-details']
+  response.ExploitersLocationInformationPresent = data['exploiters-location'];
+  response.ExploitersInUK = data['are-exploiters-in-the-uk'];
+  response.InformationOnExploitersCurrentLocation = data['exploiters-current-location-details'];
+  response.ConcernsOfFurtherExploitationToPV = data['future-exploitation-concerns'];
+  response.ReasonForConcernsReFurtherExploitation = data['future-exploitation-reasons'];
+  response.WillingToCooperate = data['authorities-cooperation'];
+  response.CollaborationInfo = data['authorities-cooperation-details']
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';
@@ -208,8 +208,8 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
-  response.PVExploitersLastContact = data['when-last-contact'];
-  response.DetailsLastContact  = data['details-last-contact'];
+  response.LastPVAndExploitersContact = data['when-last-contact'];
+  response.ListContact  = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',
