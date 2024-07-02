@@ -76,7 +76,15 @@ const removeDashesFromText = text => {
   return strippedDashes;
 };
 
+const truncateText = text => {
+  const size = 300;
+  const truncatedText = text.substring(0, size);
+
+  return truncatedText;
+}
+
 module.exports = {
   capitaliseText,
-  removeDashesFromText
+  removeDashesFromText,
+  truncateText
 };

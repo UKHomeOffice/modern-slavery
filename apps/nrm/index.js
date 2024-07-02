@@ -164,7 +164,26 @@ module.exports = {
         saveFormSession
       ],
       fields: ['how-why-did-they-leave-the-situation'],
-      next: '/is-this-the-first-chance-to-report'
+      next: '/when-last-contact'
+    },
+    '/when-last-contact': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['when-last-contact'],
+      forks: [{
+        target: '/is-this-the-first-chance-to-report',
+        condition: req=> req.sessionModel.get('when-last-contact') === 'Not-sure'
+      }],
+      next: '/details-last-contact',
+      continueOnEdit: true
+    },
+    '/details-last-contact': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: ['details-last-contact'],
+      next: '/is-this-the-first-chance-to-report',
     },
     '/is-this-the-first-chance-to-report': {
       behaviours: [
@@ -296,6 +315,30 @@ module.exports = {
         saveFormSession
       ],
       fields: ['who-exploited-pv'],
+      next: '/exploiters-location'
+    },
+    '/exploiters-location': {
+      behaviours: saveFormSession,
+      fields: ['exploiters-location'],
+      forks: [{
+        target: '/are-exploiters-in-the-uk',
+        condition: {
+          field: 'exploiters-location',
+          value: 'yes'
+        }
+      }],
+      next: '/types-of-exploitation',
+      continueOnEdit:true
+    },
+    '/are-exploiters-in-the-uk': {
+      behaviours: saveFormSession,
+      fields: ['are-exploiters-in-the-uk'],
+      next: '/exploiters-current-location-details',
+      continueOnEdit:true
+    },
+    '/exploiters-current-location-details': {
+      behaviours: saveFormSession,
+      fields: ['exploiters-current-location-details'],
       next: '/types-of-exploitation'
     },
     '/types-of-exploitation': {
@@ -323,7 +366,29 @@ module.exports = {
         saveFormSession
       ],
       fields: ['any-other-pvs'],
-      next: '/reported-to-police'
+      next: '/future-exploitation'
+    },
+    '/future-exploitation': {
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation-concerns'],
+      forks: [{
+        target: '/concerns-future-exploitation',
+        condition: {
+          field: 'future-exploitation-concerns',
+          value: 'yes'
+        }
+      }],
+      next: '/reported-to-police',
+      continueOnEdit: true
+    },
+    '/concerns-future-exploitation':{
+      behaviours:[
+        saveFormSession
+      ],
+      fields: ['future-exploitation-reasons'],
+      next:'/reported-to-police'
     },
     '/reported-to-police': {
       behaviours: [
@@ -333,6 +398,16 @@ module.exports = {
         'reported-to-police',
         'reported-to-police-police-forces',
         'reported-to-police-crime-reference'
+      ],
+      next: '/authorities-cooperation'
+    },
+    '/authorities-cooperation': {
+      behaviours: [
+        saveFormSession
+      ],
+      fields: [
+        'authorities-cooperation',
+        'authorities-cooperation-details'
       ],
       next: '/pv-want-to-submit-nrm'
     },
@@ -380,19 +455,14 @@ module.exports = {
         'pv-nationality',
         'pv-nationality-second'
       ],
-      next: '/co-operate-with-police-dtn'
-    },
-    '/co-operate-with-police-dtn': {
-      template: 'co-operate-with-police',
-      fields: ['co-operate-with-police'],
-      behaviours: [
-        saveFormSession
-      ],
-      next: '/confirm',
       forks: [{
         target: '/pv-name-dtn',
-        condition: req => req.sessionModel.get('co-operate-with-police') === 'yes'
-      }]
+        condition: {
+          field: 'authorities-cooperation',
+          value: 'yes'
+        }
+      }],
+      next: '/confirm'
     },
     '/pv-name-dtn': {
       template: 'pv-name',
@@ -544,7 +614,7 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/co-operate-with-police-referral',
+        target: '/fr-details',
         condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
@@ -565,7 +635,7 @@ module.exports = {
       ],
       next: '/pv-phone-number',
       forks: [{
-        target: '/co-operate-with-police-referral',
+        target: '/fr-details',
         condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
       }]
     },
@@ -576,14 +646,6 @@ module.exports = {
       fields: [
         'pv-phone-number',
         'pv-phone-number-yes'
-      ],
-      next: '/co-operate-with-police-referral'
-    },
-    '/co-operate-with-police-referral': {
-      template: 'co-operate-with-police',
-      fields: ['co-operate-with-police'],
-      behaviours: [
-        saveFormSession
       ],
       next: '/fr-details'
     },

@@ -1,7 +1,7 @@
 'use strict';
 
 const dataFormatter = require('../util/data-formatter');
-const { removeDashesFromText, capitaliseText } = dataFormatter;
+const { removeDashesFromText, capitaliseText, truncateText } = dataFormatter;
 
 /**
  * Format session answers for display purposes
@@ -29,12 +29,6 @@ const formatAnswers = req => {
   if (req.sessionModel.get('pv-want-to-submit-nrm')) {
     data = Object.assign({}, data, {
       formattedPvWnatToSubmitNrm: capitaliseText(req.sessionModel.get('pv-want-to-submit-nrm'))
-    });
-  }
-
-  if (req.sessionModel.get('co-operate-with-police')) {
-    data = Object.assign({}, data, {
-      formattedCoOperateWithPolice: capitaliseText(req.sessionModel.get('co-operate-with-police'))
     });
   }
 
@@ -101,6 +95,12 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('authorities-cooperation')) {
+    data = Object.assign({}, data, {
+      formattedAuthoritiesCooperation: capitaliseText(req.sessionModel.get('authorities-cooperation'))
+    });
+  }
+
   if (req.sessionModel.get('where-exploitation-happened')) {
     data = Object.assign({}, data, {
       formattedWhereExploitationHappened: capitaliseText(
@@ -118,10 +118,47 @@ const formatAnswers = req => {
     });
   }
 
+  if (req.sessionModel.get('when-last-contact')) {
+    data = Object.assign({}, data, {
+      formattedWhenLastContact: capitaliseText(removeDashesFromText(req.sessionModel.get('when-last-contact')), true)
+    });
+  }
+
+  if (req.sessionModel.get('details-last-contact')) {
+    data = Object.assign({}, data, {
+      formattedDetailsLastContact: truncateText(req.sessionModel.get('details-last-contact'))
+    });
+  }
+
+  if (req.sessionModel.get('authorities-cooperation-details')) {
+    data = Object.assign({}, data, {
+      formattedAuthoritiesCooperationDetails: truncateText(req.sessionModel.get('authorities-cooperation-details'))
+    });
+  }
+
+  if (req.sessionModel.get('future-exploitation-reasons')) {
+    data = Object.assign({}, data, {
+      formattedFutureExploitationReasons: truncateText(req.sessionModel.get('future-exploitation-reasons'))
+    });
+  }
+
+  if (req.sessionModel.get('exploiters-current-location-details')) {
+    data = Object.assign({}, data, {
+      formattedExploitersCurrentLocationDetails: truncateText(req.sessionModel.get('exploiters-current-location-details'))
+    });
+  }
+
   if (req.sessionModel.get('is-this-the-first-chance-to-report')) {
     data = Object.assign({}, data, {
       formattedIsThisTheFirstChanceToReport: removeDashesFromText(capitaliseText(
         req.sessionModel.get('is-this-the-first-chance-to-report')))
+    });
+  }
+
+  if (req.sessionModel.get('future-exploitation-concerns')) {
+    data = Object.assign({}, data, {
+      formattedConcernsFutureExploitation: removeDashesFromText(capitaliseText(
+        req.sessionModel.get('future-exploitation-concerns')))
     });
   }
 

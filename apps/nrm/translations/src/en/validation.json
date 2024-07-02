@@ -86,6 +86,9 @@
     "required": "Enter how and why they left",
     "maxlength": "Enter no more than 15,000 characters"
   },
+  "when-last-contact": {
+    "required": "Tell us when they were last in contact"
+  },
   "is-this-the-first-chance-to-report" : {
     "required": "You must select an option"
   },
@@ -146,6 +149,16 @@
     "required": "You must enter details about the exploiter(s)",
     "maxlength": "You must enter no more than 15,000 characters"
   },
+  "exploiters-location": {
+    "required": "Tell us if you have information about where the exploiters are"
+  },
+  "are-exploiters-in-the-uk": {
+    "required": "Tell us if the exploiters are in the UK"
+  },
+  "exploiters-current-location-details": {
+    "required": "Tell us what information you have about the exploiters' location",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
   "types-of-exploitation-forced-to-work" : {
     "at-least-one-option-selected" : "You must select an exploitation type"
   },
@@ -155,6 +168,13 @@
   },
   "any-other-pvs" : {
     "required": "You must select an option"
+  },
+  "future-exploitation-concerns": {
+    "required":"Tell us if there are concerns about re-exploitation in the future"
+  },
+  "future-exploitation-reasons": {
+    "required":"Tell us why there are concerns",
+    "maxlength": "You must enter no more than 15,000 characters"
   },
   "reported-to-police" : {
     "required": "You must select an option"
@@ -166,6 +186,9 @@
   "reported-to-police-crime-reference" : {
     "required": "You must enter a crime or CAD reference",
     "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "authorities-cooperation": {
+    "required": "Tell us if the potential victim will co-operate with public authorities"
   },
   "pv-want-to-submit-nrm" : {
     "required": "You must enter the NRM decision"
@@ -292,9 +315,6 @@
   "pv-phone-number-yes" : {
     "required": "You must enter the potential victim's phone number",
     "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "co-operate-with-police" : {
-    "required": "You must select an option"
   },
   "fr-details-first-name" : {
     "required": "You must enter your first name ",
