@@ -49,5 +49,11 @@ ignore:
         reason: No upgrade or patch available yet 
         expires: 2024-08-13T00:00:00.000Z
         created: 2024-05-13T11:0522.224Z
+  
+  SNYK-JS-ASYNC-7414156:
+    - '*':
+        reason: No upgrade or patch available yet 
+        expires: 2024-08-13T00:00:00.000Z
+        created: 2024-07-02T11:0522.224Z
 
 patch: {}
