@@ -5,29 +5,25 @@ ignore:
   SNYK-JS-AXIOS-6032459:
     - hof > notifications-node-client > axios:
         reason: Need to update notifications-node-client in HOF to version 8.0.0
-        expires: '2024-06-21T00:00:00.000Z'
+        expires: '2024-10-21T00:00:00.000Z'
   SNYK-JS-AXIOS-6124857:
     - hof > notifications-node-client > axios:
       reason: Need to update notifications-node-client in HOF to version 8.0.0.
-      expires: '2024-06-21T00:00:00.000Z'
+      expires: '2024-10-21T00:00:00.000Z'
   SNYK-JS-AXIOS-6144788:
     - hof > notifications-node-client > axios:
       reason: Need to update notifications-node-client in HOF to version 8.0.0.
-      expires: '2024-06-21T00:00:00.000Z'
+      expires: '2024-10-21T00:00:00.000Z'
   SNYK-JS-FOLLOWREDIRECTS-6444610:
     - '*':
       reason: Need to update follow-redirects in HOF to version 1.15.6.
-      expires: '2024-06-21T00:00:00.000Z'
+      expires: '2024-10-21T00:00:00.000Z'
   SNYK-JS-INFLIGHT-6095116:
     - '*':
       reason: No update available.
-      expires: '2024-06-21T00:00:00.000Z'
-  SNYK-JS-EXPRESS-6474509:
-    - '*':
-      reason: Need to update express to version 4.19.2.
-      expires: '2024-07-05T00:00:00.000Z'
+      expires: '2024-10-21T00:00:00.000Z'
   SNYK-JS-MARKDOWNIT-6483324:
     - hof > markdown-it:
       reason: Need to update markdown-it in HOF to version 13.0.2.
-      expires: '2024-07-05T00:00:00.000Z'
+      expires: '2024-10-05T00:00:00.000Z'
 patch: {}
