@@ -1,5 +1,5 @@
 'use strict';
-const request = require('request');
+const Model = require('hof').model;
 const config = require('../../../config');
 
 const encodeEmail = email => Buffer.from(email).toString('hex');
@@ -10,8 +10,18 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
-      request.del(config.saveService.host + ':' + config.saveService.port
-         + '/reports/' + encodeEmail(req.sessionModel.get('user-email')) + '/' + req.sessionModel.get('id'), next);
+      const model = new Model();
+      const params = {
+        url: config.saveService.host + ':' + config.saveService.port
+          + '/reports/' + encodeEmail(req.sessionModel.get('user-email')) + '/' + req.sessionModel.get('id'),
+        method: 'DELETE'
+      };
+
+      return model._request(params).then(() => {
+        next();
+      }).catch(error => {
+        next(error);
+      });
     });
   }
 };

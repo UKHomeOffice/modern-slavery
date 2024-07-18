@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 'use strict';
 
-const request = require('request');
+const Model = require('hof').model;
 const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
@@ -45,39 +45,44 @@ module.exports = superclass => class extends superclass {
     if (config.env === 'local' || config.env === 'test') {
       return super.getValues(req, res, next);
     }
+    const model = new Model();
+    const params = {
+      url: baseUrl + encodeEmail(req.sessionModel.get('user-email')),
+      method: 'GET'
+    };
+    return model._request(params)
+      .then(response => {
+        const resBody = response.data;
 
-    return request.get(baseUrl + encodeEmail(req.sessionModel.get('user-email')), (err, response, body) => {
-      if (err) {
-        return next(err);
-      }
+        if (resBody && resBody.length && resBody[0].session) {
+          req.previousReports = [];
 
-      const resBody = JSON.parse(body);
+          resBody.forEach(report => {
+            const created = moment(report.created_at);
+            const expires = moment(report.updated_at).add(config.reports.deletionTimeout, 'days').endOf('day');
+            const remaining = expires.diff(moment(), 'days');
 
-      if (resBody && resBody.length && resBody[0].session) {
-        req.previousReports = [];
+            req.log('info', `External ID: ${externalID}, Report Session ID: ${report.id}`);
+            req.log('info', `External ID: ${externalID}, Report Session Reference: ${report.session.reference}`);
+            req.log('info', `External ID: ${externalID}, Report Created at: ${created.format('DD MMMM YYYY')}`);
+            req.log('info', `External ID: ${externalID}, Report Expires at: ${expires.format('DD MMMM YYYY')}`);
 
-        resBody.forEach(report => {
-          const created = moment(report.created_at);
-          const expires = moment(report.updated_at).add(config.reports.deletionTimeout, 'days').endOf('day');
-          const remaining = expires.diff(moment(), 'days');
-
-          req.log('info', `External ID: ${externalID}, Report Session ID: ${report.id}`);
-          req.log('info', `External ID: ${externalID}, Report Session Reference: ${report.session.reference}`);
-          req.log('info', `External ID: ${externalID}, Report Created at: ${created.format('DD MMMM YYYY')}`);
-          req.log('info', `External ID: ${externalID}, Report Expires at: ${expires.format('DD MMMM YYYY')}`);
-
-          const rep = {
-            id: report.id,
-            reference: report.session.reference,
-            createdAt: created.format('DD MMMM YYYY'),
-            expiresAt: expires.format('DD MMMM YYYY'),
-            daysRemaining: remaining
-          };
-          req.previousReports.push(rep);
-        });
-      }
-      req.sessionModel.set('redirect-to-reports', false);
-      return super.getValues(req, res, next);
-    });
+            const rep = {
+              id: report.id,
+              reference: report.session.reference,
+              createdAt: created.format('DD MMMM YYYY'),
+              expiresAt: expires.format('DD MMMM YYYY'),
+              daysRemaining: remaining
+            };
+            req.previousReports.push(rep);
+          });
+        }
+        req.sessionModel.set('redirect-to-reports', false);
+        return super.getValues(req, res, next);
+      })
+      .catch(e => {
+        req.log('info', `External ID: ${externalID}, Error Saving Session: ${e}`);
+        return next(e);
+      });
   }
 };
