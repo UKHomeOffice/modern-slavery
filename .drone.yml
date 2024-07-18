@@ -294,7 +294,7 @@ steps:
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
     pull: if-not-exists
-    image: drone/cli:alpine@sha256:14409f7f7247befb9dd2effdb2f61ac40d1f5fbfb1a80566cf6f2f8d21f3be11
+    image: drone/cli:alpine@sha256:026e58148c2762178df073a9f3de1790481e3683
     environment:
       DRONE_SERVER:
         from_secret: drone_server
