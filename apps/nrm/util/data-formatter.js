@@ -81,7 +81,7 @@ const truncateText = text => {
   const truncatedText = text.substring(0, size);
 
   return truncatedText;
-}
+};
 
 module.exports = {
   capitaliseText,

@@ -128,8 +128,7 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/were-they-taken-somewhere-by-their-exploiter');
   });
 
-  it('goes to the were-they-taken-somewhere-by-their-exploiter page when user enters were they taken somewhere by ' +
-    'their exploiter(s)', async () => {
+  it('goes to the how-they-were-treated page when user selects yes and enters details', async () => {
     const URI = '/were-they-taken-somewhere-by-their-exploiter';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -161,28 +160,27 @@ describe('the journey of a nrm automatic referral application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/when-last-contact');
     });
 
-    it('goes to the when-last-contact page when user enters how and why the last contact was',
-  async () => {
-    const URI = '/when-last-contact';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'when-last-contact': 'within-the-last-week'
+  it('goes to the when-last-contact page when user enters how and why the last contact was',
+    async () => {
+      const URI = '/when-last-contact';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'when-last-contact': 'within-the-last-week'
+      });
+      expect(response.text).to.contain('Found. Redirecting to /nrm/details-last-contact');
     });
-    expect(response.text).to.contain('Found. Redirecting to /nrm/details-last-contact');
-  });
 
   it('goes to the is-this-the-first-chance-to-report page when user enters optional details of last contact',
-  async () => {
-    const URI = '/details-last-contact';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'details-last-contact': 'optional text'
+    async () => {
+      const URI = '/details-last-contact';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'details-last-contact': 'optional text'
+      });
+      expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
     });
-    expect(response.text).to.contain('Found. Redirecting to /nrm/is-this-the-first-chance-to-report');
-  });
 
-  it('goes to the is-this-the-first-chance-to-report page when user enters Is this the first chance they have ' +
-    'had to report this?', async () => {
+  it('goes to the /why-report-now page when user selects no', async () => {
     const URI = '/is-this-the-first-chance-to-report';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -219,8 +217,7 @@ describe('the journey of a nrm automatic referral application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/are-others-involved');
     });
 
-  it('goes to the are-others-involved page when user enters are there other professionals or organisations ' +
-    'involved with this case?', async () => {
+  it('goes to the evidence-of-dishonesty page when user selects yes and enters details', async () => {
     const URI = '/are-others-involved';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -230,8 +227,7 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/evidence-of-dishonesty');
   });
 
-  it('goes to the evidence-of-dishonesty page are there indicators or evidence that they could be acting ' +
-    'dishonestly?', async () => {
+  it('goes to the what-evidence-you-will-submit page when user selects yes and enters details', async () => {
     const URI = '/evidence-of-dishonesty';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -241,8 +237,7 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/what-evidence-you-will-submit');
   });
 
-  it('goes to the what-evidence-you-will-submit page are there indicators or evidence that they could be acting ' +
-    'dishonestly?', async () => {
+  it('goes to the where-exploitation-happened page when user enters details', async () => {
     const URI = '/what-evidence-you-will-submit';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -380,7 +375,7 @@ describe('the journey of a nrm automatic referral application', () => {
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/reported-to-police');
   });
-  
+
   it('goes to the pv-want-to-submit-nrm page when user enters reported-to-police', async () => {
     const URI = '/reported-to-police';
     await initSession(URI);

@@ -820,7 +820,7 @@ module.exports = {
       'no'
     ]
   },
-  'future-exploitation-reasons':{
+  'future-exploitation-reasons': {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     className: 'govuk-textarea',
@@ -880,7 +880,7 @@ module.exports = {
       value: 'no'
     }]
   },
-  "authorities-cooperation-details": {
+  'authorities-cooperation-details': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
     className: 'govuk-textarea',

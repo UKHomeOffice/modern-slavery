@@ -173,7 +173,7 @@ module.exports = {
       fields: ['when-last-contact'],
       forks: [{
         target: '/is-this-the-first-chance-to-report',
-        condition: req=> req.sessionModel.get('when-last-contact') === 'Not-sure'
+        condition: req => req.sessionModel.get('when-last-contact') === 'Not-sure'
       }],
       next: '/details-last-contact',
       continueOnEdit: true
@@ -183,7 +183,7 @@ module.exports = {
         saveFormSession
       ],
       fields: ['details-last-contact'],
-      next: '/is-this-the-first-chance-to-report',
+      next: '/is-this-the-first-chance-to-report'
     },
     '/is-this-the-first-chance-to-report': {
       behaviours: [
@@ -328,13 +328,13 @@ module.exports = {
         }
       }],
       next: '/types-of-exploitation',
-      continueOnEdit:true
+      continueOnEdit: true
     },
     '/are-exploiters-in-the-uk': {
       behaviours: saveFormSession,
       fields: ['are-exploiters-in-the-uk'],
       next: '/exploiters-current-location-details',
-      continueOnEdit:true
+      continueOnEdit: true
     },
     '/exploiters-current-location-details': {
       behaviours: saveFormSession,
@@ -369,7 +369,7 @@ module.exports = {
       next: '/future-exploitation'
     },
     '/future-exploitation': {
-      behaviours:[
+      behaviours: [
         saveFormSession
       ],
       fields: ['future-exploitation-concerns'],
@@ -383,12 +383,12 @@ module.exports = {
       next: '/reported-to-police',
       continueOnEdit: true
     },
-    '/concerns-future-exploitation':{
-      behaviours:[
+    '/concerns-future-exploitation': {
+      behaviours: [
         saveFormSession
       ],
       fields: ['future-exploitation-reasons'],
-      next:'/reported-to-police'
+      next: '/reported-to-police'
     },
     '/reported-to-police': {
       behaviours: [
