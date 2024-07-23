@@ -1,4 +1,4 @@
-FROM node:16.16.0 as base
+FROM node:16.19.0 as base
 
 EXPOSE 9222
 
