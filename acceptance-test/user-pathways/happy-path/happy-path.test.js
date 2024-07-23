@@ -11,6 +11,7 @@ const {
   START_REPORT,
   CONTINUE_BUTTON,
   DOWNLOAD_REPORT,
+  DETAILS_LAST_CONTACT,
   REFERENCE_INPUT,
   ORGANISATION_INPUT,
   EMAIL_INPUT,
@@ -43,8 +44,15 @@ const {
   CURRENT_PV_LOCATION_UK_CITY,
   CURRENT_PV_LOCATION_UK_REGION,
   WHO_EXPLOITED_PV,
+  WHEN_LAST_CONTACT_LAST_WEEK,
+  EXPLOITERS_LOCATION_YES,
+  ARE_EXPLOITERS_IN_THE_UK_YES,
+  EXPLOITERS_CURRENT_LOCATION_DETAILS,
   ANY_OTHER_PVS_NO_OPTION,
+  FUTURE_EXPLOITATION_CONCERNS_YES,
+  FUTURE_EXPLOITATION_REASONS,
   PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION,
+  COOPERATION_WITH_AUTHORITIES_NO_OPTION,
   REFER_CASE_TO_NRM_YES_OPTION,
   DOES_PV_NEED_SUPPORT_YES_OPTION,
   PV_NAME_FIRST_NAME,
@@ -59,7 +67,6 @@ const {
   PV_CONTACT_DETAILS_EMAIL_INPUT,
   PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION,
   PV_PHONE_NUMBER_NO_OPTION,
-  POLICE_CONTACT_YES_OPTION,
   FR_DETAILS_FIRST_NAME_INPUT,
   FR_DETAILS_LAST_NAME_INPUT,
   FR_DETAILS_ROLE_INPUT,
@@ -140,15 +147,15 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, PV_NATIONALITY, 'French');
     await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
-    await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
-    await clickSelector(page, CONTINUE_BUTTON);
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
-    await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
-    await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
-    await clickSelector(page, CONTINUE_BUTTON);
+    /**  once merged with  Cooperation with Authorities add test back in
+    // await focusThenType(page, PV_NAME_FIRST_NAME, 'Robert');
+    // await focusThenType(page, PV_NAME_LAST_NAME, 'Maxwell');
+    // await clickSelector(page, CONTINUE_BUTTON);
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_OPTION);
+    // await focusThenType(page, PV_CONTACT_DETAILS_EMAIL_INPUT, 'robert.maxwell@pvrefuse.com');
+    // await clickSelector(page, PV_CONTACT_DETAILS_EMAIL_SAFE_OPTION);
+    // await clickSelector(page, CONTINUE_BUTTON);
+    */
   }
 
   /**
@@ -194,7 +201,7 @@ describe.only('User path(s)', () => {
     }
 
     await focusThenType(page, PV_BIRTHPLACE, 'Test input of birthplace');
-    await focusThenType(page, PV_FAMILY, 'Test input of familty');
+    await focusThenType(page, PV_FAMILY, 'Test input of family');
     await focusThenType(page, PV_EDUCATION, 'Test input of education');
     await focusThenType(page, PV_EMPLOYMENT_HISTORY, 'Test input of employment history');
     await clickSelector(page, CONTINUE_BUTTON);
@@ -212,6 +219,10 @@ describe.only('User path(s)', () => {
     await focusThenType(page, WHY_THEY_STAYED, 'Test input of why they stayed');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHY_DID_THEY_LEAVE, 'Test input of why they left');
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, WHEN_LAST_CONTACT_LAST_WEEK);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, DETAILS_LAST_CONTACT, 'Test input of details last contact');
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, FIRST_CHANCE_TO_REPORT_NO);
     await clickSelector(page, CONTINUE_BUTTON);
@@ -238,11 +249,23 @@ describe.only('User path(s)', () => {
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, WHO_EXPLOITED_PV, 'Test details about exploiter(s)');
     await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, EXPLOITERS_LOCATION_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, ARE_EXPLOITERS_IN_THE_UK_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, EXPLOITERS_CURRENT_LOCATION_DETAILS, 'Test details exploiter current location');
+    await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, HOW_WERE_THEY_EXPLOITED_FORCED_WORK_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, ANY_OTHER_PVS_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, FUTURE_EXPLOITATION_CONCERNS_YES);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await focusThenType(page, FUTURE_EXPLOITATION_REASONS, 'Test exploitation concerns reasons');
+    await clickSelector(page, CONTINUE_BUTTON);
     await clickSelector(page, PV_HAS_CRIME_REFERENCE_NUMBER_NO_OPTION);
+    await clickSelector(page, CONTINUE_BUTTON);
+    await clickSelector(page, COOPERATION_WITH_AUTHORITIES_NO_OPTION);
     await clickSelector(page, CONTINUE_BUTTON);
 
     if (caseReferred && typeOfPV === 'adult') {
@@ -300,8 +323,6 @@ describe.only('User path(s)', () => {
       await clickSelector(page, CONTINUE_BUTTON);
       await clickSelector(page, PV_PHONE_NUMBER_NO_OPTION);
       await clickSelector(page, CONTINUE_BUTTON);
-      await clickSelector(page, POLICE_CONTACT_YES_OPTION);
-      await clickSelector(page, CONTINUE_BUTTON);
     }
 
     await focusThenType(page, FR_DETAILS_FIRST_NAME_INPUT, 'Jack');
@@ -314,7 +335,7 @@ describe.only('User path(s)', () => {
   }
 
   const timeoutInMins = num => num * 60000;
-  const defaultTimeout = timeoutInMins(10);
+  const defaultTimeout = timeoutInMins(20);
 
   it('Happy path - Adult', async () => {
     try {

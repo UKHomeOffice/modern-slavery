@@ -91,6 +91,13 @@ module.exports = data => {
   response.PVCurrentCityTown = data['current-pv-location-uk-city'];
   response.PVCurrentCounty = data['current-pv-location-uk-region'];
   response.ExploiterDetails = data['who-exploited-pv'];
+  response.ExploitersLocationInformationPresent = _.upperFirst(data['exploiters-location']);
+  response.ExploitersInUK = _.upperFirst(data['are-exploiters-in-the-uk']);
+  response.InformationOnExploitersCurrentLocation = data['exploiters-current-location-details'];
+  response.ConcernsOfFurtherExploitationToPV = _.upperFirst(data['future-exploitation-concerns']);
+  response.ReasonForConcernsReFurtherExploitation = data['future-exploitation-reasons'];
+  response.WillingToCooperate = _.upperFirst(data['authorities-cooperation']);
+  response.CollaborationInfo = data['authorities-cooperation-details']
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';
@@ -152,7 +159,6 @@ module.exports = data => {
   response.CountryLabel = _.upperFirst(data['fr-location']);
   response.HowToNotify = _.isArray(data['pv-contact-details']) ?
     'Email, Post' : _.upperFirst(data['pv-contact-details']);
-  response.CanPoliceContactPV = _.upperFirst(data['co-operate-with-police']);
   response.PoliceForceCRN = data['reported-to-police-crime-reference'];
   response.CIDReference = data['pv-ho-reference-type'];
 
@@ -202,6 +208,8 @@ module.exports = data => {
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
+  response.PVExploitersLastContact = data['when-last-contact'];
+  response.DetailsLastContact  = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',

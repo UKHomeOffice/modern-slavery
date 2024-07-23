@@ -278,6 +278,32 @@ module.exports = {
       }
     ]
   },
+  'when-last-contact': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'within-the-last-week',
+      'within-the-last-month',
+      'within-the-last-3-month',
+      'within-the-last-6-month',
+      'over-a-year-ago',
+      'not-sure'
+    ]
+  },
+  'details-last-contact': {
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
   'is-this-the-first-chance-to-report': {
     mixin: 'radio-group',
     validate: ['required'],
@@ -656,6 +682,40 @@ module.exports = {
       }
     ]
   },
+  'exploiters-location': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'are-exploiters-in-the-uk': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'exploiters-current-location-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 5
+      }
+    ]
+  },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
     validation: 'at-least-one-option-selected',
@@ -749,6 +809,28 @@ module.exports = {
       'not-sure'
     ]
   },
+  'future-exploitation-concerns': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'future-exploitation-reasons':{
+    mixin: 'textarea',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 3
+      }
+    ]
+  },
   'reported-to-police': {
     mixin: 'radio-group',
     validate: ['required'],
@@ -782,6 +864,35 @@ module.exports = {
     dependent: {
       value: 'yes',
       field: 'reported-to-police'
+    }
+  },
+  'authorities-cooperation': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'authorities-cooperation-details-fieldset',
+      child: 'partials/authorities-cooperation-yes'
+    }, {
+      value: 'no'
+    }]
+  },
+  "authorities-cooperation-details": {
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
+    className: 'govuk-textarea',
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'authorities-cooperation'
     }
   },
   'pv-want-to-submit-nrm': {
@@ -1129,17 +1240,6 @@ module.exports = {
       value: 'yes',
       field: 'pv-phone-number'
     }
-  },
-  'co-operate-with-police': {
-    mixin: 'radio-group',
-    validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [
-      'yes',
-      'no'
-    ]
   },
   'fr-details-first-name': {
     mixin: 'input-text',

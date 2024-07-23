@@ -134,6 +134,34 @@
     "label": "How and why they left",
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
+  "when-last-contact":{
+    "legend": "when victim and exploiters last in contact",
+    "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
+    "options": {
+      "within-the-last-week": {
+        "label": "Within the last week"
+      },
+      "within-the-last-month": {
+        "label": "Within the last month"
+      },
+      "within-the-last-3-month": {
+        "label": "Within the last 3 months"
+      },
+      "within-the-last-6-month": {
+        "label": "Within the last 6 months"
+      },
+      "over-a-year-ago": {
+        "label": "Over a year ago"
+      },
+      "not-sure": {
+        "label": "Not sure"
+      }
+    }
+  },
+  "details-last-contact": {
+    "label": "Details of last contact (optional)",
+    "hint": "You can email any files as evidence to us after you have submitted the report"
+  },
   "is-this-the-first-chance-to-report": {
     "legend": "Is this the first chance they have had to report this?",
     "options": {
@@ -381,6 +409,34 @@
     "label": "Details about the exploiter(s)",
     "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
   },
+  "exploiters-location": {
+    "legend": "Do you have information about where the exploiters are?",
+    "hint": "Provide any information you can, even if you think it is outdated",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-exploiters-in-the-uk": {
+    "legend": "Are the exploiters in the UK?",
+    "hint": "If you are unsure, answer based on the last known location of the exploiters",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "exploiters-current-location-details": {
+    "label": "Information about the exploiters' location",
+    "hint": "This can be a general or specific location, or even a contact from another organisation who has this information."
+  },
   "types-of-exploitation-forced-to-work": {
     "label": "Forced to work for nothing or almost nothing",
     "hint": "Victims may live in isolated areas or poor conditions, such as in squats or at their place of work. They may be unable to leave and threatened with violence."
@@ -433,6 +489,22 @@
       }
     }
   },
+  "future-exploitation-concerns": {
+    "legend": "Are there concerns that the potential victim could be exploited again in the future?",
+    "hint": "This includes concerns from other professionals or organisations involved. You must have reasons or evidence for these concerns",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "future-exploitation-reasons": {
+    "label": "Explain why there are concerns",
+    "hint": "If you have file-based evidence, this can be sent to us once the report is submitted"
+  },
   "reported-to-police": {
     "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",
     "options": {
@@ -453,6 +525,21 @@
   },
   "reported-to-police-crime-reference": {
     "label": "Enter crime or CAD reference"
+  },
+  "authorities-cooperation": {
+    "hint": "If you are unsure, save your progress and check with them",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "authorities-cooperation-details": {
+    "label": "Details of co-operation with authorities",
+    "hint": "Details about the individual’s existing or planned co-operation (optional)"
   },
   "pv-want-to-submit-nrm": {
     "legend": "Do they have a crime reference number?",
@@ -680,17 +767,6 @@
   },
   "pv-phone-number-yes": {
     "label": "Enter potential victim's phone number"
-  },
-  "co-operate-with-police": {
-    "legend": "Can the police contact them about their case?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
   },
   "fr-details-first-name": {
     "label": "First name"

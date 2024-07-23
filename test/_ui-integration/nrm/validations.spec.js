@@ -255,6 +255,21 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('First Responder exploiters last in contact Validation', () => {
+    it('does not pass the when-last-contact page if nothing entered', async () => {
+      const URI = '/when-last-contact';
+      await initSession(URI);
+      await passStep(URI, {});
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us when they were last in contact/);
+    });
+  });
+
   describe('User enters is this the first chance to report Validation', () => {
     it('does not pass is this the first chance to report page if nothing entered', async () => {
       const URI = '/is-this-the-first-chance-to-report';
@@ -486,6 +501,54 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('Have information about exploiters current location Validation', () => {
+    it('does not pass the information exploiters location page if nothing entered', async () => {
+      const URI = '/exploiters-location';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if you have information about where the exploiters are/);
+    });
+  });
+
+  describe('Are exploiters in the Uk Validation', () => {
+    it('does not pass the are exploiters in the UK page if nothing entered', async () => {
+      const URI = '/are-exploiters-in-the-uk';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if the exploiters are in the UK/);
+    });
+  });
+
+  describe('Details about exploiters current location Validation', () => {
+    it('does not pass what information you have exploiters current location page if nothing entered', async () => {
+      const URI = '/exploiters-current-location-details';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us what information you have about the exploiters' location/);
+    });
+  });
+
   describe('Types of Exploitation Validations', () => {
     it('does not pass the types of exploitation page if nothing entered', async () => {
       const URI = '/types-of-exploitation';
@@ -519,7 +582,7 @@ describe('validation checks of the nrm journey', () => {
   });
 
   describe('Reported to Police Validations', () => {
-    it('does not pass the reported to policee page if nothing entered', async () => {
+    it('does not pass the reported to police page if nothing entered', async () => {
       const URI = '/reported-to-police';
       await initSession(URI);
       await passStep(URI, {});
@@ -566,6 +629,23 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.html())
         .to.match(/You must enter a crime or CAD reference/);
     });
+  });
+
+  describe('Authorities co-operation', () => {
+    it('does not pass the Authorities Co-operation page if no option is selected', async () => {
+      const URI = '/authorities-cooperation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.validation-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us if the potential victim will co-operate with public authorities/);
+    });
+
   });
 
   describe('PV Want to Submit NRM Validation', () => {
@@ -1001,22 +1081,6 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('Cooperate with Police Referral Validation', () => {
-    it('does not pass the cooperate with police referral page if nothing is selected', async () => {
-      const URI = '/co-operate-with-police-referral';
-      await initSession(URI);
-      await passStep(URI, {});
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/You must select an option/);
-    });
-  });
-
   describe('First Responder Contact Details Validations', () => {
     it('does not pass the fr details page if nothing is entered', async () => {
       const URI = '/fr-details';
@@ -1065,22 +1129,6 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
         .to.match(/You must select the potential victim's nationality from the list/);
-    });
-  });
-
-  describe('Cooperate with Police Dtn Validation', () => {
-    it('does not pass the cooperate with police dtn page if nothing is selected', async () => {
-      const URI = '/co-operate-with-police-dtn';
-      await initSession(URI);
-      await passStep(URI, {});
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.validation-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/You must select an option/);
     });
   });
 });

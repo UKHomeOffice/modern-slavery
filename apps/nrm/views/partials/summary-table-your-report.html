@@ -233,6 +233,42 @@
       </td>
     </tr>
     {{/values.who-exploited-pv}}
+    
+    {{#values.exploiters-location}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.exploiters-location.label{{/t}}</td>
+      <td class="no-white-space"> 
+          <span>{{formattedExploitersLocation}}</span>
+      </td>
+      <td>
+        <a href="/nrm/exploiters-location/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.exploiters-location.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.exploiters-location}}
+
+    {{#values.are-exploiters-in-the-uk}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.are-exploiters-in-the-uk.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{formattedExploitersInUk}}</span>
+      </td>
+      <td>
+        <a href="/nrm/are-exploiters-in-the-uk/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.are-exploiters-in-the-uk.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.are-exploiters-in-the-uk}}
+
+    {{#values.exploiters-current-location-details}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.exploiters-current-location-details.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{formattedExploitersCurrentLocationDetails}}</span>
+      </td>
+      <td>
+        <a href="/nrm/exploiters-current-location-details/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.exploiters-current-location-details.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.exploiters-current-location-details}}
 
     {{#values.what-happened}}
     <tr>
@@ -257,6 +293,30 @@
       </td>
     </tr>
     {{/values.any-other-pvs}}
+
+    {{#values.future-exploitation-concerns}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.future-exploitation-concerns.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedConcernsFutureExploitation}}</span>
+      </td>
+      <td>
+        <a href="/nrm/future-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.future-exploitation-concerns.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.future-exploitation-concerns}}
+
+    {{#values.future-exploitation-reasons}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedFutureExploitationReasons}}</span>
+      </td>
+      <td>
+        <a href="/nrm/concerns-future-exploitation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.future-exploitation-reasons.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.future-exploitation-reasons}}
 
     {{#values.when-did-the-exploitation-take-place}}
     <tr>
@@ -378,6 +438,30 @@
     </tr>
     {{/values.is-this-the-first-chance-to-report}}
 
+    {{#values.when-last-contact}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.when-last-contact.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedWhenLastContact}}</span>
+      </td>
+      <td>
+        <a href="/nrm/when-last-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.when-last-contact.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.when-last-contact}}
+
+    {{#values.details-last-contact}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.details-last-contact.label{{/t}}</td>
+      <td class="no-white-space">
+        <span>{{formattedDetailsLastContact}}</span>
+      </td>
+      <td>
+        <a href="/nrm/details-last-contact/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.values.details-last-contact.legend{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.details-last-contact}}
+
     {{#values.why-report-now}}
     <tr>
       <td>{{#t}}pages.confirm.fields.why-report-now.label{{/t}}</td>
@@ -491,5 +575,31 @@
       </td>
     </tr>
     {{/values.reported-to-police}}
+
+    {{#values.authorities-cooperation}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}</td>
+      <td class="no-white-space">
+          <span>{{formattedAuthoritiesCooperation}}</span>
+      </td>
+      <td>
+        <a href="/nrm/authorities-cooperation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.authorities-cooperation}}
+
+    {{#values.authorities-cooperation-details}}
+    <tr>
+      <td>{{#t}}pages.confirm.fields.authorities-cooperation-details.label{{/t}}</td>
+      <td class="no-white-space">
+          {{#values.authorities-cooperation-details}}
+            <span>{{formattedAuthoritiesCooperationDetails}}</span>
+          {{/values.authorities-cooperation-details}}
+      </td>
+      <td>
+        <a href="/nrm/authorities-cooperation/edit" class="button" aria-label="Change {{#t}}pages.confirm.fields.authorities-cooperation.label{{/t}}">Change</a>
+      </td>
+    </tr>
+    {{/values.authorities-cooperation-details}}
   </tbody>
 </table>
