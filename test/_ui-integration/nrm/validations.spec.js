@@ -645,7 +645,6 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.html())
         .to.match(/Tell us if the potential victim will co-operate with public authorities/);
     });
-
   });
 
   describe('PV Want to Submit NRM Validation', () => {

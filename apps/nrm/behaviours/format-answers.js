@@ -118,7 +118,7 @@ const formatAnswers = req => {
       formattedWhereExploitationHappened: capitaliseText(
         removeDashesFromText(req.sessionModel.get('where-exploitation-happened')),
         true,
-        [{ word: 'and', allCaps: false}, {word: 'uk', allCaps: true }]
+        [{ word: 'and', allCaps: false }, { word: 'uk', allCaps: true }]
       )
     });
   }
@@ -156,6 +156,7 @@ const formatAnswers = req => {
 
   if (req.sessionModel.get('exploiters-current-location-details')) {
     data = Object.assign({}, data, {
+      // eslint-disable-next-line max-len
       formattedExploitersCurrentLocationDetails: truncateText(req.sessionModel.get('exploiters-current-location-details'))
     });
   }

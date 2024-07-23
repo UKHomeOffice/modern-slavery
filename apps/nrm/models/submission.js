@@ -97,7 +97,7 @@ module.exports = data => {
   response.ConcernsOfFurtherExploitationToPV = _.upperFirst(data['future-exploitation-concerns']);
   response.ReasonForConcernsReFurtherExploitation = data['future-exploitation-reasons'];
   response.WillingToCooperate = _.upperFirst(data['authorities-cooperation']);
-  response.CollaborationInfo = data['authorities-cooperation-details']
+  response.CollaborationInfo = data['authorities-cooperation-details'];
 
   if (data['types-of-exploitation-forced-to-work'] === 'true') {
     response.ComponentForcedToWorkForNothing = 'Yes';
