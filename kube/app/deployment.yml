@@ -130,6 +130,10 @@ spec:
                 secretKeyRef:
                   name: sas-ms-uat-sqs
                   key: access_key_id
+            - name: ALLOW_SKIP
+              value: "true"
+            - name: SKIP_EMAIL
+              value: "sas-hof-test@digital.homeoffice.gov.uk"
             {{ else }}
             - name: AWS_SQS
               valueFrom:
