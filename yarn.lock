@@ -961,7 +961,7 @@ axios@^0.25.0:
   dependencies:
     follow-redirects "^1.14.7"
 
-axios@^1.6.1:
+axios@^1.5.1, axios@^1.6.1:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
@@ -2040,6 +2040,11 @@ devtools-protocol@0.0.1299070:
   version "0.0.1299070"
   resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1299070.tgz#b3e4cf0b678a46f0f907ae6e07e03ad3a53c00df"
   integrity sha512-+qtL3eX50qsJ7c+qVyagqi7AWMoQCBGNfoyJZMwm/NSXVqLYbuitrWEEIzxfUmTNy7//Xe8yhMmQ+elj3uAqSg==
+
+dialog-polyfill@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.5.6.tgz#7507b4c745a82fcee0fa07ce64d835979719599a"
+  integrity sha512-ZbVDJI9uvxPAKze6z146rmfUZjBqNEwcnFTVamQzXH+svluiV7swmVIGr7miwADgfgt1G2JQIytypM9fbyhX4w==
 
 diff@5.0.0:
   version "5.0.0"
@@ -3403,12 +3408,13 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~20.5.1:
-  version "20.5.6"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-20.5.6.tgz#726a426036ca421435f24b9c4bc05b4174732c6b"
-  integrity sha512-Auexph99CYARRO4DR0qi+mvQKvwFB6z6JndHd9HGF/yUmohmzHdC7v44eLq4XCtPsUv5+DtzL3Tk9kDpJPh3IA==
+hof@22.0.0-timeout-warning-beta.7:
+  version "22.0.0-timeout-warning-beta.7"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.0.0-timeout-warning-beta.7.tgz#58a9397d194e3e8dd190d43b77786774878d3180"
+  integrity sha512-Fz42Bj07E/M6Gr9p0L4s9iqLFImnJgK6uoNVKFQC8oOchPjDvXPyX1mv5SwZCeM3fd4tms/ufmfb947KCkaC9w==
   dependencies:
     aliasify "^2.1.0"
+    axios "^1.5.1"
     bluebird "^3.7.2"
     body-parser "^1.15.1"
     browserify "^17.0.0"
@@ -3421,6 +3427,7 @@ hof@~20.5.1:
     csrf "^3.1.0"
     debug "^4.3.1"
     deprecate "^1.0.0"
+    dialog-polyfill "^0.5.6"
     dotenv "^4.0.0"
     duplexify "^3.5.0"
     express "^4.17.1"
@@ -3455,7 +3462,6 @@ hof@~20.5.1:
     notifications-node-client "^6.0.0"
     redis "^3.1.2"
     reqres "^3.0.1"
-    request "^2.79.0"
     rimraf "^3.0.2"
     sass "^1.56.2"
     serve-static "^1.14.1"
@@ -5669,7 +5675,7 @@ request-promise-native@^1.0.9:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.79.0, request@^2.88.0:
+request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==

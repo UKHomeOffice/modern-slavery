@@ -1,6 +1,10 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+  {{$propositionHeader}}{{/propositionHeader}}
+  {{$header}}
+    {{header}}
+  {{/header}}
+  {{$content}}
     <h1 class="govuk-heading-xl">{{#t}}pages.support-organisations.header{{/t}}</h1>
     {{#markdown}}support-organisations{{/markdown}}
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}
