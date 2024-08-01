@@ -47,7 +47,6 @@ const addGenericLocals = (req, res, next) => {
     { path: '/terms-and-conditions', property: 'base.terms' },
     { path: '/accessibility', property: 'base.accessibility' }
   ];
-  res.locals.sessionTimeoutWarningContent = true
   next();
 };
 

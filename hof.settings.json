@@ -14,5 +14,6 @@
   "session": {
     "name": "modern-slavery.hof.sid"
   },
+  "sessionTimeoutWarningContent": true,
   "port": 8081
 }
