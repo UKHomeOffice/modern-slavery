@@ -120,5 +120,14 @@
   },
   "accessibility": {
     "header": "Accessibility statement"
+  },
+  "exit": {
+    "header": "You have left this form"
+  },
+  "session-timeout-warning": {
+    "dialog-title": "Your application will close soon",
+    "dialog-text": "If that happens, your progress will not be saved.",
+    "timeout-continue-button": "Stay on this page",
+    "dialog-exit-link": "Exit this form"
   }
 }

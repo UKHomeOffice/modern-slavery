@@ -13,6 +13,7 @@ const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.j
 settings.routes = settings.routes.map(route => require(route));
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
+settings.behaviours = settings.behaviours.map(require);
 
 settings = Object.assign({}, settings, {
   csp: {
@@ -46,6 +47,7 @@ const addGenericLocals = (req, res, next) => {
     { path: '/terms-and-conditions', property: 'base.terms' },
     { path: '/accessibility', property: 'base.accessibility' }
   ];
+  res.locals.sessionTimeoutWarningContent = true
   next();
 };
 
