@@ -122,7 +122,7 @@
     "header": "Accessibility statement"
   },
   "exit": {
-    "header": "You have left this form"
+    "message": "We have cleared your information to keep it secure. Your information has not been saved."
   },
   "session-timeout-warning": {
     "dialog-title": "Your application will close soon",

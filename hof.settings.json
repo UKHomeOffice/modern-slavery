@@ -15,5 +15,6 @@
     "name": "modern-slavery.hof.sid"
   },
   "sessionTimeoutWarningContent": true,
+  "exitForm": true,
   "port": 8081
 }
