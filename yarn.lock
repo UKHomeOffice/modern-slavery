@@ -3408,10 +3408,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@22.0.0-timeout-warning-beta.10:
-  version "22.0.0-timeout-warning-beta.10"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.0.0-timeout-warning-beta.10.tgz#21244a2aab95312cd86072d9cd979ddaedd7b63a"
-  integrity sha512-BbZfTq2WA7POJF9AnxUPqczmJOxX8kISJwxao/KYUryQMpWWvF8i93ZxawV0BBrKn525y1UVlr1ZGsxXGccXVg==
+hof@22.0.0-timeout-warning-beta.11:
+  version "22.0.0-timeout-warning-beta.11"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.0.0-timeout-warning-beta.11.tgz#81721d9990eba804b07efc813bb3ebe34668aad4"
+  integrity sha512-qbBW17aPmjn2yG+5Dl4/QOql6on4RFfvdbh5T3qcvP/bQU+Qmph8MUgQoSYTlDiXpsJ/yvWEszCZn9EHZnqSYg==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
