@@ -4,13 +4,17 @@
     "text-summary"
   ],
   "check-coverage": true,
-  "statements": 87,
-  "branches": 75,
-  "functions": 82,
-  "lines": 88,
-  "exclude": [
-    "test/**/*.js",
-    "apps/**/sections/**/*.js",
-    "apps/**/fields/**/*.js"
-  ]
+  "coverageThreshold": {
+    "*/**": {
+      "statements": 87,
+      "branches": 75,
+      "functions": 82,
+      "lines": 88,
+      "exclude": [
+        "test/**/*.js",
+        "apps/**/sections/**/*.js",
+        "apps/**/fields/**/*.js"
+      ]
+    }
+  }
 }

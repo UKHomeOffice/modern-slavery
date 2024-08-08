@@ -9,7 +9,6 @@ const dateComponent = require('hof').components.date;
 const ukLocalAuthorities = require('../../../ms-lists/ms_uk_local_authorities');
 const msNationalities = require('../../../ms-lists/ms_nationalities');
 const organisations = require('../../../ms-lists/ms_organisations');
-const path = require('path');
 
 module.exports = {
   reference: {
@@ -27,10 +26,8 @@ module.exports = {
   },
   'fr-location': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'england',
       'wales',
@@ -52,7 +49,7 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-name': {
     mixin: 'select',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     className: ['typeahead', 'js-hidden'],
     options: [{
       value: '',
@@ -61,27 +58,27 @@ module.exports = {
   },
   'local-authority-contacted-about-child-local-authority-phone': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    className: ['govuk-input', 'govuk-input--width-20'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    type: 'tel'
   },
   'local-authority-contacted-about-child-local-authority-email': {
     mixin: 'input-text',
-    className: ['form-control form-control-3-4'],
-    validate: ['required', 'email', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }],
+    type: 'email'
   },
   'local-authority-contacted-about-child-local-authority-first-name': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{ type: 'maxlength', arguments: [15000] }]
   },
   'local-authority-contacted-about-child-local-authority-last-name': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{ type: 'maxlength', arguments: [15000] }]
   },
   'pv-under-age-at-time-of-exploitation': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no',
@@ -91,7 +88,7 @@ module.exports = {
   'what-happened': {
     backLink: false,
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     legend: {
       className: 'govuk-textarea no-margin'
     },
@@ -104,15 +101,11 @@ module.exports = {
   },
   birthplace: {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   family: {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea no-margin',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -122,11 +115,7 @@ module.exports = {
   },
   education: {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea no-margin',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -136,11 +125,7 @@ module.exports = {
   },
   'employment-history': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea no-margin',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -150,11 +135,7 @@ module.exports = {
   },
   'when-did-the-exploitation-take-place': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -164,11 +145,7 @@ module.exports = {
   },
   'more-than-one-exploitation-situation': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -178,11 +155,7 @@ module.exports = {
   },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -192,10 +165,8 @@ module.exports = {
   },
   'were-they-taken-somewhere-by-their-exploiter': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
       toggle: 'were-they-taken-somewhere-by-their-exploiter-details-fieldset',
@@ -206,11 +177,7 @@ module.exports = {
   },
   'were-they-taken-somewhere-by-their-exploiter-journey-details': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -224,11 +191,7 @@ module.exports = {
   },
   'what-were-they-required-to-do': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -238,11 +201,7 @@ module.exports = {
   },
   'how-they-were-treated': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -252,11 +211,7 @@ module.exports = {
   },
   'why-they-stayed': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -266,11 +221,7 @@ module.exports = {
   },
   'how-why-did-they-leave-the-situation': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -279,11 +230,9 @@ module.exports = {
     ]
   },
   'when-last-contact': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'within-the-last-week',
       'within-the-last-month',
@@ -296,7 +245,6 @@ module.exports = {
   'details-last-contact': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -307,9 +255,7 @@ module.exports = {
   'is-this-the-first-chance-to-report': {
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
+    isPageHeading: true,
     options: [
       'yes',
       'no',
@@ -318,11 +264,7 @@ module.exports = {
   },
   'why-report-now': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -332,11 +274,7 @@ module.exports = {
   },
   'why-are-you-making-the-referral': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -346,11 +284,7 @@ module.exports = {
   },
   'where-how-interview-carried-out': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -374,11 +308,7 @@ module.exports = {
   },
   'are-others-involved-details': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -406,11 +336,7 @@ module.exports = {
   },
   'evidence-of-dishonesty-details': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -424,11 +350,7 @@ module.exports = {
   },
   'what-evidence-you-will-submit': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -438,10 +360,8 @@ module.exports = {
   },
   'where-exploitation-happened': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'uk',
       'overseas',
@@ -503,11 +423,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns),
-    dependent: {
-      value: 'uk',
-      field: 'where-exploitation-happened'
-    }
+    }].concat(ukCitiesAndTowns)
   },
   'where-exploitation-happened-uk-city-8': {
     mixin: 'select',
@@ -535,21 +451,13 @@ module.exports = {
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
         value: 5
       }
-    ],
-    dependent: {
-      value: 'uk',
-      field: 'where-exploitation-happened'
-    }
+    ]
   },
   'where-exploitation-happened-overseas-country-1': {
     mixin: 'select',
@@ -634,21 +542,13 @@ module.exports = {
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
         value: 5
       }
-    ],
-    dependent: {
-      value: 'overseas',
-      field: 'where-exploitation-happened'
-    }
+    ]
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
@@ -670,11 +570,7 @@ module.exports = {
   },
   'who-exploited-pv': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -683,22 +579,18 @@ module.exports = {
     ]
   },
   'exploiters-location': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
     ]
   },
   'are-exploiters-in-the-uk': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
@@ -706,9 +598,7 @@ module.exports = {
   },
   'exploiters-current-location-details': {
     mixin: 'textarea',
-    isPageHeading: true,
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -718,81 +608,45 @@ module.exports = {
   },
   'types-of-exploitation-forced-to-work': {
     mixin: 'checkbox',
-    validation: 'at-least-one-option-selected',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    validation: 'at-least-one-option-selected'
   },
   'types-of-exploitation-wages-taken': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-forced-to-commit-fraud': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-prostitution': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-child-exploitation': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-taken-somewhere': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-forced-to-commit-crime': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-organs-removed': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-unpaid-household-work': {
-    mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    mixin: 'checkbox'
   },
   'types-of-exploitation-other': {
     mixin: 'checkbox',
-    legend: {
-      className: 'visuallyhidden'
-    },
     toggle: 'other-exploitation-fieldset',
     child: 'partials/other-exploitation-fieldset'
   },
   'other-exploitation-details': {
     mixin: 'textarea',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 4
-      }
-    ],
-    dependent: {
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [{
+      attribute: 'rows',
+      value: 4
+    }],
+    validationLink: {
       value: 'true',
       field: 'types-of-exploitation-other'
     }
@@ -810,11 +664,9 @@ module.exports = {
     ]
   },
   'future-exploitation-concerns': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'yes',
       'no'
@@ -823,7 +675,6 @@ module.exports = {
   'future-exploitation-reasons': {
     mixin: 'textarea',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -853,15 +704,15 @@ module.exports = {
       value: '',
       label: 'fields.reported-to-police-police-forces.options.null'
     }].concat(ukPoliceForces),
-    dependent: {
+    validationLink: {
       value: 'yes',
       field: 'reported-to-police'
     }
   },
   'reported-to-police-crime-reference': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'yes',
       field: 'reported-to-police'
     }
@@ -874,8 +725,8 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'authorities-cooperation-details-fieldset',
-      child: 'partials/authorities-cooperation-yes'
+      toggle: 'authorities-cooperation-details',
+      child: 'textarea'
     }, {
       value: 'no'
     }]
@@ -883,7 +734,6 @@ module.exports = {
   'authorities-cooperation-details': {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
-    className: 'govuk-textarea',
     attributes: [
       {
         attribute: 'rows',
@@ -909,11 +759,7 @@ module.exports = {
   },
   'refuse-nrm': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [15000]}],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    className: 'govuk-textarea',
+    validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -934,27 +780,25 @@ module.exports = {
   },
   'pv-name-first-name': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   'pv-name-last-name': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   'pv-name-nickname': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{ type: 'maxlength', arguments: [15000] }]
   },
   'pv-dob': dateComponent('pv-dob', {
+    mixin: 'input-date',
     labelClassName: 'visuallyhidden',
-    validate: ['date', 'before', {type: 'after', arguments: '1900-01-01'}],
-    template: path.resolve(__dirname, '../views/date.html')
+    validate: ['date', 'before', { type: 'after', arguments: '1900-01-01' }]
   }),
   'pv-gender': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'female',
       'male',
@@ -963,21 +807,19 @@ module.exports = {
   },
   'does-pv-have-children': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
-      toggle: 'does-pv-have-children-yes-fieldset',
-      child: 'partials/does-pv-have-children-yes-amount'
+      toggle: 'does-pv-have-children-yes-amount',
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'does-pv-have-children-yes-amount': {
     mixin: 'input-text',
-    validate: ['required', 'numeric', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', 'numeric', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'yes',
       field: 'does-pv-have-children'
@@ -1001,44 +843,40 @@ module.exports = {
     }].concat(msNationalities)
   },
   'pv-interpreter-requirements': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
-      toggle: 'pv-interpreter-requirements-language-fieldset',
-      child: 'partials/pv-interpreter-requirements-language'
+      toggle: 'pv-interpreter-requirements-language',
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'pv-interpreter-requirements-language': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'yes',
       field: 'pv-interpreter-requirements'
     }
   },
   'pv-other-help-with-communication': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
-      toggle: 'pv-other-help-with-communication-aid-fieldset',
-      child: 'partials/pv-other-help-with-communication-aid'
+      toggle: 'pv-other-help-with-communication-aid',
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'pv-other-help-with-communication-aid': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'yes',
       field: 'pv-other-help-with-communication'
@@ -1046,21 +884,19 @@ module.exports = {
   },
   'pv-ho-reference': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
-      toggle: 'pv-ho-reference-type-fieldset',
-      child: 'partials/pv-ho-reference-type'
+      toggle: 'pv-ho-reference-type',
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'pv-ho-reference-type': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'yes',
       field: 'pv-ho-reference'
@@ -1079,10 +915,8 @@ module.exports = {
   },
   'pv-contact-details': {
     mixin: 'checkbox-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'email',
       toggle: 'pv-contact-details-email-input-fieldset',
@@ -1095,49 +929,53 @@ module.exports = {
   },
   'pv-contact-details-email-input': {
     mixin: 'input-text',
-    className: ['form-control form-control-3-4'],
-    validate: ['required', 'email', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'email',
       field: 'pv-contact-details'
-    }
+    },
+    type: 'email'
   },
   'pv-contact-details-email-check': {
     mixin: 'checkbox',
     validate: ['required'],
-    dependent: {
+    validationLink: {
       value: 'email',
       field: 'pv-contact-details'
     }
   },
   'pv-contact-details-street': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
   },
   'pv-contact-details-town': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-!-width-two-thirds'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
   },
   'pv-contact-details-county': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-!-width-two-thirds'],
+    validate: [{ type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
   },
   'pv-contact-details-postcode': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-input--width-10'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1145,7 +983,7 @@ module.exports = {
   'pv-contact-details-post-check': {
     mixin: 'checkbox',
     validate: ['required'],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1158,8 +996,8 @@ module.exports = {
     },
     options: [{
       value: 'email',
-      toggle: 'someone-else-email-input-fieldset',
-      child: 'partials/someone-else-email-input'
+      toggle: 'someone-else-email-input',
+      child: 'input-text'
     }, {
       value: 'post',
       toggle: 'someone-else-post-fieldset',
@@ -1168,49 +1006,52 @@ module.exports = {
   },
   'someone-else-first-name': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{ type: 'maxlength', arguments: [15000] }]
   },
   'someone-else-last-name': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{ type: 'maxlength', arguments: [15000] }]
   },
   'someone-else-email-input': {
     mixin: 'input-text',
-    className: ['form-control form-control-3-4'],
-    validate: ['required', 'email', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'email',
       field: 'someone-else'
-    }
+    },
+    type: 'email'
   },
   'someone-else-street': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'someone-else'
     }
   },
   'someone-else-town': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-!-width-two-thirds'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'someone-else'
     }
   },
   'someone-else-county': {
     mixin: 'input-text',
-    validate: [{type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-!-width-two-thirds'],
+    validate: [{ type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'someone-else'
     }
   },
   'someone-else-postcode': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    className: ['govuk-input govuk-input--width-10'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    validationLink: {
       value: 'post',
       field: 'someone-else'
     }
@@ -1221,45 +1062,48 @@ module.exports = {
   },
   'pv-phone-number': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [{
       value: 'yes',
-      toggle: 'pv-phone-number-yes-fieldset',
-      child: 'partials/pv-phone-number-yes'
+      toggle: 'pv-phone-number-yes',
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'pv-phone-number-yes': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    className: ['govuk-input', 'govuk-input--width-20'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     dependent: {
       value: 'yes',
       field: 'pv-phone-number'
-    }
+    },
+    type: 'tel'
   },
   'fr-details-first-name': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   'fr-details-last-name': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   'fr-details-role': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   'fr-details-phone': {
     mixin: 'input-text',
-    validate: ['required', {type: 'maxlength', arguments: [15000]}]
+    className: ['govuk-input', 'govuk-input--width-20'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    type: 'tel'
   },
   'fr-alternative-contact': {
     mixin: 'input-text',
-    className: ['form-control form-control-3-4'],
-    validate: ['email', {type: 'maxlength', arguments: [15000]}]
+    className: ['govuk-input'],
+    validate: ['email', { type: 'maxlength', arguments: [15000] }],
+    type: 'email'
   }
 };

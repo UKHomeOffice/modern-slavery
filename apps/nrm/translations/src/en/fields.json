@@ -135,7 +135,7 @@
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
   "when-last-contact":{
-    "legend": "when victim and exploiters last in contact",
+    "legend": "When were the potential victim and exploiters last in contact?",
     "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
     "options": {
       "within-the-last-week": {
@@ -238,7 +238,7 @@
     "label": "Employment history and working conditions"
   },
   "where-exploitation-happened": {
-    "legend": "Where were they last exploited?",
+    "legend": "Where were they exploited?",
     "options": {
       "uk": {
         "label": "UK"
@@ -527,6 +527,7 @@
     "label": "Enter crime or CAD reference"
   },
   "authorities-cooperation": {
+    "legend": "Is the potential victim willing to help with investigations or criminal proceedings into their exploitation?",
     "hint": "If you are unsure, save your progress and check with them",
     "options": {
       "yes": {
@@ -546,10 +547,10 @@
     "paragraph-1": "If a potential victim wants you to refer their case, they can get:",
     "bullet-1": "access to support (for example, housing and legal advice)",
     "bullet-2": "a formal decision – this can help if they’re being prosecuted for a crime they were forced to commit",
-    "div-1-paragraph-1" : "We will need to share their personal details with organisations such as the police and the Home Office if they agree to their case being referred.",
+    "div-1-paragraph-1": "We will need to share their personal details with organisations such as the police and the Home Office if they agree to their case being referred.",
     "div-1-paragraph-2": "Please explain to the potential victim the ways in which the Home Office may process their personal information, including the purposes for which it will be used, the legal basis and who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms/privacy-information-notice-national-referral-mechanism\">Privacy Information Notice</a> and <a class=\"govuk-link\" href=\"https://www.gov.uk/government/organisations/home-office/about/personal-information-charter\">Personal Information Charter.</a>",
     "automatic-referral": "As the potential victim is either under 18 years old, or their age is unknown, their consent is not required for the case to be referred.",
-    "automatic-referral-div-1-paragraph-1" : "We will need to share their personal details with organisations such as the police and the Home Office.",
+    "automatic-referral-div-1-paragraph-1": "We will need to share their personal details with organisations such as the police and the Home Office.",
     "automatic-referral-div-1-paragraph-2": "If appropriate please explain to the potential victim the ways in which the Home Office may process their personal information, including the purposes for which it will be used, the legal basis and who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms/privacy-information-notice-national-referral-mechanism\">Privacy Information Notice</a> and <a class=\"govuk-link\" href=\"https://www.gov.uk/government/organisations/home-office/about/personal-information-charter\">Personal Information Charter.</a>",
     "options": {
       "yes": {
@@ -562,7 +563,7 @@
   },
   "refuse-nrm": {
     "label": "Why don’t they want their case referred? (Optional)",
-    "hint" : "Briefly explain your reasons"
+    "hint": "Briefly explain your reasons"
   },
   "does-pv-need-support": {
     "legend": "Do they need support?",
@@ -585,7 +586,7 @@
     "label": "Nickname or name used during exploitation (Optional)"
   },
   "pv-dob": {
-    "hint": "For example,"
+    "hint": "For example, 31 3 1980."
   },
   "pv-gender": {
     "legend": "What is their gender?",
@@ -645,7 +646,7 @@
     "label": "Language"
   },
   "pv-other-help-with-communication": {
-    "legend": "Do they need an interpreter?",
+    "legend": "Do they need help with communication?",
     "hint": "For example, a hearing aid or a sign language interpreter.",
     "options": {
       "yes": {

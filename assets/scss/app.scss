@@ -1,8 +1,20 @@
 @import "hof/frontend/themes/gov-uk/styles/govuk";
-@import "govuk-frontend/all.scss";
 
 html {
-  font-size:16px;
+  font-size: 16px;
+}
+
+a {
+  @extend .govuk-link;
+}
+
+p {
+  @extend .govuk-body;
+}
+
+ul {
+  @extend .govuk-list;
+  @extend .govuk-list--bullet;
 }
 
 .phase-banner {
@@ -33,32 +45,35 @@ html {
     cursor: pointer;
   }
 }
+
 .checkbox-hint {
   padding-left: 50px;
   margin-top: -25px;
 }
+
 .bullet-list {
   list-style: disc;
   margin-left: 20px;
 }
+
 textarea {
   font-size: 19px !important;
 }
 
-#types-of-exploitation-forced-to-work-group > .validation-error {
+#types-of-exploitation-forced-to-work-group>.govuk-form-group--error {
   box-sizing: inherit;
   padding-left: 0px;
   border-left: none;
 }
 
-#types-of-exploitation-forced-to-work-group > .error-message {
+#types-of-exploitation-forced-to-work-group>.govuk-error-message {
   display: none;
 }
 
 .validation-error-override {
   box-sizing: border-box;
   padding-left: 12px;
-  border-left: 4px solid #b10e1e;
+  border-left: 4px solid #d4351c;
 }
 
 .error-message-override {
@@ -66,10 +81,13 @@ textarea {
 }
 
 // Check your answers page
-#your-report, #potential-victim, #your-details, #someone-else {
+#your-report,
+#potential-victim,
+#your-details,
+#someone-else {
   td {
     a[href*="nrm"] {
-      color: #005ea5 !important;
+      color: #1D70B8 !important;
       background-color: white !important;
       text-decoration: underline;
       -webkit-box-shadow: none !important;
@@ -85,18 +103,19 @@ textarea {
       display: block;
     }
 
-    &:first-child{
+    &:first-child {
       font-weight: bold;
     }
 
     &:not(.no-white-space) {
       white-space: normal;
     }
-    }
   }
-  .types-of-exploitation {
-    span {
-      margin-bottom: 10px;
+}
+
+.types-of-exploitation {
+  span {
+    margin-bottom: 10px;
   }
 }
 
@@ -104,12 +123,14 @@ textarea {
 .max-page-width {
   width: 100% !important;
 }
+
 .heading-large-custom {
   font-size: 36px;
   line-height: 1.11111;
   margin-top: 0px !important;
   font-weight: bold;
 }
+
 .breadcrumb-custom {
   margin-top: -30px;
   margin-bottom: 30px;
@@ -125,17 +146,23 @@ textarea {
 .autocomplete__input {
   -webkit-appearance: none;
   border: 2px solid #0b0c0c;
-  border-radius: 0; /* Safari 10 on iOS adds implicit border rounding. */
+  border-radius: 0;
+  /* Safari 10 on iOS adds implicit border rounding. */
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  margin-bottom: 0; /* BUG: Safari 10 on macOS seems to add an implicit margin. */
+  margin-bottom: 0;
+  /* BUG: Safari 10 on macOS seems to add an implicit margin. */
   width: 100%;
 }
 
 .autocomplete__input {
   background-color: transparent;
   position: relative;
+}
+
+.autocomplete__input--error {
+  border: 2px solid #d4351c !important;
 }
 
 .autocomplete__hint {
@@ -146,6 +173,7 @@ textarea {
 .autocomplete__input--default {
   padding: 5px;
 }
+
 .autocomplete__input--focused {
   outline: 3px solid #fd0;
   outline-offset: 0;
@@ -153,11 +181,12 @@ textarea {
 }
 
 .autocomplete__input--show-all-values {
-  padding: 5px 34px 5px 5px; /* Space for arrow. Other padding should match .autocomplete__input--default. */
+  padding: 5px 34px 5px 5px;
+  /* Space for arrow. Other padding should match .autocomplete__input--default. */
   cursor: pointer;
 }
 
-.autocomplete__dropdown-arrow-down{
+.autocomplete__dropdown-arrow-down {
   z-index: -1;
   display: inline-block;
   position: absolute;
@@ -208,7 +237,7 @@ textarea {
   position: relative;
 }
 
-.autocomplete__option > * {
+.autocomplete__option>* {
   pointer-events: none;
 }
 
@@ -251,6 +280,7 @@ textarea {
 }
 
 @media (min-width: 641px) {
+
   .autocomplete__hint,
   .autocomplete__input,
   .autocomplete__option {
@@ -259,14 +289,24 @@ textarea {
   }
 }
 
+a > .govuk-button {
+  background-color: #00703c
+}
+
 .govuk-button--secondary {
   background-color: #f3f2f1;
   box-shadow: 0 2px 0 #929191;
 }
+
 .govuk-button--secondary:hover {
   background-color: #dbdad9;
 }
-.govuk-button--secondary, .govuk-button--secondary:link, .govuk-button--secondary:visited, .govuk-button--secondary:active, .govuk-button--secondary:hover {
+
+.govuk-button--secondary,
+.govuk-button--secondary:link,
+.govuk-button--secondary:visited,
+.govuk-button--secondary:active,
+.govuk-button--secondary:hover {
   color: #0b0c0c;
 }
 
@@ -299,7 +339,7 @@ textarea {
 .govuk-button__start-icon {
   @media (min-width: 48.0625em) {
     margin-left: 10px;
-  }    
+  }
 }
 
 .js-enabled .add-another {
@@ -316,6 +356,15 @@ textarea {
 
     .list-entry-button {
       margin: 0;
+    }
+
+    .govuk-main-wrapper {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+
+    .govuk-hint {
+      padding-top: 0.75em;
     }
   }
 }
@@ -338,7 +387,39 @@ textarea {
   margin-bottom: 0;
 }
 
-.govuk-list--bullet {
-  margin-left: 15px;
-  padding-left: 20px;
+// GovUK Corrections
+
+#reference-hint.govuk-hint {
+  padding-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+// Text Field Widths
+.field-width-1-8 {
+  @media (min-width: 768px) {
+    width: 150%;
+
+    @include media(tablet) {
+      width: 150%;
+    }
+  }
+}
+
+.wrap-table-cell,
+.confirm-row,
+.section-header {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.confirm-label>span.govuk-hint {
+  padding-top: -20px;
+  padding-bottom: -50px;
+  margin-bottom: 0;
+}
+
+.confirm-label>p.label-info {
+  padding-top: -20px;
+  padding-bottom: -50px;
+  margin-bottom: 0;
 }

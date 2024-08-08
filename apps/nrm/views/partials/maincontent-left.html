@@ -2,9 +2,9 @@
 {{$preloader}}{{/preloader}}
   <div class="column-{{columnWidth}}{{^columnWidth}}two-thirds{{/columnWidth}}">
     {{$validationSummary}}{{/validationSummary}}
-    <header>
-      <h1>{{$header}}{{/header}}</h1>
-    </header>
+    {{#captionHeading}}<span class="govuk-caption-l">{{captionHeading}}</span>{{/captionHeading}}
+    {{#header}}<h1 class="govuk-heading-l">{{header}}</h1>{{/header}}
+    {{#subHeading}}<div id="page-header"><h2 class="govuk-heading-m">{{subHeading}}</h2></div>{{/subHeading}}
     {{$content}}{{/content}}
   </div>
 {{/content-outer}}

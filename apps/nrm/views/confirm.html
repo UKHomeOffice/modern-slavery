@@ -1,6 +1,8 @@
 {{<partials-page}}
   {{$page-content}}
-    {{> partials-summary-table}}
+    {{#rows}}
+      {{> partials-summary-table}}
+    {{/rows}}
     {{#markdown}}check-your-answers{{/markdown}}
     {{#input-submit}}confirm-answers{{/input-submit}}
   {{/page-content}}

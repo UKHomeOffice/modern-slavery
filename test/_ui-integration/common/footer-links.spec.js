@@ -20,7 +20,7 @@ describe('Footer links', () => {
     const res = await getUrl(URI);
     const docu = await parseHtml(res);
 
-    const header = docu.find('header h1');
+    const header = docu.find('h1.govuk-heading-l');
 
     header.html().should.match(/Cookies/);
   });
@@ -32,7 +32,7 @@ describe('Footer links', () => {
     const res = await getUrl(URI);
     const docu = await parseHtml(res);
 
-    const header = docu.find('header h1');
+    const header = docu.find('h1.govuk-heading-l');
 
     header.html().should.match(/Terms and conditions/);
   });
@@ -44,7 +44,7 @@ describe('Footer links', () => {
     const res = await getUrl(URI);
     const docu = await parseHtml(res);
 
-    const header = docu.find('header h1');
+    const header = docu.find('h1.govuk-heading-l');
 
     header.html().should.match(/Accessibility statement/);
   });
