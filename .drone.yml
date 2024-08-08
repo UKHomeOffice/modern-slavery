@@ -24,7 +24,7 @@ trigger:
 
 linting: &linting
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
@@ -32,7 +32,7 @@ linting: &linting
 
 unit_tests: &unit_tests
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
@@ -40,7 +40,7 @@ unit_tests: &unit_tests
 
 ui_integration_tests: &ui_integration_tests
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
