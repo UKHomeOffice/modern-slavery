@@ -24,7 +24,7 @@ trigger:
 
 linting: &linting
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
@@ -32,7 +32,7 @@ linting: &linting
 
 unit_tests: &unit_tests
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
@@ -40,7 +40,7 @@ unit_tests: &unit_tests
 
 ui_integration_tests: &ui_integration_tests
   pull: if-not-exists
-  image: node:18
+  image: node:lts
   environment:
     NOTIFY_STUB: true
   commands:
@@ -48,7 +48,7 @@ ui_integration_tests: &ui_integration_tests
 
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+  image: quay.io/ukhomeofficedigital/gitlab-arun-test:sonar-scanner-node-v18.12.1
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
@@ -207,32 +207,32 @@ steps:
           - feature/*
       event: pull_request
 
-#  - name: linting_branch
-#    <<: *linting
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
-#
-#  - name: unit_tests_branch
-#    <<: *unit_tests
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
-#
-#  - name: ui_integration_tests_branch
-#    <<: *ui_integration_tests
-#    when:
-#      branch:
-#        include:
-#          - master
-#          - feature/*
-#      event: pull_request
+ - name: linting_branch
+   <<: *linting
+   when:
+     branch:
+       include:
+         - master
+         - feature/*
+     event: pull_request
+
+ - name: unit_tests_branch
+   <<: *unit_tests
+   when:
+     branch:
+       include:
+         - master
+         - feature/*
+     event: pull_request
+
+ - name: ui_integration_tests_branch
+   <<: *ui_integration_tests
+   when:
+     branch:
+       include:
+         - master
+         - feature/*
+     event: pull_request
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
@@ -244,21 +244,21 @@ steps:
       event: pull_request
 
   # temporarily commented out because tests are not running properly on drone
-  # - name: acceptance_tests_branch
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-  #   volumes:
-  #     - name: dockersock
-  #       path: /var/run
-  #   commands:
-  #     - apk add --no-cache docker-compose
-  #     - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
-  #     - docker-compose exec -T modern-slavery-main sh -c 'npm run test:docker-acceptance'
-  #   when:
-  #     branch:
-  #       include:
-  #         - master
-  #         - feature/*
-  #     event: pull_request
+  - name: acceptance_tests_branch
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands:
+      - apk add --no-cache docker-compose
+      - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
+      - docker-compose exec -T modern-slavery-main sh -c 'npm run test:docker-acceptance'
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
