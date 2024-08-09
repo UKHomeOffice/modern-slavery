@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request');
+const Model = require('hof').model;
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
@@ -25,14 +25,13 @@ module.exports = superclass => class extends superclass {
     }
 
     this.cleanSession(req);
-
-    const getUrl = baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id;
-
-    return request.get(getUrl, (error, response, body) => {
-      if (error) {
-        return next(error);
-      }
-      const resBody = JSON.parse(body);
+    const model = new Model();
+    const params = {
+      url: baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id,
+      method: 'GET'
+    };
+    return model._request(params).then(response => {
+      const resBody = response.data;
 
       if (resBody && resBody.length && resBody[0].session) {
         if (resBody[0].session.hasOwnProperty('alertUser')) {
@@ -52,6 +51,8 @@ module.exports = superclass => class extends superclass {
       }
 
       return super.getValues(req, res, next);
+    }).catch(error => {
+      return next(error);
     });
   }
 

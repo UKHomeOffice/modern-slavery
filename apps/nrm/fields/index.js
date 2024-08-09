@@ -874,8 +874,8 @@ module.exports = {
     },
     options: [{
       value: 'yes',
-      toggle: 'authorities-cooperation-details-fieldset',
-      child: 'partials/authorities-cooperation-yes'
+      toggle: 'authorities-cooperation-details',
+      child: 'textarea'
     }, {
       value: 'no'
     }]
@@ -1097,7 +1097,7 @@ module.exports = {
     mixin: 'input-text',
     className: ['form-control form-control-3-4'],
     validate: ['required', 'email', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validationLink: {
       value: 'email',
       field: 'pv-contact-details'
     }
@@ -1105,7 +1105,7 @@ module.exports = {
   'pv-contact-details-email-check': {
     mixin: 'checkbox',
     validate: ['required'],
-    dependent: {
+    validationLink: {
       value: 'email',
       field: 'pv-contact-details'
     }
@@ -1113,7 +1113,7 @@ module.exports = {
   'pv-contact-details-street': {
     mixin: 'input-text',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1121,7 +1121,7 @@ module.exports = {
   'pv-contact-details-town': {
     mixin: 'input-text',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1129,7 +1129,7 @@ module.exports = {
   'pv-contact-details-county': {
     mixin: 'input-text',
     validate: [{type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1137,7 +1137,7 @@ module.exports = {
   'pv-contact-details-postcode': {
     mixin: 'input-text',
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
@@ -1145,7 +1145,7 @@ module.exports = {
   'pv-contact-details-post-check': {
     mixin: 'checkbox',
     validate: ['required'],
-    dependent: {
+    validationLink: {
       value: 'post',
       field: 'pv-contact-details'
     }
