@@ -407,8 +407,8 @@ module.exports = {
         saveFormSession
       ],
       fields: [
-        'authorities-cooperation',
-        'authorities-cooperation-details'
+        'authorities-cooperation'
+        // 'authorities-cooperation-details'
       ],
       next: '/pv-want-to-submit-nrm'
     },
