@@ -1,6 +1,9 @@
+/* eslint no-process-env: 0 */
 'use strict';
 
 require('dotenv').config();
+process.env.AWS_SQS = 'test-queue';
+process.env.DELETION_TIMEOUT = 28;
 
 global.chai = require('chai')
   .use(require('sinon-chai'))
