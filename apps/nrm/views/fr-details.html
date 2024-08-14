@@ -1,10 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
     {{#markdown}}fr-details{{/markdown}}
-    {{#renderField}}fr-details-first-name{{/renderField}}
-    {{#renderField}}fr-details-last-name{{/renderField}}
-    {{#renderField}}fr-details-role{{/renderField}}
-    {{#renderField}}fr-details-phone{{/renderField}}
-    {{#input-submit}}continue{{/input-submit}} {{> partials-save-and-exit-link}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

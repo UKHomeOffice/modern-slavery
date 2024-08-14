@@ -8,9 +8,6 @@
   "are-you-sure": {
     "header": "Delete report"
   },
-  "fr-location": {
-    "header": "Where are you making this report?"
-  },
   "pv-under-age": {
     "header": "Is the potential victim under 18?"
   },
@@ -20,9 +17,6 @@
     "paragraph-2": "If the child is in an Independent Child Trafficking Guardian (ICTG) area you will also need to refer them to the",
     "paragraph-2-link-1": "ICTG service."
   },
-  "pv-under-age-at-time-of-exploitation": {
-    "header": "Were they under 18 at any time during the exploitation?"
-  },
   "what-happened": {
     "header": "What did they say happened?"
   },
@@ -30,8 +24,7 @@
     "header": "What is their background?"
   },
   "when-did-the-exploitation-take-place": {
-    "header": "When did the exploitation take place?",
-    "paragraph": "If they know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident. If multiple incidents, list the dates or timeframe of each."
+    "header": "When did the exploitation take place?"
   },
   "more-than-one-exploitation-situation": {
     "header": "Have they been in more than one exploitative situation?",
@@ -41,17 +34,11 @@
     "header": "How did the exploitation start?",
     "paragraph": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
-  "where-exploitation-happened": {
-    "header": "Where were they exploited?"
-  },
   "how-they-were-treated": {
     "header": "How were they treated during their exploitation?"
   },
   "how-why-did-they-leave-the-situation": {
     "header": "How and why did they leave the situation?"
-  },
-  "when-last-contact": {
-    "header": "When were the potential victim and exploiters last in contact?"
   },
   "details-last-contact": {
     "header": "Last contact between the potential victim and their exploiters",
@@ -59,9 +46,6 @@
     "paragraph-2": "You can provide information about how they communicated, what was said and who was involved.",
     "paragraph-3": "Include details about any threats the exploiters have made. If applicable, describe any steps the potential victim has taken to prevent contact with their exploiters.",
     "second-header": "Details of the last contact (optional)"
-  },
-  "is-this-the-first-chance-to-report": {
-    "header": "Is this the first chance they have had to report this?"
   },
   "why-report-now": {
     "header": "Why are they reporting this now?"
@@ -116,16 +100,9 @@
   "who-exploited-pv": {
     "header": "Who exploited them?"
   },
-  "exploiters-location": {
-    "header": "Do you have information about where the exploiters are?"
-  },
-  "are-exploiters-in-the-uk": {
-    "header":"Are the exploiters in the UK?"
-  },
   "exploiters-current-location-details": {
     "header": "What information do you have about where the exploiters are now?"
   },
-  
   "types-of-exploitation": {
     "header": "How were they exploited?",
     "hint": "Select all that apply.",
@@ -134,13 +111,10 @@
     "heading-3": "Criminal exploitation",
     "heading-4": "Domestic servitude",
     "warning": "If you think they are a victim of another crime you can report it to the police by calling 101.",
-    "warning-heading" : "Warning"
+    "warning-heading": "Warning"
   },
   "any-other-pvs": {
     "header": "Were there any other potential victims?"
-  },
-  "future-exploitation": {
-    "header": "Are there concerns that the potential victim could be exploited again in the future?"
   },
   "concerns-future-exploitation": {
     "header": "Why are there concerns about exploitation in the future?"
@@ -160,8 +134,8 @@
   },
   "does-pv-need-support": {
     "header": "Do they need support?",
-    "paragraph-1" : "Support can take 5 days to start unless the potential victim needs emergency housing.",
-    "paragraph-2" : "Support can take 5 days to start and may include:",
+    "paragraph-1": "Support can take 5 days to start unless the potential victim needs emergency housing.",
+    "paragraph-2": "Support can take 5 days to start and may include:",
     "bullet-1": "safe housing",
     "bullet-2": "medical treatment",
     "bullet-3": "someone to help them cope with their experience",
@@ -185,20 +159,11 @@
   "pv-gender": {
     "header": "What is their gender?"
   },
-  "does-pv-have-children": {
-    "header": "Do they have any children?"
+  "pv-nationality-referral": {
+    "header": "Select nationality"
   },
-  "pv-nationality": {
-    "header": "What is their nationality?"
-  },
-  "pv-interpreter-requirements": {
-    "header": "Do they need an interpreter?"
-  },
-  "pv-other-help-with-communication": {
-    "header": "Do they need help with communication?"
-  },
-  "pv-ho-reference": {
-    "header": "Do they have any Home Office references?"
+  "pv-nationality-dtn": {
+    "header": "Select nationality"
   },
   "who-contact": {
     "header": "Who should we send our decision to?"
@@ -208,9 +173,6 @@
   },
   "pv-contact-details": {
     "header": "How should they be contacted?"
-  },
-  "pv-phone-number": {
-    "header": "Can the support provider contact them by phone?"
   },
   "fr-details": {
     "header": "What are your contact details?",
@@ -244,7 +206,7 @@
         "hint": "This will not be included in the report"
       },
       "user-organisation": {
-        "label": "Your organisaton"
+        "label": "Your organisation"
       },
       "pv-under-age": {
         "label": "Under 18"
@@ -263,7 +225,7 @@
       },
       "when-did-the-exploitation-take-place": {
         "label": "When did exploitation take place"
-       },
+      },
       "more-than-one-exploitation-situation": {
         "label": "More than one exploitation situation"
       },
@@ -313,7 +275,7 @@
         "label": "Details of other people involved"
       },
       "evidence-of-dishonesty": {
-        "label": "Evidence of Dishonesty"
+        "label": "Evidence of dishonesty"
       },
       "evidence-of-dishonesty-details": {
         "label": "Indicators or evidence of dishonesty"
@@ -321,20 +283,20 @@
       "what-evidence-you-will-submit": {
         "label": "List of documents or evidence to be submitted"
       },
-      "local-authority-contacted-about-child-local-authority-name" : {
+      "local-authority-contacted-about-child-local-authority-name": {
         "label": "Local authority name"
       },
-      "local-authority-contacted-about-child-local-authority-phone" : {
+      "local-authority-contacted-about-child-local-authority-phone": {
         "label": "Local authority phone"
       },
-      "local-authority-contacted-about-child-local-authority-email" : {
+      "local-authority-contacted-about-child-local-authority-email": {
         "label": "Local authority email"
       },
-      "local-authority-contacted-about-child-local-authority-contact" : {
+      "local-authority-contacted-about-child-local-authority-first-name": {
         "label": "Local authority contact"
       },
-      "pv-under-age-at-time-of-exploitation" : {
-        "table-data": "Under 18 when exploited"
+      "pv-under-age-at-time-of-exploitation": {
+        "label": "Under 18 when exploited"
       },
       "fr-location": {
         "label": "Location of report"
@@ -345,20 +307,20 @@
       "where-exploitation-happened": {
         "label": "Where were they exploited?"
       },
-      "where-exploitation-happened-uk": {
+      "where-exploitation-happened-uk-city-1": {
         "label": "Where were they exploited in the UK?"
       },
-      "where-exploitation-happened-overseas": {
+      "where-exploitation-happened-overseas-country-1": {
         "label": "Where were they exploited overseas?"
       },
-      "current-pv-location": {
+      "current-pv-location-uk-city": {
         "label": "Current location"
       },
       "who-exploited-pv": {
         "label": "Details of exploiter(s)"
       },
       "exploiters-location": {
-        "label": "Information about exploiters location’"
+        "label": "Information about exploiters' location"
       },
       "are-exploiters-in-the-uk": {
         "label": "Exploiters in UK?"
@@ -398,19 +360,16 @@
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"
       },
-      "co-operate-with-police": {
-        "label": "Permission for police to contact them"
-      },
-      "someone-else-name": {
+      "someone-else-first-name": {
         "label": "Name"
       },
       "someone-else-email-input": {
         "label": "Email"
       },
-      "someone-else-contact-details": {
+      "someone-else-street": {
         "label": "Address"
       },
-      "pv-name": {
+      "pv-name-first-name": {
         "label": "Name"
       },
       "pv-name-nickname": {
@@ -437,10 +396,10 @@
       "pv-other-help-with-communication": {
         "label": "Other communications aids"
       },
-      "pv-contact-details": {
+      "pv-contact-details-post-check": {
         "label": "Home address"
       },
-      "pv-contact-details-email": {
+      "pv-contact-details-email-check": {
         "label": "Email"
       },
       "pv-phone-number": {
@@ -452,7 +411,7 @@
       "pv-ho-reference": {
         "label": "Home Office reference"
       },
-      "fr-details-name": {
+      "fr-details-first-name": {
         "label": "Name"
       },
       "fr-details-organisation": {
@@ -474,7 +433,7 @@
     }
   },
   "confirmation": {
-    "header": "Confirmation",
+    "title": "Confirmation",
     "dtn-message": "Duty to Notify (DtN) sent",
     "nrm-message": "NRM referral sent",
     "paragraph-1": "You will shortly receive a confirmation email with a reference number. You will also receive a copy of your report for your records.",
