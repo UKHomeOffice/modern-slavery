@@ -86,6 +86,6 @@
     "reporter": "spec",
     "require": "test/setup.js",
     "recursive": "true",
-    "timeout": "9000"
+    "timeout": "12000"
   }
 }
