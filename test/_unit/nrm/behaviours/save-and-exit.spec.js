@@ -64,7 +64,6 @@ describe('/apps/nrm/behaviours/save-and-exit', () => {
       };
 
       req.sessionModel.get.withArgs('user-email').returns(UserEmail);
-
       const result = instance.locals(req, res);
       result.should.deep.equal(expected);
       expect(sessionModel.reset).to.have.been.called;
