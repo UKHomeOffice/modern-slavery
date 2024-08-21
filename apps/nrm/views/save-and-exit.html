@@ -1,7 +1,13 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+
+  {{$propositionHeader}}{{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.save-and-exit.header{{/t}}
+  {{/header}}
+  {{$content}}
     <p>You have until the {{reportExpiration}} to update or submit your report.</p>
     <p>We have sent a confirmation email to: {{userEmail}}</p>
     <p>You can return to your report at any time via the report modern slavery <a class="govuk-link" href="/start">start page on GOV.UK.</a></p>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

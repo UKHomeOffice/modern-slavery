@@ -8,8 +8,10 @@
     "./apps/feedback"
   ],
   "behaviours": [
-    "./apps/common/behaviours/sanitise-inputs"
+    "./apps/common/behaviours/sanitise-inputs",
+    "hof/components/session-timeout-warning"
   ],
+  "saveExitFormContent": true,
   "getCookies": false,
   "session": {
     "name": "modern-slavery.hof.sid"
