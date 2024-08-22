@@ -1,5 +1,5 @@
 'use strict';
-const request = require('request');
+const request = require('axios');
 const config = require('../../../config');
 
 const encodeEmail = email => Buffer.from(email).toString('hex');
