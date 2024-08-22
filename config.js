@@ -33,9 +33,6 @@ module.exports = {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST
   },
-  session: {
-    ttl: 65,
-  },
   sessionTimeOutWarning: process.env.SESSION_TIMEOUT_WARNING || 60,
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
