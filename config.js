@@ -34,7 +34,7 @@ module.exports = {
     host: process.env.REDIS_HOST
   },
   session: {
-    ttl: process.env.SESSION_TTL || 65,
+    ttl: 65,
   },
   sessionTimeOutWarning: process.env.SESSION_TIMEOUT_WARNING || 60,
   keycloak: {
