@@ -36,7 +36,7 @@
   "dependencies": {
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
-    "hof": "21.0.6",
+    "hof": "20.4.0",
     "ioredis": "^4.0.0",
     "jquery": "^3.5.1",
     "knex": "^3.1.0",
@@ -50,7 +50,7 @@
     "ms-uk-regions": "^2.1.1",
     "notifications-node-client": "^8.0.0",
     "pg": "^8.7.1",
-    "axios": "^1.7.4",
+    "request": "^2.88.0",
     "sqs-producer": "^1.6.3",
     "typeahead-aria": "^1.0.4",
     "url": "^0.11.0",

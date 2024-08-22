@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 'use strict';
 
-const request = require('axios');
+const request = require('request');
 const config = require('../../../config');
 
 module.exports = superclass => class extends superclass {

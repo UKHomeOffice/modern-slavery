@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('axios');
+const request = require('request');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
