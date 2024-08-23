@@ -923,14 +923,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.13.1.tgz#bb5f8b8a20739f6ae1caeaf7eea2c7913df8048e"
   integrity sha512-u5w79Rd7SU4JaIlA/zFqG+gOiuq25q5VLyZ8E+ijJeILuTxVzZgp2CaGw/UTw6pXYN9XMO9yiqj/nEHmhTG5CA==
 
-axios@^0.25.0:
-  version "0.25.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
-  integrity sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==
-  dependencies:
-    follow-redirects "^1.14.7"
-
-axios@^1.7.2:
+axios@^1.5.1, axios@^1.7.2:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
   integrity sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==
@@ -2010,6 +2003,11 @@ devtools-protocol@0.0.1312386:
   resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1312386.tgz#5ab824d6f1669ec6c6eb0fba047e73601d969052"
   integrity sha512-DPnhUXvmvKT2dFA/j7B+riVLUt9Q6RKJlcppojL5CoRywJJKLDYnRlw0gTFKfgDPHP5E04UoB71SxoJlVZy8FA==
 
+dialog-polyfill@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.5.6.tgz#7507b4c745a82fcee0fa07ce64d835979719599a"
+  integrity sha512-ZbVDJI9uvxPAKze6z146rmfUZjBqNEwcnFTVamQzXH+svluiV7swmVIGr7miwADgfgt1G2JQIytypM9fbyhX4w==
+
 diff@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.0.0.tgz#7ed6ad76d859d030787ec35855f5b1daf31d852b"
@@ -2634,7 +2632,7 @@ express-healthcheck@^0.1.0:
   resolved "https://registry.yarnpkg.com/express-healthcheck/-/express-healthcheck-0.1.0.tgz#cabec78129c4cb90cd7fb894dfae21b82e27cb07"
   integrity sha512-FKQVgDo1FMSOYflEq4g6CvNk6stbpkuX0MWXmul8dSICuw/b+3JgoYOq/aiDcYid5k42jh/4HYLYC/M/qDBEuQ==
 
-express-partial-templates@^0.2.0:
+express-partial-templates@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/express-partial-templates/-/express-partial-templates-0.2.1.tgz#191075f1194402893ddbbc8163d38406015b765b"
   integrity sha512-S9i9wfVwYk6yASd/h2imS8a0W9eT+4CNWSSi2yXgyzFmOtc3pqsxcaE8ZCZOuIUkQRtQYemA2d7ddxtVHVQl5A==
@@ -2884,7 +2882,7 @@ fn.name@1.x.x:
   resolved "https://registry.yarnpkg.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
 
-follow-redirects@^1.14.7, follow-redirects@^1.15.6:
+follow-redirects@^1.15.6:
   version "1.15.6"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
   integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
@@ -3372,12 +3370,13 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~20.5.1:
-  version "20.5.6"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-20.5.6.tgz#726a426036ca421435f24b9c4bc05b4174732c6b"
-  integrity sha512-Auexph99CYARRO4DR0qi+mvQKvwFB6z6JndHd9HGF/yUmohmzHdC7v44eLq4XCtPsUv5+DtzL3Tk9kDpJPh3IA==
+hof@22.0.0-timeout-warning-sign-in-beta.4:
+  version "22.0.0-timeout-warning-sign-in-beta.4"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.0.0-timeout-warning-sign-in-beta.4.tgz#1bcf915e283eb277aab76e58eabbc21c234ab790"
+  integrity sha512-HvE6ng3iuOvoeRjc/WXdB5lD82LNBXW7PgvtayUex0/wZsZ8YGu8mIW7FR/z9tbol9CKbjqolq74N7zxiRdtBw==
   dependencies:
     aliasify "^2.1.0"
+    axios "^1.5.1"
     bluebird "^3.7.2"
     body-parser "^1.15.1"
     browserify "^17.0.0"
@@ -3390,11 +3389,12 @@ hof@~20.5.1:
     csrf "^3.1.0"
     debug "^4.3.1"
     deprecate "^1.0.0"
+    dialog-polyfill "^0.5.6"
     dotenv "^4.0.0"
     duplexify "^3.5.0"
     express "^4.17.1"
     express-healthcheck "^0.1.0"
-    express-partial-templates "^0.2.0"
+    express-partial-templates "^0.2.1"
     express-session "^1.13.0"
     findup "^0.1.5"
     glob "^7.2.0"
@@ -3421,10 +3421,9 @@ hof@~20.5.1:
     nodemailer-ses-transport "^1.5.1"
     nodemailer-smtp-transport "^2.7.4"
     nodemailer-stub-transport "^1.1.0"
-    notifications-node-client "^6.0.0"
+    notifications-node-client "^8.2.0"
     redis "^3.1.2"
     reqres "^3.0.1"
-    request "^2.79.0"
     rimraf "^3.0.2"
     sass "^1.56.2"
     serve-static "^1.14.1"
@@ -4150,7 +4149,7 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==
 
-jsonwebtoken@^9.0.0, jsonwebtoken@^9.0.2:
+jsonwebtoken@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz#65ff91f4abef1784697d40952bb1998c504caaf3"
   integrity sha512-PRp66vJ865SSqOlgqS8hujT5U4AOgMfhrwYIuIhfKaoSCZcirrmASQr8CX7cUg+RMih+hgznrjp99o+W4pJLHQ==
@@ -4826,15 +4825,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-notifications-node-client@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-6.0.0.tgz#0377fbd76b56fde28c85f62bfdaa3dafb54f7217"
-  integrity sha512-QP4BSODBJROy2YU6sLHSx0uXKeINNyFcdMSHjczeffTMLlQ51SHrP+0n+UHMA0ta+gWuGGsjHfG3tpPtsZ1uNg==
-  dependencies:
-    axios "^0.25.0"
-    jsonwebtoken "^9.0.0"
-
-notifications-node-client@^8.0.0:
+notifications-node-client@^8.0.0, notifications-node-client@^8.2.0:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-8.2.1.tgz#6b3e0d855c675bcb706f0f773e25eb738b46688f"
   integrity sha512-wyZh/NbjN8S2uQX18utYtCyC726BBaGeTc4HeUpdhZv5sYKuaQY94N31v9syh8SzVgehyMzW37y08EePmi+k3Q==
@@ -5638,7 +5629,7 @@ request-promise-native@^1.0.9:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.79.0, request@^2.88.0:
+request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==

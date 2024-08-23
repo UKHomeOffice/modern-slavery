@@ -7,6 +7,8 @@ const path = require('path');
 const promptSheet = require('./config').promptSheet;
 const config = require('./config');
 const _ = require('lodash');
+require('hof/config/hof-defaults').session.ttl = 65;
+require('hof/config/hof-defaults').sessionTimeOutWarning = 60;
 
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
