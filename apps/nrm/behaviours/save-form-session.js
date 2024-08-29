@@ -40,27 +40,27 @@ module.exports = superclass => class extends superclass {
       req.log('info', `External ID: ${externalID}, Saving Form Session: ${req.sessionModel.get('id')}`);
 
       axios.post(`${config.saveService.host}:${config.saveService.port}/reports`, {
-          email: req.sessionModel.get('user-email'),
-          id: req.sessionModel.get('id'),
-          session: session
-        }, {
-          headers: {'Content-Type': 'application/json'}
-        })
+        email: req.sessionModel.get('user-email'),
+        id: req.sessionModel.get('id'),
+        session: session
+      }, {
+        headers: {'Content-Type': 'application/json'}
+      })
         .then(response => {
           const resBody = response.data;
-    
+
           if (resBody && resBody.length && resBody[0].id) {
             req.sessionModel.set('id', resBody[0].id);
           } else {
             req.sessionModel.unset('id');
           }
-      
+
           if (req.body['save-and-exit']) {
             return res.redirect('/nrm/save-and-exit');
           }
-      
+
           const noEditContinue = !req.form.options.continueOnEdit;
-      
+
           if (req.sessionModel.get('redirect-to-reports') && noEditContinue) {
             return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
           }
@@ -70,6 +70,6 @@ module.exports = superclass => class extends superclass {
           req.log('info', `External ID: ${externalID}, Error Saving Session: ${error}`);
           next(error);
         });
-      });
+    });
   }
 };

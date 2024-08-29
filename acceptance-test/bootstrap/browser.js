@@ -38,14 +38,14 @@ const getBrowserContainerResponse = async () => {
 
   try {
     const response = await axios.get(url);
-    return response;  
+    return response;
   } catch (error) {
     throw new Error(`Error fetching browser container response: ${error.message}`);
   }
 };
 
 const getBrowserWebSocketEndpoint = response => {
-  if (response && response.data) { 
+  if (response && response.data) {
     const { webSocketDebuggerUrl } = response.data;
     return webSocketDebuggerUrl;
   }
@@ -82,7 +82,7 @@ const getBrowserOptions = async (isLocalBrowser, isDemo) => {
       // Handle or log the error appropriately
       console.error(`Error getting browser options: ${error.message}`);
     }
-    
+
     return browserOptions;
   }
 

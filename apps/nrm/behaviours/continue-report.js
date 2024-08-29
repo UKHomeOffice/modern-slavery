@@ -30,29 +30,29 @@ module.exports = superclass => class extends superclass {
 
     return axios.get(getUrl)
       .then(response => {
-      const resBody = response.data;
+        const resBody = response.data;
 
-      if (resBody && resBody.length && resBody[0].session) {
-        if (resBody[0].session.hasOwnProperty('alertUser')) {
-        delete resBody[0].session.alertUser;
+        if (resBody && resBody.length && resBody[0].session) {
+          if (resBody[0].session.hasOwnProperty('alertUser')) {
+            delete resBody[0].session.alertUser;
+          }
+          const session = resBody[0].session;
+
+          delete session['csrf-secret'];
+          delete session.errors;
+
+          session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
+
+          req.sessionModel.set(session);
+          req.sessionModel.set('id', id);
+          req.sessionModel.set('redirect-to-reports', true);
         }
-        const session = resBody[0].session;
 
-        delete session['csrf-secret'];
-        delete session.errors;
-  
-        session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
-  
-        req.sessionModel.set(session);
-        req.sessionModel.set('id', id);
-        req.sessionModel.set('redirect-to-reports', true);
-      }
-
-      return super.getValues(req, res, next);
-    })
-    .catch(error => {
-      return next(error);
-    });
+        return super.getValues(req, res, next);
+      })
+      .catch(error => {
+        return next(error);
+      });
   }
 
   saveValues(req, res, next) {

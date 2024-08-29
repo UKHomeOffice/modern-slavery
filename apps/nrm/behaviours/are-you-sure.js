@@ -30,10 +30,10 @@ module.exports = superclass => class extends superclass {
       return axios.delete(url)
         .then(() => {
           return super.saveValues(req, res, next);
-      })
-      .catch(err => {
-        return next(err);
-      });
+        })
+        .catch(err => {
+          return next(err);
+        });
     }
     return super.saveValues(req, res, next);
   }
