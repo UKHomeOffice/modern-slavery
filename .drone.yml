@@ -421,7 +421,7 @@ steps:
     when:
       cron: security_scans
       event: cron
-  
+
   - name: cron_trivy_scan_image_os
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
@@ -434,7 +434,7 @@ steps:
     when:
       cron: security_scans
       event: cron
-    
+
   - name: cron_trivy_scan_node_packages
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
