@@ -2,7 +2,7 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const request = require('request-promise-native');
+const axios = require('axios');
 const getContainerIP = require('../user-pathways/util/get-container-ip');
 
 /* Constants */
@@ -34,45 +34,25 @@ const getBrowserContainerResponse = async () => {
   const CHROME_BROWSER_CONTAINER_HOST = chrome;
   const CHROME_BROWSER_CONTAINER_PORT = chromeBrowserPort;
 
-  const uri = `http://${CHROME_BROWSER_CONTAINER_HOST}:${CHROME_BROWSER_CONTAINER_PORT}/json/version`;
+  const url = `http://${CHROME_BROWSER_CONTAINER_HOST}:${CHROME_BROWSER_CONTAINER_PORT}/json/version`;
 
-  const options = {
-    uri,
-    json: true,
-    resolveWithFullResponse: true
-  };
-
-  const response = await request(options);
-  return response;
+  try {
+    const response = await axios.get(url);
+    return response;  
+  } catch (error) {
+    throw new Error(`Error fetching browser container response: ${error.message}`);
+  }
 };
 
-/**
- * Get browser web socket endpoint so when the browser is running Chrome
- * Dev tools are listening on the correct URL
- *
- * @see getBrowserContainerResponse
- *
- * @param {Object} response -  the response from the browser container
- *
- * @returns {string | null} - the web socket debugger URL
- */
 const getBrowserWebSocketEndpoint = response => {
-  if (response && response.body) {
-    const { webSocketDebuggerUrl } = response.body;
+  if (response && response.data) { 
+    const { webSocketDebuggerUrl } = response.data;
     return webSocketDebuggerUrl;
   }
   return null;
 };
 
-/**
- * Get the speed at which the browser will be slowed down by when it's running
- *
- * @param {bool} [isDemo=false] - When the browser is running is it for
- * demonstration purposes?
- *
- * @returns {number} - the number in which the browser will be slowed down by
- * when running
- */
+// Function to get the browser run speed
 const getBrowserRunSpeed = isDemo => {
   const browserRunSpeed = isDemo ?
     DEMO_BROWSER_RUN_SPEED : HEADLESS_BROWSER_RUN_SPEED;
@@ -80,19 +60,7 @@ const getBrowserRunSpeed = isDemo => {
   return browserRunSpeed;
 };
 
-/**
- * Get the browser options to be set before the browser is initialised
- *
- * If the browser is not running on the local machine then override the browser
- * options to include only the required options for remote browser connections
- *
- * @param {bool} isLocalBrowser - is the target browser on the local machine or
- * a external (docker) container?
- * @param {*} isDemo - When the browser is running is it for demonstration
- * purposes?
- *
- * @returns {Object} - browser options
- */
+// Function to get browser options
 const getBrowserOptions = async (isLocalBrowser, isDemo) => {
   let browserOptions = {
     headless: !isDemo,
@@ -101,15 +69,20 @@ const getBrowserOptions = async (isLocalBrowser, isDemo) => {
   };
 
   if (!isLocalBrowser) {
-    const response = await getBrowserContainerResponse();
-    const socket = getBrowserWebSocketEndpoint(response);
+    try {
+      const response = await getBrowserContainerResponse();
+      const socket = getBrowserWebSocketEndpoint(response);
 
-    browserOptions = {
-      browserWSEndpoint: socket,
-      ignoreHTTPSErrors: true,
-      slowMo: getBrowserRunSpeed(isDemo)
-    };
-
+      browserOptions = {
+        browserWSEndpoint: socket,
+        ignoreHTTPSErrors: true,
+        slowMo: getBrowserRunSpeed(isDemo)
+      };
+    } catch (error) {
+      // Handle or log the error appropriately
+      console.error(`Error getting browser options: ${error.message}`);
+    }
+    
     return browserOptions;
   }
 
