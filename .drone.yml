@@ -24,7 +24,7 @@ trigger:
 
 linting: &linting
   pull: if-not-exists
-  image: node:18
+  image: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
   environment:
     NOTIFY_STUB: true
   commands:
@@ -32,7 +32,7 @@ linting: &linting
 
 unit_tests: &unit_tests
   pull: if-not-exists
-  image: node:18
+  image: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
   environment:
     NOTIFY_STUB: true
   commands:
@@ -40,7 +40,7 @@ unit_tests: &unit_tests
 
 ui_integration_tests: &ui_integration_tests
   pull: if-not-exists
-  image: node:18
+  image: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
   environment:
     NOTIFY_STUB: true
   commands:
@@ -70,7 +70,7 @@ steps:
 
   - name: setup_deploy
     pull: if-not-exists
-    image: node:18
+    image: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
     environment:
       NOTIFY_STUB: true
     commands:
@@ -130,6 +130,23 @@ steps:
   #       - master
   #     event: push
 
+    # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
+  - name: scan_image_os
+    pull: always
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    resources:
+      limits:
+        cpu: 1000
+        memory: 1024Mi
+    environment:
+      IMAGE_NAME: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
+      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
+      FAIL_ON_DETECTION: false
+      IGNORE_UNFIXED: false
+      ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    when:
+      event: [push, pull_request]
+
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
@@ -156,8 +173,8 @@ steps:
       branch: master
       event: [push, pull_request]
 
-  # Trivy Security Scannner
-  - name: scan-image
+  # Trivy Security Scannner for scanning nodejs packages in Yarn
+  - name: scan_node_packages
     pull: always
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     resources:
@@ -166,15 +183,12 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
-      SEVERITY: MEDIUM,HIGH,CRITICAL
+      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
       FAIL_ON_DETECTION: false
-      IGNORE_UNFIXED: true
-      ALLOW_CVE_LIST_FILE: hof-services-config/Modern_Slavery_Nrm/trivy-cve-exceptions.txt
+      IGNORE_UNFIXED: false
+      ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      event:
-      - pull_request
-      - push
-      - tag
+      event: [push, pull_request]
 
   # Deploy to pull request UAT environment
   - name: deploy_to_branch
@@ -194,7 +208,7 @@ steps:
 
   - name: setup_branch
     pull: if-not-exists
-    image: node:18
+    image: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
     environment:
       NOTIFY_STUB: true
     commands:
@@ -259,22 +273,6 @@ steps:
   #         - master
   #         - feature/*
   #     event: pull_request
-
-  # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
-  - name: snyk_scan
-    pull: if-not-exists
-    image: node:18
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn run test:snyk
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: pull_request
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -384,7 +382,7 @@ steps:
       target: PROD
       event: promote
 
-# CRON job step that tears down our pull request UAT environments
+# CRON job step that tears down our pull request Branch environments
   - name: cron_tear_down
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -399,7 +397,7 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Snyk & Trivy
+  # CRON job steps that runs security scans using Trivy
   - name: cron_clone_repos
     image: alpine/git
     environment:
@@ -423,68 +421,72 @@ steps:
     when:
       cron: security_scans
       event: cron
-
-  - name: cron_snyk_scan
-    pull: if-not-exists
-    image: node:18
-    environment:
-      SNYK_TOKEN:
-        from_secret: snyk_token
-    commands:
-      - yarn install --frozen-lockfile
-      - yarn run postinstall
-      - yarn run test:snyk
-    when:
-      cron: security_scans
-      event: cron
-
-  - name: cron_trivy_scan
+  
+  - name: cron_trivy_scan_image_os
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-      IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
-      SEVERITY: MEDIUM,HIGH,CRITICAL
-      FAIL_ON_DETECTION: false
-      IGNORE_UNFIXED: true
-      ALLOW_CVE_LIST_FILE: hof-services-config/Modern_Slavery_Nrm/trivy-cve-exceptions.txt
+        IMAGE_NAME: node:20.16.0-alpine3.20@sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52
+        SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
+        FAIL_ON_DETECTION: true
+        IGNORE_UNFIXED: false
+        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
       cron: security_scans
       event: cron
+    
+  - name: cron_trivy_scan_node_packages
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    pull: always
+    environment:
+        IMAGE_NAME: modern-slavery:${DRONE_COMMIT_SHA}
+        SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
+        FAIL_ON_DETECTION: true
+        IGNORE_UNFIXED: false
+        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    when:
+      cron: security_scans
+      event: cron
+      status: [success, failure]
 
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
-      channel: sas-build
+      channel: sas-hof-build-notify
       failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
+      template: >
+          *✘ {{ uppercasefirst build.status }}*: Cron job `tear_down_pr_envs` failed to tear down the deployments in the BRANCH environment.
+
+          *Repo* <https://github.com/{{ repo.owner }}/{{ repo.name }}/|{{ repo.owner }}/{{ repo.name }}> | *Branch* <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | *Commit* <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+          *Build <{{build.link}}|#{{build.number}}>*
       webhook:
-        from_secret: slack_webhook
+        from_secret: slack_sas_hof_build_notify_webhook
     when:
       cron: tear_down_pr_envs
       event: cron
-      status: failure
+      status: [ failure ]
 
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
-      channel: sas-build
+      channel: sas-hof-security
       failure: ignore
-      icon_url: http://readme.drone.io/0.5/logo_dark.svg
-      icon.url: http://readme.drone.io/0.5/logo_dark.svg
-      template: "CRON Job {{build.deployTo}} of NRM has {{build.status}} - <{{build.link}}|#{{build.number}}> {{#success build.status}}\n  :thumbsup: :thumbsup: :thumbsup:\n{{else}}\n  :x: :x: :x:\n{{/success}} Author: {{build.author}}\n\nDuration: {{since job.started}}\n\nJob: <{{build.link}}|#{{build.number}}>\n\nCommit: {{build.commit}}\n"
-      username: Drone
+      template: >
+          *✘ {{ uppercasefirst build.status }}*: Cron job `security_scans` has failed. Prioritise reviewing build logs and addressing issues.
+
+          *Repo* <https://github.com/{{ repo.owner }}/{{ repo.name }}/|{{ repo.owner }}/{{ repo.name }}> | *Branch* <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | *Commit* <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+          *Build <{{build.link}}|#{{build.number}}>*
       webhook:
-        from_secret: slack_webhook
+        from_secret: slack_sas_hof_security_webhook
     when:
       cron: security_scans
       event: cron
-      status: failure
+      status: [ failure ]
 
 services:
   - name: docker

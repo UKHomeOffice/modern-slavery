@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request');
+const axios = require('axios');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
@@ -25,13 +25,15 @@ module.exports = superclass => class extends superclass {
 
     if (id) {
       const email = encodeEmail(req.sessionModel.get('user-email'));
+      const url = `${baseUrl}${email}/${id}`;
 
-      return request.del(baseUrl + email + '/' + id, err => {
-        if (err) {
+      return axios.delete(url)
+        .then(() => {
+          return super.saveValues(req, res, next);
+        })
+        .catch(err => {
           return next(err);
-        }
-        return super.saveValues(req, res, next);
-      });
+        });
     }
     return super.saveValues(req, res, next);
   }
