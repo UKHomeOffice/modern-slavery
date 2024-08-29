@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request');
+const axios = require('axios');
 const config = require('../../../config');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 
@@ -28,30 +28,30 @@ module.exports = superclass => class extends superclass {
 
     const getUrl = baseUrl + encodeEmail(req.sessionModel.get('user-email')) + '/' + id;
 
-    return request.get(getUrl, (error, response, body) => {
-      if (error) {
-        return next(error);
-      }
-      const resBody = JSON.parse(body);
+    return axios.get(getUrl)
+      .then(response => {
+      const resBody = response.data;
 
       if (resBody && resBody.length && resBody[0].session) {
         if (resBody[0].session.hasOwnProperty('alertUser')) {
-          delete resBody[0].session.alertUser;
+        delete resBody[0].session.alertUser;
         }
         const session = resBody[0].session;
 
         delete session['csrf-secret'];
         delete session.errors;
-
-        // ensure no /edit steps are add to the steps property when session resumed
+  
         session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
-
+  
         req.sessionModel.set(session);
         req.sessionModel.set('id', id);
         req.sessionModel.set('redirect-to-reports', true);
       }
 
       return super.getValues(req, res, next);
+    })
+    .catch(error => {
+      return next(error);
     });
   }
 

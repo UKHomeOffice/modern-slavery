@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 'use strict';
 
-const request = require('request');
+const axios = require('axios');
 const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';

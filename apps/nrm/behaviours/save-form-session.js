@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 'use strict';
 
-const request = require('request');
+const axios = require('axios');
 const config = require('../../../config');
 
 module.exports = superclass => class extends superclass {
@@ -39,38 +39,37 @@ module.exports = superclass => class extends superclass {
       const externalID = req.sessionModel.get('externalID');
       req.log('info', `External ID: ${externalID}, Saving Form Session: ${req.sessionModel.get('id')}`);
 
-      request.post({
-        headers: {'content-type': 'application/json'},
-        url: config.saveService.host + ':' + config.saveService.port + '/reports',
-        body: JSON.stringify({
+      axios.post(`${config.saveService.host}:${config.saveService.port}/reports`, {
           email: req.sessionModel.get('user-email'),
           id: req.sessionModel.get('id'),
           session: session
+        }, {
+          headers: {'Content-Type': 'application/json'}
         })
-      }, (error, response, body) => {
-        if (error) {
+        .then(response => {
+          const resBody = response.data;
+    
+          if (resBody && resBody.length && resBody[0].id) {
+            req.sessionModel.set('id', resBody[0].id);
+          } else {
+            req.sessionModel.unset('id');
+          }
+      
+          if (req.body['save-and-exit']) {
+            return res.redirect('/nrm/save-and-exit');
+          }
+      
+          const noEditContinue = !req.form.options.continueOnEdit;
+      
+          if (req.sessionModel.get('redirect-to-reports') && noEditContinue) {
+            return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
+          }
+          next();
+        })
+        .catch(error => {
           req.log('info', `External ID: ${externalID}, Error Saving Session: ${error}`);
           next(error);
-        }
-        const resBody = JSON.parse(body);
-        if (resBody && resBody.length && resBody[0].id) {
-          req.sessionModel.set('id', JSON.parse(body)[0].id);
-        } else {
-          req.sessionModel.unset('id');
-        }
-
-        if (req.body['save-and-exit']) {
-          return res.redirect('/nrm/save-and-exit');
-        }
-
-        const noEditContinue = !req.form.options.continueOnEdit;
-
-        if (req.sessionModel.get('redirect-to-reports') && noEditContinue) {
-          return res.redirect(`/nrm/continue-report?id=${req.sessionModel.get('id')}`);
-        }
-
-        next();
+        });
       });
-    });
   }
 };
