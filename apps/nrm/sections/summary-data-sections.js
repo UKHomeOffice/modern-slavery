@@ -57,7 +57,7 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
             return null;
           }
-          if (req.sessionModel.get('exploitation-types')== undefined) {
+          if (req.sessionModel.get('exploitation-types') == undefined) {
             //     return `${req.sessionModel.get('types-of-exploitation-forced-to-work')}\n
             // ${req.sessionModel.get('types-of-exploitation-wages-taken')}\n,
             // ${req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')}\n,
