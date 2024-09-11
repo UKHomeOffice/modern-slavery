@@ -127,7 +127,7 @@ module.exports = {
             if (req.sessionModel.get('types-of-exploitation-unpaid-household-work')) {
               unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
             }
-            req.sessionModel.set('exploitation-types'), [
+            req.sessionModel.set('exploitation-types', [
               forcedToWork,
               wagesTaken,
               forcedToCommitFraud,
@@ -138,7 +138,7 @@ module.exports = {
               organsRemoved,
               unpaidHouseholdWork,
               req.form.values['other-exploitation-details']
-            ].filter(Boolean);
+            ].filter(Boolean));
             return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
           } else {
             return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
