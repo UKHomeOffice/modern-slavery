@@ -102,7 +102,7 @@ module.exports = {
             } else {
               return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
             }
-          }
+          // }
         }
       },
       {
