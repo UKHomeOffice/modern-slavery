@@ -1,6 +1,8 @@
 /* eslint-disable max-len  */
 'use strict';
 
+const _ = require("lodash");
+
 module.exports = {
   'your-report': {
     steps: [
@@ -57,7 +59,7 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
             return null;
           }
-          if (req.sessionModel.get('exploitation-types') == undefined) {
+          if (_.isUndefined(req.sessionModel.get('exploitation-types'))) {
             //     return `${req.sessionModel.get('types-of-exploitation-forced-to-work')}\n
             // ${req.sessionModel.get('types-of-exploitation-wages-taken')}\n,
             // ${req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')}\n,
