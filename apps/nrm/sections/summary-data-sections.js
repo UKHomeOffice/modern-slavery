@@ -111,9 +111,6 @@ module.exports = {
             ].filter(Boolean));
             return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
           }
-          //  else {
-          //   return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
-          // }
         }
       },
       {
