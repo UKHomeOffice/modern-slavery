@@ -73,7 +73,7 @@ module.exports = superclass => class extends superclass {
     }
     if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
       unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
-  //   }
+    }
     sessionModel.set('exploitation-types',[
       forcedToWork,
       wagesTaken,
