@@ -36,20 +36,20 @@ module.exports = superclass => class extends superclass {
       field.label = 'Organisation';
     }
 
-  //   // display exploitatio-types
-  //   let forcedToWork;
-  //   let wagesTaken;
-  //   let forcedToCommitFraud;
-  //   let prostitution;
-  //   let childExploitation;
-  //   let takenSomewhere;
-  //   let forcedToCommitCrime;
-  //   let organsRemoved;
-  //   let unpaidHouseholdWork;
+    // display exploitatio-types
+    let forcedToWork;
+    let wagesTaken;
+    let forcedToCommitFraud;
+    let prostitution;
+    let childExploitation;
+    let takenSomewhere;
+    let forcedToCommitCrime;
+    let organsRemoved;
+    let unpaidHouseholdWork;
 
-  //   if (sessionModel.get('types-of-exploitation-forced-to-work')) {
-  //     forcedToWork = 'Forced to work for nothing or almost nothing';
-  //   }
+    if (sessionModel.get('types-of-exploitation-forced-to-work')) {
+      forcedToWork = 'Forced to work for nothing or almost nothing';
+    }
   //   if (sessionModel.get('types-of-exploitation-wages-taken')) {
   //     wagesTaken = 'Wages taken by force or coercion, such as through control of a bank account';
   //   }
@@ -74,17 +74,17 @@ module.exports = superclass => class extends superclass {
   //   if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
   //     unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
   //   }
-  //   sessionModel.set('exploitation-types'),[
-  //     forcedToWork,
-  //     wagesTaken,
-  //     forcedToCommitFraud,
-  //     prostitution,
-  //     childExploitation,
-  //     takenSomewhere,
-  //     forcedToCommitCrime,
-  //     organsRemoved,
-  //     unpaidHouseholdWork,
-  //     req.form.values['other-exploitation-details']
-  //   ].filter(Boolean);
+    sessionModel.set('exploitation-types'),[
+      forcedToWork,
+      wagesTaken,
+      forcedToCommitFraud,
+      prostitution,
+      childExploitation,
+      takenSomewhere,
+      forcedToCommitCrime,
+      organsRemoved,
+      unpaidHouseholdWork,
+      req.form.values['other-exploitation-details']
+    ].filter(Boolean);
   }
 };
