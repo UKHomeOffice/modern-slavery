@@ -47,34 +47,34 @@ module.exports = superclass => class extends superclass {
     let organsRemoved;
     let unpaidHouseholdWork;
 
-    if (req.sessionModel.get('types-of-exploitation-forced-to-work')) {
+    if (sessionModel.get('types-of-exploitation-forced-to-work')) {
       forcedToWork = 'Forced to work for nothing or almost nothing';
     }
-    if (req.sessionModel.get('types-of-exploitation-wages-taken')) {
+    if (sessionModel.get('types-of-exploitation-wages-taken')) {
       wagesTaken = 'Wages taken by force or coercion, such as through control of a bank account';
     }
-    if (req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
+    if (sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
       forcedToCommitFraud = 'Forced to commit fraud, such as using their identity to claim benefits';
     }
-    if (req.sessionModel.get('types-of-exploitation-prostitution')) {
+    if (sessionModel.get('types-of-exploitation-prostitution')) {
       prostitution = 'Forced into prostitution';
     }
-    if (req.sessionModel.get('types-of-exploitation-child-exploitation')) {
+    if (sessionModel.get('types-of-exploitation-child-exploitation')) {
       childExploitation = 'Child sexual exploitation';
     }
-    if (req.sessionModel.get('types-of-exploitation-taken-somewhere')) {
+    if (sessionModel.get('types-of-exploitation-taken-somewhere')) {
       takenSomewhere = 'Taken somewhere, held against their will and sexually assaulted';
     }
-    if (req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
+    if (sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
       forcedToCommitCrime = 'Forced to commit a crime, such as growing cannabis, drug dealing or begging';
     }
-    if (req.sessionModel.get('types-of-exploitation-organs-removed')) {
+    if (sessionModel.get('types-of-exploitation-organs-removed')) {
       organsRemoved = 'Organs, such as kidneys, removed against their will';
     }
-    if (req.sessionModel.get('types-of-exploitation-unpaid-household-work')) {
+    if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
       unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
     }
-    req.sessionModel.set('exploitation-types', [
+    sessionModel.set('exploitation-types', [
       forcedToWork,
       wagesTaken,
       forcedToCommitFraud,
@@ -84,7 +84,7 @@ module.exports = superclass => class extends superclass {
       forcedToCommitCrime,
       organsRemoved,
       unpaidHouseholdWork,
-      req.sessionModel.get('other-exploitation-details')
+      sessionModel.get('other-exploitation-details')
     ].filter(Boolean));
   }
 };
