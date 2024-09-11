@@ -730,8 +730,8 @@ module.exports = {
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [
-        require('hof').components.summary,
         modifySummaryPage,
+        require('hof').components.summary,
         fullWidth,
         submission,
         deleteFormSession,
