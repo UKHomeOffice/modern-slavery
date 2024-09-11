@@ -728,6 +728,7 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
         modifySummaryPage,
@@ -736,7 +737,7 @@ module.exports = {
         deleteFormSession,
         'complete'
       ],
-      sections: require('./sections/summary-data-sections'),
+      // sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },
     '/confirmation': {
