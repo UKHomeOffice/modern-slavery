@@ -36,55 +36,55 @@ module.exports = superclass => class extends superclass {
       field.label = 'Organisation';
     }
 
-    // display exploitatio-types
-    let forcedToWork;
-    let wagesTaken;
-    let forcedToCommitFraud;
-    let prostitution;
-    let childExploitation;
-    let takenSomewhere;
-    let forcedToCommitCrime;
-    let organsRemoved;
-    let unpaidHouseholdWork;
+  //   // display exploitatio-types
+  //   let forcedToWork;
+  //   let wagesTaken;
+  //   let forcedToCommitFraud;
+  //   let prostitution;
+  //   let childExploitation;
+  //   let takenSomewhere;
+  //   let forcedToCommitCrime;
+  //   let organsRemoved;
+  //   let unpaidHouseholdWork;
 
-    if (sessionModel.get('types-of-exploitation-forced-to-work')) {
-      forcedToWork = 'Forced to work for nothing or almost nothing';
-    }
-    if (sessionModel.get('types-of-exploitation-wages-taken')) {
-      wagesTaken = 'Wages taken by force or coercion, such as through control of a bank account';
-    }
-    if (sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
-      forcedToCommitFraud = 'Forced to commit fraud, such as using their identity to claim benefits';
-    }
-    if (sessionModel.get('types-of-exploitation-prostitution')) {
-      prostitution = 'Forced into prostitution';
-    }
-    if (sessionModel.get('types-of-exploitation-child-exploitation')) {
-      childExploitation = 'Child sexual exploitation';
-    }
-    if (sessionModel.get('types-of-exploitation-taken-somewhere')) {
-      takenSomewhere = 'Taken somewhere, held against their will and sexually assaulted';
-    }
-    if (sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
-      forcedToCommitCrime = 'Forced to commit a crime, such as growing cannabis, drug dealing or begging';
-    }
-    if (sessionModel.get('types-of-exploitation-organs-removed')) {
-      organsRemoved = 'Organs, such as kidneys, removed against their will';
-    }
-    if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
-      unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
-    }
-    sessionModel.set('exploitation-types'),[
-      forcedToWork,
-      wagesTaken,
-      forcedToCommitFraud,
-      prostitution,
-      childExploitation,
-      takenSomewhere,
-      forcedToCommitCrime,
-      organsRemoved,
-      unpaidHouseholdWork,
-      req.form.values['other-exploitation-details']
-    ].filter(Boolean);
+  //   if (sessionModel.get('types-of-exploitation-forced-to-work')) {
+  //     forcedToWork = 'Forced to work for nothing or almost nothing';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-wages-taken')) {
+  //     wagesTaken = 'Wages taken by force or coercion, such as through control of a bank account';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
+  //     forcedToCommitFraud = 'Forced to commit fraud, such as using their identity to claim benefits';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-prostitution')) {
+  //     prostitution = 'Forced into prostitution';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-child-exploitation')) {
+  //     childExploitation = 'Child sexual exploitation';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-taken-somewhere')) {
+  //     takenSomewhere = 'Taken somewhere, held against their will and sexually assaulted';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
+  //     forcedToCommitCrime = 'Forced to commit a crime, such as growing cannabis, drug dealing or begging';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-organs-removed')) {
+  //     organsRemoved = 'Organs, such as kidneys, removed against their will';
+  //   }
+  //   if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
+  //     unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
+  //   }
+  //   sessionModel.set('exploitation-types'),[
+  //     forcedToWork,
+  //     wagesTaken,
+  //     forcedToCommitFraud,
+  //     prostitution,
+  //     childExploitation,
+  //     takenSomewhere,
+  //     forcedToCommitCrime,
+  //     organsRemoved,
+  //     unpaidHouseholdWork,
+  //     req.form.values['other-exploitation-details']
+  //   ].filter(Boolean);
   }
 };
