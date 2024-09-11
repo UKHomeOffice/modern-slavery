@@ -58,5 +58,14 @@ ignore:
       reason: No upgrade or patch available
       expires: 2024-10-25T00:00:00.000Z
       created: 2024-04-25T13:41:22.224Z
-
+  SNYK-JS-PATHTOREGEXP-7925106:
+    - '*':
+      reason: No upgrade or patch available
+      expires: 2024-12-11T00:00:00.000Z
+      created: 2024-09-11T13:41:22.224Z
+  SNYK-JS-SEND-7926862:
+    - '*':
+      reason: No direct upgrade or patch available
+      expires: 2024-12-11T00:00:00.000Z
+      created: 2024-09-11T13:41:22.224Z
 patch: {}
