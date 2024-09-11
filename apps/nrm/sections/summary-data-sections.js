@@ -60,36 +60,6 @@ module.exports = {
             return null;
           }
           if (_.isUndefined(req.sessionModel.get('exploitation-types'))) {
-            // if (req.sessionModel.get('types-of-exploitation-forced-to-work')) {
-            //   return 'Forced to work for nothing or almost nothing';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-wages-taken')) {
-            //   return 'Wages taken by force or coercion, such as through control of a bank account';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
-            //   return 'Forced to commit fraud, such as using their identity to claim benefits';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-prostitution')) {
-            //   return 'Forced into prostitution';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-child-exploitation')) {
-            //   return 'Child sexual exploitation';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-taken-somewhere')) {
-            //   return 'Taken somewhere, held against their will and sexually assaulted';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
-            //   return 'Forced to commit a crime, such as growing cannabis, drug dealing or begging';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-organs-removed')) {
-            //   return 'Organs, such as kidneys, removed against their will';
-            // }
-            // if (req.sessionModel.get('types-of-exploitation-unpaid-household-work')) {
-            //   return 'Forced to do unpaid or low paid household work by relatives or strangers';
-            // }
-            // if (req.sessionModel.get('other-exploitation-details')) {
-            //   return req.sessionModel.get('other-exploitation-details')
-            // }
             // save labels of selected types of exploitation values in an array that can be used on summary pages
             let forcedToWork;
             let wagesTaken;
@@ -140,9 +110,10 @@ module.exports = {
               req.form.values['other-exploitation-details']
             ].filter(Boolean));
             return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
-          } else {
-            return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
           }
+          //  else {
+          //   return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
+          // }
         }
       },
       {
