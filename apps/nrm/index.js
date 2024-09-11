@@ -729,8 +729,8 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        require('hof').components.summary,
         modifySummaryPage,
+        require('hof').components.summary,
         fullWidth,
         submission,
         deleteFormSession,
