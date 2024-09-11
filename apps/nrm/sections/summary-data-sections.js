@@ -99,9 +99,9 @@ module.exports = {
             }
             if (req.sessionModel.get('other-exploitation-details')) {
               return req.sessionModel.get('other-exploitation-details')
-            } else {
-              return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
             }
+          } else {
+            return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
           }
         }
       },
