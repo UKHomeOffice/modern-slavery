@@ -74,7 +74,7 @@ module.exports = superclass => class extends superclass {
   //   if (sessionModel.get('types-of-exploitation-unpaid-household-work')) {
   //     unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
   //   }
-    sessionModel.set('exploitation-types'),[
+    sessionModel.set('exploitation-types',[
       forcedToWork,
       wagesTaken,
       forcedToCommitFraud,
@@ -85,6 +85,6 @@ module.exports = superclass => class extends superclass {
       organsRemoved,
       unpaidHouseholdWork,
       req.form.values['other-exploitation-details']
-    ].filter(Boolean);
+    ].filter(Boolean));
   }
 };
