@@ -57,6 +57,19 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
             return null;
           }
+          if (req.sessionModel.get('types-of-exploitation') === 'true') {
+            return `${req.sessionModel.get('types-of-exploitation-forced-to-work')}\n
+        ${req.sessionModel.get('types-of-exploitation-wages-taken')}\n,
+        ${req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')}\n,
+        ${req.sessionModel.get('types-of-exploitation-prostitution')}\n,
+        ${req.sessionModel.get('types-of-exploitation-child-exploitation')}\n,
+        ${req.sessionModel.get('types-of-exploitation-taken-somewhere')}\n,
+        ${req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')}\n,
+        ${req.sessionModel.get('types-of-exploitation-organs-removed')}\n,
+        ${req.sessionModel.get('types-of-exploitation-unpaid-household-work')}\n,
+        ${req.sessionModel.get('types-of-exploitation-other')}\n,
+        ${req.sessionModel.get('other-exploitation-details')}`
+          }
           return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
         }
       },
