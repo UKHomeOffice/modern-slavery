@@ -60,18 +60,6 @@ module.exports = {
             return null;
           }
           if (_.isUndefined(req.sessionModel.get('exploitation-types'))) {
-            //     return `${req.sessionModel.get('types-of-exploitation-forced-to-work')}\n
-            // ${req.sessionModel.get('types-of-exploitation-wages-taken')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-prostitution')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-child-exploitation')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-taken-somewhere')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-organs-removed')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-unpaid-household-work')}\n,
-            // ${req.sessionModel.get('types-of-exploitation-other')}\n,
-            // ${req.sessionModel.get('other-exploitation-details')}`
-
             if (req.sessionModel.get('types-of-exploitation-forced-to-work')) {
               return 'Forced to work for nothing or almost nothing';
             }
