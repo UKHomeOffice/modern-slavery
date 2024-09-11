@@ -57,22 +57,57 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
             return null;
           }
-          if (req.sessionModel.get('exploitation-types') == undefined) {
-                return `${req.sessionModel.get('types-of-exploitation-forced-to-work')}\n
-            ${req.sessionModel.get('types-of-exploitation-wages-taken')}\n
-            ${req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')}\n
-            ${req.sessionModel.get('types-of-exploitation-prostitution')}\n
-            ${req.sessionModel.get('types-of-exploitation-child-exploitation')}\n
-            ${req.sessionModel.get('types-of-exploitation-taken-somewhere')}\n
-            ${req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')}\n
-            ${req.sessionModel.get('types-of-exploitation-organs-removed')}\n
-            ${req.sessionModel.get('types-of-exploitation-unpaid-household-work')}\n
-            ${req.sessionModel.get('types-of-exploitation-other')}\n
-            ${req.sessionModel.get('other-exploitation-details')}`
-            } else {
-              return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
+            // save labels of selected types of exploitation values in an array that can be used on summary pages
+            let forcedToWork;
+            let wagesTaken;
+            let forcedToCommitFraud;
+            let prostitution;
+            let childExploitation;
+            let takenSomewhere;
+            let forcedToCommitCrime;
+            let organsRemoved;
+            let unpaidHouseholdWork;
+            if (req.sessionModel.get('types-of-exploitation-forced-to-work')) {
+              forcedToWork = 'Forced to work for nothing or almost nothing';
             }
-        }
+            if (req.sessionModel.get('types-of-exploitation-wages-taken')) {
+              wagesTaken = 'Wages taken by force or coercion, such as through control of a bank account';
+            }
+            if (req.sessionModel.get('types-of-exploitation-forced-to-commit-fraud')) {
+              forcedToCommitFraud = 'Forced to commit fraud, such as using their identity to claim benefits';
+            }
+            if (req.sessionModel.get('types-of-exploitation-prostitution')) {
+              prostitution = 'Forced into prostitution';
+            }
+            if (req.sessionModel.get('types-of-exploitation-child-exploitation')) {
+              childExploitation = 'Child sexual exploitation';
+            }
+            if (req.sessionModel.get('types-of-exploitation-taken-somewhere')) {
+              takenSomewhere = 'Taken somewhere, held against their will and sexually assaulted';
+            }
+            if (req.sessionModel.get('types-of-exploitation-forced-to-commit-crime')) {
+              forcedToCommitCrime = 'Forced to commit a crime, such as growing cannabis, drug dealing or begging';
+            }
+            if (req.sessionModel.get('types-of-exploitation-organs-removed')) {
+              organsRemoved = 'Organs, such as kidneys, removed against their will';
+            }
+            if (req.sessionModel.get('types-of-exploitation-unpaid-household-work')) {
+              unpaidHouseholdWork = 'Forced to do unpaid or low paid household work by relatives or strangers';
+            }
+            req.sessionModel.set('exploitation-types', [
+              forcedToWork,
+              wagesTaken,
+              forcedToCommitFraud,
+              prostitution,
+              childExploitation,
+              takenSomewhere,
+              forcedToCommitCrime,
+              organsRemoved,
+              unpaidHouseholdWork,
+              req.sessionModel.get('other-exploitation-details')
+            ].filter(Boolean));
+            return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
+          }
       },
       {
         step: '/where-exploitation-happened',
