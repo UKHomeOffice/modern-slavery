@@ -53,12 +53,12 @@ module.exports = {
       {
         step: '/types-of-exploitation',
         field: 'types-of-exploitation',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
-            return null;
-          }
-          return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
-        }
+        // parse: (list, req) => {
+        //   if (!req.sessionModel.get('steps').includes('/types-of-exploitation')) {
+        //     return null;
+        //   }
+        //   return req.sessionModel.get('exploitation-types').map(a => a).join('.\n\n');
+        // }
       },
       {
         step: '/where-exploitation-happened',
