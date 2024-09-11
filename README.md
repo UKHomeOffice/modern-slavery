@@ -233,7 +233,7 @@ There are a bunch of microservices as part of modernslavery:
 'what-happened' page has been removed from the main journey through the form as it no longer required. Its present only 
 for legacy information saved as part of the 'save and return' process, so users can update if required before submission. 
 This page should be reviewed within 12 months to see if any active cases in the 'save and return' feature are using this
-field before the page can be permanently removed. 
+field before the page can be permanently removed.  
 
 
 
