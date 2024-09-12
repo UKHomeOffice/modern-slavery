@@ -746,7 +746,6 @@ module.exports = {
       ]
     },
     '/continue-report': {
-      sections: require('./sections/summary-data-sections'),
       backLink: false,
       behaviours: [
         modifySummaryPage,
@@ -754,6 +753,7 @@ module.exports = {
         fullWidth,
         continueReport
       ],
+      sections: require('./sections/summary-data-sections'),
       next: '/reference'
     },
     '/save-and-exit': {
