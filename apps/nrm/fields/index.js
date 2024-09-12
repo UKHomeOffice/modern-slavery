@@ -829,18 +829,12 @@ module.exports = {
     mixin: 'select',
     validate: ['required'],
     className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.pv-nationality.options.null'
-    }].concat(msNationalities)
+    options: [].concat(msNationalities)
   },
   'pv-nationality-second': {
     mixin: 'select',
     className: ['typeahead', 'js-hidden'],
-    options: [{
-      value: '',
-      label: 'fields.pv-nationality-second.options.null'
-    }].concat(msNationalities)
+    options: [].concat(msNationalities)
   },
   'pv-interpreter-requirements': {
     isPageHeading: true,
