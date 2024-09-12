@@ -728,6 +728,7 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
+      sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
         modifySummaryPage,
@@ -736,7 +737,6 @@ module.exports = {
         deleteFormSession,
         'complete'
       ],
-      sections: require('./sections/summary-data-sections'),
       next: '/confirmation'
     },
     '/confirmation': {
@@ -746,14 +746,14 @@ module.exports = {
       ]
     },
     '/continue-report': {
+      sections: require('./sections/summary-data-sections'),
       backLink: false,
       behaviours: [
-        modifySummaryPage,
         require('hof').components.summary,
+        modifySummaryPage,
         fullWidth,
         continueReport
       ],
-      sections: require('./sections/summary-data-sections'),
       next: '/reference'
     },
     '/save-and-exit': {
