@@ -1,8 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
     {{#markdown}}pv-nationality{{/markdown}}
-      {{#renderField}}pv-nationality{{/renderField}}
-      {{#renderField}}pv-nationality-second{{/renderField}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}
