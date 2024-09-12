@@ -86,7 +86,7 @@ module.exports = superclass => class extends superclass {
       forcedToCommitCrime,
       organsRemoved,
       unpaidHouseholdWork,
-      sessionModel.get('other-exploitation-details')
+      req.sessionModel.get('other-exploitation-details')
     ].filter(Boolean));
     next();
   }
