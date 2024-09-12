@@ -749,8 +749,8 @@ module.exports = {
       sections: require('./sections/summary-data-sections'),
       backLink: false,
       behaviours: [
-        require('hof').components.summary,
         modifySummaryPage,
+        require('hof').components.summary,
         fullWidth,
         continueReport
       ],
