@@ -729,8 +729,8 @@ module.exports = {
     },
     '/confirm': {
       behaviours: [
-        modifySummaryPage,
         require('hof').components.summary,
+        modifySummaryPage,
         fullWidth,
         submission,
         deleteFormSession,
@@ -749,8 +749,8 @@ module.exports = {
       backLink: false,
       sections: require('./sections/summary-data-sections'),
       behaviours: [
-        require('hof').components.summary,
         modifySummaryPage,
+        require('hof').components.summary,
         fullWidth,
         continueReport
       ],
