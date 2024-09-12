@@ -747,13 +747,13 @@ module.exports = {
     },
     '/continue-report': {
       backLink: false,
-      sections: require('./sections/summary-data-sections'),
       behaviours: [
         modifySummaryPage,
         require('hof').components.summary,
         fullWidth,
         continueReport
       ],
+      sections: require('./sections/summary-data-sections'),
       next: '/reference'
     },
     '/save-and-exit': {
