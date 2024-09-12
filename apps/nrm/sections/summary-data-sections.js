@@ -385,14 +385,14 @@ module.exports = {
       {
         step: '/pv-nationality-referral',
         field: 'pv-nationality',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-nationality-referral')) {
-            return null;
-          } else if (req.sessionModel.get('pv-nationality-second')) {
-            return `${list}\n${req.sessionModel.get('pv-nationality-second')}`;
-          }
-          return list;
-        }
+        // parse: (list, req) => {
+        //   if (!req.sessionModel.get('steps').includes('/pv-nationality-referral')) {
+        //     return null;
+        //   } else if (req.sessionModel.get('pv-nationality-second')) {
+        //     return `${list}\n${req.sessionModel.get('pv-nationality-second')}`;
+        //   }
+        //   return list;
+        // }
       },
       {
         step: '/pv-nationality-dtn',
