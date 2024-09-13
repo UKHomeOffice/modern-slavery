@@ -121,6 +121,19 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/where-exploitation-happened-uk')) {
             return null;
           }
+          // save where-exploitation-happened-uk city values in an array that can be used on summary pages
+          req.sessionModel.set('uk-exploitation', [
+            req.sessionModel.get('where-exploitation-happened-uk-city-1'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-2'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-3'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-4'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-5'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-6'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-7'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-8'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-9'),
+            req.sessionModel.get('where-exploitation-happened-uk-city-10')
+          ].filter(Boolean));
           return req.sessionModel.get('uk-exploitation').map(a => a).join('\n') + '\n' + req.sessionModel.get('where-exploitation-happened-other-uk-other-location');
         }
       },
@@ -131,6 +144,19 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/where-exploitation-happened-overseas')) {
             return null;
           }
+          // save where-exploitation-happened-overseas country values in an array that can be used on summary pages
+          req.sessionModel.set('overseas-exploitation', [
+            req.sessionModel.get('where-exploitation-happened-overseas-country-1'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-2'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-3'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-4'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-5'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-6'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-7'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-8'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-9'),
+            req.sessionModel.get('where-exploitation-happened-overseas-country-10')
+          ].filter(Boolean));
           return req.sessionModel.get('overseas-exploitation').map(a => a).join('\n') + '\n' + req.sessionModel.get('where-exploitation-happened-other-overseas-other-location');
         }
       },

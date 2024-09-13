@@ -13,7 +13,6 @@ const saveAndExit = require('./behaviours/save-and-exit');
 const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
-const whereExploitationHappenedOverseas = require('./behaviours/where-exploitation-happened-overseas');
 const authoritiesCooperation = require('./behaviours/authorities-cooperation-edit');
 const Submission = require('./behaviours/casework-submission');
 const areYouSure = require('./behaviours/are-you-sure');
@@ -306,7 +305,6 @@ module.exports = {
     },
     '/where-exploitation-happened-overseas': {
       behaviours: [
-        whereExploitationHappenedOverseas,
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
