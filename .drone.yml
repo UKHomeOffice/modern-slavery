@@ -82,7 +82,7 @@ steps:
     event: push
 
 - name: linting_deploy
-  !!merge <<: *linting
+  <<: *linting
   when:
     branch:
       include:
@@ -90,7 +90,7 @@ steps:
     event: push
 
 - name: unit_tests_deploy
-  !!merge <<: *unit_tests
+  <<: *unit_tests
   when:
     branch:
       include:
@@ -98,7 +98,7 @@ steps:
     event: push
 
 - name: ui_integration_tests_deploy
-  !!merge <<: *ui_integration_tests
+  <<: *ui_integration_tests
   when:
     branch:
       include:
@@ -106,7 +106,7 @@ steps:
     event: push
 
 - name: sonar_scanner_deploy
-  !!merge <<: *sonar_scanner
+  <<: *sonar_scanner
   when:
     branch:
       include:
@@ -221,7 +221,7 @@ steps:
     event: pull_request
 
 - name: linting_branch
-  !!merge <<: *linting
+  <<: *linting
   when:
     branch:
       include:
@@ -230,7 +230,7 @@ steps:
     event: pull_request
 
 - name: unit_tests_branch
-  !!merge <<: *unit_tests
+  <<: *unit_tests
   when:
     branch:
       include:
@@ -239,7 +239,7 @@ steps:
     event: pull_request
 
 - name: ui_integration_tests_branch
-  !!merge <<: *ui_integration_tests
+  <<: *ui_integration_tests
   when:
     branch:
       include:
@@ -248,7 +248,7 @@ steps:
     event: pull_request
 
 - name: sonar_scanner_branch
-  !!merge <<: *sonar_scanner
+  <<: *sonar_scanner
   when:
     branch:
       include:
