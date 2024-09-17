@@ -1,4 +1,4 @@
-FROM node:18-alpine@sha256:2322b1bb3917b313f2e9308395aa5c39d51b91cc92a5d4d5be6d0451fcfb4d24
+FROM node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
 
 USER root
 
@@ -20,7 +20,7 @@ RUN yarn install --frozen-lockfile --production --ignore-optional && \
     yarn run postinstall
 
 HEALTHCHECK --interval=5m --timeout=3s \
- CMD curl --fail http://localhost:8080 || exit 1
+CMD curl --fail http://localhost:8080 || exit 1
 
 CMD ["sh", "/app/run.sh"]
 
