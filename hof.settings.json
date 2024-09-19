@@ -9,7 +9,8 @@
   ],
   "getCookies": false,
   "session": {
-    "name": "modern-slavery.hof.sid"
+    "name": "modern-slavery.hof.sid",
+    "ttl" : 120
   },
   "port": 8081
 }
