@@ -130,21 +130,21 @@ steps:
   #     event: push
 
   # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
-- name: scan_image_os
-  pull: always
-  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
-  resources:
-    limits:
-      cpu: 1000
-      memory: 1024Mi
-  environment:
-    IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
-    SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
-    FAIL_ON_DETECTION: false
-    IGNORE_UNFIXED: false
-    ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
-  when:
-    event: [push, pull_request]
+# - name: scan_image_os
+#   pull: always
+#   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+#   resources:
+#     limits:
+#       cpu: 1000
+#       memory: 1024Mi
+#   environment:
+#     IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+#     SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
+#     FAIL_ON_DETECTION: false
+#     IGNORE_UNFIXED: false
+#     ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+#   when:
+#     event: [push, pull_request]
 
 - name: build_image
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
