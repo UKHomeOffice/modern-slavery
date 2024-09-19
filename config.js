@@ -9,8 +9,7 @@ module.exports = {
   },
   reports: {
     deletionTimeout: process.env.DELETION_TIMEOUT,
-    alertTimeout: process.env.FIRST_ALERT_TIMEOUT,
-    ttl: '120'
+    alertTimeout: process.env.FIRST_ALERT_TIMEOUT
   },
   audit: {
     enabled: String(process.env.AUDIT_DATA) === 'true',
