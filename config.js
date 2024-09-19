@@ -11,6 +11,9 @@ module.exports = {
     deletionTimeout: process.env.DELETION_TIMEOUT,
     alertTimeout: process.env.FIRST_ALERT_TIMEOUT
   },
+  session: {
+    ttl: 120
+  },
   audit: {
     enabled: String(process.env.AUDIT_DATA) === 'true',
     host: process.env.AUDIT_DB_HOST,
