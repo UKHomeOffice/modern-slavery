@@ -40,7 +40,7 @@ spec:
       containers:
         - name: icasework-resolver
           # release v4.2.0
-          image: quay.io/ukhomeofficedigital/icasework-resolver:1ad7e1d89897eb6c25bcae04f99e58a0f52ddb01
+          image: quay.io/ukhomeofficedigital/icasework-resolver:c50ff4d11eaa3a3ed8c09d3eba260f68f5b9dcca
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
