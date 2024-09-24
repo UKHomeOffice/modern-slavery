@@ -41,7 +41,7 @@
     "jquery": "^3.5.1",
     "knex": "^3.1.0",
     "lodash": "^4.17.15",
-    "moment": "2.29.4",
+    "moment": "2.30.1",
     "ms-countries": "^1.0.0",
     "ms-nationalities": "^1.0.1",
     "ms-uk-cities-and-towns": "^2.0.2",
