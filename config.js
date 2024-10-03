@@ -40,9 +40,6 @@ module.exports = {
     clientId: process.env.KEYCLOAK_CLIENT_ID,
     secret: process.env.KEYCLOAK_SECRET
   },
-  session: {
-    sanitiseInputs: true
-  },
   tokenExpiry: 1800,
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,

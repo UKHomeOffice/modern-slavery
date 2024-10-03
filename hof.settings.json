@@ -7,10 +7,12 @@
     "./apps/nrm",
     "./apps/feedback"
   ],
+  "behaviours": [
+    "./apps/common/behaviours/sanitise"
+  ],
   "getCookies": false,
   "session": {
-    "name": "modern-slavery.hof.sid",
-    "sanitiseInputs": true
+    "name": "modern-slavery.hof.sid"
   },
   "port": 8081
 }
