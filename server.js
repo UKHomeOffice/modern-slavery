@@ -11,6 +11,7 @@ const _ = require('lodash');
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
 settings.routes = settings.routes.map(route => require(route));
+settings.behaviours = settings.behaviours.map(require);
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
 

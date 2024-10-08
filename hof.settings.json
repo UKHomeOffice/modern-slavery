@@ -7,6 +7,9 @@
     "./apps/nrm",
     "./apps/feedback"
   ],
+  "behaviours": [
+    "./apps/common/behaviours/sanitise-inputs"
+  ],
   "getCookies": false,
   "session": {
     "name": "modern-slavery.hof.sid"
