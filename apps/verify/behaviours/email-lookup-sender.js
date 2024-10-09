@@ -10,6 +10,9 @@ const firstStep = '/start';
 const tokenGenerator = require('../models/save-token');
 
 const getPersonalisation = (host, token) => {
+  console.log('************ Personalisation1', token);
+  token = token.replace('?hof-cookie-check', '');
+  console.log('**************** Personalisation2 ', token);
   return {
     // pass in `&` at the end in case there is another
     // query e.g. ?hof-cookie-check
@@ -59,6 +62,7 @@ module.exports = superclass => class extends superclass {
 
       const host = req.get('host');
       const token = tokenGenerator.save(email, organisation);
+      console.log('*********saveValues ', token);
       sendEmail(email, host, token);
       return next(err);
     });
