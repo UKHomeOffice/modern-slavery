@@ -4,15 +4,15 @@ const config = require('../../../config');
 
 /* eslint no-process-env: 0*/
 module.exports = superclass => class extends superclass {
-  configure(req, res, next){
-    console.log('******************* check token 1 ', req.query.token );
-    req.query.token = (req.query.token).replace('?hof-cookie-check', '');
-    console.log('******************* check token 2 ', req.query.token );
-    next()
-  }
+  // configure(req, res, next){
+  //   console.log('******************* check token 1 ', req.query.token );
+  //   req.query.token = (req.query.token).replace('?hof-cookie-check', '');
+  //   console.log('******************* check token 2 ', req.query.token );
+  //   next()
+  // }
   saveValues(req, res, next) {
-    // const token = req.query.token;
-    const token = (req.query.token).replace('?hof-cookie-check', '');
+    const token = req.query.token;
+    // const token = (req.query.token).replace('?hof-cookie-check', '');
     const email = req.query.email || config.skipEmail;
 
     const skipEmailAuth = token === 'skip' && config.allowSkip && email;

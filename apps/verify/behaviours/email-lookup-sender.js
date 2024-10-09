@@ -11,13 +11,12 @@ const tokenGenerator = require('../models/save-token');
 
 const getPersonalisation = (host, token) => {
   console.log('************ Personalisation1', token);
-  token = token.replace('?hof-cookie-check', '');
-  console.log('**************** Personalisation2 ', token);
+  // token = token.replace('?hof-cookie-check', '');
+  // console.log('**************** Personalisation2 ', token);
   return {
     // pass in `&` at the end in case there is another
     // query e.g. ?hof-cookie-check
-    // const token = token.replace('?hof-cookie-check', '');
-    'link': `http://${host + appPath + firstStep}?token=${token}`,
+    'link': `http://${host + appPath + firstStep}?token=${token}&`,
     'host': `http://${host}`,
   };
 };
