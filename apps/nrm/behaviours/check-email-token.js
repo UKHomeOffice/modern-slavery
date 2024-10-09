@@ -5,8 +5,8 @@ const config = require('../../../config');
 /* eslint no-process-env: 0*/
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
-    const token = req.query.token;
-    // const token = (req.query.token).replace('?hof-cookie-check', '');
+    // const token = req.query.token;
+    const token = (req.query.token).replace('?hof-cookie-check', '');
     const email = req.query.email || config.skipEmail;
 
     const skipEmailAuth = token === 'skip' && config.allowSkip && email;
