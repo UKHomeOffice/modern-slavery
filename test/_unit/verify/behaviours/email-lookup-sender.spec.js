@@ -128,7 +128,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
       sandbox.restore();
     });
 
-    it('sets a `recognised-email` to false when an email is not on the whitelist', done => {
+    it('sets a `recognised-email` to false when an email is not on the whitelist', async () => {
       req.form = {
         values: {
           'user-email': 'hello@email.com'
@@ -137,11 +137,10 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
       emailDomainCheck.isValidDomain.withArgs('hello@email.com').returns(false);
       instance.saveValues(req, res, () => {
         req.sessionModel.set.should.have.been.calledOnce.calledWithExactly('recognised-email', false);
-        done();
       });
     });
 
-    it('calls tokenGenerator if an email is on the whitelist', done => {
+    it('calls tokenGenerator if an email is on the whitelist', async () => {
       req.form = {
         values: {
           'user-email': 'test@homeoffice.gov.uk'
@@ -150,11 +149,10 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
       instance.saveValues(req, res, () => {
         tokenGenerator.save.should.have.been.calledOnce;
-        done();
       });
     });
 
-    it('sends an email if an email is on the whitelist', done => {
+    it('sends an email if an email is on the whitelist', async () => {
       req.form = {
         values: {
           'user-email': 'test@homeoffice.gov.uk'
@@ -163,11 +161,10 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
       instance.saveValues(req, res, () => {
         NotifyClient.prototype.sendEmail.should.have.been.calledOnce;
-        done();
       });
     });
 
-    it('skips calling data service when email auth skip is allowed with correct email', done => {
+    it('skips calling data service when email auth skip is allowed with correct email', async () => {
       req.form = {
         values: {
           'user-email': 'sas-hof-test@digital.homeoffice.gov.uk'
@@ -176,7 +173,6 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
       instance.saveValues(req, res, () => {
         NotifyClient.prototype.sendEmail.should.not.have.been.called;
-        done();
       });
     });
   });

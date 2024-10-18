@@ -30,7 +30,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
   let instance;
 
   class Base {
-    saveValues() {}
+    saveValues() { }
   }
 
   beforeEach(() => {
@@ -39,7 +39,7 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       set: sinon.stub()
     };
     res = reqres.res();
-    req = reqres.req({sessionModel});
+    req = reqres.req({ sessionModel });
     CheckEmailToken = Behaviour(Base);
     instance = new CheckEmailToken();
   });
@@ -99,6 +99,10 @@ describe('apps/nrm/behaviours/check-email-token', () => {
       });
 
       it('bypasses email authentication when there is already a valid token', () => {
+        req.query = {
+          token: 'match',
+          email: 'ronald@gmail.com'
+        };
         req.sessionModel.get.withArgs('valid-token').returns(true);
 
         instance.saveValues(req, res);
@@ -130,7 +134,22 @@ describe('apps/nrm/behaviours/check-email-token', () => {
     });
 
     describe('we get the token from the url & we look it up in our DB', () => {
-      it('deletes the new token if we find it in our db', done => {
+      it('removes the ?hof-cookie-check query string from the token if it is there', async () => {
+        const expected = {
+          valid: 'match',
+          email: 's@mail.com'
+        };
+
+        checkTokenStub.read.withArgs('match').resolves(expected);
+        req.query = {
+          token: 'match?hof-cookie-check'
+        };
+
+        instance.saveValues(req, res);
+        await checkTokenStub.read.should.have.been.calledWith('match');
+      });
+
+      it('deletes the new token if we find it in our db', async () => {
         const expected = {
           valid: 'match',
           email: 's@mail.com'
@@ -141,14 +160,8 @@ describe('apps/nrm/behaviours/check-email-token', () => {
           token: 'match'
         };
 
-        instance.saveValues(req, res)
-          // wrapped in a promise because this function has a promise
-          // can't use eventually should have been called
-          .then(() => {
-            checkTokenStub.delete.should.have.been.calledWith('match');
-            done();
-          })
-          .catch(err => console.log(err));
+        instance.saveValues(req, res);
+        await checkTokenStub.delete.should.have.been.calledWith('match');
       });
     });
   });
