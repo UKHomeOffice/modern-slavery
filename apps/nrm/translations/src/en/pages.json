@@ -101,7 +101,7 @@
     "header": "Who exploited them?"
   },
   "exploiters-current-location-details": {
-    "header": "What information do you have about where the exploiters are now?"
+    "heading": "What information do you have about where the exploiters are now?"
   },
   "types-of-exploitation": {
     "header": "How were they exploited?",
