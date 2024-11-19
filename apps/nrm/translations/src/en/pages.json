@@ -8,6 +8,11 @@
   "are-you-sure": {
     "header": "Delete report"
   },
+  "pv-under-age": {
+    "heading": "Is the potential victim under 18?",
+    "paragraph-1": "If you’re not sure of the potential victim’s age, you’ll need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.",
+    "paragraph-2": "If they’re under 18 or you’re not sure, you must explain to them how organisations such as the Home Office will use their information."
+  },
   "local-authority-contacted-about-child": {
     "header": "Which local authority have you contacted about the child?",
     "paragraph-1": "You must contact the relevant local authority to safeguard the child before continuing.",

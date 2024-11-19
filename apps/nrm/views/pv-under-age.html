@@ -1,9 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
-  <div  tabindex="0">
-    <h1 class="govuk-heading-l">Is the potential victim under 18?</h1>
-    <p>If you’re not sure of the potential victim’s age, you’ll need to refer them to the relevant local authority for an age assessment. They will continue to be treated as a child until a decision on their age is made.</p>
-    <p>If they’re under 18 or you’re not sure, you must explain to them how organisations such as the Home Office will use their information.</p>
+  <div tabindex="0">
+    <h1 class="govuk-heading-l">{{#t}}pages.pv-under-age.heading{{/t}}</h1>
+    <p>{{#t}}pages.pv-under-age.paragraph-1{{/t}}</p>
+    <p>{{#t}}pages.pv-under-age.paragraph-2{{/t}}</p>
   </div>
     {{#fields}}
       {{#renderField}}{{/renderField}}
