@@ -34,7 +34,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "axios": "^1.7.4",
+    "axios": "^1.7.8",
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
     "hof": "~21.1.0",
