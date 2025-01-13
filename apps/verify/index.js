@@ -15,6 +15,7 @@ module.exports = {
     },
     '/check-inbox': {
       behaviours: require('./behaviours/confirm-email-passer')
-    }
+    },
+    '/exit': {}
   }
 };

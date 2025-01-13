@@ -1,8 +1,14 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+
+  {{$propositionHeader}}{{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.privacy.header{{/t}}
+  {{/header}}
+
+  {{$content}}
     <h1 class="govuk-heading-l">{{#t}}pages.privacy.header{{/t}}</h1>
     <div>
-      <p>{{#t}}pages.privacy.paragraph-1{{/t}}</p>
       <p><a class="govuk-link" href="https://www.gov.uk/government/organisations/home-office/about/personal-information-charter">{{#t}}pages.privacy.paragraph-2-link-1{{/t}}</a> {{#t}}pages.privacy.paragraph-1{{/t}}</p>
       <p>{{#t}}pages.privacy.paragraph-3{{/t}} <a class="govuk-link" href="http://www.legislation.gov.uk/ukpga/2018/12/contents">{{#t}}pages.privacy.paragraph-3-link-1{{/t}}</a></p>
       <p>{{#t}}pages.privacy.paragraph-4{{/t}}</p>
@@ -68,5 +74,5 @@
       <p>{{#t}}pages.privacy.paragraph-17{{/t}}</p>
       <p>{{#t}}pages.privacy.paragraph-18{{/t}}</p>
     </div>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

@@ -1,8 +1,15 @@
-{{<partials-page}}
+{{<layout}}
+
+  {{$propositionHeader}}{{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.token-invalid.header{{/t}}
+  {{/header}}
+
   {{$back}}
     <a class="govuk-back-link" href="{{#url}}{{backLink}}{{/url}}">{{#t}}buttons.back{{/t}}</a>
   {{/back}}
-  {{$page-content}}
+  {{$content}}
     {{#markdown}}token-invalid{{/markdown}}
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

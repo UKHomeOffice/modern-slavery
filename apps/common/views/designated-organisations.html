@@ -1,5 +1,12 @@
-{{<partials-page}}
-    {{$page-content}}
+{{<layout}}
+
+  {{$propositionHeader}}{{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.designated-organisations.header{{/t}}
+  {{/header}}
+
+  {{$content}}
         <h1 class="govuk-heading-l">{{#t}}pages.designated-organisations.header{{/t}}</h1>
         <fieldset class="govuk-fieldset">
             <p class="govuk-body">{{#t}}pages.designated-organisations.paragraph-1{{/t}}</p>
@@ -24,5 +31,5 @@
                 <li>{{#t}}pages.designated-organisations.paragraph-1-bullet-18{{/t}}</li>
             </ul>
         </fieldset>
-    {{/page-content}}
-{{/partials-page}}
+    {{/content}}
+{{/layout}}

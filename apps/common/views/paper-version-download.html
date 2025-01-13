@@ -1,5 +1,12 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+
+  {{$propositionHeader}}{{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.paper-version-download.header{{/t}}
+  {{/header}}
+
+  {{$content}}
     <h1 class="govuk-heading-l">{{#t}}pages.paper-version-download.header{{/t}}</h1>
     <p class="govuk-body">{{#t}}pages.paper-version-download.paragraph-1-1{{/t}} <a href="/">{{#t}}pages.paper-version-download.paragraph-1-link-1{{/t}}</a> {{#t}}pages.paper-version-download.paragraph-1-2{{/t}}</p>
     <p class="govuk-body">{{#t}}pages.paper-version-download.paragraph-2{{/t}}</p>
@@ -8,5 +15,5 @@
     <div class="govuk-!-padding-bottom-3"></div>
     <a href="prompt-sheet-for-working-offline" id="paper-version-download" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">{{#t}}pages.paper-version-download.download-button{{/t}}</a>
     <div class="govuk-!-padding-bottom-1"></div>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}
