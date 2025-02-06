@@ -1,6 +1,5 @@
 'use strict';
 
-const reqres = require('reqres');
 const sanitiseInputs = require('../../../apps/common/behaviours/sanitise-inputs');
 
 // Base middleware class for extending, which contains the sanitiseInputs configurations

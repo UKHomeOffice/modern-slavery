@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable consistent-return */
 
 const hof = require('hof');
 const download = require('./lib/download-file');
@@ -7,6 +8,9 @@ const path = require('path');
 const promptSheet = require('./config').promptSheet;
 const config = require('./config');
 const _ = require('lodash');
+const busboy = require('busboy');
+const bytes = require('bytes');
+const bl = require('bl');
 
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
@@ -20,7 +24,8 @@ settings = Object.assign({}, settings, {
     imgSrc: [
       'www.google-analytics.com',
       'ssl.gstatic.com',
-      'www.google.co.uk/ads/ga-audiences'
+      'www.google.co.uk/ads/ga-audiences',
+      'data:'
     ],
     connectSrc: [
       'https://www.google-analytics.com',
@@ -77,4 +82,67 @@ if (config.env === 'development' || config.env === 'test') {
     res.send('Session populate complete');
   });
 }
+
+app.use((req, res, next) => {
+  if (req.is('multipart/form-data')) {
+    let busboyInstance;
+    try {
+      busboyInstance = busboy({
+        headers: req.headers,
+        limits: {
+          fileSize: bytes(config.upload.maxFileSize)
+        }
+      });
+    } catch (err) {
+      return next(err);
+    }
+
+    busboyInstance.on('field', function (key, value) {
+      req.body[key] = value;
+    });
+
+    busboyInstance.on('file', function (key, file, fileInfo) {
+      file.pipe(bl(function (err, d) {
+        if (err || !(d.length || fileInfo.filename)) {
+          return;
+        }
+        const fileData = {
+          data: file.truncated ? null : d,
+          name: fileInfo.filename || null,
+          encoding: fileInfo.encoding,
+          mimetype: fileInfo.mimeType,
+          truncated: file.truncated,
+          size: file.truncated ? null : Buffer.byteLength(d, 'binary')
+        };
+
+        if (settings.multi) {
+          req.files[key] = req.files[key] || [];
+          req.files[key].push(fileData);
+        } else {
+          req.files[key] = fileData;
+        }
+      }));
+    });
+
+    let error;
+
+    busboyInstance.on('error', function (err) {
+      error = err;
+      next(err);
+    });
+
+    busboyInstance.on('finish', function () {
+      if (error) {
+        return;
+      }
+      next();
+    });
+    req.files = req.files || {};
+    req.body = req.body || {};
+    req.pipe(busboyInstance);
+  } else {
+    next();
+  }
+});
+
 module.exports = app;
