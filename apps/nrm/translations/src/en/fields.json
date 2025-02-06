@@ -784,5 +784,9 @@
   "fr-alternative-contact": {
     "label": "Email address",
     "hint": "This could be a manager, colleague or a team inbox."
+  },
+  "evidence-notes-details": {
+    "label": "Evidence notes (optional)",
+    "hint": "Add any extra information to help us understand your evidence. For example why a date of birth on a document is incorrect, or why you cannot provide evidence."
   }
 }
