@@ -1,6 +1,5 @@
 'use strict';
 
-const reqres = require('reqres');
 const Behaviour = require('../../../../apps/nrm/behaviours/authorities-cooperation-edit');
 
 describe('/apps/nrm/behaviours/authorities-cooperation-edit', () => {
