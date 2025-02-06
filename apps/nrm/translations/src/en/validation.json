@@ -338,5 +338,16 @@
   },
   "refuse-nrm" : {
     "maxlength": "You must enter no more than 15,000 characters"
-  }
+  },
+  "file": {
+      "default": "Please upload evidence",
+      "unsaved": "We have not been able to upload evidence",
+      "maxFileSize": "Select a file that is smaller than 25 MB",
+      "fileType": "This file is not a valid file format you can upload to this service.",
+      "tooMany": "You can only submit up to 100 attachments."
+    },
+    "evidence-notes-details": {
+      "notUrl": "Please do not enter a link/url",
+      "maxlength": "Evidence notes must be less than 15,000 characters"
+    }
 }

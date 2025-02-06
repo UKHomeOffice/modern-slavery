@@ -4,5 +4,6 @@
   "save-and-exit": "Save and exit",
   "create-report": "Create report",
   "continue-to-next-question": "Continue to next question",
-  "back-to-reports": "Back to the Reports Dashboard"
+  "back-to-reports": "Back to the Reports Dashboard",
+  "remove": "Remove"
 }
