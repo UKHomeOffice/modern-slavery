@@ -1159,5 +1159,18 @@ module.exports = {
     className: ['govuk-input'],
     validate: ['email', { type: 'maxlength', arguments: [15000] }],
     type: 'email'
+  },
+  'upload-file': {
+    mixin: 'input-file',
+    labelClassName: 'visuallyhidden'
+  },
+  'evidence-notes-details': {
+    mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
+    attributes: [{
+      attribute: 'rows',
+      value: 5
+    }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }]
   }
 };
