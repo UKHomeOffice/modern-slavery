@@ -784,5 +784,9 @@
   "fr-alternative-contact": {
     "label": "Email address",
     "hint": "This could be a manager, colleague or a team inbox."
+  },
+  "evidence-notes-details": {
+    "label": "Describe the supporting evidence and documents you uploaded",
+    "hint": "Include: <ul><li>a description of what each document is</li><li>the date each document was created</li></ul>"
   }
 }

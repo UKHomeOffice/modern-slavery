@@ -14,6 +14,11 @@ metadata:
   name: file-vault
   {{ end }}
 spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 2
+  {{ else }}
+  replicas: 1
+  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -64,7 +69,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+              value: https://fv-ms.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
             - name: PORT
               value: "3000"
@@ -129,7 +134,7 @@ spec:
                   # encryption_key is randomly generated password used to encrypt the params that are returned by file-vault
                   key: encryption_key
             - name: AWS_EXPIRY_TIME
-              value: "120" # 2 minutes in seconds
+              value: "604800"
             - name: RETURN_ORIGINAL_SIGNED_URL
               value: "no"
             - name: ALLOW_GENERATE_LINK_ROUTE
@@ -166,15 +171,15 @@ spec:
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
-            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+          {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://fv-ms.modernslavery.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://fv-ms.preprod.ms-notprod.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
-            {{ end }}
+          {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://fv-ms.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+          {{ end }}
           command:
             - "/opt/keycloak-proxy"
             - "--resources=uri=/file|methods=GET,POST|roles=caseworkers"
