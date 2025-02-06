@@ -602,5 +602,33 @@ module.exports = {
         field: 'fr-alternative-contact'
       }
     ]
-  }
+  },
+  'evidence-documents': [
+    {
+      step: '/upload-evidence',
+      field: 'images',
+      parse: (list, req) => {
+        if (!req.sessionModel.get('steps').includes('/upload-evidence')) {
+          return null;
+        }
+        if (req.sessionModel.get('images')) {
+          return req.sessionModel.get('images').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
+        }
+        return 'None uploaded';
+      }
+    }
+  ],
+  'evidence-notes': [
+    {
+      step: '/evidence-notes',
+      field: 'evidence-notes-details',
+      parse: (list, req) => {
+        if ( !req.sessionModel.get('steps').includes('/evidence-notes') ||
+        req.sessionModel.get('evidence-notes-details') === '') {
+          return null;
+        }
+        return req.sessionModel.get('evidence-notes-details');
+      }
+    }
+  ],
 };

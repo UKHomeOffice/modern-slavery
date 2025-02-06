@@ -184,6 +184,12 @@
   "fr-alternative-contact": {
     "header": "Who should we contact in your absence?  (Optional)"
   },
+  "upload-evidence": {
+    "header": "Upload evidence"
+  },
+  "evidence-notes": {
+    "header": "Evidence notes (optional)"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -198,6 +204,12 @@
       },
       "your-details": {
         "header": "Your details"
+      },
+      "evidence-documents": {
+        "header": "Evidence"
+      },
+      "evidence-notes": {
+        "header": "Notes"
       }
     },
     "fields": {
@@ -429,6 +441,12 @@
       },
       "fr-alternative-contact": {
         "label": "Second contact"
+      },
+      "images": {
+        "label": "Files uploaded"
+      },
+      "evidence-notes-details": {
+        "label": "Evidence notes"
       }
     }
   },

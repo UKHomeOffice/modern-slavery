@@ -10,6 +10,9 @@ const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
 const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
+const SaveFile = require('./behaviours/save-file');
+const RemoveFile = require('./behaviours/remove-file');
+const LimitDocument = require('./behaviours/limit-documents');
 const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
@@ -725,6 +728,19 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['fr-alternative-contact'],
+      next: '/confirm'
+    },
+    '/upload-evidence': {
+      behaviours: [SaveFormSession, SaveFile('image'), RemoveFile, LimitDocument],
+      locals: { showSaveAndExit: true },
+      fields: ['image'],
+      next: '/evidence-notes',
+      continueOnEdit: true
+    },
+    '/evidence-notes': {
+      behaviours: [SaveFormSession],
+      locals: { showSaveAndExit: true },
+      fields: ['evidence-notes-details'],
       next: '/confirm'
     },
     '/confirm': {
