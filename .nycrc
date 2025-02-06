@@ -4,6 +4,7 @@
     "text-summary"
   ],
   "check-coverage": true,
+  "lines": 80,
   "coverageThreshold": {
     "*/**": {
       "statements": 87,
