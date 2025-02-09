@@ -502,7 +502,6 @@ module.exports = {
           field: 'authorities-cooperation',
           value: 'yes'
         }
-        // condition: req => req.sessionModel.get('authorities-cooperation') === 'yes'
       }],
       next: '/confirm'
     },
@@ -737,6 +736,7 @@ module.exports = {
         deleteFormSession,
         'complete'
       ],
+      locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
     '/confirmation': {
@@ -764,6 +764,7 @@ module.exports = {
     },
     '/token-invalid': {
       clearSession: true
-    }
+    },
+    '/exit': {}
   }
 };
