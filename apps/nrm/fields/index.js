@@ -1106,7 +1106,7 @@ module.exports = {
     validate: ['email', { type: 'maxlength', arguments: [15000] }],
     type: 'email'
   },
-  image: {
+  file: {
     mixin: 'input-file',
     labelClassName: 'visuallyhidden'
   },

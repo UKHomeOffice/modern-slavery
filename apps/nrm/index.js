@@ -730,14 +730,14 @@ module.exports = {
       next: '/confirm'
     },
     '/upload-evidence': {
-      behaviours: [SaveFormSession, SaveFile('image'), RemoveFile, LimitDocument],
+      behaviours: [ saveFormSession, SaveFile('file'), RemoveFile, LimitDocument ],
       locals: { showSaveAndExit: true },
-      fields: ['image'],
+      fields: ['file'],
       next: '/evidence-notes',
       continueOnEdit: true
     },
     '/evidence-notes': {
-      behaviours: [SaveFormSession],
+      behaviours: [ saveFormSession ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-notes-details'],
       next: '/confirm'

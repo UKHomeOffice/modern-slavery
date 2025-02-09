@@ -606,13 +606,13 @@ module.exports = {
   'evidence-documents': [
     {
       step: '/upload-evidence',
-      field: 'images',
+      field: 'files',
       parse: (list, req) => {
         if (!req.sessionModel.get('steps').includes('/upload-evidence')) {
           return null;
         }
-        if (req.sessionModel.get('images')) {
-          return req.sessionModel.get('images').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
+        if (req.sessionModel.get('files')) {
+          return req.sessionModel.get('files').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
         }
         return 'None uploaded';
       }

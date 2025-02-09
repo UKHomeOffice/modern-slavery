@@ -20,20 +20,20 @@ describe("apps/nrm 'limit-documents' behaviour should ", () => {
 
   describe("The limit-documents '.validate' method", () => {
     it('returns a too many error if 250 files have already been added', () => {
-      req.form.values.images = new Array(250);
-      req.sessionModel.set('images', req.form.values.images);
-      const images = req.sessionModel.get('images');
-      req.form.values.image =   {
+      req.form.values.files = new Array(250);
+      req.sessionModel.set('files', req.form.values.files);
+      const files = req.sessionModel.get('files');
+      req.form.values.file =   {
         name: 'quaver.png',
         encoding: '7bit',
         mimetype: 'png',
         truncated: false,
         size: 144150
       };
-      images.push(req.form.values.image);
+      files.push(req.form.values.file);
       behaviour.validate(req, res, err => {
-        err.image.should.be.an.instanceof(behaviour.ValidationError);
-        err.image.should.have.property('type').and.equal('tooMany');
+        err.file.should.be.an.instanceof(behaviour.ValidationError);
+        err.file.should.have.property('type').and.equal('tooMany');
       });
     });
   });

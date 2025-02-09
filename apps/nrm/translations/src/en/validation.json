@@ -339,7 +339,7 @@
   "refuse-nrm" : {
     "maxlength": "You must enter no more than 15,000 characters"
   },
-  "image": {
+  "file": {
       "default": "Please upload evidence",
       "unsaved": "We have not been able to upload evidence",
       "maxFileSizeInBytes": "Select a file that is smaller than 25 MB",
