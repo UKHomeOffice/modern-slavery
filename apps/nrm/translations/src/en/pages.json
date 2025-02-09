@@ -185,10 +185,10 @@
     "header": "Who should we contact in your absence?  (Optional)"
   },
   "upload-evidence": {
-    "header": "Upload evidence"
+    "header": "Upload supporting evidence and documents"
   },
   "evidence-notes": {
-    "header": "Evidence notes (optional)"
+    "header": "Tell us about the documents you uploaded"
   },
   "confirm": {
     "header": "Check your answers",
@@ -442,7 +442,7 @@
       "fr-alternative-contact": {
         "label": "Second contact"
       },
-      "images": {
+      "files": {
         "label": "Files uploaded"
       },
       "evidence-notes-details": {

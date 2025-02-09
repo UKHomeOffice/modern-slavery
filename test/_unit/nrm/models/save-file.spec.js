@@ -21,7 +21,7 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
   let instance;
 
   const imageFiles = {
-    image: {
+    file: {
       name: 'guitar.png',
       encoding: '7bit',
       mimetype: 'png',
@@ -39,7 +39,7 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
   describe("The save-file ' process ' method", () => {
     before(() => {
       sinon.stub(Base.prototype, 'process');
-      instance = new (Behaviour('image')(Base))();
+      instance = new (Behaviour('file')(Base))();
     });
 
     it('should be called ', () => {
@@ -54,9 +54,9 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
     });
 
     it('should add files to form.values', () => {
-      req.files.images = imageFiles;
+      req.files.files = imageFiles;
       instance.process(req);
-      expect(req.form.values.image).to.eql('guitar.png');
+      expect(req.form.values.file).to.eql('guitar.png');
     });
 
     after(() => {
@@ -89,15 +89,15 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
     });
 
     it('should attach files to the sessionModel ', () => {
-      req.sessionModel.set('images', imageFiles);
+      req.sessionModel.set('files', imageFiles);
       instance.saveValues(req, res, next);
-      const sessionModel = req.sessionModel.get('images');
-      expect(sessionModel.image.name).to.eql('guitar.png');
+      const sessionModel = req.sessionModel.get('files');
+      expect(sessionModel.file.name).to.eql('guitar.png');
     });
 
     it('should redirect to /evidence-upload when on evidence upload page', () => {
       req.form.options.route = '/evidence-upload';
-      req.sessionModel.set('images', imageFiles);
+      req.sessionModel.set('files', imageFiles);
       instance.saveValues(req, res, next);
       expect(req.form.options.route).to.eql('/evidence-upload');
     });

@@ -33,6 +33,18 @@ module.exports = {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST
   },
+  upload: {
+    maxfilesize: '100mb',
+    hostname: process.env.FILE_VAULT_URL,
+    allowedMimeTypes: [
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/pdf',
+      'image/jpeg',
+      'image/jpg',
+      'image/png'
+    ]
+  },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
     username: process.env.KEYCLOAK_USERNAME,
