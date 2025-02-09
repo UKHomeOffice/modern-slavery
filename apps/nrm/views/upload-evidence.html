@@ -15,24 +15,24 @@
     </button>
 
     <br><br>
-    {{^values.images}}
+    {{^values.files}}
       <h2 class="govuk-heading-m">No files uploaded</h2>
-    {{/values.images}}
+    {{/values.files}}
 
-    {{#values.images.length}}
+    {{#values.files.length}}
       <br>
       <h2 class="govuk-heading-m">Files uploaded</h2>
       <table class="table-address-loop">
         <tbody>
-        {{#values.images}}
-          <tr class="images-summary">
+        {{#values.files}}
+          <tr class="files-summary">
             <td>{{name}}</td>
             <td><a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}</a></td>
           </tr>
-        {{/values.images}}
+        {{/values.files}}
         </tbody>
       </table>
-    {{/values.images.length}}
+    {{/values.files.length}}
     <br>
     <p class="govuk-body">For evidence that is not in English, you must upload a translation.</p>
     <br><br>

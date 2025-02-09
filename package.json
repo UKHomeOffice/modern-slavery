@@ -35,7 +35,11 @@
   },
   "dependencies": {
     "axios": "^1.7.4",
+    "bl": "^6.0.1",
+    "bottleneck": "^2.19.5",
+    "busboy": "^1.6.0",
     "accessible-autocomplete": "^2.0.2",
+    "form-data": "^4.0.2",
     "govuk-frontend": "^2.7.0",
     "hof": "~21.1.0",
     "ioredis": "^4.0.0",

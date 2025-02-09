@@ -1,10 +1,10 @@
 module.exports = superclass => class LimitDocs extends superclass {
   validate(req, res, next) {
-    const images = req.sessionModel.get('images');
-    if (images && images.length >= 250) {
+    const files = req.sessionModel.get('files');
+    if (files && files.length >= 100) {
       return next({
-        image: new this.ValidationError(
-          'image',
+        file: new this.ValidationError(
+          'file',
           {
             type: 'tooMany'
           }

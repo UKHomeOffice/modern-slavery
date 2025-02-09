@@ -18,7 +18,7 @@ describe("apps/nrm 'remove-file' behaviour should ", () => {
   let instance;
   const next = 'foo';
 
-  const images = [
+  const files = [
     {
       name: 'violin.png',
       mimetype: 'image/png',
@@ -43,25 +43,25 @@ describe("apps/nrm 'remove-file' behaviour should ", () => {
       instance = new (Behaviour(Base))();
     });
 
-    it('should be called even if no images are to be removed', () => {
+    it('should be called even if no files are to be removed', () => {
       instance.configure(req, res, next);
       expect(Base.prototype.configure).to.have.been.called;
-      expect(req.sessionModel.get('images'));
+      expect(req.sessionModel.get('files'));
     });
 
     it('should remove a file if an ID is passed to it', () => {
-      req.sessionModel.set('images', images);
-      req.query.delete = images[0].id;
+      req.sessionModel.set('files', files);
+      req.query.delete = files[0].id;
       instance.configure(req, res, next);
-      const remainginImages = req.sessionModel.get('images');
-      remainginImages.map(image => {
-        expect(image.id).to.not.equal(images[0].id);
+      const remainginImages = req.sessionModel.get('files');
+      remainginImages.map(file => {
+        expect(file.id).to.not.equal(files[0].id);
       });
     });
 
     it('should redirect if a file is removed', () => {
-      req.sessionModel.set('images', images);
-      req.query.delete = images[0].id;
+      req.sessionModel.set('files', files);
+      req.query.delete = files[0].id;
       instance.configure(req, res, next);
       expect(res.redirect).to.be.called;
     });

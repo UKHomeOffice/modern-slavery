@@ -2,12 +2,12 @@
 
 const _ = require('lodash');
 const config = require('../../../config');
-const Model = require('../models/image-upload');
+const Model = require('../models/file-upload');
 
 module.exports = name => superclass => class extends superclass {
   process(req) {
     if (req.files && req.files[name]) {
-      // set image name on values for filename extension validation
+      // set file name on values for filename extension validation
       // N:B validation controller gets values from
       // req.form.values and not on req.files
       req.form.values[name] = req.files[name].name;
@@ -23,7 +23,7 @@ module.exports = name => superclass => class extends superclass {
       if (fileUpload) {
         const uploadSize = fileUpload.size;
         const mimetype = fileUpload.mimetype;
-        const uploadSizeTooBig = uploadSize > config.upload.maxFileSizeInBytes;
+        const uploadSizeTooBig = uploadSize > config.upload.maxFileSize;
         const uploadSizeBeyondServerLimits = uploadSize === null;
         const invalidMimetype = !config.upload.allowedMimeTypes.includes(mimetype);
         const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
@@ -48,15 +48,15 @@ module.exports = name => superclass => class extends superclass {
 
   saveValues(req, res, next) {
     if (req.body['upload-file']) {
-      const images = req.sessionModel.get('images') || [];
+      const files = req.sessionModel.get('files') || [];
 
       if (_.get(req.files, name)) {
         req.log('info', `Saving file: ${req.files[name].name}`);
-        const image = _.pick(req.files[name], ['name', 'data', 'mimetype']);
-        const model = new Model(image);
+        const file = _.pick(req.files[name], ['name', 'data', 'mimetype']);
+        const model = new Model(file);
         return model.save()
           .then(() => {
-            req.sessionModel.set('images', [...images, model.toJSON()]);
+            req.sessionModel.set('files', [...files, model.toJSON()]);
             if (req.form.options.route === '/upload-evidence') {
               return res.redirect('/nrm/upload-evidence');
             }
