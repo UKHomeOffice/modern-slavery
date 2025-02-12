@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable consistent-return */
 
 const hof = require('hof');
 const download = require('./lib/download-file');

@@ -507,7 +507,8 @@ module.exports = {
         }
         // condition: req => req.sessionModel.get('authorities-cooperation') === 'yes'
       }],
-      next: '/confirm'
+      next: '/upload-evidence'
+      // next: '/confirm'
     },
     '/pv-name-dtn': {
       template: 'pv-name',
@@ -538,7 +539,8 @@ module.exports = {
         'pv-contact-details-postcode',
         'pv-contact-details-post-check'
       ],
-      next: '/confirm'
+      next: '/upload-evidence'
+      // next: '/confirm'
     },
     '/does-pv-need-support': {
       behaviours: [
@@ -728,7 +730,8 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['fr-alternative-contact'],
-      next: '/confirm'
+      next: '/upload-evidence'
+      // next: '/confirm'
     },
     '/upload-evidence': {
       behaviours: [ saveFormSession, SaveFile('file'), RemoveFile, LimitDocument ],
