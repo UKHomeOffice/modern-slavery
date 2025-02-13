@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: file-vault-allow-ingress-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: file-vault-allow-ingress
+  {{ end }}
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-external
+    ports:
+    - port: 10080
+      protocol: TCP
+    - port: 10443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: file-vault
+      {{ end }}
+  policyTypes:
+  - Ingress
