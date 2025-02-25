@@ -88,6 +88,26 @@ spec:
             - name: SKIP_EMAIL
               value: "sas-hof-test@digital.homeoffice.gov.uk"
             {{ end }}
+            - name: KEYCLOAK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-fv
+                  key: secret
+            - name: KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-fv
+                  key: id
+            - name: KEYCLOAK_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-user
+                  key: username
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-user
+                  key: password
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
@@ -169,6 +189,19 @@ spec:
                   name: audit-database
                   key: default_db
             - name: AUDIT_DATA
+              value: "true"
+            - name: FILE_VAULT_URL
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-ms.preprod.ms-notprod.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-ms.modernslavery.homeoffice.gov.uk/file
+            {{ end }}
+            # Preventing search engines from indexing all pages
+            - name: DISALLOW_INDEXING
               value: "true"
           volumeMounts:
             - mountPath: /public
