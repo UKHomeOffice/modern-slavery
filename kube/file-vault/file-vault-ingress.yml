@@ -19,7 +19,7 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
       - fv-ms.preprod.ms-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
-      - fv-ms.sas.homeoffice.gov.uk
+      - fv-ms.modernslavery.homeoffice.gov.uk
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
       secretName: branch-tls-external

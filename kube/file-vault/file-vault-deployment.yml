@@ -48,9 +48,9 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
                 {{ else }}
-                name: {{ .APP_NAME }}-configmap
+                name: configmap
                 {{ end }}
           env:
             # because the internal virus scanner has a self signed cert!
@@ -76,52 +76,52 @@ spec:
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
-                  name: epp-s3-branch
+                  name: ms-s3-branch
                   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
-                  name: epp-s3-uat
+                  name: ms-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: epp-s3-stg
+                  name: ms-s3-preprod
                   {{ else }}
-                  name: epp-s3-prod
+                  name: ms-s3-prod
                   {{ end }}
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: epp-s3-branch
+                  name: ms-s3-branch
                   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: epp-s3-uat
+                  name: ms-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: epp-s3-stg
+                  name: ms-s3-preprod
                   {{ else }}
-                  name: epp-s3-prod
+                  name: ms-s3-prod
                   {{ end }}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
-                  name: epp-s3-branch
+                  name: ms-s3-branch
                   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
-                  name: epp-s3-uat
+                  name: ms-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: epp-s3-stg
+                  name: ms-s3-preprod
                   {{ else }}
-                  name: epp-s3-prod
+                  name: ms-s3-prod
                   {{ end }}
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
-                  name: epp-s3-branch
+                  name: ms-s3-branch
                   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
-                  name: epp-s3-uat
+                  name: ms-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: epp-s3-stg
+                  name: ms-s3-preprod
                   {{ else }}
-                  name: epp-s3-prod
+                  name: ms-s3-prod
                   {{ end }}
                   key: name
             - name: AWS_PASSWORD
@@ -142,7 +142,7 @@ spec:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+          image: quay.io/ukhomeofficedigital/gogatekeeper:2.2.2
           resources:
             limits:
               memory: 1024Mi
@@ -150,9 +150,9 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
                 {{ else }}
-                name: {{ .APP_NAME }}-configmap
+                name: configmap
                 {{ end }}
           env:
             - name: PROXY_CLIENT_SECRET
@@ -171,13 +171,13 @@ spec:
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk
+              value: https://fv-ms.modernslavery.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://fv-{{ .APP_NAME }}.preprod.ms-notprod.homeoffice.gov.uk
+              value: https://fv-ms.preprod.ms-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk
+              value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
           args:
             # URls that you wish to protect.
