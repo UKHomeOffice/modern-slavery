@@ -1,0 +1,239 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: file-vault
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
+  name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
+  name: file-vault
+  {{ end }}
+spec:
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+      service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: file-vault
+      service: file-vault
+      {{ end }}
+  template:
+    metadata:
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+        service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: file-vault
+        service: file-vault
+        {{ end }}
+    spec:
+      containers:
+        - name: file-vault
+          # v1.1.0
+          image: quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+            requests:
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: {{ .APP_NAME }}-configmap
+                {{ end }}
+          env:
+            # because the internal virus scanner has a self signed cert!
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+            - name: FILE_VAULT_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-ms.modernslavery.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-ms.ms-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+            - name: DEBUG
+              value: "*"
+            {{ end }}
+            - name: PORT
+              value: "3000"
+            - name: CLAMAV_REST_URL
+              value: https://clamav.virus-scan.svc.cluster.local/scan
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
+                  {{ end }}
+                  key: access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+                  name: epp-s3-uat
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
+                  {{ end }}
+                  key: secret_access_key
+            - name: AWS_KMS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
+                  {{ end }}
+                  key: kms_key_id
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
+                  {{ end }}
+                  key: name
+            - name: AWS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: file-vault
+                  # encryption_key is randomly generated password used to encrypt the params that are returned by file-vault
+                  key: encryption_key
+            - name: AWS_EXPIRY_TIME
+              value: "120" # 2 minutes in seconds
+            - name: RETURN_ORIGINAL_SIGNED_URL
+              value: "no"
+            - name: ALLOW_GENERATE_LINK_ROUTE
+              value: "yes"
+            - name: DEBUG
+              value: "*"
+          securityContext:
+            runAsNonRoot: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: {{ .APP_NAME }}-configmap
+                {{ end }}
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: id
+            - name: PROXY_LISTEN
+              value: 127.0.0.1:3001
+            - name: PROXY_UPSTREAM_URL
+              value: "http://127.0.0.1:3000"
+            - name: PROXY_REDIRECTION_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-{{ .APP_NAME }}.preprod.ms-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
+            {{ end }}
+          args:
+            # URls that you wish to protect.
+            - --resources=uri=/*
+            - --enable-default-deny=false
+            - --enable-security-filter=true
+            - --enable-request-id=true
+            - --enable-logging=true
+            - --enable-json-logging=true
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - --verbose=true
+            {{ end }}
+          ports:
+            - containerPort: 3001
+          securityContext:
+            runAsNonRoot: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /certs
+              name: certs
+            - mountPath: /etc/ssl/certs
+              name: bundle
+              readOnly: true
+
+        - name: nginx-proxy
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+            requests:
+              memory: 512Mi
+          env:
+{{ file .FILEVAULT_NGINX_SETTINGS | indent 12 }}
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true
+          volumeMounts:
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+            - name: bundle
+              mountPath: /etc/ssl/certs
+              readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else }}
+            secretName: file-vault-cert
+            {{ end }}
+        - name: bundle
+          configMap:
+            name: bundle

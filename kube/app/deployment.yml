@@ -170,6 +170,24 @@ spec:
                   key: default_db
             - name: AUDIT_DATA
               value: "true"
+            - name: FILE_VAULT_URL
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-ms.preprod.ms-notprod.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-ms.modernslavery.homeoffice.gov.uk/file
+            {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DEBUG
+              value: "*"
+            {{ end }}
+            # Preventing search engines from indexing all pages
+            - name: DISALLOW_INDEXING
+              value: "true"
+          {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           volumeMounts:
             - mountPath: /public
               name: public
