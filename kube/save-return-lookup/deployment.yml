@@ -140,7 +140,11 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
                   name: keycloak-lookup-secret
+                  {{ else }}
+                  name: keycloak-lookup-secret
+                  {{ end }}
                   key: keycloak-lookup-secret
             - name: PROXY_REDIRECTION_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
@@ -164,7 +168,6 @@ spec:
             - --resources=uri=/*|roles=lookup
             - --tls-cert=/certs/tls.crt
             - --tls-private-key=/certs/tls.key
-          ports:
           ports:
             - containerPort: 10080
               protocol: TCP
