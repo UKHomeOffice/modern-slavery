@@ -1,0 +1,48 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: file-vault-ingress-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: file-vault-ingress
+  {{ end }}
+{{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
+spec:
+  ingressClassName: nginx-external
+  tls:
+    - hosts:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      - fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+      - fv-ms.uat.ms-notprod.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+      - fv-ms.preprod.ms-notprod.homeoffice.gov.uk
+      {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+      - fv-ms.modernslavery.homeoffice.gov.uk
+      {{ end }}
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      secretName: branch-tls-external
+      {{ else }}
+      secretName: file-vault-cert
+      {{ end }}
+  rules:
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    - host: fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+    - host: fv-ms.uat.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+    - host: fv-ms.preprod.ms-notprod.homeoffice.gov.uk
+    {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
+    - host: fv-ms.modernslavery.homeoffice.gov.uk
+    {{ end }}
+      http:
+        paths:
+        - path: /
+          backend:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            serviceName: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else }}
+            serviceName: file-vault
+            {{ end }}
+            servicePort: 10443
