@@ -630,5 +630,5 @@ module.exports = {
         return req.sessionModel.get('evidence-notes-details');
       }
     }
-  ],
+  ]
 };
