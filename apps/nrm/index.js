@@ -506,7 +506,8 @@ module.exports = {
           value: 'yes'
         }
       }],
-      next: '/confirm'
+      // next: '/confirm'
+      next: '/upload-evidence'
     },
     '/pv-name-dtn': {
       template: 'pv-name',
@@ -537,7 +538,8 @@ module.exports = {
         'pv-contact-details-postcode',
         'pv-contact-details-post-check'
       ],
-      next: '/confirm'
+      // next: '/confirm'
+      next: '/upload-evidence'
     },
     '/does-pv-need-support': {
       behaviours: [
@@ -727,7 +729,8 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['fr-alternative-contact'],
-      next: '/confirm'
+      // next: '/confirm'
+      next: '/upload-evidence'
     },
     '/upload-evidence': {
       behaviours: [ saveFormSession, SaveFile('file'), RemoveFile, LimitDocument ],
