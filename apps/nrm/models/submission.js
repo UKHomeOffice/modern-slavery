@@ -6,7 +6,7 @@
 const _ = require('lodash');
 const uuid = require('uuid/v4');
 
-module.exports = data => {
+module.exports = (data, token) => {
   const response = {};
 
   response.Type = data['pv-want-to-submit-nrm'] === 'no' ? '662265' : '560734';
@@ -209,7 +209,7 @@ module.exports = data => {
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
   response.PVExploitersLastContact = data['when-last-contact'];
-  response.DetailsLastContact  = data['details-last-contact'];
+  response.DetailsLastContact = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',
@@ -225,6 +225,18 @@ module.exports = data => {
   response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
   response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
+
+  data['files'] = data['files'] || [];
+  console.log(data['files']);
+
+  data['files'].forEach((doc, i) => {
+    const index = i + 2;
+    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
+    response[`Document${index}.Name`] = doc.name;
+    response[`Document${index}.MimeType`] = doc.type;
+    response[`Document${index}.URLLoadContent`] = true;
+  });
+
 
   return response;
 };
