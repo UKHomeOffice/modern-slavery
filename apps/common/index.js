@@ -13,6 +13,8 @@ module.exports = {
   steps: {
     '/start': {
       next: '/verify/who-do-you-work-for'
-    }
+    },
+    '/session-timeout': {},
+    '/exit': {}
   }
 };

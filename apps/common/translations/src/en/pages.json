@@ -120,5 +120,12 @@
   },
   "accessibility": {
     "header": "Accessibility statement"
+  },
+  "session-timeout-warning": {
+    "dialog-text": "Any answers you have saved will not be affected, but your progress on this page will not be saved."
+  },
+  "exit": {
+    "message-1": "We have cleared your information to keep it secure. Any answers you saved have not been affected.",
+    "message-2": "You can return to your report via the report modern slavery <a href=\"/start\">start page on GOV.UK</a>"
   }
 }

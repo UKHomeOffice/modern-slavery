@@ -1,5 +1,17 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+  {{$journeyHeader}}
+    {{#t}}journey.header{{/t}}
+  {{/journeyHeader}}
+
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$header}}
+    {{header}}
+  {{/header}}
+  
+  {{$content}}
     <div class="govuk-grid-row field-width-1-8">
       <div class="govuk-grid-column-two-thirds">
         <p class="govuk-body">{{#t}}pages.start.paragraph-1-partial-1{{/t}}
@@ -65,5 +77,5 @@
         </aside>
       </div>
     </div>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

@@ -1,7 +1,19 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+  {{$journeyHeader}}
+    {{#t}}journey.header{{/t}}
+  {{/journeyHeader}}
+
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$header}}
+    {{header}}
+  {{/header}}
+  
+  {{$content}}
     <p>You have until the {{reportExpiration}} to update or submit your report.</p>
     <p>We have sent a confirmation email to: {{userEmail}}</p>
     <p>You can return to your report at any time via the report modern slavery <a class="govuk-link" href="/start">start page on GOV.UK.</a></p>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

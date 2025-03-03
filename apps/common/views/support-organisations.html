@@ -1,6 +1,18 @@
-{{<partials-page}}
-  {{$page-content}}
+{{<layout}}
+  {{$journeyHeader}}
+    {{#t}}journey.header{{/t}}
+  {{/journeyHeader}}
+  
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$header}}
+    {{#t}}pages.support-organisations.header{{/t}}
+  {{/header}}
+
+  {{$content}}
     <h1 class="govuk-heading-xl">{{#t}}pages.support-organisations.header{{/t}}</h1>
     {{#markdown}}support-organisations{{/markdown}}
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/layout}}

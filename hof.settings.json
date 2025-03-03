@@ -8,7 +8,9 @@
     "./apps/feedback"
   ],
   "behaviours": [
-    "./apps/common/behaviours/sanitise-inputs"
+    "./apps/common/behaviours/sanitise-inputs",
+    "hof/components/session-timeout-warning",
+    "./apps/common/behaviours/custom-dialog-text"
   ],
   "getCookies": false,
   "session": {
