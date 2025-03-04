@@ -88,22 +88,22 @@ spec:
             - name: SKIP_EMAIL
               value: "sas-hof-test@digital.homeoffice.gov.uk"
             {{ end }}
-            - name: FILE_VAULT_CLIENT_SECRET
+            - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak-client-fv
                   key: secret
-            - name: FILE_VAULT_CLIENT_ID
+            - name: KEYCLOAK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak-client-fv
                   key: id
-            - name: FILE_VAULT_USERNAME
+            - name: KEYCLOAK_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: keycloak-user
                   key: username
-            - name: FILE_VAULT_PASSWORD
+            - name: KEYCLOAK_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: keycloak-user
