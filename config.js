@@ -34,7 +34,7 @@ module.exports = {
     host: process.env.REDIS_HOST
   },
   upload: {
-    maxfilesize: '100mb',
+    maxFileSize: '25mb',
     hostname: process.env.FILE_VAULT_URL,
     allowedMimeTypes: [
       'application/msword',

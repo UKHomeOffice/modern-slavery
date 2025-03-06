@@ -192,7 +192,7 @@ spec:
               value: "true"
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}

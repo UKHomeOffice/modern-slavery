@@ -342,7 +342,7 @@
   "file": {
       "default": "Please upload evidence",
       "unsaved": "We have not been able to upload evidence",
-      "maxFileSizeInBytes": "Select a file that is smaller than 25 MB",
+      "maxFileSize": "Select a file that is smaller than 25 MB",
       "fileType": "This file is not a valid file format you can upload to this service.",
       "tooMany": "You can only submit up to 250 attachments."
     },
