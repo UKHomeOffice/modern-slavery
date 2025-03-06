@@ -9,6 +9,7 @@ const promptSheet = require('./config').promptSheet;
 const config = require('./config');
 const _ = require('lodash');
 const busboy = require('busboy');
+const bodyParser = require('busboy-body-parser');
 const bytes = require('bytes');
 const bl = require('bl');
 
@@ -90,7 +91,7 @@ app.use((req, res, next) => {
       bb = busboy({
         headers: req.headers,
         limits: {
-          fileSize: bytes('100mb')
+          fileSize: bytes('25mb')
         }
       });
     } catch (err) {
@@ -145,4 +146,5 @@ app.use((req, res, next) => {
   }
 });
 
+app.use(bodyParser({limit: config.upload.maxFileSize}));
 module.exports = app;
