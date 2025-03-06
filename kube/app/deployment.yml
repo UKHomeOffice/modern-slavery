@@ -233,7 +233,8 @@ spec:
             initialDelaySeconds: 40
             periodSeconds: 60
             successThreshold: 1
-            timeoutSeconds: 15 
+            timeoutSeconds: 15
+             
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.4
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
