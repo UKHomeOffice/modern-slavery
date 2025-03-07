@@ -403,11 +403,25 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters what documents or evidence will you submit Validation', () => {
-    it('does not pass what documents or evidence will you submit page if nothing entered', async () => {
+  describe('User enters more than 15000 characters when describing evidence submitted Validation', () => {
+    it('does not pass what evidence will you submit page if more than 15000 charcters entered', async () => {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      function generateString(length) {
+        let result = ' ';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+      }
       const URI = '/what-evidence-you-will-submit';
+      const text = generateString(15001);
+
       await initSession(URI);
-      await passStep(URI, {});
+      await passStep(URI, {
+        'what-evidence-you-will-submit': text
+      });
 
       const res = await getUrl(URI);
       const docu = await parseHtml(res);
@@ -415,7 +429,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter list of documents or evidence to be submitted/);
+        .to.match(/Document descriptions cannot be more than than 15000 character/);
     });
   });
 
