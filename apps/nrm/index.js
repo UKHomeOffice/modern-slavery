@@ -257,16 +257,17 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
-      next: '/what-evidence-you-will-submit'
-    },
-    '/what-evidence-you-will-submit': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: ['what-evidence-you-will-submit'],
+      // next: '/what-evidence-you-will-submit'
       next: '/where-exploitation-happened'
     },
+    // '/what-evidence-you-will-submit': {
+    //   behaviours: [
+    //     saveFormSession
+    //   ],
+    //   locals: { showSaveAndExit: true },
+    //   fields: ['what-evidence-you-will-submit'],
+    //   next: '/where-exploitation-happened'
+    // },
     '/where-exploitation-happened': {
       behaviours: [
         saveFormSession
@@ -733,17 +734,19 @@ module.exports = {
       behaviours: [ saveFormSession, SaveFile('upload-file'), RemoveFile, LimitDocument ],
       locals: { showSaveAndExit: true },
       fields: ['upload-file'],
-      next: '/evidence-notes',
+      next: '/confirm',
       forks: [{
-        target: '/evidence-notes',
-        condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 1
+        target: '/what-evidence-you-will-submit',
+        condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 0
       }],
       continueOnEdit: true
     },
-    '/evidence-notes': {
-      behaviours: [ saveFormSession ],
+    '/what-evidence-you-will-submit': {
+      behaviours: [
+        saveFormSession
+      ],
       locals: { showSaveAndExit: true },
-      fields: ['evidence-notes-details'],
+      fields: ['what-evidence-you-will-submit'],
       next: '/confirm'
     },
     '/confirm': {

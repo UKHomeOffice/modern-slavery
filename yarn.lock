@@ -3398,10 +3398,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~22.1.1:
-  version "22.1.3"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.1.3.tgz#5e39dd9def5384d8b4b1ea202ec8c363b9a5cb14"
-  integrity sha512-CUn+XXqgDsZD9LEeRtTzpJowZHruKhtlonJs+PniRtBs3erA0j3pO0QIsmrQlC9/rG+IpGURkceNo13246mNvA==
+hof@~22.2.1:
+  version "22.2.1"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.2.1.tgz#a92d0054c3e6a77710591df42f39a3e2189e2066"
+  integrity sha512-Fx1vDOfzXROmMXhml5A8hqGnsuK5wqG+FKWR4crTxQmj7Kp9COZ/pVPif/Ris01D3A93eWZM/9oKaanxK1VeAw==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
