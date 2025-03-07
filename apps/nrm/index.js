@@ -257,14 +257,6 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
-      next: '/what-evidence-you-will-submit'
-    },
-    '/what-evidence-you-will-submit': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: ['what-evidence-you-will-submit'],
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
@@ -734,16 +726,18 @@ module.exports = {
       locals: { showSaveAndExit: true },
       fields: ['upload-file'],
       forks: [{
-        target: '/evidence-notes',
-        condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 1
+        target: '/what-evidence-you-will-submit',
+        condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 0
       }],
       next: '/confirm',
       continueOnEdit: true
     },
-    '/evidence-notes': {
-      behaviours: [ saveFormSession ],
+    '/what-evidence-you-will-submit': {
+      behaviours: [
+        saveFormSession
+      ],
       locals: { showSaveAndExit: true },
-      fields: ['evidence-notes-details'],
+      fields: ['what-evidence-you-will-submit'],
       next: '/confirm'
     },
     '/confirm': {
