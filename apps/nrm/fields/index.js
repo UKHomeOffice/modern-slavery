@@ -88,6 +88,8 @@ module.exports = {
   'what-happened': {
     backLink: false,
     mixin: 'textarea',
+    'ignore-defaults': true,        // override default formatting options so we can exclude `singlespaces`
+    formatter: ['trim', 'hyphens'], // the default formatters, omitting `singlespaces`
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     legend: {
       className: 'govuk-textarea no-margin'
@@ -105,6 +107,8 @@ module.exports = {
   },
   family: {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -115,6 +119,8 @@ module.exports = {
   },
   education: {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -125,6 +131,8 @@ module.exports = {
   },
   'employment-history': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -135,6 +143,8 @@ module.exports = {
   },
   'when-did-the-exploitation-take-place': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -145,6 +155,8 @@ module.exports = {
   },
   'more-than-one-exploitation-situation': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -155,6 +167,8 @@ module.exports = {
   },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -177,6 +191,8 @@ module.exports = {
   },
   'were-they-taken-somewhere-by-their-exploiter-journey-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -191,6 +207,8 @@ module.exports = {
   },
   'what-were-they-required-to-do': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -201,6 +219,8 @@ module.exports = {
   },
   'how-they-were-treated': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -211,6 +231,8 @@ module.exports = {
   },
   'why-they-stayed': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -221,6 +243,8 @@ module.exports = {
   },
   'how-why-did-they-leave-the-situation': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -244,6 +268,8 @@ module.exports = {
   },
   'details-last-contact': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
     attributes: [
       {
@@ -264,6 +290,8 @@ module.exports = {
   },
   'why-report-now': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -274,6 +302,8 @@ module.exports = {
   },
   'why-are-you-making-the-referral': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -284,6 +314,8 @@ module.exports = {
   },
   'where-how-interview-carried-out': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -308,6 +340,8 @@ module.exports = {
   },
   'are-others-involved-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -336,6 +370,8 @@ module.exports = {
   },
   'evidence-of-dishonesty-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -350,6 +386,8 @@ module.exports = {
   },
   'what-evidence-you-will-submit': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -451,6 +489,8 @@ module.exports = {
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -542,6 +582,8 @@ module.exports = {
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -570,6 +612,8 @@ module.exports = {
   },
   'who-exploited-pv': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -598,6 +642,8 @@ module.exports = {
   },
   'exploiters-current-location-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     attributes: [
       {
@@ -641,6 +687,8 @@ module.exports = {
   },
   'other-exploitation-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [{
       attribute: 'rows',
@@ -674,6 +722,8 @@ module.exports = {
   },
   'future-exploitation-reasons': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['required', {type: 'maxlength', arguments: [15000]}],
     attributes: [
       {
@@ -733,6 +783,8 @@ module.exports = {
   },
   'authorities-cooperation-details': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
     attributes: [
       {
@@ -759,6 +811,8 @@ module.exports = {
   },
   'refuse-nrm': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     validate: [{ type: 'maxlength', arguments: [15000] }],
     attributes: [
       {

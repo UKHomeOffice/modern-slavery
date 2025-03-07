@@ -14,6 +14,8 @@ module.exports = {
   },
   improvements: {
     mixin: 'textarea',
+    'ignore-defaults': true,        // override default formatting options so we can exclude `singlespaces`
+    formatter: ['trim', 'hyphens'], // the default formatters, omitting `singlespaces`
     validate: ['required', { type: 'maxlength', arguments: [1200] }],
     legend: {
       className: 'visuallyhidden'
