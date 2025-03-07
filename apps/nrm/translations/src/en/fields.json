@@ -213,9 +213,6 @@
   "evidence-of-dishonesty-details": {
     "label": "Indicators or evidence of dishonesty"
   },
-  "what-evidence-you-will-submit": {
-    "label": "List of documents or evidence to be submitted"
-  },
   "whats-their-background": {
     "legend": "What is their background?",
     "label": "What is their background?",
@@ -784,9 +781,5 @@
   "fr-alternative-contact": {
     "label": "Email address",
     "hint": "This could be a manager, colleague or a team inbox."
-  },
-  "evidence-notes-details": {
-    "label": "Describe the supporting evidence and documents you uploaded",
-    "hint": "Include: <ul><li>a description of what each document is</li><li>the date each document was created</li></ul>"
   }
 }

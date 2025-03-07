@@ -348,16 +348,6 @@ module.exports = {
       field: 'evidence-of-dishonesty'
     }
   },
-  'what-evidence-you-will-submit': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 14
-      }
-    ]
-  },
   'where-exploitation-happened': {
     mixin: 'radio-group',
     isPageHeading: true,
@@ -1110,13 +1100,17 @@ module.exports = {
     mixin: 'input-file',
     labelClassName: 'visuallyhidden'
   },
-  'evidence-notes-details': {
+  'what-evidence-you-will-submit': {
     mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
     labelClassName: 'visuallyhidden',
-    attributes: [{
-      attribute: 'rows',
-      value: 5
-    }],
-    validate: ['notUrl', { type: 'maxlength', arguments: 15000 }]
+    validate: [{ type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
   }
 };
