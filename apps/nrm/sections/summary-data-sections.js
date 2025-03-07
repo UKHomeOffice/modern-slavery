@@ -275,10 +275,6 @@ module.exports = {
         field: 'evidence-of-dishonesty-details'
       },
       {
-        step: '/what-evidence-you-will-submit',
-        field: 'what-evidence-you-will-submit'
-      },
-      {
         step: '/reported-to-police',
         field: 'reported-to-police',
         parse: (list, req) => {
@@ -612,23 +608,14 @@ module.exports = {
           return null;
         }
         if (req.sessionModel.get('files')) {
-          return req.sessionModel.get('files').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
+          return req.sessionModel.get('files').length > 0 ? list && list.map(i => i.name).join('\n') : 'No files uploaded';
         }
         return 'No files uploaded';
       }
-    }
-  ],
-  'evidence-notes': [
+    },
     {
-      step: '/evidence-notes',
-      field: 'evidence-notes-details',
-      parse: (list, req) => {
-        if ( !req.sessionModel.get('steps').includes('/evidence-notes') ||
-        req.sessionModel.get('evidence-notes-details') === '') {
-          return null;
-        }
-        return req.sessionModel.get('evidence-notes-details');
-      }
+      step: '/what-evidence-you-will-submit',
+      field: 'what-evidence-you-will-submit'
     }
   ]
 };

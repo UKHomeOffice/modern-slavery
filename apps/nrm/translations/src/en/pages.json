@@ -81,10 +81,6 @@
     "bullet-1": "have fears for their safety",
     "bullet-2": "are trying to avoid reliving their trauma"
   },
-  "what-evidence-you-will-submit": {
-    "header": "What documents or evidence will you submit with this referral?",
-    "paragraph-1": "After submitting this referral, you will receive an email with instructions on how to submit documents or evidence about this case."
-  },
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
     "paragraph-1": "If the exploitation was in more then one location, add more towns or cities.",
@@ -187,7 +183,7 @@
   "upload-evidence": {
     "header": "Upload supporting evidence and documents (Optional)"
   },
-  "evidence-notes": {
+  "what-evidence-you-will-submit": {
     "header": "Tell us about the documents you uploaded"
   },
   "confirm": {
@@ -288,9 +284,6 @@
       },
       "evidence-of-dishonesty-details": {
         "label": "Indicators or evidence of dishonesty"
-      },
-      "what-evidence-you-will-submit": {
-        "label": "List of documents or evidence to be submitted"
       },
       "local-authority-contacted-about-child-local-authority-name": {
         "label": "Local authority name"
@@ -442,8 +435,8 @@
       "files": {
         "label": "Uploaded files"
       },
-      "evidence-notes-details": {
-        "label": "Evidence notes"
+      "what-evidence-you-will-submit": {
+        "label": "Upload document description"
       }
     }
   },
