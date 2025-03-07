@@ -9,9 +9,9 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
   });
 
   class Base {
-    process() {}
-    locals() {}
-    saveValues() {}
+    process() { }
+    locals() { }
+    saveValues() { }
   }
 
   let req;
@@ -20,8 +20,8 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
 
   let instance;
 
-  const imageFiles = {
-    file: {
+  const uploadFiles = {
+    'upload-file': {
       name: 'guitar.png',
       encoding: '7bit',
       mimetype: 'png',
@@ -33,13 +33,13 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
   beforeEach(() => {
     req = reqres.req();
     res = reqres.res();
-    req.files = imageFiles;
+    req.files = uploadFiles;
   });
 
   describe("The save-file ' process ' method", () => {
     before(() => {
       sinon.stub(Base.prototype, 'process');
-      instance = new (Behaviour('file')(Base))();
+      instance = new (Behaviour('upload-file')(Base))();
     });
 
     it('should be called ', () => {
@@ -48,15 +48,15 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
     });
 
     it('should have a file attached to it', () => {
-      req.files = imageFiles;
+      req.files = uploadFiles;
       instance.process(req);
-      expect(req.files).to.eql(imageFiles);
+      expect(req.files).to.eql(uploadFiles);
     });
 
     it('should add files to form.values', () => {
-      req.files.files = imageFiles;
+      req.files.files = uploadFiles;
       instance.process(req);
-      expect(req.form.values.file).to.eql('guitar.png');
+      expect(req.form.values['upload-file']).to.eql('guitar.png');
     });
 
     after(() => {
@@ -89,15 +89,15 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
     });
 
     it('should attach files to the sessionModel ', () => {
-      req.sessionModel.set('files', imageFiles);
+      req.sessionModel.set('files', uploadFiles);
       instance.saveValues(req, res, next);
       const sessionModel = req.sessionModel.get('files');
-      expect(sessionModel.file.name).to.eql('guitar.png');
+      expect(sessionModel['upload-file'].name).to.eql('guitar.png');
     });
 
     it('should redirect to /evidence-upload when on evidence upload page', () => {
       req.form.options.route = '/evidence-upload';
-      req.sessionModel.set('files', imageFiles);
+      req.sessionModel.set('files', uploadFiles);
       instance.saveValues(req, res, next);
       expect(req.form.options.route).to.eql('/evidence-upload');
     });

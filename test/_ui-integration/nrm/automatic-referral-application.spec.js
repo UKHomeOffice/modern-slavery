@@ -245,22 +245,12 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/evidence-of-dishonesty');
   });
 
-  it('goes to the what-evidence-you-will-submit page when user selects yes there was evidence of dishonesty & enters details', async () => {
+  it('goes to the where-exploitation-happened page when user selects there was evidence of dishonesty and enters details', async () => {
     const URI = '/evidence-of-dishonesty';
     await initSession(URI);
     const response = await passStep(URI, {
       'evidence-of-dishonesty': 'yes',
       'evidence-of-dishonesty-details': 'Test'
-    });
-
-    expect(response.text).to.contain('Found. Redirecting to /nrm/what-evidence-you-will-submit');
-  });
-
-  it('goes to the where-exploitation-happened page when user enters details', async () => {
-    const URI = '/what-evidence-you-will-submit';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'what-evidence-you-will-submit': 'Test'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/where-exploitation-happened');
@@ -587,11 +577,46 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/fr-alternative-contact');
   });
 
-  it('goes to the confirm page when user enters an first responder alternative contact', async () => {
+  it('goes to the upload-evidence page when user enters an first responder alternative contact', async () => {
     const URI = '/fr-alternative-contact';
     await initSession(URI);
     const response = await passStep(URI, {
       'fr-alternative-contact': 'test@test.com'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/upload-evidence');
+  });
+
+  it('goes to the confirm page when user does not upload a file', async () => {
+    const URI = '/upload-evidence';
+    await initSession(URI);
+    const response = await passStep(URI, {});
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/confirm');
+  });
+
+  it('goes to the what-evidence-you-will-submit page when user uploads a file', async () => {
+    const URI = '/upload-evidence';
+    await initSession(URI);
+    const response = await passStep(URI, {
+        'upload-file': {
+          name: 'guitar.png',
+          encoding: '7bit',
+          mimetype: 'png',
+          truncated: false,
+          size: 144148
+        }
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/what-evidence-you-will-submit');
+  });
+
+
+  it('goes to the confirm page when user user enters evidence details', async () => {
+    const URI = '/what-evidence-you-will-submit';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'what-evidence-you-will-submit': 'Test'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/confirm');
