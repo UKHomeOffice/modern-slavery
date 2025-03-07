@@ -733,11 +733,11 @@ module.exports = {
       behaviours: [ saveFormSession, SaveFile('upload-file'), RemoveFile, LimitDocument ],
       locals: { showSaveAndExit: true },
       fields: ['upload-file'],
-      next: '/evidence-notes',
       forks: [{
         target: '/evidence-notes',
         condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 1
       }],
+      next: '/confirm',
       continueOnEdit: true
     },
     '/evidence-notes': {
