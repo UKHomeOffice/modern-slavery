@@ -44,8 +44,10 @@ spec:
               name: data
             - mountPath: /usr/local/etc/redis/redis.conf
               subPath: redis.conf
-               name: redis-config
+              name: redis-config
           volumes:
+            - name: data
+              emptyDir: {}
             - name: redis-config
               configMap:
                 name: redis-config
@@ -58,6 +60,3 @@ spec:
             limits:
               cpu: "512m"
               memory: "2Gi"
-      volumes:
-        - name: data
-          emptyDir: {}
