@@ -336,7 +336,7 @@
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "upload-file": {
-      "default": "Please upload evidence",
+      "default": "Upload error - try again",
       "maxFileSize": "The selected file must 25MB or smaller",
       "fileType": "The selected file must be a JPEG, JPG, PDF, PNG, DOC or DOCX",
       "tooMany": "You can only submit up to 100 attachments"

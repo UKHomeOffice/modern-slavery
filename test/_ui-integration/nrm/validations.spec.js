@@ -403,6 +403,22 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('User enters what evidence will you submit Validation', () => {
+    it('does not pass what evidence will you submit page if nothing entered', async () => {
+      const URI = '/what-evidence-you-will-submit';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Tell us about the documents you uploaded/);
+    });
+  });
+
   describe('User enters more than 15000 characters when describing evidence submitted Validation', () => {
     it('does not pass what evidence will you submit page if more than 15000 charcters entered', async () => {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
