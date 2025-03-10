@@ -46,11 +46,11 @@ spec:
             runAsNonRoot: true
           resources:
             requests:
-              cpu: "100m"
-              memory: "256Mi"
+              cpu: "256m"
+              memory: "512Mi"
             limits:
               cpu: "500m"
-              memory: "1Gi"
+              memory: "1024Mi"
       volumes:
         - name: data
           emptyDir: {}
