@@ -230,12 +230,13 @@ module.exports = (data, token) => {
   console.log(data['files']);
 
   data['files'].forEach((doc, i) => {
-    const index = i + 2;
+    const index = i + 1;
     response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.name;
-    response[`Document${index}.MimeType`] = doc.type;
+    response[`Document${index}.MimeType`] = doc.mimetype;
     response[`Document${index}.URLLoadContent`] = true;
   });
 
+  console.log(response);
   return response;
 };
