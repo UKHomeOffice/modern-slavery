@@ -33,6 +33,16 @@ spec:
         service: redis
         {{ end }}
     spec:
+      tolerations:
+        - key: "node.kubernetes.io/memory-pressure"
+          operator: "Exists"
+          effect: "NoSchedule"
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
       containers:
         - name: redis
           # redis:v5.0.6-1
