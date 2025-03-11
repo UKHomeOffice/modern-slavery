@@ -348,16 +348,6 @@ module.exports = {
       field: 'evidence-of-dishonesty'
     }
   },
-  'what-evidence-you-will-submit': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 14
-      }
-    ]
-  },
   'where-exploitation-happened': {
     mixin: 'radio-group',
     isPageHeading: true,
@@ -1105,5 +1095,22 @@ module.exports = {
     className: ['govuk-input'],
     validate: ['email', { type: 'maxlength', arguments: [15000] }],
     type: 'email'
+  },
+  'upload-file': {
+    mixin: 'input-file',
+    labelClassName: 'visuallyhidden'
+  },
+  'what-evidence-you-will-submit': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    labelClassName: 'visuallyhidden',
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
   }
 };

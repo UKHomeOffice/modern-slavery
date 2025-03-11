@@ -217,10 +217,10 @@ spec:
               path: /healthz/ping
               port: 8081
               scheme: HTTP
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 60
             successThreshold: 1
-            timeoutSeconds: 15
+            timeoutSeconds: 30
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -230,10 +230,10 @@ spec:
               path: /healthz/readiness
               port: 8081
               scheme: HTTP
-            initialDelaySeconds: 40
+            initialDelaySeconds: 60
             periodSeconds: 60
             successThreshold: 1
-            timeoutSeconds: 15
+            timeoutSeconds: 30
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.4
