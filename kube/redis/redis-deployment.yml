@@ -51,10 +51,15 @@ spec:
             requests:
               cpu: "256m"
               memory: "512Mi"
+              ephemeral-storage: "1Gi"
             limits:
               cpu: "512m"
               memory: "2Gi"
+              ephemeral-storage: "2Gi"
       volumes:
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: redis-pvc #using new PVC
         - name: data
           emptyDir: {}
         - name: redis-config
