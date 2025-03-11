@@ -33,6 +33,16 @@ spec:
         service: redis
         {{ end }}
     spec:
+      tolerations:
+        - key: "node.kubernetes.io/memory-pressure"
+          operator: "Exists"
+          effect: "NoSchedule"
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
       containers:
         - name: redis
           # redis:v5.0.6-1
@@ -42,15 +52,26 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/redis
               name: data
+            - mountPath: /usr/local/etc/redis/redis.conf
+              subPath: redis.conf
+              name: redis-config
           securityContext:
             runAsNonRoot: true
           resources:
             requests:
-              cpu: "20m"
-              memory: "100Mi"
+              cpu: "256m"
+              memory: "512Mi"
+              ephemeral-storage: "1Gi"
             limits:
-              cpu: "100m"
-              memory: "200Mi"
+              cpu: "512m"
+              memory: "2Gi"
+              ephemeral-storage: "2Gi"
       volumes:
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: redis-pvc #using new PVC
         - name: data
           emptyDir: {}
+        - name: redis-config
+          configMap:
+            name: redis-config

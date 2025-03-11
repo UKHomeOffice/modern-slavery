@@ -111,10 +111,10 @@ spec:
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
           resources:
             requests:
-              memory: 10Mi
+              memory: 30Mi
               cpu: 10m
             limits:
-              memory: 256Mi
+              memory: 1024Mi
               cpu: 300m
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
@@ -131,7 +131,7 @@ spec:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/keycloak-gatekeeper:8.0.2
+          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
           resources:
             limits:
               memory: "256Mi"
@@ -156,6 +156,12 @@ spec:
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/
               {{ end }}
+          command:
+            - "/opt/keycloak-proxy"
+            - "--resources=uri=/file|methods=GET,POST|roles=caseworkers"
+            - "--resources=uri=/*"
+            - "--enable-logging=true"
+            - "--enable-json-logging=true"
           args:
             - --listen=:10443
             # specififes which client is used
@@ -166,8 +172,8 @@ spec:
             - --upstream-url=https://127.0.0.1:10444
             # URls that you wish to protect.
             - --resources=uri=/*|roles=lookup
-            - --tls-cert=/certs/tls.crt
-            - --tls-private-key=/certs/tls.key
+            #- --tls-cert=/certs/tls.crt
+            #- --tls-private-key=/certs/tls.key
           ports:
             - containerPort: 10080
               protocol: TCP

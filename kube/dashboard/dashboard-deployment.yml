@@ -90,7 +90,7 @@ spec:
                   name: sysdig
                   key: token
             - name: SYSDIG_URL
-              value: https://sysdig.digital.homeoffice.gov.uk
+              value: https://sysdig-prod.acp.homeoffice.gov.uk/
             - name: OAUTH_AUTO_LOGIN
               value: "true"
             - name: OAUTH_CLIENT_ID
