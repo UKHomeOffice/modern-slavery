@@ -233,8 +233,8 @@ module.exports = (data, token) => {
     console.log('********* DOC', doc);
     const index = i + 1;
     // response[`Document${index}.URL`] = `${doc.url}&token=${token.bearer}`;
-    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
-    // response[`Document${index}.URL`] = doc.url;
+    // response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
+    response[`Document${index}.URL`] = doc.url;
     response[`Document${index}.Name`] = doc.name;
     response[`Document${index}.MimeType`] = doc.mimetype;
     response[`Document${index}.URLLoadContent`] = true;
