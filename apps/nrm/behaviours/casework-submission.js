@@ -23,7 +23,7 @@ module.exports = conf => {
   }
 
   return superclass => class extends superclass {
-    async saveValues(req, res, next) {
+    saveValues(req, res, next) {
       super.saveValues(req, res, async err => {
         if (err) {
           return next(err);
