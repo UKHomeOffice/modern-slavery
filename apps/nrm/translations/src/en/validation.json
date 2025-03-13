@@ -118,10 +118,6 @@
     "required": "Enter indicators or evidence of dishonesty",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "what-evidence-you-will-submit": {
-    "required": "Enter list of documents or evidence to be submitted",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
   "where-exploitation-happened" : {
     "required": "You must select an option"
   },
@@ -338,5 +334,15 @@
   },
   "refuse-nrm" : {
     "maxlength": "You must enter no more than 15,000 characters"
-  }
+  },
+  "upload-file": {
+      "default": "Upload error - try again",
+      "maxFileSize": "The selected file must 25MB or smaller",
+      "fileType": "The selected file must be a JPEG, JPG, PDF, PNG, DOC or DOCX",
+      "tooMany": "You can only submit up to 100 attachments"
+    },
+    "what-evidence-you-will-submit": {
+      "required": "Tell us about the documents you uploaded",
+      "maxlength": "Document descriptions cannot be more than than 15000 characters"
+    }
 }

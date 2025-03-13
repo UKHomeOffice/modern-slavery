@@ -2,6 +2,7 @@
 'use strict';
 
 const appConfig = require('../../../config');
+const GetFileToken = require('../models/file-upload');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
 let db;
@@ -23,12 +24,13 @@ module.exports = conf => {
 
   return superclass => class extends superclass {
     saveValues(req, res, next) {
-      super.saveValues(req, res, err => {
+      super.saveValues(req, res, async err => {
         if (err) {
           return next(err);
         }
-
-        const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON()) :
+        const model = new GetFileToken();
+        const token = await model.auth();
+        const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON(), token) :
           { info: 'No submission was made to icasework' };
 
         const externalID = req.sessionModel.get('externalID')  || caseWorkPayload.ExternalId;
@@ -43,7 +45,7 @@ module.exports = conf => {
           next();
         } else {
           // send casework model to AWS SQS
-          const caseworkModel = config.prepare(req.sessionModel.toJSON());
+          const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
           const caseworkID = uuid();
           req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);

@@ -25,7 +25,6 @@ module.exports = [
   '/where-how-interview-carried-out',
   '/are-others-involved',
   '/evidence-of-dishonesty',
-  '/what-evidence-you-will-submit',
   '/where-exploitation-happened',
   '/where-exploitation-happened-uk',
   '/where-exploitation-happened-overseas',
@@ -62,5 +61,7 @@ module.exports = [
   '/pv-phone-number',
   '/fr-details',
   '/fr-alternative-contact',
+  '/upload-evidence',
+  '/what-evidence-you-will-submit',
   '/confirm'
 ];
