@@ -8,16 +8,6 @@ describe('validation checks of the nrm journey', () => {
   let parseHtml;
 
   const SUBAPP = 'nrm';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  function generateString(length) {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-  }
 
   before(() => {
     testApp = getSupertestApp(SUBAPP);
@@ -434,11 +424,9 @@ describe('validation checks of the nrm journey', () => {
   describe('User enters more than 15000 characters when describing evidence submitted Validation', () => {
     it('does not pass what evidence will you submit page if more than 15000 charcters entered', async () => {
       const URI = '/what-evidence-you-will-submit';
-      const text = generateString(15001);
-
       await initSession(URI);
       await passStep(URI, {
-        'what-evidence-you-will-submit': text
+        'what-evidence-you-will-submit': 'a'.repeat(15001)
       });
 
       const res = await getUrl(URI);
@@ -726,6 +714,179 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
         .to.match(/You must select if support is required/);
+    });
+  });
+
+  describe('Support Provider Contact Validation', () => {
+    it('does not pass the does pv-phone-number page if nothing entered', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Select how the support provider can contact the potential victim/);
+    });
+  });
+
+  describe('PV Phone Number Validation', () => {
+    it('does not pass the does pv-phone-number page if pv number is selected but no number entered', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'yes',
+        'pv-phone-number-yes': ''
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter the potential victim's telephone number/);
+    });
+  });
+
+  describe('PV Phone Number Validation', () => {
+    it('does not pass the does pv-phone-number page if invalid number', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'yes',
+        'pv-phone-number-yes': '01234567890123456789'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter a real telephone number/);
+    });
+  });
+
+  describe('PV Alternative Phone Number Validation', () => {
+    it('does not pass the does pv-phone-number page if pv alternative number is selected but no number entered', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'pv-alternative-number',
+        'pv-phone-number-alternative': '',
+        'alternative-number-relation-to-pv': 'Friend'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter an alternative telephone number/);
+    });
+  });
+
+  describe('PV Alternative Phone Number Validation', () => {
+    it('does not pass the does pv-phone-number page if pv alternative number is selected but no number entered', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'pv-alternative-number',
+        'pv-phone-number-alternative': '012345678913456789',
+        'alternative-number-relation-to-pv': 'Friend'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter a real telephone number/);
+    });
+  });
+
+  describe('Alternative Number Relationship to PV Validation', () => {
+    it('does not pass the does pv-phone-number page if pv alternative number is selected but no relationship entered', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'pv-alternative-number',
+        'pv-phone-number-alternative': '01234567891',
+        'alternative-number-relation-to-pv': ''
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter the relationship to potential victim/);
+    });
+  });
+
+  describe('Alternative Number Relationship to PV Validation', () => {
+    it('does not pass the does pv-phone-number page if pv alternative number relationship is more than 250 chracters', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'pv-alternative-number',
+        'pv-phone-number-alternative': '01234567891',
+        'alternative-number-relation-to-pv': 'a'.repeat(251)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Relationship to potential victim must be 250 characters or less/);
+    });
+  });
+
+
+  describe('No Contact Details Validation', () => {
+    it('does not pass the does pv-phone-number page if no contact details is selected but no explanation given', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'no',
+        'no-contact-details': ''
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Explain why you cannot provide contact details/);
+    });
+  });
+
+  describe('No Contact Details Validation', () => {
+    it('does not pass the does pv-phone-number page if no contact details explanation os more than 15000 characters', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      await passStep(URI, {
+        'pv-phone-number': 'no',
+        'no-contact-details': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Reason why you cannot provide contact details must be 15000 characters or less/);
     });
   });
 

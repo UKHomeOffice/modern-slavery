@@ -537,10 +537,32 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['does-pv-need-support'],
+      forks: [{
+        target: '/pv-phone-number',
+        condition: {
+          field: 'does-pv-need-support',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
       next: '/pv-name-referral'
     },
     '/support-organisations': {
       backLink: false
+    },
+    '/pv-phone-number': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: [
+        'pv-phone-number',
+        'pv-phone-number-yes',
+        'pv-phone-number-alternative',
+        'alternative-number-relation-to-pv',
+        'no-contact-details'
+      ],
+      next: '/pv-name-referral'
     },
     '/pv-name-referral': {
       template: 'pv-name',
@@ -661,11 +683,7 @@ module.exports = {
         'someone-else-postcode',
         'someone-else-permission-check'
       ],
-      next: '/pv-phone-number',
-      forks: [{
-        target: '/fr-details',
-        condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
-      }]
+      next: '/fr-details'
     },
     '/pv-contact-details-referral': {
       template: 'pv-contact-details',
@@ -682,21 +700,6 @@ module.exports = {
         'pv-contact-details-county',
         'pv-contact-details-postcode',
         'pv-contact-details-post-check'
-      ],
-      next: '/pv-phone-number',
-      forks: [{
-        target: '/fr-details',
-        condition: req => req.sessionModel.get('does-pv-need-support') === 'no'
-      }]
-    },
-    '/pv-phone-number': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: [
-        'pv-phone-number',
-        'pv-phone-number-yes'
       ],
       next: '/fr-details'
     },

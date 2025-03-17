@@ -323,6 +323,58 @@ module.exports = {
         field: 'refuse-nrm'
       },
       {
+        step: '/pv-phone-number',
+        field: 'pv-phone-number'
+      },
+      {
+        step: '/pv-phone-number',
+        field: 'pv-phone-number-yes',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
+            return null;
+          } else if (req.sessionModel.get('pv-phone-number') === 'yes') {
+            return req.sessionModel.get('pv-phone-number-yes');
+          }
+          return false;
+        }
+      },
+      {
+        step: '/pv-phone-number',
+        field: 'pv-phone-number-alternative',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
+            return null;
+          } else if (req.sessionModel.get('pv-phone-number') === 'pv-alternative-number') {
+            return req.sessionModel.get('pv-phone-number-alternative');
+          }
+          return false;
+        }
+      },
+      {
+        step: '/pv-phone-number',
+        field: 'alternative-number-relation-to-pv',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
+            return null;
+          } else if (req.sessionModel.get('pv-phone-number') === 'pv-alternative-number') {
+            return req.sessionModel.get('alternative-number-relation-to-pv');
+          }
+          return false;
+        }
+      },
+      {
+        step: '/pv-phone-number',
+        field: 'no-contact-details',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
+            return null;
+          } else if (req.sessionModel.get('pv-phone-number') === 'no') {
+            return req.sessionModel.get('no-contact-details');
+          }
+          return false;
+        }
+      },
+      {
         step: '/pv-name-referral',
         field: 'pv-name-first-name',
         parse: (list, req) => {
@@ -494,22 +546,6 @@ module.exports = {
             return null;
           }
           return `${req.sessionModel.get('pv-contact-details-street')}\n${req.sessionModel.get('pv-contact-details-town')}\n${req.sessionModel.get('pv-contact-details-county')}\n${req.sessionModel.get('pv-contact-details-postcode')}\nSafe to use`;
-        }
-      },
-      {
-        step: '/pv-phone-number',
-        field: 'pv-phone-number'
-      },
-      {
-        step: '/pv-phone-number',
-        field: 'pv-phone-number-yes',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/pv-phone-number')) {
-            return null;
-          } else if (req.sessionModel.get('pv-phone-number') === 'yes') {
-            return req.sessionModel.get('pv-phone-number-yes');
-          }
-          return 'No';
         }
       },
       {
