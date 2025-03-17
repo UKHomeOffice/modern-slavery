@@ -1,7 +1,7 @@
 'use strict';
 
 /* eslint complexity: 0 max-statements: 0 */
-/* eslint-disable dot-notation */
+/* eslint-disable dot-notation, max-len */
 
 const _ = require('lodash');
 const uuid = require('uuid/v4');
@@ -190,8 +190,10 @@ module.exports = data => {
   if (data['someone-else-permission-check']) {
     response.AltContactPermissionToSend = data['someone-else-permission-check'] === 'true' ? 'Yes' : 'No';
   }
-
-  response.SupportProviderContactByPhone = data['pv-phone-number-yes'];
+  response.AlternativePhoneNumber = data['pv-phone-number-alternative'];
+  response.AlternativePhoneRelationshipToPV = data['alternative-number-relation-to-pv'];
+  response.CannotProvideContactDetails = data['no-contact-details'];
+  response.SupportProviderContactByPhone = data['pv-phone-number-yes'] ? data['pv-phone-number-yes'] : data['pv-phone-number-alternative'];
   // icw resolver will look for any existing case before submitting a report to prevent duplicates
   response.ExternalId = data['externalID'] ? data['externalID'] : uuid();
 
