@@ -19,7 +19,7 @@ module.exports = name => superclass => class extends superclass {
   validateField(key, req) {
     if (req.body['upload-file']) {
       const fileUpload = _.get(req.files, `${name}`);
-
+      const files = req.sessionModel.get('files');
       if (fileUpload) {
         const uploadSize = fileUpload.size;
         const mimetype = fileUpload.mimetype;
@@ -35,6 +35,13 @@ module.exports = name => superclass => class extends superclass {
             redirect: undefined
           });
         }
+        if (files && files.length >= 100) {
+          return new this.ValidationError(key, {
+            key,
+            type: 'tooMany',
+            redirect: undefined
+          });
+        }
       } else {
         return new this.ValidationError(key, {
           key,
@@ -46,7 +53,7 @@ module.exports = name => superclass => class extends superclass {
     return super.validateField(key, req);
   }
 
-  saveValues(req, res, next) {
+  async saveValues(req, res, next) {
     if (req.body['upload-file']) {
       const files = req.sessionModel.get('files') || [];
 
@@ -54,15 +61,16 @@ module.exports = name => superclass => class extends superclass {
         req.log('info', `Saving file: ${req.files[name].name}`);
         const file = _.pick(req.files[name], ['name', 'data', 'mimetype']);
         const model = new Model(file);
-        return model.save()
-          .then(() => {
-            req.sessionModel.set('files', [...files, model.toJSON()]);
-            if (req.form.options.route === '/upload-evidence') {
-              return res.redirect('/nrm/upload-evidence');
-            }
-            return super.saveValues(req, res, next);
-          })
-          .catch(next);
+        try {
+          await model.save();
+          req.sessionModel.set('files', [...files, model.toJSON()]);
+          if (req.form.options.route === '/upload-evidence') {
+            return res.redirect('/nrm/upload-evidence');
+          }
+          await super.saveValues(req, res, next);
+        } catch (err) {
+          next(new Error(`Error saving file: ${err}`));
+        }
       }
     }
     return super.saveValues.apply(this, arguments);

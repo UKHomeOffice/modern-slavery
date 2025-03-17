@@ -85,23 +85,23 @@ if (config.env === 'development' || config.env === 'test') {
 
 app.use((req, res, next) => {
   if (req.is('multipart/form-data')) {
-    let bb;
+    let busboyInstance;
     try {
-      bb = busboy({
+      busboyInstance = busboy({
         headers: req.headers,
         limits: {
-          fileSize: bytes('25mb')
+          fileSize: bytes(config.upload.maxFileSize)
         }
       });
     } catch (err) {
       return next(err);
     }
 
-    bb.on('field', function (key, value) {
+    busboyInstance.on('field', function (key, value) {
       req.body[key] = value;
     });
 
-    bb.on('file', function (key, file, fileInfo) {
+    busboyInstance.on('file', function (key, file, fileInfo) {
       file.pipe(bl(function (err, d) {
         if (err || !(d.length || fileInfo.filename)) {
           return;
@@ -126,12 +126,12 @@ app.use((req, res, next) => {
 
     let error;
 
-    bb.on('error', function (err) {
+    busboyInstance.on('error', function (err) {
       error = err;
       next(err);
     });
 
-    bb.on('finish', function () {
+    busboyInstance.on('finish', function () {
       if (error) {
         return;
       }
@@ -139,7 +139,7 @@ app.use((req, res, next) => {
     });
     req.files = req.files || {};
     req.body = req.body || {};
-    req.pipe(bb);
+    req.pipe(busboyInstance);
   } else {
     next();
   }

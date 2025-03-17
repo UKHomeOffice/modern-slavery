@@ -227,7 +227,6 @@ module.exports = (data, token) => {
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
 
   data['files'] = data['files'] || [];
-  console.log(data['files']);
 
   data['files'].forEach((doc, i) => {
     const index = i + 1;
@@ -237,6 +236,5 @@ module.exports = (data, token) => {
     response[`Document${index}.URLLoadContent`] = true;
   });
 
-  console.log(response);
   return response;
 };

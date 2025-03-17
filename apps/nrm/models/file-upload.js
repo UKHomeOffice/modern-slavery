@@ -35,7 +35,7 @@ module.exports = class UploadModel extends Model {
       logger.info('Successfully saved data');
       return this.unset('data');
     } catch (err) {
-      logger.error('Error in save method: ', err);
+      logger.error('Error uploading file: ', err);
       throw err;
     }
   }
@@ -63,7 +63,7 @@ module.exports = class UploadModel extends Model {
       const response = await this._request(tokenReq);
       return { bearer: response.data.access_token };
     } catch (error) {
-      logger.error('Error in auth method:', error);
+      logger.error('Error authenticating with keycloak:', error);
       throw error;
     }
   }

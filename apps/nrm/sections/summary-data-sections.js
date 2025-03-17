@@ -603,12 +603,12 @@ module.exports = {
     {
       step: '/upload-evidence',
       field: 'files',
-      parse: (list, req) => {
+      parse: (filesList, req) => {
         if (!req.sessionModel.get('steps').includes('/upload-evidence')) {
           return null;
         }
         if (req.sessionModel.get('files')) {
-          return req.sessionModel.get('files').length > 0 ? list && list.map(i => i.name).join('\n') : 'No files uploaded';
+          return req.sessionModel.get('files').length > 0 ? filesList && filesList.map(i => i.name).join('\n') : 'No files uploaded';
         }
         return 'No files uploaded';
       }
