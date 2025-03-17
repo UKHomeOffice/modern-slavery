@@ -14,12 +14,11 @@ const bl = require('bl');
 
 const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
-settings.routes = settings.routes.map(route => require(route));
-settings.behaviours = settings.behaviours.map(require);
-settings.views = path.resolve(__dirname, './apps/common/views');
-settings.root = __dirname;
-
 settings = Object.assign({}, settings, {
+  behaviours: settings.behaviours.map(require),
+  routes: settings.routes.map(require),
+  views: path.resolve(__dirname, './apps/common/views'),
+  root: __dirname,
   csp: {
     imgSrc: [
       'www.google-analytics.com',
