@@ -562,8 +562,7 @@
     }
   },
   "refuse-nrm": {
-    "label": "Why don’t they want their case referred? (Optional)",
-    "hint": "Briefly explain your reasons"
+    "label": "Briefly explain why the potential victim doesn't want their case referred"
   },
   "does-pv-need-support": {
     "legend": "Do they need support?",
