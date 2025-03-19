@@ -37,7 +37,7 @@
     "axios": "^1.7.4",
     "accessible-autocomplete": "^2.0.2",
     "govuk-frontend": "^2.7.0",
-    "hof": "~22.2.1",
+    "hof": "~22.3.0",
     "ioredis": "^4.0.0",
     "jquery": "^3.5.1",
     "knex": "^3.1.0",
