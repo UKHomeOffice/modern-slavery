@@ -272,8 +272,31 @@ module.exports = {
       }
     ]
   },
+  'still-in-exploitative-situation': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'what-is-keeping-them-in-situation': {
+    mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
+      }
+    ]
+  },
   'how-why-did-they-leave-the-situation': {
     mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],

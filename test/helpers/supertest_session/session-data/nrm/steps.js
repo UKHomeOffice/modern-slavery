@@ -17,6 +17,8 @@ module.exports = [
   '/how-did-the-exploitation-start',
   '/were-they-taken-somewhere-by-their-exploiter',
   '/how-they-were-treated',
+  '/is-the-potential-victim-still-in-an-exploitative-situation',
+  '/reasons-preventing-potential-victim-from-leaving',
   '/how-why-did-they-leave-the-situation',
   '/when-last-contact',
   '/details-last-contact',

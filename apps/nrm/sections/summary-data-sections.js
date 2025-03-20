@@ -247,6 +247,14 @@ module.exports = {
         field: 'why-they-stayed'
       },
       {
+        step: '/is-the-potential-victim-still-in-an-exploitative-situation',
+        field: 'still-in-exploitative-situation'
+      },
+      {
+        step: '/reasons-preventing-potential-victim-from-leaving',
+        field: 'what-is-keeping-them-in-situation'
+      },
+      {
         step: '/how-why-did-they-leave-the-situation',
         field: 'how-why-did-they-leave-the-situation'
       },
