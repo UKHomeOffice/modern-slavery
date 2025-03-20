@@ -127,7 +127,8 @@
     "paragraph-1": "The UK public authorities (such as law enforcement agencies) may investigate or undertake criminal proceedings into any incidents you’ve reported in this referral."
   },
   "pv-want-to-submit-nrm": {
-    "header": "Do they want their case referred to the NRM?"
+    "header": "Does the potential victim consent to having their case reffered to the NRM?",
+    "warning": "Potential victims need to give informed consent to enter the National Referral Mechanism (NRM) and access support."
   },
   "refuse-nrm": {
     "header": "Why don't they want their case referred?"
