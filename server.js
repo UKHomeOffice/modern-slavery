@@ -90,7 +90,7 @@ app.use((req, res, next) => {
       busboyInstance = busboy({
         headers: req.headers,
         limits: {
-          fileSize: bytes('200mb')
+          fileSize: bytes(config.upload.maxFileSize)
         }
       });
     } catch (err) {
