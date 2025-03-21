@@ -17,35 +17,27 @@ module.exports = name => superclass => class extends superclass {
   }
 
   validateField(key, req) {
-    if (req.body['upload-file']) {
-      const fileUpload = _.get(req.files, `${name}`);
-      const files = req.sessionModel.get('files');
-      if (fileUpload) {
-        const uploadSize = fileUpload.size;
-        const mimetype = fileUpload.mimetype;
-        const uploadSizeTooBig = uploadSize > config.upload.maxFileSize;
-        const uploadSizeBeyondServerLimits = uploadSize === null;
-        const invalidMimetype = !config.upload.allowedMimeTypes.includes(mimetype);
-        const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
+    const fileUpload = _.get(req.files, `${name}`);
+    const files = req.sessionModel.get('files');
+    if (fileUpload) {
+      const uploadSize = fileUpload.size;
+      const mimetype = fileUpload.mimetype;
+      const uploadSizeTooBig = uploadSize > config.upload.maxFileSize;
+      const uploadSizeBeyondServerLimits = uploadSize === null;
+      const invalidMimetype = !config.upload.allowedMimeTypes.includes(mimetype);
+      const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
 
-        if (invalidSize || invalidMimetype) {
-          return new this.ValidationError(key, {
-            key,
-            type: invalidSize ? 'maxFileSize' : 'fileType',
-            redirect: undefined
-          });
-        }
-        if (files && files.length >= 100) {
-          return new this.ValidationError(key, {
-            key,
-            type: 'tooMany',
-            redirect: undefined
-          });
-        }
-      } else {
+      if (invalidSize || invalidMimetype) {
         return new this.ValidationError(key, {
           key,
-          type: 'required',
+          type: invalidSize ? 'maxFileSize' : 'fileType',
+          redirect: undefined
+        });
+      }
+      if (files && files.length >= 100) {
+        return new this.ValidationError(key, {
+          key,
+          type: 'tooMany',
           redirect: undefined
         });
       }
@@ -54,23 +46,21 @@ module.exports = name => superclass => class extends superclass {
   }
 
   async saveValues(req, res, next) {
-    if (req.body['upload-file']) {
-      const files = req.sessionModel.get('files') || [];
+    const files = req.sessionModel.get('files') || [];
 
-      if (_.get(req.files, name)) {
-        req.log('info', `Saving file: ${req.files[name].name}`);
-        const file = _.pick(req.files[name], ['name', 'data', 'mimetype']);
-        const model = new Model(file);
-        try {
-          await model.save();
-          req.sessionModel.set('files', [...files, model.toJSON()]);
-          if (req.form.options.route === '/upload-evidence') {
-            return res.redirect('/nrm/upload-evidence');
-          }
-          await super.saveValues(req, res, next);
-        } catch (err) {
-          next(new Error(`Error saving file: ${err}`));
+    if (_.get(req.files, name)) {
+      req.log('info', `Saving file: ${req.files[name].name}`);
+      const file = _.pick(req.files[name], ['name', 'data', 'mimetype']);
+      const model = new Model(file);
+      try {
+        await model.save();
+        req.sessionModel.set('files', [...files, model.toJSON()]);
+        if (req.form.options.route === '/upload-evidence') {
+          return res.redirect('/nrm/upload-evidence');
         }
+        await super.saveValues(req, res, next);
+      } catch (err) {
+        next(new Error(`Error saving file: ${err}`));
       }
     }
     return super.saveValues.apply(this, arguments);

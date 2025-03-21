@@ -5,6 +5,63 @@ require('hof/frontend/themes/gov-uk/client-js');
 const $ = require('jquery');
 const govuk = require('govuk-frontend');
 const accessibleAutocomplete = require('accessible-autocomplete');
+const config = require('../../config.js');
+
+document.addEventListener('DOMContentLoaded', () => {
+  const fileUpload = document.getElementById('upload-file');
+  const uploadPageLoaderContainer = document.getElementById('upload-page-loading-spinner');
+  const fileUploadSaveAndContinue = document.querySelector('input[type=submit]');
+
+  const fileUploadStatusHandler = (status, errorType) => {
+    const fileUploadComponent = document.getElementById('hof-file-upload');
+    const fileUploadErrorMsg = fileUploadComponent.querySelector('.govuk-error-message');
+    switch (status) {
+      case 'ready':
+        if (fileUploadComponent) {
+          fileUploadComponent.classList.remove('govuk-form-group--error');
+        }
+        if (fileUploadErrorMsg) {
+          fileUploadErrorMsg.classList.add('govuk-!-display-none');
+        }
+        break;
+      case 'error':
+        if (fileUploadComponent) {
+          fileUploadComponent.classList.add('govuk-form-group--error');
+          document.getElementById(`upload-file-error-${errorType}`).classList.remove('govuk-!-display-none');
+        }
+        break;
+      case 'uploading':
+        uploadPageLoaderContainer.style.display = 'flex';
+        fileUpload.disabled = true;
+        fileUpload.setAttribute('aria-disabled', 'true');
+        fileUploadSaveAndContinue.disabled = true;
+        fileUploadSaveAndContinue.setAttribute('aria-disabled', 'true');
+        break;
+      default:
+        break;
+    }
+  };
+
+  if (fileUpload) {
+    fileUpload.addEventListener('change', () => {
+      fileUploadStatusHandler('ready');
+      const fileInfo = fileUpload.files && fileUpload.files.length > 0 ? fileUpload.files[0] : null;
+      if (fileInfo) {
+        if (fileInfo.size > config.upload.maxFileSize) {
+          fileUploadStatusHandler('error', 'maxFileSize');
+          return;
+        }
+        if (!config.upload.allowedMimeTypes.includes(fileInfo.type) ) {
+          fileUploadStatusHandler('error', 'fileType');
+          return;
+        }
+      }
+
+      document.querySelector('[name=file-upload-form]').submit();
+      fileUploadStatusHandler('uploading');
+    });
+  }
+});
 
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({

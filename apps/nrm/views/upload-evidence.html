@@ -4,22 +4,30 @@
 
     {{#markdown}}evidence{{/markdown}}
     <br> 
-
-    <h2 class="govuk-heading-m">Upload a file</h2>
-    {{#fields}}
-      {{#renderField}}{{/renderField}}
-    {{/fields}}
-
-    <button class="govuk-button govuk-button--secondary" name="upload-file" value="upload-file">
-      {{#t}}buttons.upload-file{{/t}}
-    </button>
-
-    <br><br>
-
+    <div class="govuk-form-group" id="hof-file-upload">
+      <label class="govuk-label" for="upload-file">
+        <h2 class="govuk-heading-m">Upload a file</h2>
+      </label>
+      <p id="upload-file-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">Error:</span> {{#t}}validation.upload-file.maxFileSize{{/t}}
+      </p>
+      <p id="upload-file-error-fileType" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">Error:</span> {{#t}}validation.upload-file.fileType{{/t}}
+      </p>
+      <p id="upload-file-error-default" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">Error:</span> {{#t}}validation.upload-file.default{{/t}}
+      </p>
+      <input class="govuk-upload-file" id="upload-file" name="upload-file" type="file" value="{{name}}">
+      
+      <div id="upload-page-loading-spinner" class="spinner-container">
+        <div class="spinner-loader"></div>
+        <span class="spinner-message">Uploading document</span>
+      </div>
+    </div>
     {{#values.files.length}}
-      <br>
-      <h2 class="govuk-heading-m">Files uploaded</h2>
-      <table class="table-address-loop">
+    <br>
+    <h2 class="govuk-heading-m">Files uploaded</h2>
+    <table class="table-address-loop">
         <tbody>
         {{#values.files}}
           <tr class="files-summary">

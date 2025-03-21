@@ -222,15 +222,5 @@ describe("apps/nrm 'save-file' behaviour should ", () => {
 
       expect(result).to.equal(null);
     });
-
-    it('should return a validation error for missing file when file is required', function () {
-      req.body['upload-file'] = true;
-      const key = 'upload-file';
-
-      const result = instance.validateField(key, req);
-
-      expect(result).to.be.an.instanceOf(MockValidationError);
-      expect(result.type).to.equal('required');
-    });
   });
 });
