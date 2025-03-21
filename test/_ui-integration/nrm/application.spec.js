@@ -426,11 +426,45 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/does-pv-need-support');
     });
 
-    it('goes to the /pv-name-referral page when user enters pv needs support', async () => {
+    it('goes to the /pv-phone-number page when user enters pv needs support', async () => {
       const URI = '/does-pv-need-support';
       await initSession(URI);
       const response = await passStep(URI, {
         'does-pv-need-support': 'yes'
+      });
+
+      expect(response.text).to.contain('Found. Redirecting to /nrm/pv-phone-number');
+    });
+
+    it('goes to the pv-name-referral page when user enters pv phone number', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'pv-phone-number': 'yes',
+        'pv-phone-number-yes': '01234567890'
+      });
+
+      expect(response.text).to.contain('Found. Redirecting to /nrm/pv-name-referral');
+    });
+
+    it('goes to the pv-name-referral page when user enters an alternative pv phone number', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'pv-phone-number': 'pv-alternative-number',
+        'pv-phone-number-alternative': '01234567891',
+        'alternative-number-relation-to-pv': 'Friend'
+      });
+
+      expect(response.text).to.contain('Found. Redirecting to /nrm/pv-name-referral');
+    });
+
+    it('goes to the pv-name-referral page when user selects no contact details number', async () => {
+      const URI = '/pv-phone-number';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'pv-phone-number': 'no',
+        'no-contact-details': 'Do not have a phone'
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/pv-name-referral');
@@ -603,7 +637,7 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/pv-contact-details-referral');
     });
 
-    it('goes to the pv-phone-number page when user enters pv contact detatils', async () => {
+    it('goes to the fr-details page when user enters pv contact detatils', async () => {
       const URI = '/pv-contact-details-referral';
       await initSession(URI);
       const response = await passStep(URI, {
@@ -620,27 +654,6 @@ describe('the journey of a nrm application', () => {
         'pv-contact-details-post-check': 'pv-contact-details-post-check'
       });
 
-      expect(response.text).to.contain('Found. Redirecting to /nrm/pv-phone-number');
-    });
-
-    it('goes to the fr-details page when user selects no phone number', async () => {
-      const URI = '/pv-phone-number';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'pv-phone-number': 'no'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
-    });
-
-    it('goes to the fr-details page when user enters pv phone number', async () => {
-      const URI = '/pv-phone-number';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'pv-phone-number': 'yes',
-        'pv-phone-number-yes': '01234567890'
-      });
-
       expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
     });
 
@@ -654,7 +667,7 @@ describe('the journey of a nrm application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/someone-else');
     });
 
-    it('goes to the pv-phone-number page when user enters someone-else-details', async () => {
+    it('goes to the fr-details page when user enters someone-else-details', async () => {
       const URI = '/someone-else';
       await initSession(URI);
       const response = await passStep(URI, {
@@ -670,27 +683,6 @@ describe('the journey of a nrm application', () => {
         'someone-else-county': 'Greater London',
         'someone-else-postcode': 'PC1 1PC',
         'someone-else-permission-check': 'someone-else-permission-check'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/pv-phone-number');
-    });
-
-    it('goes to the fr-details page when user selects no phone number', async () => {
-      const URI = '/pv-phone-number';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'pv-phone-number': 'no'
-      });
-
-      expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');
-    });
-
-    it('goes to the fr-details page when user enters pv phone number', async () => {
-      const URI = '/pv-phone-number';
-      await initSession(URI);
-      const response = await passStep(URI, {
-        'pv-phone-number': 'yes',
-        'pv-phone-number-yes': '01234567890'
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/fr-details');

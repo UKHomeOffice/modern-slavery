@@ -196,6 +196,25 @@
   "does-pv-need-support" : {
     "required": "You must select if support is required"
   },
+  "pv-phone-number" : {
+    "required": "Select how the support provider can contact the potential victim"
+  },
+  "pv-phone-number-yes" : {
+    "required": "Enter the potential victim's telephone number",
+    "internationalPhoneNumber": "Enter a real telephone number"
+  },
+  "pv-phone-number-alternative": {
+    "required": "Enter an alternative telephone number",
+    "internationalPhoneNumber": "Enter a real telephone number"
+  },
+  "alternative-number-relation-to-pv": {
+    "required": "Enter the relationship to potential victim",
+    "maxlength": "Relationship to potential victim must be 250 characters or less"
+  },
+  "no-contact-details": {
+    "required": "Explain why you cannot provide contact details",
+    "maxlength": "Reason why you cannot provide contact details must be 15000 characters or less"
+  },
   "pv-name-first-name" : {
     "required": "You must enter the potential victim's first name",
     "maxlength": "You must enter no more than 15,000 characters"
@@ -308,13 +327,6 @@
   },
   "someone-else-permission-check" : {
     "required": "Make sure the potential victim has given you permission to send the decision to this person."
-  },
-  "pv-phone-number" : {
-    "required": "You must select an option"
-  },
-  "pv-phone-number-yes" : {
-    "required": "You must enter the potential victim's phone number",
-    "maxlength": "You must enter no more than 15,000 characters"
   },
   "fr-details-first-name" : {
     "required": "You must enter your first name ",
