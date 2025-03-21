@@ -96,12 +96,26 @@
     "required": "Enter reason for reporting",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "why-are-you-making-the-referral": {
-    "required": "Enter reason for referral",
-    "maxlength": "Enter no more than 15,000 characters"
+  "modern-slavery-indicators": {
+    "required": "Select if you identified any modern slavery indicators"
+  },
+  "modern-slavery-indicators-details": {
+    "required": "Enter details of modern slavery indicators",
+    "maxlength": "Details of modern slavery indicators must be 15000 characters or less"
   },
   "where-how-interview-carried-out": {
     "required": "Enter details about the interview",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "professional-insight": {
+    "required": "Enter details of your professional insight",
+    "maxlength": "Details of  your professional insight must be 15000 characters or less"
+  },
+  "evidence-of-dishonesty" : {
+    "required": "You must select an option"
+  },
+  "evidence-of-dishonesty-details": {
+    "required": "Enter concerns of credibility",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "are-others-involved" : {
@@ -109,13 +123,6 @@
   },
   "are-others-involved-details": {
     "required": "Enter other people involved",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "evidence-of-dishonesty" : {
-    "required": "You must select an option"
-  },
-  "evidence-of-dishonesty-details": {
-    "required": "Enter indicators or evidence of dishonesty",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "what-evidence-you-will-submit": {
@@ -338,5 +345,9 @@
   },
   "refuse-nrm" : {
     "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "why-are-you-making-the-referral": {
+    "required": "Enter reason for referral",
+    "maxlength": "Enter no more than 15,000 characters"
   }
 }

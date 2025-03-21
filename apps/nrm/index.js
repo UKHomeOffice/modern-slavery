@@ -213,7 +213,7 @@ module.exports = {
           value: 'no'
         }
       }],
-      next: '/why-are-you-making-the-referral',
+      next: '/modern-slavery-indicators',
       continueOnEdit: true
     },
     '/why-report-now': {
@@ -222,14 +222,17 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['why-report-now'],
-      next: '/why-are-you-making-the-referral'
+      next: '/modern-slavery-indicators'
     },
-    '/why-are-you-making-the-referral': {
+    '/modern-slavery-indicators': {
       behaviours: [
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['why-are-you-making-the-referral'],
+      fields: [
+        'modern-slavery-indicators',
+        'modern-slavery-indicators-details'
+      ],
       next: '/where-how-interview-carried-out'
     },
     '/where-how-interview-carried-out': {
@@ -238,14 +241,14 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['where-how-interview-carried-out'],
-      next: '/are-others-involved'
+      next: '/professional-insight'
     },
-    '/are-others-involved': {
+    '/professional-insight': {
       behaviours: [
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['are-others-involved', 'are-others-involved-details'],
+      fields: ['professional-insight'],
       next: '/evidence-of-dishonesty'
     },
     '/evidence-of-dishonesty': {
@@ -254,7 +257,15 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
-      next: '/what-evidence-you-will-submit'
+      next: '/are-others-involved'
+    },
+    '/are-others-involved': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['are-others-involved', 'are-others-involved-details'],
+      next: '/where-exploitation-happened'
     },
     '/what-evidence-you-will-submit': {
       behaviours: [
@@ -765,6 +776,15 @@ module.exports = {
     '/token-invalid': {
       clearSession: true
     },
-    '/exit': {}
+    '/exit': {},
+    // DISCONNECTED PAGES
+    '/why-are-you-making-the-referral': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['why-are-you-making-the-referral'],
+      next: '/where-how-interview-carried-out'
+    }
   }
 };
