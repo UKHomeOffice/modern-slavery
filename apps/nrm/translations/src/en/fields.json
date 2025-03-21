@@ -224,16 +224,20 @@
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
   "birthplace": {
-    "label": "Place of birth (town or village)"
+    "label": "Place of birth",
+    "hint": "Include the country and town or vilage they were born in."
   },
   "family": {
-    "label": "Family (parents and siblings)"
+    "label": "Their family",
+    "hint": "Include information about who their family is, for example their parents and siblings."
   },
   "education": {
-    "label": "Education and what they did after leaving school"
+    "label": "Education",
+    "hint": "Include details of any education they might have had, for example the school they went to and when."
   },
   "employment-history": {
-    "label": "Employment history and working conditions"
+    "label": "Previous employment history",
+    "hint": "Only include their employment history before the exploitative situation."
   },
   "where-exploitation-happened": {
     "legend": "Where was the potential victim exploited?",

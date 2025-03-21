@@ -103,12 +103,14 @@ module.exports = {
   },
   birthplace: {
     mixin: 'input-text',
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   family: {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -121,6 +123,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -133,6 +136,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {

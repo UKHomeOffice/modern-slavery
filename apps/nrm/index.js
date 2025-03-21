@@ -131,14 +131,6 @@ module.exports = {
       fields: ['birthplace', 'family', 'education', 'employment-history'],
       next: '/more-than-one-exploitation-situation'
     },
-    '/more-than-one-exploitation-situation': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: ['more-than-one-exploitation-situation'],
-      next: '/when-did-the-exploitation-take-place'
-    },
     '/when-did-the-exploitation-take-place': {
       behaviours: [
         saveFormSession
