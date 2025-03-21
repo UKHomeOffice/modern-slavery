@@ -238,7 +238,7 @@
     "label": "Employment history and working conditions"
   },
   "where-exploitation-happened": {
-    "legend": "Where were they exploited?",
+    "legend": "Where was the potential victim exploited?",
     "options": {
       "uk": {
         "label": "UK"
