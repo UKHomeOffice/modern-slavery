@@ -126,7 +126,7 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['birthplace', 'family', 'education', 'employment-history'],
-      next: '/when-did-the-exploitation-take-place'
+      next: '/more-than-one-exploitation-situation'
     },
     '/when-did-the-exploitation-take-place': {
       behaviours: [
