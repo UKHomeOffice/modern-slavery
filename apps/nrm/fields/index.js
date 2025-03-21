@@ -585,6 +585,7 @@ module.exports = {
     mixin: 'select',
     validate: ['required'],
     className: ['typeahead', 'js-hidden'],
+    labelClassName: ['govuk-body', 'govuk-!-font-weight-bold'],
     options: [{
       value: '',
       label: 'fields.current-pv-locationd-uk-city.options.null'
@@ -594,6 +595,7 @@ module.exports = {
     mixin: 'select',
     validate: ['required'],
     className: ['typeahead', 'js-hidden'],
+    labelClassName: ['govuk-body', 'govuk-!-font-weight-bold'],
     options: [{
       value: '',
       label: 'fields.current-pv-location-uk-region.options.null'
