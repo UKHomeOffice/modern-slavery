@@ -24,7 +24,8 @@
     "header": "What is their background?"
   },
   "when-did-the-exploitation-take-place": {
-    "header": "When did the exploitation take place?"
+    "header": "When did the exploitation happen?",
+    "intro": "If the potential victim doesn't know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident."
   },
   "more-than-one-exploitation-situation": {
     "header": "Have they been in more than one exploitative situation?",
@@ -225,7 +226,7 @@
         "label": "Employment history"
       },
       "when-did-the-exploitation-take-place": {
-        "label": "When did exploitation take place"
+        "label": "When did the exploitation happen"
       },
       "more-than-one-exploitation-situation": {
         "label": "More than one exploitation situation"

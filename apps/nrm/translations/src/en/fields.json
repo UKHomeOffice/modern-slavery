@@ -92,8 +92,7 @@
     "bullet-4": "details of their journey, including if they travelled with anyone"
   },
   "when-did-the-exploitation-take-place": {
-    "label": "Date(s) of exploitation",
-    "hint": "If they don’t know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident."
+    "label": "Start and end date of exploitation"
   },
   "more-than-one-exploitation-situation": {
     "label": "Date(s) of exploitation",

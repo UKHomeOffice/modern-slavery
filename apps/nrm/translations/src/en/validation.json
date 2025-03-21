@@ -52,7 +52,7 @@
     "maxlength": "Enter no more than 15,000 characters"
   },
   "when-did-the-exploitation-take-place" : {
-    "required": "Enter when the exploitation took place",
+    "required": "Enter when the exploitation happened",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "more-than-one-exploitation-situation" : {

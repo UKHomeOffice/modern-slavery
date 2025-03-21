@@ -151,7 +151,8 @@ module.exports = {
         attribute: 'rows',
         value: 7
       }
-    ]
+    ],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'more-than-one-exploitation-situation': {
     mixin: 'textarea',

@@ -93,7 +93,7 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/what-is-their-background');
   });
 
-  it('goes to the when-did-the-exploitation-take-place page when user enters their background', async () => {
+  it('goes to the more-than-one-exploitation-situation page when user enters their background', async () => {
     const URI = '/what-is-their-background';
     await initSession(URI);
     const response = await passStep(URI, {
@@ -103,24 +103,24 @@ describe('the journey of a nrm automatic referral application', () => {
       'employment-history': 'Test'
     });
 
+    expect(response.text).to.contain('Found. Redirecting to /nrm/more-than-one-exploitation-situation');
+  });
+
+  it('goes to the when-did-the-exploitation-take-place page when user selects not more than one exploitative situation', async () => {
+    const URI = '/more-than-one-exploitation-situation';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'more-than-one-exploitation-situation': 'no'
+    });
+
     expect(response.text).to.contain('Found. Redirecting to /nrm/when-did-the-exploitation-take-place');
   });
 
-  it('goes to the more-than-one-exploitation-situation page when user enters Date(s) of exploitation', async () => {
+  it('goes to the how-did-the-exploitation-start page when user enters Date(s) of exploitation', async () => {
     const URI = '/when-did-the-exploitation-take-place';
     await initSession(URI);
     const response = await passStep(URI, {
       'when-did-the-exploitation-take-place': '2000-01-01'
-    });
-
-    expect(response.text).to.contain('Found. Redirecting to /nrm/more-than-one-exploitation-situation');
-  });
-
-  it('goes to the how-did-the-exploitation-start page when user enters more exploitation details', async () => {
-    const URI = '/more-than-one-exploitation-situation';
-    await initSession(URI);
-    const response = await passStep(URI, {
-      'more-than-one-exploitation-situation': 'Test'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/how-did-the-exploitation-start');
