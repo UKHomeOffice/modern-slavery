@@ -179,12 +179,29 @@
   "why-report-now": {
     "label": "Reason for reporting"
   },
-  "why-are-you-making-the-referral": {
-    "label": "Reason for referral"
+  "modern-slavery-indicators": {
+    "legend": "Did you identify any modern slavery indicators?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   },
-  "where-how-interview-carried-out": {
-    "label": "Details about the interview",
-    "hint": "Include whether they needed to take breaks (and why), the number of sessions over which the interview took place and whether there were any safeguarding concerns."
+  "evidence-of-dishonesty": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "evidence-of-dishonesty-details": {
+    "label": "Evidence"
   },
   "are-others-involved": {
     "options": {
@@ -199,19 +216,6 @@
   "are-others-involved-details": {
     "label": "Other people involved",
     "hint": "Include any referrals made, actions already taken, reference numbers, or contact details"
-  },
-  "evidence-of-dishonesty": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "evidence-of-dishonesty-details": {
-    "label": "Indicators or evidence of dishonesty"
   },
   "what-evidence-you-will-submit": {
     "label": "List of documents or evidence to be submitted"
@@ -785,5 +789,8 @@
   "fr-alternative-contact": {
     "label": "Email address",
     "hint": "This could be a manager, colleague or a team inbox."
+  },
+  "why-are-you-making-the-referral": {
+    "label": "Reason for referral"
   }
 }
