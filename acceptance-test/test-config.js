@@ -14,7 +14,7 @@ module.exports = {
     PV_EDUCATION: '#education',
     PV_EMPLOYMENT_HISTORY: '#employment-history',
     EXPLOITATION_TAKE_PLACE: '#when-did-the-exploitation-take-place',
-    MORE_THAN_ONE_SITUATION: '#more-than-one-exploitation-situation',
+    POTENTIAL_VICTIM_EXPLOITATIVE_SITUATION_NO: '#potential-victim-exploitative-situation-multiple-no',
     HOW_DID_EXPLOITATION_START: '#how-did-the-exploitation-start',
     WERE_TAKEN_SOMEWHERE_YES: '#were-they-taken-somewhere-by-their-exploiter-yes',
     WERE_TAKEN_SOMEWHERE_DETAILS: '#were-they-taken-somewhere-by-their-exploiter-journey-details',
