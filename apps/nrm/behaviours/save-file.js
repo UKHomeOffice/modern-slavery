@@ -24,7 +24,7 @@ module.exports = name => superclass => class extends superclass {
         const uploadSize = fileUpload.size;
         const mimetype = fileUpload.mimetype;
         const uploadSizeTooBig = uploadSize > config.upload.maxFileSize;
-        const uploadSizeBeyondServerLimits = uploadSize.truncated || uploadSize === null;
+        const uploadSizeBeyondServerLimits = fileUpload.truncated || uploadSize === null;
         const invalidMimetype = !config.upload.allowedMimeTypes.includes(mimetype);
         const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
 
