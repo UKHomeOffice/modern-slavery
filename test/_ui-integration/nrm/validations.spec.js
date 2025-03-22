@@ -165,9 +165,9 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters more than one exploitation situation Validation', () => {
-    it('does not pass more than one exploitation situation page if nothing entered', async () => {
-      const URI = '/more-than-one-exploitation-situation';
+  describe('User enters potential victim more than one exploitation situation Validation', () => {
+    it('does not pass potential victim more than one exploitation situation page if nothing entered', async () => {
+      const URI = '/potential-victim-exploitative-situation-multiple';
       await initSession(URI);
       await passStep(URI, {});
 
@@ -177,7 +177,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter Date\(s\) of exploitation/);
+        .to.match(/Select if the potential victim been in more than one exploitative situation/);
     });
   });
 

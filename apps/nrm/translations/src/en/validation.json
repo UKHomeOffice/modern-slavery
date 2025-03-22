@@ -55,9 +55,8 @@
     "required": "Enter when the exploitation happened",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "more-than-one-exploitation-situation" : {
-    "required": "Enter Date(s) of exploitation",
-    "maxlength": "Enter no more than 15,000 characters"
+  "potential-victim-exploitative-situation-multiple" : {
+    "required": "Select if the potential victim been in more than one exploitative situation"
   },
   "how-did-the-exploitation-start" : {
     "required": "Enter when the exploitation started",

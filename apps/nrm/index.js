@@ -129,7 +129,23 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['birthplace', 'family', 'education', 'employment-history'],
-      next: '/more-than-one-exploitation-situation'
+      next: '/potential-victim-exploitative-situation-multiple'
+    },
+    '/potential-victim-exploitative-situation-multiple': {
+      behaviours: [
+        saveFormSession
+      ],
+      forks: [{
+        target: '/when-did-the-exploitation-take-place-multiple',
+        condition: {
+          field: 'potential-victim-exploitative-situation-multiple',
+          value: 'yes'
+        }
+      }],
+      locals: { showSaveAndExit: true },
+      fields: ['potential-victim-exploitative-situation-multiple'],
+      continueOnEdit: true,
+      next: '/when-did-the-exploitation-take-place'
     },
     '/when-did-the-exploitation-take-place': {
       behaviours: [
@@ -137,6 +153,13 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['when-did-the-exploitation-take-place'],
+      next: '/how-did-the-exploitation-start'
+    },
+    '/when-did-the-exploitation-take-place-multiple': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
       next: '/how-did-the-exploitation-start'
     },
     '/how-did-the-exploitation-start': {

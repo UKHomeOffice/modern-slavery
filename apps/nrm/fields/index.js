@@ -158,17 +158,19 @@ module.exports = {
     ],
     labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
-  'more-than-one-exploitation-situation': {
-    mixin: 'textarea',
-    'ignore-defaults': true,
-    formatter: ['trim', 'hyphens'],
-    validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 7
-      }
-    ]
+  'potential-victim-exploitative-situation-multiple': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    validate: ['required'],
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no'
+    }, {
+      value: 'i-dont-know'
+    }]
   },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',

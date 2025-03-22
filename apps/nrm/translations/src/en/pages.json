@@ -23,13 +23,15 @@
   "what-is-their-background": {
     "header": "Tell us about the potential victim's background"
   },
+  "potential-victim-exploitative-situation-multiple": {
+    "header": "Has the potential victim been in more than one exploitative situation?"
+  },
   "when-did-the-exploitation-take-place": {
     "header": "When did the exploitation happen?",
     "intro": "If the potential victim doesn't know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident."
   },
-  "more-than-one-exploitation-situation": {
-    "header": "Have they been in more than one exploitative situation?",
-    "paragraph-1": "If yes, please make sure that details from all exploitative situations are captured in the following questions."
+  "when-did-the-exploitation-take-place-multiple": {
+    "header": "When did the exploitations happen?"
   },
   "how-did-the-exploitation-start": {
     "header": "How did the exploitation start?",
@@ -237,9 +239,6 @@
       },
       "when-did-the-exploitation-take-place": {
         "label": "When did the exploitation happen"
-      },
-      "more-than-one-exploitation-situation": {
-        "label": "More than one exploitation situation"
       },
       "how-did-the-exploitation-start": {
         "label": "How they came to be exploited"

@@ -94,9 +94,19 @@
   "when-did-the-exploitation-take-place": {
     "label": "Start and end date of exploitation"
   },
-  "more-than-one-exploitation-situation": {
-    "label": "Date(s) of exploitation",
-    "hint": "The individual should be encouraged to disclose any other periods of exploitation and the length of time, and any specific dates. This can be any form of exploitation (sexual, labour, domestic servitude) and may be of a different type to the one that initiated the referral."
+  "potential-victim-exploitative-situation-multiple": {
+    "legend": "Has the potential victim been in more than one exploitative situation?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      },
+      "i-dont-know": {
+        "label": "I don't know"
+      }
+    }
   },
   "how-did-the-exploitation-start": {
     "label": "How they came to be exploited",

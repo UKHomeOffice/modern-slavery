@@ -207,6 +207,10 @@ module.exports = {
         field: 'when-did-the-exploitation-take-place'
       },
       {
+        step: '/potential-victim-exploitative-situation-multiple',
+        field: 'potential-victim-exploitative-situation-multiple'
+      },
+      {
         step: '/how-did-the-exploitation-start',
         field: 'how-did-the-exploitation-start'
       },

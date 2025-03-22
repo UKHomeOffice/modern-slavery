@@ -200,7 +200,14 @@ module.exports = (data, token) => {
   response.PVEducation = data['education'];
   response.PVEmploymentHistory = data['employment-history'];
   response.ExploitationDates = data['when-did-the-exploitation-take-place'];
-  response.MultipleExploitationSituations = data['more-than-one-exploitation-situation'];
+
+  const moreSituations = {
+    yes: 'Yes',
+    no: 'No',
+    'i-dont-know': 'DontKnow'
+  };
+
+  response.MultipleExploitationSituations = moreSituations[data['potential-victim-exploitative-situation-multiple']];
   response.HowExploitationStarted = data['how-did-the-exploitation-start'];
   response.ExploitationTakenSomewhere = _.upperFirst(data['were-they-taken-somewhere-by-their-exploiter']);
   response.ExploitationJourneyDetails = data['were-they-taken-somewhere-by-their-exploiter-journey-details'];

@@ -11,7 +11,7 @@ module.exports = [
   '/local-authority-contacted-about-child',
   '/pv-under-age-at-time-of-exploitation',
   '/what-is-their-background',
-  '/more-than-one-exploitation-situation',
+  '/potential-victim-exploitative-situation-multiple',
   '/when-did-the-exploitation-take-place',
   '/how-did-the-exploitation-start',
   '/were-they-taken-somewhere-by-their-exploiter',
