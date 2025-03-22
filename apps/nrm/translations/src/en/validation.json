@@ -6,13 +6,13 @@
     "wrongEmail": "this is not a first responder email we recognise",
     "maxlength": "You must enter no more than 15,000 characters"
   },
-  "fr-location" : {
+  "fr-location": {
     "required": "You must enter a region"
   },
-  "reference" : {
+  "reference": {
     "required": "You must enter a reference"
   },
-  "pv-under-age" : {
+  "pv-under-age": {
     "required": "You must select an option"
   },
   "local-authority-contacted-about-child-local-authority-name": {
@@ -28,340 +28,335 @@
     "email": "Enter a valid email address",
     "maxlength": "You must enter no more than 15,000 characters"
   },
-  "pv-under-age-at-time-of-exploitation" : {
+  "pv-under-age-at-time-of-exploitation": {
     "required": "You must select an option"
   },
-  "what-happened" : {
+  "what-happened": {
     "required": "You must enter details of the exploitation",
     "maxlength": "You must enter no more than 15,000 characters"
   },
-  "birthplace" : {
+  "birthplace": {
     "required": "Enter the birthplace",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "family" : {
+  "family": {
     "required": "Enter the family details",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "education" : {
+  "education": {
     "required": "Enter the education history",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "employment-history" : {
+  "employment-history": {
     "required": "Enter the employment history",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "potential-victim-exploitative-situation-multiple": {
     "required": "Select if the potential victim been in more than one exploitative situation"
-
-  }, 
-  "when-did-the-exploitation-take-place-multiple" : {
+  },
+  "when-did-the-exploitation-take-place-multiple": {
     "required": "Explain when the exploitations happened",
     "maxlength": "Details when the exploitations happened must be 15000 characters or less"
   },
-  "when-did-the-exploitation-take-place" : {
+  "when-did-the-exploitation-take-place": {
     "required": "Enter when the exploitation happened",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "how-did-the-exploitation-start" : {
+  "how-did-the-exploitation-start": {
     "required": "Enter when the exploitation started",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "were-they-taken-somewhere-by-their-exploiter" : {
-    "required": "You must select an option"
-  },
-  "were-they-taken-somewhere-by-their-exploiter-journey-details" : {
-    "required": "Enter the journey's details",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "what-were-they-required-to-do" : {
-    "required": "Enter what were they required to do",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "how-they-were-treated" : {
-    "required": "Enter how they were treated",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "why-they-stayed" : {
-    "required": "Enter why they stayed",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "how-why-did-they-leave-the-situation": {
-    "required": "Enter how and why they left",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "when-last-contact": {
-    "required": "Tell us when they were last in contact"
-  },
-  "is-this-the-first-chance-to-report" : {
-    "required": "You must select an option"
-  },
-  "why-report-now": {
-    "required": "Enter anything that prevented the potential victim from reporting this sooner",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "why-are-you-making-the-referral": {
-    "required": "Enter reason for referral",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "where-how-interview-carried-out": {
-    "required": "Enter details about the interview",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "are-others-involved" : {
-    "required": "You must select an option"
-  },
-  "are-others-involved-details": {
-    "required": "Enter other people involved",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "evidence-of-dishonesty" : {
-    "required": "You must select an option"
-  },
-  "evidence-of-dishonesty-details": {
-    "required": "Enter indicators or evidence of dishonesty",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "where-exploitation-happened" : {
-    "required": "You must select an option"
-  },
-  "where-exploitation-happened-uk-city-1" : {
-    "required": "You must select a city or town from the list"
-  },
-  "where-exploitation-happened-overseas-country-1" : {
-    "required": "You must select a country from the list"
-  },
-  "where-exploitation-happened-other-overseas-other-location": {
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "where-exploitation-happened-other-uk-other-location": {
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "current-pv-location-uk-city" : {
-    "required": "You must select a city from the list",
-    "equal": "You must select a city from the list"
-  },
-  "current-pv-location-uk-region" : {
-    "required": "You must select a region from the list",
-    "equal": "You must select a region from the list"
-  },
-  "who-exploited-pv" : {
-    "required": "You must enter details about the exploiter(s)",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "exploiters-location": {
-    "required": "Tell us if you have information about where the exploiters are"
-  },
-  "are-exploiters-in-the-uk": {
-    "required": "Tell us if the exploiters are in the UK"
-  },
-  "exploiters-current-location-details": {
-    "required": "Tell us what information you have about the exploiters' location",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "types-of-exploitation-forced-to-work" : {
-    "at-least-one-option-selected" : "You must select an exploitation type"
-  },
-  "other-exploitation-details" : {
-    "required" : "Please enter other type of exploitation",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "any-other-pvs" : {
-    "required": "You must select an option"
-  },
-  "other-potential-victims-yes-details": {
-    "maxlength": "Details of other potential victims must be 15000 characters or less"
-  },
-  "other-potential-victims-not-sure-details": {
-    "maxlength": "Details of other potential victims must be 15000 characters or less"
-  },
-  "future-exploitation-concerns": {
-    "required":"Tell us if there are concerns about re-exploitation in the future"
-  },
-  "future-exploitation-reasons": {
-    "required":"Tell us why there are concerns",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "reported-to-police" : {
-    "required": "You must select an option"
-  },
-  "reported-to-police-police-forces" : {
-    "required": "You must select a police force from the list",
-    "equal": "You must select a police force from the list"
-  },
-  "reported-to-police-crime-reference" : {
-    "required": "You must enter a crime or CAD reference",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "authorities-cooperation": {
-    "required": "Tell us if the potential victim will co-operate with public authorities"
-  },
-  "pv-want-to-submit-nrm" : {
-    "required": "You must enter the NRM decision"
-  },
-  "does-pv-need-support" : {
-    "required": "You must select if support is required"
-  },
-  "pv-phone-number" : {
-    "required": "Select how the support provider can contact the potential victim"
-  },
-  "pv-phone-number-yes" : {
-    "required": "Enter the potential victim's telephone number",
-    "internationalPhoneNumber": "Enter a real telephone number"
-  },
-  "pv-phone-number-alternative": {
-    "required": "Enter an alternative telephone number",
-    "internationalPhoneNumber": "Enter a real telephone number"
-  },
-  "alternative-number-relation-to-pv": {
-    "required": "Enter the relationship to potential victim",
-    "maxlength": "Relationship to potential victim must be 250 characters or less"
-  },
-  "no-contact-details": {
-    "required": "Explain why you cannot provide contact details",
-    "maxlength": "Reason why you cannot provide contact details must be 15000 characters or less"
-  },
-  "pv-name-first-name" : {
-    "required": "You must enter the potential victim's first name",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-name-last-name" : {
-    "required": "You must enter the potential victim's last name",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-name-nickname" : {
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-dob": {
-    "date": "You must enter a valid date",
-    "before": "You must enter a valid date. The date cannot be in the future",
-    "after": "You must enter a valid date. The date cannot be too far in the past"
-  },
-  "pv-gender" : {
-    "required": "You must select the potential victim's gender"
-  },
-  "does-pv-have-children" : {
-    "required": "You must select an option"
-  },
-  "does-pv-have-children-yes-amount" : {
-    "required": "You must enter the number of children",
-    "numeric": "You must enter numbers only",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-nationality" : {
-    "required": "You must select the potential victim's nationality from the list",
-    "equal": "You must select the potential victim's nationality from the list"
-  },
-  "pv-nationality-second" : {
-    "equal": "You must select the potential victim's second nationality from the list"
-  },
-  "pv-interpreter-requirements" : {
-    "required": "You must select an option"
-  },
-  "pv-interpreter-requirements-language" : {
-    "required": "You must enter a language",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-other-help-with-communication" : {
-    "required": "You must select an option"
-  },
-  "pv-other-help-with-communication-aid" : {
-    "required": "You must enter the communication aid",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-ho-reference" : {
-    "required": "You must select an option"
-  },
-  "pv-ho-reference-type" : {
-    "required": "You must enter a reference number",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "who-contact" : {
-    "required": "You must select an option"
-  },
-  "pv-contact-details" : {
-    "required": "You must select one or more of the contact methods listed"
-  },
-  "pv-contact-details-email-input" : {
-    "required": "Enter a valid email address",
-    "email": "Enter a valid email address",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-contact-details-email-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this email address."
-  },
-  "pv-contact-details-street" : {
-    "required": "You must enter a building or street",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-contact-details-town" : {
-    "required": "You must enter a town or city",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-contact-details-county" : {
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-contact-details-postcode" : {
-    "required": "You must enter the postcode.",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "pv-contact-details-post-check" : {
-    "required": "Make sure it is safe to contact the potential victim at this address."
-  },
-  "someone-else" : {
-    "required": "You must select one or more of the contact methods listed"
-  },
-  "someone-else-email-input" : {
-    "required": "Enter a valid email address",
-    "email": "Enter a valid email address",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "someone-else-street" : {
-    "required": "You must enter a building or street",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "someone-else-town" : {
-    "required": "You must enter a town or city",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "someone-else-county" : {
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "someone-else-postcode" : {
-    "required": "You must enter the postcode.",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "someone-else-permission-check" : {
-    "required": "Make sure the potential victim has given you permission to send the decision to this person."
-  },
-  "fr-details-first-name" : {
-    "required": "You must enter your first name ",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "fr-details-last-name" : {
-    "required": "You must enter your last name ",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "fr-details-role" : {
-    "required": "You must enter your role",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "fr-details-phone" : {
-    "required": "You must enter a phone number",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "fr-alternative-contact" : {
-    "email": "Enter a valid email address",
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "refuse-nrm" : {
-    "maxlength": "You must enter no more than 15,000 characters"
-  },
-  "more-than-one-exploitation-situation" : {
-    "required": "Enter Date(s) of exploitation",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "upload-file": {
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "were-they-taken-somewhere-by-their-exploiter": {
+      "required": "You must select an option"
+    },
+    "were-they-taken-somewhere-by-their-exploiter-journey-details": {
+      "required": "Enter the journey's details",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "what-were-they-required-to-do": {
+      "required": "Enter what were they had to do",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "living-conditions": {
+      "required": "Enter their living conditions",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "how-they-were-treated": {
+      "required": "Enter how they were treated",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "how-why-did-they-leave-the-situation": {
+      "required": "Enter how and why they left",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "when-last-contact": {
+      "required": "Tell us when they were last in contact"
+    },
+    "is-this-the-first-chance-to-report": {
+      "required": "You must select an option"
+    },
+    "why-report-now": {
+      "required": "Enter anything that prevented the potential victim from reporting this sooner",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "why-are-you-making-the-referral": {
+      "required": "Enter reason for referral",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "where-how-interview-carried-out": {
+      "required": "Enter details about the interview",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "are-others-involved": {
+      "required": "You must select an option"
+    },
+    "are-others-involved-details": {
+      "required": "Enter other people involved",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "evidence-of-dishonesty": {
+      "required": "You must select an option"
+    },
+    "evidence-of-dishonesty-details": {
+      "required": "Enter indicators or evidence of dishonesty",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "where-exploitation-happened": {
+      "required": "You must select an option"
+    },
+    "where-exploitation-happened-uk-city-1": {
+      "required": "You must select a city or town from the list"
+    },
+    "where-exploitation-happened-overseas-country-1": {
+      "required": "You must select a country from the list"
+    },
+    "where-exploitation-happened-other-overseas-other-location": {
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "where-exploitation-happened-other-uk-other-location": {
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "current-pv-location-uk-city": {
+      "required": "You must select a city from the list",
+      "equal": "You must select a city from the list"
+    },
+    "current-pv-location-uk-region": {
+      "required": "You must select a region from the list",
+      "equal": "You must select a region from the list"
+    },
+    "who-exploited-pv": {
+      "required": "You must enter details about the exploiter(s)",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "exploiters-location": {
+      "required": "Tell us if you have information about where the exploiters are"
+    },
+    "are-exploiters-in-the-uk": {
+      "required": "Tell us if the exploiters are in the UK"
+    },
+    "exploiters-current-location-details": {
+      "required": "Tell us what information you have about the exploiters' location",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "types-of-exploitation-forced-to-work": {
+      "at-least-one-option-selected": "You must select an exploitation type"
+    },
+    "other-exploitation-details": {
+      "required": "Please enter other type of exploitation",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "any-other-pvs": {
+      "required": "You must select an option"
+    },
+    "other-potential-victims-yes-details": {
+      "maxlength": "Details of other potential victims must be 15000 characters or less"
+    },
+    "other-potential-victims-not-sure-details": {
+      "maxlength": "Details of other potential victims must be 15000 characters or less"
+    },
+    "future-exploitation-concerns": {
+      "required": "Tell us if there are concerns about re-exploitation in the future"
+    },
+    "future-exploitation-reasons": {
+      "required": "Tell us why there are concerns",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "reported-to-police": {
+      "required": "You must select an option"
+    },
+    "reported-to-police-police-forces": {
+      "required": "You must select a police force from the list",
+      "equal": "You must select a police force from the list"
+    },
+    "reported-to-police-crime-reference": {
+      "required": "You must enter a crime or CAD reference",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "authorities-cooperation": {
+      "required": "Tell us if the potential victim will co-operate with public authorities"
+    },
+    "pv-want-to-submit-nrm": {
+      "required": "You must enter the NRM decision"
+    },
+    "does-pv-need-support": {
+      "required": "You must select if support is required"
+    },
+    "pv-phone-number": {
+      "required": "Select how the support provider can contact the potential victim"
+    },
+    "pv-phone-number-yes": {
+      "required": "Enter the potential victim's telephone number",
+      "internationalPhoneNumber": "Enter a real telephone number"
+    },
+    "pv-phone-number-alternative": {
+      "required": "Enter an alternative telephone number",
+      "internationalPhoneNumber": "Enter a real telephone number"
+    },
+    "alternative-number-relation-to-pv": {
+      "required": "Enter the relationship to potential victim",
+      "maxlength": "Relationship to potential victim must be 250 characters or less"
+    },
+    "no-contact-details": {
+      "required": "Explain why you cannot provide contact details",
+      "maxlength": "Reason why you cannot provide contact details must be 15000 characters or less"
+    },
+    "pv-name-first-name": {
+      "required": "You must enter the potential victim's first name",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-name-last-name": {
+      "required": "You must enter the potential victim's last name",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-name-nickname": {
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-dob": {
+      "date": "You must enter a valid date",
+      "before": "You must enter a valid date. The date cannot be in the future",
+      "after": "You must enter a valid date. The date cannot be too far in the past"
+    },
+    "pv-gender": {
+      "required": "You must select the potential victim's gender"
+    },
+    "does-pv-have-children": {
+      "required": "You must select an option"
+    },
+    "does-pv-have-children-yes-amount": {
+      "required": "You must enter the number of children",
+      "numeric": "You must enter numbers only",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-nationality": {
+      "required": "You must select the potential victim's nationality from the list",
+      "equal": "You must select the potential victim's nationality from the list"
+    },
+    "pv-nationality-second": {
+      "equal": "You must select the potential victim's second nationality from the list"
+    },
+    "pv-interpreter-requirements": {
+      "required": "You must select an option"
+    },
+    "pv-interpreter-requirements-language": {
+      "required": "You must enter a language",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-other-help-with-communication": {
+      "required": "You must select an option"
+    },
+    "pv-other-help-with-communication-aid": {
+      "required": "You must enter the communication aid",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-ho-reference": {
+      "required": "You must select an option"
+    },
+    "pv-ho-reference-type": {
+      "required": "You must enter a reference number",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "who-contact": {
+      "required": "You must select an option"
+    },
+    "pv-contact-details": {
+      "required": "You must select one or more of the contact methods listed"
+    },
+    "pv-contact-details-email-input": {
+      "required": "Enter a valid email address",
+      "email": "Enter a valid email address",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-contact-details-email-check": {
+      "required": "Make sure it is safe to contact the potential victim at this email address."
+    },
+    "pv-contact-details-street": {
+      "required": "You must enter a building or street",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-contact-details-town": {
+      "required": "You must enter a town or city",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-contact-details-county": {
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-contact-details-postcode": {
+      "required": "You must enter the postcode.",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "pv-contact-details-post-check": {
+      "required": "Make sure it is safe to contact the potential victim at this address."
+    },
+    "someone-else": {
+      "required": "You must select one or more of the contact methods listed"
+    },
+    "someone-else-email-input": {
+      "required": "Enter a valid email address",
+      "email": "Enter a valid email address",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "someone-else-street": {
+      "required": "You must enter a building or street",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "someone-else-town": {
+      "required": "You must enter a town or city",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "someone-else-county": {
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "someone-else-postcode": {
+      "required": "You must enter the postcode.",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "someone-else-permission-check": {
+      "required": "Make sure the potential victim has given you permission to send the decision to this person."
+    },
+    "fr-details-first-name": {
+      "required": "You must enter your first name ",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "fr-details-last-name": {
+      "required": "You must enter your last name ",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "fr-details-role": {
+      "required": "You must enter your role",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "fr-details-phone": {
+      "required": "You must enter a phone number",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "fr-alternative-contact": {
+      "email": "Enter a valid email address",
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "refuse-nrm": {
+      "maxlength": "You must enter no more than 15,000 characters"
+    },
+    "upload-file": {
       "default": "Upload error - try again",
       "maxFileSize": "The selected file must 25MB or smaller",
       "fileType": "The selected file must be a JPEG, JPG, PDF, PNG, DOC or DOCX",
@@ -370,5 +365,13 @@
     "what-evidence-you-will-submit": {
       "required": "Tell us about the documents you uploaded",
       "maxlength": "Document descriptions cannot be more than than 15000 characters"
+    },
+    "more-than-one-exploitation-situation": {
+      "required": "Enter Date(s) of exploitation",
+      "maxlength": "Enter no more than 15,000 characters"
+    },
+    "why-they-stayed": {
+      "required": "Enter why they stayed",
+      "maxlength": "Enter no more than 15,000 characters"
     }
-}
+  }

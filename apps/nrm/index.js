@@ -17,6 +17,7 @@ const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const authoritiesCooperation = require('./behaviours/authorities-cooperation-edit');
+const multipleExploitations = require('./behaviours/multiple-exploitations');
 const Submission = require('./behaviours/casework-submission');
 const areYouSure = require('./behaviours/are-you-sure');
 const modifySummaryPage = require('./behaviours/modify-summary-page');
@@ -165,6 +166,7 @@ module.exports = {
     },
     '/how-did-the-exploitation-start': {
       behaviours: [
+        multipleExploitations,
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
@@ -184,11 +186,13 @@ module.exports = {
     },
     '/how-they-were-treated': {
       behaviours: [
+        multipleExploitations,
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['what-were-they-required-to-do', 'how-they-were-treated', 'why-they-stayed'],
+      fields: ['what-were-they-required-to-do', 'living-conditions', 'how-they-were-treated'],
       next: '/how-why-did-they-leave-the-situation'
+      // next: '/is-the-potential-victim-still-in-an-exploitative-situation' TODO
     },
     '/how-why-did-they-leave-the-situation': {
       behaviours: [
@@ -345,6 +349,7 @@ module.exports = {
     },
     '/who-exploited-pv': {
       behaviours: [
+        multipleExploitations,
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
