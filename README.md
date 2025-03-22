@@ -55,6 +55,12 @@ AUDIT_DB_HOST                  | Postgres host for audit data
 AUDIT_DB_USER                  | Postgres audit user
 AUDIT_DB_PASS                  | Postgres audit password
 AUDIT_DB_NAME                  | Postgres database name for audit data (writes to table named hof)
+FILE_VAULT_URL                 | The url that the file-vault service is running on
+KEYCLOAK_TOKEN_URL             | The url of the keycloak server
+KEYCLOAK_CLIENT_ID             | The client name used to authenticate with keycloak
+KEYCLOAK_SECRET                | The secret used to authenticate with the keycloak client
+KEYCLOAK_USERNAME              | Administrator username to authenticate with the keycloak client
+KEYCLOAK_PASSWORD              | Administrator password used to authenticate with the keycloak client
 ```
 
 Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
@@ -224,6 +230,7 @@ There are a bunch of microservices as part of modernslavery:
 * https://github.com/UKHomeOffice/icasework-resolver
 * https://github.com/UKHomeOffice/ms-schema
 * https://github.com/UKHomeOffice/digmygrafana
+* https://github.com/UKHomeOffice/file-vault
 
 ## Release Guidelines <a name="release-guidelines"></a>
 <a href="https://github.com/UKHomeOffice/modern-slavery/tree/master/documents/release-guidelines.md">More Details</a>

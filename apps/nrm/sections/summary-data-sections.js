@@ -275,10 +275,6 @@ module.exports = {
         field: 'evidence-of-dishonesty-details'
       },
       {
-        step: '/what-evidence-you-will-submit',
-        field: 'what-evidence-you-will-submit'
-      },
-      {
         step: '/reported-to-police',
         field: 'reported-to-police',
         parse: (list, req) => {
@@ -602,5 +598,24 @@ module.exports = {
         field: 'fr-alternative-contact'
       }
     ]
-  }
+  },
+  'evidence-documents': [
+    {
+      step: '/upload-evidence',
+      field: 'files',
+      parse: (filesList, req) => {
+        if (!req.sessionModel.get('steps').includes('/upload-evidence')) {
+          return null;
+        }
+        if (req.sessionModel.get('files')) {
+          return req.sessionModel.get('files').length > 0 ? filesList && filesList.map(i => i.name).join('\n') : 'No files uploaded';
+        }
+        return 'No files uploaded';
+      }
+    },
+    {
+      step: '/what-evidence-you-will-submit',
+      field: 'what-evidence-you-will-submit'
+    }
+  ]
 };

@@ -7,7 +7,20 @@ metadata:
   {{ else }}
   name: ingress-internal
   {{ end }}
-{{ file .INGRESS_INTERNAL_ANNOTATIONS | indent 2 }}
+  {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
+  labels:
+    cert-manager.io/solver: route53
+  {{ end }}
+  annotations:
+    ingress.kubernetes.io/backend-protocol: "HTTPS"
+    ingress.kubernetes.io/proxy-body-size: "200m"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+    kubernetes.io/ingress.class: "nginx-internal"
+    {{ end }}
+    {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
+    cert-manager.io/enabled: "true"
+    {{ end }}
 spec:
   tls:
     - hosts:

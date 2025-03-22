@@ -13,7 +13,7 @@ environment:
   IMAGE_REPO: modern-slavery
   GIT_REPO: UKHomeOffice/modern-slavery
   HOF_CONFIG: hof-services-config/Modern_Slavery_Nrm
-  NON_PROD_AVAILABILITY: Mon-Fri 08:00-19:00 Europe/London
+  NON_PROD_AVAILABILITY: Mon-Sat 00:00-19:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
 
 trigger:
