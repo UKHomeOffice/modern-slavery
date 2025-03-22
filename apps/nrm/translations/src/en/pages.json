@@ -81,10 +81,6 @@
     "bullet-1": "have fears for their safety",
     "bullet-2": "are trying to avoid reliving their trauma"
   },
-  "what-evidence-you-will-submit": {
-    "header": "What documents or evidence will you submit with this referral?",
-    "paragraph-1": "After submitting this referral, you will receive an email with instructions on how to submit documents or evidence about this case."
-  },
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
     "paragraph-1": "If the exploitation was in more then one location, add more towns or cities.",
@@ -185,6 +181,12 @@
   "fr-alternative-contact": {
     "header": "Who should we contact in your absence?  (Optional)"
   },
+  "upload-evidence": {
+    "header": "Upload supporting evidence and documents (Optional)"
+  },
+  "what-evidence-you-will-submit": {
+    "header": "Tell us about the documents you uploaded"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -199,6 +201,9 @@
       },
       "your-details": {
         "header": "Your details"
+      },
+      "evidence-documents": {
+        "header": "Supporting Evidence"
       }
     },
     "fields": {
@@ -280,9 +285,6 @@
       },
       "evidence-of-dishonesty-details": {
         "label": "Indicators or evidence of dishonesty"
-      },
-      "what-evidence-you-will-submit": {
-        "label": "List of documents or evidence to be submitted"
       },
       "local-authority-contacted-about-child-local-authority-name": {
         "label": "Local authority name"
@@ -430,6 +432,12 @@
       },
       "fr-alternative-contact": {
         "label": "Second contact"
+      },
+      "files": {
+        "label": "Uploaded files"
+      },
+      "what-evidence-you-will-submit": {
+        "label": "Upload document description"
       }
     }
   },

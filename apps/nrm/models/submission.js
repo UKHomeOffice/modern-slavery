@@ -6,7 +6,7 @@
 const _ = require('lodash');
 const uuid = require('uuid/v4');
 
-module.exports = data => {
+module.exports = (data, token) => {
   const response = {};
 
   response.Type = data['pv-want-to-submit-nrm'] === 'no' ? '662265' : '560734';
@@ -225,6 +225,16 @@ module.exports = data => {
   response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
   response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
+
+  data['files'] = data['files'] || [];
+
+  data['files'].forEach((doc, i) => {
+    const index = i + 1;
+    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
+    response[`Document${index}.Name`] = doc.name;
+    response[`Document${index}.MimeType`] = doc.mimetype;
+    response[`Document${index}.URLLoadContent`] = true;
+  });
 
   return response;
 };

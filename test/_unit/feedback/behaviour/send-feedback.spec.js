@@ -1,6 +1,5 @@
 'use strict';
 
-const reqres = require('reqres');
 const NotifyClient = require('notifications-node-client').NotifyClient;
 
 const Behaviour = require('../../../../apps/feedback/behaviours/send-feedback');

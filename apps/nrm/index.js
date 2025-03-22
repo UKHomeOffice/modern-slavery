@@ -10,6 +10,9 @@ const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
 const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
+const SaveFile = require('./behaviours/save-file');
+const RemoveFile = require('./behaviours/remove-file');
+const LimitDocument = require('./behaviours/limit-documents');
 const confirmation = require('./behaviours/confirmation');
 const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
@@ -254,14 +257,6 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
-      next: '/what-evidence-you-will-submit'
-    },
-    '/what-evidence-you-will-submit': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: ['what-evidence-you-will-submit'],
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
@@ -724,6 +719,25 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['fr-alternative-contact'],
+      next: '/upload-evidence'
+    },
+    '/upload-evidence': {
+      behaviours: [ saveFormSession, SaveFile('upload-file'), RemoveFile, LimitDocument ],
+      locals: { showSaveAndExit: true },
+      fields: ['upload-file'],
+      forks: [{
+        target: '/what-evidence-you-will-submit',
+        condition: req => req.sessionModel.get('files') && req.sessionModel.get('files').length > 0
+      }],
+      next: '/confirm',
+      continueOnEdit: true
+    },
+    '/what-evidence-you-will-submit': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['what-evidence-you-will-submit'],
       next: '/confirm'
     },
     '/confirm': {
