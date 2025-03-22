@@ -20,13 +20,13 @@ const {
   PV_EDUCATION,
   PV_EMPLOYMENT_HISTORY,
   EXPLOITATION_TAKE_PLACE,
-  MORE_THAN_ONE_SITUATION,
   HOW_DID_EXPLOITATION_START,
   WERE_TAKEN_SOMEWHERE_YES,
   WERE_TAKEN_SOMEWHERE_DETAILS,
   WHAT_WERE_THEY_REQUIRED_TO_DO,
   HOW_WERE_THEY_TREATED,
   WHY_THEY_STAYED,
+  POTENTIAL_VICTIM_EXPLOITATIVE_SITUATION_NO,
   WHY_DID_THEY_LEAVE,
   FIRST_CHANCE_TO_REPORT_NO,
   WHY_REPORT_NOW,
@@ -205,9 +205,9 @@ describe.only('User path(s)', () => {
     await focusThenType(page, PV_EDUCATION, 'Test input of education');
     await focusThenType(page, PV_EMPLOYMENT_HISTORY, 'Test input of employment history');
     await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, EXPLOITATION_TAKE_PLACE, 'Test input of exploitation location');
+    await clickSelector(page, POTENTIAL_VICTIM_EXPLOITATIVE_SITUATION_NO);
     await clickSelector(page, CONTINUE_BUTTON);
-    await focusThenType(page, MORE_THAN_ONE_SITUATION, 'Test input of more than on situation');
+    await focusThenType(page, EXPLOITATION_TAKE_PLACE, 'Test input of exploitation location');
     await clickSelector(page, CONTINUE_BUTTON);
     await focusThenType(page, HOW_DID_EXPLOITATION_START, 'Test input of start date');
     await clickSelector(page, CONTINUE_BUTTON);

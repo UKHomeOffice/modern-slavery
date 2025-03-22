@@ -12,7 +12,7 @@ module.exports = [
   '/pv-under-age-at-time-of-exploitation',
   '/what-is-their-background',
   '/when-did-the-exploitation-take-place',
-  '/more-than-one-exploitation-situation',
+  '/potential-victim-exploitative-situation-multiple',
   '/how-did-the-exploitation-start',
   '/were-they-taken-somewhere-by-their-exploiter',
   '/how-they-were-treated',
