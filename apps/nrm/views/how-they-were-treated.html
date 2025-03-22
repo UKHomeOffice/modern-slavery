@@ -1,0 +1,10 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{> partials-multiple-exploitations}}
+    <br>
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

@@ -196,6 +196,7 @@ module.exports = {
   },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -238,6 +239,20 @@ module.exports = {
   },
   'what-were-they-required-to-do': {
     mixin: 'textarea',
+    labelClassName: ['govuk-body', 'govuk-!-font-weight-bold'],
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ]
+  },
+  'living-conditions': {
+    mixin: 'textarea',
+    labelClassName: ['govuk-body', 'govuk-!-font-weight-bold'],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -250,18 +265,7 @@ module.exports = {
   },
   'how-they-were-treated': {
     mixin: 'textarea',
-    'ignore-defaults': true,
-    formatter: ['trim', 'hyphens'],
-    validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 7
-      }
-    ]
-  },
-  'why-they-stayed': {
-    mixin: 'textarea',
+    labelClassName: ['govuk-body', 'govuk-!-font-weight-bold'],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -714,6 +718,7 @@ module.exports = {
   },
   'who-exploited-pv': {
     mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -1359,6 +1364,18 @@ module.exports = {
       {
         attribute: 'rows',
         value: 14
+      }
+    ]
+  },
+  'why-they-stayed': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
       }
     ]
   }

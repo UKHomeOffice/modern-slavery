@@ -230,6 +230,7 @@ module.exports = (data, token) => {
   response.ExploitationTakenSomewhere = _.upperFirst(data['were-they-taken-somewhere-by-their-exploiter']);
   response.ExploitationJourneyDetails = data['were-they-taken-somewhere-by-their-exploiter-journey-details'];
   response.ExploitationAverageDay = data['what-were-they-required-to-do'];
+  response.ExploitationLivingConditions = data['living-conditions'];
   response.ExploitationTreatment = data['how-they-were-treated'];
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.PVStillInExploitativeSituation = _.upperFirst(data['still-in-exploitative-situation']);

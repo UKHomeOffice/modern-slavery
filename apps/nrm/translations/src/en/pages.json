@@ -105,7 +105,7 @@
     "header": "Where is the potential victim staying?"
   },
   "who-exploited-pv": {
-    "header": "Who exploited them?"
+    "header": "Who exploited the potential victim?"
   },
   "exploiters-current-location-details": {
     "header": "What information do you have about where the exploiters are now?"
@@ -279,7 +279,10 @@
         "label": "Journey details"
       },
       "what-were-they-required-to-do": {
-        "label": "An average day"
+        "label": "What they had to do"
+      },
+      "living-conditions": {
+        "label": "Their living conditions"
       },
       "how-they-were-treated": {
         "label": "Their treatment"
