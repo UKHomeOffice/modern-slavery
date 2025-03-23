@@ -149,6 +149,22 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
+  describe('User enters potential victim more than one exploitation situation Validation', () => {
+    it('does not pass potential victim more than one exploitation situation page if nothing entered', async () => {
+      const URI = '/potential-victim-exploitative-situation-multiple';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Select if the potential victim been in more than one exploitative situation/);
+    });
+  });
+
   describe('User enters when did the exploitation take place Validation', () => {
     it('does not pass when did the exploitation take place page if nothing entered', async () => {
       const URI = '/when-did-the-exploitation-take-place';
@@ -165,9 +181,9 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters potential victim more than one exploitation situation Validation', () => {
-    it('does not pass potential victim more than one exploitation situation page if nothing entered', async () => {
-      const URI = '/potential-victim-exploitative-situation-multiple';
+  describe('User enters when did the exploitations take place Validation', () => {
+    it('does not pass when did the exploitations take place page if nothing entered', async () => {
+      const URI = '/when-did-the-exploitation-take-place-multiple';
       await initSession(URI);
       await passStep(URI, {});
 
@@ -177,7 +193,23 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Select if the potential victim been in more than one exploitative situation/);
+        .to.match(/Explain when the exploitations happened/);
+    });
+
+    it('does not pass when did the exploitations take place page if nothing entered', async () => {
+      const URI = '/when-did-the-exploitation-take-place-multiple';
+      await initSession(URI);
+      await passStep(URI, {
+        'when-did-the-exploitation-take-place-multiple': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Details when the exploitations happened must be 15000 characters or less/);
     });
   });
 
@@ -1158,6 +1190,22 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
         .to.match(/You must select the potential victim's nationality from the list/);
+    });
+  });
+
+  describe('User enters more than one exploitation situation Validation', () => {
+    it('does not pass more than one exploitation situation page if nothing entered', async () => {
+      const URI = '/more-than-one-exploitation-situation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter Date\(s\) of exploitation/);
     });
   });
 });

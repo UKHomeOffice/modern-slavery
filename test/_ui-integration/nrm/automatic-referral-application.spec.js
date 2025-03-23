@@ -116,12 +116,31 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/when-did-the-exploitation-take-place');
   });
 
-  it('goes to the how-did-the-exploitation-start page when user enters Date(s) of exploitation', async () => {
+  it('goes to the when-did-the-exploitation-take-place-multiple page when user selects yes', async () => {
+    const URI = '/potential-victim-exploitative-situation-multiple';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'potential-victim-exploitative-situation-multiple': 'yes'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/when-did-the-exploitation-take-place-multiple');
+  });
+
   it('goes to the how-did-the-exploitation-start page when user enters Date(s) of exploitation', async () => {
     const URI = '/when-did-the-exploitation-take-place';
     await initSession(URI);
     const response = await passStep(URI, {
       'when-did-the-exploitation-take-place': '2000-01-01'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/how-did-the-exploitation-start');
+  });
+
+  it('goes to the how-did-the-exploitation-start page when user enters Date(s) of exploitations', async () => {
+    const URI = '/when-did-the-exploitation-take-place-multiple';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'when-did-the-exploitation-take-place-multiple': '2000-01-01'
     });
 
     expect(response.text).to.contain('Found. Redirecting to /nrm/how-did-the-exploitation-start');

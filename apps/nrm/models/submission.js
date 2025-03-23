@@ -199,7 +199,7 @@ module.exports = (data, token) => {
   response.PVFamily = data['family'];
   response.PVEducation = data['education'];
   response.PVEmploymentHistory = data['employment-history'];
-  response.ExploitationDates = data['when-did-the-exploitation-take-place'];
+  response.MultipleExploitationSituations = data['more-than-one-exploitation-situation'];
 
   const moreSituations = {
     yes: 'Yes',
@@ -207,7 +207,13 @@ module.exports = (data, token) => {
     'i-dont-know': 'DontKnow'
   };
 
-  response.MultipleExploitationSituations = moreSituations[data['potential-victim-exploitative-situation-multiple']];
+  response.MoreThanOneExploitationSituations = moreSituations[data['potential-victim-exploitative-situation-multiple']];
+
+  if(data['potential-victim-exploitative-situation-multiple'] === 'yes') {
+    response.ExploitationDates = data['when-did-the-exploitation-take-place-multiple'];
+  } else {
+    response.ExploitationDates = data['when-did-the-exploitation-take-place'];
+  }
   response.HowExploitationStarted = data['how-did-the-exploitation-start'];
   response.ExploitationTakenSomewhere = _.upperFirst(data['were-they-taken-somewhere-by-their-exploiter']);
   response.ExploitationJourneyDetails = data['were-they-taken-somewhere-by-their-exploiter-journey-details'];

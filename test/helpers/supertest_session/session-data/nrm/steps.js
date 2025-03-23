@@ -13,6 +13,7 @@ module.exports = [
   '/what-is-their-background',
   '/potential-victim-exploitative-situation-multiple',
   '/when-did-the-exploitation-take-place',
+  '/when-did-the-exploitation-take-place-multiple',
   '/how-did-the-exploitation-start',
   '/were-they-taken-somewhere-by-their-exploiter',
   '/how-they-were-treated',

@@ -31,7 +31,8 @@
     "intro": "If the potential victim doesn't know exact start and end dates, ask for a loose time frame (such as a month or year), how old they were, or if it was a recent incident."
   },
   "when-did-the-exploitation-take-place-multiple": {
-    "header": "When did the exploitations happen?"
+    "header": "When did the exploitations happen?",
+    "warning": "Later in the service, we will ask you for more details about the multiple exploitations, including modern slavery indicators and how much the potential victim was treated."
   },
   "how-did-the-exploitation-start": {
     "header": "How did the exploitation start?",
@@ -195,6 +196,10 @@
   "what-evidence-you-will-submit": {
     "header": "Tell us about the documents you uploaded"
   },
+  "more-than-one-exploitation-situation": {
+    "header": "Have they been in more than one exploitative situation?",
+    "paragraph-1": "If yes, please make sure that details from all exploitative situations are captured in the following questions."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -239,6 +244,9 @@
       },
       "when-did-the-exploitation-take-place": {
         "label": "When did the exploitation happen"
+      },
+      "when-did-the-exploitation-take-place-multiple": {
+        "label": "When did the exploitations happen?"
       },
       "how-did-the-exploitation-start": {
         "label": "How they came to be exploited"
@@ -443,6 +451,9 @@
       },
       "what-evidence-you-will-submit": {
         "label": "Upload document description"
+      },
+      "more-than-one-exploitation-situation": {
+        "label": "More than one exploitation situation"
       }
     }
   },

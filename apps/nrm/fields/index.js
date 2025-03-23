@@ -172,6 +172,19 @@ module.exports = {
       value: 'i-dont-know'
     }]
   },
+  'when-did-the-exploitation-take-place-multiple': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
+  },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',
     'ignore-defaults': true,
@@ -1172,6 +1185,18 @@ module.exports = {
       {
         attribute: 'rows',
         value: 14
+      }
+    ]
+  },
+  'more-than-one-exploitation-situation': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
       }
     ]
   }

@@ -108,6 +108,9 @@
       }
     }
   },
+  "when-did-the-exploitation-take-place-multiple": {
+    "label": "Start date, end date and type of exploitations"
+  },
   "how-did-the-exploitation-start": {
     "label": "How they came to be exploited",
     "hint": "Explore what promises were made, what they were expecting to do, and what pay was promised."
@@ -235,7 +238,7 @@
   },
   "birthplace": {
     "label": "Place of birth",
-    "hint": "Include the country and town or vilage they were born in."
+    "hint": "Include the country and town or village they were born in."
   },
   "family": {
     "label": "Their family",
@@ -797,5 +800,9 @@
   "fr-alternative-contact": {
     "label": "Email address",
     "hint": "This could be a manager, colleague or a team inbox."
+  },
+  "more-than-one-exploitation-situation": {
+    "label": "Date(s) of exploitation",
+    "hint": "The individual should be encouraged to disclose any other periods of exploitation and the length of time, and any specific dates. This can be any form of exploitation (sexual, labour, domestic servitude) and may be of a different type to the one that initiated the referral."
   }
 }

@@ -160,6 +160,7 @@ module.exports = {
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
+      fields: ['when-did-the-exploitation-take-place-multiple'],
       next: '/how-did-the-exploitation-start'
     },
     '/how-did-the-exploitation-start': {
@@ -790,6 +791,14 @@ module.exports = {
     '/token-invalid': {
       clearSession: true
     },
-    '/exit': {}
+    '/exit': {},
+    '/more-than-one-exploitation-situation': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['more-than-one-exploitation-situation'],
+      next: '/how-did-the-exploitation-start'
+    }
   }
 };
