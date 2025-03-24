@@ -5,7 +5,6 @@ metadata:
   name: file-vault-ingress
 {{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
-  ingressClassName: nginx-external
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
