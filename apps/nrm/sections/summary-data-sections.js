@@ -199,12 +199,12 @@ module.exports = {
         field: 'future-exploitation-reasons'
       },
       {
-        step: '/when-did-the-exploitation-take-place',
-        field: 'when-did-the-exploitation-take-place'
-      },
-      {
         step: '/more-than-one-exploitation-situation',
         field: 'more-than-one-exploitation-situation'
+      },
+      {
+        step: '/when-did-the-exploitation-take-place',
+        field: 'when-did-the-exploitation-take-place'
       },
       {
         step: '/how-did-the-exploitation-start',

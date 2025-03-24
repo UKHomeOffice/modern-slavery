@@ -129,14 +129,6 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['birthplace', 'family', 'education', 'employment-history'],
-      next: '/when-did-the-exploitation-take-place'
-    },
-    '/when-did-the-exploitation-take-place': {
-      behaviours: [
-        saveFormSession
-      ],
-      locals: { showSaveAndExit: true },
-      fields: ['when-did-the-exploitation-take-place'],
       next: '/more-than-one-exploitation-situation'
     },
     '/more-than-one-exploitation-situation': {
@@ -145,6 +137,14 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['more-than-one-exploitation-situation'],
+      next: '/when-did-the-exploitation-take-place'
+    },
+    '/when-did-the-exploitation-take-place': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['when-did-the-exploitation-take-place'],
       next: '/how-did-the-exploitation-start'
     },
     '/how-did-the-exploitation-start': {
