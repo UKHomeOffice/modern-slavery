@@ -423,3 +423,28 @@ a > .govuk-button {
   padding-bottom: -50px;
   margin-bottom: 0;
 }
+
+.spinner-loader {
+  border: 5px solid #DEE0E2;
+  border-radius: 50%;
+  border-top-color: #005EA5;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+.spinner-container {
+  display: none;
+  margin-top: 20px;
+  align-items: center; /* Vertically center the spinner and message */
+}
+.spinner-message {
+  margin-left: 10px;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
