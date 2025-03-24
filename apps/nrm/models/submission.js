@@ -133,7 +133,14 @@ module.exports = (data, token) => {
     response.ExploitationOther = data['other-exploitation-details'];
   }
 
-  response.OtherVictims = data['any-other-pvs'];
+  const otherVictimsMap = {
+    yes: 'Yes',
+    no: 'No',
+    'not-sure': 'Not sure'
+  };
+  response.OtherVictims = otherVictimsMap[data['any-other-pvs']];
+  response.OtherVictimsFurtherInfo = data['other-potential-victims-yes-details'] ||
+    data['other-potential-victims-not-sure-details'] || 'No further information provided';
   response.ReportedCase = _.upperFirst(data['reported-to-police']);
   response.PoliceForce = data['reported-to-police-police-forces'];
   response.LocalAuthority = data['local-authority-contacted-about-child-local-authority-name'];
@@ -209,7 +216,7 @@ module.exports = (data, token) => {
   response.ExploitationWhyTheyStayed = data['why-they-stayed'];
   response.ExploitationReasonTheyLeft = data['how-why-did-they-leave-the-situation'];
   response.PVExploitersLastContact = data['when-last-contact'];
-  response.DetailsLastContact  = data['details-last-contact'];
+  response.DetailsLastContact = data['details-last-contact'];
 
   const firstChangeToReport = {
     yes: 'Yes',

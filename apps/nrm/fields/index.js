@@ -9,6 +9,15 @@ const dateComponent = require('hof').components.date;
 const ukLocalAuthorities = require('../../../ms-lists/ms_uk_local_authorities');
 const msNationalities = require('../../../ms-lists/ms_nationalities');
 const organisations = require('../../../ms-lists/ms_organisations');
+const createDependentFieldConfig = (value, field) => ({
+  mixin: 'textarea',
+  labelClassName: ['govuk-body govuk-!-font-weight-bold'],
+  'ignore-defaults': true,
+  formatter: ['trim', 'hyphens'],
+  validate: [{ type: 'maxlength', arguments: [15000] }],
+  attributes: [{ attribute: 'rows', value: 7 }],
+  dependent: { value, field }
+});
 
 module.exports = {
   reference: {
@@ -633,7 +642,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',
@@ -695,11 +704,21 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [
-      'yes',
+      {
+        value: 'yes',
+        toggle: 'other-potential-victims-yes-details',
+        child: 'textarea'
+      },
       'no',
-      'not-sure'
+      {
+        value: 'not-sure',
+        toggle: 'other-potential-victims-not-sure-details',
+        child: 'textarea'
+      }
     ]
   },
+  'other-potential-victims-yes-details': createDependentFieldConfig('yes', 'any-other-pvs'),
+  'other-potential-victims-not-sure-details': createDependentFieldConfig('not-sure', 'any-other-pvs'),
   'future-exploitation-concerns': {
     isPageHeading: true,
     mixin: 'radio-group',
@@ -713,7 +732,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
-    validate: ['required', {type: 'maxlength', arguments: [15000]}],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
         attribute: 'rows',

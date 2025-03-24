@@ -165,6 +165,12 @@
   "any-other-pvs" : {
     "required": "You must select an option"
   },
+  "other-potential-victims-yes-details": {
+    "maxlength": "Details of other potential victims must be 15000 characters or less"
+  },
+  "other-potential-victims-not-sure-details": {
+    "maxlength": "Details of other potential victims must be 15000 characters or less"
+  },
   "future-exploitation-concerns": {
     "required":"Tell us if there are concerns about re-exploitation in the future"
   },

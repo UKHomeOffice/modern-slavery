@@ -392,7 +392,11 @@ module.exports = {
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['any-other-pvs'],
+      fields: [
+        'any-other-pvs',
+        'other-potential-victims-yes-details',
+        'other-potential-victims-not-sure-details'
+      ],
       next: '/future-exploitation'
     },
     '/future-exploitation': {
