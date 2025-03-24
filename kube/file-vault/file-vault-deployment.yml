@@ -46,15 +46,15 @@ spec:
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+          {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://fv-ms.modernslavery.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://fv-ms.preprod.ms-notprod.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-ms.uat.ms-notprod.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-ms.{{ .BRANCH_ENV }}.homeoffice.gov.uk
-            {{ end }}
+          {{ end }}
             - name: PORT
               value: "3000"
             - name: CLAMAV_REST_URL
@@ -172,18 +172,18 @@ spec:
             - "--enable-json-logging=true"
           args:
              # the url which is used to retrieve the OpenID configuration
-            {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+          {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
             - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
-            {{ else }}
+          {{ else }}
             - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
-            {{ end }}
+          {{ end }}
             # the endpoint where requests are proxied to
             - --upstream-url=http://127.0.0.1:3000
             # URls that you wish to protect.
             - --resources=uri=/*
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
-            {{ end }}
+          {{ end }}
           ports:
             - containerPort: 3001
           securityContext:
