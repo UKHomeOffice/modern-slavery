@@ -179,7 +179,6 @@ module.exports = {
   },
   'were-they-taken-somewhere-by-their-exploiter': {
     mixin: 'radio-group',
-    isPageHeading: true,
     validate: ['required'],
     options: [{
       value: 'yes',

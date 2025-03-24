@@ -34,6 +34,10 @@
     "header": "How did the exploitation start?",
     "paragraph": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
+  "were-they-taken-somewhere-by-their-exploiter": {
+    "header": "Was the potential victim taken somewhere by their exploiters?",
+    "additional-hint": "Tell us about any journeys the potential victim was taken on, how it began and what transport was used."
+  },
   "how-they-were-treated": {
     "header": "How were they treated during their exploitation?"
   },

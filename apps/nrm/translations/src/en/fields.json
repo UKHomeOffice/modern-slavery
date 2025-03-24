@@ -104,7 +104,7 @@
     "hint": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
   "were-they-taken-somewhere-by-their-exploiter": {
-    "legend": "Were they taken somewhere by their exploiter(s)?",
+    "legend": "Include any details the potential victim remembers about how and where they have been transported, including any routes, places, landmark features, or times.",
     "options": {
       "yes": {
         "label": "Yes"
@@ -116,7 +116,7 @@
   },
   "were-they-taken-somewhere-by-their-exploiter-journey-details": {
     "label": "Journey details",
-    "hint": "Describe how the journey began and what transport was used. Note any routes, places, landmark features, or times."
+    "hint": "Include any routes, places, landmark features, or times."
   },
   "what-were-they-required-to-do": {
     "label": "An average day",
