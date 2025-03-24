@@ -263,6 +263,7 @@ module.exports = {
       'within-the-last-month',
       'within-the-last-3-month',
       'within-the-last-6-month',
+      'within-the-last-6-12-month',
       'over-a-year-ago',
       'not-sure'
     ]

@@ -187,10 +187,6 @@ module.exports = {
         saveFormSession
       ],
       fields: ['when-last-contact'],
-      forks: [{
-        target: '/is-this-the-first-chance-to-report',
-        condition: req => req.sessionModel.get('when-last-contact') === 'not-sure'
-      }],
       next: '/details-last-contact',
       locals: { showSaveAndExit: true },
       continueOnEdit: true
