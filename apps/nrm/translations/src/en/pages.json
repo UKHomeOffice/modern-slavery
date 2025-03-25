@@ -50,11 +50,14 @@
     "header": "How and why did they leave the situation?"
   },
   "details-last-contact": {
-    "header": "Last contact between the potential victim and their exploiters",
+    "header": "Tell us about the last contact between the potential victim and their exploiters",
     "paragraph-1": "To assess the risk that the potential victim may be exploited or trafficked again, we need to know about any communication between them and their exploiters.",
-    "paragraph-2": "You can provide information about how they communicated, what was said and who was involved.",
-    "paragraph-3": "Include details about any threats the exploiters have made. If applicable, describe any steps the potential victim has taken to prevent contact with their exploiters.",
-    "second-header": "Details of the last contact (optional)"
+    "paragraph-2": "You can upload any files as supporting evidence at the end of this service.",
+    "paragraph-3": "Provide information about:",
+    "bullet-1": "how they communicated and what was said",
+    "bullet-2": "who was involved",
+    "bullet-3": "any threats that the exploiters made",
+    "bullet-4": "if the potential victim has taken any steps to prevent contact with their exploiters"
   },
   "why-report-now": {
     "header": "Is there anything that prevented the potential victim from reporting this sooner?",

@@ -302,6 +302,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: 'visuallyhidden',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
     attributes: [
       {
