@@ -36,7 +36,8 @@
   },
   "were-they-taken-somewhere-by-their-exploiter": {
     "header": "Was the potential victim taken somewhere by their exploiters?",
-    "additional-hint": "Tell us about any journeys the potential victim was taken on, how it began and what transport was used."
+    "additional-hint-1": "Tell us about any journeys the potential victim was taken on, how it began and what transport was used.",
+    "additional-hint-2": "Include any details the potential victim remembers about how and where they have been transported, including any routes, places, landmark features, or times."
   },
   "how-they-were-treated": {
     "header": "How were they treated during their exploitation?"

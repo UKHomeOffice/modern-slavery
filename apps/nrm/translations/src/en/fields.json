@@ -104,7 +104,6 @@
     "hint": "Explore what promises were made, what they were expecting to do, and what pay was promised."
   },
   "were-they-taken-somewhere-by-their-exploiter": {
-    "legend": "Include any details the potential victim remembers about how and where they have been transported, including any routes, places, landmark features, or times.",
     "options": {
       "yes": {
         "label": "Yes"

@@ -180,6 +180,9 @@ module.exports = {
   'were-they-taken-somewhere-by-their-exploiter': {
     mixin: 'radio-group',
     validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [{
       value: 'yes',
       toggle: 'were-they-taken-somewhere-by-their-exploiter-details-fieldset',
