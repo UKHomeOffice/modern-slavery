@@ -148,6 +148,9 @@
       "within-the-last-6-month": {
         "label": "Within the last 6 months"
       },
+      "within-the-last-6-12-month": {
+        "label": "Within the last 6-12 months"
+      },
       "over-a-year-ago": {
         "label": "Over a year ago"
       },
