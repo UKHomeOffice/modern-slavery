@@ -160,8 +160,7 @@
     }
   },
   "details-last-contact": {
-    "label": "Details of last contact (optional)",
-    "hint": "You can email any files as evidence to us after you have submitted the report"
+    "label": "Details of last contact (optional)"
   },
   "is-this-the-first-chance-to-report": {
     "legend": "Is this the first chance they have had to report this?",
