@@ -49,7 +49,8 @@
     "second-header": "Details of the last contact (optional)"
   },
   "why-report-now": {
-    "header": "Why are they reporting this now?"
+    "header": "Is there anything that prevented the potential victim from reporting this sooner?",
+    "intro": "Using your professional judgement, tell us about any reasons why they have not reported this until now. For example. emotional distress or trauma."
   },
   "why-are-you-making-the-referral": {
     "header": "Why are you making the referral?",
@@ -267,7 +268,7 @@
         "label": "Is this the first chance they have had to report this?"
       },
       "why-report-now": {
-        "label": "Reason for reporting now"
+        "label": "Is there anything that prevented the potential victim from reporting this sooner?"
       },
       "why-are-you-making-the-referral": {
         "label": "Reason for referral"

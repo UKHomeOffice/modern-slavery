@@ -308,7 +308,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter reason for reporting/);
+        .to.match(/Enter anything that prevented the potential victim from reporting this sooner/);
     });
   });
 

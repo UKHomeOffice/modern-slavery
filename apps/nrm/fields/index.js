@@ -291,6 +291,7 @@ module.exports = {
   },
   'why-report-now': {
     mixin: 'textarea',
+    labelClassName: 'visually-hidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],

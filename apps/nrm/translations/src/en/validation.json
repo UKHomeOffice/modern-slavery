@@ -93,7 +93,7 @@
     "required": "You must select an option"
   },
   "why-report-now": {
-    "required": "Enter reason for reporting",
+    "required": "Enter anything that prevented the potential victim from reporting this sooner",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "why-are-you-making-the-referral": {
