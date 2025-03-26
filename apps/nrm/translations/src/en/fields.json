@@ -132,7 +132,7 @@
     "label": "How and why they left",
     "hint": "Ask if it was their decision to leave and if anyone helped them. "
   },
-  "when-last-contact":{
+  "when-last-contact": {
     "legend": "When were the potential victim and exploiters last in contact?",
     "hint": "This includes in person conversations, phone calls, instant messages, emails, writing, or communicating through another person",
     "options": {
@@ -486,6 +486,14 @@
         "label": "Not sure"
       }
     }
+  },
+  "other-potential-victims-yes-details": {
+    "label": "Provide more information (optional)",
+    "hint": "If you know them, include any operation names or family members being reported at the same time."
+  },
+  "other-potential-victims-not-sure-details": {
+    "label": "Provide more information (optional)",
+    "hint": "If you know them, include any operation names or family members being reported at the same time."
   },
   "future-exploitation-concerns": {
     "legend": "Are there concerns that the potential victim could be exploited again in the future?",

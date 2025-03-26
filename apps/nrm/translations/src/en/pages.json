@@ -344,6 +344,12 @@
       "any-other-pvs": {
         "label": "Other potential victims"
       },
+      "other-potential-victims-yes-details": {
+        "label": "Other potential victims further information"
+      },
+      "other-potential-victims-not-sure-details": {
+      "label": "Other potential victims further information"
+      },
       "future-exploitation-concerns": {
         "label": "Concerns of re-exploitation"
       },

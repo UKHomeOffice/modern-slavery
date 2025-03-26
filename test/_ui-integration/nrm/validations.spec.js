@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 describe('validation checks of the nrm journey', () => {
   let testApp;
   let passStep;
@@ -608,6 +610,24 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
         .to.match(/You must select an option/);
+    });
+
+    const testFieldValidation = async (field, value, errorMessage) => {
+      const URI = '/any-other-pvs';
+      await initSession(URI);
+      const stepData = { 'any-other-pvs': field.includes('yes') ? 'yes' : 'not-sure', [field]: value };
+      await passStep(URI, stepData);
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html()).to.match(new RegExp(errorMessage));
+    };
+    it('does not pass the  any other pvss page if more than 15000 entered', async () => {
+      await testFieldValidation('other-potential-victims-yes-details', 'a'.repeat(15001), 'Details of other potential victims must be 15000 characters or less');
+    });
+    it('does not pass the  any other pvs page if more than 15000 entered', async () => {
+      await testFieldValidation('other-potential-victims-not-sure-details', 'a'.repeat(15001), 'Details of other potential victims must be 15000 characters or less');
     });
   });
 

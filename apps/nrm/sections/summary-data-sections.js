@@ -191,6 +191,14 @@ module.exports = {
         field: 'any-other-pvs'
       },
       {
+        step: '/any-other-pvs',
+        field: 'other-potential-victims-yes-details'
+      },
+      {
+        step: '/any-other-pvs',
+        field: 'other-potential-victims-not-sure-details'
+      },
+      {
         step: '/future-exploitation',
         field: 'future-exploitation-concerns'
       },
