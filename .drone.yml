@@ -88,6 +88,8 @@ steps:
       include:
       - master
     event: push
+  depends_on:
+    - setup_deploy
 
 - name: unit_tests_deploy
   <<: *unit_tests
@@ -96,6 +98,8 @@ steps:
       include:
       - master
     event: push
+  depends_on:
+    - setup_deploy
 
 - name: ui_integration_tests_deploy
   <<: *ui_integration_tests
@@ -104,6 +108,8 @@ steps:
       include:
       - master
     event: push
+  depends_on:
+    - setup_deploy
 
 - name: sonar_scanner_deploy
   <<: *sonar_scanner
@@ -171,6 +177,8 @@ steps:
   when:
     branch: master
     event: [push, pull_request]
+  depends_on:
+    - build_image
 
 # Trivy Security Scannner for scanning nodejs packages in Yarn
 - name: scan_node_packages
@@ -188,6 +196,8 @@ steps:
     ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
   when:
     event: [push, pull_request]
+  depends_on:
+    - image_to_quay
 
 # Deploy to pull request UAT environment
 - name: deploy_to_branch
@@ -204,6 +214,8 @@ steps:
   when:
     branch: master
     event: pull_request
+  depends_on:
+    - image_to_quay
 
 - name: setup_branch
   pull: if-not-exists
@@ -228,6 +240,8 @@ steps:
       - master
       - feature/*
     event: pull_request
+  depends_on:
+    - setup_branch
 
 - name: unit_tests_branch
   <<: *unit_tests
@@ -237,6 +251,8 @@ steps:
       - master
       - feature/*
     event: pull_request
+  depends_on:
+    - setup_branch
 
 - name: ui_integration_tests_branch
   <<: *ui_integration_tests
@@ -246,6 +262,8 @@ steps:
       - master
       - feature/*
     event: pull_request
+  depends_on:
+    - setup_branch
 
 - name: sonar_scanner_branch
   <<: *sonar_scanner
@@ -287,6 +305,8 @@ steps:
   when:
     branch: master
     event: push
+  depends_on:
+      - image_to_quay
 
 # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
 - name: get_pr_branch
@@ -337,6 +357,8 @@ steps:
   when:
     branch: master
     event: push
+  depends_on:
+    - image_to_quay
 
 # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
 - name: sanity_check_build_prod
@@ -380,6 +402,8 @@ steps:
   when:
     target: PROD
     event: promote
+  depends_on:
+    - clone_repos_prod
 
 - name: cron_tear_down
   # CRON job step that tears down our pull request Branch environments
