@@ -234,8 +234,10 @@ module.exports = (data, token) => {
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
 
   data['files'] = data['files'] || [];
+  console.log('***********DATA FILES: ', data['files']);
 
   data['files'].forEach((doc, i) => {
+    console.log('************Each DOC', doc);
     const index = i + 1;
     response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.name;
