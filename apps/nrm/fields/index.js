@@ -272,7 +272,7 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     isPageHeading: true,
-    child: "partials/details-last-contact",
+    child: 'partials/details-last-contact',
     validate: ['notUrl', { type: 'maxlength', arguments: 15000 }],
     attributes: [
       {
