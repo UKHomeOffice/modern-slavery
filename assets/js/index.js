@@ -55,7 +55,7 @@ if ($('.add-another').length) {
     // last item that's visible
     var lastVisibleIndex = $('.add-another .govuk-form-group select').length - hiddenTotal.length;
     $(ukOrOverseas + lastVisibleIndex + '-group button').show();
-    addAnotherButton.text('Add another location (' + hiddenTotal.length + ' remaining)');
+    addAnotherButton.text('Add another');
   }
 
   $('.add-another .govuk-form-group select').each(function hideAdditional(index) {
