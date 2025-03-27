@@ -106,13 +106,29 @@ spec:
             - name: OAUTH_SCOPE
               value: email
             - name: OAUTH_AUTH_URL
+              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
               value: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/auth
+              {{ else }}
+              value: https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/auth
+              {{ end }}
             - name: OAUTH_TOKEN_URL
+              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
               value: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/token
+              {{ else }}
+              value: https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/token
+              {{ end }}
             - name: OAUTH_API_URL
+              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
               value: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/userinfo
+              {{ else }}
+              value: https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/userinfo
+              {{ end }}
             - name: SIGNOUT_REDIRECT_URL
+              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
               value: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/logout
+              {{ else }}
+              value: https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak/protocol/openid-connect/logout
+              {{ end }}
             - name: JSON_DASHBOARDS
               value: >
                 [{

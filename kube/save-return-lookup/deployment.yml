@@ -161,7 +161,11 @@ spec:
             # specififes which client is used
             - --client-id=lookup
             # the url which is used to retrieve the OpenID configuration
+            {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
             - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
+            {{ else }}
+            - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
+            {{ end }}
             # the endpoint where requests are proxied to
             - --upstream-url=https://127.0.0.1:10444
             # URls that you wish to protect.
