@@ -86,8 +86,15 @@
     "required": "Enter why they stayed",
     "maxlength": "Enter no more than 15,000 characters"
   },
+  "still-in-exploitative-situation": {
+    "required": "Select if the potential victim is still in an exploitative situation"
+  },
+  "what-is-keeping-them-in-situation": {
+    "required": "Explain what is keeping the potential victim in the situation",
+    "maxlength": "Reasons about what is keeping the potential victim in the situation must be 15000 characters or less"
+  },
   "how-why-did-they-leave-the-situation": {
-    "required": "Enter how and why they left",
+    "required": "Enter how they left",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "when-last-contact": {

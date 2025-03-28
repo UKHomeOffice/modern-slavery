@@ -273,8 +273,58 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters how and why did they leave the situation Validation', () => {
-    it('does not pass how and why did they leave the situation page if nothing entered', async () => {
+  describe('User enters is the potential victim still in an exploitative situation Validation', () => {
+    it('does not pass is the potential victim still in an exploitative situation page if nothing selected', async () => {
+      const URI = '/is-the-potential-victim-still-in-an-exploitative-situation';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Select if the potential victim is still in an exploitative situation/);
+    });
+  });
+
+  describe('User enters what is keeping the potential victim in the exploitative situation Validation', () => {
+    it('does not pass what is keeping the potential victim in the exploitative situation page if nothing entered', async () => {
+      const URI = '/reasons-preventing-potential-victim-from-leaving';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Explain what is keeping the potential victim in the situation/);
+    });
+  });
+
+  describe('User enters what is keeping the potential victim in the exploitative situation Validation', () => {
+    it('does not pass what is keeping the potential victim in the exploitative situation page if nore than 15000 characters entered', async () => {
+      const URI = '/reasons-preventing-potential-victim-from-leaving';
+      await initSession(URI);
+      await passStep(URI, {
+        'what-is-keeping-them-in-situation': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Reasons about what is keeping the potential victim in the situation must be 15000 characters or less/);
+    });
+  });
+
+  describe('User enters how did they leave the situation Validation', () => {
+    it('does not pass how did they leave the situation page if nothing entered', async () => {
       const URI = '/how-why-did-they-leave-the-situation';
       await initSession(URI);
       await passStep(URI, {});
@@ -285,7 +335,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter how and why they left/);
+        .to.match(/Enter how they left/);
     });
   });
 

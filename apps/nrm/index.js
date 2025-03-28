@@ -188,7 +188,32 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['what-were-they-required-to-do', 'how-they-were-treated', 'why-they-stayed'],
+      next: '/is-the-potential-victim-still-in-an-exploitative-situation'
+    },
+    '/is-the-potential-victim-still-in-an-exploitative-situation': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['still-in-exploitative-situation'],
+      forks: [{
+        target: '/reasons-preventing-potential-victim-from-leaving',
+        condition: {
+          field: 'still-in-exploitative-situation',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
       next: '/how-why-did-they-leave-the-situation'
+    },
+    '/reasons-preventing-potential-victim-from-leaving': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['what-is-keeping-them-in-situation'],
+      template: 'what-is-keeping-them-in-situation',
+      next: '/when-last-contact'
     },
     '/how-why-did-they-leave-the-situation': {
       behaviours: [
@@ -196,6 +221,7 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['how-why-did-they-leave-the-situation'],
+      template: 'how-did-they-leave-the-situation',
       next: '/when-last-contact'
     },
     '/when-last-contact': {
