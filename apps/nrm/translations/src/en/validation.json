@@ -51,12 +51,16 @@
     "required": "Enter the employment history",
     "maxlength": "Enter no more than 15,000 characters"
   },
+  "potential-victim-exploitative-situation-multiple": {
+    "required": "Select if the potential victim been in more than one exploitative situation"
+
+  }, 
+  "when-did-the-exploitation-take-place-multiple" : {
+    "required": "Explain when the exploitations happened",
+    "maxlength": "Details when the exploitations happened must be 15000 characters or less"
+  },
   "when-did-the-exploitation-take-place" : {
     "required": "Enter when the exploitation happened",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "more-than-one-exploitation-situation" : {
-    "required": "Enter Date(s) of exploitation",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "how-did-the-exploitation-start" : {
@@ -352,6 +356,10 @@
   },
   "refuse-nrm" : {
     "maxlength": "You must enter no more than 15,000 characters"
+  },
+  "more-than-one-exploitation-situation" : {
+    "required": "Enter Date(s) of exploitation",
+    "maxlength": "Enter no more than 15,000 characters"
   },
   "upload-file": {
       "default": "Upload error - try again",

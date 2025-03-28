@@ -207,12 +207,20 @@ module.exports = {
         field: 'future-exploitation-reasons'
       },
       {
+        step: '/potential-victim-exploitative-situation-multiple',
+        field: 'potential-victim-exploitative-situation-multiple'
+      },
+      {
         step: '/more-than-one-exploitation-situation',
         field: 'more-than-one-exploitation-situation'
       },
       {
         step: '/when-did-the-exploitation-take-place',
         field: 'when-did-the-exploitation-take-place'
+      },
+      {
+        step: '/when-did-the-exploitation-take-place-multiple',
+        field: 'when-did-the-exploitation-take-place-multiple'
       },
       {
         step: '/how-did-the-exploitation-start',

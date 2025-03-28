@@ -112,12 +112,14 @@ module.exports = {
   },
   birthplace: {
     mixin: 'input-text',
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }]
   },
   family: {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -130,6 +132,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -142,6 +145,7 @@ module.exports = {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
     attributes: [
       {
@@ -163,7 +167,21 @@ module.exports = {
     ],
     labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
-  'more-than-one-exploitation-situation': {
+  'potential-victim-exploitative-situation-multiple': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    validate: ['required'],
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no'
+    }, {
+      value: 'i-dont-know'
+    }]
+  },
+  'when-did-the-exploitation-take-place-multiple': {
     mixin: 'textarea',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
@@ -173,7 +191,8 @@ module.exports = {
         attribute: 'rows',
         value: 7
       }
-    ]
+    ],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'how-did-the-exploitation-start': {
     mixin: 'textarea',
@@ -1236,6 +1255,18 @@ module.exports = {
       {
         attribute: 'rows',
         value: 14
+      }
+    ]
+  },
+  'more-than-one-exploitation-situation': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
       }
     ]
   }
