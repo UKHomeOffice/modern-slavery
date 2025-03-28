@@ -240,6 +240,10 @@ module.exports = {
       },
       {
         step: '/how-they-were-treated',
+        field: 'living-conditions'
+      },
+      {
+        step: '/how-they-were-treated',
         field: 'how-they-were-treated'
       },
       {
