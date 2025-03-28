@@ -434,7 +434,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-2': {
     mixin: 'select',
@@ -442,7 +443,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-3': {
     mixin: 'select',
@@ -450,7 +452,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-4': {
     mixin: 'select',
@@ -458,7 +461,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-5': {
     mixin: 'select',
@@ -466,7 +470,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-6': {
     mixin: 'select',
@@ -474,7 +479,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-7': {
     mixin: 'select',
@@ -482,7 +488,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-8': {
     mixin: 'select',
@@ -490,7 +497,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-9': {
     mixin: 'select',
@@ -498,7 +506,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-uk-city-10': {
     mixin: 'select',
@@ -506,7 +515,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-uk-city.options.null'
-    }].concat(ukCitiesAndTowns)
+    }].concat(ukCitiesAndTowns),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-other-uk-other-location': {
     mixin: 'textarea',
@@ -518,7 +528,8 @@ module.exports = {
         attribute: 'rows',
         value: 5
       }
-    ]
+    ],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-1': {
     mixin: 'select',
@@ -527,7 +538,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-2': {
     mixin: 'select',
@@ -535,7 +547,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-3': {
     mixin: 'select',
@@ -543,7 +556,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-4': {
     mixin: 'select',
@@ -551,7 +565,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-5': {
     mixin: 'select',
@@ -559,7 +574,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-6': {
     mixin: 'select',
@@ -567,7 +583,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-7': {
     mixin: 'select',
@@ -575,7 +592,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-8': {
     mixin: 'select',
@@ -583,7 +601,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-9': {
     mixin: 'select',
@@ -591,7 +610,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-overseas-country-10': {
     mixin: 'select',
@@ -599,7 +619,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.where-exploitation-happened-overseas-country.options.null'
-    }].concat(countriesExcludingUK)
+    }].concat(countriesExcludingUK),
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'where-exploitation-happened-other-overseas-other-location': {
     mixin: 'textarea',
@@ -611,7 +632,8 @@ module.exports = {
         attribute: 'rows',
         value: 5
       }
-    ]
+    ],
+    labelClassName: ['govuk-body govuk-!-font-weight-bold']
   },
   'current-pv-location-uk-city': {
     mixin: 'select',
