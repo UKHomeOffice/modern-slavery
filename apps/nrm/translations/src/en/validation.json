@@ -100,12 +100,26 @@
     "required": "Enter anything that prevented the potential victim from reporting this sooner",
     "maxlength": "Enter no more than 15,000 characters"
   },
-  "why-are-you-making-the-referral": {
-    "required": "Enter reason for referral",
-    "maxlength": "Enter no more than 15,000 characters"
+  "modern-slavery-indicators": {
+    "required": "Select if you identified any modern slavery indicators"
+  },
+  "modern-slavery-indicators-details": {
+    "required": "Enter details of modern slavery indicators",
+    "maxlength": "Details of modern slavery indicators must be 15000 characters or less"
   },
   "where-how-interview-carried-out": {
     "required": "Enter details about the interview",
+    "maxlength": "Enter no more than 15,000 characters"
+  },
+  "professional-insight": {
+    "required": "Enter details of your professional insight",
+    "maxlength": "Details of your professional insight must be 15000 characters or less"
+  },
+  "evidence-of-dishonesty" : {
+    "required": "You must select an option"
+  },
+  "evidence-of-dishonesty-details": {
+    "required": "Enter concerns of credibility",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "are-others-involved" : {
@@ -113,13 +127,6 @@
   },
   "are-others-involved-details": {
     "required": "Enter other people involved",
-    "maxlength": "Enter no more than 15,000 characters"
-  },
-  "evidence-of-dishonesty" : {
-    "required": "You must select an option"
-  },
-  "evidence-of-dishonesty-details": {
-    "required": "Enter indicators or evidence of dishonesty",
     "maxlength": "Enter no more than 15,000 characters"
   },
   "where-exploitation-happened" : {
@@ -370,5 +377,9 @@
     "what-evidence-you-will-submit": {
       "required": "Tell us about the documents you uploaded",
       "maxlength": "Document descriptions cannot be more than than 15000 characters"
-    }
+    },
+  "why-are-you-making-the-referral": {
+    "required": "Enter reason for referral",
+    "maxlength": "Enter no more than 15,000 characters"
+  }
 }

@@ -228,7 +228,7 @@ module.exports = {
           value: 'no'
         }
       }],
-      next: '/why-are-you-making-the-referral',
+      next: '/modern-slavery-indicators',
       continueOnEdit: true
     },
     '/why-report-now': {
@@ -237,14 +237,17 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['why-report-now'],
-      next: '/why-are-you-making-the-referral'
+      next: '/modern-slavery-indicators'
     },
-    '/why-are-you-making-the-referral': {
+    '/modern-slavery-indicators': {
       behaviours: [
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['why-are-you-making-the-referral'],
+      fields: [
+        'modern-slavery-indicators',
+        'modern-slavery-indicators-details'
+      ],
       next: '/where-how-interview-carried-out'
     },
     '/where-how-interview-carried-out': {
@@ -253,14 +256,14 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['where-how-interview-carried-out'],
-      next: '/are-others-involved'
+      next: '/professional-insight'
     },
-    '/are-others-involved': {
+    '/professional-insight': {
       behaviours: [
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['are-others-involved', 'are-others-involved-details'],
+      fields: ['professional-insight'],
       next: '/evidence-of-dishonesty'
     },
     '/evidence-of-dishonesty': {
@@ -269,6 +272,14 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       fields: ['evidence-of-dishonesty', 'evidence-of-dishonesty-details'],
+      next: '/are-others-involved'
+    },
+    '/are-others-involved': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['are-others-involved', 'are-others-involved-details'],
       next: '/where-exploitation-happened'
     },
     '/where-exploitation-happened': {
@@ -741,7 +752,7 @@ module.exports = {
       next: '/upload-evidence'
     },
     '/upload-evidence': {
-      behaviours: [ saveFormSession, SaveFile('upload-file'), RemoveFile, LimitDocument ],
+      behaviours: [saveFormSession, SaveFile('upload-file'), RemoveFile, LimitDocument],
       locals: { showSaveAndExit: true },
       fields: ['upload-file'],
       forks: [{
@@ -799,6 +810,7 @@ module.exports = {
       clearSession: true
     },
     '/exit': {},
+    // DISCONNECTED PAGES
     '/more-than-one-exploitation-situation': {
       behaviours: [
         saveFormSession
@@ -806,6 +818,14 @@ module.exports = {
       locals: { showSaveAndExit: true },
       fields: ['more-than-one-exploitation-situation'],
       next: '/how-did-the-exploitation-start'
+    },
+    '/why-are-you-making-the-referral': {
+      behaviours: [
+        saveFormSession
+      ],
+      locals: { showSaveAndExit: true },
+      fields: ['why-are-you-making-the-referral'],
+      next: '/where-how-interview-carried-out'
     }
   }
 };

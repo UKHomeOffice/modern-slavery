@@ -1,6 +1,8 @@
-<p>{{#t}}pages.evidence-of-dishonesty.paragraph-1{{/t}}</p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>{{#t}}pages.evidence-of-dishonesty.bullet-1{{/t}}</li>
-  <li>{{#t}}pages.evidence-of-dishonesty.bullet-2{{/t}}</li>
-</ul>
-<p></p>
+These concerns must be based on evidence.
+
+Do not include examples of them withholding or changing their information if you think they have done this because they:
+- have fears for their safety
+- are trying to avoid reliving their trauma
+
+You can upload any files as supporting evidence at the end of this service, for example, a police report.
+<br><br>

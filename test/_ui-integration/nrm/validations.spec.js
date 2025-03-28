@@ -336,9 +336,9 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters why are you making the referral Validation', () => {
-    it('does not pass why are you making the referral page if nothing entered', async () => {
-      const URI = '/why-are-you-making-the-referral';
+  describe('User enters modern slavery indicators Validation', () => {
+    it('does not pass the modern slavery indicators page if nothing entered', async () => {
+      const URI = '/modern-slavery-indicators';
       await initSession(URI);
       await passStep(URI, {});
 
@@ -348,7 +348,41 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter reason for referral/);
+        .to.match(/Select if you identified any modern slavery indicators/);
+    });
+
+    it('does not pass the modern slavery indicators page if more than 15000 entered', async () => {
+      const URI = '/modern-slavery-indicators';
+      await initSession(URI);
+      await passStep(URI, {
+        'modern-slavery-indicators': 'yes',
+        'modern-slavery-indicators-details': ''
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter details of modern slavery indicators/);
+    });
+
+    it('does not pass the modern slavery indicators page if more than 15000 entered', async () => {
+      const URI = '/modern-slavery-indicators';
+      await initSession(URI);
+      await passStep(URI, {
+        'modern-slavery-indicators': 'yes',
+        'modern-slavery-indicators-details': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Details of modern slavery indicators must be 15000 characters or less/);
     });
   });
 
@@ -367,6 +401,108 @@ describe('validation checks of the nrm journey', () => {
         expect(validationSummary.html())
           .to.match(/Enter details about the interview/);
       });
+
+    it('does not pass where and how was the interview carried out page if nothing entered',
+      async () => {
+        const URI = '/where-how-interview-carried-out';
+        await initSession(URI);
+        await passStep(URI, {
+          'where-how-interview-carried-out': 'a'.repeat(15001)
+        });
+
+        const res = await getUrl(URI);
+        const docu = await parseHtml(res);
+        const validationSummary = docu.find('.govuk-error-summary');
+
+        expect(validationSummary.length === 1).to.be.true;
+        expect(validationSummary.html())
+          .to.match(/Enter no more than 15,000 characters/);
+      });
+  });
+
+  describe('User enters professional insight Validation', () => {
+    it('does not pass professional insight page if nothing entered',
+      async () => {
+        const URI = '/professional-insight';
+        await initSession(URI);
+        await passStep(URI, {});
+
+        const res = await getUrl(URI);
+        const docu = await parseHtml(res);
+        const validationSummary = docu.find('.govuk-error-summary');
+
+        expect(validationSummary.length === 1).to.be.true;
+        expect(validationSummary.html())
+          .to.match(/Enter details of your professional insight/);
+      });
+
+    it('does not pass professional insight page if more 15000 characters entered',
+      async () => {
+        const URI = '/professional-insight';
+        await initSession(URI);
+        await passStep(URI, {
+          'professional-insight': 'a'.repeat(15001)
+        });
+
+        const res = await getUrl(URI);
+        const docu = await parseHtml(res);
+        const validationSummary = docu.find('.govuk-error-summary');
+
+        expect(validationSummary.length === 1).to.be.true;
+        expect(validationSummary.html())
+          .to.match(/Details of your professional insight must be 15000 characters or less/);
+      });
+  });
+
+  describe('User enters evidence of dishonesty Validation', () => {
+    it('does not pass evidence of dishonesty page if nothing entered', async () => {
+      const URI = '/evidence-of-dishonesty';
+      await initSession(URI);
+      await passStep(URI, {});
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/You must select an option/);
+    });
+  });
+
+  describe('User enters evidence of dishonesty details Validation', () => {
+    it('does not pass evidence of dishonesty page if yes selected but no additional details entered', async () => {
+      const URI = '/evidence-of-dishonesty';
+      await initSession(URI);
+      await passStep(URI, {
+        'evidence-of-dishonesty': 'yes'
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter concerns of credibility/);
+    });
+
+    it('does not pass evidence of dishonesty page if nore than 15000 characters entered ', async () => {
+      const URI = '/evidence-of-dishonesty';
+      await initSession(URI);
+      await passStep(URI, {
+        'evidence-of-dishonesty': 'yes',
+        'evidence-of-dishonesty-details': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Enter no more than 15,000 characters/);
+    });
   });
 
   describe('User enters are others involved Validation', () => {
@@ -403,42 +539,8 @@ describe('validation checks of the nrm journey', () => {
     });
   });
 
-  describe('User enters evidence of dishonesty Validation', () => {
-    it('does not pass evidence of dishonesty page if nothing entered', async () => {
-      const URI = '/evidence-of-dishonesty';
-      await initSession(URI);
-      await passStep(URI, {});
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.govuk-error-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/You must select an option/);
-    });
-  });
-
-  describe('User enters evidence of dishonesty details Validation', () => {
-    it('does not pass evidence of dishonesty page if nothing entered', async () => {
-      const URI = '/evidence-of-dishonesty';
-      await initSession(URI);
-      await passStep(URI, {
-        'evidence-of-dishonesty': 'yes'
-      });
-
-      const res = await getUrl(URI);
-      const docu = await parseHtml(res);
-      const validationSummary = docu.find('.govuk-error-summary');
-
-      expect(validationSummary.length === 1).to.be.true;
-      expect(validationSummary.html())
-        .to.match(/Enter indicators or evidence of dishonesty/);
-    });
-  });
-
-  describe('User enters what evidence will you submit Validation', () => {
-    it('does not pass what evidence will you submit page if nothing entered', async () => {
+  describe('User enters what documents or evidence will you submit Validation', () => {
+    it('does not pass what documents or evidence will you submit page if nothing entered', async () => {
       const URI = '/what-evidence-you-will-submit';
       await initSession(URI);
       await passStep(URI, {});
@@ -467,7 +569,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Document descriptions cannot be more than than 15000 character/);
+        .to.match(/Document descriptions cannot be more than than 15000 characters/);
     });
   });
 

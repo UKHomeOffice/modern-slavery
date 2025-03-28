@@ -244,11 +244,14 @@ module.exports = (data, token) => {
   response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
+  response.IdentifiedModernSlaveryIndicators = data['modern-slavery-indicators'];
+  response.IdentifiedModernSlaveryIndicatorsDetails = data['modern-slavery-indicators-details'];
+  response.ProfessionalInsight = data['professional-insight'];
   response.DetailsAboutInterview = data['where-how-interview-carried-out'];
-  response.ProfessionalsInvolved = _.upperFirst(data['are-others-involved']);
-  response.DetailsOfProfessionalsInvolved = data['are-others-involved-details'];
   response.EvidenceOfDishonesty = _.upperFirst(data['evidence-of-dishonesty']);
   response.DetailsOfEvidenceOfDishonesty = data['evidence-of-dishonesty-details'];
+  response.ProfessionalsInvolved = _.upperFirst(data['are-others-involved']);
+  response.DetailsOfProfessionalsInvolved = data['are-others-involved-details'];
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
 
   data['files'] = data['files'] || [];

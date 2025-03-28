@@ -60,21 +60,19 @@
     "header": "Is there anything that prevented the potential victim from reporting this sooner?",
     "intro": "Using your professional judgement, tell us about any reasons why they have not reported this until now. For example. emotional distress or trauma."
   },
-  "why-are-you-making-the-referral": {
-    "header": "Why are you making the referral?",
-    "paragraph-1": "Include relevant evidence or information, such as:",
-    "paragraph-2": "The information you enter is disclosable",
-    "bullet-1": "your professional insight",
-    "bullet-2": "modern slavery indicators",
-    "bullet-3": "an intention to exploit the individual",
-    "bullet-4": "circumstances which put the individual at a heightened level of vulnerability",
-    "bullet-5": "safeguarding issues",
-    "bullet-6": "physical and mental health",
-    "bullet-7": "support needs",
-    "bullet-8": "current support being received"
+  "modern-slavery-indicators": {
+    "modern-slavery-indicators-paragraph-1": "If you identified modern slavery indicators provide details.",
+    "modern-slavery-indicators-paragraph-2": "<a class=\"govuk-link\" href=\"https://assets.publishing.service.gov.uk/media/67812b3b00e3d719f19217eb/Modern+Slavery+Statutory+Guidance+_EW_+and+Non-Statutory+Guidance+_SNI_+v3.12.pdf#page=37\" target=\"_blank\">See section 3 'Identifying potential victims of  modern slavery' for examples of modern slavery indicators.</a> Include context about where you noticed these indicators."
   },
   "where-how-interview-carried-out": {
-    "header": "Where and how was the interview carried out? "
+    "header": "Tell us about the interviews"
+  },
+  "professional-insight": {
+    "header": "Your professional insight",
+    "intro": "Using your professional judgement, provide any relevant information about why you are making this referral."
+  },
+  "evidence-of-dishonesty": {
+    "header": "Do you have any concerns about the potential victim's credibility?"
   },
   "are-others-involved": {
     "header": "Are there other professionals or organisations involved with this case?",
@@ -84,12 +82,6 @@
     "bullet-3": "Support worker",
     "bullet-4": "Mental health worker",
     "bullet-5": "Social worker"
-  },
-  "evidence-of-dishonesty": {
-    "header": "Are there indicators or evidence that they could be acting dishonestly?",
-    "paragraph-1": "Do not include examples of them withholding or changing their information if you think they have done this because they:",
-    "bullet-1": "have fears for their safety",
-    "bullet-2": "are trying to avoid reliving their trauma"
   },
   "where-exploitation-happened-uk": {
     "header": "Where were they exploited in the UK?",
@@ -207,6 +199,19 @@
     "header": "Have they been in more than one exploitative situation?",
     "paragraph-1": "If yes, please make sure that details from all exploitative situations are captured in the following questions."
   },
+  "why-are-you-making-the-referral": {
+    "header": "Why are you making the referral?",
+    "paragraph-1": "Include relevant evidence or information, such as:",
+    "paragraph-2": "The information you enter is disclosable",
+    "bullet-1": "your professional insight",
+    "bullet-2": "modern slavery indicators",
+    "bullet-3": "an intention to exploit the individual",
+    "bullet-4": "circumstances which put the individual at a heightened level of vulnerability",
+    "bullet-5": "safeguarding issues",
+    "bullet-6": "physical and mental health",
+    "bullet-7": "support needs",
+    "bullet-8": "current support being received"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -288,23 +293,29 @@
       "why-report-now": {
         "label": "Is there anything that prevented the potential victim from reporting this sooner?"
       },
-      "why-are-you-making-the-referral": {
-        "label": "Reason for referral"
+      "modern-slavery-indicators": {
+        "label": "Modern slavery indicators"
+      },
+      "modern-slavery-indicators-details": {
+        "label": "Modern slavery indicators details"
       },
       "where-how-interview-carried-out": {
         "label": "Details about the interview"
+      },
+      "professional-insight": {
+        "label": "Professional insight"
+      },
+      "evidence-of-dishonesty": {
+        "label": "Concerns about their credibility"
+      },
+      "evidence-of-dishonesty-details": {
+        "label": "Indicators or evidence of dishonesty"
       },
       "are-others-involved": {
         "label": "Are others involved"
       },
       "are-others-involved-details": {
         "label": "Details of other people involved"
-      },
-      "evidence-of-dishonesty": {
-        "label": "Evidence of dishonesty"
-      },
-      "evidence-of-dishonesty-details": {
-        "label": "Indicators or evidence of dishonesty"
       },
       "local-authority-contacted-about-child-local-authority-name": {
         "label": "Local authority name"
@@ -473,6 +484,9 @@
       },
       "more-than-one-exploitation-situation": {
         "label": "More than one exploitation situation"
+      },
+      "why-are-you-making-the-referral": {
+        "label": "Reason for referral"
       }
     }
   },
