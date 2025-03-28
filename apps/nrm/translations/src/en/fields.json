@@ -573,7 +573,7 @@
     "label": "Briefly explain why the potential victim doesn't want their case referred"
   },
   "does-pv-need-support": {
-    "legend": "Do they need support?",
+    "legend": "Does the potential victim want support?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -582,6 +582,32 @@
         "label": "No"
       }
     }
+  },
+  "pv-phone-number": {
+    "legend": "How can the support provider contact the potential victim?",
+    "options": {
+      "yes": {
+        "label": "Potential victim's telephone number"
+      },
+      "pv-alternative-number": {
+        "label": "Alternative telephone number"
+      },
+      "no": {
+        "label": "Cannot provide contact details"
+      }
+    }
+  },
+  "pv-phone-number-yes": {
+    "label": "Enter potential victim's phone number"
+  },
+  "pv-phone-number-alternative": {
+    "label": "Alternative telephone number"
+  },
+  "alternative-number-relation-to-pv": {
+    "label": "Relationship to potential victim"
+  },
+  "no-contact-details": {
+    "label": "If the potential victim wants to receive support and does not have a telephone number, you can nd who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"/support-organisations\" target=\"_blank\">contact the  support provider (opens in new tab)</a> for them."
   },
   "pv-name-first-name": {
     "label": "First name"
@@ -761,20 +787,6 @@
   },
   "pv-contact-details-post-check": {
     "label": "It is safe to write to them here"
-  },
-  "pv-phone-number": {
-    "legend": "Can the support provider contact them by phone?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "pv-phone-number-yes": {
-    "label": "Enter potential victim's phone number"
   },
   "fr-details-first-name": {
     "label": "First name"

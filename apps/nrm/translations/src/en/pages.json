@@ -137,19 +137,25 @@
     "header": "Why doesn't the potential victim want their case referred to the NRM?"
   },
   "does-pv-need-support": {
-    "header": "Do they need support?",
-    "paragraph-1": "Support can take 5 days to start unless the potential victim needs emergency housing.",
-    "paragraph-2": "Support can take 5 days to start and may include:",
-    "bullet-1": "safe housing",
-    "bullet-2": "medical treatment",
-    "bullet-3": "someone to help them cope with their experience",
-    "bullet-4": "protection from the people who exploited them",
-    "bullet-5": "independent legal advice",
-    "link-text-1": "Contact the support provider",
-    "link-text-2": "for more information."
+    "header": "Does the potential victim want support?",
+    "warning-assistive": "Warning",
+    "warning": "Make sure you <a class=\"govuk-link\" href=\"/support-organisations\" target=\"_blank\">contact the support provider (opens in new tab)</a> as soon as possible if the potential victim needs emergency housing.",
+    "paragraph-1": "Support to enable ongoing recovery may include:",
+    "support-example-1": "safe housing",
+    "support-example-2": "support to access medical treatment",
+    "support-example-3": "someone to help them cope with their experience",
+    "support-example-4": "protection from the people who exploited them",
+    "support-example-5": "help to access independent legal advice",
+    "support-example-6": "financial support"
   },
   "support-organisations": {
     "header": "Find a support provider"
+  },
+  "pv-phone-number": {
+    "header": "How can the support provider contact the potential victim?",
+    "alternative-phone-number-text": "Enter a telephone number so we can contact the potential victim and explain who this is, for example, a legal representative.",
+    "alternative-phone-number-warning": "Make sure this person is safe to be contacted. Check that these are not the contact details of the exploiters.",
+    "no-contact-details": "Tell us why you cannot provide the potential victim's telephone number, for example you are not longer in contact with them, or they don't have a phone."
   },
   "pv-name-referral": {
     "header": "What is the name of the Potential Victim?"
@@ -365,16 +371,28 @@
       "authorities-cooperation-details": {
         "label": "Details about co-operation"
       },
-      "does-pv-need-support": {
-        "label": "Support requested",
-        "automatic-referral": "Support can not be requested when potential victims under 18 years old"
-      },
       "pv-want-to-submit-nrm": {
         "label": "Case referred to NRM",
         "automatic-referral": "Automatic referral when potential victim under 18 years old or age unknown"
       },
       "refuse-nrm": {
         "label": "Reason for Refusing NRM"
+      },
+      "does-pv-need-support": {
+        "label": "Support requested",
+        "automatic-referral": "Support can not be requested when potential victims under 18 years old"
+      },
+      "pv-phone-number": {
+        "label": "Permission for support provider to contact them"
+      },
+      "pv-phone-number-yes": {
+        "label": "Potential victim's telephone number"
+      },
+      "pv-phone-number-alternative": {
+        "label": "Alternative telephone number"
+      },
+      "no-contact-details": {
+        "label": "Cannot provide contact details"
       },
       "someone-else-first-name": {
         "label": "Name"
@@ -417,12 +435,6 @@
       },
       "pv-contact-details-email-check": {
         "label": "Email"
-      },
-      "pv-phone-number": {
-        "label": "Permission for support provider to contact them"
-      },
-      "pv-phone-number-yes": {
-        "label": "Phone"
       },
       "pv-ho-reference": {
         "label": "Home Office reference"
