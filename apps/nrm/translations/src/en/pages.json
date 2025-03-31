@@ -46,8 +46,13 @@
   "how-they-were-treated": {
     "header": "How were they treated during their exploitation?"
   },
+  "reasons-preventing-potential-victim-from-leaving": {
+    "header": "What is keeping the potential victim in the situation?",
+    "intro": "Include what reasons are preventing them from leaving the situation. For example, withheld documents, fear for their own or their family's safety or debt.",
+    "warning": "If you identify a potential victim of modern slavery, follow the safeguarding procedures set out by your organisation."
+  },
   "how-why-did-they-leave-the-situation": {
-    "header": "How and why did they leave the situation?"
+    "header": "How did the potential victim leave the exploitative situation?"
   },
   "details-last-contact": {
     "paragraph-1": "To assess the risk that the potential victim may be exploited or trafficked again, we need to know about any communication between them and their exploiters.",
@@ -282,8 +287,11 @@
       "why-they-stayed": {
         "label": "Why they stayed"
       },
+      "what-is-keeping-them-in-situation": {
+        "label": "What is keeping the potential victim in the situation?"
+      },
       "how-why-did-they-leave-the-situation": {
-        "label": "How and why they left the situation"
+        "label": "How they left the situation"
       },
       "when-last-contact": {
         "label": "When were they last in contact with exploiters"

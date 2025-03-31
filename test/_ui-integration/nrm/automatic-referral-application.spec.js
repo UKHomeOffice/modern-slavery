@@ -167,7 +167,7 @@ describe('the journey of a nrm automatic referral application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/how-they-were-treated');
   });
 
-  it('goes to the how-why-did-they-leave-the-situation page when user enters how were they treated during their exploitation',
+  it('goes to the is-the-potential-victim-still-in-an-exploitative-situation page when user enters how were they treated during their exploitation',
     async () => {
       const URI = '/how-they-were-treated';
       await initSession(URI);
@@ -177,10 +177,21 @@ describe('the journey of a nrm automatic referral application', () => {
         'why-they-stayed': 'Test'
       });
 
+      expect(response.text).to.contain('Found. Redirecting to /nrm/is-the-potential-victim-still-in-an-exploitative-situation');
+    });
+
+  it('goes to the how-why-did-they-leave-the-situation page when user is no longer in exploitative situation',
+    async () => {
+      const URI = '/is-the-potential-victim-still-in-an-exploitative-situation';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'still-in-exploitative-situation': 'no'
+      });
+
       expect(response.text).to.contain('Found. Redirecting to /nrm/how-why-did-they-leave-the-situation');
     });
 
-  it('goes to the when-last-contact page when user enters how and why did they leave the situation',
+  it('goes to the when-last-contact page when user enters how they left the situation',
     async () => {
       const URI = '/how-why-did-they-leave-the-situation';
       await initSession(URI);
@@ -191,7 +202,29 @@ describe('the journey of a nrm automatic referral application', () => {
       expect(response.text).to.contain('Found. Redirecting to /nrm/when-last-contact');
     });
 
-  it('goes to the when-last-contact page when user enters how and why the last contact was',
+  it('goes to the reasons-preventing-potential-victim-from-leaving page when user is still in the exploitative situation',
+    async () => {
+      const URI = '/is-the-potential-victim-still-in-an-exploitative-situation';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'still-in-exploitative-situation': 'yes'
+      });
+
+      expect(response.text).to.contain('Found. Redirecting to /nrm/reasons-preventing-potential-victim-from-leaving');
+    });
+
+  it('goes to the when-last-contact page when user enters what is keeping them in the situation',
+    async () => {
+      const URI = '/reasons-preventing-potential-victim-from-leaving';
+      await initSession(URI);
+      const response = await passStep(URI, {
+        'what-is-keeping-them-in-situation': 'Test'
+      });
+
+      expect(response.text).to.contain('Found. Redirecting to /nrm/when-last-contact');
+    });
+
+  it('goes to the details-last-contact page when user enters how and why the last contact was',
     async () => {
       const URI = '/when-last-contact';
       await initSession(URI);
