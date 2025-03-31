@@ -193,12 +193,29 @@
   "why-report-now": {
     "label": "Is there anything that prevented the potential victim from reporting this sooner?"
   },
-  "why-are-you-making-the-referral": {
-    "label": "Reason for referral"
+  "modern-slavery-indicators": {
+    "legend": "Did you identify any modern slavery indicators?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   },
-  "where-how-interview-carried-out": {
-    "label": "Details about the interview",
-    "hint": "Include whether they needed to take breaks (and why), the number of sessions over which the interview took place and whether there were any safeguarding concerns."
+  "evidence-of-dishonesty": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "evidence-of-dishonesty-details": {
+    "label": "Evidence"
   },
   "are-others-involved": {
     "options": {
@@ -213,19 +230,6 @@
   "are-others-involved-details": {
     "label": "Other people involved",
     "hint": "Include any referrals made, actions already taken, reference numbers, or contact details"
-  },
-  "evidence-of-dishonesty": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "evidence-of-dishonesty-details": {
-    "label": "Indicators or evidence of dishonesty"
   },
   "whats-their-background": {
     "legend": "What is their background?",
@@ -824,5 +828,8 @@
   "more-than-one-exploitation-situation": {
     "label": "Date(s) of exploitation",
     "hint": "The individual should be encouraged to disclose any other periods of exploitation and the length of time, and any specific dates. This can be any form of exploitation (sexual, labour, domestic servitude) and may be of a different type to the one that initiated the referral."
+  },
+  "why-are-you-making-the-referral": {
+    "label": "Reason for referral"
   }
 }

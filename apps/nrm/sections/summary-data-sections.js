@@ -267,6 +267,14 @@ module.exports = {
         field: 'why-report-now'
       },
       {
+        step: '/modern-slavery-indicators',
+        field: 'modern-slavery-indicators'
+      },
+      {
+        step: '/modern-slavery-indicators',
+        field: 'modern-slavery-indicators-details'
+      },
+      {
         step: '/why-are-you-making-the-referral',
         field: 'why-are-you-making-the-referral'
       },
@@ -275,12 +283,8 @@ module.exports = {
         field: 'where-how-interview-carried-out'
       },
       {
-        step: '/are-others-involved',
-        field: 'are-others-involved'
-      },
-      {
-        step: '/are-others-involved',
-        field: 'are-others-involved-details'
+        step: '/professional-insight',
+        field: 'professional-insight'
       },
       {
         step: '/evidence-of-dishonesty',
@@ -289,6 +293,14 @@ module.exports = {
       {
         step: '/evidence-of-dishonesty',
         field: 'evidence-of-dishonesty-details'
+      },
+      {
+        step: '/are-others-involved',
+        field: 'are-others-involved'
+      },
+      {
+        step: '/are-others-involved',
+        field: 'are-others-involved-details'
       },
       {
         step: '/reported-to-police',

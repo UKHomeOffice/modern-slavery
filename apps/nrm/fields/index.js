@@ -333,8 +333,38 @@ module.exports = {
       }
     ]
   },
-  'why-are-you-making-the-referral': {
+  'modern-slavery-indicators': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [{
+      value: 'yes',
+      toggle: 'modern-slavery-indicators-fieldset',
+      child: 'partials/modern-slavery-indicators'
+    }, {
+      value: 'no'
+    }]
+  },
+  'modern-slavery-indicators-details': {
     mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'modern-slavery-indicators'
+    }
+  },
+  'where-how-interview-carried-out': {
+    mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -345,8 +375,9 @@ module.exports = {
       }
     ]
   },
-  'where-how-interview-carried-out': {
+  'professional-insight': {
     mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     validate: ['required', { type: 'maxlength', arguments: [15000] }],
@@ -356,6 +387,37 @@ module.exports = {
         value: 14
       }
     ]
+  },
+  'evidence-of-dishonesty': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'evidence-of-dishonesty-details-fieldset',
+      child: 'partials/evidence-of-dishonesty'
+    }, {
+      value: 'no'
+    }]
+  },
+  'evidence-of-dishonesty-details': {
+    mixin: 'textarea',
+    labelClassName: 'govuk-body govuk-!-font-weight-bold',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 7
+      }
+    ],
+    dependent: {
+      value: 'yes',
+      field: 'evidence-of-dishonesty'
+    }
   },
   'are-others-involved': {
     mixin: 'radio-group',
@@ -385,36 +447,6 @@ module.exports = {
     dependent: {
       value: 'yes',
       field: 'are-others-involved'
-    }
-  },
-  'evidence-of-dishonesty': {
-    mixin: 'radio-group',
-    validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [{
-      value: 'yes',
-      toggle: 'evidence-of-dishonesty-details-fieldset',
-      child: 'partials/evidence-of-dishonesty'
-    }, {
-      value: 'no'
-    }]
-  },
-  'evidence-of-dishonesty-details': {
-    mixin: 'textarea',
-    'ignore-defaults': true,
-    formatter: ['trim', 'hyphens'],
-    validate: ['required', { type: 'maxlength', arguments: [15000] }],
-    attributes: [
-      {
-        attribute: 'rows',
-        value: 7
-      }
-    ],
-    dependent: {
-      value: 'yes',
-      field: 'evidence-of-dishonesty'
     }
   },
   'where-exploitation-happened': {
@@ -1258,6 +1290,7 @@ module.exports = {
       }
     ]
   },
+  // FIELDS ON DISCONNECTED PAGES
   'more-than-one-exploitation-situation': {
     mixin: 'textarea',
     'ignore-defaults': true,
@@ -1267,6 +1300,18 @@ module.exports = {
       {
         attribute: 'rows',
         value: 7
+      }
+    ]
+  },
+  'why-are-you-making-the-referral': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [15000] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 14
       }
     ]
   }
