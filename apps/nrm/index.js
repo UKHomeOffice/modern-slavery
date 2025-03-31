@@ -249,7 +249,8 @@ module.exports = {
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['is-this-the-first-chance-to-report'],
+      fields: ['is-this-the-first-chance-to-report', 'yes-the-first-chance-to-report',
+        'not-sure-the-first-chance-to-report'],
       forks: [{
         target: '/why-report-now',
         condition: {
