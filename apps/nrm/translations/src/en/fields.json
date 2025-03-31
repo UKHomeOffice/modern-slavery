@@ -280,134 +280,132 @@
     }
   },
   "where-exploitation-happened-uk-city-1": {
-    "label": "Select city or town (Type Unknown if they are unsure)",
-    "hint": "Start typing the city. It must appear on the list for you to be able to continue.",
+    "label": "Select city or town",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-2": {
-    "label": "Select a second city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-3": {
-    "label": "Select a third city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-4": {
-    "label": "Select a fourth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-5": {
-    "label": "Select a fifth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-6": {
-    "label": "Select a sixth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-7": {
-    "label": "Select a seventh city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-8": {
-    "label": "Select an eighth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-9": {
-    "label": "Select a ninth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-uk-city-10": {
-    "label": "Select a tenth city or town (Optional)",
+    "label": "Select another city or town (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-other-uk-other-location": {
     "label": "Address or location",
-    "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
+    "hint": "Provide any addresses, locations, or other details that may help us identify the location of the exploitations for example village names or landmarks."
   },
   "where-exploitation-happened-overseas-country-1": {
-    "label": "Select country (Type Unknown if they are unsure)",
-    "hint": "Start typing the country. It must appear on the list for you to be able to continue.",
+    "label": "Select country",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-2": {
-    "label": "Select a second country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-3": {
-    "label": "Select a third country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-4": {
-    "label": "Select a fourth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-5": {
-    "label": "Select a fifth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-6": {
-    "label": "Select a sixth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-7": {
-    "label": "Select a seventh country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-8": {
-    "label": "Select an eighth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-9": {
-    "label": "Select a ninth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-overseas-country-10": {
-    "label": "Select a tenth country (Optional)",
+    "label": "Select another country (Optional)",
     "options": {
       "null": "Select..."
     }
   },
   "where-exploitation-happened-other-overseas-other-location": {
     "label": "Address or location",
-    "hint": "Provide any addresses, locations or other details that may help us identify the location of the exploitation(s)."
+    "hint": "Provide any addresses, locations, or other details that may help us identify the location of the exploitations for example village names or landmarks."
   },
   "current-pv-location-uk-city": {
     "label": "Select city or town",

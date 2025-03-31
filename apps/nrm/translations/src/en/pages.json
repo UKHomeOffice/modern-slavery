@@ -86,13 +86,15 @@
     "bullet-5": "Social worker"
   },
   "where-exploitation-happened-uk": {
-    "header": "Where were they exploited in the UK?",
-    "paragraph-1": "If the exploitation was in more then one location, add more towns or cities.",
+    "header": "Where was the potential victim exploited in the UK?",
+    "paragraph-1": "If the exploitation happened in more than one location, add each one. If you cannot find the city or town on the list, enter 'Unknown'.",
+    "paragraph-2": "Provide any location details, such as the name of a village, in the 'Address or location' box.",
     "select-overseas-note": "Once you press continue you will be able to add more details about the overseas locations."
   },
   "where-exploitation-happened-overseas": {
-    "header": "Where were they exploited overseas?",
-    "paragraph-1": "If the exploitation was in more then one location, add more countries."
+    "header": "Where was the potential victim exploited overseas?",
+    "paragraph-1": "If the exploitation happened in more than one location, add each one. If you cannot find the country on the list, enter 'Unknown'.",
+    "paragraph-2": "Provide any location details, such as the name of a village, in the 'Address or location' box."
   },
   "current-pv-location": {
     "header": "Where is the potential victim staying?"
@@ -344,10 +346,10 @@
         "label": "Where were they exploited?"
       },
       "where-exploitation-happened-uk-city-1": {
-        "label": "Where were they exploited in the UK?"
+        "label": "Where was the potential victim exploited in the UK?"
       },
       "where-exploitation-happened-overseas-country-1": {
-        "label": "Where were they exploited overseas?"
+        "label": "Where was the potential victim exploited overseas?"
       },
       "current-pv-location-uk-city": {
         "label": "Current location"
