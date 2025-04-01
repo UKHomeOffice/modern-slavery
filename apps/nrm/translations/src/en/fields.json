@@ -112,8 +112,7 @@
     "label": "Start date, end date and type of exploitations"
   },
   "how-did-the-exploitation-start": {
-    "label": "How they came to be exploited",
-    "hint": "Explore what promises were made, what they were expecting to do, and what pay was promised."
+    "label": "How they came to be exploited"
   },
   "were-they-taken-somewhere-by-their-exploiter": {
     "options": {
@@ -130,16 +129,16 @@
     "hint": "Include any routes, places, landmark features, or times."
   },
   "what-were-they-required-to-do": {
-    "label": "An average day",
-    "hint": "Detail what were they required to do, how many hours a day they worked and whether any breaks were allowed."
+    "label": "What they had to do",
+    "hint": "Include details of what they had to do, how many hours a day they worked and whether any breaks were allowed."
+  },
+  "living-conditions": {
+    "label": "Their living conditions",
+    "hint": "Include details of their accommodation and whether there was access to facilities, such as a bathroom, sleeping arrangements and food."
   },
   "how-they-were-treated": {
     "label": "Their treatment",
     "hint": "Detail how they were treated by the person or people who exploited them, details of the accommodation and whether there was access to necessary facilities, such as bathroom, sleeping arrangements, food."
-  },
-  "why-they-stayed": {
-    "label": "Why they stayed",
-    "hint": "Explain whether they were forcibly detained, whether threats, force or coercion were used against them, whether their documents were removed from them."
   },
   "still-in-exploitative-situation": {
     "legend": "Is the potential victim still in an exploitative situation?",
@@ -151,6 +150,10 @@
         "label": "No"
       }
     }
+  },
+  "how-why-did-they-leave-the-situation": {
+    "label": "How and why they left",
+    "hint": "Ask if it was their decision to leave and if anyone helped them."
   },
   "when-last-contact": {
     "legend": "When were the potential victim and exploiters last in contact?",
@@ -429,8 +432,7 @@
     }
   },
   "who-exploited-pv": {
-    "label": "Details about the exploiter(s)",
-    "hint": "Include the languages the exploiters spoke, their gang or nicknames and if they had identifying features such as tattoos."
+    "label": "Details about the exploiter(s)"
   },
   "exploiters-location": {
     "legend": "Do you have information about where the exploiters are?",
@@ -835,5 +837,9 @@
   },
   "why-are-you-making-the-referral": {
     "label": "Reason for referral"
+  },
+  "why-they-stayed": {
+    "label": "Why they stayed",
+    "hint": "Explain whether they were forcibly detained, whether threats, force or coercion were used against them, whether their documents were removed from them."
   }
 }

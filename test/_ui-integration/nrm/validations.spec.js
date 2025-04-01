@@ -267,9 +267,9 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/Enter what were they required to do/)
+        .to.match(/Enter what were they had to do/)
         .to.match(/Enter how they were treated/)
-        .to.match(/Enter why they stayed/);
+        .to.match(/Enter their living conditions/);
     });
   });
 

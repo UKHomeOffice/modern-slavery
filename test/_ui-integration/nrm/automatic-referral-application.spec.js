@@ -173,8 +173,8 @@ describe('the journey of a nrm automatic referral application', () => {
       await initSession(URI);
       const response = await passStep(URI, {
         'what-were-they-required-to-do': 'Test',
-        'how-they-were-treated': 'Test',
-        'why-they-stayed': 'Test'
+        'living-conditions': 'Test',
+        'how-they-were-treated': 'Test'
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/is-the-potential-victim-still-in-an-exploitative-situation');
