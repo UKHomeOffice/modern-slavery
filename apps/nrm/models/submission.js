@@ -245,6 +245,13 @@ module.exports = (data, token) => {
     'not-sure': 'Not sure'
   };
   response.FirstChanceToReport = firstChangeToReport[data['is-this-the-first-chance-to-report']];
+
+  if(data['is-this-the-first-chance-to-report'] === 'yes') {
+    response.ReportedBeforeFurtherInfo = data['yes-the-first-chance-to-report'];
+  } else if(data['is-this-the-first-chance-to-report'] === 'not-sure') {
+    response.ReportedBeforeFurtherInfo = data['not-sure-the-first-chance-to-report'];
+  }
+
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
   response.IdentifiedModernSlaveryIndicators = data['modern-slavery-indicators'];

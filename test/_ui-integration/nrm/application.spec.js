@@ -242,6 +242,26 @@ describe('the journey of a nrm application', () => {
     expect(response.text).to.contain('Found. Redirecting to /nrm/why-report-now');
   });
 
+  it('goes to the modern-slavery-indicators page when user selects yes', async () => {
+    const URI = '/is-this-the-first-chance-to-report';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'is-this-the-first-chance-to-report': 'yes'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/modern-slavery-indicators');
+  });
+
+  it('goes to the modern-slavery-indicators page when user selects not-sure', async () => {
+    const URI = '/is-this-the-first-chance-to-report';
+    await initSession(URI);
+    const response = await passStep(URI, {
+      'is-this-the-first-chance-to-report': 'not-sure'
+    });
+
+    expect(response.text).to.contain('Found. Redirecting to /nrm/modern-slavery-indicators');
+  });
+
   it('goes to the modern-slavery-indicators page when user enters why are they reporting this now?', async () => {
     const URI = '/why-report-now';
     await initSession(URI);

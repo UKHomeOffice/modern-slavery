@@ -275,6 +275,14 @@ module.exports = {
         field: 'is-this-the-first-chance-to-report'
       },
       {
+        step: '/is-this-the-first-chance-to-report',
+        field: 'yes-the-first-chance-to-report'
+      },
+      {
+        step: '/is-this-the-first-chance-to-report',
+        field: 'not-sure-the-first-chance-to-report'
+      },
+      {
         step: '/why-report-now',
         field: 'why-report-now'
       },

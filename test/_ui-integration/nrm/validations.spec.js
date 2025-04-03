@@ -368,6 +368,40 @@ describe('validation checks of the nrm journey', () => {
       expect(validationSummary.html())
         .to.match(/You must select an option/);
     });
+
+    it('does not pass is this the first chance to report page if user selects yes and enters more than 15000 characters', async () => {
+      const URI = '/is-this-the-first-chance-to-report';
+      await initSession(URI);
+      await passStep(URI, {
+        'is-this-the-first-chance-to-report': 'yes',
+        'yes-the-first-chance-to-report': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Information provided must be 15000 characters or less/);
+    });
+
+    it('does not pass is this the first chance to report page if user selects not-sure and enters more than 15000 characters', async () => {
+      const URI = '/is-this-the-first-chance-to-report';
+      await initSession(URI);
+      await passStep(URI, {
+        'is-this-the-first-chance-to-report': 'not-sure',
+        'not-sure-the-first-chance-to-report': 'a'.repeat(15001)
+      });
+
+      const res = await getUrl(URI);
+      const docu = await parseHtml(res);
+      const validationSummary = docu.find('.govuk-error-summary');
+
+      expect(validationSummary.length === 1).to.be.true;
+      expect(validationSummary.html())
+        .to.match(/Information provided must be 15000 characters or less/);
+    });
   });
 
   describe('User enters why are they reporting this now Validation', () => {

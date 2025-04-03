@@ -186,7 +186,7 @@
     "label": "Tell us about the last contact between the potential victim and their exploiters"
   },
   "is-this-the-first-chance-to-report": {
-    "legend": "Is this the first chance they have had to report this?",
+    "legend": "Has the potential victim reported this before?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -198,6 +198,14 @@
         "label": "Not sure"
       }
     }
+  },
+  "yes-the-first-chance-to-report": {
+    "label": "Provide more information (optional)",
+    "hint": "If you know them, include any NRM or Home Office reference numbers."
+  },
+  "not-sure-the-first-chance-to-report": {
+    "label": "Provide more information (optional)",
+    "hint": "If you know them, include any NRM or Home Office reference numbers."
   },
   "why-report-now": {
     "label": "Is there anything that prevented the potential victim from reporting this sooner?"

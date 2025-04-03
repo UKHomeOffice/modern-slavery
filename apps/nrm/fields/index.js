@@ -344,11 +344,21 @@ module.exports = {
     validate: ['required'],
     isPageHeading: true,
     options: [
-      'yes',
+      {
+        value: 'yes',
+        toggle: 'yes-the-first-chance-to-report',
+        child: 'textarea'
+      },
       'no',
-      'not-sure'
+      {
+        value: 'not-sure',
+        toggle: 'not-sure-the-first-chance-to-report',
+        child: 'textarea'
+      }
     ]
   },
+  'yes-the-first-chance-to-report': createDependentFieldConfig('yes', 'is-this-the-first-chance-to-report'),
+  'not-sure-the-first-chance-to-report': createDependentFieldConfig('not-sure', 'is-this-the-first-chance-to-report'),
   'why-report-now': {
     mixin: 'textarea',
     labelClassName: 'visually-hidden',
