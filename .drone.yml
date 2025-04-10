@@ -149,6 +149,23 @@ steps:
     FAIL_ON_DETECTION: false
     IGNORE_UNFIXED: false
     ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+  commands:
+    - trivy repo --branch ${DRONE_SOURCE_BRANCH} --severity HIGH,CRITICAL --dependency-tree --scanners vuln https://github.com/UKHomeOffice/modern-slavery
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/digmygrafana:d5996c1c3bc9c333def581c20291632ee729c2c0
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/icasework-resolver:f70daea9ac42e63017a41e278b552af2f78c4bfb  
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/ms-schema:e4a8f7be112bcf5a4380b0cfe49f743fa1232b36
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-email-alerts:ca8d0849a3bdc1bbbf4b61610f397865a2023f84
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-api:9ae616c7d36c6e42ec8c6556f063ca2210ac5b6e
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-lookup-ui:821e8fd0ff20278018fbf9503101edca8aee2a92
+    - trivy image --severity HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+  volumes:
   when:
     event: [push, pull_request]
 
