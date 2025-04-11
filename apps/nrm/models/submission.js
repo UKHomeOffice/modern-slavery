@@ -254,7 +254,7 @@ module.exports = (data, token) => {
 
   response.ReasonForReportingNow = data['why-report-now'];
   response.ReasonForMakingReferral = data['why-are-you-making-the-referral'];
-  response.IdentifiedModernSlaveryIndicators = data['modern-slavery-indicators'];
+  response.IdentifiedModernSlaveryIndicators = _.upperFirst(data['modern-slavery-indicators']);
   response.IdentifiedModernSlaveryIndicatorsDetails = data['modern-slavery-indicators-details'];
   response.ProfessionalInsight = data['professional-insight'];
   response.DetailsAboutInterview = data['where-how-interview-carried-out'];
