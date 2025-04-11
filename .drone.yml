@@ -161,6 +161,7 @@ steps:
     - trivy image -f json --severity MEDIUM,HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-email-alerts:ca8d0849a3bdc1bbbf4b61610f397865a2023f84
     - trivy image -f json --severity MEDIUM,HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-api:9ae616c7d36c6e42ec8c6556f063ca2210ac5b6e
     - trivy image -f json --severity MEDIUM,HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/save-return-lookup-ui:821e8fd0ff20278018fbf9503101edca8aee2a92
+    - trivy image -f json --severity MEDIUM,HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/hof-rds-api@sha256:65bb7ca3afbc4d302bafff49d8a4a0313eb681bcb0abefa5f9d5034c007f329c
     - trivy image -f json --severity MEDIUM,HIGH,CRITICAL --dependency-tree --scanners vuln quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
   volumes:
   when:
