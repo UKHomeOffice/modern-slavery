@@ -641,7 +641,7 @@
     "label": "Relationship to potential victim"
   },
   "no-contact-details": {
-    "label": "If the potential victim wants to receive support and does not have a telephone number, you can nd who it will be shared with. This is contained in the <a class=\"govuk-link\" href=\"/support-organisations\" target=\"_blank\">contact the  support provider (opens in new tab)</a> for them."
+    "label": "If the potential victim wants to receive support and does not have a telephone number, you can <a class=\"govuk-link\" href=\"/support-organisations\" target=\"_blank\">contact the support provider (opens in new tab)</a> for them."
   },
   "pv-name-first-name": {
     "label": "First name"
