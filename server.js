@@ -6,6 +6,7 @@ const download = require('./lib/download-file');
 let settings = require('./hof.settings');
 const path = require('path');
 const promptSheet = require('./config').promptSheet;
+const firstResponderGuidance = require('./config').firstResponderGuidance;
 const config = require('./config');
 const _ = require('lodash');
 const busboy = require('busboy');
@@ -40,6 +41,10 @@ const app = hof(settings);
 // Downloads the offline form to client side
 app.use('/prompt-sheet-for-working-offline', (req, res) => {
   download.responseFile('/assets/documents', promptSheet, res);
+});
+
+app.use('/first-responder-guidance-form', (req, res) => {
+  download.responseFile('/assets/documents', firstResponderGuidance, res);
 });
 
 const addGenericLocals = (req, res, next) => {
