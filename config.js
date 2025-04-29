@@ -60,6 +60,5 @@ module.exports = {
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
     feedbackEmail: process.env.FEEDBACK_EMAIL
   },
-  promptSheet: 'nrm-form-offline-v4-23-04-2025.pdf',
-  firstResponderGuidance: 'first-responder-guide-for-england-and-wales.pdf',
+  promptSheet: 'nrm-form-offline-v4-23-04-2025.pdf'
 };
