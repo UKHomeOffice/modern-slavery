@@ -71,7 +71,7 @@ module.exports = conf => {
             });
           }
         } catch (error) {
-          req.log('error', `Error saving values: ${error}`);
+          req.log('error', `Error submitting case: ${error}`);
           next(error);
         }
       });

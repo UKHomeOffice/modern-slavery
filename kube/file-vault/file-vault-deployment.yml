@@ -143,12 +143,12 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv
+                  name: keycloak-client-fv-p
                   key: secret
             - name: PROXY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv
+                  name: keycloak-client-fv-p
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001
@@ -173,7 +173,8 @@ spec:
           args:
              # the url which is used to retrieve the OpenID configuration
           {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
-            - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
+            # - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
+            - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
           {{ else }}
             - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
           {{ end }}
