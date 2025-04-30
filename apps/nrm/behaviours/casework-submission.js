@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+/* eslint-disable consistent-return, max-len */
 'use strict';
 
 const appConfig = require('../../../config');
@@ -48,13 +48,14 @@ module.exports = conf => {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
             const caseworkID = uuid();
+            const submittedAt = req.sessionModel.set('submitted_at', Date.now());
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
             producer.send([{
               id: caseworkID,
               body: JSON.stringify(caseworkModel)
             }], error => {
-              const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
+              const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : `Successful Submission to Queue at ${submittedAt}`;
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
               Queue Submission Status: ${errorSubmitting}`);
               if (appConfig.audit.enabled) {

@@ -810,7 +810,7 @@ module.exports = {
         fullWidth,
         submission,
         'complete',
-        deleteFormSession,
+        deleteFormSession
       ],
       locals: { showSaveAndExit: true },
       next: '/confirmation'

@@ -12,7 +12,7 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
-
+      // add a submitted at column if submitted_at has value then delete if not don't
       try {
         const model = new Model();
         const params = {
