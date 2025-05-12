@@ -812,7 +812,7 @@ module.exports = {
         deleteFormSession,
         'complete'
       ],
-      locals: { showSaveAndExit: true },
+      // locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
     '/confirmation': {
