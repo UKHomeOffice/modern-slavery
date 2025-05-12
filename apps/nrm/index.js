@@ -805,6 +805,7 @@ module.exports = {
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [
+        saveFormSession,
         require('hof').components.summary,
         modifySummaryPage,
         fullWidth,
