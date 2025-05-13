@@ -9,15 +9,17 @@ const calculateExpiryDate = () => {
 
 module.exports = superclass => class extends superclass {
   locals(req, res) {
-    const superlocals = super.locals(req, res);
-    const data = Object.assign({}, {
-      reportExpiration: calculateExpiryDate(),
-      userEmail: req.sessionModel.get('user-email')
-    });
-    const locals = Object.assign({}, superlocals, data);
+    if (req.body['save-and-exit']) {
+      const superlocals = super.locals(req, res);
+      const data = Object.assign({}, {
+        reportExpiration: calculateExpiryDate(),
+        userEmail: req.sessionModel.get('user-email')
+      });
+      const locals = Object.assign({}, superlocals, data);
 
-    req.sessionModel.reset();
+      req.sessionModel.reset();
 
-    return locals;
+      return locals;
+    }
   }
 };
