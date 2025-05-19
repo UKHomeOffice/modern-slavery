@@ -29,6 +29,10 @@ module.exports = conf => {
           return next(err);
         }
         if (req.body['save-and-exit']) {
+          const session = req.sessionModel.toJSON();
+          delete session['csrf-secret'];
+          delete session.errors;
+          session.alertUser = true;
           return res.redirect('/nrm/save-and-exit');
         }
         try {
