@@ -28,9 +28,6 @@ module.exports = conf => {
         if (err) {
           return next(err);
         }
-        if (req.body['save-and-exit']) {
-          return res.redirect('/nrm/save-and-exit');
-        }
         try {
           const model = new GetFileToken();
           const token = await model.auth();
