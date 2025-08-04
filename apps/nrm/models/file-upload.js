@@ -30,8 +30,8 @@ module.exports = class UploadModel extends Model {
       reqConf.headers = {
         ...formData.getHeaders()
       };
-     // const result = await this.request(reqConf);
-     //  this.set({ url: result.url });
+      // const result = await this.request(reqConf);
+      //  this.set({ url: result.url });
       logger.info('Successfully saved data');
       return this.unset('data');
     } catch (err) {

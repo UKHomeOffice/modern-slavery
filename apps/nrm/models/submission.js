@@ -269,7 +269,6 @@ module.exports = (data, token) => {
   data['files'] = data['files'] || [];
 
   data['files'].forEach((doc, i) => {
-
     logger.info(`File upload: ${doc}`);
     logger.info(`File upload doc url: ${doc.url}`);
     const index = i + 1;
