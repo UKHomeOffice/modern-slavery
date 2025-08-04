@@ -5,6 +5,8 @@
 
 const _ = require('lodash');
 const uuid = require('uuid/v4');
+const config = require('../../../config');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = (data, token) => {
   const response = {};
@@ -267,6 +269,9 @@ module.exports = (data, token) => {
   data['files'] = data['files'] || [];
 
   data['files'].forEach((doc, i) => {
+
+    logger.info(`File upload: ${doc}`);
+    logger.info(`File upload doc url: ${doc.url}`);
     const index = i + 1;
     response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.name;
