@@ -67,6 +67,40 @@ describe('File Upload Model', () => {
       }
     });
 
+    it('rejects if api call triggers callback with error', async () => {
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
+      const err = new Error('test error');
+
+      // Causes the stub to call the first callback it receives with the provided arguments
+      model.request.yields(err);
+      try {
+        await model.save();
+      } catch (e) {
+        expect(e).to.equal(err);
+      }
+    });
+
+    it('throws error if response does not have a URL', async () => {
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
+      const dataNoUrl = {
+        api: 'response'
+      };
+      model.request.resolves(dataNoUrl);
+      try {
+        await model.save();
+      } catch (e) {
+        expect(e.message).to.equal('Did not receive a URL from file-vault');
+      }
+    });
+
     it('adds a formData property to api request with details of uploaded file', async () => {
       const uploadedFile = new Model({
         data: 'foo',
