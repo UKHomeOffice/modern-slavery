@@ -39,6 +39,13 @@ module.exports = class UploadModel extends Model {
           throw error;
         }
       });
+
+      // We expect the response to contain a URL, otherwise something went wrong
+      if (!result.url) {
+        const errorMsg = 'Did not receive a URL from file-vault';
+        throw new Error(errorMsg);
+      }
+
       this.set({ url: result.url });
       logger.info('Successfully saved data');
       return this.unset('data');
