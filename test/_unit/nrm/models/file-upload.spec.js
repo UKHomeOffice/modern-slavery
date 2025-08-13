@@ -90,9 +90,9 @@ describe('File Upload Model', () => {
         name: 'myfile.png',
         mimetype: 'image/png'
       });
-      const dataNoUrl = new Error({
+      const dataNoUrl = {
         api: 'response'
-      });
+      };
       model.request.resolves(dataNoUrl);
       try {
         await model.save();
