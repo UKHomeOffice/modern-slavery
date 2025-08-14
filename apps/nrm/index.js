@@ -809,8 +809,8 @@ module.exports = {
         modifySummaryPage,
         fullWidth,
         submission,
-        deleteFormSession,
-        'complete'
+        'complete',
+        deleteFormSession
       ],
       locals: { showSaveAndExit: false },
       next: '/confirmation'
