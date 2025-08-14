@@ -20,6 +20,7 @@ module.exports = superclass => class extends superclass {
           method: 'DELETE'
         };
         await model._request(params);
+        logger.info(`Successfully deleted session data for user: ${req.sessionModel.get('user-email')}, report ID: ${req.sessionModel.get('id')}`);
         return next();
       } catch (error) {
         logger.error(`Error deleting data: ${error.message}`);
