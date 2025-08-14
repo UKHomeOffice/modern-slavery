@@ -60,6 +60,7 @@ module.exports = class UploadModel extends Model {
         method: 'POST'
       };
       const response = await this._request(tokenReq);
+      logger.info('Successfully retrieved access token');
       return { bearer: response.data.access_token };
     } catch (error) {
       logger.error('Error authenticating with keycloak:', error);
