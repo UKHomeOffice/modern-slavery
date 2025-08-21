@@ -30,7 +30,22 @@ module.exports = class UploadModel extends Model {
       reqConf.headers = {
         ...formData.getHeaders()
       };
-      const result = await this.request(reqConf);
+
+      const result = await this.request(reqConf, error => {
+        // Callback will be called with the error if any is encountered during file load
+        if (error) {
+          // Throw error to be caught below.
+          // Only throw if it exists since callback can also be called without error.
+          throw error;
+        }
+      });
+
+      // We expect the response to contain a URL, otherwise something went wrong
+      if (!result.url) {
+        const errorMsg = 'Did not receive a URL from file-vault';
+        throw new Error(errorMsg);
+      }
+
       this.set({ url: result.url });
       logger.info('Successfully saved data');
       return this.unset('data');
