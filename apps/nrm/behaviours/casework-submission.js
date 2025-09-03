@@ -1,15 +1,19 @@
 /* eslint-disable consistent-return */
+/* eslint-disable max-len  */
 'use strict';
 
 const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
+const { model: Model } = require('hof');
 let db;
 
 if (appConfig.audit.enabled) {
   db = require('./../../common/db');
 }
+
+const encodeEmail = email => Buffer.from(email).toString('hex');
 
 module.exports = conf => {
   const config = conf || {};
@@ -50,13 +54,19 @@ module.exports = conf => {
             const caseworkID = uuid();
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
+            // Removed id forcing sqs to throw an error
             producer.send([{
-              id: caseworkID,
               body: JSON.stringify(caseworkModel)
             }], error => {
               const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
               Queue Submission Status: ${errorSubmitting}`);
+
+              // delete session data only when its successful
+              if (!error) {
+                this.deleteRecord(req, next);
+              }
+
               if (appConfig.audit.enabled) {
                 db('hof').insert({
                   ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
@@ -75,6 +85,23 @@ module.exports = conf => {
           next(error);
         }
       });
+    }
+
+    deleteRecord(req, next) {
+      const hofModel = new Model();
+      const params = {
+        url: `${appConfig.saveService.host}:${appConfig.saveService.port}/reports/${encodeEmail(req.sessionModel.get('user-email'))}/${req.sessionModel.get('id')}`,
+        method: 'DELETE'
+      };
+      hofModel
+        ._request(params)
+        .then(() => {
+          next();
+        })
+        .catch(error => {
+          req.log('error', `Error deleting data: ${error.message}`);
+          next(error);
+        });
     }
   };
 };
