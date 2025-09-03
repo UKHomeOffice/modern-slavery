@@ -8,7 +8,6 @@ const typesOfExploitation = require('./behaviours/types-of-exploitation.js');
 const saveFormSession = require('./behaviours/save-form-session');
 const resumeSession = require('./behaviours/resume-form-session');
 const continueReport = require('./behaviours/continue-report');
-const deleteFormSession = require('./behaviours/delete-form-session');
 const saveAndExit = require('./behaviours/save-and-exit');
 const SaveFile = require('./behaviours/save-file');
 const RemoveFile = require('./behaviours/remove-file');
@@ -806,11 +805,10 @@ module.exports = {
       sections: require('./sections/summary-data-sections'),
       behaviours: [
         require('hof').components.summary,
+        'complete',
         modifySummaryPage,
         fullWidth,
-        submission,
-        deleteFormSession,
-        'complete'
+        submission
       ],
       locals: { showSaveAndExit: false },
       next: '/confirmation'
