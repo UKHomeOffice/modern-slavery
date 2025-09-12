@@ -52,9 +52,8 @@ module.exports = conf => {
             const caseworkID = uuid();
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
-            // Removed id forcing sqs to throw an error
-            // TODO: fix after testing
             producer.send([{
+              id: caseworkID,
               body: JSON.stringify(caseworkModel)
             }], error => {
               const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
