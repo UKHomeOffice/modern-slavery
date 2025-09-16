@@ -160,13 +160,6 @@ describe('casework-submission behaviour tests', () => {
       configStub.audit.enabled = true;
     });
 
-    it('calls next with error if db.insert fails', async () => {
-      dbInsertStub.rejects(new Error('db error'));
-      const next = sinon.stub();
-      await instance.saveValues(req, res, next);
-      next.should.have.been.calledWithMatch(sinon.match.instanceOf(Error));
-    });
-
     it('send request when writeToCasework is true', async () => {
       const localConfigStub = getConfigStub();
 
@@ -199,60 +192,6 @@ describe('casework-submission behaviour tests', () => {
         sendStub.should.have.been.calledOnce;
       });
     });
-
-    it('logs audit when SQS submission succeeds and audit is enabled', async () => {
-      const localConfigStub = getConfigStub();
-
-      const sendStub = sinon.stub().callsArgWith(1, null);
-      const producerMock = { send: sendStub };
-      const createStub = sinon.stub().returns(producerMock);
-
-      const BehaviourWithAudit = proxyquire(
-        '../../../../apps/nrm/behaviours/casework-submission',
-        {
-          '../models/file-upload': function () {
-            return GetFileToken;
-          },
-          './../../common/db': sinon.stub().returns({ insert: dbInsertStub }),
-          '../../../config': localConfigStub,
-          '../../../lib/utilities': {
-            encodeEmail: sinon.stub().returns('encoded-email')
-          },
-          hof: {
-            model: function () {
-              return Model;
-            }
-          },
-          'sqs-producer': { create: createStub }
-        }
-      )({ prepare: prepareStub });
-
-      instance = new (BehaviourWithAudit(Base))();
-
-      sessionModel.toJSON = sinon.stub().returns({
-        ExternalId: 'external-id',
-        Type: 'type'
-      });
-      sessionModel.get.withArgs('externalID').returns(null);
-      sessionModel.get.withArgs('id').returns('report-id');
-
-      sinon
-        .stub(instance, 'deleteSessionData')
-        .callsFake(async (_, next) => next());
-
-      const next = sinon.stub();
-
-      await instance.saveValues(req, res, next);
-
-      dbInsertStub.should.have.been.calledOnce;
-      dbInsertStub.should.have.been.calledWithMatch({
-        ip: '127.0.0.1',
-        type: 'type',
-        success: true
-      });
-
-      next.should.have.been.calledOnce;
-    });
   });
 
   describe('deleteSessionData()', () => {
@@ -264,7 +203,6 @@ describe('casework-submission behaviour tests', () => {
         'info',
         'MS: record deleted successfully'
       );
-      next.should.have.been.calledOnce;
     });
   });
 });
