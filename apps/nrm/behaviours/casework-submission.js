@@ -5,8 +5,6 @@ const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
 const Producer = require('sqs-producer');
 const uuid = require('uuid/v4');
-const { model: Model } = require('hof');
-const { encodeEmail } = require('../../../lib/utilities');
 let db;
 
 if (appConfig.audit.enabled) {
@@ -24,85 +22,85 @@ module.exports = conf => {
     });
   }
 
-  return superclass => class extends superclass {
-    saveValues(req, res, next) {
-      super.saveValues(req, res, async err => {
-        if (err) {
-          return next(err);
-        }
-        try {
-          const model = new GetFileToken();
-          const token = await model.auth();
-          const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON(), token) :
-            { info: 'No submission was made to icasework' };
-
-          const externalID = req.sessionModel.get('externalID') || caseWorkPayload.ExternalId;
-
-          // Report ID from save and return to make logs clearer
-          const reportID = req.sessionModel.get('id');
-
-          req.sessionModel.set('jsonPayload', caseWorkPayload);
-
-          // short circuit casework submission
-          if (!appConfig.writeToCasework) {
-            this.deleteSessionData(req, next);
-          } else {
-            // send casework model to AWS SQS
-            const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
-            const caseworkID = uuid();
-            req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-            Submitting Case to Queue Case ID: ${caseworkID}`);
-            producer.send([{
-              id: caseworkID,
-              body: JSON.stringify(caseworkModel)
-            }], error => {
-              const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
-              req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              Queue Submission Status: ${errorSubmitting}`);
-
-              // Ensure session data is deleted only when the operation completes without errors
-              if (!error) {
-                this.deleteSessionData(req, next);
-              }
-
-              if (appConfig.audit.enabled) {
-                db('hof').insert({
-                  ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
-                  type: caseworkModel.Type,
-                  success: error ? false : true
-                }).then(() => {
-                  next(error);
-                });
-              } else {
-                next(error);
-              }
-            });
+  return superclass =>
+    class extends superclass {
+      saveValues(req, res, next) {
+        super.saveValues(req, res, async err => {
+          if (err) {
+            return next(err);
           }
-        } catch (error) {
-          req.log('error', `Error saving values: ${error}`);
-          next(error);
-        }
-      });
-    }
+          try {
+            const model = new GetFileToken();
+            const token = await model.auth();
+            const caseWorkPayload = appConfig.writeToCasework
+              ? config.prepare(req.sessionModel.toJSON(), token)
+              : { info: 'No submission was made to icasework' };
 
-    async deleteSessionData(req, next) {
-      const hofModel = new Model();
-      const params = {
-        url: `${appConfig.saveService.host}:${
-          appConfig.saveService.port
-        }/reports/${encodeEmail(
-          req.sessionModel.get('user-email')
-        )}/${req.sessionModel.get('id')}`,
-        method: 'DELETE'
-      };
-      try {
-        await hofModel._request(params);
-        req.log('info', 'MS: record deleted successfully');
-        next();
-      } catch (error) {
-        req.log('error', `Error deleting data: ${error.message}`);
-        next(error);
+            const externalID =
+              req.sessionModel.get('externalID') || caseWorkPayload.ExternalId;
+
+            // Report ID from save and return to make logs clearer
+            const reportID = req.sessionModel.get('id');
+
+            req.sessionModel.set('jsonPayload', caseWorkPayload);
+
+            // short circuit casework submission
+            if (!appConfig.writeToCasework) {
+              next();
+            } else {
+              // send casework model to AWS SQS
+              const caseworkModel = config.prepare(
+                req.sessionModel.toJSON(),
+                token
+              );
+              const caseworkID = uuid();
+              req.log(
+                'info',
+                `External ID: ${externalID}, Report ID: ${reportID},
+            Submitting Case to Queue Case ID: ${caseworkID}`
+              );
+              producer.send(
+                [
+                  {
+                    body: JSON.stringify(caseworkModel)
+                  }
+                ],
+                error => {
+                  const errorSubmitting = error
+                    ? 'Error Submitting to Queue: ' + error
+                    : 'Successful Submission to Queue';
+                  req.log(
+                    'info',
+                    `External ID: ${externalID}, Report ID: ${reportID},
+              Queue Submission Status: ${errorSubmitting}`
+                  );
+                  if (appConfig.audit.enabled) {
+                    db('hof')
+                      .insert({
+                        ip: (
+                          req.headers['x-forwarded-for'] ||
+                          req.connection.remoteAddress ||
+                          ''
+                        )
+                          .split(',')[0]
+                          .trim(),
+                        type: caseworkModel.Type,
+                        success: error ? false : true
+                      })
+                      .then(() => {
+                        next(error);
+                      });
+                  } else {
+                    next(error);
+                  }
+                }
+              );
+            }
+          } catch (error) {
+            req.log('error', `Error saving values: ${error}`);
+            next(error);
+          }
+        });
       }
-    }
-  };
+    };
 };
