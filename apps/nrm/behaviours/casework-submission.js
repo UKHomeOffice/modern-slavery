@@ -45,7 +45,8 @@ module.exports = conf => {
 
           // short circuit casework submission
           if (!appConfig.writeToCasework) {
-            this.deleteSessionData(req, next);
+            await this.deleteSessionData(req, next);
+            next();
           } else {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
@@ -55,14 +56,14 @@ module.exports = conf => {
             producer.send([{
               id: caseworkID,
               body: JSON.stringify(caseworkModel)
-            }], error => {
+            }], async error => {
               const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
               Queue Submission Status: ${errorSubmitting}`);
 
               // Ensure session data is deleted only when the operation completes without errors
               if (!error) {
-                this.deleteSessionData(req, next);
+                await this.deleteSessionData(req, next);
               }
 
               if (appConfig.audit.enabled) {
@@ -71,6 +72,7 @@ module.exports = conf => {
                   type: caseworkModel.Type,
                   success: error ? false : true
                 }).then(() => {
+                  req.log('info', 'MS: hof insert successfully');
                   next(error);
                 });
               } else {
@@ -98,7 +100,6 @@ module.exports = conf => {
       try {
         await hofModel._request(params);
         req.log('info', 'MS: record deleted successfully');
-        next();
       } catch (error) {
         req.log('error', `Error deleting data: ${error.message}`);
         next(error);
