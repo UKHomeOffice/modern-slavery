@@ -64,7 +64,7 @@ module.exports = superclass => class extends superclass {
         await sendEmail(email, host, token);
         return next();
       } catch (err) {
-        logger.error('error', `Error in the saveValues method ${error}`);
+        logger.error('error', `Error in the saveValues method ${err}`);
         return next(err);
       }
     });
