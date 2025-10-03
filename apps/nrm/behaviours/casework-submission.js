@@ -51,11 +51,12 @@ module.exports = conf => {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
             const caseworkID = uuid();
+            const caseworkJSON = JSON.stringify(caseworkModel);
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-            Submitting Case to Queue Case ID: ${caseworkID}`);
+            Submitting Case to Queue Case ID: ${caseworkID} with the following data: ${caseworkJSON}`);
             producer.send([{
               id: caseworkID,
-              body: JSON.stringify(caseworkModel)
+              body: caseworkJSON
             }], async error => {
               const errorSubmitting = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
