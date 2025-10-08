@@ -49,6 +49,9 @@ module.exports = conf => {
           } else {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
+            console.log('Casework Model:', caseworkModel);
+            const caseworkJSON = JSON.stringify(caseworkModel);
+            console.log('Casework JSON:', caseworkJSON);
             const caseworkID = uuid();
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
