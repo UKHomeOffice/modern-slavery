@@ -133,6 +133,7 @@ const countries = [
 {value:"Oman",label:"Oman"},
 {value:"Pakistan",label:"Pakistan"},
 {value:"Palau",label:"Palau"},
+{value:"Palestine",label:"Palestine"},
 {value:"Panama",label:"Panama"},
 {value:"Papua New Guinea",label:"Papua New Guinea"},
 {value:"Paraguay",label:"Paraguay"},
