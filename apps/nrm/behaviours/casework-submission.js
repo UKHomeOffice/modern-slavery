@@ -53,8 +53,11 @@ module.exports = conf => {
             const caseworkID = uuid();
             const caseworkJSON = JSON.stringify(caseworkModel);
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-            Submitting Case to Queue Case ID: ${caseworkID} with the following data: ${caseworkJSON}`);
-            console.log('Raw JSON output', caseworkJSON);
+            Submitting Case to Queue Case ID: ${caseworkID}`);
+            console.log('Sending JSON data to queue:', {
+              id: caseworkID,
+              body: caseworkJSON
+            });
             producer.send([{
               id: caseworkID,
               body: caseworkJSON
