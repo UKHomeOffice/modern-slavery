@@ -14,7 +14,6 @@ module.exports = {
     '/start': {
       next: '/verify/who-do-you-work-for'
     },
-    '/session-timeout': {},
     '/exit': {}
   }
 };

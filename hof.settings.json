@@ -7,6 +7,7 @@
     "./apps/nrm",
     "./apps/feedback"
   ],
+  "translations": "./apps/nrm/translations",
   "behaviours": [
     "./apps/common/behaviours/sanitise-inputs",
     "hof/components/session-timeout-warning",
