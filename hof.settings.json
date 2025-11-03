@@ -13,6 +13,7 @@
     "hof/components/session-timeout-warning",
     "./apps/common/behaviours/custom-dialog-text"
   ],
+  "translations": "./apps/nrm/translations",
   "getCookies": false,
   "session": {
     "name": "modern-slavery.hof.sid"
