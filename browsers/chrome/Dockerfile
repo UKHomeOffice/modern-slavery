@@ -1,4 +1,4 @@
-FROM node:20.17.0 as base
+FROM node:20.19.5 as base
 
 EXPOSE 9222
 
