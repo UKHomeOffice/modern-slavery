@@ -124,6 +124,16 @@ spec:
                 secretKeyRef:
                   name: sas-ms-branch-sqs
                   key: sqs_url
+            - name: AZURE_QUEUE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: azure-queue-name
+            - name: AZURE_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: endpoint
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:

@@ -22,6 +22,10 @@ const configStub = {
   writeToCasework: true,
   audit: { enabled: true },
   aws: { sqs: 'https://sqs-url' },
+  azure: {
+    connectionString: 'ABC123',
+    queueName: 'mockQueue'
+  },
   saveService: { host: 'http://localhost', port: '3000' }
 };
 
@@ -29,8 +33,19 @@ const getConfigStub = () => ({
   writeToCasework: true,
   audit: { enabled: true },
   aws: { sqs: 'https://sqs-url' },
+  azure: {
+    connectionString: 'ABC123',
+    queueName: 'mockQueue'
+  },
   saveService: { host: 'http://localhost', port: '3000' }
 });
+
+// Mock ServiceBusClient and sender
+const sendMessagesStub = sinon.stub().resolves();
+const serviceBusSenderMock = { sendMessages: sendMessagesStub };
+const serviceBusClientMock = {
+  createSender: sinon.stub().returns(serviceBusSenderMock)
+};
 
 const Behaviour = proxyquire(
   '../../../../apps/nrm/behaviours/casework-submission',
@@ -52,6 +67,11 @@ const Behaviour = proxyquire(
       create: sinon.stub().returns({
         send: sinon.stub().callsArgWith(1, null)
       })
+    },
+    '@azure/service-bus': {
+      ServiceBusClient: function () {
+        return serviceBusClientMock;
+      }
     }
   }
 )({ prepare: prepareStub });
@@ -161,11 +181,17 @@ describe('casework-submission behaviour tests', () => {
     });
 
     it('send request when writeToCasework is true', async () => {
-      const localConfigStub = getConfigStub();
-
+      // SQS send
       const sendStub = sinon.stub().callsArgWith(1, null);
       const producerMock = { send: sendStub };
       const createStub = sinon.stub().returns(producerMock);
+      // Azure Service Bus mocks
+      const sendMessagesStubLocal = sinon.stub().resolves();
+      const serviceBusSenderMockLocal = { sendMessages: sendMessagesStubLocal };
+      const serviceBusClientMockLocal = {
+        createSender: sinon.stub().returns(serviceBusSenderMockLocal)
+      };
+      const localConfigStub = getConfigStub();
 
       const BehaviourWithProducer = proxyquire(
         '../../../../apps/nrm/behaviours/casework-submission',
@@ -183,13 +209,19 @@ describe('casework-submission behaviour tests', () => {
               return Model;
             }
           },
-          'sqs-producer': { create: createStub }
+          'sqs-producer': { create: createStub },
+          '@azure/service-bus': {
+            ServiceBusClient: function () {
+              return serviceBusClientMockLocal;
+            }
+          }
         }
       )({ prepare: prepareStub });
 
       instance = new (BehaviourWithProducer(Base))();
       await instance.saveValues(req, res, () => {
         sendStub.should.have.been.calledOnce;
+        sendMessagesStubLocal.should.have.been.calledOnce;
       });
     });
   });

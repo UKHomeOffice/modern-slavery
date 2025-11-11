@@ -34,6 +34,7 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
+    "@azure/service-bus": "^7.9.5",
     "accessible-autocomplete": "^3.0.1",
     "axios": "^1.7.4",
     "bl": "^6.0.1",
