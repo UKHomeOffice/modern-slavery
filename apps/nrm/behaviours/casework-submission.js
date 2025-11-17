@@ -28,13 +28,13 @@ module.exports = conf => {
       region: 'eu-west-2'
     });
 
-    console.log(appConfig.azure.connectionString);
-    console.log(appConfig.azure.queueName);
-
-    if (appConfig.azure.connectionString && appConfig.azure.queueName) {
-      // Initialize Azure Service Bus
-      serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
-      serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
+    console.log('Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
+    if (appConfig.azure.sendToAzure) {
+      if (appConfig.azure.connectionString && appConfig.azure.queueName) {
+        // Initialize Azure Service Bus
+        serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
+        serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
+      }
     }
   }
 
@@ -86,17 +86,20 @@ module.exports = conf => {
               id: caseworkID,
               body: JSON.stringify(caseworkModel)
             }], async error => {
-              const sqsError = error ? 'Error Submitting to Queue: ' + error : 'Successful Submission to Queue';
+              const sqsError = error ? 'Error Submitting to SQS Queue: ' + error : 'Successful Submission to SQS Queue';
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              Queue Submission Status: ${sqsError}`);
+              SQS Queue Submission Status: ${sqsError}`);
 
               // Send to Azure Service Bus
-              const serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
-              const serviceBusStatus = serviceBusError ?
-                'Error Submitting to Service Bus: ' + serviceBusError :
-                'Successful Submission to Service Bus';
-              req.log('info', `External ID: ${externalID}, 
-                Report ID: ${reportID}, Service Bus Status: ${serviceBusStatus}`);
+              let serviceBusError = null;
+              if (appConfig.azure.sendToAzure) {
+                serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
+                const serviceBusStatus = serviceBusError ?
+                  'Error Submitting to Azure Service Bus: ' + serviceBusError :
+                  'Successful Submission to Azure Service Bus';
+                req.log('info', `External ID: ${externalID}, 
+                  Report ID: ${reportID}, Azure Service Bus Status: ${serviceBusStatus}`);
+              }
 
               // Only proceed if both operations were successful
               const combinedError = error || serviceBusError;

@@ -78,6 +78,13 @@ spec:
               {{ else }}
               value: redis
               {{ end }}
+            - name: SEND_TO_AZURE
+              # Set to true in UAT to test Azure queue integration
+              {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: true
+              {{ else }}
+              value: false
+              {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
