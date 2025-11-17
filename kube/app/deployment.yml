@@ -81,9 +81,9 @@ spec:
             - name: SEND_TO_AZURE
               # Set to true in UAT to test Azure queue integration
               {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: true
+              value: "true"
               {{ else }}
-              value: false
+              value: "false"
               {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
