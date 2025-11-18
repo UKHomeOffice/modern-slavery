@@ -17,7 +17,6 @@ if (appConfig.audit.enabled) {
 module.exports = conf => {
   const config = conf || {};
   let producer;
-  let serviceBusClient;
   let serviceBusSender;
 
   if (appConfig.writeToCasework) {
@@ -27,12 +26,10 @@ module.exports = conf => {
       region: 'eu-west-2'
     });
 
-    if (appConfig.azure.sendToAzure) {
-      if (appConfig.azure.connectionString && appConfig.azure.queueName) {
-        // Initialize Azure Service Bus
-        serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
-        serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
-      }
+    if (appConfig.azure.sendToAzure && appConfig.azure.connectionString && appConfig.azure.queueName) {
+      // Initialize Azure Service Bus
+      const serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
+      serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
     }
   }
 
