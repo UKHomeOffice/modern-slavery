@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-console */
 'use strict';
 
 const appConfig = require('../../../config');
@@ -28,7 +27,6 @@ module.exports = conf => {
       region: 'eu-west-2'
     });
 
-    console.log('Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
     if (appConfig.azure.sendToAzure) {
       if (appConfig.azure.connectionString && appConfig.azure.queueName) {
         // Initialize Azure Service Bus
@@ -90,6 +88,7 @@ module.exports = conf => {
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
               SQS Queue Submission Status: ${sqsError}`);
 
+              req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
               // Send to Azure Service Bus
               let serviceBusError = null;
               if (appConfig.azure.sendToAzure) {
