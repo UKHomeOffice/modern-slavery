@@ -78,6 +78,13 @@ spec:
               {{ else }}
               value: redis
               {{ end }}
+            - name: SEND_TO_AZURE
+              # Set to true in UAT to test Azure queue integration
+              {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: "true"
+              {{ else }}
+              value: "false"
+              {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
@@ -124,6 +131,16 @@ spec:
                 secretKeyRef:
                   name: sas-ms-branch-sqs
                   key: sqs_url
+            - name: AZURE_QUEUE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: azure-queue-name
+            - name: AZURE_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: endpoint
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:

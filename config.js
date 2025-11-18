@@ -7,6 +7,11 @@ module.exports = {
   aws: {
     sqs: process.env.AWS_SQS
   },
+  azure: {
+    sendToAzure: String(process.env.SEND_TO_AZURE) === 'true',
+    connectionString: process.env.AZURE_CONNECTION_STRING,
+    queueName: process.env.AZURE_QUEUE_NAME
+  },
   reports: {
     deletionTimeout: process.env.DELETION_TIMEOUT,
     alertTimeout: process.env.FIRST_ALERT_TIMEOUT
