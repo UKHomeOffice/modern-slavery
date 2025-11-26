@@ -1,30 +1,32 @@
 name: Scan for Evil Packages
 
 on:
-  # This workflow is triggered by a repository_dispatch event from ScanMaestro
   repository_dispatch:
     types: [trigger-from-scanmaestro]
 
-
 jobs:
   scan:
-    runs-on: ubuntu-22.04 # Use the latest Ubuntu runner
+    runs-on: ubuntu-22.04
     outputs:
-      scan_summary: ${{ steps.scan_echo.outputs.summary }} # Pass scan summary to downstream jobs
+      scan_summary: ${{ steps.scan_echo.outputs.summary }}
     steps:
-      - uses: actions/checkout@v4 # Checkout repository code
-      - uses: actions/setup-node@v4 # Set up Node.js environment
+      # Checkout the repository code
+      - uses: actions/checkout@v4
+      # Set up Node.js environment
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20' # Specify Node.js version
-      - name: Clone hof-vulnerabilities-scanner # Get the scanner tool
+          node-version: '20'
+      # Clone the vulnerabilities scanner tool
+      - name: Clone hof-vulnerabilities-scanner
         run: git clone https://github.com/UKHomeOfficeForms/hof-vulnerabilities-scanner.git
-      - name: Run hof-vulnerabilities-scanner # Run the scanner
+      # Run the scanner to generate scan-results.json
+      - name: Run hof-vulnerabilities-scanner
         id: scan_hof_vuln
         run: node hof-vulnerabilities-scanner/index.js
-      - name: Save vulnerability count for Slack # Prepare summary for Slack notification
+      # Parse scan-results.json and prepare a summary for Slack
+      - name: Save vulnerability count for Slack
         id: scan_echo
         run: |
-          # Check if scan-results.json exists and extract vulnerability count
           if [ -f scan-results.json ]; then
             count=$(jq '.vulnerabilitiesCount // 0' scan-results.json)
             if [ "$count" -eq 0 ]; then
@@ -35,19 +37,18 @@ jobs:
           else
             msg="scan-results.json not found"
           fi
-          # Output the summary for use in later steps
           echo "summary=$msg" >> $GITHUB_OUTPUT
 
   notify-slack:
-    needs: [ scan ] # Wait for scan job to finish
+    needs: [ scan ]
     runs-on: ubuntu-latest
-    if: always() # Run this job even if previous jobs fail
+    if: always()
     steps:
-      - name: Notify Slack # Send scan summary to Slack
+      # Send the scan summary to Slack
+      - name: Notify Slack
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Slack webhook secret
-          SCAN_OUTPUT: ${{ needs.scan.outputs.scan_summary }} # Output from scan job
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SCAN_OUTPUT: ${{ needs.scan.outputs.scan_summary }}
         run: |
-          # Format payload and send to Slack
           payload=$(jq -n --arg text "$SCAN_OUTPUT" '{text: $text}')
           curl -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
