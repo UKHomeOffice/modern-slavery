@@ -36,7 +36,7 @@
   "dependencies": {
     "@azure/service-bus": "^7.9.5",
     "accessible-autocomplete": "^3.0.1",
-    "axios": "^1.7.4",
+    "axios": "^1.13.2",
     "bl": "^6.0.1",
     "bottleneck": "^2.19.5",
     "busboy": "^1.6.0",
