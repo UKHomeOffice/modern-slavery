@@ -5,6 +5,7 @@ require('dotenv').config();
 global.reqres = require('hof').utils.reqres;
 process.env.AWS_SQS = 'test-queue';
 process.env.DELETION_TIMEOUT = 28;
+process.env.TEST_SESSION_SECRET = '4b7ac3fa035827f526afee763d21cca5';
 
 global.chai = require('chai')
   .use(require('sinon-chai'))

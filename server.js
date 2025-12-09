@@ -18,6 +18,9 @@ settings.routes = settings.routes.map(route => require(route));
 settings.behaviours = settings.behaviours.map(require);
 settings.views = path.resolve(__dirname, './apps/common/views');
 settings.root = __dirname;
+if (config.env === 'test') {
+  settings.session.secret = process.env.TEST_SESSION_SECRET;
+}
 
 settings = Object.assign({}, settings, {
   csp: {
