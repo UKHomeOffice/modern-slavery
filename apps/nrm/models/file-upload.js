@@ -1,9 +1,10 @@
-'use strict';
 /* eslint-disable node/no-deprecated-api */
+
+'use strict';
 
 const url = require('url');
 const { model: Model } = require('hof');
-const uuid = require('uuid').v4;
+const { v4: uuidv4 } = require('uuid');
 const FormData = require('form-data');
 const config = require('../../../config');
 const logger = require('hof/lib/logger')({ env: config.env });
@@ -11,7 +12,7 @@ const logger = require('hof/lib/logger')({ env: config.env });
 module.exports = class UploadModel extends Model {
   constructor(...args) {
     super(...args);
-    this.set('id', uuid());
+    this.set('id', uuidv4());
   }
 
   async save() {
