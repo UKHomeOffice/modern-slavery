@@ -3,7 +3,7 @@
 
 const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
-const Producer = require('sqs-producer');
+const { Producer } = require('sqs-producer');
 const { ServiceBusClient } = require('@azure/service-bus');
 const { v4: uuidv4 } = require('uuid');
 const { model: Model } = require('hof');
