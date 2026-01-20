@@ -4,7 +4,7 @@
 /* eslint-disable dot-notation, max-len */
 
 const _ = require('lodash');
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = (data, token) => {
   const response = {};
@@ -205,7 +205,7 @@ module.exports = (data, token) => {
   // response.SupportProviderContactByPhone;
 
   // icw resolver will look for any existing case before submitting a report to prevent duplicates
-  response.ExternalId = data['externalID'] ? data['externalID'] : uuid();
+  response.ExternalId = data['externalID'] ? data['externalID'] : uuidv4();
 
   response.PVBirthplace = data['birthplace'];
   response.PVFamily = data['family'];

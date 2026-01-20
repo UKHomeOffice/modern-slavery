@@ -5,7 +5,7 @@ const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
 const Producer = require('sqs-producer');
 const { ServiceBusClient } = require('@azure/service-bus');
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const { model: Model } = require('hof');
 const { encodeEmail } = require('../../../lib/utilities');
 let db;
@@ -74,7 +74,7 @@ module.exports = conf => {
           } else {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
-            const caseworkID = uuid();
+            const caseworkID = uuidv4();
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
             producer.send([{
