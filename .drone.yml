@@ -22,8 +22,8 @@ trigger:
   - master
 
 node_image: &node_image
-pull: if-not-exists
-image: 24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  pull: if-not-exists
+  image: 24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
 
 linting: &linting
   <<: *node_image
