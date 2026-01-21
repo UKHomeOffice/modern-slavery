@@ -21,25 +21,26 @@ trigger:
   - feature/*
   - master
 
+node_image: &node_image
+pull: if-not-exists
+image: 24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+
 linting: &linting
-  pull: if-not-exists
-  image: node:24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:lint
 
 unit_tests: &unit_tests
-  pull: if-not-exists
-  image: node:24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:unit
 
 ui_integration_tests: &ui_integration_tests
-  pull: if-not-exists
-  image: node:24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
@@ -68,8 +69,7 @@ steps:
     event: [push, pull_request]
 
 - name: setup_deploy
-  pull: if-not-exists
-  image: node:24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
@@ -218,8 +218,7 @@ steps:
     - image_to_quay
 
 - name: setup_branch
-  pull: if-not-exists
-  image: node:24.12.0-alpine3.23@sha256:c720a25dd3a78e6274d55267e76d89e5c096c46940b5ea83f7a99978feb0b514
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
