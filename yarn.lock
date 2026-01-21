@@ -4212,10 +4212,10 @@ govuk-elements-sass@^3.1.3:
   dependencies:
     govuk_frontend_toolkit "^7.1.0"
 
-govuk-frontend@4.10:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.10.1.tgz#a67a680f34339c210d59ed0f6c473af29c975744"
-  integrity sha512-k7wKjPpLovQlfOiBt0A3RHQCpNagOR8xpfMgvTEQkX6Id5njYNzQTsBvpArDKAxI2174csv2uzn02py02zTVLA==
+govuk-frontend@3.15.0:
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-3.15.0.tgz#47c9cc41c8100ee28bc3aaf9a29a0c62d88070c9"
+  integrity sha512-kInDei8hrkMcrW7yC2EwhbSNBOBBPTdLxIDAye2G7KNrD9cyvNAfd0KchrfP/nWBOzu67ANoz2rtoRDLWiBN2w==
 
 govuk-frontend@^5.14.0:
   version "5.14.0"
@@ -4375,10 +4375,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@22.13.0:
-  version "22.13.0"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.13.0.tgz#58219fe157a6d2ee71c7a83d4cf5aa6a975f4226"
-  integrity sha512-9d05yItz3MzhEkiBsDX9v0ihZri/xdlQzYnI+vCUbzB+G/O5jZAVh7f1hVpCBNObGCsoCxSVnPQUchM99YDlww==
+hof@~22.10.4:
+  version "22.10.4"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.10.4.tgz#323cc11c626d04e36e7b7fe80ee771f80c2b5104"
+  integrity sha512-HJmr6+FF525v05puT50NibQkkAd4OBwQra/m3UE4krPpcEMQSdbMPk4KG254pueciLf2HNpSxuZjobIt8VYosg==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.12.2"
@@ -4405,7 +4405,7 @@ hof@22.13.0:
     findup "^0.1.5"
     glob "^7.2.3"
     govuk-elements-sass "^3.1.3"
-    govuk-frontend "4.10"
+    govuk-frontend "3.15.0"
     govuk_template_mustache "^0.26.0"
     helmet "^3.23.3"
     hogan-express-strict "^0.5.4"
