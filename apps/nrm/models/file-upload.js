@@ -23,14 +23,17 @@ module.exports = class UploadModel extends Model {
         filename: this.get('name'),
         contentType: this.get('mimetype')
       });
-      
+
       const reqConf = {
         url: urlObj.toString(),
         data: formData,
         method: 'POST',
         headers: {
           ...formData.getHeaders()
-        }
+        },
+        host: urlObj.host,
+        path: urlObj.pathname,
+        protocol: urlObj.protocol
       };
 
       const result = await this.request(reqConf, error => {
