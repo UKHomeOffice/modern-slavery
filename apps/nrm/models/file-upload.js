@@ -1,8 +1,5 @@
-/* eslint-disable node/no-deprecated-api */
-
 'use strict';
 
-const url = require('url');
 const { model: Model } = require('hof');
 const { v4: uuidv4 } = require('uuid');
 const FormData = require('form-data');
@@ -20,16 +17,20 @@ module.exports = class UploadModel extends Model {
       const attributes = {
         url: config.upload.hostname
       };
-      const reqConf = url.parse(this.url(attributes));
+      const urlObj = new URL(this.url(attributes));
       const formData = new FormData();
       formData.append('document', this.get('data'), {
         filename: this.get('name'),
         contentType: this.get('mimetype')
       });
-      reqConf.data = formData;
-      reqConf.method = 'POST';
-      reqConf.headers = {
-        ...formData.getHeaders()
+      
+      const reqConf = {
+        url: urlObj.toString(),
+        data: formData,
+        method: 'POST',
+        headers: {
+          ...formData.getHeaders()
+        }
       };
 
       const result = await this.request(reqConf, error => {
