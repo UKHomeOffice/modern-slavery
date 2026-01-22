@@ -42,7 +42,7 @@
     "busboy": "^1.6.0",
     "form-data": "^4.0.5",
     "govuk-frontend": "^5.14.0",
-    "hof": "~22.10.4",
+    "hof": "~22.13.0",
     "ioredis": "^5.9.2",
     "knex": "^3.1.0",
     "lodash": "^4.17.21",
@@ -77,6 +77,9 @@
     "sinon-chai": "^3.7.0",
     "supertest": "^7.2.2",
     "supertest-session": "^5.0.1"
+  },
+  "resolutions": {
+    "nodemailer": "7.0.12"
   },
   "mocha": {
     "reporter": "spec",
