@@ -169,6 +169,14 @@ spec:
               cpu: 300m
           securityContext:
             runAsNonRoot: true
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.4
