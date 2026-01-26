@@ -24,7 +24,7 @@
     "dev": "ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
     "dev:api": "NODE_ENV=development ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk hof-build watch --env",
     "test": "NODE_ENV=test yarn run test:unit && yarn run test:lint && yarn run test:ui-integration",
-    "test:ui-integration": "NODE_ENV=test ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk _mocha \"test/_ui-integration/**/*.spec.js\" --exit",
+    "test:ui-integration": "NODE_ENV=test ALLOW_SKIP=true SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk _mocha --require dotenv/config \"test/_ui-integration/**/*.spec.js\" --exit",
     "test:unit": "NODE_ENV=test nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:docker-acceptance": "env BROWSER_TYPE=remote _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
