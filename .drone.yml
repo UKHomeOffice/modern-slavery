@@ -255,6 +255,9 @@ steps:
 
 - name: ui_integration_tests_branch
   <<: *ui_integration_tests
+  environment:
+    SESSION_SECRET:
+      from_secret: session-secret
   when:
     branch:
       include:
