@@ -25,8 +25,8 @@ spec:
     spec:
       containers:
         - name: file-vault
-          # v1.1.0
-          image: quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+          # v3.0.1 28th August 2025
+          image: quay.io/ukhomeofficedigital/file-vault:3.0.1@sha256:44f35820701981eeb3371d332e6fd53f697e1bcd60f75731a57e8da6edb7bed5
           imagePullPolicy: Always
           resources:
             limits:
@@ -34,6 +34,7 @@ spec:
               cpu: 200m
             requests:
               memory: 512Mi
+              cpu: 100m
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -127,7 +128,7 @@ spec:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
+          image: quay.io/ukhomeofficedigital/gogatekeeper:3.5.0
           resources:
             limits:
               memory: 1024Mi
@@ -152,6 +153,7 @@ spec:
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001
+            # the endpoint where requests are proxied to
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
@@ -164,12 +166,6 @@ spec:
           {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-ms.{{ .BRANCH_ENV }}.homeoffice.gov.uk
           {{ end }}
-          command:
-            - "/opt/keycloak-proxy"
-            - "--resources=uri=/file|methods=GET,POST|roles=caseworkers"
-            - "--resources=uri=/*"
-            - "--enable-logging=true"
-            - "--enable-json-logging=true"
           args:
              # the url which is used to retrieve the OpenID configuration
           {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
@@ -177,10 +173,15 @@ spec:
           {{ else }}
             - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
           {{ end }}
-            # the endpoint where requests are proxied to
-            - --upstream-url=http://127.0.0.1:3000
             # URls that you wish to protect.
+            - --resources=uri=/file|methods=GET,POST|roles=caseworkers
             - --resources=uri=/*
+            - --enable-default-deny=false
+            - --enable-security-filter=true
+            - --enable-request-id=true
+            - --enable-logging=true
+            - --enable-json-logging=true
+            - --enable-encrypted-token=false
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
           {{ end }}
@@ -198,8 +199,7 @@ spec:
               readOnly: true
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v.4.4.7@sha256:0c58dabb1df4b4ad4bf1c6ed4ee1e81e440384e0ea41399c568aeb79e627b8ac
           resources:
             limits:
               memory: 1024Mi
