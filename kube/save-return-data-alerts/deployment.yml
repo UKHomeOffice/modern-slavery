@@ -44,7 +44,7 @@ spec:
       containers:
         - name: alert-service
           # v2.1.0 Fix expiration date
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:0469ac140f7dce54aaeec4424dc698bd8536d320
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:b04b21e332f3d157c3cf23127b7546b594a11340
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
