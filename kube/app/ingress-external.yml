@@ -12,7 +12,6 @@ spec:
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        - {{ .DRONE_BUILD_NUMBER }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
         - ms-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
         - uat.ms-notprod.homeoffice.gov.uk
@@ -41,8 +40,8 @@ spec:
           - path: /
             backend:
               {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              serviceName: modern-slavery-main-{{ .DRONE_SOURCE_BRANCH }}
+              serviceName: {{ .APP }}-main-{{ .DRONE_SOURCE_BRANCH }}
               {{ else }}
-              serviceName: modern-slavery-main
+              serviceName: {{ .APP }}-main
               {{ end }}
               servicePort: 10443
