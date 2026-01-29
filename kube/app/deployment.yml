@@ -141,7 +141,7 @@ spec:
                 secretKeyRef:
                   name: sas-ms-branch-sqs
                   key: access_key_id
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+            {{ else if or (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .STG_ENV) }}
             - name: AZURE_QUEUE_NAME
               valueFrom:
                 secretKeyRef:
