@@ -172,6 +172,16 @@ spec:
             - name: SKIP_EMAIL
               value: "sas-hof-test@digital.homeoffice.gov.uk"
             {{ else }}
+            - name: AZURE_QUEUE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: azure-queue-name
+            - name: AZURE_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: azure-connection-string
+                  key: endpoint
             - name: AWS_SQS
               valueFrom:
                 secretKeyRef:
