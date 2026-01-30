@@ -87,7 +87,7 @@ steps:
       DRONE_GIT_TOKEN:
         from_secret: drone_git_token
     commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone -b HOFF-965-Modern-Slavery-Keycloak-v22-Migration https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
@@ -140,7 +140,7 @@ steps:
       event: [push, pull_request]
 
   # temporarily commented out because tests are not running properly on drone
-  # - name: acceptance_tests_deploy
+  # - name: acceptance_tests
   #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   #   volumes:
   #     - name: dockersock
