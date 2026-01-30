@@ -167,12 +167,12 @@ spec:
               value: https://fv-ms.{{ .BRANCH_ENV }}.homeoffice.gov.uk
           {{ end }}
           args:
-             # the url which is used to retrieve the OpenID configuration
-          {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
-            - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
-          {{ else }}
-            - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
-          {{ end }}
+            # the url which is used to retrieve the OpenID configuration
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+            - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-keycloak-notprod
+            {{ else }}
+            - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-keycloak-prod
+            {{ end }}
             # URls that you wish to protect.
             - --resources=uri=/file|methods=GET,POST|roles=caseworkers
             - --resources=uri=/*

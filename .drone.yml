@@ -139,6 +139,21 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
+  # temporarily commented out because tests are not running properly on drone
+  # - name: acceptance_tests_deploy
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #   volumes:
+  #     - name: dockersock
+  #       path: /var/run
+  #   commands:
+  #     - apk add --no-cache docker-compose
+  #     - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
+  #     - docker-compose exec -T modern-slavery-main sh -c 'npm run test:docker-acceptance'
+  #   when:
+  #     branch:
+  #       <<: *include_default_and_feature_branches
+  #     event: [push, pull_request]
+
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
@@ -154,7 +169,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      #  - unit_tests
+      - unit_tests
 
   # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
   - name: scan_base_image_os
@@ -436,7 +451,7 @@ steps:
       - cron_build_image
       - cron_clone_repos
 
-    # Slack notification upon a CRON job fail
+  # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
     pull: if-not-exists
     image: plugins/slack:1.4.1
