@@ -169,9 +169,9 @@ spec:
           args:
             # the url which is used to retrieve the OpenID configuration
             {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-            - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-keycloak-notprod
+            - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-notprod
             {{ else }}
-            - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-keycloak-prod
+            - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod
             {{ end }}
             # URls that you wish to protect.
             - --resources=uri=/file|methods=GET,POST|roles=caseworkers
