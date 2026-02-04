@@ -79,8 +79,8 @@ spec:
               value: redis
               {{ end }}
             - name: SEND_TO_AZURE
-              # Set to true in UAT to test Azure queue integration
-              {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+              # Set to true in UAT & PROD to test Azure queue integration
+              {{ if or (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
               value: "true"
               {{ else }}
               value: "false"
