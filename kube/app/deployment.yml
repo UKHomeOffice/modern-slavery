@@ -98,22 +98,22 @@ spec:
             - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv
+                  name: keycloak-client-fv-v22
                   key: secret
             - name: KEYCLOAK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv
+                  name: keycloak-client-fv-v22
                   key: id
             - name: KEYCLOAK_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-user
+                  name: keycloak-user-v22
                   key: username
             - name: KEYCLOAK_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-user
+                  name: keycloak-user-v22
                   key: password
             - name: SESSION_SECRET
               valueFrom:
