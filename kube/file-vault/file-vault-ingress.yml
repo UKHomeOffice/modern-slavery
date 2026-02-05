@@ -2,7 +2,11 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: file-vault-ingress-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
   name: file-vault-ingress
+  {{ end }}
 {{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
 {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
@@ -38,5 +42,9 @@ spec:
         paths:
         - path: /
           backend:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            serviceName: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else }}
             serviceName: file-vault
+            {{ end }}
             servicePort: 10443
