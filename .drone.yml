@@ -50,7 +50,7 @@ trigger:
 
 linting: &linting
   pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
   environment:
     NOTIFY_STUB: true
   commands:
@@ -58,7 +58,7 @@ linting: &linting
 
 unit_tests: &unit_tests
   pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
   environment:
     NOTIFY_STUB: true
   commands:
@@ -66,7 +66,7 @@ unit_tests: &unit_tests
 
 ui_integration_tests: &ui_integration_tests
   pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
   environment:
     NOTIFY_STUB: true
   commands:
@@ -153,6 +153,8 @@ steps:
   #     branch:
   #       <<: *include_default_and_feature_branches
   #     event: [push, pull_request]
+  #    depends_on:
+  #    - setup
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -360,7 +362,7 @@ steps:
       target: PROD
       event: promote
 
-    # Deploy to Production environment
+  # Deploy to Production environment
   - name: deploy_to_prod
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -460,7 +462,7 @@ steps:
       failure: ignore
       icon.url: https://readme.drone.io/logo.svg
       template: >
-            *✘ {{ uppercasefirst build.status }}*: CRON Job `tear_down_pr_envs` for *Modern Slavery* has failed.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `tear_down_pr_envs` for * Modern Slavery * has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 
@@ -484,7 +486,7 @@ steps:
       failure: ignore
       icon.url: https://readme.drone.io/logo.svg
       template: >
-            *✘ {{ uppercasefirst build.status }}*: CRON Job `security_scans` for *Modern Slavery* has failed.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `security_scans` for * Modern Slavery * has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 

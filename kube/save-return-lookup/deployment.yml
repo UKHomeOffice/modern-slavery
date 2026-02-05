@@ -108,7 +108,7 @@ spec:
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v.4.4.7@sha256:0c58dabb1df4b4ad4bf1c6ed4ee1e81e440384e0ea41399c568aeb79e627b8ac
           resources:
             requests:
               memory: 10Mi
@@ -131,7 +131,7 @@ spec:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/keycloak-gatekeeper:8.0.2
+          image: quay.io/ukhomeofficedigital/gogatekeeper:3.5.0
           resources:
             limits:
               memory: "256Mi"
@@ -140,12 +140,13 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
                   name: keycloak-lookup-secret
-                  {{ else }}
-                  name: keycloak-lookup-secret
-                  {{ end }}
                   key: keycloak-lookup-secret
+            - name: PROXY_LISTEN
+              value: 127.0.0.1:10043
+            # the endpoint where requests are proxied to
+            - name: PROXY_UPSTREAM_URL
+              value: "http://127.0.0.1:10444"
             - name: PROXY_REDIRECTION_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://lookup.modernslavery.homeoffice.gov.uk/
@@ -157,21 +158,26 @@ spec:
               value: https://lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/
               {{ end }}
           args:
-            - --listen=:10443
             # specififes which client is used
             - --client-id=lookup
             # the url which is used to retrieve the OpenID configuration
-            {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
-            - --discovery-url=https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/ms-keycloak
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+            - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-notprod
             {{ else }}
-            - --discovery-url=https://sso.digital.homeoffice.gov.uk/auth/realms/ms-keycloak-prod
+            - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod
             {{ end }}
-            # the endpoint where requests are proxied to
-            - --upstream-url=https://127.0.0.1:10444
             # URls that you wish to protect.
-            - --resources=uri=/*|roles=lookup
-            - --tls-cert=/certs/tls.crt
-            - --tls-private-key=/certs/tls.key
+            - --resources=uri=/file|methods=GET,POST|roles=caseworkers
+            - --resources=uri=/*
+            - --enable-default-deny=false
+            - --enable-security-filter=true
+            - --enable-request-id=true
+            - --enable-logging=true
+            - --enable-json-logging=true
+            - --enable-encrypted-token=false
+          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - --verbose=true
+          {{ end }}
           ports:
             - containerPort: 10080
               protocol: TCP
