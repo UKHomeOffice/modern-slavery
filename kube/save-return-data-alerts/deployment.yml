@@ -113,7 +113,7 @@ spec:
 
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/save-return-api:9ae616c7d36c6e42ec8c6556f063ca2210ac5b6e
+          image: quay.io/ukhomeofficedigital/save-return-api:513ba80d0eaf50377f68b3f530f01c9f865091fc
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

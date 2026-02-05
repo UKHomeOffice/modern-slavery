@@ -64,9 +64,11 @@ const Behaviour = proxyquire(
       }
     },
     'sqs-producer': {
-      create: sinon.stub().returns({
-        send: sinon.stub().callsArgWith(1, null)
-      })
+      Producer: {
+        create: sinon.stub().returns({
+          send: sinon.stub().callsArgWith(1, null)
+        })
+      }
     },
     '@azure/service-bus': {
       ServiceBusClient: function () {
@@ -209,7 +211,7 @@ describe('casework-submission behaviour tests', () => {
               return Model;
             }
           },
-          'sqs-producer': { create: createStub },
+          'sqs-producer': { Producer: { create: createStub } },
           '@azure/service-bus': {
             ServiceBusClient: function () {
               return serviceBusClientMockLocal;

@@ -21,25 +21,26 @@ trigger:
   - feature/*
   - master
 
-linting: &linting
+node_image: &node_image
   pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  image: node:20.19.0-alpine3.21@sha256:37a5a350292926f98d48de9af160b0a3f7fcb141566117ee452742739500a5bd
+
+linting: &linting
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:lint
 
 unit_tests: &unit_tests
-  pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:unit
 
 ui_integration_tests: &ui_integration_tests
-  pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
@@ -68,8 +69,7 @@ steps:
     event: [push, pull_request]
 
 - name: setup_deploy
-  pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
@@ -144,7 +144,7 @@ steps:
       cpu: 1000
       memory: 1024Mi
   environment:
-    IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+    IMAGE_NAME: node:20.19.0-alpine3.21@sha256:37a5a350292926f98d48de9af160b0a3f7fcb141566117ee452742739500a5bd
     SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
     FAIL_ON_DETECTION: false
     IGNORE_UNFIXED: false
@@ -218,8 +218,7 @@ steps:
     - image_to_quay
 
 - name: setup_branch
-  pull: if-not-exists
-  image: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
@@ -256,6 +255,9 @@ steps:
 
 - name: ui_integration_tests_branch
   <<: *ui_integration_tests
+  environment:
+    SESSION_SECRET:
+      from_secret: session-secret-for-ui-integration-tests
   when:
     branch:
       include:
@@ -449,7 +451,7 @@ steps:
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
   pull: always
   environment:
-    IMAGE_NAME: node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
+    IMAGE_NAME: node:20.19.0-alpine3.21@sha256:37a5a350292926f98d48de9af160b0a3f7fcb141566117ee452742739500a5bd
     SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
     FAIL_ON_DETECTION: true
     IGNORE_UNFIXED: false
