@@ -167,7 +167,6 @@ spec:
             - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod
             {{ end }}
             # URls that you wish to protect.
-            - --resources=uri=/file|methods=GET,POST|roles=caseworkers
             - --resources=uri=/*
             - --enable-default-deny=false
             - --enable-security-filter=true
