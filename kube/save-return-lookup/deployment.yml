@@ -140,7 +140,7 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-lookup-secret
+                  name: keycloak-lookup-secret-v22
                   key: keycloak-lookup-secret
             - name: PROXY_LISTEN
               value: 127.0.0.1:10043
