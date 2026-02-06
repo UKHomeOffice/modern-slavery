@@ -106,25 +106,25 @@ spec:
             - name: OAUTH_SCOPE
               value: email
             - name: OAUTH_AUTH_URL
-              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+              {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
               value: https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-notprod/protocol/openid-connect/auth
               {{ else }}
               value: https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod/protocol/openid-connect/auth
               {{ end }}
             - name: OAUTH_TOKEN_URL
-              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+              {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
               value: https://acp-sso-admin.notprod.acp.homeoffice.gov.uk/realms/ms-notprod/protocol/openid-connect/token
               {{ else }}
               value: https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod/protocol/openid-connect/token
               {{ end }}
             - name: OAUTH_API_URL
-              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+              {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
               value: https://acp-sso-admin.notprod.acp.homeoffice.gov.uk/realms/ms-notprod/protocol/openid-connect/userinfo
               {{ else }}
               value: https://acp-sso-admin.prod.acp.homeoffice.gov.uk/realms/ms-prod/protocol/openid-connect/userinfo
               {{ end }}
             - name: SIGNOUT_REDIRECT_URL
-              {{ if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+              {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
               value: https://acp-sso-admin.notprod.acp.homeoffice.gov.uk/realms/ms-notprod/protocol/openid-connect/logout
               {{ else }}
               value: https://acp-sso-admin.prod.acp.homeoffice.gov.uk/realms/ms-prod/protocol/openid-connect/logout
@@ -1456,8 +1456,7 @@ spec:
             runAsNonRoot: true
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4.1.4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v.4.4.7@sha256:0c58dabb1df4b4ad4bf1c6ed4ee1e81e440384e0ea41399c568aeb79e627b8ac
           env:
             - name: PROXY_SERVICE_HOST
               value: 127.0.0.1
