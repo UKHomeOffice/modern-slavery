@@ -124,8 +124,12 @@ spec:
             - name: STATSD_METRICS
               value: "FALSE"
           volumeMounts:
-            - mountPath: /public
-              name: public
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+            - name: bundle
+              mountPath: /etc/ssl/certs
+              readOnly: true
           securityContext:
             runAsNonRoot: true
 
@@ -141,6 +145,11 @@ spec:
                 secretKeyRef:
                   name: keycloak-lookup-secret-v22
                   key: keycloak-lookup-secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-lookup-secret-v22
+                  key: keycloak-lookup-client-id
             - name: PROXY_LISTEN
               value: 127.0.0.1:10043
             # the endpoint where requests are proxied to
@@ -157,8 +166,6 @@ spec:
               value: https://lookup-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/
               {{ end }}
           args:
-            # specififes which client is used
-            - --client-id=lookup
             # the url which is used to retrieve the OpenID configuration
             {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
             - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/ms-notprod
@@ -192,8 +199,6 @@ spec:
               name: bundle
               readOnly: true
       volumes:
-        - name: public
-          emptyDir: {}
         - name: certs
           secret:
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
