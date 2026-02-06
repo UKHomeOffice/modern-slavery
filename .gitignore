@@ -4,6 +4,7 @@ apps/*/translations/*
 node_modules/
 .env
 .vscode/*
+acceptance-test/temp-downloads/
 .idea/vcs.xml
 .idea/workspace.xml
 dump.rdb
@@ -12,5 +13,13 @@ dump.rdb
 .idea
 .DS_Store
 coverage
-anchore-reports/
-acceptance-test/temp-downloads/
+output/
+*.iml
+.vscode
+.vscode-server
+yarn-error.log
+apps/**/translations/**/*
+!apps/**/translations/src/
+!apps/**/translations/src/**/*
+test/_accessibility/tmp/*
+.devcontainer/*.env
