@@ -44,7 +44,7 @@ spec:
       containers:
         - name: alert-service
           # v2.1.0 Fix expiration date
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:ca8d0849a3bdc1bbbf4b61610f397865a2023f84
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:b11431f39cfdb55ad53559a8a84e8cae0fa733d0
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -84,22 +84,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: default_db
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: ms-dev-rds
+                  name: audit-database
             {{ end }}
           resources:
             requests:
@@ -113,7 +113,7 @@ spec:
 
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/save-return-api:9ae616c7d36c6e42ec8c6556f063ca2210ac5b6e
+          image: quay.io/ukhomeofficedigital/save-return-api:03a2f976029c89131bfe2a8a504231b86249dc71
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

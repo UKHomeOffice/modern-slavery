@@ -3,7 +3,7 @@ FROM node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de8
 USER root
 
 RUN apk update && \
-    apk add --upgrade gnutls binutils nodejs npm apk-tools libjpeg-turbo libcurl libx11 libxml2
+    apk add --upgrade gnutls binutils nodejs npm apk-tools libjpeg-turbo libcurl libx11 libxml2 postgresql
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
