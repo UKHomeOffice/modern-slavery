@@ -96,12 +96,12 @@ spec:
             - name: OAUTH_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: oauth-client
+                  name: oauth-client-v22
                   key: id
             - name: OAUTH_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: oauth-client
+                  name: oauth-client-v22
                   key: secret
             - name: OAUTH_SCOPE
               value: email
