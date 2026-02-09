@@ -55,7 +55,7 @@
     "ms-uk-regions": "^2.1.1",
     "notifications-node-client": "^8.2.1",
     "pg": "^8.16.3",
-    "sqs-producer": "^8.0.2",
+    "sqs-producer": "^8.0.3",
     "typeahead-aria": "^1.0.4",
     "uuid": "^8.3.2"
   },

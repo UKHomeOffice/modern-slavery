@@ -43,7 +43,6 @@ spec:
     spec:
       containers:
         - name: alert-service
-          # v2.1.0 Fix expiration date
           image: quay.io/ukhomeofficedigital/save-return-email-alerts:ca8d0849a3bdc1bbbf4b61610f397865a2023f84
           imagePullPolicy: Always
           envFrom:
@@ -112,7 +111,6 @@ spec:
             runAsNonRoot: true
 
         - name: data-service
-          # release v2.0.1
           image: quay.io/ukhomeofficedigital/save-return-api:513ba80d0eaf50377f68b3f530f01c9f865091fc
           imagePullPolicy: Always
           envFrom:

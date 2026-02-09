@@ -6986,7 +6986,7 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-sqs-producer@^8.0.2:
+sqs-producer@^8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/sqs-producer/-/sqs-producer-8.0.3.tgz#d96c61ad3c53afd828d48877348d2e86fcfa167b"
   integrity sha512-kty80l0WnpAEz0nKnq2bWfxdQk35j7aTndhWAKIemN+ABbZN+BK1+7jITBGluxi4dWNolANprkK7FNP4bYdFHg==
