@@ -124,6 +124,8 @@ spec:
             - name: STATSD_METRICS
               value: "FALSE"
           volumeMounts:
+            - mountPath: /public
+              name: public
             - mountPath: /certs
               name: certs
               readOnly: true
@@ -199,6 +201,8 @@ spec:
               name: bundle
               readOnly: true
       volumes:
+        - name: public
+          emptyDir: {}
         - name: certs
           secret:
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
