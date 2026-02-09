@@ -124,6 +124,17 @@ spec:
               value: "10444"
             - name: STATSD_METRICS
               value: "FALSE"
+            # test config for nginx-proxy
+            - name: ENABLE_UUID_PARAM
+              value: "FALSE"
+            - name: HTTPS_REDIRECT
+              value: "FALSE"
+            - name: NAXSI_USE_DEFAULT_RULES
+              value: "FALSE"
+            - name: PORT_IN_HOST_HEADER
+              value: "FALSE"
+            - name: VERBOSE_ERROR_PAGES
+              value: "TRUE"
           volumeMounts:
             - mountPath: /public
               name: public
