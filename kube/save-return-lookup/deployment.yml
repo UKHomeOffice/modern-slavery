@@ -107,7 +107,8 @@ spec:
             runAsNonRoot: true
 
         - name: nginx-proxy
-          image: quay.io/ukhomeofficedigital/nginx-proxy:v.4.4.7@sha256:0c58dabb1df4b4ad4bf1c6ed4ee1e81e440384e0ea41399c568aeb79e627b8ac
+          # nginx-proxy-govuk:v4.1.4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
           resources:
             requests:
               memory: 10Mi
@@ -126,12 +127,6 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /certs
-              name: certs
-              readOnly: true
-            - name: bundle
-              mountPath: /etc/ssl/certs
-              readOnly: true
           securityContext:
             runAsNonRoot: true
 
@@ -182,9 +177,9 @@ spec:
             - --enable-logging=true
             - --enable-json-logging=true
             - --enable-encrypted-token=false
-          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
-          {{ end }}
+            {{ end }}
           ports:
             - containerPort: 10080
               protocol: TCP
