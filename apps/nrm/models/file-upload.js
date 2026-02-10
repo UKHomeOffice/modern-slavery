@@ -1,9 +1,7 @@
 'use strict';
-/* eslint-disable node/no-deprecated-api */
 
-const url = require('url');
 const { model: Model } = require('hof');
-const uuid = require('uuid').v4;
+const { v4: uuidv4 } = require('uuid');
 const FormData = require('form-data');
 const config = require('../../../config');
 const logger = require('hof/lib/logger')({ env: config.env });
@@ -11,7 +9,7 @@ const logger = require('hof/lib/logger')({ env: config.env });
 module.exports = class UploadModel extends Model {
   constructor(...args) {
     super(...args);
-    this.set('id', uuid());
+    this.set('id', uuidv4());
   }
 
   async save() {
@@ -19,16 +17,23 @@ module.exports = class UploadModel extends Model {
       const attributes = {
         url: config.upload.hostname
       };
-      const reqConf = url.parse(this.url(attributes));
+      const urlObj = new URL(this.url(attributes));
       const formData = new FormData();
       formData.append('document', this.get('data'), {
         filename: this.get('name'),
         contentType: this.get('mimetype')
       });
-      reqConf.data = formData;
-      reqConf.method = 'POST';
-      reqConf.headers = {
-        ...formData.getHeaders()
+
+      const reqConf = {
+        url: urlObj.toString(),
+        data: formData,
+        method: 'POST',
+        headers: {
+          ...formData.getHeaders()
+        },
+        host: urlObj.host,
+        path: urlObj.pathname,
+        protocol: urlObj.protocol
       };
 
       const result = await this.request(reqConf, error => {
