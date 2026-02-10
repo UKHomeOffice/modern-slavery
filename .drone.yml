@@ -103,6 +103,9 @@ steps:
 
 - name: ui_integration_tests_deploy
   <<: *ui_integration_tests
+  environment:
+    SESSION_SECRET:
+      from_secret: session-secret-for-ui-integration-tests
   when:
     branch:
       include:
