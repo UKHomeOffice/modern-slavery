@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
         - name: ms-schema
-          # release v1.6.0
           image: quay.io/ukhomeofficedigital/ms-schema:e89b81ee2f438531a04a3480b2177706bd46c98e
           command: ["npm",  "run", "db:{{ .SCHEMA_ACTION }}"]
           env:

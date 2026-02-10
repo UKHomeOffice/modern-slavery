@@ -6,7 +6,7 @@ const config = require('../../../config');
 const moment = require('moment');
 const baseUrl = config.saveService.host + ':' + config.saveService.port + '/reports/';
 const _ = require('lodash');
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 const encodeEmail = email => Buffer.from(email).toString('hex');
 
@@ -20,7 +20,7 @@ module.exports = superclass => class extends superclass {
     req.sessionModel.unset(cleanList);
     req.sessionModel.set('steps', ['/start', '/reports']);
 
-    const externalID = req.sessionModel.get('externalID') || uuid.v4();
+    const externalID = req.sessionModel.get('externalID') || uuidv4();
     req.sessionModel.set('externalID', externalID);
     req.log('info', `External ID: ${externalID} for report submission`);
   }
