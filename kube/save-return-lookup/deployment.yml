@@ -105,6 +105,9 @@ spec:
               name: public
           securityContext:
             runAsNonRoot: true
+          ports:
+            - containerPort: 8080
+              protocol: TCP
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4.1.4
@@ -140,6 +143,9 @@ spec:
               name: public
           securityContext:
             runAsNonRoot: true
+          ports:
+            - containerPort: 10444
+              protocol: TCP
 
         - name: keycloak-proxy
           image: quay.io/ukhomeofficedigital/gogatekeeper:3.5.0
