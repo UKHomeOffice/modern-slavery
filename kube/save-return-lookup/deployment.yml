@@ -157,10 +157,10 @@ spec:
                   name: keycloak-lookup-secret-v22
                   key: keycloak-lookup-client-id
             - name: PROXY_LISTEN
-              value: 127.0.0.1:10043
+              value: 127.0.0.1:10443
             # the endpoint where requests are proxied to
             - name: PROXY_UPSTREAM_URL
-              value: "http://127.0.0.1:10444"
+              value: "https://127.0.0.1:10444"
             - name: PROXY_REDIRECTION_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://lookup.modernslavery.homeoffice.gov.uk/
