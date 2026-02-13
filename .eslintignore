@@ -4,3 +4,10 @@ apps/verify/models/save-token.js
 apps/verify/util/check-email-ext.js
 config.js
 ms-lists
+node_modules
+apps/**/translations/**/default.json
+apps/**/acceptance/**/*.js
+LICENSE
+README.md
+CONTRIBUTING.md
+coverage
