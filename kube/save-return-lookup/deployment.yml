@@ -140,7 +140,8 @@ spec:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/gogatekeeper:3.5.0
+          # Keycloak client based authentication used only for interactive user authentication and is different to other keycloak image
+          image: quay.io/ukhomeofficedigital/keycloak-gatekeeper:8.0.2
           resources:
             limits:
               memory: "256Mi"
@@ -161,6 +162,7 @@ spec:
             # the endpoint where requests are proxied to
             - name: PROXY_UPSTREAM_URL
               value: "https://127.0.0.1:10444"
+            # The external URL that users see in the browser and that Keycloak redirects back to after login.
             - name: PROXY_REDIRECTION_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://lookup.modernslavery.homeoffice.gov.uk/
@@ -178,15 +180,14 @@ spec:
             {{ else }}
             - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/ms-prod
             {{ end }}
+            - --listen=:10443
+            # the endpoint where requests are proxied to
+            - --upstream-url=https://127.0.0.1:10444
+            - --tls-cert=/certs/tls.crt
+            - --tls-private-key=/certs/tls.key
             # URls that you wish to protect.
             - --resources=uri=/*
             - --resources=uri=/*|roles=lookup
-            - --enable-default-deny=false
-            - --enable-security-filter=true
-            - --enable-request-id=true
-            - --enable-logging=true
-            - --enable-json-logging=true
-            - --enable-encrypted-token=false
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
             {{ end }}
