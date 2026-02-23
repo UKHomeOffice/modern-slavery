@@ -1,7 +1,7 @@
 'use strict';
 
 const redis = require('../../../lib/redis');
-const uuidv1 = require('uuid/v1');
+const { v1: uuidv1 } = require('uuid');
 const tokenExpiry = require('../../../config').tokenExpiry;
 
 module.exports = {
