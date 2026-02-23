@@ -1,9 +1,9 @@
-FROM node:20.19.0-alpine3.21@sha256:37a5a350292926f98d48de9af160b0a3f7fcb141566117ee452742739500a5bd
+FROM node:20.17.0-alpine3.20@sha256:2cc3d19887bfea8bf52574716d5f16d4668e35158de866099711ddfb2b16b6e0
 
 USER root
 
-# Update package index and upgrade all installed packages
-RUN apk update && apk upgrade --no-cache
+RUN apk update && \
+    apk add --upgrade gnutls binutils nodejs npm apk-tools libjpeg-turbo libcurl libx11 libxml2
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \

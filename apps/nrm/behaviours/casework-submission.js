@@ -3,9 +3,9 @@
 
 const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
-const { Producer } = require('sqs-producer');
+const Producer = require('sqs-producer');
 const { ServiceBusClient } = require('@azure/service-bus');
-const { v4: uuidv4 } = require('uuid');
+const uuid = require('uuid/v4');
 const { model: Model } = require('hof');
 const { encodeEmail } = require('../../../lib/utilities');
 let db;
@@ -74,57 +74,50 @@ module.exports = conf => {
           } else {
             // send casework model to AWS SQS
             const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
-            const caseworkID = uuidv4();
+            const caseworkID = uuid();
             req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
-
-            let sqsError = null;
-            try {
-              await producer.send([{
-                id: caseworkID,
-                body: JSON.stringify(caseworkModel)
-              }]);
-
+            producer.send([{
+              id: caseworkID,
+              body: JSON.stringify(caseworkModel)
+            }], async error => {
+              const sqsError = error ? 'Error Submitting to SQS Queue: ' + error : 'Successful Submission to SQS Queue';
               req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              SQS Queue Submission Status: Successful Submission to SQS Queue`);
-            } catch (error) {
-              sqsError = error;
-              req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              SQS Queue Submission Status: Error Submitting to SQS Queue: ${error}`);
-            }
+              SQS Queue Submission Status: ${sqsError}`);
 
-            req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
-            // Send to Azure Service Bus
-            let serviceBusError = null;
-            if (appConfig.azure.sendToAzure) {
-              serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
-              const serviceBusStatus = serviceBusError ?
-                'Error Submitting to Azure Service Bus: ' + serviceBusError :
-                'Successful Submission to Azure Service Bus';
-              req.log('info', `External ID: ${externalID}, 
-                Report ID: ${reportID}, Azure Service Bus Status: ${serviceBusStatus}`);
-            }
+              req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
+              // Send to Azure Service Bus
+              let serviceBusError = null;
+              if (appConfig.azure.sendToAzure) {
+                serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
+                const serviceBusStatus = serviceBusError ?
+                  'Error Submitting to Azure Service Bus: ' + serviceBusError :
+                  'Successful Submission to Azure Service Bus';
+                req.log('info', `External ID: ${externalID}, 
+                  Report ID: ${reportID}, Azure Service Bus Status: ${serviceBusStatus}`);
+              }
 
-            // Only proceed if both operations were successful
-            const combinedError = sqsError || serviceBusError;
+              // Only proceed if both operations were successful
+              const combinedError = error || serviceBusError;
 
-            // Ensure session data is deleted only when both operations have completed without errors
-            if (!combinedError) {
-              await this.deleteSessionData(req, next);
-            }
+              // Ensure session data is deleted only when both operations have completed without errors
+              if (!combinedError) {
+                await this.deleteSessionData(req, next);
+              }
 
-            if (appConfig.audit.enabled) {
-              db('hof').insert({
-                ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
-                type: caseworkModel.Type,
-                success: combinedError ? false : true
-              }).then(() => {
-                req.log('info', 'MS: hof insert successfully');
+              if (appConfig.audit.enabled) {
+                db('hof').insert({
+                  ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
+                  type: caseworkModel.Type,
+                  success: combinedError ? false : true
+                }).then(() => {
+                  req.log('info', 'MS: hof insert successfully');
+                  next(combinedError);
+                });
+              } else {
                 next(combinedError);
-              });
-            } else {
-              next(combinedError);
-            }
+              }
+            });
           }
         } catch (error) {
           req.log('error', `Error saving values: ${error}`);
