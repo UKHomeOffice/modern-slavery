@@ -43,8 +43,6 @@ ui_integration_tests: &ui_integration_tests
   <<: *node_image
   environment:
     NOTIFY_STUB: true
-    SESSION_SECRET:
-      from_secret: session-secret-for-ui-integration-tests
   commands:
   - yarn run test:ui-integration
 
@@ -257,6 +255,9 @@ steps:
 
 - name: ui_integration_tests_branch
   <<: *ui_integration_tests
+  environment:
+    SESSION_SECRET:
+      from_secret: session-secret-for-ui-integration-tests
   when:
     branch:
       include:
