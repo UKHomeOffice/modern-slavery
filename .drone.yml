@@ -49,8 +49,8 @@ ui_integration_tests: &ui_integration_tests
   - yarn run test:ui-integration
 
 sonar_scanner: &sonar_scanner
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+  pull: always
+  image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
   - sonar-scanner -Dproject.settings=./sonar-project.properties
 
