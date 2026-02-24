@@ -49,24 +49,21 @@ trigger:
   - master
 
 node_image: &node_image
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:lint
 
 unit_tests: &unit_tests
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
   commands:
   - yarn run test:unit
 
 ui_integration_tests: &ui_integration_tests
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21-v2@sha256:ab9686c7cf77bab94ab32c1c0e262b2a5242c2cbff61b0bbb3f62610b4f2e706
+  <<: *node_image
   environment:
     NOTIFY_STUB: true
     SESSION_SECRET:
