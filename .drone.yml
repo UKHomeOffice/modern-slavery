@@ -35,32 +35,17 @@ node_image: &node_image
 
 linting: &linting
   <<: *node_image
+  environment:
+    NOTIFY_STUB: true
   commands:
     - yarn run test:lint
 
 unit_tests: &unit_tests
   <<: *node_image
+  environment:
+    NOTIFY_STUB: true
   commands:
     - yarn run test:unit
-
-trigger:
-  branch:
-  - feature/*
-  - master
-
-node_image: &node_image
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-  - yarn run test:lint
-
-unit_tests: &unit_tests
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-  - yarn run test:unit
 
 ui_integration_tests: &ui_integration_tests
   <<: *node_image
@@ -95,6 +80,8 @@ steps:
 
   - name: setup
     <<: *node_image
+    environment:
+      NOTIFY_STUB: true
     commands:
       - yarn install --frozen-lockfile
       - yarn run postinstall
@@ -378,7 +365,7 @@ steps:
     depends_on:
       - clone_repos_prod
 
-  # CRON job step that tears down our pull request UAT environments
+  # CRON job step that tears down our pull request Branch environments
   - name: cron_tear_down
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
