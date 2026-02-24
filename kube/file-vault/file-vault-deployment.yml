@@ -156,12 +156,12 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv-v22
+                  name: keycloak-client-fv
                   key: secret
             - name: PROXY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client-fv-v22
+                  name: keycloak-client-fv
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001

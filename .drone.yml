@@ -75,8 +75,8 @@ ui_integration_tests: &ui_integration_tests
   - yarn run test:ui-integration
 
 sonar_scanner: &sonar_scanner
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+  pull: always
+  image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
   - sonar-scanner -Dproject.settings=./sonar-project.properties
 
@@ -89,7 +89,7 @@ steps:
       DRONE_GIT_TOKEN:
         from_secret: drone_git_token
     commands:
-      - git clone -b HOFF-965-Modern-Slavery-Keycloak-v22-Migration https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
