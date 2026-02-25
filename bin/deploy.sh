@@ -79,4 +79,20 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   echo "App Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Lookup UI Branch - lookup-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Data Service Branch - data-service-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "Dashboard UI Branch - dashboard-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
+  echo "UAT App - uat.ms-notprod.homeoffice.gov.uk"
+  echo "UAT Data Service - uat-data-service.ms-notprod.homeoffice.gov.uk"
+  echo "UAT Lookup UI - uat-lookup.ms-notprod.homeoffice.gov.uk"
+  echo "UAT Dashboard UI - uat-dashboard.ms-notprod.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
+  echo "STG App - preprod.ms-notprod.homeoffice.gov.uk"
+  echo "STG Data Service - preprod-data-service.ms-notprod.homeoffice.gov.uk"
+  echo "STG Lookup UI - preprod-lookup.ms-notprod.homeoffice.gov.uk"
+  echo "STG Dashboard UI - dashboard.ms-notprod.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
+  echo "PROD App - www.modernslavery.homeoffice.gov.uk"
+  echo "PROD Data Service - data-service.modernslavery.homeoffice.gov.uk"
+  echo "PROD Lookup UI - lookup.modernslavery.homeoffice.gov.uk"
+  echo "PROD Dashboard UI - dashboard.modernslavery.homeoffice.gov.uk"
 fi
