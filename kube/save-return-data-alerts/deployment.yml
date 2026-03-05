@@ -43,7 +43,6 @@ spec:
     spec:
       containers:
         - name: alert-service
-          # v2.1.0 Fix expiration date
           image: quay.io/ukhomeofficedigital/save-return-email-alerts:b11431f39cfdb55ad53559a8a84e8cae0fa733d0
           imagePullPolicy: Always
           envFrom:
@@ -112,8 +111,7 @@ spec:
             runAsNonRoot: true
 
         - name: data-service
-          # release v2.0.1
-          image: quay.io/ukhomeofficedigital/save-return-api:03a2f976029c89131bfe2a8a504231b86249dc71
+          image: quay.io/ukhomeofficedigital/save-return-api:513ba80d0eaf50377f68b3f530f01c9f865091fc
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -171,8 +169,7 @@ spec:
             runAsNonRoot: true
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4.1.4
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:99a8b58a3c0f6a1d96ba04a1d8214459ddadcc1bb636e72d5b4e270af8e0416a
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v.4.4.7@sha256:0c58dabb1df4b4ad4bf1c6ed4ee1e81e440384e0ea41399c568aeb79e627b8ac
           resources:
             requests:
               memory: 10Mi
