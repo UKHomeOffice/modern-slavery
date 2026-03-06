@@ -79,6 +79,12 @@ spec:
                   key: reports
                   name: users
             {{ else }}
+            - name: SESSION_TTL
+              value: "360"
+            - name: DELETION_TIMEOUT
+              value: "0.1"
+            - name: FIRST_ALERT_TIMEOUT
+              value: "0.2"
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
