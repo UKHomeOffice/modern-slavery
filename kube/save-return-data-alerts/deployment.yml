@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: alert-service
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:0482d7553e32307b0b8c72f1f20dd5052ea0a7d1
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:6d94803ad7af39e8092590bcef1f8f8ee2e68ee9
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -79,6 +79,12 @@ spec:
                   key: reports
                   name: users
             {{ else }}
+            - name: SESSION_TTL
+              value: "360"
+            - name: DELETION_TIMEOUT
+              value: "0.1"
+            - name: FIRST_ALERT_TIMEOUT
+              value: "0.2"
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
