@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: alert-service
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:ca8d0849a3bdc1bbbf4b61610f397865a2023f84
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:6d94803ad7af39e8092590bcef1f8f8ee2e68ee9
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -79,26 +79,32 @@ spec:
                   key: reports
                   name: users
             {{ else }}
+            - name: SESSION_TTL
+              value: "360"
+            - name: DELETION_TIMEOUT
+              value: "0.1"
+            - name: FIRST_ALERT_TIMEOUT
+              value: "0.2"
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: default_db
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: ms-dev-rds
+                  name: audit-database
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: ms-dev-rds
+                  name: audit-database
             {{ end }}
           resources:
             requests:
