@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: alert-service
-          image: quay.io/ukhomeofficedigital/save-return-email-alerts:b19e03075c5f5579d4857883aca16c1ef0cd4b56
+          image: quay.io/ukhomeofficedigital/save-return-email-alerts:0482d7553e32307b0b8c72f1f20dd5052ea0a7d1
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
