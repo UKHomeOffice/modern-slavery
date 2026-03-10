@@ -42,9 +42,13 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
   download.responseFile('/assets/documents', promptSheet, res);
 });
 
-// Downloads the offline form to client side
-const express = require('express');
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/download-first-responder-toolkit', (req, res) => {
+  download.responseFile(
+    '/assets/documents',
+    'first-responder-toolkit-england-wales.pdf',
+    res
+  );
+});
 
 const addGenericLocals = (req, res, next) => {
   // Set HTML Language
