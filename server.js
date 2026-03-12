@@ -45,7 +45,7 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
 app.use('/download-first-responder-toolkit', (req, res) => {
   download.responseFile(
     '/assets/documents',
-    'first-responder-toolkit-england-wales.pdf',
+    'first-responder-toolkit-england-wales-v1-2026.pdf',
     res
   );
 });
