@@ -5,6 +5,8 @@
 
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
+const config = require('../../../config');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = (data, token) => {
   const response = {};
@@ -265,6 +267,13 @@ module.exports = (data, token) => {
   response.EvidenceSubmitted = data['what-evidence-you-will-submit'];
 
   data['files'] = data['files'] || [];
+
+  const validFiles = data['files'].filter(doc => doc && doc.url && config.upload.allowedMimeTypes.includes(doc.mimetype));
+  logger.info('NRM submission files info', {
+    totalFiles: data['files'].length,
+    validFiles: validFiles.length,
+    urls: data['files'].map(doc => doc && doc.url).filter(Boolean)
+  });
 
   data['files'].forEach((doc, i) => {
     const index = i + 1;
