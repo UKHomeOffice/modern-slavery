@@ -196,7 +196,7 @@
     "read-only-field-2-hint": "This is the organisation you gave at the start of the form."
   },
   "fr-alternative-contact": {
-    "header": "Who should we contact in your absence?  (Optional)"
+    "header": "Who should we contact in your absence?"
   },
   "upload-evidence": {
     "header": "Upload supporting evidence and documents (Optional)"
