@@ -136,7 +136,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: port
-                  name: ms-dev-rds
+                  name: audit-database
             {{ end }}
             - name: DB_HOST
               valueFrom:
