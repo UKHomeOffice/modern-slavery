@@ -543,7 +543,7 @@
   },
   "future-exploitation-reasons": {
     "label": "Explain why there are concerns",
-    "hint": "If you have file-based evidence, this can be sent to us once the report is submitted"
+    "hint": "You can upload any files as supporting evidence at the end of this service"
   },
   "reported-to-police": {
     "legend": "Do they have a crime reference number related to any reported Modern Slavery crime, in which they are a victim?",
