@@ -2,8 +2,99 @@
 
 const organisations = [
   {value:"Home Office - UK Border Force UKBF",label:"Home Office - UK Border Force UKBF"},
-  {value:"Home Office - UK Visas and Immigration UKVI",label:"Home Office - UK Visas and Immigration UKVI"},
-  {value:"Home Office - Immigration Enforcement IE",label:"Home Office - Immigration Enforcement IE"},
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Heathrow',
+    label: 'Home Office - Immigration Enforcement IE - DET Heathrow'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Gatwick',
+    label: 'Home Office - Immigration Enforcement IE - DET Gatwick'
+  },
+  {
+    value: "Home Office - Immigration Enforcement IE - DET Yarl's Wood",
+    label: "Home Office - Immigration Enforcement IE - DET Yarl's Wood"
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Campsfield',
+    label: 'Home Office - Immigration Enforcement IE - DET Campsfield'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Derwentside',
+    label: 'Home Office - Immigration Enforcement IE - DET Derwentside'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Dungavel',
+    label: 'Home Office - Immigration Enforcement IE - DET Dungavel'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - DET Haslar',
+    label: 'Home Office - Immigration Enforcement IE - DET Haslar'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - ICE North',
+    label: 'Home Office - Immigration Enforcement IE - ICE North'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - ICE South',
+    label: 'Home Office - Immigration Enforcement IE - ICE South'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - Investigation Teams',
+    label: 'Home Office - Immigration Enforcement IE - Investigation Teams'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - Reporting and Offender Management (ROM)',
+    label: 'Home Office - Immigration Enforcement IE - Reporting and Offender Management (ROM)'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - Immigration Prison Teams (IPTs)',
+    label: 'Home Office - Immigration Enforcement IE - Immigration Prison Teams (IPTs)'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - Foreign National Offenders Returns Command (FNORC)',
+    label: 'Home Office - Immigration Enforcement IE - Foreign National Offenders Returns Command (FNORC)'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - National Returns Progression Command (NRPC)',
+    label: 'Home Office - Immigration Enforcement IE - National Returns Progression Command (NRPC)'
+  },
+  {
+    value: 'Home Office - Immigration Enforcement IE - Other',
+    label: 'Home Office - Immigration Enforcement IE - Other'
+  },
+  {
+    value: 'Home Office - Asylum Group - Asylum and HR Casework',
+    label: 'Home Office - Asylum Group - Asylum and HR Casework'
+  },
+  {
+    value: 'Home Office - Asylum Group - Appeals, Litigation and Administrative Review',
+    label: 'Home Office - Asylum Group - Appeals, Litigation and Administrative Review'
+  },
+  {
+    value: 'Home Office - Asylum Group - Illegal Migration Intake Unit',
+    label: 'Home Office - Asylum Group - Illegal Migration Intake Unit'
+  },
+  {
+    value: 'Home Office - Asylum Group - Asylum Support Other',
+    label: 'Home Office - Asylum Group - Asylum Support Other'
+  },
+  {
+    value: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub',
+    label: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub'
+  },
+  {
+    value: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub',
+    label: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub'
+  },
+  {
+    value: 'Home Office - Asylum Group - Asylum Support Operational Coordination Centre',
+    label: 'Home Office - Asylum Group - Asylum Support Operational Coordination Centre'
+  },
+  {
+    value: 'Home Office - Asylum Group - Other',
+    label: 'Home Office - Asylum Group - Other'
+  },
+  { value: 'Fair Work Agency', label: 'Fair Work Agency' },
   {value:"Health and Social Care Trusts - HSC Trusts",label:"Health and Social Care Trusts - HSC Trusts"},
   {value:"National Crime Agency NCA",label:"National Crime Agency NCA"},
   {value:"Trafficking Awareness Raising Alliance TARA",label:"Trafficking Awareness Raising Alliance TARA"},
