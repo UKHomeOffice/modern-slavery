@@ -1332,7 +1332,7 @@ module.exports = {
   'fr-alternative-contact': {
     mixin: 'input-text',
     className: ['govuk-input'],
-    validate: ['email', { type: 'maxlength', arguments: [15000] }],
+    validate: ['required', 'email', { type: 'maxlength', arguments: [15000] }],
     type: 'email'
   },
   'upload-file': {
