@@ -83,10 +83,6 @@ const organisations = [
     label: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub'
   },
   {
-    value: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub',
-    label: 'Home Office - Asylum Group - Asylum Support Safeguarding Hub'
-  },
-  {
     value: 'Home Office - Asylum Group - Asylum Support Operational Coordination Centre',
     label: 'Home Office - Asylum Group - Asylum Support Operational Coordination Centre'
   },
