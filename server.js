@@ -42,6 +42,14 @@ app.use('/prompt-sheet-for-working-offline', (req, res) => {
   download.responseFile('/assets/documents', promptSheet, res);
 });
 
+app.use('/download-first-responder-toolkit', (req, res) => {
+  download.responseFile(
+    '/assets/documents',
+    'first-responder-toolkit-england-wales-v1-2026.pdf',
+    res
+  );
+});
+
 const addGenericLocals = (req, res, next) => {
   // Set HTML Language
   res.locals.htmlLang = 'en';
