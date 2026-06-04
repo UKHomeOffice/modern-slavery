@@ -15,7 +15,6 @@ if (appConfig.audit.enabled) {
 
 module.exports = conf => {
   const config = conf || {};
-  let producer;
   let serviceBusSender;
 
   if (appConfig.azure.sendToAzure && appConfig.azure.connectionString && appConfig.azure.queueName) {
@@ -95,9 +94,9 @@ module.exports = conf => {
       const hofModel = new Model();
       const params = {
         url: `${appConfig.saveService.host}:${appConfig.saveService.port
-          }/reports/${encodeEmail(
-            req.sessionModel.get('user-email')
-          )}/${req.sessionModel.get('id')}`,
+        }/reports/${encodeEmail(
+          req.sessionModel.get('user-email')
+        )}/${req.sessionModel.get('id')}`,
         method: 'DELETE'
       };
       try {
