@@ -3,7 +3,6 @@
 
 const appConfig = require('../../../config');
 const GetFileToken = require('../models/file-upload');
-const { Producer } = require('sqs-producer');
 const { ServiceBusClient } = require('@azure/service-bus');
 const { v4: uuidv4 } = require('uuid');
 const { model: Model } = require('hof');
@@ -19,18 +18,10 @@ module.exports = conf => {
   let producer;
   let serviceBusSender;
 
-  if (appConfig.writeToCasework) {
-    // Initialize AWS SQS
-    producer = Producer.create({
-      queueUrl: appConfig.aws.sqs,
-      region: 'eu-west-2'
-    });
-
-    if (appConfig.azure.sendToAzure && appConfig.azure.connectionString && appConfig.azure.queueName) {
-      // Initialize Azure Service Bus
-      const serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
-      serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
-    }
+  if (appConfig.azure.sendToAzure && appConfig.azure.connectionString && appConfig.azure.queueName) {
+    // Initialize Azure Service Bus
+    const serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
+    serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
   }
 
   return superclass => class extends superclass {
@@ -57,74 +48,41 @@ module.exports = conf => {
         try {
           const model = new GetFileToken();
           const token = await model.auth();
-          const caseWorkPayload = appConfig.writeToCasework ? config.prepare(req.sessionModel.toJSON(), token) :
-            { info: 'No submission was made to icasework' };
-
-          const externalID = req.sessionModel.get('externalID') || caseWorkPayload.ExternalId;
 
           // Report ID from save and return to make logs clearer
           const reportID = req.sessionModel.get('id');
 
-          req.sessionModel.set('jsonPayload', caseWorkPayload);
-
-          // short circuit casework submission
-          if (!appConfig.writeToCasework) {
-            await this.deleteSessionData(req, next);
-            next();
-          } else {
-            // send casework model to AWS SQS
-            const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
-            const caseworkID = uuidv4();
-            req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
+          const caseworkModel = config.prepare(req.sessionModel.toJSON(), token);
+          const caseworkID = uuidv4();
+          req.log('info', `Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
 
-            let sqsError = null;
-            try {
-              await producer.send([{
-                id: caseworkID,
-                body: JSON.stringify(caseworkModel)
-              }]);
+          req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
+          // Send to Azure Service Bus
+          let serviceBusError = null;
 
-              req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              SQS Queue Submission Status: Successful Submission to SQS Queue`);
-            } catch (error) {
-              sqsError = error;
-              req.log('info', `External ID: ${externalID}, Report ID: ${reportID},
-              SQS Queue Submission Status: Error Submitting to SQS Queue: ${error}`);
-            }
+          serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
+          const serviceBusStatus = serviceBusError ?
+            'Error Submitting to Azure Service Bus: ' + serviceBusError :
+            'Successful Submission to Azure Service Bus';
+          req.log('info', `Report ID: ${reportID}, Azure Service Bus Status: ${serviceBusStatus}`);
 
-            req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
-            // Send to Azure Service Bus
-            let serviceBusError = null;
-            if (appConfig.azure.sendToAzure) {
-              serviceBusError = await this.sendToServiceBus(caseworkModel, caseworkID);
-              const serviceBusStatus = serviceBusError ?
-                'Error Submitting to Azure Service Bus: ' + serviceBusError :
-                'Successful Submission to Azure Service Bus';
-              req.log('info', `External ID: ${externalID}, 
-                Report ID: ${reportID}, Azure Service Bus Status: ${serviceBusStatus}`);
-            }
+          // Ensure session data is deleted only when both operations have completed without errors
+          if (!serviceBusError) {
+            await this.deleteSessionData(req, next);
+          }
 
-            // Only proceed if both operations were successful
-            const combinedError = sqsError || serviceBusError;
-
-            // Ensure session data is deleted only when both operations have completed without errors
-            if (!combinedError) {
-              await this.deleteSessionData(req, next);
-            }
-
-            if (appConfig.audit.enabled) {
-              db('hof').insert({
-                ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
-                type: caseworkModel.Type,
-                success: combinedError ? false : true
-              }).then(() => {
-                req.log('info', 'MS: hof insert successfully');
-                next(combinedError);
-              });
-            } else {
-              next(combinedError);
-            }
+          if (appConfig.audit.enabled) {
+            db('hof').insert({
+              ip: (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim(),
+              type: caseworkModel.Type,
+              success: serviceBusError ? false : true
+            }).then(() => {
+              req.log('info', 'MS: hof insert successfully');
+              next(serviceBusError);
+            });
+          } else {
+            next(serviceBusError);
           }
         } catch (error) {
           req.log('error', `Error saving values: ${error}`);
@@ -136,11 +94,10 @@ module.exports = conf => {
     async deleteSessionData(req, next) {
       const hofModel = new Model();
       const params = {
-        url: `${appConfig.saveService.host}:${
-          appConfig.saveService.port
-        }/reports/${encodeEmail(
-          req.sessionModel.get('user-email')
-        )}/${req.sessionModel.get('id')}`,
+        url: `${appConfig.saveService.host}:${appConfig.saveService.port
+          }/reports/${encodeEmail(
+            req.sessionModel.get('user-email')
+          )}/${req.sessionModel.get('id')}`,
         method: 'DELETE'
       };
       try {

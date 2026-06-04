@@ -126,11 +126,6 @@ spec:
                   name: notify-key
                   key: notify-key
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            - name: AWS_SQS
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-branch-sqs
-                  key: sqs_url
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
@@ -152,11 +147,6 @@ spec:
                 secretKeyRef:
                   name: azure-connection-string
                   key: endpoint
-            - name: AWS_SQS
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-uat-sqs
-                  key: sqs_url
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
@@ -182,11 +172,6 @@ spec:
                 secretKeyRef:
                   name: azure-connection-string
                   key: endpoint
-            - name: AWS_SQS
-              valueFrom:
-                secretKeyRef:
-                  name: aws-sqs
-                  key: url
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:

@@ -4,9 +4,6 @@ const env = process.env.NODE_ENV;
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8081}`;
 
 module.exports = {
-  aws: {
-    sqs: process.env.AWS_SQS
-  },
   azure: {
     sendToAzure: String(process.env.SEND_TO_AZURE) === 'true',
     connectionString: process.env.AZURE_CONNECTION_STRING,
@@ -27,7 +24,6 @@ module.exports = {
   env,
   allowSkip: String(process.env.ALLOW_SKIP) === 'true',
   skipEmail: process.env.SKIP_EMAIL,
-  writeToCasework: process.env.WRITE_TO_CASEWORK || env !== 'local',
   hostUrl: process.env.HOST_URL,
   saveService: {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,

@@ -20,7 +20,7 @@ if [[ $1 == 'tear_down' ]]; then
 
   $kd --delete -f kube/jobs/ms-schema-job.yml
   $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/icasework -f kube/app -f kube/file-vault
+  $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/app -f kube/file-vault
   echo "Torn Down UAT Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   exit 0
 fi
@@ -33,7 +33,7 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/icasework -f kube/dashboard
+  $kd -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault
@@ -43,7 +43,7 @@ elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
-  $kd -f kube/icasework -f kube/dashboard
+  $kd -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault
@@ -53,7 +53,7 @@ elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
-  $kd -f kube/icasework -f kube/dashboard
+  $kd -f kube/dashboard
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault 
@@ -65,7 +65,7 @@ elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   $kd -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml -f kube/save-return-lookup/ingress.yml
-  $kd -f kube/icasework -f kube/dashboard
+  $kd -f kube/dashboard
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
   $kd -f kube/redis -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
