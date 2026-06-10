@@ -1,8 +1,31 @@
 const supertestSession = require('supertest-session');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-const jquery = require('jquery');
 let $;
+
+function getJQuery(window) {
+  const previousWindow = global.window;
+  const previousDocument = global.document;
+
+  global.window = window;
+  global.document = window.document;
+
+  try {
+    return require('jquery');
+  } finally {
+    if (typeof previousWindow === 'undefined') {
+      delete global.window;
+    } else {
+      global.window = previousWindow;
+    }
+
+    if (typeof previousDocument === 'undefined') {
+      delete global.document;
+    } else {
+      global.document = previousDocument;
+    }
+  }
+}
 
 function getUrl(app, url, expectedStatus) {
   return new Promise((resolve, reject) => {
@@ -27,7 +50,7 @@ function postUrl(app, url, data, expectedStatus, token) {
 
 function parseHtml(response) {
   const dom = new JSDOM(response.text);
-  $ = jquery(dom.window);
+  $ = getJQuery(dom.window);
   return Promise.resolve($(dom.window.document));
 }
 
