@@ -4,3 +4,6 @@ apps/verify/models/save-token.js
 apps/verify/util/check-email-ext.js
 config.js
 ms-lists
+e2e-tests
+playwright-report
+bin/*
