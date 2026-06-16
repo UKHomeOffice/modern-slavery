@@ -115,6 +115,19 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
+  - name: clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for clone step.
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - generate_github_app_token_for_clone
+
   - name: setup
     <<: *node_image
     environment:
