@@ -62,17 +62,54 @@ sonar_scanner: &sonar_scanner
   commands:
   - sonar-scanner -Dproject.settings=./sonar-project.properties
 
+github_app_token_step: &github_app_token_step
+  pull: if-not-exists
+  image: alpine:3.21
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - apk add --no-cache bash curl jq openssl
+    - test -n "$GITHUB_APP_ID" || (echo "Missing github_app_id secret." && exit 1)
+    - test -n "$GITHUB_APP_PRIVATE_KEY" || (echo "Missing github_app_private_key secret." && exit 1)
+    - test -n "$GITHUB_APP_INSTALLATION_ID" || (echo "Missing github_app_installation_id secret." && exit 1)
+    - test -n "$OUTPUT_TOKEN_FILE" || (echo "Missing OUTPUT_TOKEN_FILE." && exit 1)
+    - bash bin/generate_github_app_token.sh
+
+github_app_token_secrets_ukho: &github_app_token_secrets_ukho
+  GITHUB_APP_ID:
+    from_secret: hof_ukho_gh_app_id
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: hof_ukho_gh_app_pk
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: hof_ukho_gh_app_install_id
+
+github_app_token_secrets_hof: &github_app_token_secrets_hof
+  GITHUB_APP_ID:
+    from_secret: HOF_GH_APP_ID
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: HOF_GH_APP_PK
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: HOF_GH_APP_INSTALL_ID
+
+clone_repos_step: &clone_repos_step
+  image: alpine/git
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - test -s "$CLONE_TOKEN_FILE" || (echo "$CLONE_TOKEN_MISSING_MESSAGE" && exit 1)
+    - export GITHUB_TOKEN="$(cat "$CLONE_TOKEN_FILE")"
+    - git clone https://x-access-token:$${GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+    - if [ "${CLONE_REPOS_PRUNE:-false}" = "true" ]; then find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf; fi
+    - rm -f "$CLONE_TOKEN_FILE"
+
 steps:
-  - name: clone_repos
-    image: alpine/git
+  - name: generate_github_app_token_for_clone
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
     when:
       branch:
         <<: *include_default_and_feature_branches
@@ -242,6 +279,61 @@ steps:
       - clone_repos
       - image_to_quay
 
+  # Run Playwright tests against the pull request branch environment
+  - name: e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - sanitized_branch="$(echo "$DRONE_SOURCE_BRANCH" | tr '[:upper:]' '[:lower:]' | tr '/' '-')"
+      - test -n "$sanitized_branch" || (echo "Unable to derive PR branch slug from DRONE_SOURCE_BRANCH." && exit 1)
+      - PLAYWRIGHT_TARGET_URL="https://ms-${sanitized_branch}.internal.${BRANCH_ENV}.homeoffice.gov.uk"
+      - echo "Running Playwright E2E against ${PLAYWRIGHT_TARGET_URL}"
+      - CI=true PLAYWRIGHT_BASE_URL="$PLAYWRIGHT_TARGET_URL" yarn test:e2e
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - deploy_to_branch
+
+  # Generate short-lived GitHub App installation token for report publishing
+  - name: generate_github_app_token
+    <<: *github_app_token_step
+    environment:
+      <<: *github_app_token_secrets_ukho
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token.txt
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - e2e_tests
+
+  # Upload Playwright HTML report for PR and comment a download link
+  - name: publish_e2e_report_to_pr
+    pull: if-not-exists
+    image: alpine:3.21
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - apk add --no-cache bash curl jq zip
+      - test -n "$DRONE_PULL_REQUEST" || (echo "Missing DRONE_PULL_REQUEST. This step only supports pull_request builds." && exit 1)
+      - export DRONE_REPO="$${DRONE_REPO:-$GIT_REPO}"
+      - test -n "$DRONE_REPO" || (echo "Missing repository slug (DRONE_REPO/GIT_REPO)." && exit 1)
+      - test -s /root/.dockersock/github_app_token.txt || (echo "Missing GitHub App token file from generate_github_app_token step." && exit 1)
+      - export GITHUB_APP_TOKEN="$(cat /root/.dockersock/github_app_token.txt)"
+      - bash bin/publish_e2e_test_report.sh
+      - rm -f /root/.dockersock/github_app_token.txt
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - generate_github_app_token
+
   # Deploy to Master UAT environment
   - name: deploy_to_uat
     pull: if-not-exists
@@ -334,19 +426,27 @@ steps:
       target: PROD
       event: promote
 
-  - name: clone_repos_prod
-    image: alpine/git
+  - name: generate_github_app_token_for_clone_prod
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
     when:
       target: PROD
       event: promote
+    depends_on:
+      - sanity_check_build_prod
+
+  - name: clone_repos_prod
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for PROD clone step.
+    when:
+      target: PROD
+      event: promote
+    depends_on:
+      - generate_github_app_token_for_clone_prod
 
   # Deploy to Production environment
   - name: deploy_to_prod
@@ -380,20 +480,27 @@ steps:
       cron: tear_down_pr_envs
       event: cron
 
-  # CRON job steps that runs security scans using Trivy
-  - name: cron_clone_repos
-    image: alpine/git
+  # # CRON job steps that runs security scans using Snyk & Trivy
+  - name: generate_github_app_token_for_clone_cron
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
     when:
       cron: security_scans
       event: cron
+
+  # CRON job steps that runs security scans using Trivy
+  - name: cron_clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for CRON clone step.
+    when:
+      cron: security_scans
+      event: cron
+    depends_on:
+      - generate_github_app_token_for_clone_cron
 
   - name: cron_build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -488,6 +595,123 @@ steps:
     depends_on:
       - cron_trivy_scan_image_os
       - cron_trivy_scan_node_packages
+
+  # CRON job step that runs nightly Playwright E2E tests against a fixed environment
+  - name: cron_nightly_e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    environment:
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - |
+        test -n "$NIGHTLY_E2E_BASE_URL" || (echo "Missing NIGHTLY_E2E_BASE_URL environment value." && exit 1)
+
+        case "$NIGHTLY_E2E_BASE_URL" in
+          http://*|https://*) base_url="$NIGHTLY_E2E_BASE_URL" ;;
+          *) base_url="https://$NIGHTLY_E2E_BASE_URL" ;;
+        esac
+        echo "Using PLAYWRIGHT_BASE_URL=$base_url"
+
+        run_output_path="/root/.dockersock/nightly-playwright-run-output.txt"
+        summary_output_path="/root/.dockersock/nightly-playwright-summary.txt"
+        exit_code_path="/root/.dockersock/nightly-playwright-exit-code.txt"
+
+        rm -f "$run_output_path" "$summary_output_path" "$exit_code_path"
+        yarn bddgen
+
+        set +e
+        PLAYWRIGHT_BASE_URL="$base_url" yarn playwright test --reporter=line > "$run_output_path" 2>&1
+        playwright_exit_code=$?
+        set -e
+
+        echo "$playwright_exit_code" > "$exit_code_path"
+        tail -n 60 "$run_output_path" || true
+        node bin/summarise_playwright_report.js "$run_output_path" "$summary_output_path"
+
+        exit "$playwright_exit_code"
+    when:
+      cron: nightly_e2e_playwright
+      event: cron
+
+  # Slack notification for nightly E2E cron runs
+  - name: cron_notify_slack_nightly_e2e
+    pull: if-not-exists
+    image: alpine:3.21
+    environment:
+      SLACK_WEBHOOK:
+        from_secret: slack_sas_hof_e2e_tests_webhook
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - apk add --no-cache curl jq
+      - test -n "$SLACK_WEBHOOK" || (echo "Missing slack_sas_hof_e2e_tests_webhook secret." && exit 1)
+      - test -f /root/.dockersock/nightly-playwright-summary.txt || printf "Playwright Nightly Summary\nSummary artifact missing.\n" > /root/.dockersock/nightly-playwright-summary.txt
+      - |
+        if test -f /root/.dockersock/nightly-playwright-exit-code.txt; then
+          test_exit_code="$(cat /root/.dockersock/nightly-playwright-exit-code.txt)"
+          if [ "$test_exit_code" = "0" ]; then
+            test_status="success"
+          else
+            test_status="failure"
+          fi
+        else
+          test_status="unknown"
+        fi
+
+        payload=$(jq -n \
+          --arg status "$test_status" \
+          --arg repo "$DRONE_REPO" \
+          --arg branch "$DRONE_BRANCH" \
+          --arg commit "$DRONE_COMMIT_SHA" \
+          --arg build_number "$DRONE_BUILD_NUMBER" \
+          --arg build_link "$DRONE_BUILD_LINK" \
+          --arg environment "$NIGHTLY_E2E_BASE_URL" \
+          --rawfile summary /root/.dockersock/nightly-playwright-summary.txt \
+          '{
+            text: ("Nightly Playwright Tests for " + $repo + " finished with status: " + $status),
+            blocks: [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: ("*Nightly Playwright Tests Summary*\nStatus: " + $status + "\nBranch: " + $branch + "\nEnvironment: " + $environment + "\nBuild: #" + $build_number + " " + $build_link)
+                }
+              },
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: ("```" + $summary + "```")
+                }
+              }
+            ]
+          }')
+        http_code=$(curl -sS -o /tmp/slack_response.txt -w "%{http_code}" \
+          -X POST \
+          -H "Content-type: application/json" \
+          --data "$payload" \
+          "$SLACK_WEBHOOK")
+        echo "Slack webhook HTTP status: $http_code"
+        echo "Slack webhook response body:"
+        cat /tmp/slack_response.txt
+        test "$http_code" = "200" || (echo "Slack webhook call failed" && exit 1)
+    when:
+      cron: nightly_e2e_playwright
+      event: cron
+      status:
+        - success
+        - failure
+    depends_on:
+      - cron_nightly_e2e_tests
 
 services:
   - name: docker
