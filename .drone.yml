@@ -282,6 +282,9 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -296,14 +299,14 @@ steps:
   - name: e2e_tests
     pull: if-not-exists
     image: mcr.microsoft.com/playwright:v1.60.0-noble
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
     commands:
       - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
-      - sanitized_branch="$(echo "$DRONE_SOURCE_BRANCH" | tr '[:upper:]' '[:lower:]' | tr '/' '-')"
-      - test -n "$sanitized_branch" || (echo "Unable to derive PR branch slug from DRONE_SOURCE_BRANCH." && exit 1)
-      - PLAYWRIGHT_TARGET_URL="https://ms-${sanitized_branch}.internal.${BRANCH_ENV}.homeoffice.gov.uk"
-      - echo "Running Playwright E2E against ${PLAYWRIGHT_TARGET_URL}"
-      - CI=true PLAYWRIGHT_BASE_URL="$PLAYWRIGHT_TARGET_URL" yarn test:e2e
+      - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
+      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
     when:
       branch:
         <<: *include_default_and_feature_branches
