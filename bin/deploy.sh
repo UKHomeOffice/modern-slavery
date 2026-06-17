@@ -80,6 +80,13 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   echo "Lookup UI Branch - lookup-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Data Service Branch - data-service-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Dashboard UI Branch - dashboard-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+
+  # Add branch URL to a file for use in e2e tests, if the directory exists (it won't in production)
+  BRANCH_HOST="ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "Branch - $BRANCH_HOST"
+  if [[ -d /root/.dockersock ]]; then
+    echo "$BRANCH_HOST" > /root/.dockersock/branch_url.txt
+  fi
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   echo "UAT App - uat.ms-notprod.homeoffice.gov.uk"
   echo "UAT Data Service - uat-data-service.ms-notprod.homeoffice.gov.uk"
