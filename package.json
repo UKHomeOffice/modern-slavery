@@ -31,6 +31,8 @@
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways",
     "bddgen": "bddgen",
     "test:e2e": "bddgen && playwright test",
+    "test:e2e:headed": "bddgen && playwright test --headed",
+    "test:e2e:debug": "bddgen && playwright test --debug",
     "test:e2e:report": "playwright show-report",
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
     "build": "hof-build",
