@@ -15,6 +15,7 @@ environment:
   HOF_CONFIG: hof-services-config/Modern_Slavery_Nrm
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-19:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
+  NIGHTLY_E2E_BASE_URL: uat.internal.ms-notprod.homeoffice.gov.uk
 
 include_default_branch: &include_default_branch
   include:
@@ -616,9 +617,6 @@ steps:
   - name: cron_nightly_e2e_tests
     pull: if-not-exists
     image: mcr.microsoft.com/playwright:v1.60.0-noble
-    environment:
-      NIGHTLY_E2E_BASE_URL:
-        from_secret: NIGHTLY_E2E_BASE_URL
     volumes:
       - name: dockersock
         path: /root/.dockersock
