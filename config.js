@@ -5,7 +5,6 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 
 module.exports = {
   azure: {
-    sendToAzure: String(process.env.SEND_TO_AZURE) === 'true',
     connectionString: process.env.AZURE_CONNECTION_STRING,
     queueName: process.env.AZURE_QUEUE_NAME
   },

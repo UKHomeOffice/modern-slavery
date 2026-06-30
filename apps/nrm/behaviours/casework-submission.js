@@ -17,7 +17,7 @@ module.exports = conf => {
   const config = conf || {};
   let serviceBusSender;
 
-  if (appConfig.azure.sendToAzure && appConfig.azure.connectionString && appConfig.azure.queueName) {
+  if (appConfig.azure.connectionString && appConfig.azure.queueName) {
     // Initialize Azure Service Bus
     const serviceBusClient = new ServiceBusClient(appConfig.azure.connectionString);
     serviceBusSender = serviceBusClient.createSender(appConfig.azure.queueName);
@@ -56,7 +56,7 @@ module.exports = conf => {
           req.log('info', `Report ID: ${reportID},
             Submitting Case to Queue Case ID: ${caseworkID}`);
 
-          req.log('info', 'Azure Service Bus integration is', appConfig.azure.sendToAzure ? 'enabled' : 'disabled');
+          req.log('info', 'Azure Service Bus integration isenabled');
           // Send to Azure Service Bus
           let serviceBusError = null;
 
@@ -94,9 +94,9 @@ module.exports = conf => {
       const hofModel = new Model();
       const params = {
         url: `${appConfig.saveService.host}:${appConfig.saveService.port
-        }/reports/${encodeEmail(
-          req.sessionModel.get('user-email')
-        )}/${req.sessionModel.get('id')}`,
+          }/reports/${encodeEmail(
+            req.sessionModel.get('user-email')
+          )}/${req.sessionModel.get('id')}`,
         method: 'DELETE'
       };
       try {
