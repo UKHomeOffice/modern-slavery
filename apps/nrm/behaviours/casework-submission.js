@@ -134,6 +134,11 @@ module.exports = conf => {
     }
 
     async deleteSessionData(req, next) {
+      if ((appConfig.env === 'local' || appConfig.env === 'test') && !appConfig.saveService.port) {
+        req.log('warn', 'MS: skipping save service delete in local/test because save service port is not configured');
+        return;
+      }
+
       const hofModel = new Model();
       const params = {
         url: `${appConfig.saveService.host}:${
@@ -147,6 +152,10 @@ module.exports = conf => {
         await hofModel._request(params);
         req.log('info', 'MS: record deleted successfully');
       } catch (error) {
+        if (appConfig.env === 'local' || appConfig.env === 'test') {
+          req.log('warn', `MS: skipping save service delete error in ${appConfig.env}: ${error.message}`);
+          return;
+        }
         req.log('error', `Error deleting data: ${error.message}`);
         next(error);
       }
