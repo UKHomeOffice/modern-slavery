@@ -1,0 +1,50 @@
+{
+  "serviceName": "NRM",
+  "scenarios": [
+    {
+      "scenarioId": "1",
+      "description": "'Yes' answers - under18",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "2",
+      "description": "'No' answers - over18, No Cooperation",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "5",
+      "description": "Not sure if under18",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "6",
+      "description": "E2E mixed",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "8",
+      "description": "Add max locations",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "9",
+      "description": "'No' answers - Yes Cooperation",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "3",
+      "description": "Continue report",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "4",
+      "description": "Delete report",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    },
+    {
+      "scenarioId": "11",
+      "description": "Save and exit report",
+      "workEmail": "sas-hof-test@digital.homeoffice.gov.uk"
+    }
+  ]
+}
