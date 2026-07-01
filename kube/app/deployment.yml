@@ -78,13 +78,6 @@ spec:
               {{ else }}
               value: redis
               {{ end }}
-            - name: SEND_TO_AZURE
-              # Set to true in UAT & PROD to test Azure queue integration
-              {{ if or (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
-              value: "true"
-              {{ else }}
-              value: "false"
-              {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
@@ -125,43 +118,12 @@ spec:
                 secretKeyRef:
                   name: notify-key
                   key: notify-key
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-branch-sqs
-                  key: secret_access_key
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-branch-sqs
-                  key: access_key_id
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-            - name: AZURE_QUEUE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: azure-connection-string
-                  key: azure-queue-name
-            - name: AZURE_CONNECTION_STRING
-              valueFrom:
-                secretKeyRef:
-                  name: azure-connection-string
-                  key: endpoint
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-uat-sqs
-                  key: secret_access_key
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: sas-ms-uat-sqs
-                  key: access_key_id
+            {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
             - name: ALLOW_SKIP
               value: "true"
             - name: SKIP_EMAIL
               value: "sas-hof-test@digital.homeoffice.gov.uk"
-            {{ else }}
+            {{ end }}
             - name: AZURE_QUEUE_NAME
               valueFrom:
                 secretKeyRef:
@@ -172,17 +134,6 @@ spec:
                 secretKeyRef:
                   name: azure-connection-string
                   key: endpoint
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: aws-sqs
-                  key: aws_secret_access_key
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: aws-sqs
-                  key: aws_access_key_id
-            {{ end }}
             - name: AUDIT_DB_HOST
               valueFrom:
                 secretKeyRef:
