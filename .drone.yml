@@ -8,6 +8,7 @@ environment:
   STG_ENV: ms-preprod
   UAT_ENV: ms-uat
   BRANCH_ENV: ms-branch
+  NIGHTLY_E2E_BASE_URL: uat.ms-notprod.homeoffice.gov.uk
   PRODUCTION_URL: www.modernslavery.homeoffice.gov.uk
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: modern-slavery
@@ -62,21 +63,71 @@ sonar_scanner: &sonar_scanner
   commands:
   - sonar-scanner -Dproject.settings=./sonar-project.properties
 
+github_app_token_step: &github_app_token_step
+  pull: if-not-exists
+  image: alpine:3.21
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - apk add --no-cache bash curl jq openssl
+    - test -n "$GITHUB_APP_ID" || (echo "Missing GITHUB_APP_ID secret." && exit 1)
+    - test -n "$GITHUB_APP_PRIVATE_KEY" || (echo "Missing GITHUB_APP_PRIVATE_KEY secret." && exit 1)
+    - test -n "$GITHUB_APP_INSTALLATION_ID" || (echo "Missing GITHUB_APP_INSTALLATION_ID secret." && exit 1)
+    - test -n "$OUTPUT_TOKEN_FILE" || (echo "Missing OUTPUT_TOKEN_FILE." && exit 1)
+    - bash bin/generate_github_app_token.sh
+
+github_app_token_secrets_ukho: &github_app_token_secrets_ukho
+  GITHUB_APP_ID:
+    from_secret: hof_ukho_gh_app_id
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: hof_ukho_gh_app_pk
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: hof_ukho_gh_app_install_id
+
+github_app_token_secrets_hof: &github_app_token_secrets_hof
+  GITHUB_APP_ID:
+    from_secret: HOF_GH_APP_ID
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: HOF_GH_APP_PK
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: HOF_GH_APP_INSTALL_ID
+
+clone_repos_step: &clone_repos_step
+  image: alpine/git
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - test -s "$CLONE_TOKEN_FILE" || (echo "$CLONE_TOKEN_MISSING_MESSAGE" && exit 1)
+    - export GITHUB_TOKEN="$(cat "$CLONE_TOKEN_FILE")"
+    - git clone https://x-access-token:$${GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+    - if [ "${CLONE_REPOS_PRUNE:-false}" = "true" ]; then find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf; fi
+    - rm -f "$CLONE_TOKEN_FILE"
+
 steps:
-  - name: clone_repos
-    image: alpine/git
+  - name: generate_github_app_token_for_clone
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
     when:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+
+  - name: clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for clone step.
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - generate_github_app_token_for_clone
 
   - name: setup
     <<: *node_image
@@ -232,6 +283,9 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -241,6 +295,59 @@ steps:
     depends_on:
       - clone_repos
       - image_to_quay
+
+  - name: e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
+      - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
+      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - deploy_to_branch
+
+  - name: generate_github_app_token
+    <<: *github_app_token_step
+    environment:
+      <<: *github_app_token_secrets_ukho
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token.txt
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - e2e_tests
+
+  - name: publish_e2e_report_to_pr
+    pull: if-not-exists
+    image: alpine:3.21
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - apk add --no-cache bash curl jq zip
+      - test -n "$DRONE_PULL_REQUEST" || (echo "Missing DRONE_PULL_REQUEST. This step only supports pull_request builds." && exit 1)
+      - export DRONE_REPO="$${DRONE_REPO:-$GIT_REPO}"
+      - test -n "$DRONE_REPO" || (echo "Missing repository slug (DRONE_REPO/GIT_REPO)." && exit 1)
+      - test -s /root/.dockersock/github_app_token.txt || (echo "Missing GitHub App token file from generate_github_app_token step." && exit 1)
+      - export GITHUB_APP_TOKEN="$(cat /root/.dockersock/github_app_token.txt)"
+      - bash bin/publish_e2e_test_report.sh
+      - rm -f /root/.dockersock/github_app_token.txt
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - generate_github_app_token
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -334,19 +441,26 @@ steps:
       target: PROD
       event: promote
 
-  - name: clone_repos_prod
-    image: alpine/git
+  - name: generate_github_app_token_for_clone_prod
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
     when:
       target: PROD
       event: promote
+
+  - name: clone_repos_prod
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for promote clone step.
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      target: PROD
+      event: promote
+    depends_on:
+      - generate_github_app_token_for_clone_prod
 
   # Deploy to Production environment
   - name: deploy_to_prod
@@ -381,19 +495,64 @@ steps:
       event: cron
 
   # CRON job steps that runs security scans using Trivy
-  - name: cron_clone_repos
-    image: alpine/git
+  - name: generate_github_app_token_for_clone_cron
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
     when:
       cron: security_scans
       event: cron
+
+  - name: cron_clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
+      CLONE_TOKEN_MISSING_MESSAGE: Missing GitHub App token file for cron clone step.
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      cron: security_scans
+      event: cron
+    depends_on:
+      - generate_github_app_token_for_clone_cron
+
+  - name: cron_nightly_e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - CI=true PLAYWRIGHT_BASE_URL="https://$NIGHTLY_E2E_BASE_URL" yarn test:e2e | tee /root/.dockersock/nightly-playwright-output.txt
+      - node bin/summarise_playwright_report.js /root/.dockersock/nightly-playwright-output.txt /root/.dockersock/nightly-playwright-summary.txt
+    when:
+      cron: nightly_e2e_tests
+      event: cron
+
+  - name: cron_notify_slack_nightly_e2e
+    pull: if-not-exists
+    image: alpine:3.21
+    environment:
+      SLACK_WEBHOOK:
+        from_secret: slack_sas_hof_build_notify_webhook
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - 'apk add --no-cache curl jq'
+      - 'test -s /root/.dockersock/nightly-playwright-summary.txt || (echo "Playwright Nightly Summary\nNo summary output available." > /root/.dockersock/nightly-playwright-summary.txt)'
+      - 'SUMMARY_CONTENT="$(tr "\n" " " < /root/.dockersock/nightly-playwright-summary.txt)"'
+      - 'curl -sS -X POST -H "Content-type: application/json" --data "{\"text\":\"Playwright nightly e2e summary for modern-slavery: ${SUMMARY_CONTENT}. Build: ${DRONE_BUILD_LINK}\"}" "$SLACK_WEBHOOK"'
+    when:
+      cron: nightly_e2e_tests
+      event: cron
+      status:
+        - success
+        - failure
+    depends_on:
+      - cron_nightly_e2e_tests
 
   - name: cron_build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
