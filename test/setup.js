@@ -3,7 +3,6 @@
 
 require('dotenv').config();
 global.reqres = require('hof').utils.reqres;
-process.env.AWS_SQS = 'test-queue';
 process.env.DELETION_TIMEOUT = 28;
 
 global.chai = require('chai')

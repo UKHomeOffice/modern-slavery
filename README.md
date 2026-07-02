@@ -2,8 +2,6 @@
 
 An app for a first responder to submit a form for a possible victim of modern slavery.
 
-When the environment variable `WRITE_TO_CASEWORK` is true the app will post cases to an SQS queue for later processing by the casework resolver service.
-
 # Contents
 
 1. [Install & Run](#install-and-run)
@@ -46,10 +44,8 @@ TEMPLATE_USER_AUTHORISATION_ID | GOV.UK notify template ID for user authorisatio
 TEMPLATE_FEEDBACK              | GOV.UK notify template ID for feedback email
 CASEWORKER_EMAIL               | Caseworker email
 FEEDBACK_EMAIL                 | Feedback email
-AWS_SQS                        | AWS SQS URL
 AWS_SECRET_ACCESS_KEY          | AWS Secret Access Key
 AWS_ACCESS_KEY_ID              | AWS Access Key ID
-WRITE_TO_CASEWORK              | Enable/Disable sending the case to iCasework (defaults to false if NODE_ENV not set)
 AUDIT_DATA                     | Enable/Disable sending audit data to postgres (defaults to false)
 AUDIT_DB_HOST                  | Postgres host for audit data
 AUDIT_DB_USER                  | Postgres audit user
@@ -62,8 +58,6 @@ KEYCLOAK_SECRET                | The secret used to authenticate with the keyclo
 KEYCLOAK_USERNAME              | Administrator username to authenticate with the keycloak client
 KEYCLOAK_PASSWORD              | Administrator password used to authenticate with the keycloak client
 ```
-
-Please note if you are using IP whitelisting in the iCasework backend you will also need to add your public IP!
 
 ### Install & Run on local machine <a name="install-and-run-on-local-machine"></a>
 Install the dependencies and build the project resources
@@ -227,7 +221,6 @@ There are a bunch of microservices as part of modernslavery:
 * https://github.com/UKHomeOffice/save-return-api
 * https://github.com/UKHomeOffice/save-return-lookup-ui
 * https://github.com/UKHomeOffice/save-return-email-alerts
-* https://github.com/UKHomeOffice/icasework-resolver
 * https://github.com/UKHomeOffice/ms-schema
 * https://github.com/UKHomeOffice/digmygrafana
 * https://github.com/UKHomeOffice/file-vault

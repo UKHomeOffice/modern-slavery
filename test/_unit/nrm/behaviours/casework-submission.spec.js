@@ -19,9 +19,7 @@ const prepareStub = sinon
 const dbInsertStub = sinon.stub().resolves();
 
 const configStub = {
-  writeToCasework: true,
   audit: { enabled: true },
-  aws: { sqs: 'https://sqs-url' },
   azure: {
     connectionString: 'ABC123',
     queueName: 'mockQueue'
@@ -30,9 +28,7 @@ const configStub = {
 };
 
 const getConfigStub = () => ({
-  writeToCasework: true,
   audit: { enabled: true },
-  aws: { sqs: 'https://sqs-url' },
   azure: {
     connectionString: 'ABC123',
     queueName: 'mockQueue'
@@ -63,13 +59,6 @@ const Behaviour = proxyquire(
         return Model;
       }
     },
-    'sqs-producer': {
-      Producer: {
-        create: sinon.stub().returns({
-          send: sinon.stub().callsArgWith(1, null)
-        })
-      }
-    },
     '@azure/service-bus': {
       ServiceBusClient: function () {
         return serviceBusClientMock;
@@ -84,7 +73,7 @@ describe('casework-submission behaviour tests', () => {
   });
 
   class Base {
-    saveValues() {}
+    saveValues() { }
   }
 
   let req;
@@ -164,16 +153,6 @@ describe('casework-submission behaviour tests', () => {
       next.should.have.been.calledWithMatch(sinon.match.instanceOf(Error));
     });
 
-    it('skips casework submission when writeToCasework is false', async () => {
-      configStub.writeToCasework = false;
-      const deleteSpy = sinon.spy(instance, 'deleteSessionData');
-      await instance.saveValues(req, res, () => {
-        deleteSpy.should.have.been.calledOnce;
-        deleteSpy.restore();
-      });
-      configStub.writeToCasework = true;
-    });
-
     it('skips audit logging when audit.enabled is false', async () => {
       configStub.audit.enabled = false;
       await instance.saveValues(req, res, () => {
@@ -182,11 +161,7 @@ describe('casework-submission behaviour tests', () => {
       configStub.audit.enabled = true;
     });
 
-    it('send request when writeToCasework is true', async () => {
-      // SQS send
-      const sendStub = sinon.stub().callsArgWith(1, null);
-      const producerMock = { send: sendStub };
-      const createStub = sinon.stub().returns(producerMock);
+    it('sends request through azure', async () => {
       // Azure Service Bus mocks
       const sendMessagesStubLocal = sinon.stub().resolves();
       const serviceBusSenderMockLocal = { sendMessages: sendMessagesStubLocal };
@@ -211,7 +186,6 @@ describe('casework-submission behaviour tests', () => {
               return Model;
             }
           },
-          'sqs-producer': { Producer: { create: createStub } },
           '@azure/service-bus': {
             ServiceBusClient: function () {
               return serviceBusClientMockLocal;
@@ -222,7 +196,6 @@ describe('casework-submission behaviour tests', () => {
 
       instance = new (BehaviourWithProducer(Base))();
       await instance.saveValues(req, res, () => {
-        sendStub.should.have.been.calledOnce;
         sendMessagesStubLocal.should.have.been.calledOnce;
       });
     });
