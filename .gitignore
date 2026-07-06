@@ -23,3 +23,6 @@ apps/**/translations/**/*
 !apps/**/translations/src/**/*
 test/_accessibility/tmp/*
 .devcontainer/*.env
+.features-gen
+playwright-report
+test-results
