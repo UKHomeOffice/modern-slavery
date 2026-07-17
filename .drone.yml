@@ -320,10 +320,12 @@ steps:
       - bin/deploy.sh $${STG_ENV}
     when:
       branch: master
-      event: push
+      event: pull_request
     depends_on:
       - clone_repos
       - image_to_quay
+      - deploy_to_branch
+
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
