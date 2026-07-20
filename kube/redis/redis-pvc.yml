@@ -2,11 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: redis-{{ .DRONE_SOURCE_BRANCH }}
-  {{ else }}
   name: redis
-  {{ end }}
 spec:
   accessModes:
     - {{ .REDIS_PERSISTENCE_ACCESS_MODES }}
