@@ -14,6 +14,8 @@ metadata:
   name: redis
   {{ end }}
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
@@ -33,14 +35,24 @@ spec:
         service: redis
         {{ end }}
     spec:
+      securityContext:
+        fsGroup: 999
       containers:
         - name: redis
           # redis:v7.0.15
           image: quay.io/ukhomeofficedigital/hof-docker-redis:7.0.15@sha256:cd4965fbb8aa6e4eba058985cc52f6a3ececdfa6d79ba44206f051f72a1f0611
+          args:
+            - redis-server
+            - --appendonly
+            - "yes"
+            - --dir
+            - /data
+            - --protected-mode
+            - "no"
           ports:
             - containerPort: 6379
           volumeMounts:
-            - mountPath: /var/lib/redis
+            - mountPath: /data
               name: data
           securityContext:
             runAsNonRoot: true
@@ -52,5 +64,17 @@ spec:
               cpu: "100m"
               memory: "200Mi"
       volumes:
+        {{ if eq .REDIS_PERSISTENCE_ENABLED "true" }}
+        {{ if .REDIS_PERSISTENCE_EXISTING_CLAIM }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .REDIS_PERSISTENCE_EXISTING_CLAIM }}
+        {{ else }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}redis-{{ .DRONE_SOURCE_BRANCH }}{{ else }}redis{{ end }}
+        {{ end }}
+        {{ else }}
         - name: data
           emptyDir: {}
+        {{ end }}

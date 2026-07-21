@@ -232,6 +232,7 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -251,6 +252,7 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
@@ -310,6 +312,10 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+      REDIS_PERSISTENCE_ENABLED: "true"
+      REDIS_PERSISTENCE_SIZE: "1Gi"
+      REDIS_PERSISTENCE_ACCESS_MODES: "ReadWriteOnce"
+      REDIS_PERSISTENCE_STORAGE_CLASS: "gp2-encrypted"
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
@@ -318,6 +324,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_quay
+
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
@@ -357,6 +364,10 @@ steps:
         from_secret: kube_server_prod
       KUBE_TOKEN:
         from_secret: kube_token_prod
+      REDIS_PERSISTENCE_ENABLED: "true"
+      REDIS_PERSISTENCE_SIZE: "10Gi"
+      REDIS_PERSISTENCE_ACCESS_MODES: "ReadWriteOnce"
+      REDIS_PERSISTENCE_STORAGE_CLASS: "gp2-encrypted"
     commands:
     - bin/deploy.sh $${PROD_ENV}
     when:

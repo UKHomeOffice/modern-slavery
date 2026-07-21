@@ -12,15 +12,35 @@ export FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/filevault-ingress-exte
 
 export SCHEMA_ACTION=migrate
 
+export REDIS_PERSISTENCE_ENABLED=${REDIS_PERSISTENCE_ENABLED:-false}
+export REDIS_PERSISTENCE_ACCESS_MODES=${REDIS_PERSISTENCE_ACCESS_MODES:-ReadWriteOnce}
+export REDIS_PERSISTENCE_STORAGE_CLASS=${REDIS_PERSISTENCE_STORAGE_CLASS:-gp2-encrypted}
+export REDIS_PERSISTENCE_EXISTING_CLAIM=${REDIS_PERSISTENCE_EXISTING_CLAIM:-}
+export REDIS_PERSISTENCE_SIZE=${REDIS_PERSISTENCE_SIZE:-1Gi}
+export REDIS_PERSISTENCE_ENABLED=$(echo "${REDIS_PERSISTENCE_ENABLED}" | tr '[:upper:]' '[:lower:]')
+
 kd='kd --timeout 10m --check-interval 5s'
+redis_storage_files='kube/redis/redis-pvc.yml'
+redis_runtime_files='kube/redis/redis-service.yml -f kube/redis/redis-network-policy.yml -f kube/redis/redis-deployment.yml'
+
+delete_redis() {
+  $kd --delete -f ${redis_runtime_files}
+
+  if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
+    $kd --delete -f ${redis_storage_files}
+  fi
+}
 
 if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
+  export REDIS_PERSISTENCE_ENABLED=false
+  export REDIS_PERSISTENCE_ENABLED=$(echo "${REDIS_PERSISTENCE_ENABLED}" | tr '[:upper:]' '[:lower:]')
 
   $kd --delete -f kube/jobs/ms-schema-job.yml
   $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/app -f kube/file-vault
+  delete_redis
+  $kd --delete -f kube/save-return-data-alerts -f kube/save-return-lookup -f kube/dashboard -f kube/app -f kube/file-vault
   echo "Torn Down UAT Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   exit 0
 fi
@@ -28,13 +48,33 @@ fi
 export KUBE_NAMESPACE=$1
 export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
 
+if [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
+  export REDIS_PERSISTENCE_ENABLED=true
+  export REDIS_PERSISTENCE_SIZE=10Gi
+elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
+  export REDIS_PERSISTENCE_ENABLED=true
+  export REDIS_PERSISTENCE_SIZE=1Gi
+elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
+  export REDIS_PERSISTENCE_ENABLED=false
+elif [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
+  export REDIS_PERSISTENCE_ENABLED=false
+else
+  export REDIS_PERSISTENCE_ENABLED=false
+fi
+
+export REDIS_PERSISTENCE_ENABLED=$(echo "${REDIS_PERSISTENCE_ENABLED}" | tr '[:upper:]' '[:lower:]')
+
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd --delete -f kube/jobs/ms-schema-job.yml
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/configmaps -f kube/certs
   $kd -f kube/dashboard
-  $kd -f kube/redis -f kube/save-return-data-alerts
+  if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
+    $kd -f ${redis_storage_files}
+  fi
+  $kd -f ${redis_runtime_files}
+  $kd -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault
   $kd -f kube/app 
@@ -44,7 +84,11 @@ elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
-  $kd -f kube/redis -f kube/save-return-data-alerts
+  if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
+    $kd -f ${redis_storage_files}
+  fi
+  $kd -f ${redis_runtime_files}
+  $kd -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault
   $kd -f kube/app
@@ -54,7 +98,11 @@ elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/jobs/ms-schema-job.yml
   $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
-  $kd -f kube/redis -f kube/save-return-data-alerts
+  if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
+    $kd -f ${redis_storage_files}
+  fi
+  $kd -f ${redis_runtime_files}
+  $kd -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault 
   $kd -f kube/app
@@ -67,7 +115,11 @@ elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
-  $kd -f kube/redis -f kube/save-return-data-alerts
+  if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
+    $kd -f ${redis_storage_files}
+  fi
+  $kd -f ${redis_runtime_files}
+  $kd -f kube/save-return-data-alerts
   $kd -f kube/save-return-lookup
   $kd -f kube/file-vault
   $kd -f kube/app/deployment.yml

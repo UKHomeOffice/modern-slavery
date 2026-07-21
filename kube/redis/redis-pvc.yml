@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis
+spec:
+  accessModes:
+    - {{ .REDIS_PERSISTENCE_ACCESS_MODES }}
+  storageClassName: {{ .REDIS_PERSISTENCE_STORAGE_CLASS }}
+  resources:
+    requests:
+      storage: {{ .REDIS_PERSISTENCE_SIZE }}
