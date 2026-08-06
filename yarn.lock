@@ -3792,7 +3792,7 @@ hide-powered-by@1.1.0:
   resolved "https://registry.yarnpkg.com/hide-powered-by/-/hide-powered-by-1.1.0.tgz#be3ea9cab4bdb16f8744be873755ca663383fa7a"
   integrity sha512-Io1zA2yOA1YJslkr+AJlWSf2yWFkKjvkcL9Ni1XSUqnGLr/qRQe2UI3Cn/J9MsJht7yEVCe0SscY1HgVMujbgg==
 
-hof@^24.5.0:
+hof@~24.5.0:
   version "24.5.0"
   resolved "https://registry.yarnpkg.com/hof/-/hof-24.5.0.tgz#49a2176f4de0e4ad250cfc8ed9e6739a7c345ad5"
   integrity sha512-/Kbwhii386cq8vjYryHtQcCMy2ILI5s1reU4lPDBcOFbGHtdvaacwL7T5TH6OQGFffv2Lt7/2F+8DzSoy3pB6Q==
