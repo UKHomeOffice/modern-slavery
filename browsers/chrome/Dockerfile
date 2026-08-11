@@ -1,4 +1,4 @@
-FROM node:20.17.0 as base
+FROM node:24.19.0-alpine3.24@sha256:2a49bdf71e9fd965a58c1703fd9ddd205b34e5782b692a72dd1d248abb0beb43 as base
 
 EXPOSE 9222
 
