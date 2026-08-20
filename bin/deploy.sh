@@ -52,8 +52,7 @@ if [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export REDIS_PERSISTENCE_ENABLED=true
   export REDIS_PERSISTENCE_SIZE=10Gi
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
-  export REDIS_PERSISTENCE_ENABLED=true
-  export REDIS_PERSISTENCE_SIZE=1Gi
+  export REDIS_PERSISTENCE_ENABLED=false
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   export REDIS_PERSISTENCE_ENABLED=false
 elif [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
