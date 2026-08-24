@@ -4,9 +4,8 @@
 require('dotenv').config();
 global.reqres = require('hof').utils.reqres;
 process.env.DELETION_TIMEOUT = 28;
-process.env.NOTIFY_STUB = process.env.NOTIFY_STUB || 'true';
-process.env.SAS_HOF_EMAIL = process.env.SAS_HOF_EMAIL || '';
-
+process.env.NOTIFY_STUB = 'true';
+process.env.SAS_HOF_EMAIL = "test@example.com";
 global.chai = require('chai')
   .use(require('sinon-chai'))
   .use(require('chai-as-promised'));
