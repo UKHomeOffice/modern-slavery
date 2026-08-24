@@ -53,6 +53,8 @@ ui_integration_tests: &ui_integration_tests
     NOTIFY_STUB: true
     SESSION_SECRET:
       from_secret: session-secret-for-ui-integration-tests
+    SAS_HOF_EMAIL:
+      from_secret: sas_hof_email
   commands:
   - yarn run test:ui-integration
 
@@ -131,6 +133,9 @@ steps:
   #   volumes:
   #     - name: dockersock
   #       path: /var/run
+  #   environment:
+  #     SAS_HOF_EMAIL:
+  #       from_secret: sas_hof_email
   #   commands:
   #     - apk add --no-cache docker-compose
   #     - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
