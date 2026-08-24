@@ -128,7 +128,7 @@ describe.only('User path(s)', () => {
   async function verifyUser() {
     await clickSelector(page, START_HOME_BUTTON);
     await page.focus(EMAIL_INPUT);
-    await page.keyboard.type('sas-hof-test@digital.homeoffice.gov.uk');
+    await page.keyboard.type(process.env.SAS_HOF_EMAIL);
     // Bypass user clicking email link - Notify Key will not be set during test runs
     await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
   }

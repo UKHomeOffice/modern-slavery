@@ -118,13 +118,13 @@ $ yarn devenv
 
 You can skip the email authentication locally or in some of the testing environments.  You'll need to make sure you have an environment variable `allowSkip=true`. You'll also need an email as part of save and return.  You have 3 options either: using a `skipEmail` environment variable; using a key value parameter in the url; or both.
 
-1. To use an email environment variable, you'll need to set it like so `skipEmail=sas-hof-test@digital.homeoffice.gov.uk`. You can then go to the following url.
+1. To use an email environment variable, you'll need to set it like so `skipEmail=test@example.com`. You can then go to the following url.
 
     http://localhost:8081/nrm/start?token=skip
 
 2. Set the email in the url to whatever email you like.
 
-    http://localhost:8081/nrm/start?token=skip&email=sas-hof-test@digital.homeoffice.gov.uk
+    http://localhost:8081/nrm/start?token=skip&email=test@example.com
 
 3. If you do both, then the app will always use what you've set in the url parameter as the first responder's email.
 

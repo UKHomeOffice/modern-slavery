@@ -24,7 +24,7 @@ const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-se
     '../../nrm/index': sinon.stub(),
     '../../../ms-lists/ms_email_domains': emailDomainCheck,
     '../../../config': Object.assign({}, config, {
-      allowSkip: true, skipEmail: 'sas-hof-test@digital.homeoffice.gov.uk'
+      allowSkip: true, skipEmail: process.env.SAS_HOF_EMAIL
     })
   });
 
@@ -94,7 +94,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
 
     it('does not call the parent method when email auth is skipped with correct email', () => {
       req.sessionModel.get.withArgs('recognised-email').returns(undefined);
-      req.form.values['user-email'] = 'sas-hof-test@digital.homeoffice.gov.uk';
+      req.form.values['user-email'] = process.env.SAS_HOF_EMAIL;
 
       instance.getNextStep(req, res);
 
@@ -167,7 +167,7 @@ describe('apps/verify/behaviours/email-lookup-sender', () => {
     it('skips calling data service when email auth skip is allowed with correct email', async () => {
       req.form = {
         values: {
-          'user-email': 'sas-hof-test@digital.homeoffice.gov.uk'
+          'user-email': process.env.SAS_HOF_EMAIL
         }
       };
 
