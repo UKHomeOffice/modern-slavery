@@ -115,8 +115,8 @@ steps:
     <<: *ui_integration_tests
     when:
       branch:
-        <<: *include_default_branch
-      event: push
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
     depends_on:
       - setup
 
