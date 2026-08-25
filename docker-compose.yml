@@ -7,13 +7,13 @@ services:
       dockerfile: Dockerfile-acceptance
     environment:
       - ALLOW_SKIP=true
-      - SKIP_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
+      - SKIP_EMAIL=${SAS_HOF_EMAIL}
       - NOTIFY_STUB=true
       - NODE_ENV=local
       - IGNORE_TLS=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - CASEWORKER_EMAIL=sas-hof-test@digital.homeoffice.gov.uk
+      - CASEWORKER_EMAIL=${SAS_HOF_EMAIL}
     links:
       - redis
       - chrome-browser:chrome

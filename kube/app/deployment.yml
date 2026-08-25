@@ -86,7 +86,15 @@ spec:
             - name: ALLOW_SKIP
               value: "true"
             - name: SKIP_EMAIL
-              value: "sas-hof-test@digital.homeoffice.gov.uk"
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
+            - name: SAS_HOF_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
             {{ end }}
             - name: KEYCLOAK_SECRET
               valueFrom:
@@ -122,7 +130,15 @@ spec:
             - name: ALLOW_SKIP
               value: "true"
             - name: SKIP_EMAIL
-              value: "sas-hof-test@digital.homeoffice.gov.uk"
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
+            - name: SAS_HOF_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
             {{ end }}
             - name: AZURE_QUEUE_NAME
               valueFrom:

@@ -26,7 +26,7 @@ describe('verify journey', () => {
       const URI = '/who-do-you-work-for';
       await initSession(URI);
       const response = await passStep(URI, {
-        'user-email': 'sas-hof-test@digital.homeoffice.gov.uk'
+        'user-email': 'test@example.com'
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/start?token=skip');
