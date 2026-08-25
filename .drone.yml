@@ -54,15 +54,15 @@ ui_integration_tests: &ui_integration_tests
     SESSION_SECRET:
       from_secret: session-secret-for-ui-integration-tests
     SAS_HOF_EMAIL:
-      from_secret: sas_hof_email
+      from_secret: SAS_HOF_EMAIL
   commands:
-  - yarn run test:ui-integration
+    - yarn run test:ui-integration
 
 sonar_scanner: &sonar_scanner
   pull: always
   image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
-  - sonar-scanner -Dproject.settings=./sonar-project.properties
+    - sonar-scanner -Dproject.settings=./sonar-project.properties
 
 steps:
   - name: clone_repos
@@ -115,8 +115,8 @@ steps:
     <<: *ui_integration_tests
     when:
       branch:
-        <<: *include_default_branch
-      event: push
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
     depends_on:
       - setup
 
@@ -135,7 +135,7 @@ steps:
   #       path: /var/run
   #   environment:
   #     SAS_HOF_EMAIL:
-  #       from_secret: sas_hof_email
+  #       from_secret: SAS_HOF_EMAIL
   #   commands:
   #     - apk add --no-cache docker-compose
   #     - docker-compose --verbose up -d --build chrome-browser modern-slavery-main redis
@@ -194,9 +194,9 @@ steps:
       DOCKER_PASSWORD:
         from_secret: DOCKER_PASSWORD
     commands:
-    - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
-    - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
-    - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
+      - docker login -u="ukhomeofficedigital+modern_slavery_bot" -p=$${DOCKER_PASSWORD} quay.io
+      - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
+      - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
       branch:
         <<: *include_default_and_feature_branches
@@ -336,7 +336,7 @@ steps:
       DRONE_TOKEN:
         from_secret: drone_token
     commands:
-    - bin/sanity_check_build.sh
+      - bin/sanity_check_build.sh
     when:
       target: PROD
       event: promote
@@ -369,7 +369,7 @@ steps:
       REDIS_PERSISTENCE_ACCESS_MODES: "ReadWriteOnce"
       REDIS_PERSISTENCE_STORAGE_CLASS: "gp2-encrypted"
     commands:
-    - bin/deploy.sh $${PROD_ENV}
+      - bin/deploy.sh $${PROD_ENV}
     when:
       target: PROD
       event: promote
@@ -386,7 +386,7 @@ steps:
       KUBE_TOKEN:
         from_secret: kube_token_dev
     commands:
-    - bin/clean_up.sh $${BRANCH_ENV}
+      - bin/clean_up.sh $${BRANCH_ENV}
     when:
       cron: tear_down_pr_envs
       event: cron
@@ -409,10 +409,10 @@ steps:
   - name: cron_build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
-    - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
-    - name: dockersock
-      path: /var/run
+      - name: dockersock
+        path: /var/run
     when:
       cron: security_scans
       event: cron
@@ -429,7 +429,7 @@ steps:
       cron: security_scans
       event: cron
     depends_on:
-        - cron_clone_repos
+      - cron_clone_repos
 
   - name: cron_trivy_scan_node_packages
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
@@ -508,8 +508,8 @@ services:
   - name: session
     image: redis
     volumes:
-    - name: dockersock
-      path: /var/run
+      - name: dockersock
+        path: /var/run
 
 volumes:
   - name: dockersock
