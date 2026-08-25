@@ -3,7 +3,6 @@
 const path = require('path');
 const downloadPath = path.resolve('./acceptance-test/temp-downloads');
 const bootstrap = require('../../bootstrap/bootstrap');
-const appConfig = require('../../../config');
 const config = require('../../test-config');
 const pageActions = require('../util/page-actions');
 const { clickSelector, focusThenType, navigateTo } = pageActions;
@@ -129,7 +128,7 @@ describe.only('User path(s)', () => {
   async function verifyUser() {
     await clickSelector(page, START_HOME_BUTTON);
     await page.focus(EMAIL_INPUT);
-    await page.keyboard.type(appConfig.hofTestEmail);
+    await page.keyboard.type('test@example.com');
     // Bypass user clicking email link - Notify Key will not be set during test runs
     await navigateTo(page, `http://${APP_CONTAINER_HOST}:${APP_CONTAINER_PORT}/nrm/start?token=skip`);
   }
