@@ -6,6 +6,7 @@ describe('verify journey', () => {
   const SUBAPP = 'verify';
 
   before(() => {
+    const config = require('../../../config');
     testApp = getSupertestApp(SUBAPP);
     passStep = testApp.passStep;
     initSession = testApp.initSession;
@@ -26,7 +27,7 @@ describe('verify journey', () => {
       const URI = '/who-do-you-work-for';
       await initSession(URI);
       const response = await passStep(URI, {
-        'user-email': 'test@example.com'
+        'user-email': config.hofTestEmail
       });
 
       expect(response.text).to.contain('Found. Redirecting to /nrm/start?token=skip');

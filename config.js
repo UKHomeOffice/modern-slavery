@@ -23,6 +23,7 @@ module.exports = {
   env,
   allowSkip: String(process.env.ALLOW_SKIP) === 'true',
   skipEmail: process.env.SKIP_EMAIL,
+  hofTestEmail: process.env.HOF_TEST_EMAIL,
   hostUrl: process.env.HOST_URL,
   saveService: {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,

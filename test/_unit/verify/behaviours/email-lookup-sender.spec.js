@@ -24,7 +24,7 @@ const Behaviour = proxyquire('../../../../apps/verify/behaviours/email-lookup-se
     '../../nrm/index': sinon.stub(),
     '../../../ms-lists/ms_email_domains': emailDomainCheck,
     '../../../config': Object.assign({}, config, {
-      allowSkip: true, skipEmail: 'test@example.com'
+      allowSkip: true, skipEmail: config.hofTestEmail
     })
   });
 
