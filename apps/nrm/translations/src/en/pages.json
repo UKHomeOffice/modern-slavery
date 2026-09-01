@@ -445,6 +445,9 @@
       "pv-dob": {
         "label": "Date of birth"
       },
+      "pv-dob-not-known-reason": {
+        "label": "Reason date of birth is not known"
+      },
       "pv-gender": {
         "label": "Gender"
       },
