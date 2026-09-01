@@ -655,6 +655,13 @@
   "pv-dob": {
     "hint": "For example, 31 3 1980."
   },
+  "pv-dob-not-known": {
+    "label": "The potential victim's date of birth is not known"
+  },
+  "pv-dob-not-known-reason": {
+    "label": "Reason date of birth is not known",
+    "hint": "Briefly state the reason why their date of birth is not known"
+  },
   "pv-gender": {
     "legend": "What is their gender?",
     "options": {

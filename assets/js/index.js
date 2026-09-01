@@ -117,4 +117,40 @@ if ($('.add-another').length) {
   $('.add-another').show();
 }
 
+// If DOB is marked as unknown, clear and disable all DOB inputs.
+var bindUnknownDobBehaviour = function bindUnknownDobBehaviour() {
+  var dobUnknownCheckbox = document.querySelector('#pv-dob-not-known, input[name="pv-dob-not-known"]');
+  if (!dobUnknownCheckbox) {
+    return;
+  }
+
+  var dobInputs = [
+    document.querySelector('#pv-dob-day, input[name="pv-dob-day"]'),
+    document.querySelector('#pv-dob-month, input[name="pv-dob-month"]'),
+    document.querySelector('#pv-dob-year, input[name="pv-dob-year"]')
+  ];
+
+  var updateDobState = function updateDobState() {
+    var isUnknown = dobUnknownCheckbox.checked;
+    dobInputs.forEach(function toggleDobInput(input) {
+      if (!input) {
+        return;
+      }
+      if (isUnknown) {
+        input.value = '';
+      }
+      input.disabled = isUnknown;
+    });
+  };
+
+  updateDobState();
+  dobUnknownCheckbox.addEventListener('change', updateDobState);
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindUnknownDobBehaviour);
+} else {
+  bindUnknownDobBehaviour();
+}
+
 govuk.initAll();

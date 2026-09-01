@@ -459,6 +459,17 @@ module.exports = {
         field: 'pv-dob'
       },
       {
+        step: '/pv-dob',
+        field: 'pv-dob-not-known-reason',
+        parse: (list, req) => {
+          const isDobUnknown = req.sessionModel.get('pv-dob-not-known') === true || req.sessionModel.get('pv-dob-not-known') === 'true';
+          if (!isDobUnknown || !list) {
+            return null;
+          }
+          return list;
+        }
+      },
+      {
         step: '/pv-gender-referral',
         field: 'pv-gender',
         parse: (list, req) => {
