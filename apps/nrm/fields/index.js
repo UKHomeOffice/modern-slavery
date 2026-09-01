@@ -1046,6 +1046,28 @@ module.exports = {
     labelClassName: 'visuallyhidden',
     validate: ['date', 'before', { type: 'after', arguments: '1900-01-01' }]
   }),
+  'pv-dob-not-known': {
+    mixin: 'checkbox',
+    toggle: 'pv-dob-not-known-fieldset',
+    child: 'partials/pv-dob-not-known'
+  },
+  'pv-dob-not-known-reason': {
+    mixin: 'textarea',
+    labelClassName: 'visuallyhidden',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: ['required', { type: 'maxlength', arguments: [200] }],
+    attributes: [
+      {
+        attribute: 'rows',
+        value: 5
+      }
+    ],
+    dependent: {
+      value: 'true',
+      field: 'pv-dob-not-known'
+    }
+  },
   'pv-gender': {
     isPageHeading: true,
     mixin: 'radio-group',
