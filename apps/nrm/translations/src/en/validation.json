@@ -252,9 +252,14 @@
     "maxlength": "You must enter no more than 15,000 characters"
   },
   "pv-dob": {
+    "required": "Enter a date of birth",
     "date": "You must enter a valid date",
-    "before": "You must enter a valid date. The date cannot be in the future",
-    "after": "You must enter a valid date. The date cannot be too far in the past"
+    "before": "The date of birth must be in the past",
+    "after": "The date cannot be too far in the past"
+  },
+  "pv-dob-not-known-reason": {
+    "required": "Enter why the date of birth is not known",
+    "maxlength": "The reason must be 200 characters or less"
   },
   "pv-gender": {
     "required": "You must select the potential victim's gender"
