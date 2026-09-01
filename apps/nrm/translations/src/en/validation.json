@@ -255,7 +255,7 @@
     "required": "Enter a date of birth",
     "date": "You must enter a valid date",
     "before": "The date of birth must be in the past",
-    "after": "The date cannot be too far in the past"
+    "after": "The date of birth must not be before 1900"
   },
   "pv-dob-not-known-reason": {
     "required": "Enter why the date of birth is not known",
