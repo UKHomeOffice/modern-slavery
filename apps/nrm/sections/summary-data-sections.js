@@ -1,5 +1,6 @@
 /* eslint-disable max-len  */
 'use strict';
+const formateDate = require('../util/data-formatter').formatDate;
 
 module.exports = {
   'your-report': {
@@ -456,7 +457,8 @@ module.exports = {
       },
       {
         step: '/pv-dob',
-        field: 'pv-dob'
+        field: 'pv-dob',
+        parse: list => !list ? 'Not known' : formateDate(list)
       },
       {
         step: '/pv-dob',
