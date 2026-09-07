@@ -1,24 +1,14 @@
 'use strict';
+const { updateAutomaticReferral } = require('../util/update-auto-referral');
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
-    const pvUnderAge = req.form.values['pv-under-age'] !== 'no';
-    const currentSteps = req.sessionModel.get('steps');
-    const previouslyAnsweredSubmitToNRM = currentSteps.includes('/pv-want-to-submit-nrm');
-
-    req.sessionModel.set('automatic-referral', pvUnderAge);
-
-    // this updates fields and change links for the in-progress check your answers page
-    // when accessing a case from the reports dashboard
-    if (pvUnderAge) {
-      req.sessionModel.set('pv-want-to-submit-nrm', 'yes');
-      req.sessionModel.set('is-referral', true);
-      req.sessionModel.unset('does-pv-need-support');
-    } else if (!previouslyAnsweredSubmitToNRM) {
-      req.sessionModel.unset('pv-want-to-submit-nrm');
-      req.sessionModel.unset('is-referral');
-    }
-
+    updateAutomaticReferral(req, req.form.values['pv-under-age']);
     return super.saveValues(req, res, next);
+  }
+
+  getValues(req, res, next) {
+    updateAutomaticReferral(req, req.sessionModel.get('pv-under-age'));
+    return super.getValues(req, res, next);
   }
 };

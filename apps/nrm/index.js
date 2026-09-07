@@ -808,7 +808,8 @@ module.exports = {
         'complete',
         modifySummaryPage,
         fullWidth,
-        submission
+        submission,
+        automaticReferral
       ],
       locals: { showSaveAndExit: false },
       next: '/confirmation'
