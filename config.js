@@ -60,5 +60,11 @@ module.exports = {
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
     feedbackEmail: process.env.FEEDBACK_EMAIL
   },
-  promptSheet: 'nrm-form-offline-2026-v2.pdf'
+  promptSheet: 'nrm-form-offline-2026-v2.pdf',
+  dateLocales: 'en-GB',
+  dateFormat: {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }
 };

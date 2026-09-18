@@ -25,6 +25,8 @@ module.exports = (data, token) => {
   if (data['pv-dob']) {
     response['Customer.Custom7'] = 'Yes';
     response['Customer.DOB'] = data['pv-dob'];
+  } else if (data['pv-dob-not-known']) {
+    response['Customer.DobNotKnownReason'] = data['pv-dob-not-known-reason'];
   }
   const genderMap = {
     female: 'Female',

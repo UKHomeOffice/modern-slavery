@@ -1,4 +1,5 @@
 'use strict';
+const config = require('../../../config');
 
 /**
  * Capitalise all characters or leave as is depending on
@@ -83,8 +84,59 @@ const truncateText = text => {
   return truncatedText;
 };
 
+/**
+ * Formatter for full date strings using application-configured locale and format.
+ * Used for consistent pretty date output across the app (e.g., "11 February 2026").
+ */
+const PRETTY_DATE_FORMATTER = new Intl.DateTimeFormat(
+  config.dateLocales,
+  config.dateFormat
+);
+
+/**
+ * Determines whether a value represents a valid date.
+ * Accepts a Date instance or a parseable date string.
+ *
+ * @param {Date|string} date - A Date object or a date string parseable by Date.parse.
+ * @returns {boolean} True if the value resolves to a valid date; otherwise false.
+ */
+const isValidDate = date => {
+  return (
+    (date instanceof Date && !isNaN(date)) ||
+    (typeof date === 'string' && !isNaN(Date.parse(date)))
+  );
+};
+
+/**
+ * Formats a date using the configured pretty date formatter.
+ * The format and locales are derived from application configuration.
+ *
+ * @param {Date|string} date - A Date object or a parseable date string.
+ * @returns {string} The formatted date string.
+ * @throws {Error} If the input is not a valid date or formatting fails.
+ * @example
+ * // en-GB with { day: 'numeric', month: 'long', year: 'numeric' }
+ * // Returns '11 February 2026' for the date 2026-02-11
+ * formatDate('2026-02-11');
+ */
+const formatDate = date => {
+  if (!isValidDate(date)) {
+    throw new Error('Invalid date value');
+  }
+
+  try {
+    const dateObj = new Date(date);
+    return PRETTY_DATE_FORMATTER.format(dateObj);
+  } catch (error) {
+    throw new Error(
+      `Error formatting date to formatDate format: ${error.message}`
+    );
+  }
+};
+
 module.exports = {
   capitaliseText,
   removeDashesFromText,
-  truncateText
+  truncateText,
+  formatDate
 };

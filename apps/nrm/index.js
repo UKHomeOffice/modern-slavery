@@ -17,6 +17,7 @@ const fullWidth = require('./behaviours/full-width');
 const whereExploitationHappenedUk = require('./behaviours/where-exploitation-happened-uk');
 const authoritiesCooperation = require('./behaviours/authorities-cooperation-edit');
 const multipleExploitations = require('./behaviours/multiple-exploitations');
+const pvDobValidation = require('./behaviours/pv-dob-validation');
 const Submission = require('./behaviours/casework-submission');
 const areYouSure = require('./behaviours/are-you-sure');
 const modifySummaryPage = require('./behaviours/modify-summary-page');
@@ -637,10 +638,15 @@ module.exports = {
     },
     '/pv-dob': {
       behaviours: [
+        pvDobValidation,
         saveFormSession
       ],
       locals: { showSaveAndExit: true },
-      fields: ['pv-dob'],
+      fields: [
+        'pv-dob',
+        'pv-dob-not-known',
+        'pv-dob-not-known-reason'
+      ],
       next: '/pv-gender-referral'
     },
     '/pv-gender-referral': {
