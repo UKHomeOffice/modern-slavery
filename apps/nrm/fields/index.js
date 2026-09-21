@@ -1044,7 +1044,7 @@ module.exports = {
   'pv-dob': dateComponent('pv-dob', {
     mixin: 'input-date',
     labelClassName: 'visuallyhidden',
-    validate: ['date', 'before', { type: 'after', arguments: '1900-01-01' }]
+    validate: ['date', 'before', { type: 'after', arguments: '1899-12-31' }]
   }),
   'pv-dob-not-known': {
     mixin: 'checkbox',
