@@ -1139,7 +1139,7 @@ describe('validation checks of the nrm journey', () => {
 
       expect(validationSummary.length === 1).to.be.true;
       expect(validationSummary.html())
-        .to.match(/You must enter a valid date/);
+        .to.match(/Enter a valid date/);
     });
   });
 
