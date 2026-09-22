@@ -42,7 +42,7 @@
     "busboy": "^1.6.0",
     "form-data": "^4.0.6",
     "govuk-frontend": "^5.14.0",
-    "hof": "~24.5.0",
+    "hof": "24.5.0-jquery-removal-beta.1",
     "ioredis": "^5.11.1",
     "jquery": "^4.0.0",
     "knex": "^3.3.0",
