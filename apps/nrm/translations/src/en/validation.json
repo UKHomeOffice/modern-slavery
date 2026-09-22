@@ -253,7 +253,7 @@
   },
   "pv-dob": {
     "required": "Enter a date of birth",
-    "date": "You must enter a valid date",
+    "date": "Enter a valid date",
     "before": "The date of birth must be in the past",
     "after": "The date of birth must not be before 1900"
   },
