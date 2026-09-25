@@ -458,12 +458,20 @@ module.exports = {
       {
         step: '/pv-dob',
         field: 'pv-dob',
-        parse: list => !list ? 'Not known' : formateDate(list)
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-dob')) {
+            return null;
+          }
+          return !list ? 'Not known' : formateDate(list);
+        }
       },
       {
         step: '/pv-dob',
         field: 'pv-dob-not-known-reason',
         parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/pv-dob')) {
+            return null;
+          }
           const isDobUnknown = req.sessionModel.get('pv-dob-not-known') === true || req.sessionModel.get('pv-dob-not-known') === 'true';
           if (!isDobUnknown || !list) {
             return null;
