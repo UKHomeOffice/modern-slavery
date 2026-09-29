@@ -1,11 +1,6 @@
-FROM node:24.19.0 as base
+FROM node:24.21.0 as base
 
 EXPOSE 9222
-
-# Install dependencies
-RUN apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -yq curl libgconf-2-4
 
 # Install Google Chrome
 # the --allow-unauthenticated command is a temporary solution in order to
