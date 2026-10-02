@@ -31,7 +31,7 @@ trigger:
 
 node_image: &node_image
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:24.21.0-alpine3.24-v4@sha256:c5d1333e7e965464258596faf4ac16a0eadd36029270ed0d8d94ec9003cae19d
+  image: quay.io/ukhomeofficedigital/hof-nodejs:24.21.0-alpine3.24-v5@sha256:d1f53a835afb4cac37f4b88e895cea65e67b6a8166f86164c4f220368eb0fd45
 
 linting: &linting
   <<: *node_image
