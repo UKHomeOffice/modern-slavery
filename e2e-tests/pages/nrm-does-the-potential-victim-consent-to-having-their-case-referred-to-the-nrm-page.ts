@@ -21,7 +21,13 @@ export class NrmDoesThePotentialVictimConsentToHavingTheirCaseReferredToTheNrmPa
       await this.page.getByRole('radio', { name: new RegExp(`^${response}`) }).check();
     }
     if (text) {
-      await this.fillTextboxes(text);
+      const count = await this.textboxes.count();
+      for (let index = 0; index < count; index += 1) {
+        const textbox = this.textboxes.nth(index);
+        if (await textbox.isVisible() && !(await textbox.inputValue())) {
+          await this.clearAndEnterTextInElement(textbox, text);
+        }
+      }
     }
     await this.clickContinueButton();
   }

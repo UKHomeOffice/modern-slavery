@@ -51,14 +51,9 @@ export abstract class BasePage {
         await this.page.getByRole('checkbox', { name: optionText, exact: true }).check();
     }
 
-    async fillTextboxes(value: string): Promise<void> {
-        const count = await this.textboxes.count();
-        for (let index = 0; index < count; index += 1) {
-            const textbox = this.textboxes.nth(index);
-            if (await textbox.isVisible() && !(await textbox.inputValue())) {
-                await textbox.fill(value);
-            }
-        }
+    async clearAndEnterTextInElement(locator: Locator, text: string): Promise<void> {
+        await locator.clear();
+        await locator.fill(text);
     }
 
     async completeQuestion(text = '', response?: string, checkError: string = ConstantsLib.NO): Promise<void> {
@@ -73,7 +68,13 @@ export abstract class BasePage {
             }
         }
         if (text) {
-            await this.fillTextboxes(text);
+            const count = await this.textboxes.count();
+            for (let index = 0; index < count; index += 1) {
+                const textbox = this.textboxes.nth(index);
+                if (await textbox.isVisible() && !(await textbox.inputValue())) {
+                    await this.clearAndEnterTextInElement(textbox, text);
+                }
+            }
         }
         await this.clickContinueButton();
     }
