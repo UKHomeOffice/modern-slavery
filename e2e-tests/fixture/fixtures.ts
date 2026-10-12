@@ -1,6 +1,5 @@
 import { test as base } from 'playwright-bdd';
 import type { Page } from '@playwright/test';
-import type { NrmPageId } from '../utility-helper/constants-lib';
 import { BasePage } from '../pages/base-page';
 import { NrmAddReferencePage } from '../pages/nrm-add-reference-page';
 import { NrmAreTheExploitersInTheUKPage } from '../pages/nrm-are-the-exploiters-in-the-uk-page';
@@ -138,7 +137,7 @@ const nrmPageConstructors = {
   nrmWhyDontTheyWantTheirCaseReferredPage: NrmWhyDontTheyWantTheirCaseReferredPage,
   nrmWorkEmailPage: NrmWorkEmailPage,
   nrmYourReportHasBeenSavedPage: NrmYourReportHasBeenSavedPage,
-} satisfies Record<NrmPageId, new (page: Page) => BasePage>;
+} satisfies Record<string, new (page: Page) => BasePage>;
 
 export type Pages = {
   [PageId in keyof typeof nrmPageConstructors]: InstanceType<(typeof nrmPageConstructors)[PageId]>;

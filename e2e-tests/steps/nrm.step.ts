@@ -1,26 +1,57 @@
 import { expect } from '@playwright/test';
 import { createBdd } from 'playwright-bdd';
 import { test, type Pages } from '../fixture/fixtures';
-import { ConstantsLib, ScenarioData, type NrmPageId, type NrmScenarioId } from '../utility-helper/constants-lib';
+import { ConstantsLib } from '../utility-helper/constants-lib';
 
 export const { Given, When, Then } = createBdd(test);
 
 const stepLibraries = new WeakMap<object, NrmStepLib>();
 
+type QuestionnaireAnswers = {
+  location: string;
+  under18: string;
+  multipleExploitation: string;
+  takenSomewhere: string;
+  stillExploited: string;
+  lastContact: string;
+  firstChance: string;
+  indicators: string;
+  exploitationLocation: string;
+  exploiterInfo: string;
+  otherVictims: string;
+  futureRisk: string;
+  crimeReference: string;
+  cooperation: string;
+  refer: string;
+  upload: string;
+  locationCount?: number;
+  currentLocation?: string;
+  currentRegion?: string;
+  decisionRecipient?: string;
+};
+
 class NrmStepLib {
-  private scenarioId: NrmScenarioId = '1';
+  private scenarioDescription = '';
   private reportReference = `${ConstantsLib.REFERENCE_PREFIX}-${Date.now()}`;
 
   constructor(private readonly pages: Pages) {}
 
   selectScenarioByDescription(description: string): void {
-    const matchingScenarios = Object.entries(ScenarioData).filter(([, data]) => data.description === description);
-    if (matchingScenarios.length !== 1) {
-      throw new Error(`Expected one NRM scenario for description "${description}", found ${matchingScenarios.length}`);
+    switch (description) {
+      case "'Yes' answers - under18":
+      case "'No' answers - over18, No Cooperation":
+      case 'Continue report':
+      case 'Delete report':
+      case 'Not sure if under18':
+      case 'E2E mixed':
+      case 'Add max locations':
+      case "'No' answers - Yes Cooperation":
+      case 'Save and exit report':
+        this.scenarioDescription = description;
+        break;
+      default:
+        throw new Error(`No NRM journey is configured for description "${description}"`);
     }
-    const [scenarioId] = matchingScenarios[0];
-    const selectedId = scenarioId as NrmScenarioId;
-    this.scenarioId = selectedId;
     this.reportReference = `${ConstantsLib.REFERENCE_PREFIX}-${Date.now()}`;
   }
 
@@ -43,69 +74,48 @@ class NrmStepLib {
   }
 
   async fillQuestionnaire(partial: boolean, checkError: string): Promise<void> {
-    switch (this.scenarioId) {
-      case '1':
-      case '2':
-      case '5':
-      case '6':
-      case '8':
-      case '9':
-        await this.completeQuestionnaire(this.scenarioId, false, checkError);
+    switch (this.scenarioDescription) {
+      case "'Yes' answers - under18":
+        await this.completeQuestionnaire({ location: 'England', under18: 'Yes', multipleExploitation: 'Yes', takenSomewhere: 'Yes', stillExploited: 'No', lastContact: 'Not sure', firstChance: 'No', indicators: 'Yes', exploitationLocation: 'UK', exploiterInfo: 'Yes', otherVictims: 'Yes', futureRisk: 'Yes', crimeReference: 'Yes', cooperation: 'Yes', refer: 'N/A', upload: 'Yes' }, false, checkError);
         break;
-      case '3':
-      case '4':
-        await this.completeQuestionnaire(this.scenarioId, true, checkError);
+      case "'No' answers - over18, No Cooperation":
+        await this.completeQuestionnaire({ location: 'Wales', under18: 'No', multipleExploitation: 'No', takenSomewhere: 'No', stillExploited: 'No', lastContact: 'Within the last week', firstChance: 'No', indicators: 'No', exploitationLocation: 'Overseas', exploiterInfo: 'Yes', otherVictims: 'No', futureRisk: 'No', crimeReference: 'No', cooperation: 'No', refer: 'No', upload: 'No' }, false, checkError);
         break;
-      case '11':
-        await this.completeQuestionnaire(this.scenarioId, true, checkError);
+      case 'Continue report':
+        await this.completeQuestionnaire({ location: 'England', under18: 'Yes', multipleExploitation: 'No', takenSomewhere: 'Yes', stillExploited: 'No', lastContact: 'N/A', firstChance: 'N/A', indicators: 'No', exploitationLocation: 'N/A', exploiterInfo: 'N/A', otherVictims: 'N/A', futureRisk: 'N/A', crimeReference: 'N/A', cooperation: 'N/A', refer: 'N/A', upload: 'No' }, true, checkError);
+        break;
+      case 'Delete report':
+        await this.completeQuestionnaire({ location: 'Scotland', under18: 'Yes', multipleExploitation: "I don't know", takenSomewhere: 'Yes', stillExploited: 'No', lastContact: 'N/A', firstChance: 'N/A', indicators: 'No', exploitationLocation: 'N/A', exploiterInfo: 'N/A', otherVictims: 'N/A', futureRisk: 'N/A', crimeReference: 'N/A', cooperation: 'N/A', refer: 'N/A', upload: 'No' }, true, checkError);
+        break;
+      case 'Not sure if under18':
+        await this.completeQuestionnaire({ location: 'Scotland', under18: 'Not Sure', multipleExploitation: 'Yes', takenSomewhere: 'No', stillExploited: 'No', lastContact: 'Within the last month', firstChance: 'Not sure', indicators: 'No', exploitationLocation: 'UK and Overseas', exploiterInfo: 'No', otherVictims: 'Not sure', futureRisk: 'Yes', crimeReference: 'Yes', cooperation: 'Yes', refer: 'N/A', upload: 'Yes' }, false, checkError);
+        break;
+      case 'E2E mixed':
+        await this.completeQuestionnaire({ location: 'Northern Ireland', under18: 'No', multipleExploitation: 'Yes', takenSomewhere: 'Yes', stillExploited: 'No', lastContact: 'Within the last 3 months', firstChance: 'Yes', indicators: 'Yes', exploitationLocation: 'UK and Overseas', exploiterInfo: 'No', otherVictims: 'Yes', futureRisk: 'No', crimeReference: 'Yes', cooperation: 'Yes', refer: 'Yes', upload: 'Yes', currentLocation: ConstantsLib.UNKNOWN, currentRegion: ConstantsLib.UNKNOWN, decisionRecipient: ConstantsLib.ALTERNATE_DECISION_RECIPIENT }, false, checkError);
+        break;
+      case 'Add max locations':
+        await this.completeQuestionnaire({ location: 'Wales', under18: 'Yes', multipleExploitation: 'No', takenSomewhere: 'No', stillExploited: 'No', lastContact: 'Over a year ago', firstChance: 'No', indicators: 'No', exploitationLocation: 'UK and Overseas', exploiterInfo: 'No', otherVictims: 'No', futureRisk: 'Yes', crimeReference: 'Yes', cooperation: 'Yes', refer: 'N/A', upload: 'Yes', locationCount: 9 }, false, checkError);
+        break;
+      case "'No' answers - Yes Cooperation":
+        await this.completeQuestionnaire({ location: 'England', under18: 'No', multipleExploitation: 'No', takenSomewhere: 'Yes', stillExploited: 'No', lastContact: 'Not sure', firstChance: 'Yes', indicators: 'Yes', exploitationLocation: 'UK', exploiterInfo: 'Yes', otherVictims: 'Yes', futureRisk: 'Yes', crimeReference: 'Yes', cooperation: 'Yes', refer: 'No', upload: 'No' }, false, checkError);
+        break;
+      case 'Save and exit report':
+        await this.completeQuestionnaire({ location: 'England', under18: 'Yes', multipleExploitation: 'No', takenSomewhere: 'Yes', stillExploited: 'N/A', lastContact: 'N/A', firstChance: 'N/A', indicators: 'N/A', exploitationLocation: 'N/A', exploiterInfo: 'N/A', otherVictims: 'N/A', futureRisk: 'N/A', crimeReference: 'N/A', cooperation: 'N/A', refer: 'N/A', upload: 'N/A' }, true, checkError);
         await this.pages.nrmHowWasThePotentialVictimTreatedDuringTheirExploitationPage.fillTreatmentAnswers(ConstantsLib.TEXT_ANSWER);
         break;
       default:
-        throw new Error(`No NRM journey is configured for scenario ${this.scenarioId}`);
+        throw new Error(`No NRM journey is configured for description "${this.scenarioDescription}"`);
     }
 
-    if (partial && this.scenarioId !== '11') {
-      return;
-    }
+    if (partial && this.scenarioDescription !== 'Save and exit report') return;
   }
 
-  async navigateToDashboard(): Promise<void> {
-    await this.pages.nrmDraftReportsPage.navigateToReportsDashboard();
-  }
 
-  async continueReport(): Promise<void> {
-    const draftReportsPage = this.pages.nrmDraftReportsPage;
-    await draftReportsPage.assertPageTitle(draftReportsPage.page, await draftReportsPage.expectedPageTitle());
-    await draftReportsPage.openDraftReport(this.reportReference, 'Go to report');
-    const progressPage = this.pages.nrmCurrentProgressPage;
-    await progressPage.assertPageTitle(progressPage.page, await progressPage.expectedPageTitle());
-    await progressPage.continueToNextQuestion();
-    await this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.assertPageTitle(this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.page, await this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.expectedPageTitle());
-  }
 
-  async deleteReport(): Promise<void> {
-    const draftReportsPage = this.pages.nrmDraftReportsPage;
-    await draftReportsPage.assertPageTitle(draftReportsPage.page, await draftReportsPage.expectedPageTitle());
-    await draftReportsPage.openDraftReport(this.reportReference, 'Delete report');
-    await this.pages.nrmDeleteReportPage.assertPageTitle(this.pages.nrmDeleteReportPage.page, await this.pages.nrmDeleteReportPage.expectedPageTitle());
-    await this.pages.nrmDeleteReportPage.confirmDeleteReport();
-    await draftReportsPage.assertDraftReportDeleted(this.reportReference);
-  }
 
-  async saveAndExit(): Promise<void> {
-    await this.pages.nrmHowWasThePotentialVictimTreatedDuringTheirExploitationPage.saveAndExitReport();
-    await this.pages.nrmYourReportHasBeenSavedPage.assertReportSaved();
-  }
 
-  async submitReport(): Promise<void> {
-    const checkAnswers = this.pages.nrmCheckYourAnswersPage;
-    await checkAnswers.assertPageTitle(checkAnswers.page, await checkAnswers.expectedPageTitle());
-    await checkAnswers.submitReport();
-    await this.pages.nrmSentConfirmationPage.assertSubmissionConfirmation();
-  }
 
-  private async completeQuestionnaire(scenarioId: NrmScenarioId, partial: boolean, checkError: string): Promise<void> {
-    const scenario = ScenarioData[scenarioId];
+ private async completeQuestionnaire(scenario: QuestionnaireAnswers, partial: boolean, checkError: string): Promise<void> {
     await this.pages.nrmAddReferencePage.completeReference(this.reportReference, checkError);
     await this.pages.nrmSelectOrganisationPage.completeOrganisation(ConstantsLib.ORGANISATION, checkError);
     await this.answer('nrmWhereAreYouMakingThisReportPage', scenario.location, undefined, checkError);
@@ -147,18 +157,18 @@ class NrmStepLib {
       await this.pages.nrmWhereWereTheyExploitedInTheUKPage.completeUkExploitationLocations(
         ConstantsLib.UK_CITY,
         ConstantsLib.LOCATION_DETAILS,
-        scenarioId === '8' ? 9 : 1,
+        scenario.locationCount ?? 1,
       );
     }
     if (scenario.exploitationLocation.includes('Overseas')) {
       await this.pages.nrmWhereWereTheyExploitedOverseasPage.completeOverseasExploitationLocations(
         ConstantsLib.OVERSEAS_COUNTRY,
         ConstantsLib.OVERSEAS_LOCATION_DETAILS,
-        scenarioId === '8' ? 9 : 1,
+        scenario.locationCount ?? 1,
       );
     }
-    const currentLocation = scenarioId === '6' ? ConstantsLib.UNKNOWN : ConstantsLib.UK_CITY;
-    const currentRegion = scenarioId === '6' ? ConstantsLib.UNKNOWN : ConstantsLib.UK_REGION;
+    const currentLocation = scenario.currentLocation ?? ConstantsLib.UK_CITY;
+    const currentRegion = scenario.currentRegion ?? ConstantsLib.UK_REGION;
     await this.pages.nrmWhereIsThePotentialVictimStayingPage.completeVictimCurrentLocation(currentLocation, currentRegion);
     await this.answer('nrmWhoExploitedThePotentialVictimPage', undefined, ConstantsLib.TEXT_ANSWER, checkError);
     await this.answer('nrmDoYouHaveInformationAboutWhereTheExploitersArePage', scenario.exploiterInfo, undefined, checkError);
@@ -195,7 +205,7 @@ class NrmStepLib {
         await this.pages.nrmHowCanTheSupportProviderContactThePotentialVictimPage.completeSupportProviderContactDetails();
       }
       await this.completePotentialVictimQuestionnaire(checkError);
-      const decisionRecipient = scenarioId === '6' ? ConstantsLib.ALTERNATE_DECISION_RECIPIENT : ConstantsLib.DECISION_RECIPIENT;
+      const decisionRecipient = scenario.decisionRecipient ?? ConstantsLib.DECISION_RECIPIENT;
       await this.answer('nrmWhoShouldWeSendDecisionToPage', decisionRecipient, undefined, checkError);
       await this.pages.nrmHowShouldTheyBeContactedPage.completeDecisionContactDetails(decisionRecipient);
       await this.pages.nrmWhatAreYourContactDetailsPage.completeReporterContactDetails();
@@ -206,6 +216,52 @@ class NrmStepLib {
     }
     await this.pages.nrmCheckYourAnswersPage.assertPageTitle(this.pages.nrmCheckYourAnswersPage.page, await this.pages.nrmCheckYourAnswersPage.expectedPageTitle());
   }
+
+
+
+
+
+
+
+
+
+
+  async navigateToDashboard(): Promise<void> {
+    await this.pages.nrmDraftReportsPage.navigateToReportsDashboard();
+  }
+
+  async continueReport(): Promise<void> {
+    const draftReportsPage = this.pages.nrmDraftReportsPage;
+    await draftReportsPage.assertPageTitle(draftReportsPage.page, await draftReportsPage.expectedPageTitle());
+    await draftReportsPage.openDraftReport(this.reportReference, 'Go to report');
+    const progressPage = this.pages.nrmCurrentProgressPage;
+    await progressPage.assertPageTitle(progressPage.page, await progressPage.expectedPageTitle());
+    await progressPage.continueToNextQuestion();
+    await this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.assertPageTitle(this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.page, await this.pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.expectedPageTitle());
+  }
+
+  async deleteReport(): Promise<void> {
+    const draftReportsPage = this.pages.nrmDraftReportsPage;
+    await draftReportsPage.assertPageTitle(draftReportsPage.page, await draftReportsPage.expectedPageTitle());
+    await draftReportsPage.openDraftReport(this.reportReference, 'Delete report');
+    await this.pages.nrmDeleteReportPage.assertPageTitle(this.pages.nrmDeleteReportPage.page, await this.pages.nrmDeleteReportPage.expectedPageTitle());
+    await this.pages.nrmDeleteReportPage.confirmDeleteReport();
+    await draftReportsPage.assertDraftReportDeleted(this.reportReference);
+  }
+
+  async saveAndExit(): Promise<void> {
+    await this.pages.nrmHowWasThePotentialVictimTreatedDuringTheirExploitationPage.saveAndExitReport();
+    await this.pages.nrmYourReportHasBeenSavedPage.assertReportSaved();
+  }
+
+  async submitReport(): Promise<void> {
+    const checkAnswers = this.pages.nrmCheckYourAnswersPage;
+    await checkAnswers.assertPageTitle(checkAnswers.page, await checkAnswers.expectedPageTitle());
+    await checkAnswers.submitReport();
+    await this.pages.nrmSentConfirmationPage.assertSubmissionConfirmation();
+  }
+
+ 
 
   private async completePotentialVictimQuestionnaire(checkError: string): Promise<void> {
     await this.pages.nrmWhatIsTheNameOfThePotentialVictimPage.completePotentialVictimName();
@@ -218,7 +274,7 @@ class NrmStepLib {
     await this.answer('nrmDoTheyHaveAnyHomeOfficeRefPage', ConstantsLib.NO, undefined, checkError);
   }
 
-  private async answer(pageId: NrmPageId, response?: string, text?: string, checkError: string = ConstantsLib.NO): Promise<void> {
+  private async answer(pageId: keyof Pages, response?: string, text?: string, checkError: string = ConstantsLib.NO): Promise<void> {
     const nrmPage = this.pages[pageId];
     await nrmPage.assertPageTitle(nrmPage.page, await nrmPage.expectedPageTitle());
     await nrmPage.completeQuestion(text ?? '', response, checkError);
