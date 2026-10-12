@@ -1,0 +1,12 @@
+import type { Page } from '@playwright/test';
+import { BasePage } from './base-page';
+
+export class NrmWereThereAnyOtherPotentialVictimsPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    return "Were there any other potential victims? – Report modern slavery";
+  }
+}
