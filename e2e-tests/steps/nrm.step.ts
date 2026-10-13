@@ -394,6 +394,9 @@ When('I selected the data for scenario {string}', async ({ pages }, description:
 });
 
 When('I enter my work Email {string} and create new report - check error {string}', async ({ pages }, email: string, checkError: string) => {
+  if(email === 'SAS_HOF_EMAIL') {
+    email = process.env.SAS_HOF_EMAIL ?? email;
+  }
   await getStepLib(pages).createReport(email, checkError);
 });
 

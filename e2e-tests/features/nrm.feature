@@ -8,7 +8,7 @@ Feature: NRM - National Referral Mechanism
   Scenario Outline: National Referral Mechanism - E2E
     Given I visit the National Referral Mechanism page
     When I selected the data for scenario "<Description>"
-    And I enter my work Email "sas-hof-test@digital.homeoffice.gov.uk" and create new report - check error "<Check Error>"
+    And I enter my work Email "SAS_HOF_EMAIL" and create new report - check error "<Check Error>"
     And I fill out my answers to the NRM questionnaire - check error "<Check Error>"
     Then I am able to submit the NRM questionnaire
     Examples:
@@ -24,7 +24,7 @@ Feature: NRM - National Referral Mechanism
   Scenario: NRM - Continue report
     Given I visit the National Referral Mechanism page
     When I selected the data for scenario "Continue report"
-    And I enter my work Email "sas-hof-test@digital.homeoffice.gov.uk" and create new report - check error "<Check Error>"
+    And I enter my work Email "SAS_HOF_EMAIL" and create new report - check error "<Check Error>"
     And I fill out my answers to some of the NRM questionnaire - check error "No"
     And I navigate back to the reports dashboard
     Then I am able to click 'Go to report' button and continue the report
@@ -32,7 +32,7 @@ Feature: NRM - National Referral Mechanism
   Scenario: NRM - Delete report
     Given I visit the National Referral Mechanism page
     When I selected the data for scenario "Delete report"
-    And I enter my work Email "sas-hof-test@digital.homeoffice.gov.uk" and create new report - check error "<Check Error>"
+    And I enter my work Email "SAS_HOF_EMAIL" and create new report - check error "<Check Error>"
     And I fill out my answers to some of the NRM questionnaire - check error "No"
     And I navigate back to the reports dashboard
     Then I am able to delete my report
@@ -40,6 +40,6 @@ Feature: NRM - National Referral Mechanism
   Scenario: NRM - Save And Exit report
     Given I visit the National Referral Mechanism page
     When I selected the data for scenario "Save and exit report"
-    And I enter my work Email "sas-hof-test@digital.homeoffice.gov.uk" and create new report - check error "<Check Error>"
+    And I enter my work Email "SAS_HOF_EMAIL" and create new report - check error "<Check Error>"
     And I fill out my answers to some of the NRM questionnaire - check error "No"
     Then I click 'Save and exit' button and confirm my report is saved
