@@ -1,9 +1,12 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { BasePage } from './base-page';
 
 export class NrmWhoShouldWeContactInYourAbsencePage extends BasePage {
+  private readonly alternativeContact: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.alternativeContact = page.locator('#fr-alternative-contact');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -12,7 +15,7 @@ export class NrmWhoShouldWeContactInYourAbsencePage extends BasePage {
 
   async completeAbsenceContact(email: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.page.locator('#fr-alternative-contact').fill(email);
+    await this.clearAndEnterTextInElement(this.alternativeContact, email);
     await this.clickContinueButton();
   }
 }

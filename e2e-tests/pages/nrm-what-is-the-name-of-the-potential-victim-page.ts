@@ -1,10 +1,17 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmWhatIsTheNameOfThePotentialVictimPage extends BasePage {
+  private readonly firstName: Locator;
+  private readonly lastName: Locator;
+  private readonly nickname: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.firstName = page.locator('#pv-name-first-name');
+    this.lastName = page.locator('#pv-name-last-name');
+    this.nickname = page.locator('#pv-name-nickname');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -13,9 +20,9 @@ export class NrmWhatIsTheNameOfThePotentialVictimPage extends BasePage {
 
   async completePotentialVictimName(): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.page.locator('#pv-name-first-name').fill(ConstantsLib.VICTIM_FIRST_NAME);
-    await this.page.locator('#pv-name-last-name').fill(ConstantsLib.VICTIM_LAST_NAME);
-    await this.page.locator('#pv-name-nickname').fill(ConstantsLib.VICTIM_NICKNAME);
+    await this.clearAndEnterTextInElement(this.firstName, ConstantsLib.VICTIM_FIRST_NAME);
+    await this.clearAndEnterTextInElement(this.lastName, ConstantsLib.VICTIM_LAST_NAME);
+    await this.clearAndEnterTextInElement(this.nickname, ConstantsLib.VICTIM_NICKNAME);
     await this.clickContinueButton();
   }
 }

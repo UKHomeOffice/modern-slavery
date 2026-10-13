@@ -1,11 +1,15 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmWorkEmailPage extends BasePage {
+  private readonly workEmailTextbox: Locator;
+  private readonly sendSecureLinkButton: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.workEmailTextbox = page.locator('#user-email');
+    this.sendSecureLinkButton = page.locator('input[value="Send secure link"], button:has-text("Send secure link")');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -14,16 +18,13 @@ export class NrmWorkEmailPage extends BasePage {
 
   async sendSecureLink(email: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.page.locator('#user-email').fill(email);
-    await this.page.locator('input[value="Send secure link"], button:has-text("Send secure link")').click();
+    await this.clearAndEnterTextInElement(this.workEmailTextbox, email);
+    await this.sendSecureLinkButton.click();
   }
 
   async checkBlankWorkEmailError(): Promise<void> {
-    await this.page.locator('input[value="Send secure link"], button:has-text("Send secure link")').click();
+    await this.sendSecureLinkButton.click();
     await expect(this.page.getByText('Enter a valid email address')).toBeVisible();
   }
 
-  async fillWorkEmail(email: string): Promise<void> {
-    await this.page.locator('#user-email').fill(email || ConstantsLib.WORK_EMAIL);
-  }
 }

@@ -1,11 +1,14 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmSelectOrganisationPage extends BasePage {
+  private readonly organisationField: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.organisationField = page.locator('#user-organisation');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -18,9 +21,7 @@ export class NrmSelectOrganisationPage extends BasePage {
       await this.clickContinueButton();
       await expect(this.page.getByText('You must select the organisation')).toBeVisible();
     }
-    const field = this.page.locator('#user-organisation');
-    await field.fill(organisation);
-    await field.press('Tab');
+    await this.clearAndEnterTextInElement(this.organisationField, organisation);
     await this.clickContinueButton();
   }
 }

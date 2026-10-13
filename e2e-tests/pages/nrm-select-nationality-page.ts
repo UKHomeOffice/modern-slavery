@@ -1,24 +1,39 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmSelectNationalityPage extends BasePage {
+  private readonly nationalityField: Locator;
+  private readonly secondNationalityField: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.nationalityField = page.getByRole('combobox', { name: 'Select nationality' });
+    this.secondNationalityField = page.getByRole('combobox', { name: 'Select second nationality (Optional)' });
   }
 
   async expectedPageTitle(): Promise<string> {
     return "Select nationality – Report modern slavery";
   }
 
-  override async completeQuestion(text = '', response?: string, checkError: string = ConstantsLib.NO): Promise<void> {
+  async checkNationalityRequiredError(): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.clickContinueButton();
+    await this.page.getByText("You must select the potential victim's nationality from the list").waitFor();
+  }
+
+  async completeNationalitySelection(checkError: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
     if (checkError === ConstantsLib.YES) {
-      await this.clickContinueButton();
-      await this.page.getByText("You must select the potential victim's nationality from the list").waitFor();
+      await this.checkNationalityRequiredError();
     }
-    await this.selectAutocomplete('Select nationality', ConstantsLib.NATIONALITY);
-    await this.selectAutocomplete('Select second nationality (Optional)', ConstantsLib.SECOND_NATIONALITY);
+    await this.selectNationality(this.nationalityField, ConstantsLib.NATIONALITY);
+    await this.selectNationality(this.secondNationalityField, ConstantsLib.SECOND_NATIONALITY);
     await this.clickContinueButton();
+  }
+
+  private async selectNationality(field: Locator, nationality: string): Promise<void> {
+    await field.fill(nationality);
+    await this.page.getByRole('option').filter({ hasText: nationality }).first().click();
   }
 }

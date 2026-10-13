@@ -9,4 +9,11 @@ export class NrmDoTheyNeedHelpWithCommunicationPage extends BasePage {
   async expectedPageTitle(): Promise<string> {
     return "Do they need help with communication? – Report modern slavery";
   }
+
+  async answerCommunicationHelp(response: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
 }

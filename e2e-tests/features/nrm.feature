@@ -17,10 +17,9 @@ Feature: NRM - National Referral Mechanism
       | 'No' answers - over18, No Cooperation | No          |
       | Not sure if under18                   | No          |
       | E2E mixed                             | No          |
-    #      | max character #Has a bug-NRM-301      | No          |
       | Add max locations                     | No          |
       | 'No' answers - Yes Cooperation        | No          |
-    #      | 'Yes' answers - Page validations      | Yes         |
+      | 'Yes' answers - Page validations      | Yes         |
 
   Scenario: NRM - Continue report
     Given I visit the National Referral Mechanism page

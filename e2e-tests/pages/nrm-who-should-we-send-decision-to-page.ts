@@ -9,4 +9,11 @@ export class NrmWhoShouldWeSendDecisionToPage extends BasePage {
   async expectedPageTitle(): Promise<string> {
     return "Who should we send our decision to? – Report modern slavery";
   }
+
+  async answerDecisionRecipient(response: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
 }

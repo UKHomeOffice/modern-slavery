@@ -9,4 +9,11 @@ export class NrmDoYouHaveAnyConcernsAboutThePotentialVictimsCredibilityPage exte
   async expectedPageTitle(): Promise<string> {
     return "Do you have any concerns about the potential victim's credibility? – Report modern slavery";
   }
+
+  async answerCredibilityConcern(response: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
 }

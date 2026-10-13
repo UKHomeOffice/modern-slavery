@@ -11,24 +11,23 @@ export class NrmDoesThePotentialVictimConsentToHavingTheirCaseReferredToTheNrmPa
     return "Does the potential victim consent to having their case referred to the NRM? – Report modern slavery";
   }
 
-  override async completeQuestion(text = '', response?: string, checkError: string = ConstantsLib.NO): Promise<void> {
+  async selectConsentDecision(response: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.page.getByRole('radio', { name: new RegExp(`^${response}`, 'i') }).check();
+  }
+
+  async checkConsentDecisionRequiredError(): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.clickContinueButton();
+    await this.page.getByText('You must enter the NRM decision').waitFor();
+  }
+
+  async completeConsent(response: string, checkError: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
     if (checkError === ConstantsLib.YES) {
-      await this.clickContinueButton();
-      await this.page.getByText('You must enter the NRM decision').waitFor();
+      await this.checkConsentDecisionRequiredError();
     }
-    if (response) {
-      await this.page.getByRole('radio', { name: new RegExp(`^${response}`) }).check();
-    }
-    if (text) {
-      const count = await this.textboxes.count();
-      for (let index = 0; index < count; index += 1) {
-        const textbox = this.textboxes.nth(index);
-        if (await textbox.isVisible() && !(await textbox.inputValue())) {
-          await this.clearAndEnterTextInElement(textbox, text);
-        }
-      }
-    }
+    await this.selectConsentDecision(response);
     await this.clickContinueButton();
   }
 

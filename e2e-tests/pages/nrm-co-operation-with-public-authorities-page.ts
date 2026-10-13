@@ -9,4 +9,13 @@ export class NrmCoOperationWithPublicAuthoritiesPage extends BasePage {
   async expectedPageTitle(): Promise<string> {
     return "Co-operation with public authorities – Report modern slavery";
   }
+
+  async answerCooperation(response: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
+
+
 }

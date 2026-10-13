@@ -9,4 +9,11 @@ export class NrmDoTheyHaveAnyChildrenPage extends BasePage {
   async expectedPageTitle(): Promise<string> {
     return "Do they have any children? – Report modern slavery";
   }
+
+  async answerChildren(response: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
 }

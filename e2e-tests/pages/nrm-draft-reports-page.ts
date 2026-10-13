@@ -1,10 +1,13 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { BasePage } from './base-page';
 import { expect } from '@playwright/test';
 
 export class NrmDraftReportsPage extends BasePage {
+  private readonly createReportButton: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.createReportButton = page.locator('input[value="Create report"], button:has-text("Create report")');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -12,7 +15,7 @@ export class NrmDraftReportsPage extends BasePage {
   }
 
   async createDraftReport(): Promise<void> {
-    await this.page.locator('input[value="Create report"], button:has-text("Create report")').click();
+    await this.createReportButton.click();
   }
 
   async navigateToReportsDashboard(): Promise<void> {

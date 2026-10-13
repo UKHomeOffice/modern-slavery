@@ -1,9 +1,12 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { BasePage } from './base-page';
 
 export class NrmCurrentProgressPage extends BasePage {
+  private readonly continueToNextQuestionButton: Locator;
+
   constructor(page: Page) {
     super(page);
+    this.continueToNextQuestionButton = page.locator('input[value="Continue to next question"]');
   }
 
   async expectedPageTitle(): Promise<string> {
@@ -11,6 +14,6 @@ export class NrmCurrentProgressPage extends BasePage {
   }
 
   async continueToNextQuestion(): Promise<void> {
-    await this.page.locator('input[value="Continue to next question"]').click();
+    await this.continueToNextQuestionButton.click();
   }
 }

@@ -9,4 +9,11 @@ export class NrmWhereAreYouMakingThisReportPage extends BasePage {
   async expectedPageTitle(): Promise<string> {
     return "Where are you making this report? – Report modern slavery";
   }
+
+  async answerReportLocation(location: string, checkError: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.checkRequiredQuestionErrors(checkError);
+    await this.selectRadioOption(location);
+    await this.clickContinueButton();
+  }
 }
