@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmHowCanTheSupportProviderContactThePotentialVictimPage extends BasePage {
+export class nrmHowCanTheSupportProviderContactThePotentialVictimPage extends basePage {
   private readonly cannotProvideContactDetailsRadio: Locator;
   private readonly noContactDetailsTextbox: Locator;
 

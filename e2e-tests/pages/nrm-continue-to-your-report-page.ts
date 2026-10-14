@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmContinueToYourReportPage extends BasePage {
+export class nrmContinueToYourReportPage extends basePage {
   private readonly startButton: Locator;
 
   constructor(page: Page) {

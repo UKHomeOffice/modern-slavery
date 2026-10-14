@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmAddReferencePage extends BasePage {
+export class nrmAddReferencePage extends basePage {
   private readonly referenceTextbox: Locator;
 
   constructor(page: Page) {

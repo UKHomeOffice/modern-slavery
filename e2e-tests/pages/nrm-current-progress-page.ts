@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmCurrentProgressPage extends BasePage {
+export class nrmCurrentProgressPage extends basePage {
   private readonly continueToNextQuestionButton: Locator;
 
   constructor(page: Page) {

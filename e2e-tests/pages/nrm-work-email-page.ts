@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmWorkEmailPage extends BasePage {
+export class nrmWorkEmailPage extends basePage {
   private readonly workEmailTextbox: Locator;
   private readonly sendSecureLinkButton: Locator;
 
@@ -26,5 +26,4 @@ export class NrmWorkEmailPage extends BasePage {
     await this.sendSecureLinkButton.click();
     await expect(this.page.getByText('Enter a valid email address')).toBeVisible();
   }
-
 }

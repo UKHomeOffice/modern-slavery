@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmLocalAuthContactedPage extends BasePage {
+export class nrmLocalAuthContactedPage extends basePage {
   private readonly localAuthorityName: Locator;
   private readonly localAuthorityPhone: Locator;
   private readonly localAuthorityEmail: Locator;

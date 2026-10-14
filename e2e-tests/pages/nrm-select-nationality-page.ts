@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmSelectNationalityPage extends BasePage {
+export class nrmSelectNationalityPage extends basePage {
   private readonly nationalityField: Locator;
   private readonly secondNationalityField: Locator;
 

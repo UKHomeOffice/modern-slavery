@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmDidYouIdentifyAnyModernSlaveryIndicatorsPage extends BasePage {
+export class nrmDidYouIdentifyAnyModernSlaveryIndicatorsPage extends basePage {
   private readonly details: Locator;
 
   constructor(page: Page) {

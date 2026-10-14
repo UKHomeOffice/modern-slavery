@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmTellUsAboutTheInterviewsPage extends BasePage {
+export class nrmTellUsAboutTheInterviewsPage extends basePage {
   private readonly interviewDetails: Locator;
 
   constructor(page: Page) {

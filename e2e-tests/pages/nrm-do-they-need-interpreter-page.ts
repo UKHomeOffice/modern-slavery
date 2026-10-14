@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmDoTheyNeedInterpreterPage extends BasePage {
+export class nrmDoTheyNeedInterpreterPage extends basePage {
   constructor(page: Page) {
     super(page);
   }

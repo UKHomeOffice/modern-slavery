@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmOtherProfessionalOrgInvolvedPage extends BasePage {
+export class nrmOtherProfessionalOrgInvolvedPage extends basePage {
   private readonly professionalInsight: Locator;
 
   constructor(page: Page) {

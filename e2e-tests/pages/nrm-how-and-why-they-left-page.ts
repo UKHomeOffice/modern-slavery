@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmHowAndWhyTheyLeftPage extends BasePage {
+export class nrmHowAndWhyTheyLeftPage extends basePage {
   private readonly leavingDetails: Locator;
 
   constructor(page: Page) {

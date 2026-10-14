@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmSentConfirmationPage extends BasePage {
+export class nrmSentConfirmationPage extends basePage {
   constructor(page: Page) {
     super(page);
   }

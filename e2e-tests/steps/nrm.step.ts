@@ -1,5 +1,5 @@
 import { createBdd } from 'playwright-bdd';
-import { test, type Pages } from '../fixture/fixtures';
+import { expect, test, type Pages } from '../fixture/fixtures';
 import { ConstantsLib } from '../utility-helper/constants-lib';
 
 export const { Given, When, Then } = createBdd(test);
@@ -380,4 +380,27 @@ Then('I am able to submit the NRM questionnaire', async ({ pages }) => {
   await pages.nrmCheckYourAnswersPage.assertPageTitle(pages.nrmCheckYourAnswersPage.page, await pages.nrmCheckYourAnswersPage.expectedPageTitle());
   await pages.nrmCheckYourAnswersPage.submitReport();
   await pages.nrmSentConfirmationPage.assertSubmissionConfirmation();
+});
+
+
+//************************************************************************************************************************************************//
+//**************************************************  Validation Test start from here ************************************************************//
+//************************************************************************************************************************************************//
+
+Then('I should see {string} error message displayed', async ({ pages }, expectedErrorMessage: string) => {
+  const actualErrorMessageLocator = await pages.basePage.getThereIsAProblemTextErrorText();
+  expect(expectedErrorMessage).toEqual(actualErrorMessageLocator!);
+});
+
+
+Then('I should see {string} error summary', async ({ pages }, expectedErrorMessage: string) => {
+  const expectedErrorArray = expectedErrorMessage.trim().split('¬');
+
+  const actualText = await pages.basePage.getErrorSummaryListText();
+  const actualErrorArray = actualText!
+    .replaceAll('\t', '') // remove ALL tabs
+    .trim()             // remove leading/trailing whitespace
+    .split(/\r?\n/);    // handle all newline types
+
+  expect(actualErrorArray).toEqual(expectedErrorArray);
 });

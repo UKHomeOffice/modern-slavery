@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmIsVictimUnder18Page extends BasePage {
+export class nrmIsVictimUnder18Page extends basePage {
   constructor(page: Page) {
     super(page);
   }

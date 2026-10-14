@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmWhatIsTheirDateOfBirthPage extends BasePage {
+export class nrmWhatIsTheirDateOfBirthPage extends basePage {
   private readonly day: Locator;
   private readonly month: Locator;
   private readonly year: Locator;

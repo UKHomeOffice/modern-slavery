@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmDoTheyHaveACrimeReferenceNumberRelatedToAnyReportedModernSlaveryCrimeInWhichTheyAreAVictimPage extends BasePage {
+export class nrmDoTheyHaveACrimeReferenceNumberRelatedToAnyReportedModernSlaveryCrimeInWhichTheyAreAVictimPage extends basePage {
   private readonly crimeReferenceTextbox: Locator;
 
   constructor(page: Page) {

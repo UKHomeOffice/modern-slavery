@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmWhyDontTheyWantTheirCaseReferredPage extends BasePage {
+export class nrmWhyDontTheyWantTheirCaseReferredPage extends basePage {
   private readonly refusalReason: Locator;
 
   constructor(page: Page) {

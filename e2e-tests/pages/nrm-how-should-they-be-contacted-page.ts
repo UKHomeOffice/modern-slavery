@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { ConstantsLib } from '../utility-helper/constants-lib';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmHowShouldTheyBeContactedPage extends BasePage {
+export class nrmHowShouldTheyBeContactedPage extends basePage {
   private readonly alternateFirstName: Locator;
   private readonly alternateLastName: Locator;
   private readonly emailAddress: Locator;

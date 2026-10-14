@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmBackgroundPage extends BasePage {
+export class nrmBackgroundPage extends basePage {
   private readonly birthPlace: Locator;
   private readonly familyDetails: Locator;
   private readonly educationHistory: Locator;

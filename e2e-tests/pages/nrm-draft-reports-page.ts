@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 import { expect } from '@playwright/test';
 
-export class NrmDraftReportsPage extends BasePage {
+export class nrmDraftReportsPage extends basePage {
   private readonly createReportButton: Locator;
 
   constructor(page: Page) {

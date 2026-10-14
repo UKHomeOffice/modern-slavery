@@ -1,14 +1,18 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
-export abstract class BasePage {
+export class basePage {
     readonly page: Page;
     readonly heading: Locator;
     readonly continueButton: Locator;
+    readonly thereIsAProblemText: Locator;
+    readonly errorSummaryList: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.heading = page.locator('h1');
         this.continueButton = page.getByRole('button', { name: /save and continue|continue/i });
+        this.thereIsAProblemText = page.locator('#error-summary-title');
+        this.errorSummaryList = page.locator("[class='govuk-list govuk-error-summary__list']");
     }
 
     async assertPageTitle(page: Page, title: string): Promise<void> {
@@ -47,4 +51,11 @@ export abstract class BasePage {
         await this.page.getByRole('option').filter({ hasText: value }).first().click();
     }
 
+    async getThereIsAProblemTextErrorText(): Promise<string | null> {
+        return await this.thereIsAProblemText.textContent();
+    }
+
+    async getErrorSummaryListText(): Promise<string | null> {
+        return await this.errorSummaryList.textContent();
+    }
 }

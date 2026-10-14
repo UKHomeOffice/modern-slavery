@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
-import { BasePage } from './base-page';
+import { basePage } from './base-page';
 
-export class NrmHomePage extends BasePage {
+export class nrmHomePage extends basePage {
   private readonly acceptCookiesButton: Locator;
   private readonly startNowButton: Locator;
 
