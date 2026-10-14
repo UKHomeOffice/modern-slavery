@@ -22,7 +22,7 @@ function buildSummaryFromText(outputText) {
     return [
       'Playwright Nightly Summary',
       'Unable to execute Playwright command.',
-      `Error: ${commandFailure[0]}`,
+      `Error: ${commandFailure[0]}`
     ].join('\n');
   }
 
@@ -40,7 +40,7 @@ function buildSummaryFromText(outputText) {
     `Failed: ${failed}`,
     `Flaky: ${flaky}`,
     `Skipped: ${skipped}`,
-    `Duration: ${duration}`,
+    `Duration: ${duration}`
   ].join('\n');
 }
 
@@ -48,8 +48,9 @@ function main() {
   const inputPath = process.argv[2];
   const outputPath = process.argv[3];
   if (!inputPath || !outputPath) {
-    console.error('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>');
-    process.exit(1);
+    process.stderr.write('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>\n');
+    process.exitCode = 1;
+    return;
   }
 
   let summary;
@@ -63,7 +64,7 @@ function main() {
   }
 
   fs.writeFileSync(outputPath, `${summary}\n`, 'utf8');
-  console.log(summary);
+  process.stdout.write(`${summary}\n`);
 }
 
 main();
