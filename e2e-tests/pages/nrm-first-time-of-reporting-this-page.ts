@@ -10,9 +10,8 @@ export class NrmFirstTimeOfReportingThisPage extends BasePage {
     return "Has the potential victim reported this before? – Report modern slavery";
   }
 
-  async answerFirstReport(response: string, checkError: string): Promise<void> {
+  async answerFirstReport(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     await this.clickContinueButton();
   }

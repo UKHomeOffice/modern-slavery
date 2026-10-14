@@ -1,5 +1,4 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { ConstantsLib } from '../utility-helper/constants-lib';
 
 export abstract class BasePage {
     readonly page: Page;
@@ -39,13 +38,6 @@ export abstract class BasePage {
         const checkbox = this.page.locator(selector);
         if (await checkbox.count() && await checkbox.isVisible()) {
             await checkbox.check();
-        }
-    }
-
-    protected async checkRequiredQuestionErrors(checkError: string): Promise<void> {
-        if (checkError === ConstantsLib.YES) {
-            await this.clickContinueButton();
-            await expect(this.page.locator('.govuk-error-summary, #error-summary-title')).toBeVisible();
         }
     }
 

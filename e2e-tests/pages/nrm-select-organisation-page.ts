@@ -1,6 +1,4 @@
 import type { Locator, Page } from '@playwright/test';
-import { expect } from '@playwright/test';
-import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmSelectOrganisationPage extends BasePage {
@@ -15,12 +13,8 @@ export class NrmSelectOrganisationPage extends BasePage {
     return "What organisation do you work for? – Report modern slavery";
   }
 
-  async completeOrganisation(organisation: string, checkError: string): Promise<void> {
+  async completeOrganisation(organisation: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    if (checkError === ConstantsLib.YES) {
-      await this.clickContinueButton();
-      await expect(this.page.getByText('You must select the organisation')).toBeVisible();
-    }
     await this.clearAndEnterTextInElement(this.organisationField, organisation);
     await this.clickContinueButton();
   }

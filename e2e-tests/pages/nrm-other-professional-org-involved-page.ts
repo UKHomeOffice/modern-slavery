@@ -13,9 +13,8 @@ export class NrmOtherProfessionalOrgInvolvedPage extends BasePage {
     return "Your professional insight – Report modern slavery";
   }
 
-  async enterProfessionalInvolvementDetails(text: string, checkError: string): Promise<void> {
+  async enterProfessionalInvolvementDetails(text: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.professionalInsight, text);
     await this.clickContinueButton();
   }

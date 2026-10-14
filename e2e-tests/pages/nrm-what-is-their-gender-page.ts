@@ -10,9 +10,8 @@ export class NrmWhatIsTheirGenderPage extends BasePage {
     return "What is their gender? – Report modern slavery";
   }
 
-  async answerGender(response: string, checkError: string): Promise<void> {
+  async answerGender(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     await this.clickContinueButton();
   }

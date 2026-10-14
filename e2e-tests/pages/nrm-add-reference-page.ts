@@ -1,6 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmAddReferencePage extends BasePage {
@@ -15,11 +14,8 @@ export class NrmAddReferencePage extends BasePage {
     return "What’s your reference for this report? – Report modern slavery";
   }
 
-  async completeReference(reference: string, checkError: string): Promise<void> {
+  async completeReference(reference: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    if (checkError === ConstantsLib.YES) {
-      await this.checkBlankReferenceError();
-    }
     await this.enterYourReference(reference);
     await this.clickContinueButton();
   }

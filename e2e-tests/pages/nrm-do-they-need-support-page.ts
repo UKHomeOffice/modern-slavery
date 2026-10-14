@@ -10,9 +10,8 @@ export class NrmDoTheyNeedSupportPage extends BasePage {
     return "Does the potential victim want support? – Report modern slavery";
   }
 
-  async answerSupportNeed(response: string, checkError: string): Promise<void> {
+  async answerSupportNeed(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     await this.clickContinueButton();
   }

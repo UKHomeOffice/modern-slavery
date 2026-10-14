@@ -31,11 +31,8 @@ export class NrmDoTheyHaveACrimeReferenceNumberRelatedToAnyReportedModernSlavery
     await this.page.getByText('You must select an option').waitFor();
   }
 
-  async completeCrimeReference(response: string, checkError: string): Promise<void> {
+  async completeCrimeReference(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    if (checkError === ConstantsLib.YES) {
-      await this.checkBlankCrimeReferenceError();
-    }
     await this.selectCrimeReferenceAnswer(response);
     if (response.toLowerCase() === ConstantsLib.YES.toLowerCase()) {
       await this.enterCrimeReferenceDetails();

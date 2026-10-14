@@ -22,9 +22,8 @@ export class NrmLocalAuthContactedPage extends BasePage {
     return "Which local authority have you contacted about the child? – Report modern slavery";
   }
 
-  async completeLocalAuthorityDetails(checkError: string = ConstantsLib.NO): Promise<void> {
+  async completeLocalAuthorityDetails(): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.localAuthorityName, ConstantsLib.LOCAL_AUTHORITY);
     await this.clearAndEnterTextInElement(this.localAuthorityPhone, ConstantsLib.LOCAL_AUTHORITY_PHONE);
     await this.clearAndEnterTextInElement(this.localAuthorityEmail, ConstantsLib.LOCAL_AUTHORITY_EMAIL);

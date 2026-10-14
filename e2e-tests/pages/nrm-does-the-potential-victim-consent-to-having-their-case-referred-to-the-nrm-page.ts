@@ -1,5 +1,4 @@
 import type { Page } from '@playwright/test';
-import { ConstantsLib } from '../utility-helper/constants-lib';
 import { BasePage } from './base-page';
 
 export class NrmDoesThePotentialVictimConsentToHavingTheirCaseReferredToTheNrmPage extends BasePage {
@@ -22,11 +21,8 @@ export class NrmDoesThePotentialVictimConsentToHavingTheirCaseReferredToTheNrmPa
     await this.page.getByText('You must enter the NRM decision').waitFor();
   }
 
-  async completeConsent(response: string, checkError: string): Promise<void> {
+  async completeConsent(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    if (checkError === ConstantsLib.YES) {
-      await this.checkConsentDecisionRequiredError();
-    }
     await this.selectConsentDecision(response);
     await this.clickContinueButton();
   }

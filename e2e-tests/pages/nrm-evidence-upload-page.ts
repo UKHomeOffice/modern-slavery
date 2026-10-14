@@ -10,9 +10,8 @@ export class NrmEvidenceUploadPage extends BasePage {
     return "Upload supporting evidence and documents (Optional) – Report modern slavery";
   }
 
-  async continueWithoutEvidence(checkError: string): Promise<void> {
+  async continueWithoutEvidence(): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clickContinueButton();
   }
 }

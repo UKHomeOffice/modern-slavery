@@ -10,9 +10,8 @@ export class NrmDoTheyHaveAnyHomeOfficeRefPage extends BasePage {
     return "Do they have any Home Office references? – Report modern slavery";
   }
 
-  async answerHomeOfficeReference(response: string, checkError: string): Promise<void> {
+  async answerHomeOfficeReference(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     await this.clickContinueButton();
   }

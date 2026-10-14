@@ -22,11 +22,8 @@ export class NrmSelectNationalityPage extends BasePage {
     await this.page.getByText("You must select the potential victim's nationality from the list").waitFor();
   }
 
-  async completeNationalitySelection(checkError: string): Promise<void> {
+  async completeNationalitySelection(): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    if (checkError === ConstantsLib.YES) {
-      await this.checkNationalityRequiredError();
-    }
     await this.selectNationality(this.nationalityField, ConstantsLib.NATIONALITY);
     await this.selectNationality(this.secondNationalityField, ConstantsLib.SECOND_NATIONALITY);
     await this.clickContinueButton();

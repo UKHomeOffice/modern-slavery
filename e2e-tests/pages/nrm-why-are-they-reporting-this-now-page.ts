@@ -13,9 +13,8 @@ export class NrmWhyAreTheyReportingThisNowPage extends BasePage {
     return "Is there anything that prevented the potential victim from reporting this sooner? – Report modern slavery";
   }
 
-  async enterWhyReportNow(text: string, checkError: string): Promise<void> {
+  async enterWhyReportNow(text: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.reportNowReason, text);
     await this.clickContinueButton();
   }

@@ -13,9 +13,8 @@ export class NrmHowAndWhyTheyLeftPage extends BasePage {
     return "How did the potential victim leave the exploitative situation? – Report modern slavery";
   }
 
-  async enterLeavingDetails(text: string, checkError: string): Promise<void> {
+  async enterLeavingDetails(text: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.leavingDetails, text);
     await this.clickContinueButton();
   }

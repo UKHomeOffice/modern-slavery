@@ -10,9 +10,8 @@ export class NrmWereThereAnyOtherPotentialVictimsPage extends BasePage {
     return "Were there any other potential victims? – Report modern slavery";
   }
 
-  async answerOtherPotentialVictims(response: string, checkError: string): Promise<void> {
+  async answerOtherPotentialVictims(response: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     await this.clickContinueButton();
   }

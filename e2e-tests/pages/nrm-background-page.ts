@@ -19,9 +19,8 @@ export class NrmBackgroundPage extends BasePage {
     return "Tell us about the potential victim's background – Report modern slavery";
   }
 
-  async enterBackgroundDetails(text: string, checkError: string): Promise<void> {
+  async enterBackgroundDetails(text: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.birthPlace, text);
     await this.clearAndEnterTextInElement(this.familyDetails, text);
     await this.clearAndEnterTextInElement(this.educationHistory, text);

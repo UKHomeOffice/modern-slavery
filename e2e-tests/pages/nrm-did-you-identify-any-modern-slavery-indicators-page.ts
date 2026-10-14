@@ -13,9 +13,8 @@ export class NrmDidYouIdentifyAnyModernSlaveryIndicatorsPage extends BasePage {
     return "Did you identify any modern slavery indicators? – Report modern slavery";
   }
 
-  async answerModernSlaveryIndicators(response: string, text: string | undefined, checkError: string): Promise<void> {
+  async answerModernSlaveryIndicators(response: string, text: string | undefined): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.selectRadioOption(response);
     if (text) {
       if (await this.details.isVisible()) {

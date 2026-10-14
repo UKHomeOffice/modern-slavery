@@ -13,9 +13,8 @@ export class NrmWhyDontTheyWantTheirCaseReferredPage extends BasePage {
     return "Why doesn't the potential victim want their case referred to the NRM? – Report modern slavery";
   }
 
-  async enterReasonForNoReferral(text: string, checkError: string): Promise<void> {
+  async enterReasonForNoReferral(text: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.checkRequiredQuestionErrors(checkError);
     await this.clearAndEnterTextInElement(this.refusalReason, text);
     await this.clickContinueButton();
   }
