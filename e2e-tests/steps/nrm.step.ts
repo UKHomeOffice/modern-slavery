@@ -10,7 +10,7 @@ Given('I visit the National Referral Mechanism page', async ({ pages }) => {
   await pages.nrmHomePage.startNrm();
 });
 
-When('I enter my work Email {string} and create new report', async ({ pages }, email: string) => {
+Given('I enter my work Email {string} and create new report', async ({ pages }, email: string) => {
   if (email === 'SAS_HOF_EMAIL') {
     email = process.env.SAS_HOF_EMAIL ?? email;
   }

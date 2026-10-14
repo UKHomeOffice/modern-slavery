@@ -14,9 +14,9 @@ dump.rdb
 .DS_Store
 coverage
 output/
-.features-gen/
-playwright-report/
-test-results/
+.features-gen
+playwright-report
+test-results
 *.iml
 .vscode
 .vscode-server
