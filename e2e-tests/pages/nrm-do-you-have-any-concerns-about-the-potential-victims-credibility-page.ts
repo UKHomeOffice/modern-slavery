@@ -1,0 +1,18 @@
+import type { Page } from '@playwright/test';
+import { basePage } from './base-page';
+
+export class nrmDoYouHaveAnyConcernsAboutThePotentialVictimsCredibilityPage extends basePage {
+  constructor(page: Page) {
+    super(page);
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    return "Do you have any concerns about the potential victim's credibility? – Report modern slavery";
+  }
+
+  async answerCredibilityConcern(response: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.selectRadioOption(response);
+    await this.clickContinueButton();
+  }
+}
