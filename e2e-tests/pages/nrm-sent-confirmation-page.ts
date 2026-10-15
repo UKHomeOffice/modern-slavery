@@ -11,8 +11,13 @@ export class nrmSentConfirmationPage extends basePage {
     return "Confirmation";
   }
 
-  async assertSubmissionConfirmation(): Promise<void> {
-    await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await expect(this.heading).toBeVisible();
+  async assertConfirmationPageAndHeader(header: string): Promise<void> {
+    await expect(this.heading).toHaveText(header);
   }
+
+  async assertSubmissionConfirmationPageTitle(): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+  }
+
+
 }

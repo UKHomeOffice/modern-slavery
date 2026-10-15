@@ -1,12 +1,14 @@
+import { randomUUID } from 'node:crypto';
 import { createBdd } from 'playwright-bdd';
 import { expect, test, type Pages } from '../fixture/fixtures';
 import { ConstantsLib } from '../utility-helper/constants-lib';
 
 export const { Given, When, Then } = createBdd(test);
 
-const reportReference = `${ConstantsLib.REFERENCE_PREFIX}-${Date.now()}`;
+let reportReference: string;
 
 Given('I visit the National Referral Mechanism page', async ({ pages }) => {
+  reportReference = `${ConstantsLib.REFERENCE_PREFIX}-${randomUUID()}`;
   await pages.nrmHomePage.startNrm();
 });
 
@@ -348,6 +350,15 @@ When('I fill out my answers to the NRM questionnaire for scenario {string}', asy
   }
 });
 
+When('I choose to send report', async ({pages}) => {
+  await pages.nrmCheckYourAnswersPage.submitReport();
+});
+
+Then('I should see {string} header on the confirmation page', async ({ pages }, pageHeader: string) => {
+  await pages.nrmSentConfirmationPage.assertSubmissionConfirmationPageTitle();
+  await pages.nrmSentConfirmationPage.assertConfirmationPageAndHeader(pageHeader);
+});
+
 When('I navigate back to the reports dashboard', async ({ pages }) => {
   await pages.nrmDraftReportsPage.navigateToReportsDashboard();
 });
@@ -376,16 +387,195 @@ Then('I click \'Save and exit\' button and confirm my report is saved', async ({
   await pages.nrmYourReportHasBeenSavedPage.assertReportSaved();
 });
 
-Then('I am able to submit the NRM questionnaire', async ({ pages }) => {
-  await pages.nrmCheckYourAnswersPage.assertPageTitle(pages.nrmCheckYourAnswersPage.page, await pages.nrmCheckYourAnswersPage.expectedPageTitle());
-  await pages.nrmCheckYourAnswersPage.submitReport();
-  await pages.nrmSentConfirmationPage.assertSubmissionConfirmation();
-});
-
-
 //************************************************************************************************************************************************//
 //**************************************************  Validation Test start from here ************************************************************//
 //************************************************************************************************************************************************//
+
+When('I allow time for the full NRM validation journey', async () => {
+  test.setTimeout(120_000);
+});
+
+When('I select continue', async ({ pages }) => {
+  await pages.basePage.clickContinueButton();
+});
+
+When('I complete the NRM validation page with valid answers for {string}', async ({ pages }, pageName: string) => {
+  switch (pageName) {
+    case 'reference':
+      await pages.nrmAddReferencePage.completeReference(reportReference);
+      break;
+    case 'organisation':
+      await pages.nrmSelectOrganisationPage.completeOrganisation(ConstantsLib.ORGANISATION);
+      break;
+    case 'report location':
+      await pages.nrmWhereAreYouMakingThisReportPage.answerReportLocation('England');
+      break;
+    case 'victim age':
+      await pages.nrmIsVictimUnder18Page.answerVictimAge(ConstantsLib.NO);
+      break;
+    case 'age during exploitation':
+      await pages.nrmUnder18AnytimeDuringExploitationPage.answerUnder18AtAnyTime(ConstantsLib.NO);
+      break;
+    case 'background':
+      await pages.nrmBackgroundPage.enterBackgroundDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'multiple exploitation':
+      await pages.nrmHasThePotentialVictimBeenInMoreThanOneExploitativeSituationPage.answerMultipleExploitation(ConstantsLib.NO);
+      break;
+    case 'exploitation period':
+      await pages.nrmWhenDidExploitationHappenPage.enterExploitationPeriod(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'how exploitation started':
+      await pages.nrmHowExploitationStartPage.enterHowExploitationStarted(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'taken somewhere without details':
+      await pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.answerTakenSomewhere(ConstantsLib.YES, '');
+      break;
+    case 'taken somewhere':
+      await pages.nrmWasThePotentialVictimTakenSomewhereByTheirExploitersPage.answerTakenSomewhere(ConstantsLib.YES, ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'treatment details':
+      await pages.nrmHowWasThePotentialVictimTreatedDuringTheirExploitationPage.enterTreatmentDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'current exploitation status':
+      await pages.nrmIsThePotentialVictimStillInAnExploitativeSituationPage.answerCurrentExploitationStatus(ConstantsLib.NO);
+      break;
+    case 'leaving the situation':
+      await pages.nrmHowAndWhyTheyLeftPage.enterLeavingDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'last contact period':
+      await pages.nrmWhenWasPotentialVictimAndExploiterLastInContactPage.answerLastContactPeriod('Not sure');
+      break;
+    case 'last contact details':
+      await pages.nrmTellUsAboutTheLastContactBetweenThePotentialVictimAndTheirExploitersPage.enterLastContactDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'first report':
+      await pages.nrmFirstTimeOfReportingThisPage.answerFirstReport(ConstantsLib.NO);
+      break;
+    case 'why report now':
+      await pages.nrmWhyAreTheyReportingThisNowPage.enterWhyReportNow(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'indicators without details':
+      await pages.nrmDidYouIdentifyAnyModernSlaveryIndicatorsPage.answerModernSlaveryIndicators(ConstantsLib.YES, '');
+      break;
+    case 'indicators':
+      await pages.nrmDidYouIdentifyAnyModernSlaveryIndicatorsPage.answerModernSlaveryIndicators(ConstantsLib.YES, ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'interviews':
+      await pages.nrmTellUsAboutTheInterviewsPage.enterInterviewDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'professional insight':
+      await pages.nrmOtherProfessionalOrgInvolvedPage.enterProfessionalInvolvementDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'credibility':
+      await pages.nrmDoYouHaveAnyConcernsAboutThePotentialVictimsCredibilityPage.answerCredibilityConcern(ConstantsLib.NO);
+      break;
+    case 'other professionals without details':
+      await pages.nrmAreThereOtherProfessionalsOrOrganisationsInvolvedWithThisCasePage.answerOtherProfessionalsInvolved(ConstantsLib.YES, '');
+      break;
+    case 'other professionals':
+      await pages.nrmAreThereOtherProfessionalsOrOrganisationsInvolvedWithThisCasePage.answerOtherProfessionalsInvolved(ConstantsLib.YES, ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'exploitation location type':
+      await pages.nrmWhereWereTheyExploitedPage.answerExploitationLocations('UK');
+      break;
+    case 'UK exploitation location':
+      await pages.nrmWhereWereTheyExploitedInTheUKPage.completeUkExploitationLocations(ConstantsLib.UK_CITY, ConstantsLib.LOCATION_DETAILS, 1);
+      break;
+    case 'current victim location':
+      await pages.nrmWhereIsThePotentialVictimStayingPage.completeVictimCurrentLocation(ConstantsLib.UK_CITY, ConstantsLib.UK_REGION);
+      break;
+    case 'exploiter details':
+      await pages.nrmWhoExploitedThePotentialVictimPage.enterExploiterDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'exploiter location availability':
+      await pages.nrmDoYouHaveInformationAboutWhereTheExploitersArePage.answerExploiterInformation(ConstantsLib.YES);
+      break;
+    case 'exploiters in UK':
+      await pages.nrmAreTheExploitersInTheUKPage.answerExploitersInUk(ConstantsLib.YES);
+      break;
+    case 'exploiter location details':
+      await pages.nrmWhatInfoDoYouHaveAbtExploiterWhereAbtPage.enterExploiterLocationDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'exploitation types':
+      await pages.nrmHowWereTheyExploitedPage.completeExploitationTypes();
+      break;
+    case 'other potential victims':
+      await pages.nrmWereThereAnyOtherPotentialVictimsPage.answerOtherPotentialVictims(ConstantsLib.YES);
+      break;
+    case 'future exploitation risk':
+      await pages.nrmAreThereConcernsThatThePotentialVictimCouldBeExploitedAgainInTheFuturePage.answerFutureRisk(ConstantsLib.YES);
+      break;
+    case 'future exploitation details':
+      await pages.nrmWhyAreThereConcernsAboutExploitationInTheFuturePage.enterFutureRiskDetails(ConstantsLib.TEXT_ANSWER);
+      break;
+    case 'crime reference without details':
+      await pages.nrmDoTheyHaveACrimeReferenceNumberRelatedToAnyReportedModernSlaveryCrimeInWhichTheyAreAVictimPage.selectCrimeReferenceAnswer(ConstantsLib.YES);
+      await pages.basePage.clickContinueButton();
+      break;
+    case 'crime reference':
+      await pages.nrmDoTheyHaveACrimeReferenceNumberRelatedToAnyReportedModernSlaveryCrimeInWhichTheyAreAVictimPage.completeCrimeReference(ConstantsLib.YES);
+      break;
+    case 'co-operation':
+      await pages.nrmCoOperationWithPublicAuthoritiesPage.answerCooperation(ConstantsLib.YES);
+      break;
+    case 'NRM decision':
+      await pages.nrmDoesThePotentialVictimConsentToHavingTheirCaseReferredToTheNrmPage.completeConsent(ConstantsLib.YES);
+      break;
+    case 'support required':
+      await pages.nrmDoTheyNeedSupportPage.answerSupportNeed(ConstantsLib.NO);
+      break;
+    case 'potential victim name':
+      await pages.nrmWhatIsTheNameOfThePotentialVictimPage.completePotentialVictimName();
+      break;
+    case 'date of birth':
+      await pages.nrmWhatIsTheirDateOfBirthPage.completeDateOfBirth();
+      break;
+    case 'gender':
+      await pages.nrmWhatIsTheirGenderPage.answerGender(ConstantsLib.GENDER);
+      break;
+    case 'children':
+      await pages.nrmDoTheyHaveAnyChildrenPage.answerChildren(ConstantsLib.NO);
+      break;
+    case 'nationality':
+      await pages.nrmSelectNationalityPage.completeNationalitySelection();
+      break;
+    case 'interpreter':
+      await pages.nrmDoTheyNeedInterpreterPage.answerInterpreter(ConstantsLib.NO);
+      break;
+    case 'communication help':
+      await pages.nrmDoTheyNeedHelpWithCommunicationPage.answerCommunicationHelp(ConstantsLib.NO);
+      break;
+    case 'Home Office reference':
+      await pages.nrmDoTheyHaveAnyHomeOfficeRefPage.answerHomeOfficeReference(ConstantsLib.NO);
+      break;
+    case 'decision recipient':
+      await pages.nrmWhoShouldWeSendDecisionToPage.answerDecisionRecipient(ConstantsLib.DECISION_RECIPIENT);
+      break;
+    case 'decision contact details':
+      await pages.nrmHowShouldTheyBeContactedPage.completeDecisionContactDetails(ConstantsLib.DECISION_RECIPIENT);
+      break;
+    case 'reporter contact details':
+      await pages.nrmWhatAreYourContactDetailsPage.completeReporterContactDetails();
+      break;
+    case 'absence contact':
+      await pages.nrmWhoShouldWeContactInYourAbsencePage.completeAbsenceContact(ConstantsLib.EMAIL_ANSWER);
+      break;
+    case 'evidence':
+      await pages.nrmEvidenceUploadPage.continueWithoutEvidence();
+      break;
+    default:
+      throw new Error(`Unknown NRM validation page: ${pageName}`);
+  }
+});
+
+Then('I should be on the NRM check your answers page', async ({ pages }) => {
+  await pages.nrmCheckYourAnswersPage.assertPageTitle(
+    pages.nrmCheckYourAnswersPage.page,
+    await pages.nrmCheckYourAnswersPage.expectedPageTitle(),
+  );
+});
+
 
 Then('I should see {string} error message displayed', async ({ pages }, expectedErrorMessage: string) => {
   const actualErrorMessageLocator = await pages.basePage.getThereIsAProblemTextErrorText();

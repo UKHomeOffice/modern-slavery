@@ -16,7 +16,8 @@ export class basePage {
     }
 
     async assertPageTitle(page: Page, title: string): Promise<void> {
-        await expect(page).toHaveTitle(title + ' – GOV.UK');
+        const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        await expect(page).toHaveTitle(new RegExp(`^(?:Error: )?${escapedTitle} – GOV\\.UK$`));
     }
 
     async clearAndEnterTextInElement(locator: Locator, value: string): Promise<void> {
@@ -46,8 +47,16 @@ export class basePage {
     }
 
     protected async selectAutocomplete(label: string, value: string): Promise<void> {
-        const input = this.page.getByRole('combobox', { name: label });
-        await input.fill(value);
+        const field = this.page.getByRole('combobox', { name: label });
+        const tagName = await field.evaluate(element => element.tagName);
+        if (tagName === 'SELECT') {
+            await field.selectOption({ label: value });
+            return;
+        }
+        if (tagName !== 'INPUT') {
+            throw new Error(`Expected an input or select for autocomplete "${label}", received ${tagName}`);
+        }
+        await field.fill(value);
         await this.page.getByRole('option').filter({ hasText: value }).first().click();
     }
 
