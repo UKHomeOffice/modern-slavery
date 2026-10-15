@@ -1,4 +1,5 @@
 @NrmValidation
+@NrmRegressionCI
 Feature: NRM validation
 
   Background:

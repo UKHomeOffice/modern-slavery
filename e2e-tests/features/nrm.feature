@@ -1,4 +1,5 @@
-@NrmRegression @NrmRegressionCI
+@NrmRegression 
+@NrmRegressionCI
 Feature: NRM - National Referral Mechanism
 
   Background:
