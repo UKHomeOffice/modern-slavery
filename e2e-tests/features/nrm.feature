@@ -12,7 +12,7 @@ Feature: NRM - National Referral Mechanism
     Then I should see "<Header Text>" header on the confirmation page
     Examples:
       | Description                              | Header Text               |
-      | T1: Yes answers - under 18               | NRM referral sent1         |
+      | T1: Yes answers - under 18               | NRM referral sent         |
       | T2: No answers - over 18, No Cooperation | Duty to Notify (DtN) sent |
       | T3: Not sure if under 18                 | NRM referral sent         |
       | T4: E2E mixed                            | NRM referral sent         |
