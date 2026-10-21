@@ -1,0 +1,21 @@
+import type { Locator, Page } from '@playwright/test';
+import { basePage } from './base-page';
+
+export class nrmWhyAreTheyReportingThisNowPage extends basePage {
+  private readonly reportNowReason: Locator;
+
+  constructor(page: Page) {
+    super(page);
+    this.reportNowReason = page.locator('#why-report-now');
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    return "Is there anything that prevented the potential victim from reporting this sooner? – Report modern slavery";
+  }
+
+  async enterWhyReportNow(text: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.clearAndEnterTextInElement(this.reportNowReason, text);
+    await this.clickContinueButton();
+  }
+}

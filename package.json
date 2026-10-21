@@ -8,7 +8,7 @@
     "url": "git+https://github.com/UKHomeOffice/modern-slavery.git"
   },
   "engines": {
-    "node": ">=24.21.0"
+    "node": ">=24.21.0 <25.0.0"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,12 @@
     "test:local-acceptance": "env BROWSER_TYPE=local _mocha --recursive acceptance-test/user-pathways",
     "test:local-acceptance-demo": "env BROWSER_TYPE=local BROWSER_DEMO=true _mocha --recursive acceptance-test/user-pathways",
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
+    "bddgen": "bddgen",
+    "test:e2e": "bddgen && playwright test",
+    "test:e2e:headed": "bddgen && playwright test --headed",
+    "test:e2e:debug": "bddgen && playwright test --debug",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:typecheck": "tsc --project tsconfig.e2e.json",
     "build": "hof-build",
     "postinstall": "yarn run build"
   },
@@ -69,6 +75,12 @@
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
     "proxyquire": "^2.1.3",
+    "@playwright/test": "1.64.0",
+    "playwright": "1.64.0",
+    "@types/node": "^26.1.1",
+    "dotenv": "^17.4.2",
+    "playwright-bdd": "^9.2.0",
+    "typescript": "^5.9.3",
     "puppeteer": "^25.12.0",
     "reqres": "^3.0.1",
     "sinon": "^22.0.0",

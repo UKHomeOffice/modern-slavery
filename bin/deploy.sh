@@ -65,9 +65,9 @@ export REDIS_PERSISTENCE_ENABLED=$(echo "${REDIS_PERSISTENCE_ENABLED}" | tr '[:u
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd --delete -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/jobs/ms-schema-job.yml
+  $kd -f kube/configmaps -f kube/jobs/ms-schema-job.yml
   $kd -f kube/file-vault/file-vault-ingress.yml 
-  $kd -f kube/configmaps -f kube/certs
+  $kd -f kube/certs
   $kd -f kube/dashboard
   if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
     $kd -f ${redis_storage_files}
@@ -79,9 +79,9 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/app 
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd --delete -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/file-vault/file-vault-ingress.yml 
+  $kd -f kube/configmaps/configmap.yml -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
   if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
     $kd -f ${redis_storage_files}
@@ -93,9 +93,9 @@ elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd --delete -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/file-vault/file-vault-ingress.yml 
+  $kd -f kube/configmaps/configmap.yml -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/configmaps/configmap.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
   if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
     $kd -f ${redis_storage_files}
@@ -109,9 +109,9 @@ elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export KUBE_CERTIFICATE_AUTHORITY=https://raw.githubusercontent.com/UKHomeOffice/acp-ca/master/acp-prod.crt
 
   $kd --delete -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/file-vault/file-vault-ingress.yml 
+  $kd -f kube/configmaps/configmap.yml -f kube/file-vault/file-vault-ingress.yml 
   $kd -f kube/jobs/ms-schema-job.yml
-  $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml -f kube/save-return-lookup/ingress.yml
+  $kd -f kube/app/service.yml -f kube/save-return-lookup/ingress.yml
   $kd -f kube/dashboard
   $kd -f kube/govuk-ingress -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
   if [[ "${REDIS_PERSISTENCE_ENABLED}" == 'true' && -z "${REDIS_PERSISTENCE_EXISTING_CLAIM}" ]]; then
@@ -127,6 +127,9 @@ fi
 sleep $READY_FOR_TEST_DELAY
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
+  if [[ -d /root/.dockersock ]]; then
+    printf '%s\n' "ms-${DRONE_SOURCE_BRANCH}.internal.${BRANCH_ENV}.homeoffice.gov.uk" > /root/.dockersock/branch_url.txt
+  fi
   echo "App Branch - ms-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Lookup UI Branch - lookup-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Data Service Branch - data-service-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
