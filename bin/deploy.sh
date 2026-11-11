@@ -33,7 +33,7 @@ delete_redis() {
 
 if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
-  export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
+  export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt | tr '[:upper:]' '[:lower:]' | tr '/.' '-')
   export REDIS_PERSISTENCE_ENABLED=false
   export REDIS_PERSISTENCE_ENABLED=$(echo "${REDIS_PERSISTENCE_ENABLED}" | tr '[:upper:]' '[:lower:]')
 
@@ -46,7 +46,7 @@ if [[ $1 == 'tear_down' ]]; then
 fi
 
 export KUBE_NAMESPACE=$1
-export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+export DRONE_SOURCE_BRANCH=$(printf '%s' "$DRONE_SOURCE_BRANCH" | tr '[:upper:]' '[:lower:]' | tr '/.' '-')
 
 if [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   export REDIS_PERSISTENCE_ENABLED=true
